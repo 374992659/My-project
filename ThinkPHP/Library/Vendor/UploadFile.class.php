@@ -204,7 +204,7 @@ class UploadFile {//类定义开始
         }
         if($isUpload) {
             $this->uploadFileInfo = $fileInfo;
-            return true;
+            return $fileInfo;
         }else {
             $this->error  =  '没有选择上传文件';
             return false;

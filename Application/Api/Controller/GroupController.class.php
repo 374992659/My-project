@@ -9,6 +9,8 @@
 
 namespace Api\Controller;
 use Api\Model;
+
+
 class GroupController extends VersionController
 {
     /*
@@ -64,9 +66,20 @@ class GroupController extends VersionController
    *
    * */
     protected function uploadGroupP_v1_0_0(){
+        if(!$_FILES){
+            $this->echoEncrypData(306);
+        }
+        import('Vendor.UploadFile');
         $model = new \UploadFile();
-        $save_path= __APP__.'/';
-        $model->upload($save_path);
+        $save_path= APP_PATH.'/Common/Upload/Img/'.date(m).date(d).'/';
+        $res = $model->upload($save_path);
+        if(!$res){
+            $this->echoEncrypData(1,'图片上传失败');
+        }
+        $data = array(
+            'file_path' => $res[0]['savepath'].$res[0]['savename']
+        );
+        $this->echoEncrypData(0,'',$data);
     }
 
     /*

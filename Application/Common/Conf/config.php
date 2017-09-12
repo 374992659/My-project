@@ -36,4 +36,5 @@ return array(
 
     'CAPTCHA_INTERVAL_SECOND' => 60,  //短信间隔60秒
     'SMS_VALIDITY'   => 10,                   //短信有效时间10分钟
+
  );
