@@ -22,6 +22,9 @@ return array(
         'IOS'                   => '1.0.0',  //ios最新版本号
         'ANDROID'           => '1.0.0',//android最新版本号
         ),
-    'SQL_PATH'      => './Application/Api/Sql/'
-
+    'SQL_PATH'      => './Application/Api/Sql/',
+    //微信公众号
+    'APPID'             =>'wx3a8d29551364f089',
+    'APPSECRET'     =>'d6ced1ed28305e5ab8ad6794df07635d',
+    'WEIXIN_API_TOKEN'             =>'tokenlv',
 );

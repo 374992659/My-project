@@ -100,8 +100,8 @@ class BaseController extends Controller
     {
         //初始化微信SDK
         $weObj = new \Common\Lib\WechatSDKLib(array(
-            'appid'		=> C('WEIXIN_APPID'),
-            'appsecret'	=> C('WEIXIN_APPSECRET'),
+            'appid'		=> C('APPID'),
+            'appsecret'	=> C('APPSECRET'),
             'token' 	=> C('WEIXIN_API_TOKEN'), //填写你设定的key
             'encodingaeskey' => C("ENCODINGAESKEY") //填写加密用的EncodingAESKey，如接口为明文模式可忽略
             //'agentid'=>'1', //应用的id
@@ -228,6 +228,8 @@ class BaseController extends Controller
             21=>'参数提交不完整',
             3 => '服务器出错',
             4 => 'token error',
+            5 => '暂无数据',
+
 
             100 => '未登录',
             101 => '本机登陆失效，你已在其他设备上登陆。',
@@ -260,6 +262,7 @@ class BaseController extends Controller
             304 => '该用户已经是你的好友啦',
             305 => '创建群已超过5个,暂时无法创建更多',
             306 => '没有图片被选中',
+            307 => '你不是群创建人或管理员无法执行此操作',
 
             500 => '您无法执行该操作',
 
