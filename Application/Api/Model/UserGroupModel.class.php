@@ -45,5 +45,24 @@ class UserGroupModel extends Model
         }
         return true;
     }
+    /*
+     * 获取用户所在群
+     * @param role 角色 可填 不填获取用户所有群
+     * */
+    public function getGroup($field = '*',$role=''){
+        $where=array();
+        if($role){
+            $where = array(
+                'role' =>$role,
+            );
+        }
+        $where['status'] =1;
+        $data = $this->field($field)->where($where)->select();
+        if(!$data){
+            return 1;
+        }else{
+            return $data;
+        }
+    }
 
 }

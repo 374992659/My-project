@@ -50,5 +50,26 @@ class GroupUserModel extends Model
         }
         return true;
     }
+    /*
+     *获取群所有用户
+     * @group_code 群识别符
+     * */
+    public function getGroupUser($group_code){
+        if(!$group_code)return 21 ;
+        $data = $this->field('user_code,nickname,portrait,role')->where(['group_code'=>$group_code])->select();
+        if(!$data) return 5;
+        return $data;
+    }
 
+
+    /*
+     * 获取群内某一用户的身份
+     * @group_num 群号码
+     * @user_code 用户code
+     * */
+    public function getUserRole($group_num,$user_code){
+        $data = $this->where(['group_num'=>$group_num,'user_code'=>$user_code])->getField('role');
+        if(!$data) return false;
+        return $data;
+    }
 }

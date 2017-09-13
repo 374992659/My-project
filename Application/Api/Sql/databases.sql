@@ -91,6 +91,34 @@ CREATE TABLE  if not exists `user_friends` (
   KEY `group_id` (`group_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户个人好友表';
 
+CREATE TABLE  if not exists `group_notice` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `title` varchar(100) NOT NULL COMMENT '公告标题',
+  `content` varchar(500) NOT NULL COMMENT '公告内容',
+  `portrait` varchar(500) NOT NULL COMMENT '公告图片',
+  `user_code` varchar(20) NOT NULL COMMENT '创建人code',
+  `nickname` varchar(20) NOT NULL COMMENT '创建人昵称',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `group_num` varchar(20) NOT NULL COMMENT '所属群号码',
+  PRIMARY KEY (`id`),
+  KEY `group_num` (`group_num`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群公告';
+
+CREATE TABLE  if not exists `group_picture` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `picture_path` varchar(500) NOT NULL COMMENT '图片路径',
+  `title` varchar(100) DEFAULT NULL COMMENT '标题',
+  `user_code` varchar(20) NOT NULL COMMENT '创建人code',
+  `user_portrait` varchar(255) DEFAULT NULL COMMENT '创建人头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `nickname` varchar(20) DEFAULT NULL COMMENT '创建人昵称',
+  `group_num` varchar(20) DEFAULT NULL COMMENT '所属群号码',
+  PRIMARY KEY (`id`),
+  KEY `group_num` (`group_num`) USING BTREE,
+  KEY `user_code` (`user_code`) USING BTREE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群相册';
+
+
 CREATE TABLE  if not exists `user_group` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `group_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '群名称',
@@ -100,7 +128,8 @@ CREATE TABLE  if not exists `user_group` (
   `num_limit` int(4) NOT NULL DEFAULT '200' COMMENT '群用户上限',
   `role` tinyint(1) unsigned NOT NULL DEFAULT '3' COMMENT '角色 1：创建人 2：管理员 3：普通成员',
   `new_message_num` int(11) unsigned COMMENT '新消息数量',
-  `group_type` tinyint(2) unsigned NOT NULL COMMENT '群分类id'
+  `group_type` tinyint(2) unsigned NOT NULL COMMENT '群分类id',
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '群状态 1:正常 2：解散'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户的所有群';
 
 use garden_$province_id;
