@@ -292,8 +292,11 @@ class Wechat
         } elseif (isset($_GET["echostr"])) {
         	$echoStr = $_GET["echostr"];
         	if ($return) {
-        		if ($this->checkSignature())
-        			return $echoStr;
+        		if ($this->checkSignature()){
+                    ob_clean();
+                    return $echoStr;
+                }
+
         		else
         			return false;
         	} else {
