@@ -59,4 +59,13 @@ class UserAreaModel extends Model
             return $data;
         }
     }
+
+    public function loginSetSession(){
+
+    }
+
+    public function setCustomerRegistByOpenid($openId){
+        echo $openId;
+    }
+
 }
