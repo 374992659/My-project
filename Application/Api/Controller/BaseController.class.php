@@ -33,7 +33,6 @@ class BaseController extends Controller
         $debugg1 = isset($_GET['debugging'])?$_GET['debugging']:'';
         $debugg2 = isset($_POST['debugging'])?$_POST['debugging']:'';
         $aesLib = new \Common\Lib\AesLib();
-        echo 123;die;
         if ( $debugg1 == 'test' || $debugg2 == 'test' ) $this->debugging = true;
         if( $this->debugging == true ){
             $this->pdata = $_POST;
@@ -44,6 +43,7 @@ class BaseController extends Controller
                 $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
                 $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
             }
+            echo 123;die;
         }else{
             // 解密数据 验签
             if( isset($appdata['data']) && !empty($appdata['data']) ){
