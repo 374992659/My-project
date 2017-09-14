@@ -140,7 +140,6 @@ class BaseController extends Controller
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
                 }
-//                $MemberModel->setCustomerRegistByOpenid($data['openid']);
                 session('wxdata'.$data['openid'], json_encode($wxdata));
             }
             $this->wxData = $data;
@@ -157,6 +156,7 @@ class BaseController extends Controller
         if(!$account_code){//用户丢失account_code，通过openid获取phone以及所在区域
             $data=M('user_area')->field('phone','table_id','openId')->where(array('openId'=>$this->openId))->find();
             if(!$data){          //用户还未进行手机号绑定
+                echo $this->openId;
                 return $this->echoEncrypData(114, '需要验证您的手机号码');
             }else{
                 $this->account_code = $data['table_id'].$data['phone'];
