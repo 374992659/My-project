@@ -103,6 +103,9 @@ class BaseController extends Controller
             'appsecret'	=> C('APPSECRET'),
             'token' 	=> C('WEIXIN_API_TOKEN'), //填写你设定的key
             'encodingaeskey' => C("ENCODINGAESKEY"), //填写加密用的EncodingAESKey，如接口为明文模式可忽略
+//            'agentid'=>'1', //应用的id
+//            'debug'=>true, //调试开关
+//            '_logcallback'=>'logg', //调试输出方法，需要有一个string类型的参数
         ));
 
 
@@ -118,12 +121,12 @@ class BaseController extends Controller
                 redirect($url);
                 exit;
             }
+
             //获取认证数据
             $data = $weObj->getOauthAccessToken();
             if( !$data ){
                 return E('获取微信数据失败');
             }
-            $this->openId = $data['openId'];
             //开始登录
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('device'=>$data['openid']))->find();
@@ -137,9 +140,11 @@ class BaseController extends Controller
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
                 }
+//                $MemberModel->setCustomerRegistByOpenid($data['openid']);
                 session('wxdata'.$data['openid'], json_encode($wxdata));
             }
             $this->wxData = $data;
+            $this->openId = $data['openId'];
             $this->getUserinfo();
         }
     }
@@ -152,8 +157,7 @@ class BaseController extends Controller
         if(!$account_code){//用户丢失account_code，通过openid获取phone以及所在区域
             $data=M('user_area')->field('phone','table_id','openId')->where(array('openId'=>$this->openId))->find();
             if(!$data){          //用户还未进行手机号绑定
-                echo $this->openId;
-//                return $this->echoEncrypData(114, '需要验证您的手机号码');
+                return $this->echoEncrypData(114, '需要验证您的手机号码');
             }else{
                 $this->account_code = $data['table_id'].$data['phone'];
                 $data['account_code'] = $this->account_code;
