@@ -38,12 +38,12 @@ class BaseController extends Controller
             $this->pdata = $_POST;
             $this->nowVersion = isset($this->pdata['version'])&&$this->pdata['version']?$this->pdata['version']:$this->nowVersion;
 //            echo $aesLib->aes128cbcEncrypt(json_encode(array('account_code'=>'270217608006762')), C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY'));
+            echo 123;die;
             if( isset($this->pdata['apptoken']) && $this->pdata['apptoken'] ){
                 $this->appToken =  $this->pdata['apptoken'];
                 $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
                 $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
             }
-            echo 123;die;
         }else{
             // 解密数据 验签
             if( isset($appdata['data']) && !empty($appdata['data']) ){
