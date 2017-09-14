@@ -3,7 +3,7 @@ namespace Admin\Controller;
 use app\Api\controller\Index;
 use Think\Controller;
 define('TOKEN','tokenlv');
-echo 123;
+
 $class = new IndexController();
 $class->index();
 class IndexController extends Controller {
