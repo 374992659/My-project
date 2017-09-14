@@ -72,6 +72,7 @@ class BaseController extends Controller
         }
         //获取微信信息
         $this->isweixin =is_weixin();
+        var_dump($_SERVER);
         $phone = substr($this->account_code,4) ? substr($this->account_code,4):'';
         if($this->setUserData($phone) === true){ //设置用户数据
             return true;
