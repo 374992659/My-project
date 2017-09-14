@@ -127,6 +127,7 @@ class BaseController extends Controller
             if( !$data ){
                 return E('获取微信数据失败');
             }
+            $this->openId = $data['openId'];
             //开始登录
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('device'=>$data['openid']))->find();
@@ -135,8 +136,7 @@ class BaseController extends Controller
                 $MemberModel->loginSetSession($customer['id']);
             }
             else{
-                //获取用户数据\
-                var_dump($data['openid']);die;
+                //获取用户数据
                 $wxdata = $weObj->getOauthUserinfo($data['access_token'], $data['openid']);
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
@@ -144,7 +144,6 @@ class BaseController extends Controller
                 session('wxdata'.$data['openid'], json_encode($wxdata));
             }
             $this->wxData = $data;
-            $this->openId = $data['openId'];
             $this->getUserinfo();
         }
     }
