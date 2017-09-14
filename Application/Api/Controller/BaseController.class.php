@@ -129,7 +129,6 @@ class BaseController extends Controller
             }
             //开始登录
             $MemberModel = new \Api\Model\UserAreaModel();
-           var_dump($data);die;
             $customer = M('user_area')->where(array('device'=>$data['openid']))->find();
             if( $customer ){
                 //设置Session,openid登录
@@ -150,6 +149,11 @@ class BaseController extends Controller
             $this->getUserinfo();
         }
     }
+
+    public function loginSetSession(){
+
+    }
+
 
     public function getUserinfo(){
         $account_code = $this->account_code;
