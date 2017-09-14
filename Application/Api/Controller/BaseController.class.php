@@ -140,7 +140,6 @@ class BaseController extends Controller
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
                 }
-                $MemberModel->setCustomerRegistByOpenid($data['openid']);
                 session('wxdata'.$data['openid'], json_encode($wxdata));
             }
             $this->wxData = $data;
