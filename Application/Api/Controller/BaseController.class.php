@@ -153,7 +153,7 @@ class BaseController extends Controller
             $data=M('user_area')->field('phone','table_id','openId')->where(array('openId'=>$this->openId))->find();
             if(!$data){          //用户还未进行手机号绑定
                 echo $this->openId;
-                return $this->echoEncrypData(114, '需要验证您的手机号码');
+//                return $this->echoEncrypData(114, '需要验证您的手机号码');
             }else{
                 $this->account_code = $data['table_id'].$data['phone'];
                 $data['account_code'] = $this->account_code;
