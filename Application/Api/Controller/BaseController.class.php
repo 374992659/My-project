@@ -32,6 +32,7 @@ class BaseController extends Controller
         }
         $debugg1 = isset($_GET['debugging'])?$_GET['debugging']:'';
         $debugg2 = isset($_POST['debugging'])?$_POST['debugging']:'';
+        echo 123;die;
         $aesLib = new \Common\Lib\AesLib();
         if ( $debugg1 == 'test' || $debugg2 == 'test' ) $this->debugging = true;
         if( $this->debugging == true ){
