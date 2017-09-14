@@ -135,7 +135,8 @@ class BaseController extends Controller
                 $MemberModel->loginSetSession($customer['id']);
             }
             else{
-                //获取用户数据
+                //获取用户数据\
+                var_dump(data['openid']);
                 $wxdata = $weObj->getOauthUserinfo($data['access_token'], $data['openid']);
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
