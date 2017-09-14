@@ -77,7 +77,6 @@ class BaseController extends Controller
             return true;
         }
         if( $this->isweixin ){//微信打开
-            echo 123;
             $this->setUserData($phone);
             $this->setWeixinData();
         }
