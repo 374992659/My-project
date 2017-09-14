@@ -127,7 +127,6 @@ class BaseController extends Controller
             if( !$data ){
                 return E('获取微信数据失败');
             }
-            echo $data['openid'];die;
             //开始登录
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('device'=>$data['openid']))->find();
