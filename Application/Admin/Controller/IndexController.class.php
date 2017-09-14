@@ -1,6 +1,6 @@
 <?php
 namespace Admin\Controller;
-use app\Api\controller\Index;
+
 use Think\Controller;
 
 class IndexController extends Controller {

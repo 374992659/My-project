@@ -20,10 +20,10 @@ class UserController extends VersionController
     protected function wxBindPhone_v1_0_0(){
         $phone = $this->pdata['phone'];
         $openId = $this->openId;
-        if( !form_validate('phone',trim($phone))){
-            $this->echoEncrypData(106);
-        }
-//        $openId = 'HTYWEF!!#%';//测试
+//        if( !form_validate('phone',trim($phone))){
+//            $this->echoEncrypData(106);
+//        }
+        echo $this->openId;die;
         $table_id = $this->pdata['area_id'];
         if(!$phone || !$openId || !$table_id){
             $this->echoEncrypData(21);

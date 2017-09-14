@@ -30,6 +30,7 @@ class BaseController extends Controller
         else{
             $appdata = $_POST;
         }
+        echo 123;die;
         $debugg1 = isset($_GET['debugging'])?$_GET['debugging']:'';
         $debugg2 = isset($_POST['debugging'])?$_POST['debugging']:'';
         $aesLib = new \Common\Lib\AesLib();

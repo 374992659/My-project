@@ -27,5 +27,5 @@ return array(
     'APPID'             =>'wx3a8d29551364f089',
     'APPSECRET'     =>'d6ced1ed28305e5ab8ad6794df07635d',
     'WEIXIN_API_TOKEN'  =>'tokenlv',
-    'ENCODINGAESKEY'    =>'OAG9N8kXSkZfIf1Yn0jCgB3QUw4g7JemfobWcox5C3W',
+    'ENCODINGAESKEY'    =>'T2CGwfnGK3CSzo0WV879VtPcnSeRzU8yuib82EXds3P',
 );
