@@ -23,7 +23,7 @@ class UserController extends VersionController
 //        if( !form_validate('phone',trim($phone))){
 //            $this->echoEncrypData(106);
 //        }
-        echo $this->openId;die;
+        var_dump($this->openId) ;die;
         $table_id = $this->pdata['area_id'];
         if(!$phone || !$openId || !$table_id){
             $this->echoEncrypData(21);
