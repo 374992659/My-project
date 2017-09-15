@@ -82,7 +82,6 @@ class BaseController extends Controller
         * 设置用户数据
         * */
     public function setUserData($phone){
-
         var_dump(session('account'.$phone));die;
         $this->account = json_decode(trim(session('account'.$phone),'"'),true);
         $this->account_code = $this->account['account_code'];
