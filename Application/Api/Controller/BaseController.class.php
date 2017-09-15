@@ -41,6 +41,7 @@ class BaseController extends Controller
             if( isset($this->pdata['apptoken']) && $this->pdata['apptoken'] ){
                 $this->appToken =  true;
                 $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
+                var_dump($aestoken);die;
                 $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
             }
         }else{
@@ -71,7 +72,6 @@ class BaseController extends Controller
             }
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        var_dump($phone);die;
         if($this->setUserData($phone) !== true){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
