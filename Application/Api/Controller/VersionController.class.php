@@ -14,7 +14,7 @@ class VersionController extends BaseController
 {
     public function _initialize(){
         parent::_initialize();
-        $this->getUserinfo();
+//        $this->getUserinfo();
         $this->checkLogin();
     }
 

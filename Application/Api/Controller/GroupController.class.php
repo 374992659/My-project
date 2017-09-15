@@ -255,7 +255,7 @@ class GroupController extends VersionController
     /*
      * 上传投票图片
      * */
-    protected function uploadVotePic(){
+    protected function uploadVotePic_V1_0_0(){
         import('Vendor.UploadFile');
         $upload =new \UploadFile();
         $path=APP_PATH.'Common/Upload/Img/VotePicture/'.date(m).date(d).'/';
@@ -282,7 +282,7 @@ class GroupController extends VersionController
      * @param end_time 结束时间
      * @param anonymous 是否匿名
      * */
-    protected function addVote(){
+    protected function addVote_v1_0_0(){
         $title = $this->pdata['title'];
         $content = $this->pdata['content'];
         $picture = $this->pdata['picture'];
@@ -308,8 +308,15 @@ class GroupController extends VersionController
             'garden_code'=>$garden_code,
             'end_time'=>$end_time,
             'anonymous'=>$anonymous,
-
+            'user_code'=>$this->account_code,
+            'nickname'=>$res['nickname'],
+            'portrait'=>$res['portrait'],
+            'create_time'=>time(),
         );
+        $model=new Model\GroupVoteModel($create_code);
+        $result = $model->addGroupVote($data);
+        if(!$result)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
     }
 
 
