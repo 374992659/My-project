@@ -72,7 +72,6 @@ class BaseController extends Controller
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
         if($this->setUserData($phone) !== true){ //没有session数据
-            echo 123;
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
                 $this->setWeixinData();
@@ -83,9 +82,8 @@ class BaseController extends Controller
         * 设置用户数据
         * */
     public function setUserData($phone){
-        var_dump(session('account'.$phone));
+//        var_dump(session('account'.$phone));
         $this->account = json_decode(trim(session('account'.$phone),'"'),true);
-        var_dump($this->account);
         $this->account_code = $this->account['account_code'];
         $this->openId = $this->account['openId'];
         $this->phone =$this->account['phone'];
