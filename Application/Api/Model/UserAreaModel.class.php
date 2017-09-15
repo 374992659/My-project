@@ -50,6 +50,18 @@ class UserAreaModel extends Model
     }
 
     /*
+     * 删除user信息
+     * @param string openId 微信openId
+     * */
+    public function delUserArea($openId){
+        if($openId)return false;
+        $res = $this->where(['openId'=>$openId])->delete();
+        if(!$res) return false;
+        return true;
+    }
+
+
+    /*
      * 由电话号码获取用户信息（所在区域、省份等）
      * @param string phone 手机号
      * */
