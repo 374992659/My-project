@@ -20,7 +20,8 @@ class BaseController extends Controller
     public $isweixin = false;	//是否为微信
     public $openId = '';		//微信OPENID
     public $wxData= '';       //微信用户信息
-    public $appToken = ''; //apptoken
+    public $appToken = ''; //apptoken是否有true 或者false
+    public $phone   =    '';//用户手机号
     public function _initialize(){
         //获取数据
         if ( $_SERVER['REQUEST_METHOD'] == 'GET' )
@@ -69,12 +70,12 @@ class BaseController extends Controller
                 return $this->echoEncrypData(1, '未获取到验证数据');
             }
         }
-        //获取微信信息
-        $this->isweixin =is_weixin();
-        $phone = substr($this->account_code,4) ? substr($this->account_code,4):'';
+        $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
         if($this->setUserData($phone) === true){ //设置用户数据
             return true;
         }
+        //获取微信信息
+        $this->isweixin =is_weixin();
         if( $this->isweixin ){//微信打开
             $this->setUserData($phone);
             $this->setWeixinData();
@@ -84,10 +85,11 @@ class BaseController extends Controller
         * 设置用户数据
         * */
     public function setUserData($phone){
-        $this->account = session('account'.$phone);
+        $this->account = json_decode(trim(session('account'.$phone),'"'),true);
         $this->account_code = $this->account['account_code'];
         $this->openId = $this->account['openId'];
-        if( $this->openId ){
+        $this->phone =$this->account['phone'];
+        if( $this->phone ){
             return true;
         }
         return false;
@@ -129,38 +131,30 @@ class BaseController extends Controller
             $this->openId = $data['openid'];
             //开始登录
             $MemberModel = new \Api\Model\UserAreaModel();
-            $customer = M('user_area')->where(array('openId'=>$data['openid']))->find();
+            $customer = M('user_area')->where(array('openId'=>$data['openid']))->getField('phone');
             if( $customer ){
                 //设置Session,openid登录
                 $res = $MemberModel->wxloginSetSession($this->openId);
                 if(!$res){
                     $this->echoEncrypData(3);
                 }
-                var_dump($res);die;
+                $res['account_code'] = $res['table_id'].$res['phone'];
+                $this->appToken = true;
+                $this->phone =$res['phone'];
+                session('account'.$res['phone'],json_encode($res));
             }
             else{
-                //获取用户数据
+                //获取微信数据
                 $wxdata = $weObj->getOauthUserinfo($data['access_token'], $data['openid']);
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
                 }
                 session('wxdata'.$data['openid'], json_encode($wxdata));
+                $this->echoEncrypData(114);
             }
             $this->wxData = $data;
-
         }
     }
-
-
-
-    public function checkLogin($phone){
-        $account=session('account'.$phone);
-        if(!$account){
-            return false;
-        }
-        return true;
-    }
-
 
     /*
      * 公用加密返回数据方法

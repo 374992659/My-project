@@ -15,15 +15,14 @@ class VersionController extends BaseController
     public function _initialize(){
         parent::_initialize();
         $this->getUserinfo();
-        $this->checkLogin($this->phone);
+        $this->checkLogin();
     }
 
-    public function checkLogin($phone){
-        $account=session('account'.$phone);
-        if(!$account){
-            return false;
+    public function checkLogin(){
+        $phone = $this->phone;
+        if(!$phone){
+            $this->echoEncrypData(100);
         }
-        return true;
     }
 
 
