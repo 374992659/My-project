@@ -39,7 +39,7 @@ class BaseController extends Controller
             $this->pdata = $_POST;
             $this->nowVersion = isset($this->pdata['version'])&&$this->pdata['version']?$this->pdata['version']:$this->nowVersion;
             if( isset($this->pdata['apptoken']) && $this->pdata['apptoken'] ){
-                $this->appToken =  $this->pdata['apptoken'];
+                $this->appToken =  true;
                 $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
                 $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
             }
@@ -72,6 +72,7 @@ class BaseController extends Controller
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
         if($this->setUserData($phone) !== true){ //没有session数据
+            echo 123;
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
                 $this->setWeixinData();
