@@ -17,10 +17,10 @@ class RegiestController extends BaseController
     * @param area_id 区域id
      * */
     public function wxBindPhone(){
-        $phone='17608006364';
-        $table_id='3001';
-//        $phone = $this->pdata['phone'];
-//        $table_id = $this->pdata['area_id'];
+//        $phone='17608006364';
+//        $table_id='3001';
+        $phone = $this->pdata['phone'];
+        $table_id = $this->pdata['area_id'];
         $openId = $this->openId;
         if(!$phone || !$table_id)$this->echoEncrypData(21);
         if( !form_validate('phone',trim($phone))){
@@ -74,18 +74,19 @@ class RegiestController extends BaseController
     protected function sendRegistMsg()
     {
         $phone = $this->pdata['phone'];
+        $phone='17608006762';
         if (!form_validate('phone', trim($phone))) {
             $this->echoEncrypData(106);
         }
 
-        if ($this->account_code > 0) {
-            $this->echoEncrypData(112, '已登录，无需重复注册');
-        }
-
-        $customer = M('user_area')->where(array('phone' => $phone))->getField('id');
-        if ($customer > 0) {
-            $this->echoEncrypData(118, '已注册无需重复注册');
-        }
+//        if ($this->account_code > 0) {
+//            $this->echoEncrypData(112, '已登录，无需重复注册');
+//        }
+//
+//        $customer = M('user_area')->where(array('phone' => $phone))->getField('id');
+//        if ($customer > 0) {
+//            $this->echoEncrypData(118, '已注册无需重复注册');
+//        }
         $SMS=new \Api\Controller\SendSmsController();
         $res = $SMS->SendMassage($phone,'regiest_', '美e家园', 'SMS_94280318', $code);
         if($code !== 0){
