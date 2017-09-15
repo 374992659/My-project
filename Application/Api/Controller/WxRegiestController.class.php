@@ -23,7 +23,7 @@ class WxRegiestController extends BaseController
 //        if( !form_validate('phone',trim($phone))){
 //            $this->echoEncrypData(106);
 //        }
-        $wx =S('wxdata'.$openId);
+        $wx =session('wxdata'.$openId);
         var_dump($wx) ;die;
         $table_id = $this->pdata['area_id'];
         if(!$phone || !$openId || !$table_id){
