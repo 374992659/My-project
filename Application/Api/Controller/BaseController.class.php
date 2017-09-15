@@ -71,16 +71,12 @@ class BaseController extends Controller
             }
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        if($this->setUserData($phone) === true){ //设置用户数据
-            return true;
+        if($this->setUserData($phone) !== true){ //没有session数据
+            $this->isweixin =is_weixin();
+            if( $this->isweixin ){//微信打开
+                $this->setWeixinData();
+            }
         }
-        //获取微信信息
-        $this->isweixin =is_weixin();
-        if( $this->isweixin ){//微信打开
-            $this->setUserData($phone);
-            $this->setWeixinData();
-        }
-        echo 123;
     }
     /*
         * 设置用户数据
@@ -129,11 +125,10 @@ class BaseController extends Controller
             if( !$data ){
                 return E('获取微信数据失败');
             }
-            $this->openId = $data['openid'];
-            //开始登录
+            $this->openId = $data['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$data['openid']))->getField('phone');
-            if( $customer ){
+            if( $customer ){ //是否绑定手机
                 //设置Session,openid登录
                 $res = $MemberModel->wxloginSetSession($this->openId);
                 if(!$res){
