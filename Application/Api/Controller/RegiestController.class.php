@@ -79,14 +79,14 @@ class RegiestController extends BaseController
             $this->echoEncrypData(106);
         }
 
-//        if ($this->account_code > 0) {
-//            $this->echoEncrypData(112, '已登录，无需重复注册');
-//        }
-//
-//        $customer = M('user_area')->where(array('phone' => $phone))->getField('id');
-//        if ($customer > 0) {
-//            $this->echoEncrypData(118, '已注册无需重复注册');
-//        }
+        if ($this->account_code > 0) {
+            $this->echoEncrypData(112, '已登录，无需重复注册');
+        }
+
+        $customer = M('user_area')->where(array('phone' => $phone))->getField('id');
+        if ($customer > 0) {
+            $this->echoEncrypData(118, '已注册无需重复注册');
+        }
         $SMS=new \Api\Controller\SendSmsController();
         $res = $SMS->SendMassage($phone,'regiest_', '美e家园', 'SMS_94280318', $code);
         if($code !== 0){
@@ -104,6 +104,9 @@ class RegiestController extends BaseController
      * @param smscode 短信验证码
      * */
     public function regiest(){
+        $key_yzm_val = 'regiest_'.'17608006762';
+        $yzm_Mem = unserialize(S($key_yzm_val));
+        echo $cache_code = $yzm_Mem['hash'];die;
         $phone   = trim($this->pdata['phone']);
         $area_id = trim($this->pdata['area_id']);
         $password  = trim($this->pdata['password']);
