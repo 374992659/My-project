@@ -76,7 +76,9 @@ CREATE TABLE  if not exists `group_vote` (
   `type` tinyint(2) NOT NULL COMMENT '投票类型',
   `create_time` int(11) NOT NULL COMMENT '投票创建时间',
   `end_time` int(11) NOT NULL COMMENT '投票结束时间',
-  `anonymous` tinyint(2) NOT NULL COMMENT '是否支持匿名  0：不支持 1：支持'
+  `anonymous` tinyint(2) NOT NULL COMMENT '是否支持匿名  0：不支持 1：支持',
+  `group_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '所属群号',
+  KEY `group_num` (`group_num`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='群投票';
 
 CREATE TABLE  if not exists `user_friends` (
