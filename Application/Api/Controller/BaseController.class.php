@@ -71,6 +71,7 @@ class BaseController extends Controller
             }
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
+        var_dump($phone);die;
         if($this->setUserData($phone) !== true){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
