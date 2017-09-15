@@ -22,7 +22,7 @@ class VersionController extends BaseController
     public function checkLogin(){
         $phone = $this->phone;
         if(!$phone){
-            $this->echoEncrypData(100);
+//            $this->echoEncrypData(100);
         }
     }
 
