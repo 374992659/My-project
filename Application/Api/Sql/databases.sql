@@ -1,7 +1,7 @@
 CREATE TABLE  if not exists `user_info_$city_id` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '电话号码(为空则用户没有验证手机号)',
-  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '密码',
+  `password` varchar(255) COLLATE utf8_unicode_ci  COMMENT '密码',
   `nickname` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '昵称',
   `realname` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '真实姓名',
   `account_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户唯一识别符 采用区域+手机号形式',

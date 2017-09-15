@@ -35,12 +35,18 @@ class UserAreaModel extends Model
             $errmsg='该账号已被暂停使用';
             return false;
         }
-        $res = M('User_area')->add(array('openId'=>$openId,'table_id'=>$table_id,'phone'=>$phone,'status'=>1));
+        $data = array(
+            'openId'=>$openId,
+            'table_id'=>$table_id,
+            'phone'=>$phone,
+            'status'=>1
+        );
+        $res = M('User_area')->add($data);
         if(!$res){
             $errmsg = '手机号码绑定失败';
             return false;
         }
-        return true;
+        return $data;
     }
 
     /*
