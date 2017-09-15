@@ -37,6 +37,7 @@ class BaseController extends Controller
         if ( $debugg1 == 'test' || $debugg2 == 'test' ) $this->debugging = true;
         if( $this->debugging == true ){
             $this->pdata = $_POST;
+            var_dump( $this->pdata);
             $this->nowVersion = isset($this->pdata['version'])&&$this->pdata['version']?$this->pdata['version']:$this->nowVersion;
             var_dump($this->pdata['apptoken']);die;
             if( isset($this->pdata['apptoken']) && $this->pdata['apptoken'] ){
