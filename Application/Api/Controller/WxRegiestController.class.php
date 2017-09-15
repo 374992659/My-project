@@ -24,6 +24,7 @@ class WxRegiestController extends BaseController
 //            $this->echoEncrypData(106);
 //        }
         $wx =session('wxdata'.$openId);
+        $wx=json_decode(trim($wx,'"'),true);
         var_dump($wx) ;die;
         $table_id = $this->pdata['area_id'];
         if(!$phone || !$openId || !$table_id){
