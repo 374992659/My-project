@@ -12,41 +12,6 @@ use Api\Model;
 include_once './ThinkPHP/Library/Vendor/Sms.php';
 class UserController extends VersionController
 {
-    /*
-      * 微信版-用户绑定手机号
-     * @param phone 手机号
-     * @param area_id 区域id
-      * */
-    public function wxBindPhone_v1_0_0(){
-        $phone = $this->pdata['phone'];
-        $openId = $this->openId;
-//        if( !form_validate('phone',trim($phone))){
-//            $this->echoEncrypData(106);
-//        }
-        var_dump($this->openId) ;die;
-        $table_id = $this->pdata['area_id'];
-        if(!$phone || !$openId || !$table_id){
-            $this->echoEncrypData(21);
-        }
-        $model=new Model\UserAreaModel();
-        $res=$model->addUserArea($openId,$phone,$table_id,$this->errmsg);
-        if(!$res){
-            $this->echoEncrypData(1,$this->errmsg);
-        }else{
-            $this->autoBuildDatabase($phone);
-            $this->echoEncrypData(0);
-        }
-    }
-
-    /*
-     * 获取全国区域数组
-     * */
-    protected function getAreaArr_v1_0_0(){
-        $model=new Model\UserAreaModel();
-        $res=$model->getArea();
-        $this->echoEncrypData(0,'',$res);
-    }
-
     /**
      *
      * 发送注册验证码
