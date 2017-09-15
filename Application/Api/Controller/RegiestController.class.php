@@ -187,6 +187,7 @@ class RegiestController extends BaseController
             $account['account_code']=$account['table_id'].$account['phone'];
             $this->account_code = $account['account_code'];
             $this->account = $account;
+            $this->appToken=true;
             session('account'.$phone,$account);
             $this->echoEncrypData(0);
         }
