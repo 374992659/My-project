@@ -37,9 +37,9 @@ class BaseController extends Controller
         if ( $debugg1 == 'test' || $debugg2 == 'test' ) $this->debugging = true;
         if( $this->debugging == true ){
             $this->pdata = $_POST;
+            var_dump( $this->pdata);die;
             $this->nowVersion = isset($this->pdata['version'])&&$this->pdata['version']?$this->pdata['version']:$this->nowVersion;
             if( isset($this->pdata['apptoken']) && $this->pdata['apptoken'] ){
-                var_dump($this->pdata['apptoken']);die;
                 $this->appToken =  true;
                 $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
                 $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
