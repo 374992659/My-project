@@ -313,7 +313,6 @@ class GroupController extends VersionController
             'portrait'=>$res['portrait'],
             'create_time'=>time(),
         );
-        echo $create_code;die;
         $model=new Model\GroupVoteModel($create_code);
         $result = $model->addGroupVote($data);
         if(!$result)$this->echoEncrypData(1);
