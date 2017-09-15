@@ -22,6 +22,7 @@ CREATE TABLE  if not exists `user_info_$city_id` (
 
 CREATE DATABASE if not exists friends_and_group_$account_code;
 CREATE DATABASE if not exists garden_$province_id;
+CREATE DATABASE if not exists certification_application;
 
 use  friends_and_group_$account_code;
 CREATE TABLE  if not exists `friends-chat_log` (
