@@ -37,7 +37,6 @@ class BaseController extends Controller
         if ( $debugg1 == 'test' || $debugg2 == 'test' ) $this->debugging = true;
         if( $this->debugging == true ){
             $this->pdata = $_POST;
-            var_dump( $this->pdata);die;
             $this->nowVersion = isset($this->pdata['version'])&&$this->pdata['version']?$this->pdata['version']:$this->nowVersion;
             if( isset($this->pdata['apptoken']) && $this->pdata['apptoken'] ){
                 $this->appToken =  true;
@@ -72,6 +71,7 @@ class BaseController extends Controller
             }
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
+        var_dump($phone);die;
         if($this->setUserData($phone) !== true){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
