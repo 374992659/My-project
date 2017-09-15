@@ -41,7 +41,7 @@ class WxRegiestController extends BaseController
     /*
      * 获取全国区域数组
      * */
-    protected function getAreaArr(){
+    public function getAreaArr(){
         $model=new Model\UserAreaModel();
         $res=$model->getArea();
         $this->echoEncrypData(0,'',$res);
