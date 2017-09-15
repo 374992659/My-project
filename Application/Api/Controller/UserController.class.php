@@ -25,7 +25,7 @@ class UserController extends VersionController
             $this->echoEncrypData(106);
         }
         if(!$this->checkLogin($phone)){
-//            $this->echoEncrypData(100);
+            $this->echoEncrypData(100);
         }else{
             session_unset('account');
             session_unset('account'.$phone);
