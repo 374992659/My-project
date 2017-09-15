@@ -16,12 +16,12 @@ return array(
     'DB_GARDEN' => 'mysql://root:root@localhost:3306/garden_',//省份分库
 
 
-    //缓存方式
-    'DATA_CACHE_TYPE' => 'Memcache',
-    //v\ 缓存服务器地址
-    'MEMCACHE_HOST'   => 'tcp://127.0.0.1:11111',
-    //指定默认的缓存时长为3600 秒,没有会出错
-    'DATA_CACHE_TIME' => '3600',
+//    //缓存方式
+//    'DATA_CACHE_TYPE' => 'Memcache',
+//    //v\ 缓存服务器地址
+//    'MEMCACHE_HOST'   => 'tcp://127.0.0.1:11111',
+//    //指定默认的缓存时长为3600 秒,没有会出错
+//    'DATA_CACHE_TIME' => '3600',
 
     'REDIS_HOST' => '127.0.0.1',
     'REDIS_PORT' => '6379',
