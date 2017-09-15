@@ -27,8 +27,8 @@ CREATE DATABASE if not exists certification_application;
 use  friends_and_group_$account_code;
 CREATE TABLE  if not exists `friends-chat_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `sender_code` varchar(20) NOT NULL COMMENT '发送人 格式区域id，用户id',
-  `sendee_code` varchar(20) NOT NULL COMMENT '接收者 格式：区域id，用户id',
+  `sender_code` varchar(50) NOT NULL COMMENT '发送人 格式区域id，用户id',
+  `sendee_code` varchar(50) NOT NULL COMMENT '接收者 格式：区域id，用户id',
   `is_sender` tinyint(1) unsigned NOT NULL COMMENT '该消息是否由我发送  1：我发送的消息  2：不是我发送的消息',
   `type` tinyint(2) NOT NULL COMMENT '消息类型。1：文字消息 2：语音消息 3:图片消息 4：文件消息',
   `content` varchar(255) NOT NULL COMMENT '消息内容',
@@ -45,7 +45,7 @@ CREATE TABLE  if not exists `friends_group` (
 INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,$account_code, '我的好友');
 CREATE TABLE  if not exists `group_chat_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `sender_code` varchar(20) CHARACTER SET utf8 NOT NULL COMMENT '发送人user_code',
+  `sender_code` varchar(50) CHARACTER SET utf8 NOT NULL COMMENT '发送人user_code',
   `is_sender` tinyint(1) unsigned NOT NULL COMMENT '该消息是否由我发送  1：我发送的消息  2：不是我发送的消息',
   `type` tinyint(2) NOT NULL COMMENT '消息类型。1：文字消息 2：语音消息 3:图片消息 4：文件消息',
   `content` varchar(255) CHARACTER SET utf8 NOT NULL COMMENT '消息内容',
@@ -54,13 +54,24 @@ CREATE TABLE  if not exists `group_chat_log` (
   `group_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '消息所属群的code'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `vote_user` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `vote_id` int(11) NOT NULL COMMENT '投票id',
+  `user_code` varchar(50) NOT NULL COMMENT '用户code',
+  `group_code` varchar(50) NOT NULL COMMENT '所属群号',
+  `choised` varchar(100) NOT NULL COMMENT '选项',
+  PRIMARY KEY (`id`),
+  KEY `vote_id` (`vote_id`),
+  KEY `user_code` (`user_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='投票记录';
+
 CREATE TABLE  if not exists `group_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `group_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '群唯一识别符',
   `group_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '群号码',
   `group_name` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '群名称',
   `group_portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '群头像',
-  `user_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '群用户识别码',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '群用户识别码',
   `nickname` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '群用户昵称',
   `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '群用户头像',
   `role` tinyint(1) unsigned NOT NULL COMMENT '角色 1：创建人 2：管理员 3：普通成员',
@@ -99,7 +110,7 @@ CREATE TABLE  if not exists `group_notice` (
   `title` varchar(100) NOT NULL COMMENT '公告标题',
   `content` varchar(500) NOT NULL COMMENT '公告内容',
   `portrait` varchar(500) NOT NULL COMMENT '公告图片',
-  `user_code` varchar(20) NOT NULL COMMENT '创建人code',
+  `user_code` varchar(50) NOT NULL COMMENT '创建人code',
   `nickname` varchar(20) NOT NULL COMMENT '创建人昵称',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `group_num` varchar(20) NOT NULL COMMENT '所属群号码',
@@ -111,7 +122,7 @@ CREATE TABLE  if not exists `group_picture` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `picture_path` varchar(500) NOT NULL COMMENT '图片路径',
   `title` varchar(100) DEFAULT NULL COMMENT '标题',
-  `user_code` varchar(20) NOT NULL COMMENT '创建人code',
+  `user_code` varchar(50) NOT NULL COMMENT '创建人code',
   `user_portrait` varchar(255) DEFAULT NULL COMMENT '创建人头像',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `nickname` varchar(20) DEFAULT NULL COMMENT '创建人昵称',
@@ -139,7 +150,7 @@ use garden_$province_id;
 
 CREATE TABLE  if not exists `date_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `user_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '标题',
   `garden_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区标识符',
   `route_plan` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '路线规划',
@@ -161,7 +172,7 @@ CREATE TABLE  if not exists `date_$city_id` (
 
 CREATE TABLE  if not exists `date_enroll_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `user_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
   `nickname` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '报名人昵称',
   `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '报名人头像',
   `contact_information` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '报名人联系方式',
@@ -185,7 +196,7 @@ CREATE TABLE  if not exists `garden_$city_id` (
 CREATE TABLE  if not exists `subject_$city_id` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY  COMMENT '自增主键',
   `garden_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '话题对应小区标识符',
-  `user_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '话题标题',
   `content` text COLLATE utf8_unicode_ci NOT NULL COMMENT '话题内容',
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '话题图片',
@@ -200,7 +211,7 @@ CREATE TABLE  if not exists `subject_$city_id` (
 CREATE TABLE  if not exists `subject_choise_$city_id` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT  '自增主键',
   `subject_id` int(11) NOT NULL,
-  `user_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
   `choise` char(1) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户选择 ',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -210,7 +221,7 @@ CREATE TABLE  if not exists `subject_choise_$city_id` (
 CREATE TABLE  if not exists `subject_comment_$city_id` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT  '自增主键',
   `subject_id` int(11) NOT NULL,
-  `user_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
   `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户头像',
   `content` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT '评论内容',
@@ -220,7 +231,7 @@ CREATE TABLE  if not exists `subject_comment_$city_id` (
 CREATE TABLE  if not exists `subject_praise_$city_id` (
   `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY  COMMENT '自增主键',
   `subject_id` int(11) NOT NULL COMMENT '话题id',
-  `user_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
   `praise_status` tinyint(2) NOT NULL COMMENT '用户点赞状态 0:取消 1：已点赞 ',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
