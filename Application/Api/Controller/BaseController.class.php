@@ -86,7 +86,6 @@ class BaseController extends Controller
         * */
     public function setUserData($phone){
         $this->account = json_decode(trim(session('account'.$phone),'"'),true);
-        var_dump( $this->account_code);die;
         $this->account_code = $this->account['account_code'];
         $this->openId = $this->account['openId'];
         $this->phone =$this->account['phone'];
