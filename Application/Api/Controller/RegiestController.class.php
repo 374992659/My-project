@@ -48,7 +48,7 @@ class RegiestController extends BaseController
                 'create_addr_code' =>$table_id,
                 'sex' =>$wx['sex'],
             );
-            $res = M('baseinfo.userinfo_'.$table_id)->add($data);
+            $res = M('baseinfo.user_info_'.$table_id)->add($data);
             if(!$res){
                 $model->delUserArea($openId);
             }
