@@ -132,7 +132,11 @@ class BaseController extends Controller
             $customer = M('user_area')->where(array('openId'=>$data['openid']))->find();
             if( $customer ){
                 //设置Session,openid登录
-                $MemberModel->loginSetSession($customer['id']);
+                $res = $MemberModel->wxloginSetSession($customer['id']);
+                if(!$res){
+                    $this->echoEncrypData(3);
+                }
+                var_dump($res);die;
             }
             else{
                 //获取用户数据

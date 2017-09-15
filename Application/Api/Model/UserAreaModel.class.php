@@ -78,8 +78,16 @@ class UserAreaModel extends Model
         }
     }
 
-    public function loginSetSession(){
 
+    /*
+     * 微信自动登录设置session值添加返回apptoken
+     * @param openId 微信openId
+     * */
+    public function wxloginSetSession($openId){
+        if(!$openId)return false;
+        $data = M('baseinfo.user_area')->field('phone,openId,table_id')->where(['openId'=>$openId])->find();
+        if(!$data)return false;
+        return $data;
     }
 
     public function setCustomerRegistByOpenid($openId){
