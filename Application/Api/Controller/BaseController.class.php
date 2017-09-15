@@ -127,8 +127,7 @@ class BaseController extends Controller
             if( !$data ){
                 return E('获取微信数据失败');
             }
-            $this->openId = $data['openId'];
-            print_r($data);die;
+            $this->openId = $data['openid'];
             //开始登录
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('device'=>$data['openid']))->find();
