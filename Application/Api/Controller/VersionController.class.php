@@ -31,7 +31,7 @@ class VersionController extends BaseController
         if(!$account_code){//用户丢失account_code，通过openid获取phone以及所在区域
             $data=M('user_area')->field('phone','table_id')->where(array('openId'=>$this->openId))->find();
             if(!$data){          //用户还未进行手机号绑定
-                return $this->echoEncrypData(114);
+                return $this->echoEncrypData(1143);
             }else{
                 $this->account_code = $data['table_id'].$data['phone'];
                 $data['account_code'] = $this->account_code;
