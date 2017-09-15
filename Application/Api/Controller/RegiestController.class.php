@@ -18,15 +18,17 @@ class RegiestController extends BaseController
      * */
     public function wxBindPhone(){
         $phone='17608006364';
-        $area_id='3001';
-        $phone = $this->pdata['phone'];
+        $table_id='3001';
+//        $phone = $this->pdata['phone'];
+//        $table_id = $this->pdata['area_id'];
         $openId = $this->openId;
+        if(!$phone || !$table_id)$this->echoEncrypData(21);
         if( !form_validate('phone',trim($phone))){
             $this->echoEncrypData(106);
         }
         $wx =session('wxdata'.$openId);
         $wx=json_decode(trim($wx,'"'),true);
-        $table_id = $this->pdata['area_id'];
+
         if(!$phone || !$openId || !$table_id){
             $this->echoEncrypData(21);
         }
