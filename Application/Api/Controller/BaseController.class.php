@@ -130,7 +130,7 @@ class BaseController extends Controller
             $this->openId = $data['openid'];
             //开始登录
             $MemberModel = new \Api\Model\UserAreaModel();
-            $customer = M('user_area')->where(array('device'=>$data['openid']))->find();
+            $customer = M('user_area')->where(array('openId'=>$data['openid']))->find();
             if( $customer ){
                 //设置Session,openid登录
                 $MemberModel->loginSetSession($customer['id']);
@@ -154,9 +154,8 @@ class BaseController extends Controller
     public function getUserinfo(){
         $account_code = $this->account_code;
         if(!$account_code){//用户丢失account_code，通过openid获取phone以及所在区域
-            $data=M('user_area')->field('phone','table_id','openId')->where(array('openId'=>$this->openId))->find();
+            $data=M('user_area')->field('phone','table_id')->where(array('openId'=>$this->openId))->find();
             if(!$data){          //用户还未进行手机号绑定
-                var_dump($this->openId) ;die;
                 return $this->echoEncrypData(114, '需要验证您的手机号码');
             }else{
                 $this->account_code = $data['table_id'].$data['phone'];

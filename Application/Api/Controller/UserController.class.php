@@ -17,7 +17,7 @@ class UserController extends VersionController
      * @param phone 手机号
      * @param area_id 区域id
       * */
-    protected function wxBindPhone_v1_0_0(){
+    public function wxBindPhone_v1_0_0(){
         $phone = $this->pdata['phone'];
         $openId = $this->openId;
 //        if( !form_validate('phone',trim($phone))){
