@@ -71,7 +71,7 @@ class RegiestController extends BaseController
      * 发送注册验证码
      * @param phone 手机号码
      */
-    protected function sendRegistMsg()
+    public function sendRegistMsg()
     {
         $phone = $this->pdata['phone'];
         $phone='17608006762';
@@ -103,7 +103,7 @@ class RegiestController extends BaseController
      * @param password 密码
      * @param smscode 短信验证码
      * */
-    protected function regiest(){
+    public function regiest(){
         $phone   = trim($this->pdata['phone']);
         $area_id = trim($this->pdata['area_id']);
         $password  = trim($this->pdata['password']);
@@ -158,7 +158,7 @@ class RegiestController extends BaseController
      *@param  phone   手机号
      * @param password 密码
      * */
-    protected function login(){
+    public function login(){
         $phone = $this->pdata['phone'];
         $password =$this->pdata['password'];
         if(!$phone || !$password){
