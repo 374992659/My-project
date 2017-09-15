@@ -33,9 +33,9 @@ class RegiestController extends BaseController
             $this->echoEncrypData(21);
         }
         $model=new Model\UserAreaModel();
-        $res=$model->addUserArea($openId,$phone,$table_id,$this->errmsg);
+        $res=$model->addUserArea($openId,$phone,$table_id,$errmsg);
         if(!$res){
-            $this->echoEncrypData(1,$this->errmsg);
+            $this->echoEncrypData(1,$errmsg);
         }else{
             $this->autoBuildDatabase($phone);
             //在其user_info表中添加数据
