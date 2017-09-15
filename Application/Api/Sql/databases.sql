@@ -89,7 +89,12 @@ CREATE TABLE  if not exists `group_vote` (
   `end_time` int(11) NOT NULL COMMENT '投票结束时间',
   `anonymous` tinyint(2) NOT NULL COMMENT '是否支持匿名  0：不支持 1：支持',
   `group_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '所属群号',
-  KEY `group_num` (`group_num`)
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '创建人',
+  `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '昵称',
+  `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '头像',
+  `garden_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '投票所属小区 小区code',
+  KEY `group_num` (`group_num`),
+  KEY `garden_code` (`garden_code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='群投票';
 
 CREATE TABLE  if not exists `user_friends` (

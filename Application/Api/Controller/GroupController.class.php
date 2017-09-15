@@ -252,6 +252,69 @@ class GroupController extends VersionController
         }
     }
 
+    /*
+     * 上传投票图片
+     * */
+    protected function uploadVotePic(){
+        import('Vendor.UploadFile');
+        $upload =new \UploadFile();
+        $path=APP_PATH.'Common/Upload/Img/VotePicture/'.date(m).date(d).'/';
+        $res = $upload->upload($path);
+        if(!$res){
+            $this->echoEncrypData(1,'图片上传失败');
+        }
+        foreach($res as $k=>$v){
+            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
+
+
+    /*
+     * 发布投票
+     * @param title 标题
+     * @param content 内容
+     * @param picture 图片
+     * @param choice 选项
+     * @param type 话题类型 多选 单选
+     * @param garden_code 所属小区code
+     * @parma group_num 所属群号
+     * @param end_time 结束时间
+     * @param anonymous 是否匿名
+     * */
+    protected function addVote(){
+        $title = $this->pdata['title'];
+        $content = $this->pdata['content'];
+        $picture = $this->pdata['picture'];
+        $choice = $this->pdata['choice'];
+        $type = $this->pdata['type'];
+        $group_num =$this->pdata['group_num'];
+        $garden_code = $this->pdata['garden_code'];
+        $end_time = $this->pdata['end_time'];
+        $anonymous = $this->pdata['anonymous'];
+        if(!$title || !$content || !$picture || !$choice || !$type || !$garden_code || !$end_time || !$anonymous || !$group_num)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $account_code=$this->account_code;
+        $table_id = substr($account_code,0,4);
+        if(!$table_id)$this->echoEncrypData(1);
+        $res = M('baseinfo.user_info_'.$table_id)->getField('nickname,portrait')->where(['account_code'=>$account_code])->find();
+        $data=array(
+            'title'=>$title,
+            'conten'=>$content,
+            'picture'=>$picture,
+            'choice'=>$choice,
+            'type'=>$type,
+            'group_num'=>$group_num,
+            'garden_code'=>$garden_code,
+            'end_time'=>$end_time,
+            'anonymous'=>$anonymous,
+
+        );
+    }
+
+
+
+
 
     /*
      * 生成群号码
