@@ -188,11 +188,19 @@ class RegiestController extends BaseController
             $this->account_code = $account['account_code'];
             $this->account = $account;
             $this->appToken=true;
-            session('account'.$phone,$account);
+            $this->phone = $phone;
+            session('account'.$phone,json_encode($account));
             $this->echoEncrypData(0);
         }
-    }
 
+    }
+    protected function checkLogin($phone){
+        $account=session('account'.$phone);
+        if(!$account){
+            return false;
+        }
+        return true;
+    }
 
     /*
     * 自动创建数据库
