@@ -80,6 +80,7 @@ class BaseController extends Controller
             $this->setUserData($phone);
             $this->setWeixinData();
         }
+        echo 123;
     }
     /*
         * 设置用户数据

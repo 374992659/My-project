@@ -28,7 +28,6 @@ class VersionController extends BaseController
 
     public function getUserinfo(){
         $account_code = $this->account_code;
-        var_dump($account_code);die;
         if(!$account_code){//用户丢失account_code，通过openid获取phone以及所在区域
             $data=M('user_area')->field('phone','table_id')->where(array('openId'=>$this->openId))->find();
             if(!$data){          //用户还未进行手机号绑定
