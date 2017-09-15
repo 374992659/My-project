@@ -189,7 +189,7 @@ class RegiestController extends BaseController
             $this->account = $account;
             $this->appToken=true;
             $this->phone = $phone;
-            session('account'.$phone,json_encode($account));
+            session('account'.$phone,$account);
             $this->echoEncrypData(0);
         }
 

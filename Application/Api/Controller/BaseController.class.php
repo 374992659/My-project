@@ -82,8 +82,7 @@ class BaseController extends Controller
         * 设置用户数据
         * */
     public function setUserData($phone){
-        var_dump(session('account'.$phone));die;
-        $this->account = json_decode(trim(session('account'.$phone),'"'),true);
+        $this->account =session('account'.$phone);
         $this->account_code = $this->account['account_code'];
         $this->openId = $this->account['openId'];
         $this->phone =$this->account['phone'];
@@ -138,7 +137,7 @@ class BaseController extends Controller
                 $res['account_code'] = $res['table_id'].$res['phone'];
                 $this->appToken = true;
                 $this->phone =$res['phone'];
-                session('account'.$res['phone'],json_encode($res));
+                session('account'.$res['phone'],$res);
             }
             else{
                 //获取微信数据
