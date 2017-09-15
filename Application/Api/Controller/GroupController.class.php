@@ -297,7 +297,7 @@ class GroupController extends VersionController
         $account_code=$this->account_code;
         $table_id = substr($account_code,0,4);
         if(!$table_id)$this->echoEncrypData(1);
-        $res = M('baseinfo.user_info_'.$table_id)->getField('nickname,portrait')->where(['account_code'=>$account_code])->find();
+        $res = M('baseinfo.user_info_'.$table_id)->Field('nickname,portrait')->where(['account_code'=>$account_code])->find();
         $data=array(
             'title'=>$title,
             'conten'=>$content,
