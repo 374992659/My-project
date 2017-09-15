@@ -104,9 +104,6 @@ class RegiestController extends BaseController
      * @param smscode 短信验证码
      * */
     public function regiest(){
-        $key_yzm_val = 'regiest_'.'17608006762';
-        $yzm_Mem = unserialize(S($key_yzm_val));
-        echo $cache_code = $yzm_Mem['hash'];die;
         $phone   = trim($this->pdata['phone']);
         $area_id = trim($this->pdata['area_id']);
         $password  = trim($this->pdata['password']);
