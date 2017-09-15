@@ -17,8 +17,8 @@ class RegiestController extends BaseController
     * @param area_id 区域id
      * */
     public function wxBindPhone(){
-        $phone=17608006364;
-        $area_id=3001;
+        $phone='17608006364';
+        $area_id='3001';
         $phone = $this->pdata['phone'];
         $openId = $this->openId;
         if( !form_validate('phone',trim($phone))){
