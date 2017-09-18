@@ -58,11 +58,16 @@ CREATE TABLE `vote_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `vote_id` int(11) NOT NULL COMMENT '投票id',
   `user_code` varchar(50) NOT NULL COMMENT '用户code',
-  `group_code` varchar(50) NOT NULL COMMENT '所属群号',
+  `group_num` varchar(50) NOT NULL COMMENT '所属群号',
   `choised` varchar(100) NOT NULL COMMENT '选项',
+  `choice_content` varchar(255) NOT NULL COMMENT '选项内容',
+  `nickname` varchar(50) NOT NULL COMMENT '昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `vote_id` (`vote_id`),
-  KEY `user_code` (`user_code`)
+  KEY `user_code` (`user_code`),
+  KEY `choised` (`choised`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='投票记录';
 
 CREATE TABLE  if not exists `group_user` (
@@ -93,6 +98,7 @@ CREATE TABLE  if not exists `group_vote` (
   `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '昵称',
   `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '头像',
   `garden_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '投票所属小区 小区code',
+  `total_user` int(10) NOT NULL DEFAULT '1' COMMENT '参与人数',
   KEY `group_num` (`group_num`),
   KEY `garden_code` (`garden_code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='群投票';

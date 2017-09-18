@@ -119,6 +119,52 @@ class GroupController extends VersionController
         $this->echoEncrypData(0,'',$data);
     }
 
+    /*
+     * 设置管理员
+     * @param group_num 群号码
+     * @param user_code 用户code
+     * */
+    protected function setGroupManager_v1_0_0(){
+        $group_num =$this->pdata['group_num'];
+        $user_code =$this->pdata['user_code'];
+        if(!$group_num || !$user_code)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mode =new Model\GroupUserModel($create_code);
+        $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
+        if(intval($role) !== 1)$this->echoEncrypData(500);
+        $count =$mode->where(['role' =>2])->count();
+        if($count >=3 )$this->echoEncrypData(1,'管理员数量已达上限');
+        $res = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>2]);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
+    }
+    /*
+     * 转让群
+     * @param group_num 群号码
+     * @param user_code 用户code
+     * */
+    protected function changeGroupCre_v1_0_0(){
+        $group_num =$this->pdata['group_num'];
+        $user_code =$this->pdata['user_code'];
+        if(!$group_num || !$user_code)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mode =new Model\GroupUserModel($create_code);
+        $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
+        if(intval($role) !== 1)$this->echoEncrypData(500);
+        $mode->startTrans();
+        $res1 = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>1]);
+        $res2 =$mode->where(['user_code'=>$this->account_code,'group_num'=>$group_num])->save(['role'=>3]);
+        if($res1 && $res2){
+            $mode->commit();
+            $this->echoEncrypData(0);
+        }else{
+            $mode->rollback();
+            $this->echoEncrypData(1,'转让对象必须是该群成员');
+        }
+    }
+
+
+
    /*
     * 添加群公告
     * @param title 公告标题
@@ -275,7 +321,7 @@ class GroupController extends VersionController
      * @param title 标题
      * @param content 内容
      * @param picture 图片
-     * @param choice 选项
+     * @param choice 选项 ,采用数组转json形式 类似：{'A':'赞成','B':'反对'}
      * @param type 话题类型 多选 单选
      * @param garden_code 所属小区code
      * @parma group_num 所属群号
@@ -319,6 +365,136 @@ class GroupController extends VersionController
         $this->echoEncrypData(0);
     }
 
+    /*
+     * 删除投票活动
+     * @param group_num 群号码
+     * @param vote_id   投票id
+     * */
+    protected function delVote_v1_0_0(){
+        $group_num =$this->pdata['group_num'];
+        $vote_id =$this->pdata['vote_id'];
+        if(!$group_num || !$vote_id)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $account_code=$this->account_code;
+        $model =new Model\GroupVoteModel($create_code);
+        $mode = new Model\GroupUserModel($create_code);
+        $role = $mode->getUserRole($group_num,$account_code);
+        $count =$model->where(['group_num'=>$group_num,'id'=>$vote_id,'user_code'=>$account_code])->count();
+        if(!in_array(intval($role),array(1,2)) && !$count){
+            $this->echoEncrypData(500);
+        }
+        if(!$model->delGroupVote($group_num,$vote_id)){
+            $this->echoEncrypData(1);
+        }
+        $this->echoEncrypData(0);
+    }
+    /*
+     * 参与投票
+     * @param group_num 群号码
+     * @param vote_id 投票id
+     * @param choised 选项,采用数组转json形式
+     * */
+    protected function makeVoteChoice_v1_0_0(){
+        $group_num =$this->pdata['group_num'];
+        $vote_id =$this->pdata['vote_id'];
+        $choised =$this->pdata['choised'];
+        if(!$group_num || !$vote_id || !$choised)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $account_code=$this->account_code;
+        $table_id = substr($account_code,0,4);
+        if(!$table_id)$this->echoEncrypData(1);
+        $res = M('baseinfo.user_info_'.$table_id)->Field('nickname,portrait')->where(['account_code'=>$account_code])->find();
+        $mode=new Model\GroupVoteModel($create_code);
+        $result = $mode->where(['group_num'=>$group_num,'vote_id'=>$vote_id])->getField('choice');
+        $array=json_decode($result,true);
+        $choised = json_decode($choised,true);
+        $choice_content=array();
+        foreach ($choised as  $k=>$v){
+            if(!array_key_exists($v,$array))$this->echoEncrypData(308);
+            $choice_content[$v] = $array[$v];
+        }
+        $choised = json_encode($choised);
+        $choice_content =json_encode($choice_content);
+        $data = array(
+            'vote_id' =>$vote_id,
+            'user_code' =>$account_code,
+            'group_num' =>$group_num,
+            'choised'=>$choised,
+            'choice_content' =>$choice_content,
+            'nickname' =>$res['nickname'],
+            'portrait' =>$res['portrait'],
+            'create_time'=>time(),
+        );
+        $model=new Model\VoteUserModel($create_code);
+        $res = $model->addVoteUser($data);
+        $mode->query('update group_vote set total_user = total_user+1 where id = '.$vote_id);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
+    }
+    /*
+     * 投票列表
+     * @param group_num 群号码
+     * */
+    protected function getVoteList_v1_0_0(){
+        $group_num =$this->pdata['group_num'];
+        if(!$group_num)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $model = new Model\GroupVoteModel($create_code);
+        $res = $model->getVoteList($group_num);
+        if(is_numeric($res))$this->echoEncrypData($res);
+        $this->echoEncrypData(0,'',$res);
+    }
+
+    /*
+     * 投票详情
+     *@param group_num 群号码
+     *@param vote_id   投票id
+     * */
+    protected function getVoteInfo_v1_0_0(){
+        $group_num = $this->pdata['group_num'];
+        $vote_id =$this->pdata['vote_id'];
+        if(!$group_num || !$vote_id)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mode = new Model\GroupVoteModel($create_code);
+        $data = $mode->getVoteInfo($vote_id);
+        $choice_arr = json_decode($data['choice'],true);
+        foreach($choice_arr as $k =>$v){
+            $new_arr[$k]['comtent']=$v;
+            $new_arr[$k]['num']=0;
+        }
+        if(!$data)$this->echoEncrypData(1);
+        $model =new Model\VoteUserModel($create_code);
+        $res = $model->getVoteChoice($group_num,$vote_id);
+        $have_choised=0;
+        if($res){
+            foreach($res as $k=>$v){
+                if($this->account_code === $v['user_code']){
+                    $have_choised=1;
+                }
+                $arr = json_decode($v['choised']);
+                foreach($arr as  $k=>$v){
+                    if(array_key_exists($v,$new_arr)){
+                        $new_arr[$v]['num']= $new_arr[$v]['num']+1;
+                    }
+                }
+            }
+        }
+        $data['have_choise']=$have_choised;
+        $data['vote_info'] =$new_arr;
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 发布群话题
+     * @param title
+     * @param content
+     * @param choice
+     * @param create_time
+     * @param end_time
+     * @param picture
+     * @param type
+     * @param 
+     * @param
+     * */
 
 
 

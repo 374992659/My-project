@@ -31,4 +31,37 @@ class GroupVoteModel extends Model
         return true;
     }
 
+    /*
+     * 删除投票
+     * @param group_num 群号码
+     * @param vote_id  投票id
+     * */
+    public function delGroupVote($group_num,$vote_id){
+        $res = $this->where(['group_num'=>$group_num,'id'=>$vote_id])->delete();
+        if(!$res){
+            return false;
+        }
+        return true;
+    }
+
+    /*
+     * 获取群投票列表
+     * @param group_num 群号码
+     * */
+    public function getVoteList($group_num){
+        $res= $this->field('id as vote_id,title,content,picture,create_time,end_time,group_num,user_code,nickname,portrait,total_user')->where(['group_num'=>$group_num])->order('create_time desc')->select();
+        if(!$res)return 5;
+        return $res;
+    }
+
+    /*
+     * 获取某一投票详情
+     * @param vote_id 投票id
+     * */
+    public function getVoteInfo($vote_id){
+        $res =$this->field('id as vote_id,title,content,picture,choice,create_time,end_time,group_num,user_code,nickname,portrait,total_user')->where(['id'=>$vote_id])->find();
+        if(!$res)return false;
+        return $res;
+    }
+
 }
