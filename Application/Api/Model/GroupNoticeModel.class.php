@@ -16,7 +16,6 @@ class GroupNoticeModel extends Model
         $this->name = 'group_notice';
         $this->connection = C('DB_USER_FRIENDS').$account_code;
         $this->db(0,$this->connection,true);
-        $this->account_code = $account_code;
     }
     /*
      * 添加群公告

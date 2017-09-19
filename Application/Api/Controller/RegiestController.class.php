@@ -210,11 +210,12 @@ class RegiestController extends BaseController
         $data=$model->getUserInfoByPhone($phone);
         $this->executeSql('databases.sql',$data);
     }
-    protected function executeSql($fileName,$data){
+    public function executeSql($fileName,$data){
         $sql=file_get_contents(C('SQL_PATH').$fileName);
         $sql=str_replace('$city_id',$data['city_id'],$sql);
         $sql=str_replace('$province_id',$data['province_id'],$sql);
         $sql=str_replace('$account_code',$data['account_code'],$sql);
+        $sql=str_replace('$subject_id',$data['subject_id'],$sql);
         $model=M();
         $model->startTrans();
         $res=$model->execute($sql);

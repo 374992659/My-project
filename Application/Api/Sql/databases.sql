@@ -25,6 +25,7 @@ CREATE DATABASE if not exists garden_$province_id;
 CREATE DATABASE if not exists certification_application;
 
 use  friends_and_group_$account_code;
+
 CREATE TABLE  if not exists `friends-chat_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `sender_code` varchar(50) NOT NULL COMMENT '发送人 格式区域id，用户id',
@@ -43,6 +44,7 @@ CREATE TABLE  if not exists `friends_group` (
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0:禁用或删除 1：启用'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户好友分组表';
 INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,$account_code, '我的好友');
+
 CREATE TABLE  if not exists `group_chat_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `sender_code` varchar(50) CHARACTER SET utf8 NOT NULL COMMENT '发送人user_code',
@@ -54,7 +56,7 @@ CREATE TABLE  if not exists `group_chat_log` (
   `group_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '消息所属群的code'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE `vote_user` (
+CREATE TABLE if not exists `vote_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `vote_id` int(11) NOT NULL COMMENT '投票id',
   `user_code` varchar(50) NOT NULL COMMENT '用户code',
@@ -156,6 +158,58 @@ CREATE TABLE  if not exists `user_group` (
   `group_type` tinyint(2) unsigned NOT NULL COMMENT '群分类id',
   `status` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '群状态 1:正常 2：解散'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户的所有群';
+
+CREATE TABLE `group_subject` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL COMMENT '标题',
+  `content` varchar(500) NOT NULL COMMENT '内容',
+  `picture` varchar(500) DEFAULT NULL COMMENT '图片',
+  `group_num` varchar(20) NOT NULL COMMENT '群号码',
+  `user_code` varchar(50) NOT NULL COMMENT '创建人code',
+  `nickname` varchar(50) NOT NULL COMMENT '昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `read_num` int(11) NOT NULL DEFAULT '0' COMMENT '阅读数量',
+  `commont_num` int(11) NOT NULL DEFAULT '0' COMMENT '评论数量',
+   `likes_num` int(11) NOT NULL DEFAULT '0' COMMENT '点赞数量',
+  PRIMARY KEY (`id`),
+  KEY `user_code` (`user_code`) USING BTREE,
+  KEY `group_num` (`group_num`) USING BTREE,
+  KEY `create_time` (`create_time`) USING BTREE
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='群话题表';
+
+CREATE TABLE `group_activity` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL COMMENT '标题',
+  `start_time` int(11) NOT NULL COMMENT '开始时间',
+  `end_time` int(11) NOT NULL COMMENT '结束时间',
+  `destination` varchar(255) NOT NULL COMMENT '目的地',
+  `collection_place` varchar(255) NOT NULL COMMENT '集合地点',
+  `collection_time` int(11) NOT NULL COMMENT '集合时间',
+  `contact` varchar(20) NOT NULL COMMENT '联系人',
+  `phone` varchar(20) NOT NULL COMMENT '联系人电话',
+  `transport` tinyint(2) NOT NULL COMMENT '交通方式',
+  `garden_code` varchar(50) NOT NULL COMMENT '小区code',
+  `garden_name` varchar(100) NOT NULL COMMENT '小区名称',
+  `total_num` varchar(10) NOT NULL COMMENT '目标人数',
+  `cost_type` tinyint(2) NOT NULL COMMENT '消费类型',
+  `average_cost` varchar(255) NOT NULL COMMENT '人均消费 免费为0',
+  `rote_planning` varchar(500) DEFAULT NULL COMMENT '路线规划',
+  `tag` varchar(255) DEFAULT NULL COMMENT '标签',
+  `picture` varchar(500) DEFAULT NULL COMMENT '图片展示',
+  `detailed_introduction` varchar(500) DEFAULT NULL COMMENT '详细介绍',
+  `user_code` varchar(255) NOT NULL COMMENT '用户code',
+  `nickname` varchar(255) NOT NULL COMMENT '昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `group_num` varchar(20) NOT NULL COMMENT '所属群',
+  PRIMARY KEY (`id`),
+  KEY `start_time` (`start_time`),
+  KEY `end_time` (`end_time`),
+  KEY `group_num` (`group_num`),
+  KEY `user_code` (`user_code`),
+  KEY `garden_code` (`garden_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群活动';
 
 use garden_$province_id;
 

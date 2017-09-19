@@ -12,12 +12,12 @@ use Think\Model;
 class FriendsGroupModel extends Model
 {
     public function __construct( $account_code )
-    {
-        $this->name = 'friends_group';
-        $this->connection = C('DB_USER_FRIENDS').$account_code;
-        $this->db(0,$this->connection,true);
-        $this->account_code = $account_code;
-    }
+{
+    $this->name = 'friends_group';
+    $this->connection = C('DB_USER_FRIENDS').$account_code;
+    $this->db(0,$this->connection,true);
+    $this->account_code = $account_code;
+}
 
     /*
      * 获取用户好友分组

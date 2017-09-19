@@ -16,7 +16,7 @@ class GroupPictureModel extends Model
         $this->name = 'group_picture';
         $this->connection = C('DB_USER_FRIENDS').$account_code;
         $this->db(0,$this->connection,true);
-        $this->account_code = $account_code;
+
     }
 
     /*

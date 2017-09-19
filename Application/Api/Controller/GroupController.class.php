@@ -427,7 +427,7 @@ class GroupController extends VersionController
         );
         $model=new Model\VoteUserModel($create_code);
         $res = $model->addVoteUser($data);
-        $mode->query('update group_vote set total_user = total_user+1 where id = '.$vote_id);
+        $mode->execute('update group_vote set total_user = total_user+1 where id = '.$vote_id);
         if(!$res)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
@@ -485,16 +485,278 @@ class GroupController extends VersionController
     }
     /*
      * 发布群话题
-     * @param title
-     * @param content
-     * @param choice
-     * @param create_time
-     * @param end_time
-     * @param picture
-     * @param type
-     * @param 
-     * @param
+     * @param title 标题
+     * @param content　内容
+     * @param picture　图片
+     * @param group_num 群号码
      * */
+    protected function addGroupSubject_v1_0_0(){
+        $title = $this->pdata['title'];
+        $content = $this->pdata['content'];
+        $picture =$this->pdata['picture'];
+        $group_num =$this->pdata['group_num'];
+        if(!$title || !$content)$this->echoEncrypData(21);
+        $table_id=substr($this->account_code,0,4);
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $data = array(
+            'title'=>$title,
+            'content'=>$content,
+            'picture'=>$picture,
+            'group_num'=>$group_num,
+            'user_code'=>$this->account_code,
+            'nickname'=>$res['nickname'],
+            'portrait'=>$res['portrait'],
+            'create_time'=>time(),
+        );
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $model = new Model\GroupSubjectModel($create_code);
+        if(!$subject_id=$model->addGroupSubject($data))$this->echoEncrypData(1);
+        $database=new RegiestController();
+        $res = $database->executeSql('group_subject_dynamics.sql',array('account_code'=>$create_code,'subject_id'=>$subject_id));
+        $this->echoEncrypData(0);
+    }
+    /*
+     * 上传群话题图片
+     * */
+    protected function uploaSubjectPic_V1_0_0(){
+        import('Vendor.UploadFile');
+        $upload =new \UploadFile();
+        $path=APP_PATH.'Common/Upload/Img/SubjectPicture/'.date(m).date(d).'/';
+        $res = $upload->upload($path);
+        if(!$res){
+            $this->echoEncrypData(1,'图片上传失败');
+        }
+        foreach($res as $k=>$v){
+            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 添加话题评论
+     *@param content 内容
+     *@param subject_id 话题id
+     *@param group_num   群号码
+     * */
+    protected function addGroupSubjectCommon_v1_0_0(){
+        $content = trim($this->pdata['content']);
+        $subject_id = trim($this->pdata['subject_id']);
+        $group_num = trim($this->pdata['group_num']);
+        if(!$content || !$subject_id || !$group_num)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $table_id=substr($this->account_code,0,4);
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $data = array(
+            'type'=>1,
+            'content'=>$content,
+            'user_code'=>$this->account_code,
+            'portrait'=>$res['portrait'],
+            'nickname'=>$res['nickname'],
+            'create_time'=>time(),
+        );
+        $model=new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
+        $model->startTrans();
+        $res1=$model->addGroupSubjectDynamics($data);
+        $res2=$model->execute('update group_subject set commont_num = commont_num+1 where id ='.$subject_id);
+        if(!$res1 || !$res2){
+            $model->rollback();
+            $this->echoEncrypData(1);
+        }
+        $model->commit();
+        $this->echoEncrypData(0);
+    }
+    /*
+     * 群话题点赞
+     * @param group_num 群号码
+     * @param subject_id 话题id
+     * */
+    protected function addGroupSubjectLikes_v1_0_0(){
+        $subject_id = trim($this->pdata['subject_id']);
+        $group_num = trim($this->pdata['group_num']);
+        if(!$subject_id || !$group_num)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $table_id=substr($this->account_code,0,4);
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $data = array(
+            'type'=>2,
+            'user_code'=>$this->account_code,
+            'portrait'=>$res['portrait'],
+            'nickname'=>$res['nickname'],
+            'create_time'=>time(),
+        );
+        $model=new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
+        $model->startTrans();
+        $res1=$model->addGroupSubjectDynamics($data);
+        $res2=$model->execute('update group_subject set likes_num = likes_num+1 where id ='.$subject_id);
+        if(!$res1 || !$res2){
+            $model->rollback();
+            $this->echoEncrypData(1);
+        }
+        $model->commit();
+        $this->echoEncrypData(0);
+    }
+    /*
+ * 群话题评论点赞
+ * @param group_num 群号码
+ * @param commont_id 群话题评论id
+ * @param subject_id 话题id
+ * */
+    protected function addGroupSubjectCommontLikes_v1_0_0(){
+        $subject_id = trim($this->pdata['subject_id']);
+        $group_num = trim($this->pdata['group_num']);
+        $commont_id = trim($this->pdata['commont_id']);
+        if( !$subject_id || !$group_num || !$commont_id )$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $table_id=substr($this->account_code,0,4);
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $data = array(
+            'type'=>3,
+            'commont_id'=>$commont_id,
+            'user_code'=>$this->account_code,
+            'portrait'=>$res['portrait'],
+            'nickname'=>$res['nickname'],
+            'create_time'=>time(),
+        );
+        $model=new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
+        $model->startTrans();
+        $res1=$model->addGroupSubjectDynamics($data);
+        $res2=$model->execute('update group_subject_dynamics_'.$subject_id.' set commont_likes = commont_likes+1 where id='.$commont_id);
+        if(!$res1 || !$res2){
+            $model->rollback();
+            $this->echoEncrypData(1);
+        }
+        $model->commit();
+        $this->echoEncrypData(0);
+    }
+    /*
+     * 话题列表
+     * @param group_num
+     * */
+    protected function getGroupSubjectList_v1_0_0(){
+        $group_num = $this->pdata['group_num'];
+        if(!$group_num)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $model= new Model\GroupSubjectModel($create_code);
+        $data = $model->getGroupSubjectList($group_num);
+        if(!$data)$this->echoEncrypData(5);
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 话题详情
+     * @param subject_id 话题id
+     * @param group_num 群号码
+     * */
+    protected function getGroupSubjectInfo_v1_0_0(){
+        $subject_id=$this->pdata['subject_id'];
+        $group_num=$this->pdata['group_num'];
+        if(!$group_num || !$subject_id)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $model= new Model\GroupSubjectModel($create_code);
+        $data =$model->getGroupSubjectInfo($subject_id);
+        if(!$data)$this->echoEncrypData(1);
+        $mode= new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
+        $res = $mode->getGroupSubjectDynamics(1);//1:评论 2：话题点赞 3：评论点赞
+        $data['commont_list']=$res;
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 获取活动交通方式
+     * */
+    public function getTransport_v1_0_0(){
+        $data=array(
+            '1'=>'汽车自驾',
+            '2'=>'徒步',
+            '3'=>'自行车骑行',
+            '4'=>'摩托车骑行',
+        );
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 费用类型
+     * */
+    public function getCostType_v1_0_0(){
+        $data=array(
+            '1'=>'AA制',
+            '2'=>'自驾游',
+            '3'=>'发布人请客',
+        );
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 添加群活动
+     * @param title 标题
+     * @param start_time 开始时间
+     * @param end_time 结束时间
+     * @param destination 目的地
+     * @param collection_time 集合时间
+     * @param collection_place 集合地
+     * @param contact 联系人
+     * @param phone 联系电话
+     * @param transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
+     * @param garden_code 小区code
+     * @param garden_name 小区名称
+     * @param total_num 目标人数
+     * @param cost_type 花费类型 1：AA制 2：自驾游 3：发布人请客 ...
+     * @param average_cost 人均消费
+     * @param rote_planning 路线规划 可填
+     * @param tag 标签 可填
+     * @param picture 图片 可填
+     * @param detailed_introduction 详细介绍 可填
+     * @param group_num 群号码
+     * */
+    protected function addGroupActivity(){
+        $title =$this->pdata['title'];
+        $start_time =$this->pdata['start_time'];
+        $end_time =$this->pdata['end_time'];
+        $destination =$this->pdata['destination'];
+        $collection_time =$this->pdata['collection_time'];
+        $collection_place =$this->pdata['collection_place'];
+        $contact =$this->pdata['contact'];
+        $phone =$this->pdata['phone'];
+        $transport =$this->pdata['transport'];
+        $garden_code =$this->pdata['garden_code'];
+        $garden_name =$this->pdata['garden_name'];
+        $total_num =$this->pdata['total_num'];
+        $cost_type =$this->pdata['cost_type'];
+        $average_cost =$this->pdata['average_cost'];
+        $rote_planning =$this->pdata['rote_planning'];
+        $tag =$this->pdata['tag'];
+        $picture =$this->pdata['picture'];
+        $detailed_introduction =$this->pdata['detailed_introduction'];
+        $group_num =$this->pdata['group_num'];
+        if(!$title || !$start_time  || !$end_time  || !$destination  || !$collection_time || !$collection_place  || !$contact  || !$phone  || !$transport  || !$garden_code  || !$garden_name  || !$total_num  || !$cost_type  || !$average_cost || !$group_num) $this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $table_id=substr($this->account_code,0,4);
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $data=array(
+            'title'=>$title,
+            'start_time'=>$start_time,
+            'end_time'=>$end_time,
+            'destination'=>$destination,
+            'collection_time'=>$collection_time,
+            'collection_place'=>$collection_place,
+            'contact'=>$contact,
+            'phone'=>$phone,
+            'transport'=>$transport,
+            'garden_code'=>$garden_code,
+            'garden_name'=>$garden_name,
+            'total_num'=>$total_num,
+            'cost_type'=>$cost_type,
+            'average_cost'=>$average_cost,
+            'group_num'=>$group_num,
+            'rote_planning'=>$rote_planning,
+            'tag'=>$tag,
+            'picture'=>$picture,
+            'detailed_introduction'=>$detailed_introduction,
+            'user_code'=>$this->account_code,
+            'nickname'=>$res['nickname'],
+            'portrait'=>$res['portrait'],
+            'create_time'=>time(),
+        );
+        $model =new Model\GroupActivityModel($create_code);
+        $res =$model->addGroupActivity($data);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
+    }
 
 
 
@@ -517,5 +779,4 @@ class GroupController extends VersionController
         }
         return false;
     }
-
 }
