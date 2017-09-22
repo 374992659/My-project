@@ -21,7 +21,9 @@ CREATE TABLE  if not exists `user_info_$city_id` (
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息库，由区域分表';
 
 CREATE DATABASE if not exists friends_and_group_$account_code;
+
 CREATE DATABASE if not exists garden_$province_id;
+
 CREATE DATABASE if not exists certification_application;
 
 use  friends_and_group_$account_code;
@@ -146,20 +148,27 @@ CREATE TABLE  if not exists `group_picture` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群相册';
 
 
-CREATE TABLE  if not exists `user_group` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
+CREATE TABLE if NOT EXISTS `user_group` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `group_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '群名称',
   `group_portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '群头像',
   `group_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '群唯一识别码',
   `group_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '生成规则 user_area表的id+随机字符串',
   `num_limit` int(4) NOT NULL DEFAULT '200' COMMENT '群用户上限',
   `role` tinyint(1) unsigned NOT NULL DEFAULT '3' COMMENT '角色 1：创建人 2：管理员 3：普通成员',
-  `new_message_num` int(11) unsigned COMMENT '新消息数量',
+  `new_message_num` int(11) unsigned DEFAULT NULL COMMENT '新消息数量',
   `group_type` tinyint(2) unsigned NOT NULL COMMENT '群分类id',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '群状态 1:正常 2：解散'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户的所有群';
+  `status` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '群状态 1:正常 2：解散',
+  `garden_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '小区code type为3时为必填项',
+  PRIMARY KEY (`id`),
+  KEY `group_num` (`group_num`),
+  KEY `role` (`role`),
+  KEY `group_type` (`group_type`),
+  KEY `status` (`status`),
+  KEY `garden_code` (`garden_code`)
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户的所有群';
 
-CREATE TABLE `group_subject` (
+CREATE TABLE  if not exists `group_subject` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL COMMENT '标题',
   `content` varchar(500) NOT NULL COMMENT '内容',
@@ -178,7 +187,7 @@ CREATE TABLE `group_subject` (
   KEY `create_time` (`create_time`) USING BTREE
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='群话题表';
 
-CREATE TABLE `group_activity` (
+CREATE TABLE  if not exists `group_activity` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(100) NOT NULL COMMENT '标题',
   `start_time` int(11) NOT NULL COMMENT '开始时间',
@@ -194,6 +203,7 @@ CREATE TABLE `group_activity` (
   `total_num` varchar(10) NOT NULL COMMENT '目标人数',
   `cost_type` tinyint(2) NOT NULL COMMENT '消费类型',
   `average_cost` varchar(255) NOT NULL COMMENT '人均消费 免费为0',
+  `enrollment_num` int(11) NOT NULL DEFAULT '0' COMMENT '报名人数',
   `rote_planning` varchar(500) DEFAULT NULL COMMENT '路线规划',
   `tag` varchar(255) DEFAULT NULL COMMENT '标签',
   `picture` varchar(500) DEFAULT NULL COMMENT '图片展示',
@@ -210,6 +220,27 @@ CREATE TABLE `group_activity` (
   KEY `user_code` (`user_code`),
   KEY `garden_code` (`garden_code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群活动';
+
+CREATE TABLE  if not exists `group_activity_registration` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `activity_id` int(11) NOT NULL COMMENT '活动id',
+  `group_num` varchar(20) NOT NULL COMMENT '群号码',
+  `user_code` varchar(50) NOT NULL COMMENT '用户code',
+  `nickname` varchar(100) NOT NULL COMMENT '昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `activity_id` (`activity_id`),
+  KEY `user_code` (`user_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群活动报名';
+
+CREATE TABLE if NOT EXISTS `my_subject` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `garden_code` varchar(100) NOT NULL COMMENT '所属小区code',
+  `subject_id` int(11) NOT NULL COMMENT '话题id',
+  PRIMARY KEY (`id`),
+  KEY `garden_code` (`garden_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='我的话题关联表';
 
 use garden_$province_id;
 
@@ -258,52 +289,38 @@ CREATE TABLE  if not exists `garden_$city_id` (
   `garden_user` text NOT NULL COMMENT '小区用户列表  序列化后的数组 array（''user_code''=>role,） role 为用户在小区的角色 0： 没有任何身份 1：业主 2：租户 3：业委会 4：业委会主任 '
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小区表 在省份内按市区分表';
 
-CREATE TABLE  if not exists `subject_$city_id` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY  COMMENT '自增主键',
-  `garden_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '话题对应小区标识符',
-  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
+CREATE TABLE if not EXISTS `subject_$city_id` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '话题标题',
   `content` text COLLATE utf8_unicode_ci NOT NULL COMMENT '话题内容',
+  `garden_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区名',
+  `garden_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '话题对应小区标识符',
+  `choise` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '选择项',
+  `end_time` int(11) NOT NULL,
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '话题图片',
+  `type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '投票类型 1：单选 2：多选',
+  `is_public` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '0:不公开 1：公开',
+  `is_push` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0：不需要推送 1:需要推送',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户code',
+  `nickname` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户昵称',
+  `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '头像',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
-  `type` tinyint(2) NOT NULL COMMENT '话题类型 1：普通讨论话题 2：投票讨论话题',
-  `choise` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '投票选择 可为多个选项,最多四个具体格式如下 A:xxx;B:xxxx;C:xxx;D:xxx',
-  `plan` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '解决方案',
-  `pay` decimal(8,2) DEFAULT NULL COMMENT '费用支出',
-  `status` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '话题状态。0：删除 1：讨论/投票中 2：已投票通过 3：已投票否决'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='话题表';
-
-CREATE TABLE  if not exists `subject_choise_$city_id` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT  '自增主键',
-  `subject_id` int(11) NOT NULL,
-  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
-  `choise` char(1) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户选择 ',
-  `create_time` int(11) NOT NULL COMMENT '创建时间',
-  `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户头像'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='话题选择表';
-
-CREATE TABLE  if not exists `subject_comment_$city_id` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT  '自增主键',
-  `subject_id` int(11) NOT NULL,
-  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
-  `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户头像',
-  `content` varchar(200) COLLATE utf8_unicode_ci NOT NULL COMMENT '评论内容',
-  `create_time` int(11) NOT NULL COMMENT '创建时间'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='话题评论表';
-
-CREATE TABLE  if not exists `subject_praise_$city_id` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY  COMMENT '自增主键',
-  `subject_id` int(11) NOT NULL COMMENT '话题id',
-  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
-  `praise_status` tinyint(2) NOT NULL COMMENT '用户点赞状态 0:取消 1：已点赞 ',
-  `create_time` int(11) NOT NULL COMMENT '创建时间',
-  `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户头像'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='话题点赞表';
+  `read_num` int(11) NOT NULL DEFAULT '0' COMMENT '阅读量',
+  `commont_num` int(11) NOT NULL DEFAULT '0' COMMENT '评论数',
+  `likes_num` int(11) NOT NULL DEFAULT '0' COMMENT '点赞数',
+  `total_votes` int(11) NOT NULL DEFAULT '0' COMMENT '总票数',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
+  PRIMARY KEY (`id`),
+  KEY `garden_code` (`garden_code`),
+  KEY `end_time` (`end_time`),
+  KEY `is_public` (`is_public`),
+  KEY `user_code` (`user_code`),
+  KEY `create_time` (`create_time`),
+  KEY `status` (`status`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='小区话题表';
 
 use certification_application;
+
 CREATE TABLE  if not exists `owner_application_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `user_code` int(11) NOT NULL COMMENT '用户id。 区域id+手机号格式',
