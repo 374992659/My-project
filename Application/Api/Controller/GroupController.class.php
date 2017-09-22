@@ -29,12 +29,17 @@ class GroupController extends VersionController
       * @param group_name 群名称
       * @param group_portrait 群头像
       * @param group_type  群分类id
+      * @param garden_code  小区code 可填
       * */
     protected function addGroup_v1_0_0(){
         $group_name = $this->pdata['group_name'] ;
         $group_portrait = $this->pdata['group_portrait'] ;
         $group_type = $this->pdata['group_type'] ;
+        $garden_code = $this->pdata['garden_code'] ;
         if(!$group_name || !$group_portrait || !$group_type) $this->echoEncrypData(21);
+        if(intval($group_type) == 3){
+            if(!$garden_code)$this->echoEncrypData(21);
+        }
         $group_num = $this->createGroupCode();
         if(!$group_num) $this->echoEncrypData(1,'群创建失败，请重试');
         $table_id=substr($this->account_code,0,4);
@@ -51,8 +56,8 @@ class GroupController extends VersionController
        }
         $res1 = M('baseinfo.group_area')->add($data);
         $mode = new Model\UserGroupModel($this->account_code);
-        $res2 =$mode->addGroup($group_name,$group_portrait,$group_code,$group_num,1,$group_type);   //role角色id
-        $data = M('baseinfo.user_info_'.$table_id)->field(['nickname,portrait'])->where(['sccount_code'=>$this->account_code])->find();
+        $res2 =$mode->addGroup($group_name,$group_portrait,$group_code,$group_num,1,$group_type,$garden_code);   //role角色id
+        $data = M('baseinfo.user_info_'.$table_id)->field(['nickname,portrait'])->where(['account_code'=>$this->account_code])->find();
         $user_code = $this->account_code;
         $nickname = $data['nickname'];
         $portrait = $data['portrait'];
@@ -82,17 +87,19 @@ class GroupController extends VersionController
     }
     /*
      * 获取我所在的群信息
-     * @param value 需要获取的群类型 1:我创建的群 2：我管理的群  3.我加入的群（普通身份）
+     * @param value 需要获取的群类型 1:我创建的群 2：我管理的群  3.我加入的群（普通身份）可填 不填返回所有群
      * */
     protected function getMyGroup_v1_0_0(){
         $value = $this->pdata['value'];
-        if(!$value) $this->echoEncrypData(21);
         $value = intval($value);
-        if(!in_array($value,array(1,2,3))) $this->echoEncrypData(2);
-        switch ($value) {
-            case 1:$role = 1;break;
-            case 2:$role = 2;break;
-            case 3:$role = 3;break;
+        if(!$value){
+            $role=0;
+        }else{
+            switch ($value) {
+                case 1:$role = 1;break;
+                case 2:$role = 2;break;
+                case 3:$role = 3;break;
+            }
         }
         $model = new Model\UserGroupModel($this->account_code);
         $field='group_name,group_portrait,group_code,group_num,group_type,role';
@@ -100,6 +107,10 @@ class GroupController extends VersionController
         if($res == 1){
             $this->echoEncrypData(5);
         }
+        foreach ($res as $k=>$v){
+            $res[$k]['group_type_name']= M('baseinfo.group_type')->where(['status' =>1,'id'=>$res[$k]['group_type']])->getField('group_type_name');
+        }
+
         $this->echoEncrypData(0,'',$res);
     }
     /*
@@ -195,6 +206,22 @@ class GroupController extends VersionController
         }
         $this->echoEncrypData(0);
     }
+    /*
+     * 上传群公告图片
+     * */
+    protected function uploadNoticePic_V1_0_0(){
+        import('Vendor.UploadFile');
+        $upload =new \UploadFile();
+        $path=APP_PATH.'Common/Upload/Img/NoticePicture/'.date(m).date(d).'/';
+        $res = $upload->upload($path);
+        if(!$res){
+            $this->echoEncrypData(1,'图片上传失败');
+        }
+        foreach($res as $k=>$v){
+            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
 
     /*
      * 获取群公告
@@ -280,7 +307,7 @@ class GroupController extends VersionController
      *@param picture_id 相册编号
      * @param group_num 群号码
      * */
-    protected function delGroupPic(){
+    protected function delGroupPic_v1_0_0(){
         $picture_id =$this->pdata['picture_id'];
         $group_num=$this->pdata['group_num'];
         if(!$picture_id ||!$group_num)$this->echoEncrypData(21);
@@ -296,6 +323,9 @@ class GroupController extends VersionController
                 $this->echoEncrypData(500);
             }
         }
+        $res = $model->delGroupPic($group_num,$picture_id);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
     }
 
     /*
@@ -469,7 +499,7 @@ class GroupController extends VersionController
         if($res){
             foreach($res as $k=>$v){
                 if($this->account_code === $v['user_code']){
-                    $have_choised=1;
+                    $have_choised=json_decode($v['choised'],true);
                 }
                 $arr = json_decode($v['choised']);
                 foreach($arr as  $k=>$v){
@@ -512,7 +542,7 @@ class GroupController extends VersionController
         $model = new Model\GroupSubjectModel($create_code);
         if(!$subject_id=$model->addGroupSubject($data))$this->echoEncrypData(1);
         $database=new RegiestController();
-        $res = $database->executeSql('group_subject_dynamics.sql',array('account_code'=>$create_code,'subject_id'=>$subject_id));
+        $database->executeSql('group_subject_dynamics.sql',array('account_code'=>$create_code,'subject_id'=>$subject_id));
         $this->echoEncrypData(0);
     }
     /*
@@ -595,11 +625,11 @@ class GroupController extends VersionController
         $this->echoEncrypData(0);
     }
     /*
- * 群话题评论点赞
- * @param group_num 群号码
- * @param commont_id 群话题评论id
- * @param subject_id 话题id
- * */
+     * 群话题评论点赞
+     * @param group_num 群号码
+     * @param commont_id 群话题评论id
+     * @param subject_id 话题id
+     * */
     protected function addGroupSubjectCommontLikes_v1_0_0(){
         $subject_id = trim($this->pdata['subject_id']);
         $group_num = trim($this->pdata['group_num']);
@@ -656,6 +686,7 @@ class GroupController extends VersionController
         $mode= new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
         $res = $mode->getGroupSubjectDynamics(1);//1:评论 2：话题点赞 3：评论点赞
         $data['commont_list']=$res;
+        $model->execute('update group_subject set read_num = read_num+1 where id='.$subject_id);
         $this->echoEncrypData(0,'',$data);
     }
     /*
@@ -703,7 +734,7 @@ class GroupController extends VersionController
      * @param detailed_introduction 详细介绍 可填
      * @param group_num 群号码
      * */
-    protected function addGroupActivity(){
+    protected function addGroupActivity_v1_0_0(){
         $title =$this->pdata['title'];
         $start_time =$this->pdata['start_time'];
         $end_time =$this->pdata['end_time'];
@@ -758,8 +789,81 @@ class GroupController extends VersionController
         $this->echoEncrypData(0);
     }
 
+    /*
+     * 群活动列表
+     * @param group_num 群号码
+     * */
+    protected function getGroupActivityList_v1_0_0(){
+        $group_num=$this->pdata['group_num'];
+        if(!$group_num)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $model=new Model\GroupActivityModel($create_code);
+        $data = $model->getActivityList($group_num);
+        if(!$data)$this->echoEncrypData(1);
+        $this->echoEncrypData(0,'',$data);
+    }
 
-
+    /*
+     * 群活动详情
+     * @param group_num 群号码
+     * @param acticity_id  活动id
+     * */
+    protected function getGroupActivityInfo_v1_0_0(){
+        $group_num=$this->pdata['group_num'];
+        $activity_id=$this->pdata['activity_id'];
+        if(!$group_num || !$activity_id)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $model=new Model\GroupActivityModel($create_code);
+        $data = $model->getGroupActivityInfo($activity_id);
+        $mode =new Model\GroupActivityRegistrationModel($create_code);
+        $data['enroll_status']=$mode->getEnroolStatus($activity_id,$this->account_code); //报名状态 0：未报名
+        if(!$data)$this->echoEncrypData(1);
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 群活动报名
+     * @param group_num 群号码
+     * @param activity_id  活动id
+     * */
+    protected function enrollGroupActivity_v1_0_0(){
+        $group_num=$this->pdata['group_num'];
+        $activity_id=$this->pdata['activity_id'];
+        if(!$group_num || !$activity_id)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $table_id=substr($this->account_code,0,4);
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $model=new Model\GroupActivityRegistrationModel($create_code);
+        $data=array(
+            'activity_id'=>intval($activity_id),
+            'group_num'=>$group_num,
+            'user_code'=>$this->account_code,
+            'portrait'=>$res['portrait'],
+            'nickname'=>$res['nickname'],
+            'create_time'=>time(),
+        );
+        $result=$model->getEnroolStatus($activity_id,$this->account_code);
+        if($result >0)$this->echoEncrypData(1,'您已经报名了，无需重复操作哦');
+        $res = $model->enrollGroupActivity($data);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
+    }
+    /*
+     * 取消报名
+     * @param group_num 群号码
+     * @param activity_id  活动id
+     * */
+    protected function cancelGroupActivityEnroll_v1_0_0(){
+        $group_num=$this->pdata['group_num'];
+        $activity_id=$this->pdata['activity_id'];
+        if(!$group_num || !$activity_id)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $model=new Model\GroupActivityRegistrationModel($create_code);
+        $result=$model->getEnroolStatus($activity_id,$this->account_code);
+        if($result == 0)$this->echoEncrypData(1,'您还没有报名哦');
+        $res = $model->cancelGroupActivityEnroll($activity_id,$this->account_code);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
+    }
 
     /*
      * 生成群号码
