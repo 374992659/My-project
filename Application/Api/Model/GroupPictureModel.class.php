@@ -53,5 +53,22 @@ class GroupPictureModel extends Model
         if(!$data) return 5;
         return $data;
     }
+    /*
+     * 删除群相册
+     * @param group_num 群号码
+     * @param id 相册id
+     * */
+    public function delGroupPic($group_num,$id){
+        $data=$this->field('id,picture_path,user_code,create_time')->where(['group_num'=>$group_num,'id'=>$id])->getField('picture_path');
+        if(!$data)return false;
+        $pic_arr=unserialize($data);
+        foreach ($pic_arr as $k=>$v){
+            @unlink($v);
+        }
+        $res = $this->where(['id'=>$id])->delete();
+        if(!$res)return false;
+        return true;
+    }
+
 
 }

@@ -28,15 +28,17 @@ class UserGroupModel extends Model
      * @param group_num 群号
      * @param role  角色
      * @param group_type 群分类id
+     * @param garden_code 小区code 可填
      * */
-    public function addGroup($group_name,$group_portrait,$group_code,$group_num,$role,$group_type){
+    public function addGroup($group_name,$group_portrait,$group_code,$group_num,$role,$group_type,$garden_code=''){
         $data=array(
             'group_name'=>$group_name,
             'group_portrait'=>$group_portrait,
             'group_code'=>$group_code,
             'group_num'=>$group_num,
             'role'=>$role,
-            'group_type'=>$group_type
+            'group_type'=>$group_type,
+            'garden_code'=>$garden_code
         );
         $res = $this->add($data);
         if(!$res){
