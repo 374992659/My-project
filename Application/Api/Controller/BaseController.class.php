@@ -200,7 +200,6 @@ class BaseController extends Controller
             4 => 'token error',
             5 => '暂无数据',
 
-
             100 => '未登录',
             101 => '本机登陆失效，你已在其他设备上登陆。',
             102 => '请重新登录。',

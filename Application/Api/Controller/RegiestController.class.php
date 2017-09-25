@@ -12,18 +12,52 @@ use Api\Model;
 
 class RegiestController extends BaseController
 {
+    /**
+     *
+     * 发送微信验证验证码
+     * @param phone 手机号码
+     */
+    public function sendWxRegistMsg()
+    {
+        $phone = $this->pdata['phone'];
+        if (!form_validate('phone', trim($phone))) {
+            $this->echoEncrypData(106);
+        }
+
+        $SMS=new \Api\Controller\SendSmsController();
+        $res = $SMS->SendMassage($phone,'wxregiest_', '美e家园', 'SMS_94280318', $code);
+        if($code !== 0){
+            $this->echoEncrypData($code);
+        }else{
+            $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
+        }
+    }
+
+
     /*
      * 微信版-用户绑定手机号
     * @param phone 手机号
     * @param area_id 区域id
+     * @param  smscode 短信验证码
      * */
     public function wxBindPhone(){
-//        $phone='17608006364';
-//        $table_id='3001';
         $phone = $this->pdata['phone'];
         $table_id = $this->pdata['area_id'];
+        $smscode = $this->pdata['smscode'];
         $openId = $this->openId;
-        if(!$phone || !$table_id)$this->echoEncrypData(21);
+        if(!$phone || !$table_id || !$smscode)$this->echoEncrypData(21);
+        //获取缓存验证码
+        $key_yzm_val = 'wxregiest_'.$phone;
+        $yzm_Mem = unserialize(S($key_yzm_val));
+        $cache_code = $yzm_Mem['hash'];
+        if( !$cache_code ){
+            return $this->echoEncrypData(116);
+        }
+
+        if( $cache_code != $smscode ){
+            $this->echoEncrypData(1,'验证码不正确');
+        }
+
         if( !form_validate('phone',trim($phone))){
             $this->echoEncrypData(106);
         }
@@ -75,7 +109,6 @@ class RegiestController extends BaseController
     public function sendRegistMsg()
     {
         $phone = $this->pdata['phone'];
-        $phone='17608006762';
         if (!form_validate('phone', trim($phone))) {
             $this->echoEncrypData(106);
         }
