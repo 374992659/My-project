@@ -10,10 +10,10 @@ return array(
     'DB_PREFIX'		=>	'', //表前缀
     'DB_CHARSET'	=> 	'utf8', //字符集
     'DB_DEBUG'  	=>  TRUE, //数据库调试模式 开启后可以记录SQL日志
-    'DB_CONFIG_DEFAULT' => 'mysql://root:root@localhost:3306/baseinfo',
-    'DB_USER_FRIENDS' => 'mysql://root:root@localhost:3306/friends_and_group_',//用户分库
-    'DB_CERTIFICATION_APPLICATION' => 'mysql://root:root@localhost:3306/certification_application',
-    'DB_GARDEN' => 'mysql://root:root@localhost:3306/garden_',//省份分库
+    'DB_CONFIG_DEFAULT' => 'mysql://root:meiyijiayuan1709@localhost:3306/baseinfo',
+    'DB_USER_FRIENDS' => 'mysql://root:meiyijiayuan1709@localhost:3306/friends_and_group_',//用户分库
+    'DB_CERTIFICATION_APPLICATION' => 'mysql://root:meiyijiayuan1709@localhost:3306/certification_application',
+    'DB_GARDEN' => 'mysql://root:meiyijiayuan1709@localhost:3306/garden_',//省份分库
 
 
 //    //缓存方式
