@@ -1,0 +1,59 @@
+/*通用样式*/
+ul, p, h3, h2, input, h4 {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+body, div, ul, a {
+    font-family: "Microsoft YaHei", simSun, "Lucida Grande", "Lucida Sans Unicode", Arial;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C97200;
+    text-decoration: none;
+}
+
+.lf {
+    float: left;
+}
+
+.right {
+    float: right
+}
+/*样式*/
+/*#flockVote{*/
+    /*padding: 0 1rem;*/
+/*}*/
+.topic{
+    display: inline-block;
+    width:50px ;
+    height: 50px;
+    border: 1px solid #bbbbbb;
+    margin-left: 2px;
+}
+.weui-media-box__bd>ul:after{
+    content: "";
+    display: block;
+    clear: left;
+}
+.weui-media-box {
+    padding: 0
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>按条件搜索好友</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/addFriSeach.css">
+    <style>
+        select{
+            font-size: 12px;
+        }
+        label{font-size: 12px}
+        .weui-select {
+            width: 100%;
+            font-size: 12px;
+            line-height:normal;
+            padding:10px 0;
+            position: relative;
+        }
+        .my_select{
+            font-size: 12px;
+            line-height:normal;
+            padding:10px 0;
+            width: 80px;
+        }
+       .weui-label{
+            width: 70px;
+        }
+        .weui-btn {
+            line-height: 2;
+        }
+    </style>
+</head>
+<body>
+    <div id="addFriSeach">
+        <!--搜索框-->
+        <div class="weui-search-bar" id="searchBar">
+            <form class="weui-search-bar__form">
+                <div class="weui-search-bar__box">
+                    <i class="weui-icon-search"></i>
+                    <input type="search" style="font-size: 12px" class="weui-search-bar__input" id="searchInput" placeholder="昵称/关键词" required="">
+                    <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+                </div>
+                <label class="weui-search-bar__label" id="searchText">
+                    <i class="weui-icon-search"></i>
+                    <span>搜索</span>
+                </label>
+            </form>
+            <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+        </div>
+        <!--条件区-->
+        <div class="weui-cells">
+            <!--性别-->
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">性别</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="select2">
+                        <option value="1">男</option>
+                        <option value="2">女</option>
+                        <option value="3">不限</option>
+                    </select>
+                </div>
+            </div>
+            <!--年龄-->
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd">
+                    <label for="" class="weui-label">年龄</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <select class="weui-select" name="select2">
+                        <option value="1">16岁以下</option>
+                        <option value="2">16-18</option>
+                        <option value="3">18-22</option>
+                        <option value="4">22-25</option>
+                        <option value="5">25-28</option>
+                        <option value="6">28-35</option>
+                        <option value="7">35-45</option>
+                    </select>
+                </div>
+            </div>
+            <!--地区-->
+            <div class="weui-cell weui-cell_select weui-cell_select-after">
+                <div class="weui-cell__hd" style="display: block">
+                    <label for="" class="weui-label">国家/地区</label>
+                </div>
+                <div class="weui-cell__bd">
+                    <!--省-->
+                    <select class="my_select" name="select2">
+                        <option value="1">中国</option>
+                        <option value="2">美国</option>
+                        <option value="3">英国</option>
+                    </select>
+                    <!--市-->
+                    <select class="my_select" name="select2">
+                        <option value="1">中国</option>
+                        <option value="2">美国</option>
+                        <option value="3">英国</option>
+                    </select>
+                    <!--小区-->
+                    <select class="my_select" name="select2">
+                        <option value="1">中国</option>
+                        <option value="2">美国</option>
+                        <option value="3">英国</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--提交按钮-->
+        <div class="demos-content-padded" style="margin-top: 40px">
+            <a href="nearbyFriend.html" class="weui-btn weui-btn_primary">查找</a>
+        </div>
+        <!--底部说明链接-->
+        <div class="weui-footer weui-footer_fixed-bottom">
+            <p class="weui-footer__links">
+                <a href="http://jqweui.com" class="weui-footer__link">jQuery-WeUI 首页</a>
+            </p>
+            <p class="weui-footer__text">Copyright © 2016 jqweui.io</p>
+        </div>
+    </div>
+
+
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="JQuery_weui/jquery-weui.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>讨论群群公告之发布公告</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/flockComm_push.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
+    </script>
+    <style>
+        .weui-cells:after {
+            bottom: 0;
+            border-bottom: 0 solid #d9d9d9;
+            -webkit-transform-origin: 0 100%;
+            transform-origin: 0 100%;
+            -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);}
+    </style>
+</head>
+<body>
+    <div class="weui-cells__title" style="font-size: 15px;color: black">标题：</div>
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" placeholder="请输入文本" maxlength="12" style="font-size: 12px">
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells__tips" style="text-align: center;background: #efebe8;
+    font-size: 10px;height: 25px;line-height: 25px">标题最多12个字</div>
+    <div class="weui-cells__title" style="font-size: 15px;color: black">内容：</div>
+
+    <div class="weui-cells weui-cells_form ">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <textarea class="weui-textarea" maxlength="200" placeholder="请输入文本" rows="3" style="font-size: 12px"></textarea>
+                <!--<div class="weui-textarea-counter"><span>0</span>/200</div>-->
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells__tips" style="text-align: center;background: #efebe8;
+    font-size: 10px;height: 25px;line-height: 25px">标题内容最多200个</div>
+    <!--上传图片-->
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <div class="weui-uploader">
+                    <div class="weui-uploader__hd">
+                        <p class="weui-uploader__title" style="font-size: 15px">图片上传</p>
+                        <!--<div class="weui-uploader__info">0/2</div>-->
+                    </div>
+                    <ul class=" picture lf">
+                        <li style="" class="lf">
+                            <img src="" alt="" style="width: 76px">
+                        </li>
+                        <li style="" class="lf">
+                            <img src="" alt="" style="width: 76px">
+                        </li>
+                    </ul>
+                    <!--按钮-->
+                    <div class="weui-uploader__bd lf">
+                        <div class="weui-uploader__input-box">
+                            <input id="uploaderInput" class="weui-uploader__input" type="file"  multiple="">
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                    <!--提示说明-->
+                    <div class="weui-cells__tips" style="text-align: center;background: #efebe8;
+                        font-size: 10px;height: 25px;line-height: 25px">可上传两张和投票主题相关的图片</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="demos-content-padded">
+        <button class="weui-btn weui-btn_primary" style="margin-top: 40px">发布</button>
+
+    </div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+</body>
+</html>

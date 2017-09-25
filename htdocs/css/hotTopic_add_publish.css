@@ -1,0 +1,88 @@
+/*通用样式*/
+ul, p, h3, h2, input, h4 {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+body, div, ul, a {
+    font-family: "Microsoft YaHei", simSun, "Lucida Grande", "Lucida Sans Unicode", Arial;
+    color: black;
+    padding: 0;
+    margin: 0;
+    font-size: 2rem;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C97200;
+    text-decoration: none;
+}
+
+.lf {
+    float: left;
+}
+
+.right {
+    float: right
+}
+/*发布广告具体样式*/
+#publishAd{
+    padding: 2rem;
+}
+#publishAd input{
+    padding: .5rem;
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    border: 1px solid black;
+
+ }
+#publishAd input{
+    height: 2rem;
+    line-height: 2rem;
+}
+#publishAd .puliProv,.pulCity,.pulArea,.pulPlot{
+    width: 6rem;
+}
+#publishAd>div{
+    margin-top: 2rem;
+}
+#publishAd .pulContent{
+    width: 40rem;
+    min-height: 20rem;
+    border: 1px solid black;
+    vertical-align: top;
+    padding: 1rem;
+}
+#publishAd .pulBtn{
+    width: 15rem;
+    height: 6rem;
+    background: green;
+    margin-top: 9rem;
+    border: 1px solid black;
+    border-radius: .5rem;
+    font-size: 2rem;
+    margin-left: 24rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

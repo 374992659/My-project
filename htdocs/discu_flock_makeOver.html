@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的话题之我要吐槽</title>
+    <link rel="stylesheet" href="css/flockFile.css">
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
+    </script>
+    <style>
+        .linkBtn{
+            width: 2rem;
+            height: 2rem;
+        }
+        .weui-check__label{
+            padding: 0;
+        }
+        .weui-media-box_appmsg{
+            padding-left: 0;
+        }
+        .weui-cell__bd>p{
+            font-size: 12px;
+        }
+        .weui-cell__ft>span{
+            font-size: 12px;
+        }
+        .weui-media-box__title{
+            font-size: 12px;
+        }
+        .weui-media-box__desc{
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div id="discu_addfriend">
+    <!--搜索框-->
+    <div class="weui-search-bar" id="searchBar">
+        <form class="weui-search-bar__form">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span>搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    </div>
+    <!--管理员列表star-->
+    <div class="linkman">
+        <!--管理员-->
+        <div class="weui-cells">
+            <div class="weui-cell LinkBtn">
+                <div class="weui-cell__hd">
+                    <img class="linkBtn" src="image/right.png">
+                </div>
+                <div class="weui-cell__bd">
+                    <p>管理员</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <span>12</span>/<span>30</span>
+                </div>
+            </div>
+            <!--我的管理个数-->
+            <div class="weui-panel weui-panel_access linkList" style="display: none">
+                <!--复选框-->
+                <div class="weui-cells weui-cells_checkbox">
+                    <label class="weui-cell weui-check__label" for="s1">
+                        <div class="weui-cell__hd">
+                            <input type="checkbox" class="weui-check" name="checkbox1" id="s1" >
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-panel__bd">
+                                <div  class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="image/firenda.jpg">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">昵称：</h4>
+                                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                <div class="weui-cells weui-cells_checkbox">
+                    <label class="weui-cell weui-check__label" for="s2">
+                        <div class="weui-cell__hd">
+                            <input type="checkbox" class="weui-check" name="checkbox1" id="s2" >
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-panel__bd">
+                                <div  class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="image/firenda.jpg">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">昵称：</h4>
+                                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--我的管理员列表end-->
+    <!--群成员star-->
+    <div class="linkman">
+        <!群成员-->
+        <div class="weui-cells">
+            <div class="weui-cell LinkBtn">
+                <div class="weui-cell__hd">
+                    <img class="linkBtn" src="image/right.png">
+                </div>
+                <div class="weui-cell__bd">
+                    <p>群成员</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <span>12</span>/<span>30</span>
+                </div>
+            </div>
+            <!--黑名单个数-->
+            <div class="weui-panel weui-panel_access linkList" style="display: none">
+                <!--复选框-->
+                <div class="weui-cells weui-cells_checkbox">
+                    <label class="weui-cell weui-check__label" for="h1">
+                        <div class="weui-cell__hd">
+                            <input type="checkbox" class="weui-check" name="checkbox1" id="h1">
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-panel__bd">
+                                <div  class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="image/firenda.jpg">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">昵称：</h4>
+                                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!--复选框end-->
+                </div>
+                <div class="weui-cells weui-cells_checkbox">
+                    <label class="weui-cell weui-check__label" for="h2">
+                        <div class="weui-cell__hd">
+                            <input type="checkbox" class="weui-check" name="checkbox1" id="h2">
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-panel__bd">
+                                <div  class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="image/firenda.jpg">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">昵称：</h4>
+                                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <!--复选框end-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--群成员end-->
+</div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/discu_flock_makeOver.js"></script>
+</body>
+</html>

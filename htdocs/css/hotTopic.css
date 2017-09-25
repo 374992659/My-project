@@ -1,0 +1,95 @@
+/*通用样式*/
+ul,p,h3,h2,input,h4,li{
+    list-style:none;
+    text-decoration:none;
+    padding:0;
+    margin:0;
+}
+body,div,ul,a{
+    font-family: "Microsoft YaHei",simSun,"Lucida Grande","Lucida Sans Unicode",Arial;
+    color:black;
+    padding:0;
+    margin:0;
+    font-size:2rem;
+}
+a{
+    color:#666;
+    text-decoration:none;
+}
+a:hover{
+    color:#C97200;
+    text-decoration:none;
+}
+.lf{float:left;}
+.right{float:right}
+/*标题nav样式*/
+#hotTopic{
+    padding:.5rem 0;
+}
+.navBox:after{
+    content:"";
+    display: block;
+    clear: both;
+}
+.navBox li{
+    box-sizing: border-box;
+    width:25%;
+    border: 1px solid black;
+    height: 6rem;
+    text-align: center;
+    line-height: 5rem;
+    font-weight: bold;
+    position: relative;
+    font-size:2.5rem;
+}
+.navBox .hotMsg,.myTopic{
+    font-size: 1.5rem;
+    color: white;
+    position: absolute;
+    display: inline-block;
+    width:2.5rem;
+    height:2.5rem;
+    background: darkorchid;
+    line-height: 2rem;
+    border-radius: 2rem;
+    right:.5rem;
+    top:.2rem;
+}
+/*热点话题页面内容样式*/
+.topicList{
+    padding: 2rem;
+}
+.topicList li{
+    margin-top: 2rem;
+    border-bottom:1px solid #b1b3b5 ;
+    padding-bottom: 1rem;
+}
+.topicList .headline:after{
+    content:"";
+    display: block;
+    clear: both;
+}
+.topicList a p{
+    font-size: 2rem;
+}
+.topicList .problemOk,.problemNo{
+    color: green;
+    font-size: 2.5rem;
+}
+.topicList .discuss{
+    font-size: 2.5rem;
+}
+.topicList .problemNo{
+    color: red;
+}
+.topicList .feedBack{
+    text-align:right ;
+    font-size: 1rem;
+}
+
+
+
+
+
+
+

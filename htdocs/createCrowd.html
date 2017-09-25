@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>建群</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/createCrowd.css">
+</head>
+<body>
+    <div id="manage">
+        <!--创建群-->
+        <div class="weui-cells">
+            <a class="weui-cell weui-cell_access" href="creaCrowd.html">
+                <div class="weui-cell__hd">
+                    <img src="image/add.png" alt="" style="width:20px;margin-right:5px;display:block">
+                </div>
+                <div class="weui-cell__bd">
+                    <p style="font-size: 12px">创建群</p>
+                </div>
+            </a>
+
+        </div>
+        <!--我参与的群-->
+        <!--1/我创建的群-->
+        <div class="weui-cells">
+            <div class="weui-cells" >
+                <div class="weui-cell  creaFlock">
+                    <div class="weui-cell__hd">
+                        <img src="image/right.png" class="creaFlBtn" alt="" style=""></div>
+                    <div class="weui-cell__bd">
+                        <p style="font-size: 12px">我创建的群</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <span>10</span>个
+                    </div>
+                </div>
+                <!--所有创建的群-->
+                <div class="weui-panel__bd myCreate" style="display: none">
+                    <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb " src="image/firendc.jpg" alt="" >
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                    <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb" src="image/firendc.jpg" alt="" style="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                    <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb" src="image/firendc.jpg" alt="" style="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--2、我管理的群-->
+        <div class="weui-cells">
+            <div class="weui-cells" >
+                <div class="weui-cell  manageFlock">
+                    <div class="weui-cell__hd">
+                        <img src="image/right.png" class="manageFlBtn" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd">
+                        <p style="font-size: 12px">我管理的群</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <span>10</span>个
+                    </div>
+                </div>
+                <!--所有创建的群-->
+                <div class="weui-panel__bd myManage" style="display: none">
+                    <a href="" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb " src="image/firendc.jpg" alt="" >
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                    <a href="" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb" src="image/firendc.jpg" alt="" style="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                    <a href="" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb" src="image/firendc.jpg" alt="" style="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--3、我加入的群-->
+        <div class="weui-cells">
+            <div class="weui-cells" >
+                <div class="weui-cell  joinFlock">
+                    <div class="weui-cell__hd">
+                        <img src="image/right.png" class="joinFlBtn" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                    <div class="weui-cell__bd">
+                        <p style="font-size: 12px">我加入的群</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <span>10</span>个
+                    </div>
+                </div>
+                <!--所有创建的群-->
+                <div class="weui-panel__bd myJoin" style="display: none">
+                    <a href="" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb " src="image/firendc.jpg" alt="" >
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                    <a href="" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb" src="image/firendc.jpg" alt="" style="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                    <a href="" class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
+                            <img class="weui-media-box__thumb" src="image/firendc.jpg" alt="" style="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 12px">群名称：</h4>
+                            <p class="weui-media-box__desc">群说明</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/createCrowd.js"></script>
+</body>
+</html>

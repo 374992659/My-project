@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>建群 创建新群</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/creaCrowd.css">
+    <style>
+        .weui-uploader__input-box {
+            margin: 0 auto;
+            float: none;
+        }
+        .flockHead{
+            width: 77px;
+            height: 77px;
+            border: 1px solid #d9d9d9;
+            margin: 0 auto;
+        }
+        .weui-cells:after, .weui-cells:before {
+            content: none;
+
+        }
+        label{
+            display: inline-block;
+            width: 30%;
+            text-align: right;
+        }
+        input{
+            width: 50%;
+            margin-top: 30px;
+            height: 30px;
+            outline: none;
+        }
+        .weui-footer {
+           margin-top: 50px;
+        }
+        select{
+            margin-top: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="creaCrowd" style="padding: 10px">
+        <!--群头像-->
+        <div class="weui-cells weui-cells_form">
+             <div class="weui-uploader__input-box">
+                 <input id="uploaderInput" class="weui-uploader__input" type="file">
+             </div>
+             <div class="flockHead" style="display: none">
+                 <img src="" alt="" style="width: 77px;height: 77px" >
+             </div>
+        </div>
+        <!--群名字-->
+        <label for="flockName">群名字：</label>
+        <input id="flockName" type="text" placeholder="填写群名称2-10个字" multiple="" minlength="2" maxlength="10"><br>
+        <!--群分类-->
+        <label for="flockClass">群分类：</label>
+        <select name="" id="flockClass">
+            <option value="同学群">同学群</option>
+            <option value="社区群">社区群</option>
+            <option value="兴趣爱好群">兴趣爱好群</option>
+            <option value="同学群">同学群</option>
+            <option value="同学群">同学群</option>
+        </select>
+        <br>
+        <!--提交按钮-->
+        <button  class="weui-btn weui-btn_primary" style="margin-top: 50px">提交</button>
+        <!--底部链接-->
+        <div class="weui-footer weui-footer_fixed-bottom">
+            <p class="weui-footer__links">
+                <a href="http://www.baidu.com" class="weui-footer__link">美e家园</a>
+            </p>
+            <p class="weui-footer__text">Copyright © 2016 jqweui.io</p>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/creaCrowd.js"></script>
+</body>
+</html>
