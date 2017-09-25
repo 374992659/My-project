@@ -67,7 +67,7 @@ class BaseController extends Controller
                     $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
                 }
             }else{
-               
+
             }
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
