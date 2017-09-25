@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>热门话题 消息 具体内容</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/hotTopic_infoCon.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
+    </script>
+    <style>
+        .weui-media-box {
+            padding: 5px;
+
+        }
+
+        body{
+            font-size: 15px;
+        }
+        .weui-media-box__desc {
+
+            -webkit-line-clamp: 200;
+        }
+        #infoCon{
+            padding:0 5px;
+        }
+        .placeholder,.placeholder>span{
+            font-size: 12px;
+            color: #b2b2b2;
+        }
+        .weui-media-box_text .weui-media-box__title {
+             margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="infoCon" >
+        <div class="weui-media-box weui-media-box_text" >
+            <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">标题一</h4>
+            <div style="text-align: right;margin-right: 5px">
+                <span style="font-size: 12px">已解决</span>
+                <span >
+                    <a href="lawyer.html" style="font-size: 12px;color: red">律师援助
+                    </a>
+                </span>
+            </div>
+            <p class="weui-media-box__desc" style="text-indent: 2em">
+                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+            </p>
+            <ul class="weui-media-box__info" style="font-size: 12px;text-align: right">
+                <li class="weui-media-box__info__meta">文字来源：<span>张三</span></li>
+                <li class="weui-media-box__info__meta">时间：<span>2020.12.02</span></li>
+            </ul>
+        </div>
+        <hr>
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+                <div class="placeholder">
+                    回复量:<span>10</span>
+                </div>
+            </div>
+            <div class="weui-flex__item"><div class="placeholder">参与人数:<span>20</span></div></div>
+            <div class="weui-flex__item"><div class="placeholder">阅读量:<span>30</span></div></div>
+        </div>
+        <div class="weui-flex">
+            <div class="weui-flex__item"><div class="placeholder">中立:<span>20</span></div></div>
+            <div class="weui-flex__item"><div class="placeholder">同意:<span>20</span></div></div>
+            <div class="weui-flex__item"><div class="placeholder">反对:<span>20</span></div></div>
+            <div class="weui-flex__item"><div class="placeholder">点赞:<span>20</span></div></div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="JQuery_weui/jquery-weui.js"></script>
+</body>
+</html>

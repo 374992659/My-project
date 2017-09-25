@@ -1,0 +1,67 @@
+/*通用样式*/
+ul, p, h3, h2, input, h4 {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+
+body, div, ul, a {
+    font-family: "Microsoft YaHei", simSun, "Lucida Grande", "Lucida Sans Unicode", Arial;
+    color: black;
+    padding: 0;
+    margin: 0;
+    font-size: 2rem;
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C97200;
+    text-decoration: none;
+}
+
+.lf {
+    float: left;
+}
+
+.right {
+    float: right
+}
+/*具体样式*/
+#lawyer{
+    padding: 2rem;
+}
+#lawyer input{
+    width: 40rem;
+    height: 3.5rem;
+    border: 1px solid black;
+    font-size: 2rem;
+    padding-left: 1rem;
+    border-radius: .5rem;
+    margin-bottom: 2rem;
+}
+#lawyer #sumInfo{
+    border: 1px solid black;
+    width: 40rem;
+    height: 30rem;
+    font-size: 2rem;
+    vertical-align: top;
+    border-radius: .5rem;
+    padding-left: 1rem;
+}
+#lawyer .btn{
+    border-radius: 1rem;
+    background: green;
+    margin-top: 10rem;
+    width: 18rem;
+    height: 7rem;
+    font-size: 3rem;
+    margin-left: 23rem;
+}
+
+
+

@@ -1,0 +1,85 @@
+/*通用样式*/
+ul, p, h3, h2, input, h4 {
+    list-style: none;
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+}
+body{
+    background:#b1b3b5 ;
+}
+body, div, ul, a {
+    font-family: "Microsoft YaHei", simSun, "Lucida Grande", "Lucida Sans Unicode", Arial;
+    color: black;
+    padding: 0;
+    margin: 0;
+
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #C97200;
+    text-decoration: none;
+}
+
+.lf {
+    float: left;
+}
+
+.right {
+    float: right
+}
+/*样式*/
+label{
+    font-size: 12px;
+    display: inline-block;
+    width: 30%;
+    height: 30px;
+    text-align: right;
+}
+#pushPlay{
+    padding: 1rem;
+}
+#pushPlay li{
+    padding: 5px 0;
+    border-bottom: 1px solid #b1b3b5;
+}
+#pushPlay input{
+    outline: none;
+    padding: 4px;
+    width: 60%;
+
+}
+#pushPlay .time input{
+    width: 80px;
+
+}
+/*添加标签的显示位置*/
+.weui-flex>div{
+    text-align: center;
+    border: 1px solid blueviolet;
+    border-radius: 3px;
+    margin-right: 2px;
+    font-size: 10px;
+    background: blue;
+}
+/*上传图片*/
+.picPlace li{
+    margin-right: 3px;
+    width:77px ;
+    height: 68px;
+    border: 1px solid #b1b3b5;
+    float:left ;
+}
+
+
+
+
+
+
+
+

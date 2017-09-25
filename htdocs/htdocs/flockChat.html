@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>群聊天页面</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/hotTopic_spit.css">
+    <style>
+        .weui-media-box:before {
+            content:none;
+        }
+        .weui-media-box_appmsg .weui-media-box__hd {
+            margin-right:0;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+        }
+        .weui-media-box__desc {
+            min-width: 0;
+            padding: 10px;
+            border: 1px solid #b1b3b5;
+            box-sizing: border-box;
+            -webkit-line-clamp: 20000000000;
+            border-radius: 10px;
+            background: blueviolet;
+        }
+        .weui-media-box_appmsg {
+            -webkit-align-items: 	stretch;
+            align-items: 	stretch;
+        }
+        .weui-navbar__item{
+            font-size: 12px;
+            padding: 5px 0;
+        }
+    </style>
+</head>
+<body style="background:	#F0F0F0">
+<!--进入群资料-->
+<div class="weui-navbar" style="position: fixed;top:0;left: 0">
+    <div class="weui-navbar__item weui_bar__item_on">
+        群聊天
+    </div>
+    <div class="weui-navbar__item">
+        同学群
+    </div>
+    <div class="weui-navbar__item">
+        <a href="commDiscu.html" style="display: block;vertical-align: middle">
+         群资料
+        </a>
+    </div>
+</div>
+<!--聊天页面-->
+<div id="chatPage" >
+    <!--好友方-->
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+            <img class="weui-media-box__thumb" src="image/firenda.jpg" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+                    <span class="weui-media-box__desc">
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                    </span>
+        </div>
+    </a>
+    <!--时间-->
+    <!--我方-->
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box__bd">
+            <span class="weui-media-box__desc right" >度可垃圾死打卡设</span>
+        </div>
+        <div class="weui-media-box__hd" style="margin-left:.8em;">
+            <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+        </div>
+    </a>
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+            <img class="weui-media-box__thumb" src="image/firenda.jpg" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+                    <span class="weui-media-box__desc">
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                    </span>
+        </div>
+    </a>
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+            <img class="weui-media-box__thumb" src="image/firenda.jpg" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+                    <span class="weui-media-box__desc">
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                    </span>
+        </div>
+    </a>
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+            <img class="weui-media-box__thumb" src="image/firenda.jpg" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+                    <span class="weui-media-box__desc">
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                    </span>
+        </div>
+    </a>
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+            <img class="weui-media-box__thumb" src="image/firenda.jpg" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+                    <span class="weui-media-box__desc">
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                    </span>
+        </div>
+    </a>
+    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+            <img class="weui-media-box__thumb" src="image/firenda.jpg" alt="">
+        </div>
+        <div class="weui-media-box__bd">
+                    <span class="weui-media-box__desc">
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                        卡老师家卡三季度可垃圾死打卡机；大会计师阿兰；设定阿萨德；就卡就死了打开洛杉矶打死了的
+                    </span>
+        </div>
+    </a>
+</div>
+<!--输入信息框-->
+<div id="sendInfo" class="weui-footer_fixed-bottom" contenteditable="true" style="background: 	#FFFFFF;position: fixed;bottom:0;left: 0">
+    <!--输入文字信息-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><img class="imgBtn" style="width: 30px" src="image/add.png"></div>
+            <div class="weui-cell__bd" style="position: relative;z-index: 1000">
+                <textarea placeholder="请输入发送的消息" style="padding: 5px;border: none;outline: none;font-size: 15px" name="" id=""  rows="1"></textarea>
+            </div>
+            <div class="weui-cell__ft">
+                <button style="width: 60px;height: 30px;background: blue;color: white">发送</button>
+            </div>
+        </div>
+    </div>
+    <!--发送图片视频文件等-->
+    <div class="weui-grids" style="display: none">
+        <!--图片-->
+        <a href="" class="weui-grid js_grid">
+            <div class="weui-grid__icon">
+                <img src="image/pic.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                图片
+            </p>
+            <div class="weui-cells weui-cells_form" style="position: absolute;top:-10px;left:-15px;opacity: 0">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <div class="weui-uploader">
+                            <div class="weui-uploader__bd">
+                                <div class="weui-uploader__input-box">
+                                    <input id="uploaderInput" class="weui-uploader__input" type="file"  multiple="" style="height: 120%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <!--文件-->
+        <a href="" class="weui-grid js_grid">
+            <div class="weui-grid__icon">
+                <img src="image/u313.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                文件
+            </p>
+            <div class="weui-cells weui-cells_form" style="position: absolute;top:-10px;left:-15px;opacity: 0">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <div class="weui-uploader">
+                            <div class="weui-uploader__bd">
+                                <div class="weui-uploader__input-box">
+                                    <input id="uploaderInput" class="weui-uploader__input" type="file"  multiple="" style="height: 120%">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <a href="" class="weui-grid js_grid">
+            <div class="weui-grid__icon">
+                <img src="image/video.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                语音
+            </p>
+        </a>
+        <a href="" class="weui-grid js_grid">
+            <div class="weui-grid__icon">
+                <img src="image/place.png" alt="">
+            </div>
+            <p class="weui-grid__label">
+                位置
+            </p>
+        </a>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+<script src="js/friendChat.js"></script>
+</body>
+</html>

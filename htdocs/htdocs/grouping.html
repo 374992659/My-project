@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>分组管理</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/grouping.css">
+    <style>
+        .weui-btn {
+            padding-left: 4px;
+            padding-right: 4px;
+            box-sizing: border-box;
+            color: #fff;
+            line-height: 2;
+            border-radius: 5px;
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+
+        }
+    </style>
+</head>
+<body>
+    <div id="grouping">
+        <!--创建新的分组-->
+        <div>
+            <div class="demos-content-padded">
+                <input type="text" placeholder="请输入分组名称" style="height: 25px;width: 68%;padding: 5px;outline: none;border-radius: 3px"/>
+                <button style="width: 25%;display: inline-block;font-size: 12px" id="show-success" class="weui-btn weui-btn_primary">添加分组</button>
+            </div>
+        </div>
+        <!--已有的分组列表-->
+        <div class="weui-cells">
+            <!--我的同学-->
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src=""></div>
+                <div class="weui-cell__bd">
+                    <p style="font-size: 12px">我的同学</p>
+                </div>
+                <div class="weui-cell__ft" style="font-size: 12px">10/20</div>
+                <button class="delBtn" style="margin-left: 10px">删除</button>
+            </div>
+            <!--我的老乡-->
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src=""></div>
+                <div class="weui-cell__bd">
+                    <p style="font-size: 12px">老乡</p>
+                </div>
+                <div class="weui-cell__ft" style="font-size: 12px">10/20</div>
+                <button class="delBtn"  style="margin-left: 10px">删除</button>
+            </div>
+            <!--同事-->
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src=""></div>
+                <div class="weui-cell__bd">
+                    <p style="font-size: 12px">同事</p>
+                </div>
+                <div class="weui-cell__ft" style="font-size: 12px">10/20</div>
+                <button class="delBtn"  style="margin-left: 10px">删除</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="JQuery_weui/jquery-weui.js"></script>
+    <script>
+        $(document)
+                .on('click', '#show-success', function() {
+                    $.toptip('操作成功', 'success');
+                });
+        $(document).ready(function(){
+            $(".delBtn").click(function(e){
+                console.log($(e.target));
+                $(e.target).parent().remove();
+            });
+        });
+    </script>
+
+</body>
+</html>

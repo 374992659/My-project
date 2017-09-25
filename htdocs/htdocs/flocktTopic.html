@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>群话题</title>
+
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/flockTopic.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
+    </script>
+</head>
+<body>
+    <div id="flockTopic">
+        <div class="weui-cells">
+            <a class="weui-cell weui-cell_access" href="hotTopic_spit.html" style="padding: 5px 15px">
+                <div class="weui-cell__bd">
+                    <p style="font-size: 15px">发布话题</p>
+                </div>
+                <div class="weui-cell__ft">
+                    <span class="" style="font-size: 10px">
+                        你想对大家说点什么
+                    </span>
+                </div>
+            </a>
+        </div>
+        <!--话题内容-->
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="hotTopic_myTopicText.html" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__bd">
+                        <div class="topic">
+                            <h4 class="weui-media-box__title lf" style="font-size: 13px">标题一：</h4>
+                            <span class="right" style="font-size: 10px">已解决</span>
+                        </div>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        <div style="margin-top: .5rem;text-align: right;font-size: 10px">阅读量：<span>10</span> 回帖数：<span>12</span></div>
+                    </div>
+                </a>
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__bd">
+                        <div class="topic">
+                            <h4 class="weui-media-box__title lf" style="font-size: 13px">标题二：</h4>
+                            <span class="right" style="font-size: 10px">已解决</span>
+                        </div>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        <div style="margin-top: .5rem;text-align: right;font-size: 10px">阅读量：<span>10</span> 回帖数：<span>12</span></div>
+                    </div>
+                </a>
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__bd">
+                        <div class="topic">
+                            <h4 class="weui-media-box__title lf" style="font-size: 13px">标题三：</h4>
+                            <span class="right" style="font-size: 10px">已解决</span>
+                        </div>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                        <div style="margin-top: .5rem;text-align: right;font-size: 10px">阅读量：<span>10</span> 回帖数：<span>12</span></div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+</body>
+</html>

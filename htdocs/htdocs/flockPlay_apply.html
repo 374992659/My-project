@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>约玩报名</title>
+
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/flockPlay_apply.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
+    </script>
+</head>
+<body>
+    <div id="flockPlay_apply">
+        <form action="">
+           <ul>
+               <li>
+                   <label for="name">姓名：</label>
+                   <input type="text" id="name">
+               </li>
+               <li>
+                   <label for="phone">联系电话：</label>
+                   <input type="text" id="phone">
+               </li>
+               <li>
+                   <label for="number">参加人数：</label>
+                   <input type="text" id="number">
+               </li>
+               <li>
+                   <label for="plot">所属小区：</label>
+                   <input type="text" id="plot">
+               </li>
+               <li>
+                   <label for="consume">人均消费：</label>
+                   <input type="text" id="consume">
+               </li>
+           </ul>
+        </form>
+        <button  class="weui-btn weui-btn_primary" style="margin-top: 50px">报名</button>
+    </div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+</body>
+</html>
