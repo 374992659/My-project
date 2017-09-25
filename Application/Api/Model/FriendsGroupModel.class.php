@@ -1,5 +1,6 @@
 <?php
 /**
+ * 好友 与 群
  * Created by PhpStorm.
  * User: Wang.yn
  * Date: 2017/9/7

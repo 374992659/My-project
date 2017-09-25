@@ -1,6 +1,6 @@
 <?php
 /**
- * 用户登陆、注册、退出登录、修改密码
+ * 用户退出登录、修改密码
  * Created by PhpStorm.
  * User: Wang.yn
  * Date: 2017/9/5

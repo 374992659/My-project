@@ -1,5 +1,6 @@
 <?php
 /**
+ * 热门话题广告类
  * Created by PhpStorm.
  * User: Wang.yn
  * Date: 2017/9/20
@@ -335,27 +336,85 @@ class SubjectController extends VersionController
     }
     /*
      * 添加广告
-     *
+     *@param city_id 城市id
+     *@param garden_code 小区code 可填
+     *@param title 标题
+     *@param content 内容
      * */
     protected function addAd_v1_0_0(){
-
+        $city_id=$this->pdata['city_id'];
+        $garden_code=$this->pdata['garden_code'];
+        $title=$this->pdata['title'];
+        $content=$this->pdata['content'];
+        if(!$city_id || !$title || !$content)$this->echoEncrypData(21);
+        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $table_id=substr($this->account_code,0,4);
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $data=array(
+            'title'=>$title,
+            'content'=>$content,
+            'user_code'=>$this->account_code,
+            'portrait'=>$res['portrait'],
+            'nickname'=>$res['nickname'],
+            'create_time'=>time(),
+        );
+        if($garden_code){
+            $data['garden_code']=$garden_code;
+        }else{
+            $data['is_public']=2;
+        }
+        $adverse=new Model\AdeverseModel($province_id,$city_id);
+        $res= $adverse->addAdverse($data);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
     }
     /*
      * 删除广告
-     *
+     *@param city_id 城市id
+     *@param  adverse_id 广告id
      * */
     protected function delAd_v1_0_0(){
-
+        $city_id=$this->pdata['city_id'];
+        $adverse_id=$this->pdata['adverse_id'];
+        if(!$city_id || !$adverse_id)$this->echoEncrypData(21);
+        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $adverse=new Model\AdeverseModel($province_id,$city_id);
+        $user_code = $adverse->getAdverseC($adverse_id);
+        if(!$user_code)$this->echoEncrypData(1);
+        if($user_code !== $this->account_code)$this->echoEncrypData(500);
+        $res = $adverse->delAdverse($adverse_id);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
     }
 
     /*
      * 广告列表
-     *
+     *@param city_id 城市id
+     *@param garden_code 小区code 可填
      * */
     protected function getAdList_v1_0_0(){
-
+        $city_id=$this->pdata['city_id'];
+        $garden_code=$this->pdata['garden_code'];
+        if(!$city_id)$this->echoEncrypData(21);
+        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $adverse=new Model\AdeverseModel($province_id,$city_id);
+        $data = $adverse->getAdverseList($city_id,$garden_code);
+        if(!$data)$this->echoEncrypData(5);
+        $this->echoEncrypData(0,'',$data);
     }
-
-
-
+    /*
+     * 我的广告列表
+     * @param city_id 城市id
+     * @param garden_code 小区code 可填
+     * */
+    protected function getMyAdList_v1_0_0(){
+        $city_id=$this->pdata['city_id'];
+        $garden_code=$this->pdata['garden_code'];
+        if(!$city_id)$this->echoEncrypData(21);
+        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $adverse=new Model\AdeverseModel($province_id,$city_id);
+        $data = $adverse->getMyAdverseList($city_id,$this->account_code,$garden_code);
+        if(!$data)$this->echoEncrypData(5);
+        $this->echoEncrypData(0,'',$data);
+    }
 }

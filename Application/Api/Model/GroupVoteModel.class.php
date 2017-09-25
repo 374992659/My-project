@@ -1,5 +1,6 @@
 <?php
 /**
+ * 群投票
  * Created by PhpStorm.
  * User: Wang.yn
  * Date: 2017/9/15

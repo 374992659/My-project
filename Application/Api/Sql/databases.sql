@@ -319,6 +319,23 @@ CREATE TABLE if not EXISTS `subject_$city_id` (
   KEY `status` (`status`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='小区话题表';
 
+CREATE TABLE if NOT EXISTS `adverse_$city_id` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+  `garden_code` varchar(100) DEFAULT NULL COMMENT '小区code 可不填',
+  `title` varchar(100) NOT NULL COMMENT '标题',
+  `content` varchar(500) NOT NULL COMMENT '内容',
+  `user_code` varchar(50) NOT NULL COMMENT '用户code',
+  `nickname` varchar(255) NOT NULL COMMENT '昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '头像',
+  `create_time` int(11) NOT NULL COMMENT ' 创建时间',
+  `is_public` tinyint(2) NOT NULL DEFAULT '1' COMMENT '1:不公开 2:公开',
+  PRIMARY KEY (`id`),
+  KEY `user_code` (`user_code`),
+  KEY `is_public` (`is_public`),
+  KEY `garden_code` (`garden_code`),
+  KEY `create_time` (`create_time`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告表';
+
 use certification_application;
 
 CREATE TABLE  if not exists `owner_application_$city_id` (

@@ -1,5 +1,6 @@
 <?php
 /**
+ * 用户登录注册类
  * Created by PhpStorm.
  * User: Wang.yn
  * Date: 2017/9/15

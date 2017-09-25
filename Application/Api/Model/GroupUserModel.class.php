@@ -1,5 +1,6 @@
 <?php
 /**
+ * 群用户
  * Created by PhpStorm.
  * User: Wang.yn
  * Date: 2017/9/12
