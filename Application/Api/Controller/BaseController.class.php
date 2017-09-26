@@ -70,87 +70,9 @@ class BaseController extends Controller
 
             }
         }
-        $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        if($this->setUserData($phone) !== true){ //没有session数据
-            $this->isweixin =is_weixin();
-            if( $this->isweixin ){//微信打开
-                $this->setWeixinData();
-            }
-        }
-    }
-    /*
-        * 设置用户数据
-        * */
-    public function setUserData($phone){
-        $this->account =session('account'.$phone);
-        $this->account_code = $this->account['account_code'];
-        $this->openId = $this->account['openId'];
-        $this->phone =$this->account['phone'];
-        if( $this->phone ){
-            return true;
-        }
-        return false;
+
     }
 
-    //获取微信数据
-    public function setWeixinData()
-    {
-        //初始化微信SDK
-        $weObj = new \Common\Lib\WechatSDKLib(array(
-            'appid'		=> C('APPID'),
-            'appsecret'	=> C('APPSECRET'),
-            'token' 	=> C('WEIXIN_API_TOKEN'), //填写你设定的key
-            'encodingaeskey' => C("ENCODINGAESKEY"), //填写加密用的EncodingAESKey，如接口为明文模式可忽略
-//            'agentid'=>'1', //应用的id
-//            'debug'=>true, //调试开关
-//            '_logcallback'=>'logg', //调试输出方法，需要有一个string类型的参数
-        ));
-
-
-        //未登录，有可能没有openid
-        if( !$this->openId ){
-            if( IS_AJAX ){
-                return E('openid已过期，需先刷新获取openid');
-            }
-            //如果参数没有code，就跳转到微信获取认证
-            if( !isset($_GET['code'])){
-                $code =rand(1000,9999);
-                setcookie('code',$code);
-                $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
-                redirect($url);die;
-            }
-
-            //获取认证数据
-            $wxuserdata = $weObj->getOauthAccessToken();
-            if( !$wxuserdata ){
-                return E('获取微信数据失败');
-            }
-            $this->openId = $wxuserdata['openid']; //获取openId
-            $MemberModel = new \Api\Model\UserAreaModel();
-            $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
-            if( $customer ){ //是否绑定手机
-                //设置Session,openid登录
-                $res = $MemberModel->wxloginSetSession($this->openId);
-                if(!$res){
-                    $this->echoEncrypData(3);
-                }
-                $res['account_code'] = $res['table_id'].$res['phone'];
-                $this->appToken = true;
-                $this->phone =$res['phone'];
-                session('account'.$res['phone'],$res);
-            }
-            else{
-                //获取微信数据
-                $wxdata = $weObj->getOauthUserinfo($wxuserdata['access_token'], $wxuserdata['openid']);
-                if( empty($wxdata) || !$wxdata['nickname'] ){
-                    return E('获取微信数据失败');
-                }
-                session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
-                $this->echoEncrypData(114);
-            }
-            $this->wxData = $wxuserdata;
-        }
-    }
 
     /*
      * 公用加密返回数据方法
