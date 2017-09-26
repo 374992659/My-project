@@ -244,40 +244,6 @@ CREATE TABLE if NOT EXISTS `my_subject` (
 
 use garden_$province_id;
 
-CREATE TABLE  if not exists `date_$city_id` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
-  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '标题',
-  `garden_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区标识符',
-  `route_plan` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '路线规划',
-  `type` tinyint(2) NOT NULL COMMENT '游玩类型 1：自驾 2：徒步 3：骑车',
-  `total_num` int(5) NOT NULL COMMENT '目标人数',
-  `pay_type` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '费用类型',
-  `consumption_per_person` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '人均消费',
-  `target_location` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '目的地',
-  `venue` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '集合地点',
-  `start_time` int(11) NOT NULL COMMENT '开始时间',
-  `end_time` int(11) NOT NULL COMMENT '回归时间',
-  `play_content` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '玩耍内容',
-  `nickname` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '发起人用户昵称',
-  `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '发起人头像',
-  `contact_information` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '发起人联系方式',
-  `picture` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '场景图片',
-  `create_time` int(11) NOT NULL COMMENT '发起时间'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='约玩表';
-
-CREATE TABLE  if not exists `date_enroll_$city_id` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户id 格式：区域id,手机号',
-  `nickname` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '报名人昵称',
-  `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '报名人头像',
-  `contact_information` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '报名人联系方式',
-  `date_id` int(11) NOT NULL COMMENT '约玩id',
-  `status` tinyint(2) NOT NULL COMMENT '报名状态  0：已取消 1：已报名',
-  `pay_status` tinyint(2) NOT NULL COMMENT '支付状态',
-  `create_time` int(11) NOT NULL COMMENT '报名时间'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='约玩报名表';
-
 CREATE TABLE  if not exists `garden_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `garden_name` varchar(255) NOT NULL COMMENT '小区名称',
@@ -335,6 +301,50 @@ CREATE TABLE if NOT EXISTS `adverse_$city_id` (
   KEY `garden_code` (`garden_code`),
   KEY `create_time` (`create_time`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告表';
+
+CREATE TABLE if NOT EXISTS `activity_$city_id` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL COMMENT '标题',
+  `start_time` int(11) NOT NULL COMMENT '开始时间',
+  `end_time` int(11) NOT NULL COMMENT '结束时间',
+  `destination` varchar(255) NOT NULL COMMENT '目的地',
+  `collection_place` varchar(255) NOT NULL COMMENT '集合地点',
+  `collection_time` int(11) NOT NULL COMMENT '集合时间',
+  `contact` varchar(20) NOT NULL COMMENT '联系人',
+  `phone` varchar(20) NOT NULL COMMENT '联系人电话',
+  `transport` tinyint(2) NOT NULL COMMENT '交通方式',
+  `garden_code` varchar(50) NOT NULL COMMENT '小区code',
+  `garden_name` varchar(100) NOT NULL COMMENT '小区名称',
+  `total_num` varchar(10) NOT NULL COMMENT '目标人数',
+  `cost_type` tinyint(2) NOT NULL COMMENT '消费类型',
+  `average_cost` varchar(255) NOT NULL COMMENT '人均消费 免费为0',
+  `enrollment_num` int(11) NOT NULL DEFAULT '0' COMMENT '报名人数',
+  `rote_planning` varchar(500) DEFAULT NULL COMMENT '路线规划',
+  `tag` varchar(255) DEFAULT NULL COMMENT '标签',
+  `picture` varchar(500) DEFAULT NULL COMMENT '图片展示',
+  `detailed_introduction` varchar(500) DEFAULT NULL COMMENT '详细介绍',
+  `user_code` varchar(255) NOT NULL COMMENT '用户code',
+  `nickname` varchar(255) NOT NULL COMMENT '昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `start_time` (`start_time`),
+  KEY `end_time` (`end_time`),
+  KEY `user_code` (`user_code`),
+  KEY `garden_code` (`garden_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='约玩表';
+
+CREATE TABLE if NOT EXISTS `activity_registration_$city_id` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `activity_id` int(11) NOT NULL COMMENT '活动id',
+  `user_code` varchar(50) NOT NULL COMMENT '用户code',
+  `nickname` varchar(100) NOT NULL COMMENT '昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `activity_id` (`activity_id`),
+  KEY `user_code` (`user_code`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='活动报名';
 
 use certification_application;
 
