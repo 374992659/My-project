@@ -114,14 +114,16 @@ class BaseController extends Controller
             }
 
             //如果参数没有code，就跳转到微信获取认证
-            if( !isset($_GET['code']) ){
-                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
+            $_GET['code']=cookie('code');
+            if( !isset($_GET['code']) || $_GET['code']=''){
+                $code=rand(1000,9999);
+                setcookie('code',$code);
+                $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
                 redirect($url);die;
             }
 
             //获取认证数据
             $wxuserdata = $weObj->getOauthAccessToken();
-            var_dump($wxuserdata,microtime());die;
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
@@ -150,6 +152,7 @@ class BaseController extends Controller
             }
             $this->wxData = $wxuserdata;
         }
+        setcookie('code','');
     }
 
     /*
