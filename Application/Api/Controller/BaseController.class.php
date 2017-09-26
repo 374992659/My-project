@@ -114,8 +114,13 @@ class BaseController extends Controller
             }
 
             //如果参数没有code，就跳转到微信获取认证
+            if($_GET['state'] === cookie('code') ){
+                $_GET['code']='';
+            }
             if( !isset($_GET['code']) || $_GET['code']==''){
-                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
+                $code =rand(1000,9999);
+                cookie('code');
+                $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
                 redirect($url);die;
             }
 
