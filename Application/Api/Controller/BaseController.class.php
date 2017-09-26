@@ -122,7 +122,6 @@ class BaseController extends Controller
             //获取认证数据
             $wxuserdata = $weObj->getOauthAccessToken();
             var_dump($wxuserdata);
-            var_dump($_REQUEST);
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
