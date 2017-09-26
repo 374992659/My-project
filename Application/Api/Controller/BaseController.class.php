@@ -124,7 +124,7 @@ class BaseController extends Controller
             $data = $weObj->getOauthAccessToken();
             var_dump($data);
             if( !$data ){
-                return E('获取微信数据失败');
+                return '123123123';
             }
             $this->openId = $data['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
