@@ -142,6 +142,7 @@ class BaseController extends Controller
             else{
                 //获取微信数据
                 $wxdata = $weObj->getOauthUserinfo($data['access_token'], $data['openid']);
+                var_dump($wxdata);die;
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
                 }
