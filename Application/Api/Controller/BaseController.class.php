@@ -121,10 +121,11 @@ class BaseController extends Controller
 
             //获取认证数据
             $wxuserdata = $weObj->getOauthAccessToken();
-            var_dump($wxuserdata);die;
+            var_dump($wxuserdata);
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
+            die;
             $this->openId = $wxuserdata['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
