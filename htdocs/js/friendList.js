@@ -4,10 +4,10 @@
 $(document).ready(function(){
     $.post(url+"friends_getGroup&debugging=test","",function(data){
         console.log(data.errcode);
-        // if(data.errcode=114){
-        //     window.location.href='index.html';
-        $(location).attr('href', 'index.html');
-        // }
+         if(data.errcode=114){
+            window.location.href='index.html';
+
+         }
 
     });
     // 强制跳转到登录页面
