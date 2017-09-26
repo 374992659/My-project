@@ -2385,6 +2385,7 @@ class Wechat
 			$this->user_token = $json['access_token'];
 			return $json;
 		}
+		return $result;
 		return false;
 	}
 
