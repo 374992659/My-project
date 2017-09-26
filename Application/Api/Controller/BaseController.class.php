@@ -150,7 +150,6 @@ class BaseController extends Controller
             }
             $this->wxData = $wxuserdata;
         }
-        die;
     }
 
     /*
