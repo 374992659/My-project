@@ -114,12 +114,8 @@ class BaseController extends Controller
             }
 
             //如果参数没有code，就跳转到微信获取认证
-            $_GET['code']=cookie('code');
-            var_dump($_GET['code']);
             if( !isset($_GET['code']) || $_GET['code']=''){
-                $code=rand(1000,9999);
-                setcookie('code',$code);
-                $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
+                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
                 redirect($url);die;
             }
 
@@ -154,7 +150,6 @@ class BaseController extends Controller
             }
             $this->wxData = $wxuserdata;
         }
-        setcookie('code','');
     }
 
     /*
