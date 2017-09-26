@@ -124,7 +124,7 @@ class BaseController extends Controller
             $data = $weObj->getOauthAccessToken();
             var_dump($data);
             if( !$data ){
-                return '123123123';
+                return '123123123';die;
             }
             $this->openId = $data['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
