@@ -11,7 +11,7 @@ namespace Api\Controller;
 use Api\Model;
 use think\Exception;
 
-class FriendsController extends BaseController
+class FriendsController extends VersionController
 {
     /*
      *查询好友分组以及分组下人数
