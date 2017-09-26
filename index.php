@@ -10,6 +10,8 @@
 // +----------------------------------------------------------------------
 
 // 应用入口文件
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
 header("content-type:text/html;charset=utf-8");
 // 检测PHP环境
