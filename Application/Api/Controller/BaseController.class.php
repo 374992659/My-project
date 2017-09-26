@@ -116,8 +116,7 @@ class BaseController extends Controller
             //如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code']) ){
                 $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
-                redirect($url);
-                exit;
+                redirect($url);die;
             }
 
             //获取认证数据
