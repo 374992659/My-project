@@ -122,6 +122,7 @@ class BaseController extends Controller
 
             //获取认证数据
             $data = $weObj->getOauthAccessToken();
+            var_dump($data);die;
             if( !$data ){
                 return E('获取微信数据失败');
             }
