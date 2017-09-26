@@ -16,7 +16,7 @@ class FriendsController extends VersionController
     /*
      *查询好友分组以及分组下人数
      * */
-    protected function getGroup_v1_0_0(){
+    public function getGroup_v1_0_0(){
         $account_code = $this->account_code;
         $model = new Model\FriendsGroupModel($account_code);
         $data1 = $model->getGroup();
