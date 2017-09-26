@@ -79,8 +79,8 @@ class RsaLib
 	{
 		$params_str = json_encode($params);
 	
-		$priv_key = file_get_contents ( $privKeyPath );
-		$pkeyid = openssl_pkey_get_private ( $priv_key );
+		$priv_key = file_get_contents( $privKeyPath );
+		$pkeyid = openssl_pkey_get_private( $priv_key );
 		openssl_sign ( $params_str, $sign, $pkeyid, OPENSSL_ALGO_SHA1 );
 		openssl_free_key ( $pkeyid );
 		return base64_encode ( $sign );
