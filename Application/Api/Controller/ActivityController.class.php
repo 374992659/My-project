@@ -86,6 +86,61 @@ class ActivityController extends VersionController
         $this->echoEncrypData(0);
     }
     /*
-     *
+     * 约玩列表
+     * @param city_id 城市id
      * */
+    protected function getActivityList_v1_0_0(){
+        $city_id=$this->pdata['city_id'];
+        if(!$city_id)$this->echoEncrypData(21);
+        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $activity=new Model\ActivityModel($province_id,$city_id);
+        $data = $activity->getActivityList();
+        if(!$data)$this->echoEncrypData(5);
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     *约玩详情
+     * @param city_id 城市id
+     * @param activity_id  活动id
+     * */
+    protected function getActivityInfo_v1_0_0(){
+        $city_id=$this->pdata['city_id'];
+        $activity_id=$this->pdata['activity_id'];
+        if(!$city_id || !$activity_id)$this->echoEncrypData(21);
+        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $activity=new Model\ActivityModel($province_id,$city_id);
+        $data =$activity->getActivityInfo($activity_id);
+        if(!$data)$this->echoEncrypData(1);
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 约玩报名
+     * @param city_id 城市id
+     * @param activity_id  活动id
+     * */
+    protected function enrollActivity_v1_0_0(){
+        $city_id =$this->pdata['city_id'];
+        $activity_id =$this->pdata['activity_id'];
+        if(!$city_id || !$activity_id)$this->echoEncrypData(21);
+        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $table_id=substr($this->account_code,0,4);
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $activity=new Model\ActivityModel($province_id,$city_id);
+        $collection_time=$activity->where(['id'=>$activity_id])->getField('collection_time');
+        if(time() > intval($collection_time))$this->echoEncrypData(1,'已超出报名时限');
+        $activity_regist=new Model\ActivityRegistration($province_id,$city_id);
+        $status = $activity_regist->getEnrollStatus($this->account_code);
+        if($status)$this->echoEncrypData(1,'您已经报过名啦');
+        $data=array(
+            'activity_id'=>$activity_id,
+            'user_code'=>$this->account_code,
+            'nickname'=>$res['nickname'],
+            'portrait'=>$res['portrait'],
+            'create_time'=>time(),
+        );
+        $res = $activity_regist->add($data);
+        if(!$res)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
+    }
+
 }
