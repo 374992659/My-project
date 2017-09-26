@@ -2,7 +2,7 @@
 var addRess=function (){
     $.ajax({
         type:'post',
-        url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=getAreaArr&is_wap=1",
+        url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=getAreaArr",
         data:'',
         success:function(data){
             data=jsDecodeData(data);
