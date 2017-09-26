@@ -2,7 +2,7 @@ $.ajax({
     url:url+"friends_getGroup&debugging=test",
     type:'post',
     success:function(data){
-        console.log(data);
+        console.log(13);
         if(data.errcode=114){
             window.location.href='index.html';
         }
