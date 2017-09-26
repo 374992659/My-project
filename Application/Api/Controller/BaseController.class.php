@@ -66,6 +66,8 @@ class BaseController extends Controller
                     $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
                     $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
                 }
+            }else{
+
             }
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
@@ -100,7 +102,7 @@ class BaseController extends Controller
             'token' 	=> C('WEIXIN_API_TOKEN'), //填写你设定的key
             'encodingaeskey' => C("ENCODINGAESKEY"), //填写加密用的EncodingAESKey，如接口为明文模式可忽略
 //            'agentid'=>'1', //应用的id
-//            'debug'=>true, //调试开关
+            'debug'=>true, //调试开关
 //            '_logcallback'=>'logg', //调试输出方法，需要有一个string类型的参数
         ));
 
@@ -113,7 +115,7 @@ class BaseController extends Controller
 
             //如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code']) ){
-                $url = $weObj->getOauthRedirect( get_active_url(), '', 'snsapi_userinfo');
+                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
                 redirect($url);
                 exit;
             }
@@ -124,6 +126,7 @@ class BaseController extends Controller
                 return E('获取微信数据失败');
             }
             $this->openId = $data['openid']; //获取openId
+            var_dump( $this->openId );die;
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$data['openid']))->getField('phone');
             if( $customer ){ //是否绑定手机
