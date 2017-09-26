@@ -2,18 +2,24 @@
 
 
 $(document).ready(function(){
-    // 强制跳转到登录页面
-    $.ajax({
-        url:url+"friends_getGroup&debugging=test",
-        type:'post',
-        success:function(data){
-            console.log(13);
-            if(data.errcode=114){
-                window.location.href='index.html';
-            }
+    $.post(url+"friends_getGroup&debugging=test","",function(data){
+        if(data.errcode=114){
+            window.location.href='index.html';
         }
-
+        
     });
+    // 强制跳转到登录页面
+    // $.ajax({
+    //     url:url+"friends_getGroup&debugging=test",
+    //     type:'post',
+    //     success:function(data){
+    //         console.log(13);
+    //         if(data.errcode=114){
+    //             window.location.href='index.html';
+    //         }
+    //     }
+    //
+    // });
     //联系人
          $(".LinkBtn").click(function(e){
              console.log($(e.target));
