@@ -2372,7 +2372,7 @@ class Wechat
 	 */
 	public function getOauthAccessToken(){
 		$code = isset($_GET['code'])?$_GET['code']:'';
-		if (!$code) return 2312312;
+		if (!$code) return false;
 		$result = $this->http_get(self::API_BASE_URL_PREFIX.self::OAUTH_TOKEN_URL.'appid='.$this->appid.'&secret='.$this->appsecret.'&code='.$code.'&grant_type=authorization_code');
 		if ($result)
 		{
@@ -2380,12 +2380,12 @@ class Wechat
 			if (!$json || !empty($json['errcode'])) {
 				$this->errCode = $json['errcode'];
 				$this->errMsg = $json['errmsg'];
-				return $json;
+				return false;
 			}
 			$this->user_token = $json['access_token'];
 			return $json;
 		}
-		return 1221;
+		return false;
 	}
 
 	/**
