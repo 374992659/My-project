@@ -112,20 +112,16 @@ class BaseController extends Controller
             if( IS_AJAX ){
                 return E('openid已过期，需先刷新获取openid');
             }
-
-            if(!cookie('code')){
-                //如果参数没有code，就跳转到微信获取认证
-                if( !isset($_GET['code'])){
-                    $code =rand(1000,9999);
-                    setcookie('code',$code);
-                    $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
-                    redirect($url);die;
-                }
+            //如果参数没有code，就跳转到微信获取认证
+            if( !isset($_GET['code'])){
+                $code =rand(1000,9999);
+                setcookie('code',$code);
+                $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
+                redirect($url);die;
             }
 
             //获取认证数据
             $wxuserdata = $weObj->getOauthAccessToken();
-            var_dump($wxuserdata);
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
