@@ -102,16 +102,16 @@ class BaseController extends Controller
             'token' 	=> C('WEIXIN_API_TOKEN'), //填写你设定的key
             'encodingaeskey' => C("ENCODINGAESKEY"), //填写加密用的EncodingAESKey，如接口为明文模式可忽略
 //            'agentid'=>'1', //应用的id
-//            'debug'=>true, //调试开关
+            'debug'=>true, //调试开关
 //            '_logcallback'=>'logg', //调试输出方法，需要有一个string类型的参数
         ));
 
 
         //未登录，有可能没有openid
         if( !$this->openId ){
-//            if( IS_AJAX ){
-//                return E('openid已过期，需先刷新获取openid');
-//            }
+            if( IS_AJAX ){
+                return E('openid已过期，需先刷新获取openid');
+            }
 
             //如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code']) ){
