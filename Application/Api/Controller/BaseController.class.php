@@ -125,7 +125,6 @@ class BaseController extends Controller
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
-            die;
             $this->openId = $wxuserdata['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
@@ -151,6 +150,7 @@ class BaseController extends Controller
             }
             $this->wxData = $wxuserdata;
         }
+        die;
     }
 
     /*
