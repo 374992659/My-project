@@ -126,6 +126,7 @@ class BaseController extends Controller
                 return E('获取微信数据失败');
             }
             $this->openId = $data['openid']; //获取openId
+            var_dump( $this->openId );die;
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$data['openid']))->getField('phone');
             if( $customer ){ //是否绑定手机
