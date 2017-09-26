@@ -120,7 +120,7 @@ class BaseController extends Controller
             }
             if( !isset($_GET['code']) || $_GET['code']==''){
                 $code =rand(1000,9999);
-                cookie('code');
+                setcookie('code',$code);
                 $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
                 redirect($url);die;
             }
