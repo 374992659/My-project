@@ -157,7 +157,7 @@ class BaseController extends Controller
      * */
     public function echoEncrypData($errcode=0, $errmsg=null, $data=null, $tokenParams=null)
     {
-//        header('Content-type: application/json');
+        header('Content-type: application/json');
         $aesLib = new \Common\Lib\AesLib();
         $aesToken = '';
         if( $this->appToken ){

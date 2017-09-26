@@ -816,7 +816,9 @@ class GroupController extends VersionController
         $model=new Model\GroupActivityModel($create_code);
         $data = $model->getGroupActivityInfo($activity_id);
         $mode =new Model\GroupActivityRegistrationModel($create_code);
-        $data['enroll_status']=$mode->getEnroolStatus($activity_id,$this->account_code); //报名状态 0：未报名
+        if($data){
+            $data['enroll_status']=$mode->getEnroolStatus($activity_id,$this->account_code); //报名状态 0：未报名
+        }
         if(!$data)$this->echoEncrypData(1);
         $this->echoEncrypData(0,'',$data);
     }
@@ -832,6 +834,9 @@ class GroupController extends VersionController
         $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $mode=new Model\GroupActivityModel($create_code);
+        $collection_time=$mode->where(['id'=>$activity_id])->getField('collection_time');
+        if(time() > intval($collection_time))$this->echoEncrypData(1,'活动报名期限已过');
         $model=new Model\GroupActivityRegistrationModel($create_code);
         $data=array(
             'activity_id'=>intval($activity_id),
