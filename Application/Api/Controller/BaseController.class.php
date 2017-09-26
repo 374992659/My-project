@@ -180,6 +180,7 @@ class BaseController extends Controller
             //签名
             $rsaLib = new \Common\Lib\RsaLib();
             $sign = $rsaLib->getSign($arr, C('APP_KEY.SIGN_PRIVATE_KEY'));
+            if(isset($_GET['is_wap']) && intval($_GET['is_wap']) ==1)$sign='';
             $str = $aesLib->aes128cbcEncrypt(json_encode(array($sign, json_encode($arr))), C('APP_KEY.AES_IV'), C('APP_KEY.AES_KEY'));
             echo json_encode(array('data'=>$str));
             exit;
