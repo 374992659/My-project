@@ -13,6 +13,7 @@ namespace Api\Controller;
 class VersionController extends BaseController
 {
     public function _initialize(){
+        parent::_initialize();
         $this->getUserinfo();
         $this->checkLogin();
     }
