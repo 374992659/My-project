@@ -121,14 +121,13 @@ class BaseController extends Controller
             }
 
             //获取认证数据
-            $data = $weObj->getOauthAccessToken();
-            var_dump($data);
-            if( !$data ){
+            $wxuserdata = $weObj->getOauthAccessToken();
+            if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
-            $this->openId = $data['openid']; //获取openId
+            $this->openId = $wxuserdata['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
-            $customer = M('user_area')->where(array('openId'=>$data['openid']))->getField('phone');
+            $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
             if( $customer ){ //是否绑定手机
                 //设置Session,openid登录
                 $res = $MemberModel->wxloginSetSession($this->openId);
@@ -142,14 +141,14 @@ class BaseController extends Controller
             }
             else{
                 //获取微信数据
-                $wxdata = $weObj->getOauthUserinfo($data['access_token'], $data['openid']);
+                $wxdata = $weObj->getOauthUserinfo($wxuserdata['access_token'], $wxuserdata['openid']);
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
                 }
-                session('wxdata'.$data['openid'], json_encode($wxdata));
+                session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
                 $this->echoEncrypData(114);
             }
-            $this->wxData = $data;
+            $this->wxData = $wxuserdata;
         }
     }
 
