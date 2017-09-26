@@ -115,15 +115,15 @@ class BaseController extends Controller
 
             //如果参数没有code，就跳转到微信获取认证
             var_dump($_GET['state'],cookie('code'));
-            if($_GET['state'] === cookie('code') ){
-                $_GET['code']='';
+            if($_GET['state'] !== cookie('code') ){
+                if( !isset($_GET['code']) || $_GET['code']==''){
+                    $code =rand(1000,9999);
+                    setcookie('code',$code);
+                    $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
+                    redirect($url);die;
+                }
             }
-            if( !isset($_GET['code']) || $_GET['code']==''){
-                $code =rand(1000,9999);
-                setcookie('code',$code);
-                $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
-                redirect($url);die;
-            }
+
 
             //获取认证数据
             $wxuserdata = $weObj->getOauthAccessToken();
