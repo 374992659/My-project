@@ -2380,12 +2380,11 @@ class Wechat
 			if (!$json || !empty($json['errcode'])) {
 				$this->errCode = $json['errcode'];
 				$this->errMsg = $json['errmsg'];
-				return false;
+				return $json;
 			}
 			$this->user_token = $json['access_token'];
 			return $json;
 		}
-		return $result;
 		return false;
 	}
 
