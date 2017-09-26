@@ -3,9 +3,9 @@
  * Created by Gao on 2017/7/4.
  */
 
-var key = '625202f9149e061d';
+var key = '625202f5549e061d';
 key = CryptoJS.enc.Utf8.parse(key);
-var iv = "5efd3f6060e20330";
+var iv = "5efd3f6550e20330";
 iv = CryptoJS.enc.Utf8.parse(iv);
 
 
