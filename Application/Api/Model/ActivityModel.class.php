@@ -26,5 +26,22 @@ class ActivityModel extends Model
         if(!$res)return false;
         return $res;
     }
+    /*
+     * 获取指定城市所有约玩
+     * */
+    public function getActivityList(){
+        $res = $this->field('id as activity_id,title,nickname,garden_name,start_time,end_time,collection_time,collection_place,picture')->order(['create_time'=>'desc'])->select();
+        if(!$res)return false;
+        return $res;
+    }
 
+    /*
+     *获取活动详情
+     * @param activity_id 活动id
+     * */
+    public function getActivityInfo($activity_id){
+        $data= $this->where(['id'=>$activity_id])->find();
+        if(!$data)return false;
+        return $data;
+    }
 }
