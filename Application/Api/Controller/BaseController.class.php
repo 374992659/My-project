@@ -66,8 +66,6 @@ class BaseController extends Controller
                     $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
                     $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
                 }
-            }else{
-
             }
         }
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
@@ -115,7 +113,7 @@ class BaseController extends Controller
 
             //如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code']) ){
-                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
+                $url = $weObj->getOauthRedirect( get_active_url(), '', 'snsapi_userinfo');
                 redirect($url);
                 exit;
             }
