@@ -102,7 +102,7 @@ class BaseController extends Controller
             'token' 	=> C('WEIXIN_API_TOKEN'), //填写你设定的key
             'encodingaeskey' => C("ENCODINGAESKEY"), //填写加密用的EncodingAESKey，如接口为明文模式可忽略
 //            'agentid'=>'1', //应用的id
-            'debug'=>true, //调试开关
+//            'debug'=>true, //调试开关
 //            '_logcallback'=>'logg', //调试输出方法，需要有一个string类型的参数
         ));
 
@@ -142,7 +142,6 @@ class BaseController extends Controller
             else{
                 //获取微信数据
                 $wxdata = $weObj->getOauthUserinfo($data['access_token'], $data['openid']);
-                var_dump($wxdata);die;
                 if( empty($wxdata) || !$wxdata['nickname'] ){
                     return E('获取微信数据失败');
                 }
