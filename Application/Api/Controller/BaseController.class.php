@@ -113,17 +113,15 @@ class BaseController extends Controller
                 return E('openid已过期，需先刷新获取openid');
             }
 
-            //如果参数没有code，就跳转到微信获取认证
-            var_dump($_GET['state'],cookie('code'));
-            if($_GET['state'] !== cookie('code') ){
-                if( !isset($_GET['code']) || $_GET['code']==''){
+            if(!cookie('code')){
+                //如果参数没有code，就跳转到微信获取认证
+                if( !isset($_GET['code'])){
                     $code =rand(1000,9999);
                     setcookie('code',$code);
                     $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
                     redirect($url);die;
                 }
             }
-
 
             //获取认证数据
             $wxuserdata = $weObj->getOauthAccessToken();
