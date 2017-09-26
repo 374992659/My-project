@@ -114,6 +114,7 @@ class BaseController extends Controller
             }
 
             //如果参数没有code，就跳转到微信获取认证
+            var_dump(get_active_url());
             if($_GET['state'] === cookie('code') ){
                 $_GET['code']='';
             }
