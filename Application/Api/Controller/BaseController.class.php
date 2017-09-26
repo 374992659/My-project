@@ -52,7 +52,7 @@ class BaseController extends Controller
                     return $this->echoEncrypData(1, '解密出错');
                 }
                 $data = json_decode($data, true);
-                if( !isset($_GET['is_wap']) || $_GET['is_wap'] != 1 ){
+                if( !isset($_GET['is_wap']) || intval($_GET['is_wap'] )!= 1 ){
                     //验证签名
                     $rsaLib = new \Common\Lib\RsaLib();
                     if( !$rsaLib->checkSign($data[1], $data[0], C('APP_KEY.SIGN_PUBLIC_KEY')) ){
