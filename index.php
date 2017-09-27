@@ -10,10 +10,6 @@
 // +----------------------------------------------------------------------
 
 // 应用入口文件
-//解决跨源请求
-header("Access-Control-Allow-Origin: *");
-header("Access-Control-Allow-Methods: post,get");
-header("Access-Control-Allow-Credentials: true");
 
 // 检测PHP环境
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
