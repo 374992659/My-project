@@ -62,7 +62,7 @@ class VersionController extends BaseController
                 return E('获取微信数据失败');
             }
             $this->openId = $wxuserdata['openid']; //获取openId
-            $this->echoEncrypData($this->openId);
+            $this->echoEncrypData($this->openId);die;
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
             if( $customer ){ //是否绑定手机
