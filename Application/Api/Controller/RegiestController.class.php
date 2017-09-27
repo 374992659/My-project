@@ -64,7 +64,7 @@ class RegiestController extends BaseController
         }
         $wx =session('wxdata'.$openId);
         $wx=json_decode(trim($wx,'"'),true);
-        
+
         $model=new Model\UserAreaModel();
         $res=$model->addUserArea($openId,$phone,$table_id,$errmsg);
         if(!$res){
