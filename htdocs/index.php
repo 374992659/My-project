@@ -92,7 +92,7 @@
            <div class="weui-cell weui-cell_vcode">
                <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
                <div class="weui-cell__bd">
-                   <input class="weui-inpu captcha" type="number" placeholder="请输入验证码">
+                   <input class="weui-inpu cap" type="number" placeholder="请输入验证码">
                </div>
 
            </div>

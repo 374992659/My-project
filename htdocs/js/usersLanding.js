@@ -14,14 +14,30 @@ $(document).ready(function(){
             }
         });
     });
-    $(".weui-btn").click(function(){
-        var code=$(".captcha").val(),
-            proId=$(this).val(),
+    // 获取省、市的value值
+    var ID=function(){
+        var proId=null;
+        var cityId=null;
+        $("#province").change(function(){
+            proId=$(this).val();
+        });
+        $("#city").change(function(){
             cityId=$(this).val();
+        });
+    };
+    // 绑定点击事件提交数据
+    $(".weui-btn").click(function(){
+        ID();
+        // 获取验证码
+        var code=$(".cap").val(),
+        // 数据加密
         info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId})];
         console.log(info);
         var f=jsEncryptData( info );
         console.log(f);
+        // ajax向后台传输数据
+
+        
     });
 
 
