@@ -47,9 +47,9 @@ class VersionController extends BaseController
 
         //未登录，有可能没有openid
         if( !$this->openId ){
-            if( IS_AJAX ){
-                return E('openid已过期，需先刷新获取openid');
-            }
+//            if( IS_AJAX ){
+//                return E('openid已过期，需先刷新获取openid');
+//            }
             //如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
                 $code =rand(1000,9999);
