@@ -52,7 +52,7 @@ class VersionController extends BaseController
             if( !isset($_GET['code'])){
 //                return (get_active_url());die;
                 $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
-                 return $this->https_request($url);
+//                 return $this->https_request($url);
                 exit;
             }
 
@@ -62,7 +62,6 @@ class VersionController extends BaseController
                 return E('获取微信数据失败');
             }
             $this->openId = $wxuserdata['openid']; //获取openId
-            $this->echoEncrypData($this->openId);die;
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
             if( $customer ){ //是否绑定手机
