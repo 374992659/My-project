@@ -3,12 +3,15 @@ $(document).ready(function(){
     var proId=null;
     // 市的id
     var cityId=null;
-    // 获取手机号码
-    var phone=$(".phone").val();
     $(".phoneBtn").click(function(){
+        // 获取手机号码发送验证码
+        var phone=$(".phone").val();
+        // 转换数据格式
          phone = ['', JSON.stringify({"phone":phone})];
+         // 手机号加密
         var ph = jsEncryptData( phone );
         console.log(phone);
+        // 向后台传送加密数据
         $.ajax({
             url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendWxRegistMsg&is_wap=1",
             type:"POST",
@@ -19,6 +22,7 @@ $(document).ready(function(){
             }
         });
     });
+
     // 获取省value值
     $("#province").change(function(){
         proId=$(this).val();
@@ -36,7 +40,7 @@ $(document).ready(function(){
         // 获取验证码
         var code=$(".cap").val();
         // 获取手机号
-        // var phone=$(".phone").val();
+         var phone=$(".phone").val();
         // 数据加密
         info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId,"phone":phone})];
         console.log(info);
