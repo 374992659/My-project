@@ -55,7 +55,6 @@ class VersionController extends BaseController
             //如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
                 $code =rand(1000,9999);
-                setcookie('code',$code);
                 $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
                 redirect($url);die;
             }
@@ -86,6 +85,7 @@ class VersionController extends BaseController
                     return E('获取微信数据失败');
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
+                var_dump($wxdata);die;
                 $this->echoEncrypData(114);
             }
             $this->wxData = $wxuserdata;
@@ -117,6 +117,7 @@ class VersionController extends BaseController
             $table_id = substr($account_code,0,4);
             $phone = substr($account_code,4);
             $this->acount=array('phone'=>$phone,'table_id'=>$table_id,'openId'=>$this->openId,'account_code'=>$account_code);
+            $this->acount_code=$this->account['account_code'];
             session('account'.$phone,$this->acount);
         }
     }
