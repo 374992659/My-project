@@ -1,8 +1,11 @@
 $(document).ready(function(){
+    // 省的id
     var proId=null;
+    // 市的id
     var cityId=null;
+    // 获取手机号码
+    var phone=$(".phone").val();
     $(".phoneBtn").click(function(){
-        var phone=$(".phone").val();
          phone = ['', JSON.stringify({"phone":phone})];
         var ph = jsEncryptData( phone );
         console.log(phone);
@@ -33,7 +36,7 @@ $(document).ready(function(){
         // 获取验证码
         var code=$(".cap").val();
         // 获取手机号
-        var phone=$(".phone").val();
+        // var phone=$(".phone").val();
         // 数据加密
         info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId,"phone":phone})];
         console.log(info);
