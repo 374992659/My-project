@@ -96,15 +96,15 @@
 
            <div class="weui-cell weui-cell_vcode">
                <div class="weui-cell__hd"><label class="weui-label">楼盘区域</label></div>
-               <div class="weui-cell__bd" >
-                   <select name="province" class="province">
-                       <option value="0">省份</option>
+               <div class="weui-cell__bd" id="sanji" >
+                   <select name="province" id="province">
+                       <option value="result[i].sort">请选择</option>
                    </select>
-                   <select name="city" class="city">
-                       <option value="0">地级市</option>
+                   <select name="city" id="city">
+                       <option value="">请选择</option>
                    </select>
-                   <select name="area" class="area">
-                       <option value="0">区域</option>
+                   <select name="districtAndCounty" id="districtAndCounty">
+                       <option value="">请选择</option>
                    </select>
                </div>
            </div>
@@ -141,7 +141,10 @@
    <script src="js/aes.js"></script>
    <script src="js/pad-zeropadding.js"></script>
    <script src="js/encrypt-decode.js"></script>
-   <script src="js/usersLanding.js"></script>
+   <script src="js/addRess.js"></script>
+   <script >
+       addRess();
+   </script>
 
 </body>
 </html>
