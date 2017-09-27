@@ -54,7 +54,7 @@ class VersionController extends BaseController
             if( !isset($_GET['code'])){
 //                return (get_active_url());die;
                 $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
-                forward($url);
+                 return http_redirect($url);
                 exit;
             }
 
