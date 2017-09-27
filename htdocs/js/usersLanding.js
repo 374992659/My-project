@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    var proId=null;
+    var cityId=null;
     $(".phoneBtn").click(function(){
         var phone=$(".phone").val();
          phone = ['', JSON.stringify({"phone":phone})];
@@ -14,14 +16,13 @@ $(document).ready(function(){
             }
         });
     });
-    // 获取省、市的value值
-    var proId=null;
-    var cityId=null;
+    // 获取省value值
     $("#province").change(function(){
         proId=$(this).val();
         console.log(proId);
         return proId
     });
+    // 获取市value值
     $("#city").change(function(){
         cityId=$(this).val();
         console.log(cityId);
@@ -34,10 +35,19 @@ $(document).ready(function(){
         // 数据加密
         info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId})];
         console.log(info);
-        var f=jsEncryptData( info );
-        console.log(f);
+        // 加密后的数据
+        var afterDate=jsEncryptData( info );
+        console.log(afterDate);
         // ajax向后台传输数据
-
+        $.ajax({
+            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendWxRegistMsg&is_wap=1",
+            type:"POST",
+            data:{"data":afterDate},
+            success:function(data){
+                data=jsDecodeData( data );
+                console.log(data.errcode);
+            }
+        })
 
     });
 
