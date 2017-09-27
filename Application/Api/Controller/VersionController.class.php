@@ -50,7 +50,6 @@ class VersionController extends BaseController
 //            }
             // 如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
-//                return (get_active_url());die;
                 $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
 //                 return $this->https_request($url);
                 exit;
@@ -173,7 +172,7 @@ class VersionController extends BaseController
     {
         //获取用户数据
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        if($this->setUserData($phone) ){ //没有session数据
+        if(!$this->setUserData($phone) ){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
                 $this->setWeixinData();
