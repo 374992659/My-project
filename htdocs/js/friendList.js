@@ -22,12 +22,12 @@ $(document).ready(function(){
           success:function(data){
              data=jsDecodeData(data);
               console.log(data);
-              if(data.errcode===114){
-                  window.location.href="index.html";
-              }
-
-
-       }
+       //        if(data.errcode===114){
+       //            window.location.href="index.html";
+       //        }
+       //
+       //
+       // }
     });
     //联系人
          $(".LinkBtn").click(function(e){
