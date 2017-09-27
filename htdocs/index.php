@@ -81,10 +81,10 @@
                    <label class="weui-label">手机号</label>
                </div>
                <div class="weui-cell__bd">
-                   <input class="weui-input" type="tel" placeholder="请输入手机号">
+                   <input class="weui-input phone" type="tel" placeholder="请输入手机号" >
                </div>
                <div class="weui-cell__ft">
-                   <button class="weui-vcode-btn" style="font-size: 12px">获取验证码</button>
+                   <button class="weui-vcode-btn phoneBtn" style="font-size: 12px">获取验证码</button>
                </div>
            </div>
 
@@ -144,6 +144,7 @@
    <script src="js/aes.js"></script>
    <script src="js/pad-zeropadding.js"></script>
    <script src="js/encrypt-decode.js"></script>
+   <script src="js/usersLanding.js"></script>
    <script src="js/addRess.js"></script>
    <script >
        addRess();
