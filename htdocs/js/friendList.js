@@ -20,9 +20,8 @@ $(document).ready(function(){
          url:url+"friends_getGroup",
         type:'post',
           success:function(data){
-              console.log(data);
               data=jsDecodeData(data);
-
+              console.log(data);
               var result=data.data;
 
 

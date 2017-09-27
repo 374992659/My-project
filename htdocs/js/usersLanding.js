@@ -15,7 +15,7 @@ $(document).ready(function(){
         });
     });
     // 获取省、市的value值
-    
+
     // 绑定点击事件提交数据
     $(".weui-btn").click(function(){
         var proId=null;
