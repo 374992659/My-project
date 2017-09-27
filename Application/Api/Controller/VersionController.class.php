@@ -14,8 +14,6 @@ class VersionController extends BaseController
 {
     public function _initialize(){
         parent::_initialize();
-        $this->getUserinfo();
-        $this->checkLogin();
     }
 
     /*
@@ -170,6 +168,8 @@ class VersionController extends BaseController
                 $this->setWeixinData();
             }
         }
+        $this->getUserinfo();
+        $this->checkLogin();
         $funname = $funname.'_v'.$version;
         A(ucwords($class))->$funname();
     }
