@@ -175,14 +175,14 @@ class VersionController extends BaseController
     {
         //获取用户数据
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        if($this->setUserData($phone) !== true){ //没有session数据
+        if($phone && $this->setUserData($phone) !== true){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
                 $this->setWeixinData();
             }
+            $this->getUserinfo();
+            $this->checkLogin();
         }
-        $this->getUserinfo();
-        $this->checkLogin();
         $funname = $funname.'_v'.$version;
         A(ucwords($class))->$funname();
     }
