@@ -14,14 +14,6 @@ class VersionController extends BaseController
 {
     public function _initialize(){
         parent::_initialize();
-        //获取用户数据
-        $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        if($this->setUserData($phone) !== true){ //没有session数据
-            $this->isweixin =is_weixin();
-            if( $this->isweixin ){//微信打开
-                $this->setWeixinData();
-            }
-        }
         $this->getUserinfo();
         $this->checkLogin();
     }
@@ -70,7 +62,6 @@ class VersionController extends BaseController
 
             //获取认证数据
             $wxuserdata = $weObj->getOauthAccessToken();
-            var_dump($wxuserdata);
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
@@ -170,6 +161,14 @@ class VersionController extends BaseController
      */
     protected function commonRedirect($class, $funname, $version)
     {
+        //获取用户数据
+        $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
+        if($this->setUserData($phone) !== true){ //没有session数据
+            $this->isweixin =is_weixin();
+            if( $this->isweixin ){//微信打开
+                $this->setWeixinData();
+            }
+        }
         $funname = $funname.'_v'.$version;
         A(ucwords($class))->$funname();
     }
