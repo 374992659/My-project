@@ -24,10 +24,12 @@ $(document).ready(function(){
         $("#city").change(function(){
             cityId=$(this).val();
         });
+        return proId;
     };
+    ID();
     // 绑定点击事件提交数据
     $(".weui-btn").click(function(){
-        ID();
+
         // 获取验证码
         var code=$(".cap").val(),
         // 数据加密
@@ -37,7 +39,7 @@ $(document).ready(function(){
         console.log(f);
         // ajax向后台传输数据
 
-        
+
     });
 
 
