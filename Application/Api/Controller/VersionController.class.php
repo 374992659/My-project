@@ -44,7 +44,6 @@ class VersionController extends BaseController
 
 
         //未登录，有可能没有openid
-        $this->openId=session('openId');
         if( !$this->openId ){
 //            if( IS_AJAX ){
 //                return E('openid已过期，需先刷新获取openid');
@@ -61,7 +60,6 @@ class VersionController extends BaseController
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
-            session('openId',$wxuserdata['openid']);
             $this->openId = $wxuserdata['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
@@ -172,25 +170,16 @@ class VersionController extends BaseController
      */
     protected function commonRedirect($class, $funname, $version)
     {
-        if( is_weixin() ){//微信打开
-            $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-            $this->setUserData($phone);
-            $this->setWeixinData();
-
+        //获取用户数据
+        $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
+        if(!$this->setUserData($phone) ){ //没有session数据
+            $this->isweixin =is_weixin();
+            if( $this->isweixin ){//微信打开
+                $this->setWeixinData();
+            }
         }
-
-
-
-//        //获取用户数据
-//        $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-//        if(!$this->setUserData($phone) ){ //没有session数据
-//            $this->isweixin =is_weixin();
-//            if( $this->isweixin ){//微信打开
-//                $this->setWeixinData();
-//            }
-//        }
-//        $this->getUserinfo();
-//        $this->checkLogin();
+        $this->getUserinfo();
+        $this->checkLogin();
         $funname = $funname.'_v'.$version;
         A(ucwords($class))->$funname();
     }
