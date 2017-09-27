@@ -3,7 +3,7 @@
 
 $(document).ready(function(){
      $.post(url+"friends_getGroup&debugging=test","",function(data){
-         data=jsDecodeData(data);
+         // data=jsDecodeData(data);
          console.log(data);
          console.log(data.errcode);
          // if(data.errcode=114){
