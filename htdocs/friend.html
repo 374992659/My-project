@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的好友</title>
+
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/friend.css">
+    <script>
+        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
+    </script>
+    <style>
+        .weui-tab {
+            max-height: 19px;
+        }
+       .weui-media-box__title{
+            font-size: 12px;
+        }
+        .weui-media-box_appmsg .weui-media-box__hd {
+            width: 50px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!--搜索框-->
+    <div class="weui-search-bar" id="searchBar" >
+        <form class="weui-search-bar__form">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search"  class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span style="font-size: 10px">搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel" style="font-size: 10px">取消</a>
+    </div>
+    <!--导航栏-->
+    <div class="weui-tab" style="margin-bottom: 10px">
+        <div class="weui-navbar">
+            <a class="weui-navbar__item weui-bar__item--on" href="addfriends.html">
+                添加好友
+            </a>
+            <a class="weui-navbar__item" href="grouping.html">
+                分组管理
+            </a>
+            <a class="weui-navbar__item" href="hotTopic2.html">
+                热门话题
+            </a>
+            <a class="weui-navbar__item" href="createCrowd.html">
+                建群
+            </a>
+            <a class="weui-navbar__item" href="flockPlay.html">
+                约玩
+            </a>
+        </div>
+    </div>
+    <!--好友列表-->
+    <div class="weui-cells">
+        <!--我的好友-->
+        <div class="weui-cell LinkBtn">
+            <div class="weui-cell__hd "><img class="linkBtn" style="width:25px" src="image/right.png" ></div>
+            <div class="weui-cell__bd">
+                <p style="font-size: 12px">我的好友</p>
+            </div>
+            <div class="weui-cell__ft" style="font-size: 12px">10/20</div>
+        </div>
+        <!--好友列表-->
+        <div class="weui-panel weui-panel_access" style="display: none">
+            <div class="weui-panel__bd">
+                <!--好友1-->
+                <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="image/firendd.jpg">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">昵称</h4>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                    </div>
+                </a>
+                <!--好友2-->
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="image/firendc.jpg">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">昵称</h4>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+        <!--陌生人-->
+    <div class="weui-cells">
+        <!--我的好友-->
+        <div class="weui-cell LinkBtn">
+            <div class="weui-cell__hd "><img class="linkBtn" style="width:25px" src="image/right.png" ></div>
+            <div class="weui-cell__bd">
+                <p style="font-size: 12px">陌生人</p>
+            </div>
+            <div class="weui-cell__ft" style="font-size: 12px">10/20</div>
+        </div>
+        <!--好友列表-->
+        <div class="weui-panel weui-panel_access" style="display: none">
+            <div class="weui-panel__bd">
+                <!--好友1-->
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="image/firendd.jpg">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">昵称</h4>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                    </div>
+                </a>
+                <!--好友2-->
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="image/firendc.jpg">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">昵称</h4>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+        <!--黑名单-->
+    <div class="weui-cells">
+        <!--我的好友-->
+        <div class="weui-cell LinkBtn">
+            <div class="weui-cell__hd "><img class="linkBtn" style="width:25px" src="image/right.png" ></div>
+            <div class="weui-cell__bd">
+                <p style="font-size: 12px">黑名单</p>
+            </div>
+            <div class="weui-cell__ft" style="font-size: 12px">10/20</div>
+        </div>
+        <!--好友列表-->
+        <div class="weui-panel weui-panel_access" style="display: none">
+            <div class="weui-panel__bd">
+                <!--好友1-->
+                <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="image/firendd.jpg">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">昵称</h4>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                    </div>
+                </a>
+                <!--好友2-->
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="image/firendc.jpg">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">昵称</h4>
+                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="js/url.js"></script>
+    <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
+    <script src="js/friendList.js"></script>
+</body>
+</html>
