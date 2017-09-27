@@ -2,30 +2,32 @@
 
 
 $(document).ready(function(){
-     // $.post(url+"friends_getGroup&debugging=test","",function(data){
-     //    data=jsDecodeData(data);
-     //     console.log(data);
-     //     console.log(data.errcode);
-     //     if(data.errcode=114){
-     //         window.location.href='index.html';
-     //
-     //      }
-     //
-     // });
-     //强制跳转到登录页面
-    $.ajax({
-         url:url+"friends_getGroup",
-        type:'post',
-         dataType:"JSON",
-         success:function(data){
-             console.log(data);
-              data=jsDecodeData(data);
+      $.post(url+"friends_getGroup&debugging=test","",function(data){
+        data=jsDecodeData(data);
+          console.log(data);
+         console.log(data.errcode);
+         if(data.errcode=114){
+             window.location.href='index.html';
 
-             // if(data.errcode=114){
-            //     window.location.href='index.html';
-             // }
-       }
-    });
+          }
+
+     });
+     //强制跳转到登录页面
+    // $.ajax({
+    //      url:url+"friends_getGroup",
+    //     type:'post',
+    //      success:function(data){
+    //          data=jsDecodeData(data);
+    //          console.log(data);
+    //          var result=data.data;
+    //
+    //
+    //
+    //          // if(data.errcode=114){
+    //         //     window.location.href='index.html';
+    //          // }
+    //    }
+    // });
     //联系人
          $(".LinkBtn").click(function(e){
              console.log($(e.target));
