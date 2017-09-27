@@ -39,13 +39,14 @@ class RegiestController extends BaseController
     * @param phone 手机号
     * @param area_id 区域id
      * @param  smscode 短信验证码
+     * @param openId  微信openId
      * */
     public function wxBindPhone(){
         $phone = $this->pdata['phone'];
         $table_id = $this->pdata['area_id'];
         $smscode = $this->pdata['smscode'];
-        $openId = $this->openId;
-        if(!$phone || !$table_id || !$smscode)$this->echoEncrypData(21);
+        $openId = $this->pdata['openId'];
+        if(!$phone || !$table_id || !$smscode || !$openId)$this->echoEncrypData(21);
         //获取缓存验证码
         $key_yzm_val = 'wxregiest_'.$phone;
         $yzm_Mem = unserialize(S($key_yzm_val));
@@ -63,10 +64,7 @@ class RegiestController extends BaseController
         }
         $wx =session('wxdata'.$openId);
         $wx=json_decode(trim($wx,'"'),true);
-
-        if(!$phone || !$openId || !$table_id){
-            $this->echoEncrypData(21);
-        }
+        
         $model=new Model\UserAreaModel();
         $res=$model->addUserArea($openId,$phone,$table_id,$errmsg);
         if(!$res){
