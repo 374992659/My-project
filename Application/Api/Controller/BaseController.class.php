@@ -9,7 +9,7 @@
 
 namespace Api\Controller;
 use Think\Controller;
-
+header('Access-Control-Allow-Origin:*');
 class BaseController extends Controller
 {
     public $nowVersion   = '1.0.0';     //当前版本号，默认1.0.1
