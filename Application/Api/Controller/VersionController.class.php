@@ -172,16 +172,25 @@ class VersionController extends BaseController
      */
     protected function commonRedirect($class, $funname, $version)
     {
-        //获取用户数据
-        $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        if(!$this->setUserData($phone) ){ //没有session数据
-            $this->isweixin =is_weixin();
-            if( $this->isweixin ){//微信打开
-                $this->setWeixinData();
-            }
+        if( is_weixin() ){//微信打开
+            $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
+            $this->setUserData($phone);
+            $this->setWeixinData();
+
         }
-        $this->getUserinfo();
-        $this->checkLogin();
+
+
+
+//        //获取用户数据
+//        $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
+//        if(!$this->setUserData($phone) ){ //没有session数据
+//            $this->isweixin =is_weixin();
+//            if( $this->isweixin ){//微信打开
+//                $this->setWeixinData();
+//            }
+//        }
+//        $this->getUserinfo();
+//        $this->checkLogin();
         $funname = $funname.'_v'.$version;
         A(ucwords($class))->$funname();
     }
