@@ -20,6 +20,7 @@ class VersionController extends BaseController
       * 设置用户数据
       * */
     public function setUserData($phone){
+        if(!$phone)return false;
         $this->account =session('account'.$phone);
         $this->account_code = $this->account['account_code'];
         $this->openId = $this->account['openId'];
@@ -175,7 +176,7 @@ class VersionController extends BaseController
     {
         //获取用户数据
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        if($phone && $this->setUserData($phone) !== true){ //没有session数据
+        if($this->setUserData($phone) !== true){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
                 $this->setWeixinData();
