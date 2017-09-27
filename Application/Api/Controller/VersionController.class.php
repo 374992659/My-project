@@ -50,14 +50,13 @@ class VersionController extends BaseController
 //            if( IS_AJAX ){
 //                return E('openid已过期，需先刷新获取openid');
 //            }
-            //如果参数没有code，就跳转到微信获取认证
+            // 如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
-                $code =rand(1000,9999);
-                $url = $weObj->getOauthRedirect( get_active_url(), $code, 'snsapi_userinfo');
+                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
                 redirect($url);die;
             }
 
-            //获取认证数据
+            // 获取认证数据
             $wxuserdata = $weObj->getOauthAccessToken();
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
@@ -66,7 +65,7 @@ class VersionController extends BaseController
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
             if( $customer ){ //是否绑定手机
-                //设置Session,openid登录
+                //设置Session,openid 登录
                 $res = $MemberModel->wxloginSetSession($this->openId);
                 if(!$res){
                     $this->echoEncrypData(3);
@@ -83,7 +82,6 @@ class VersionController extends BaseController
                     return E('获取微信数据失败');
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
-//                var_dump($wxdata);die;
                 $this->echoEncrypData(114,'',array('openId'=>$wxdata['openid']));
             }
             $this->wxData = $wxuserdata;
