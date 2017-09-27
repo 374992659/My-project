@@ -45,7 +45,11 @@ $(document).ready(function(){
             data:{"data":afterDate},
             success:function(data){
                 data=jsDecodeData( data );
+                console.log(data);
                 console.log(data.errcode);
+                if(data.errcode===0){
+                    window.location.href="friend.html";
+                }
             }
         })
 
