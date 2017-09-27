@@ -15,7 +15,7 @@ $(document).ready(function(){
         });
     });
     $(".weui-btn").click(function(){
-        var code=$(".weui-input").val(),
+        var code=$(".captcha").val(),
             proId=$(this).val(),
             cityId=$(this).val();
         info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId})];
