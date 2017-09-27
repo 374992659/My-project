@@ -44,6 +44,7 @@ class VersionController extends BaseController
 
 
         //未登录，有可能没有openid
+        $this->openId=session('openId');
         if( !$this->openId ){
 //            if( IS_AJAX ){
 //                return E('openid已过期，需先刷新获取openid');
@@ -51,8 +52,7 @@ class VersionController extends BaseController
             // 如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
                 $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
-                $this->https_request($url);
-                
+                redirect($url);
                 exit;
             }
 
@@ -61,6 +61,7 @@ class VersionController extends BaseController
             if( !$wxuserdata ){
                 return E('获取微信数据失败');
             }
+            session('openId',$wxuserdata['openid']);
             $this->openId = $wxuserdata['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
