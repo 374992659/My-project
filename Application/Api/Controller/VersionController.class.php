@@ -53,7 +53,6 @@ class VersionController extends BaseController
             // 如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
                 $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
-                var_dump($url);die;
                 redirect($url);die;
             }
 
