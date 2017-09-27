@@ -1,1 +1,1 @@
-var url="http://wx.junxiang.ren/project/index.php?m=Api&c=Index&debugging=test&a=apiPort&service=";
+var url="http://wx.junxiang.ren/project/index.php?m=Api&c=Index&a=apiPort&service=";
