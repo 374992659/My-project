@@ -15,6 +15,7 @@ $(document).ready(function(){
          url:url+"friends_getGroup",
         type:'post',
          success:function(data){
+             data=jsDecodeData(data);
              console.log(data);
              // if(data.errcode=114){
              //     window.location.href='index.html';
