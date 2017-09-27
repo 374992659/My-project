@@ -31,9 +31,11 @@ $(document).ready(function(){
     // 绑定点击事件提交数据
     $(".weui-btn").click(function(){
         // 获取验证码
-        var code=$(".cap").val(),
+        var code=$(".cap").val();
+        // 获取手机号
+        var phone=$(".phone").val();
         // 数据加密
-        info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId})];
+        info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId,"phone":phone})];
         console.log(info);
         // 加密后的数据
         var afterDate=jsEncryptData( info );
