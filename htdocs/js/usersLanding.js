@@ -12,11 +12,17 @@ $(document).ready(function(){
                 data=jsDecodeData( data );
                 console.log(data);
             }
-
         });
-
     });
-
+    $(".weui-btn").click(function(){
+        var code=$(".weui-input").val(),
+            proId=$(this).val(),
+            cityId=$(this).val();
+        info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId})];
+        console.log(info);
+        var f=jsEncryptData( info );
+        console.log(f);
+    });
 
 
 

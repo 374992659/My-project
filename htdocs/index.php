@@ -101,7 +101,7 @@
                <div class="weui-cell__hd"><label class="weui-label">楼盘区域</label></div>
                <div class="weui-cell__bd" id="sanji" >
                    <select name="province" id="province">
-                       <option value="result[i].sort">请选择</option>
+                       <option value="">请选择</option>
                    </select>
                    <select name="city" id="city">
                        <option value="">请选择</option>

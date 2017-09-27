@@ -23,7 +23,7 @@ var addRess=function(){
                             for (var i = 0; i < result.length; i++) {
                                 if (result[i].parent_id!=="0000"&& result[i].parent_id===num1) {
                                     console.log(12314);
-                                    var $item = $("<option value=\"\">" + result[i].name + "</option>");
+                                    var $item = $("<option value="+result[i].id +">" + result[i].name + "</option>");
                                     city.append($item);
                                 }
                             }
