@@ -16,7 +16,7 @@ $(document).ready(function(){
     $.ajax({
          url:url+"friends_getGroup",
         type:'post',
-         dataType:"JSONP",
+         dataType:"JSON",
          success:function(data){
              console.log(data);
               data=jsDecodeData(data);
