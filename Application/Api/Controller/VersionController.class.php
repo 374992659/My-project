@@ -40,9 +40,6 @@ class VersionController extends BaseController
             'appsecret'	=> C('APPSECRET'),
             'token' 	=> C('WEIXIN_API_TOKEN'), //填写你设定的key
             'encodingaeskey' => C("ENCODINGAESKEY"), //填写加密用的EncodingAESKey，如接口为明文模式可忽略
-//            'agentid'=>'1', //应用的id
-//            'debug'=>true, //调试开关
-//            '_logcallback'=>'logg', //调试输出方法，需要有一个string类型的参数
         ));
 
 
@@ -65,6 +62,7 @@ class VersionController extends BaseController
                 return E('获取微信数据失败');
             }
             $this->openId = $wxuserdata['openid']; //获取openId
+            $this->echoEncrypData($this->openId);
             $MemberModel = new \Api\Model\UserAreaModel();
             $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
             if( $customer ){ //是否绑定手机
@@ -176,7 +174,7 @@ class VersionController extends BaseController
     {
         //获取用户数据
         $phone= substr($this->account_code,4) ? substr($this->account_code,4):'';
-        if($this->setUserData($phone) !== true){ //没有session数据
+        if($this->setUserData($phone) ){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
                 $this->setWeixinData();
