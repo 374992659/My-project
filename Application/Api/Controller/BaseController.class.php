@@ -161,8 +161,4 @@ class BaseController extends Controller
         );
         return $code == '-999'? $error : (isset($error[$code])?$error[$code]: null);
     }
-
-
-
-
 }
