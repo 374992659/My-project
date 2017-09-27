@@ -19,6 +19,11 @@ $(document).ready(function(){
             success:function (data) {
                 data=jsDecodeData( data );
                 console.log(data);
+                if(data.errcode===0){
+                    alert()
+                }else{
+                    alert(data.errmsg);
+                }
             }
         });
     });
@@ -58,6 +63,8 @@ $(document).ready(function(){
                 console.log(data.errcode);
                 if(data.errcode===0){
                     window.location.href="friend.html";
+                }else{
+                    alert(data.errmsg);
                 }
             }
         })
