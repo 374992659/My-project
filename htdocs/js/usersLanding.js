@@ -5,7 +5,7 @@ $(document).ready(function(){
         var ph = jsEncryptData( phone );
         console.log(phone);
         $.ajax({
-            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendWxRegistMsg",
+            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendWxRegistMsg&is_wap=1",
             type:"POST",
             data:{"data":ph},
             success:function (data) {
