@@ -22,9 +22,13 @@ $(document).ready(function(){
         var cityId=null;
         $("#province").change(function(){
             proId=$(this).val();
+            console.log(proId);
+            return proId
         });
         $("#city").change(function(){
             cityId=$(this).val();
+            console.log(cityId);
+            return cityId
         });
         // 获取验证码
         var code=$(".cap").val(),
