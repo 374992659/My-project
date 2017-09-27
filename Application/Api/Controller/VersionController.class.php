@@ -180,9 +180,9 @@ class VersionController extends BaseController
             if( $this->isweixin ){//微信打开
                 $this->setWeixinData();
             }
-            $this->getUserinfo();
-            $this->checkLogin();
         }
+        $this->getUserinfo();
+        $this->checkLogin();
         $funname = $funname.'_v'.$version;
         A(ucwords($class))->$funname();
     }
