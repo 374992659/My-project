@@ -15,7 +15,9 @@ $(document).ready(function(){
         });
     });
     // 获取省、市的value值
-    var ID=function(){
+    
+    // 绑定点击事件提交数据
+    $(".weui-btn").click(function(){
         var proId=null;
         var cityId=null;
         $("#province").change(function(){
@@ -24,12 +26,6 @@ $(document).ready(function(){
         $("#city").change(function(){
             cityId=$(this).val();
         });
-        return proId;
-    };
-    ID();
-    // 绑定点击事件提交数据
-    $(".weui-btn").click(function(){
-
         // 获取验证码
         var code=$(".cap").val(),
         // 数据加密
