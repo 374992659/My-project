@@ -114,7 +114,7 @@
        </div>
        <!--登录按钮-->
        <div class='demos-content-padded'>
-           <a href="friend.html" id='show-success' class="weui-btn weui-btn_primary">登录</a>
+           <button href="friend.html" id='show-success' class="weui-btn weui-btn_primary">登录</button>
        </div>
        <!--底部说明-->
        <div class="weui-panel__bd">
