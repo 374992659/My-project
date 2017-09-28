@@ -56,7 +56,7 @@ class TestController extends Controller
             }
             $this->wxData = $wxuserdata;
         }
-        print_r($wxuserdata);
+        $this->echoEncrypData(3);
         $this->display();
     }
 }
