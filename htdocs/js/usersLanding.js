@@ -43,7 +43,7 @@ $(document).ready(function(){
         return cityId
     });
     // 绑定点击事件提交数据
-    $(".landbtn").click(function(){
+    $(".landBtn").click(function(){
         // 获取验证码
         var code=$(".cap").val();
         // 获取手机号
