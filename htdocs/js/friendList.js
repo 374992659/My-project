@@ -22,6 +22,8 @@ $(document).ready(function(){
           success:function(data){
              data=jsDecodeData(data);
               console.log(data);
+              var url=data.data;
+              console.log(data);
        //        if(data.errcode===114){
        //            window.location.href="index.html";
        //        }
