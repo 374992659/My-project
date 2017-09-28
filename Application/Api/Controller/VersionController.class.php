@@ -62,7 +62,7 @@ class VersionController extends BaseController
             }
             $this->openId = $wxuserdata['openid']; //获取openId
             $MemberModel = new \Api\Model\UserAreaModel();
-            $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->getField('phone');
+            $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->count();
             if( $customer ){ //是否绑定手机
                 //设置Session,openid 登录
                 $res = $MemberModel->wxloginSetSession($this->openId);
@@ -73,8 +73,7 @@ class VersionController extends BaseController
                 $this->appToken = true;
                 $this->phone =$res['phone'];
                 session('account'.$res['phone'],$res);
-            }
-            else{
+            }else{
                 //获取微信数据
                 $wxdata = $weObj->getOauthUserinfo($wxuserdata['access_token'], $wxuserdata['openid']);
                 if( empty($wxdata) || !$wxdata['nickname'] ){
