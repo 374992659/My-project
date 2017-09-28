@@ -20,10 +20,9 @@ $(document).ready(function(){
     }
      //强制跳转到登录页面
     var apptoken=localStorage.getItem("apptoken");
-    data=['',JSON.stringify({'url':window.location.href,"apptoken":apptoken})];
+    data=['',JSON.stringify({'url':"http://wx.junxiang.ren/project/htdocs/index.html","apptoken":apptoken})];
     console.log(data);
     encreptdata = jsEncryptData(data);
-
      $.ajax({
          url:url+"friends_getGroup",
          data:{"data":encreptdata},

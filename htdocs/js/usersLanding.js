@@ -71,8 +71,6 @@ $(document).ready(function(){
         var afterDate=jsEncryptData( info );
         console.log(afterDate);
         // ajax向后台传输数据
-
-        var openID=$_GET;
         $.ajax({
             url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=wxBindPhone&is_wap=1",
             type:"POST",
