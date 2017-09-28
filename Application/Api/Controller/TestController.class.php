@@ -53,9 +53,6 @@ class TestController extends Controller
                     return E('获取微信数据失败');
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
-                $url=session('url');
-                session('url',null);
-                redirect($url.'?openId='.$wxdata['openid']);
             }
             $this->wxData = $wxuserdata;
         }
