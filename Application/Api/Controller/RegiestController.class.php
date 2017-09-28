@@ -86,7 +86,9 @@ class RegiestController extends BaseController
                 $model->delUserArea($openId);
             }
             session_unset('wxdata'.$openId);
-            $this->echoEncrypData(0,'',array('apptoken',));
+            $this->appToken=true;
+            $this->account_code=$table_id.$phone;
+            $this->echoEncrypData(0,'');
         }
     }
 
