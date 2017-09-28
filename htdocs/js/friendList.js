@@ -15,14 +15,24 @@ $(document).ready(function(){
      //     //  }
      //
      // });
-    function GetQueryString(name)
-    {
-        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-        var r = window.location.search.substr(1).match(reg);
-        if(r!=null)return  unescape(r[2]); return null;
-    }
+    var $_GET = (function() {
+        var url = window.document.location.href.toString();
+        var u = url.split("?");
+        if (typeof(u[1]) == "string") {
+            u = u[1].split("&");
+            var get = {};
+            for (var i in u) {
+                var j = u[i].split("=");
+                get[j[0]] = j[1];
+            }
+            return get;
+        } else {
+            return {};
+        }
+    })();
 
-    if(GetQueryString(openId)){
+
+    if($_GET["openId"]){
         alert(123);
     }
      //强制跳转到登录页面
