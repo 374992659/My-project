@@ -7,7 +7,7 @@
  */
 
 namespace Api\Controller;
-use Think\Conttroller;
+use Think\Controller;
 
 class TestController extends Controller
 {
