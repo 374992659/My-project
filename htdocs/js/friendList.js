@@ -21,7 +21,7 @@ $(document).ready(function(){
     encreptdata = jsEncryptData(data);
      $.ajax({
          url:url+"friends_getGroup",
-         data:{data:encreptdata},
+         data:{"data":encreptdata},
         type:'post',
           success:function(data){
              data=jsDecodeData(data);
