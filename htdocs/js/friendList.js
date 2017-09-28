@@ -16,7 +16,7 @@ $(document).ready(function(){
         }
     })();
     if($_GET["openId"]){
-        window.location.href="index.html?openId="+$_GET["openId"];
+        window.location.href="landing.html?openId="+$_GET["openId"];
     }
      //强制跳转到登录页面
     var apptoken=localStorage.getItem("apptoken");
