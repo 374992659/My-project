@@ -4,7 +4,7 @@ $(document).ready(function(){
     // 省的id
     var proId=null;
     // 市的id
-    var cityId=null;
+    var area_id=null;
     $(".phoneBtn").click(function(){
         // 获取手机号码发送验证码
         var phone=$(".phone").val();
@@ -38,25 +38,43 @@ $(document).ready(function(){
     });
     // 获取市value值
     $("#city").change(function(){
-        cityId=$(this).val();
-        console.log(cityId);
-        return cityId
+        area_id=$(this).val();
+        console.log(area_id);
+        return area_id
     });
+    var $_GET = (function() {
+        var url = window.document.location.href.toString();
+        var u = url.split("?");
+        if (typeof(u[1]) == "string"){
+            u = u[1].split("&");
+            var get = {};
+            for (var i in u) {
+                var j = u[i].split("=");
+                get[j[0]] = j[1];
+            }
+            return get;
+        } else {
+            return {};
+        }
+    })();
+    var openId=$_GET['openId'];
     // 绑定点击事件提交数据
     $(".landBtn").click(function(){
         // 获取验证码
-        var code=$(".cap").val();
+        var smscode=$(".cap").val();
         // 获取手机号
          var phone=$(".phone").val();
         // 数据加密
-        info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId,"phone":phone,"apptoken":apptoken})];
+        info=['', JSON.stringify({"smscode":smscode,"area_id":area_id,"phone":phone,'openId':openId,"apptoken":apptoken})];
         console.log(info);
         // 加密后的数据
         var afterDate=jsEncryptData( info );
         console.log(afterDate);
         // ajax向后台传输数据
+
+        var openID=$_GET;
         $.ajax({
-            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendWxRegistMsg&is_wap=1",
+            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=wxBindPhone&is_wap=1",
             type:"POST",
             data:{"data":afterDate},
             success:function(data){
