@@ -16,8 +16,11 @@ $(document).ready(function(){
      //
      // });
      //强制跳转到登录页面
+    data=['',json_decode({'url':location.href})];
+    encreptdata = jsEncryptData(data);
      $.ajax({
          url:url+"friends_getGroup",
+         data:{data:encreptdata},
         type:'post',
           success:function(data){
              data=jsDecodeData(data);
