@@ -33,7 +33,6 @@ $(document).ready(function(){
 
 
     if($_GET["openId"]){
-        alert(123);
         window.location.href="index.html?openId="+$_GET["openId"];
     }
 
