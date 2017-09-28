@@ -51,7 +51,7 @@ class VersionController extends BaseController
             // 如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
                 $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
-                return $this->https_request($url);
+                redirect($url);
                 exit;
             }
 
@@ -80,7 +80,7 @@ class VersionController extends BaseController
                     return E('获取微信数据失败');
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
-                return $this->echoEncrypData(114,'',array('openId'=>$wxdata['openid']));
+                $this->echoEncrypData(114,'',array('openId'=>$wxdata['openid']));
             }
             $this->wxData = $wxuserdata;
         }
@@ -114,7 +114,7 @@ class VersionController extends BaseController
         if(!$account_code){//用户丢失account_code，通过openid获取phone以及所在区域
             $data=M('user_area')->field('phone','table_id')->where(array('phone'=>$this->phone))->find();
             if(!$data){          //用户还未进行手机号绑定
-                $this->echoEncrypData(114,'',123);
+                $this->echoEncrypData(114,'');
             }else{
                 $this->account_code = $data['table_id'].$data['phone'];
                 $data['account_code'] = $this->account_code;
