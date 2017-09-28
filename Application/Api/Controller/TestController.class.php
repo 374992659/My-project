@@ -59,4 +59,36 @@ class TestController extends Controller
         $this->echoEncrypData(3);
         $this->display();
     }
+
+    public function echoEncrypData($errcode=0, $errmsg=null, $data=null, $tokenParams=null)
+    {
+        header('Content-type: application/json');
+        $aesLib = new \Common\Lib\AesLib();
+        $aesToken = '';
+        if( $this->appToken ){
+            $aesArr = $tokenParams?array_merge(array('account_code'=>$this->account_code),$tokenParams):array('account_code'=>$this->account_code);
+            $aesArrJson = json_encode($aesArr);
+            $aesToken = $aesLib->aes128cbcEncrypt($aesArrJson, C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY'));
+        }
+
+        $arr = array(
+            'errcode'   => $errcode,
+            'errmsg'    => $errmsg ? $errmsg : $this->getErrorMsg($errcode),
+            'data'      => $data?$data:null,
+            'apptoken'  => $aesToken,
+        );
+        if( $this->debugging ){
+            //调试
+            echo json_encode($arr);
+            exit;
+        }else{
+            //签名
+            $rsaLib = new \Common\Lib\RsaLib();
+            $sign = $rsaLib->getSign($arr, C('APP_KEY.SIGN_PRIVATE_KEY'));
+            if(isset($_GET['is_wap']) && intval($_GET['is_wap']) ==1)$sign='';
+            $str = $aesLib->aes128cbcEncrypt(json_encode(array($sign, json_encode($arr))), C('APP_KEY.AES_IV'), C('APP_KEY.AES_KEY'));
+            echo json_encode(array('data'=>$str));
+            exit;
+        }
+    }
 }
