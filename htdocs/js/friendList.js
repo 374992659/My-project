@@ -17,10 +17,10 @@ $(document).ready(function(){
      // });
      //强制跳转到登录页面
     data=['',JSON.stringify({'url':window.location.href})];
-    console.log(window.location.href);
+    console.log(data);
     encreptdata = jsEncryptData(data);
      $.ajax({
-         url:url+"friends_getGroup",
+         url:url+"friends_getGroup&debugging=test",
          data:{"data":encreptdata},
         type:'post',
           success:function(data){
