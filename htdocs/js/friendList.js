@@ -25,7 +25,7 @@ $(document).ready(function(){
               var url=data.data;
               console.log(url);
        //        if(data.errcode===114){
-       //            window.location.href="index.html";
+              window.location.href=url;
        //        }
        //
        //
