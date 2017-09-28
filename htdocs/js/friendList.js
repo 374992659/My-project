@@ -15,6 +15,16 @@ $(document).ready(function(){
      //     //  }
      //
      // });
+    function GetQueryString(name)
+    {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+
+    if(GetQueryString(openId)){
+        alert(123);
+    }
      //强制跳转到登录页面
     data=['',JSON.stringify({'url':window.location.href})];
     console.log(data);
