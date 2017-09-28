@@ -23,7 +23,7 @@ $(document).ready(function(){
              data=jsDecodeData(data);
               console.log(data);
               var url=data.data;
-              console.log(data);
+              console.log(url);
        //        if(data.errcode===114){
        //            window.location.href="index.html";
        //        }
