@@ -81,7 +81,7 @@ class VersionController extends BaseController
                     return E('获取微信数据失败');
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
-                return $this->echoEncrypData(114,'',array('openId'=>$wxdata['openid']));die;
+                return $this->echoEncrypData(114,'',array('openId'=>$wxdata['openid']));
             }
             $this->wxData = $wxuserdata;
         }
@@ -115,7 +115,7 @@ class VersionController extends BaseController
         if(!$account_code){//用户丢失account_code，通过openid获取phone以及所在区域
             $data=M('user_area')->field('phone','table_id')->where(array('phone'=>$this->phone))->find();
             if(!$data){          //用户还未进行手机号绑定
-                return $this->echoEncrypData(114,'',123);
+                $this->echoEncrypData(114,'',123);
             }else{
                 $this->account_code = $data['table_id'].$data['phone'];
                 $data['account_code'] = $this->account_code;
