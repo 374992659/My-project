@@ -34,7 +34,9 @@ $(document).ready(function(){
 
     if($_GET["openId"]){
         alert(123);
+        window.location.href="index.html?openId="+$_GET["openId"];
     }
+
      //强制跳转到登录页面
     data=['',JSON.stringify({'url':window.location.href})];
     console.log(data);
@@ -48,11 +50,11 @@ $(document).ready(function(){
               console.log(data);
               var url=data.data;
               console.log(url);
-       //        if(data.errcode===114){
+            if(data.errcode===114){
                 window.location.href=url;
-       //        }
-       //
-       //
+            }
+
+
        }
     });
     //联系人
