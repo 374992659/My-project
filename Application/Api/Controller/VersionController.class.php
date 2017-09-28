@@ -27,6 +27,18 @@ class VersionController extends BaseController
         $this->phone =$this->account['phone'];
         if( $this->phone ){
             return true;
+        }else{
+            $this->isweixin =is_weixin();
+            if( $this->isweixin ) {//微信打开
+                $data=M('user_area')->field('phone','openId','table_id')->where(array('phone'=>$this->phone))->find();
+                if(!$data)return false;
+                $this->openId=$data['openId'];
+                $this->account_code = $data['table_id'].$data['phone'];
+                $data['account_code'] = $this->account_code;
+                $this->account=array('phone'=>$phone,'table_id'=>$data['table_id'],'openId'=>$this->openId,'account_code'=> $this->account_code);
+                session('account'.$phone,$this->account);
+                return true;
+            }
         }
         return false;
     }
@@ -122,14 +134,14 @@ class VersionController extends BaseController
                 $this->account_code = $data['table_id'].$data['phone'];
                 $data['account_code'] = $this->account_code;
                 $this->account = $data;
-                session('account'.$data['phone'],$this->acount);
+                session('account'.$data['phone'],$this->account);
             }
         }else{
             $table_id = substr($account_code,0,4);
             $phone = substr($account_code,4);
-            $this->acount=array('phone'=>$phone,'table_id'=>$table_id,'openId'=>$this->openId,'account_code'=>$account_code);
-            $this->acount_code=$this->account['account_code'];
-            session('account'.$phone,$this->acount);
+            $this->account=array('phone'=>$phone,'table_id'=>$table_id,'openId'=>$this->openId,'account_code'=>$account_code);
+            $this->account_code=$this->account['account_code'];
+            session('account'.$phone,$this->account);
         }
     }
 
@@ -178,7 +190,6 @@ class VersionController extends BaseController
         if(!$this->setUserData($phone) ){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
-
                 $this->setWeixinData();
             }
             $this->getUserinfo();
