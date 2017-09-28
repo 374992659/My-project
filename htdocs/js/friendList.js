@@ -20,7 +20,7 @@ $(document).ready(function(){
     console.log(data);
     encreptdata = jsEncryptData(data);
      $.ajax({
-         url:url+"friends_getGroup&debugging=test",
+         url:url+"friends_getGroup",
          data:{"data":encreptdata},
         type:'post',
           success:function(data){
