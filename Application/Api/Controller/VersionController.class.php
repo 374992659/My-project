@@ -50,7 +50,7 @@ class VersionController extends BaseController
 //            }
             // 如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
-                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
+                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_base');
                 redirect($url);
                 exit;
             }
@@ -80,7 +80,6 @@ class VersionController extends BaseController
                     return E('获取微信数据失败');
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
-                var_dump($wxuserdata);die;
                 $this->echoEncrypData(114,'',array('openId'=>$wxdata['openid']));
             }
             $this->wxData = $wxuserdata;
