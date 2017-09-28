@@ -37,7 +37,7 @@
             </div>
         </div>
         <!--已有的分组列表-->
-        <div class="weui-cells">
+        <div class="weui-cells groupList">
             <!--我的同学-->
             <div class="weui-cell">
                 <div class="weui-cell__hd"><img src=""></div>
@@ -114,7 +114,7 @@
                         if(data.errcode===0){
                             console.log(data.errmsg)
                         }else{
-                            alert(data.errmsg);
+                            console.log(data.errmsg);
                         }
                     }
 
@@ -125,6 +125,7 @@
                     type:"POST",
                     data:{},
                     success:function(data){
+                        console.log(data);
 //                        解密获取的数据
                         data=jsEncryptData(data);
                         console.log(data);
@@ -139,9 +140,10 @@
                                     "<div class=\"weui-cell__ft\" style=\"font-size: 12px\">10/20</div>\n" +
                                     "<button class=\"delBtn\" style=\"margin-left: 10px\">删除</button>\n" +
                                     "</div>");
+                                $(".groupList").append(item);
                             }
                         }else{
-                            alert(data.errmsg)
+                            console.log(data.errmsg)
                         }
                     }
 
