@@ -1,46 +1,63 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Wang.yn
- * Date: 2017/9/28
- * Time: 16:48
- */
-
 namespace Api\Controller;
 use Think\Controller;
 
 class TestController extends Controller
 {
-    public function index(){
-        $appid = C('APPID');
-        $secret = C('APPSECRET');
-        $code = rand(1000,9999);
-        $get_token_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$appid.'&secret='.$secret.'&code='.$code.'&grant_type=authorization_code';
-        $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL,$get_token_url);
-        curl_setopt($ch,CURLOPT_HEADER,0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        $res = curl_exec($ch);
-        curl_close($ch);
-        $json_obj = json_decode($res,true);
-//根据openid和access_token查询用户信息
-        $access_token = $json_obj['access_token'];
-        $openid = $json_obj['openid'];
-        var_dump($json_obj);die;
-        $get_user_info_url = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$access_token.'&openid='.$openid.'&lang=zh_CN';
+    public function index()
+    {
+        //初始化微信SDK
+        $weObj = new \Common\Lib\WechatSDKLib(array(
+            'appid'		=> C('APPID'),
+            'appsecret'	=> C('APPSECRET'),
+            'token' 	=> C('WEIXIN_API_TOKEN'), //填写你设定的key
+            'encodingaeskey' => C("ENCODINGAESKEY"), //填写加密用的EncodingAESKey，如接口为明文模式可忽略
+        ));
 
-        $ch = curl_init();
-        curl_setopt($ch,CURLOPT_URL,$get_user_info_url);
-        curl_setopt($ch,CURLOPT_HEADER,0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1 );
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-        $res = curl_exec($ch);
-        curl_close($ch);
 
-        //解析json
-        $user_obj = json_decode($res,true);
-        $_SESSION['user'] = $user_obj;
-        print_r($user_obj);
+        //未登录，有可能没有openid
+        if( !$this->openId ){
+//            if( IS_AJAX ){
+//                return E('openid已过期，需先刷新获取openid');
+//            }
+            // 如果参数没有code，就跳转到微信获取认证
+            if( !isset($_GET['code'])){
+                $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
+                redirect($url);
+                exit;
+            }
+
+            // 获取认证数据
+            $wxuserdata = $weObj->getOauthAccessToken();
+            if( !$wxuserdata ){
+                return E('获取微信数据失败');
+            }
+            $this->openId = $wxuserdata['openid']; //获取openId
+            $MemberModel = new \Api\Model\UserAreaModel();
+            $customer = M('user_area')->where(array('openId'=>$wxuserdata['openid']))->count();
+            if( $customer ){ //是否绑定手机
+                //设置Session,openid 登录
+                $res = $MemberModel->wxloginSetSession($this->openId);
+                if(!$res){
+                    $this->echoEncrypData(3);
+                }
+                $res['account_code'] = $res['table_id'].$res['phone'];
+                $this->appToken = true;
+                $this->phone =$res['phone'];
+                session('account'.$res['phone'],$res);
+            }else{
+                //获取微信数据
+                $wxdata = $weObj->getOauthUserinfo($wxuserdata['access_token'], $wxuserdata['openid']);
+                if( empty($wxdata) || !$wxdata['nickname'] ){
+                    return E('获取微信数据失败');
+                }
+                session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
+                $url=session('url');
+                session('url',null);
+                redirect($url.'?openId='.$wxdata['openid']);
+            }
+            $this->wxData = $wxuserdata;
+        }
+        $this->display();
     }
 }
