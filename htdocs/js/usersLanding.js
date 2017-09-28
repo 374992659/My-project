@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    // 获取apptoken
+    var apptoken=localStorage.getItem("apptoken");
     // 省的id
     var proId=null;
     // 市的id
@@ -11,7 +13,7 @@ $(document).ready(function(){
          // 手机号加密
         var ph = jsEncryptData( phone );
         console.log(phone);
-        // 向后台传送加密数据
+        // 向后台传送加密电话数据
         $.ajax({
             url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendWxRegistMsg&is_wap=1",
             type:"POST",
@@ -47,7 +49,7 @@ $(document).ready(function(){
         // 获取手机号
          var phone=$(".phone").val();
         // 数据加密
-        info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId,"phone":phone})];
+        info=['', JSON.stringify({"code":code,"proId":proId,"cityId":cityId,"phone":phone,"apptoken":apptoken})];
         console.log(info);
         // 加密后的数据
         var afterDate=jsEncryptData( info );
@@ -59,6 +61,7 @@ $(document).ready(function(){
             data:{"data":afterDate},
             success:function(data){
                 data=jsDecodeData( data );
+                localStorage.setItem("apptoken",data.apptoken);
                 console.log(data);
                 console.log(data.errcode);
                 if(data.errcode===0){
