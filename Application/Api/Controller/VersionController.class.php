@@ -82,6 +82,7 @@ class VersionController extends BaseController
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
                 $url=session('url');
+                session('url','',-1);
                 redirect($url.'?openId='.$wxdata['openid']);
             }
             $this->wxData = $wxuserdata;
@@ -177,6 +178,7 @@ class VersionController extends BaseController
         if(!$this->setUserData($phone) ){ //没有session数据
             $this->isweixin =is_weixin();
             if( $this->isweixin ){//微信打开
+
                 $this->setWeixinData();
             }
             $this->getUserinfo();
