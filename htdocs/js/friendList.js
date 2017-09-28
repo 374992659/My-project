@@ -17,6 +17,7 @@ $(document).ready(function(){
      // });
      //强制跳转到登录页面
     data=['',JSON.stringify({'url':window.location.href})];
+    console.log(window.location.href);
     encreptdata = jsEncryptData(data);
      $.ajax({
          url:url+"friends_getGroup",
