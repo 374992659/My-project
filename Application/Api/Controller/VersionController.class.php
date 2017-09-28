@@ -34,6 +34,7 @@ class VersionController extends BaseController
     //获取微信数据
     public function setWeixinData()
     {
+        return 1;
         //初始化微信SDK
         $weObj = new \Common\Lib\WechatSDKLib(array(
             'appid'		=> C('APPID'),
