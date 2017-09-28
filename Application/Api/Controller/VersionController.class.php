@@ -80,6 +80,7 @@ class VersionController extends BaseController
                     return E('获取微信数据失败');
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
+                var_dump($wxuserdata);die;
                 $this->echoEncrypData(114,'',array('openId'=>$wxdata['openid']));
             }
             $this->wxData = $wxuserdata;
