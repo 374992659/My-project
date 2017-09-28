@@ -33,6 +33,8 @@ class FriendsController extends VersionController
                 }
                 $data2[$k]=$v;
             }
+        }else{
+            $this->echoEncrypData(5,'');
         }
 
         $this->echoEncrypData(0,'',$data2);
