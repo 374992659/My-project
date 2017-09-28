@@ -82,7 +82,7 @@ class VersionController extends BaseController
                 }
                 session('wxdata'.$wxuserdata['openid'], json_encode($wxdata));
                 $url=session('url');
-                $this->redirect($url.'?openId='.$wxdata['openid']);
+                redirect($url.'?openId='.$wxdata['openid']);
             }
             $this->wxData = $wxuserdata;
         }
