@@ -22,7 +22,7 @@ class TestController extends Controller
 //            }
             // 如果参数没有code，就跳转到微信获取认证
             if( !isset($_GET['code'])){
-                var_dump(get_active_url());die;
+//                var_dump(get_active_url());die;
                 $url = $weObj->getOauthRedirect( get_active_url(), rand(1000,9999), 'snsapi_userinfo');
                 redirect($url);
                 exit;
