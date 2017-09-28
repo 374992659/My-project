@@ -1,10 +1,13 @@
 $(document).ready(function(){
+    // 再次发送验证码时间
+    var wait=60;
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
     // 省的id
     var proId=null;
     // 市的id
     var area_id=null;
+    // 发送验证码功能star
     $(".phoneBtn").click(function(){
         // 获取手机号码发送验证码
         var phone=$(".phone").val();
@@ -28,6 +31,26 @@ $(document).ready(function(){
                 }
             }
         });
+        // 发送验证码功能end
+        // 获取验证码倒计时功能star
+        function time(o) {
+            if (wait==0) {
+                // o.removeAttribute("disabled");
+                $(o).attr("disabled");
+                o.innerHTML="获取验证码";
+                wait = 60;
+            } else {
+                o.setAttribute("disabled", true);
+                o.innerHTML="重新发送"+wait;
+                wait--;
+                setTimeout(function() {
+                        time(o)
+                    },
+                    1000)
+            }
+        }
+        time(this);
+   // 获取验证码倒计时功能end
     });
 
     // 获取省value值
@@ -65,7 +88,7 @@ $(document).ready(function(){
         // 获取手机号
          var phone=$(".phone").val();
         // 数据加密
-        info=['', JSON.stringify({"smscode":smscode,"area_id":area_id,"phone":phone,'openId':openId,"apptoken":apptoken})];
+    info=['', JSON.stringify({"smscode":smscode,"area_id":area_id,"phone":phone,'openId':openId,"apptoken":apptoken})];
         console.log(info);
         // 加密后的数据
         var afterDate=jsEncryptData( info );
@@ -78,10 +101,11 @@ $(document).ready(function(){
             success:function(data){
                 data=jsDecodeData( data );
                 localStorage.setItem("apptoken",data.apptoken);
+                console.log(apptoken);
                 console.log(data);
                 console.log(data.errcode);
                 if(data.errcode===0){
-                    window.location.href="friend.html";
+                    // window.location.href="friend.html";
                 }else{
                     alert(data.errmsg);
                 }
