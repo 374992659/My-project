@@ -142,7 +142,6 @@ class RegiestController extends BaseController
         $area_id = trim($this->pdata['area_id']);
         $password  = trim($this->pdata['password']);
         $repassword   = trim($this->pdata['repassword']);
-        $this->echoEncrypData(1,'',array($account,$area_id,$password,$repassword));
         if(!$account || !$password || !$repassword || !$area_id){
             $this->echoEncrypData(1,'注册信息不完整');
         }
