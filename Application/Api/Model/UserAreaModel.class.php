@@ -64,17 +64,17 @@ class UserAreaModel extends Model
 
     /*
      * 由电话号码获取用户信息（所在区域、省份等）
-     * @param string phone 手机号
+     * @param string account 账号
      * */
-    public function getUserInfoByPhone($phone,& $errmsg){
-        $data=M('user_area')->field('id,table_id as city_id')->where(array('phone' =>$phone))->find();
+    public function getUserInfoByPhone($account,& $errmsg){
+        $data=M('user_area')->field('id,table_id as city_id')->where(array('account' =>$account))->find();
         if(!$data){
             $errmsg = '该账号不存在';
             return false;
         }else{
             $res= M('swf_area')->field('parent_id')->where(array('id'=>$data['city_id']))->find();
             $data['province_id']=$res['parent_id'];
-            $data['account_code'] = $data['city_id'].$phone;
+            $data['account_code'] = $data['city_id'].$account;
             return $data;
         }
     }

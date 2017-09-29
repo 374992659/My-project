@@ -14,50 +14,54 @@ class UserController extends VersionController
 {
     /*
      * App-用户退出登陆
-     * @phone 手机号
      * */
     protected function logout_v1_0_0(){
-        $phone = $this->pdata['phone'];
-        if(!$phone){
-            $this->echoEncrypData(1,'参数不完整');
-        }
-        if( !form_validate('phone',trim($phone))){
-            $this->echoEncrypData(106);
-        }
-        if(!$this->checkLogin($phone)){
+        $account_code = $this->account_code;
+        if(!$this->checkLogin($account_code)){
             $this->echoEncrypData(100);
         }else{
-            session_unset('account');
-            session_unset('account'.$phone);
+            session('account'.$account_code,null);
+            $this->appToken=false; //不返回apptoken
             $this->echoEncrypData(0);
         }
+    }
+    /*
+     * 判断登录
+     * */
+    protected function checkLogin($account_code){
+        $account=session('account'.$account_code);
+        if(!$account){
+            return false;
+        }
+        return true;
     }
 
     /*
      * App-修改密码
-     * @param  phone手机号
      * @param oldPassword 原密码
      * @param newPassword 新密码
      * */
     protected function changePassword_v1_0_0(){
-        $phone = $this->pdata['phone'];
         $oldPassword = $this->pdata['oldPassword'];
         $newPassword = $this->pdata['newPassword'];
-        if(!$phone || !$oldPassword || !$newPassword){
+        if(!$oldPassword || !$newPassword){
             $this->echoEncrypData(1,'参数不完整');
         }
-        if(!$this->checkLogin($phone)){
+        $account_code=$this->account_code;
+        $account=substr($account_code,4);
+        if(!$this->checkLogin($account_code)){
             $this->echoEncrypData(100);
         }else {
-            $res = M('user_info_'.$this->account['table_id'])->where(['phone'=>$phone,'password'=>md5(md5($oldPassword).$phone)])->getField('id');
+            $res = M('user_info_'.$this->account['table_id'])->where(['account'=>$account,'password'=>md5(md5($oldPassword).$account)])->getField('id');
             if(!$res){
-                $this->echoEncrypData(1,'账号或密码错误');
+                $this->echoEncrypData(1,'账号或原密码错误');
             }else{
-                $result= M('user_info_'.$this->account['table_id'])->where(['id'=>$res])->save(['password'=>md5(md5($newPassword).$phone)]);
+                $result= M('user_info_'.$this->account['table_id'])->where(['id'=>$res])->save(['password'=>md5(md5($newPassword).$account)]);
                 if($result === false){
                     $this->echoEncrypData(1,'密码修改失败');
                 }else{
-                    session_unset('account'.$phone);
+                    session('account'.$account_code,null);
+                    $this->appToken=false; //不返回apptoken
                     $this->echoEncrypData(0);
                 }
             }

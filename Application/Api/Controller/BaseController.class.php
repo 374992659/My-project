@@ -1,6 +1,6 @@
 <?php
 /**
- * 数据加密解密以及微信用户设置登陆信息
+ * 数据加密解密
  * Created by PhpStorm.
  * User: Wang.yn
  * Date: 2017/9/1
@@ -9,19 +9,16 @@
 
 namespace Api\Controller;
 use Think\Controller;
-header('Access-Control-Allow-Origin:*');
+
 class BaseController extends Controller
 {
     public $nowVersion   = '1.0.0';     //当前版本号，默认1.0.1
     public $account = '' ;                   //用户数据
     public $account_code = 0;              //用户code
+    public $table_id = 0;              //用户信息分表id
     public $pdata;                      //提交数据
     public $debugging = false;         //调试状态
-    public $isweixin = false;	//是否为微信
-    public $openId = '';		//微信OPENID
-    public $wxData= '';       //微信用户信息
     public $appToken = ''; //apptoken是否有true 或者false
-    public $phone   =    '';//用户手机号
     public function _initialize(){
         //获取数据
         if ( $_SERVER['REQUEST_METHOD'] == 'GET' )
@@ -125,7 +122,7 @@ class BaseController extends Controller
             103 => '已退出登录。',
             104 => '请输入用户名/密码。',
             105 => '请输入验证码。',
-            106 => '手机号码格式不正确',
+            106 => '数据格式不正确',
             107 => '已登录，无需重复登录。',
             108 => '验证码发送次数已超过最大次数。',
             109 => '验证码重复获取要间隔'.C('captcha_interval_second').'秒。',

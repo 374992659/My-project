@@ -35,7 +35,7 @@ class RegiestController extends BaseController
 
 
     /*
-     * 微信版-用户绑定手机号
+     * 微信版- 用户绑定手机号
     * @param phone 手机号
     * @param area_id 区域id
      * @param  smscode 短信验证码
@@ -131,105 +131,105 @@ class RegiestController extends BaseController
     }
 
     /*
-     * APP-用户注册
-     * @param phone 手机号码
-     * @param area_id 区域编号
+     * 用户注册
+     * @param account 账号
+     * @param area_id 区域
      * @param password 密码
-     * @param smscode 短信验证码
+     * @param repassword 确认密码
      * */
     public function regiest(){
-        $phone   = trim($this->pdata['phone']);
+        $account   = trim($this->pdata['account']);
         $area_id = trim($this->pdata['area_id']);
         $password  = trim($this->pdata['password']);
-        $smscode   = trim($this->pdata['smscode']);
-        if(!$phone || !$password || !$smscode || !$area_id){
+        $repassword   = trim($this->pdata['repassword']);
+        if(!$account || !$password || !$repassword || !$area_id){
             $this->echoEncrypData(1,'注册信息不完整');
         }
-        if( !form_validate('phone',trim($phone))){
+        if( !form_validate('account',trim($account))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
-        $account = M('user_area')->where(['phone'=>$phone])->count();
+        $account = M('user_area')->where(['account'=>$account])->count();
         if( $account ){
-            $this->echoEncrypData(1,'该手机号用户已注册');
+            $this->echoEncrypData(1,'该账号已被注册');
         }
         //获取缓存验证码
-        $key_yzm_val = 'regiest_'.$phone;
-        $yzm_Mem = unserialize(S($key_yzm_val));
-        $cache_code = $yzm_Mem['hash'];
+//        $key_yzm_val = 'regiest_'.$account;
+//        $yzm_Mem = unserialize(S($key_yzm_val));
+//        $cache_code = $yzm_Mem['hash'];
 //        $cache_code = 5465;//测试
-
-        if( !$cache_code ){
-            return $this->echoEncrypData(116);
-        }
-
-        if( $cache_code != $smscode ){
-            $this->echoEncrypData(1,'验证码不正确');
-        }
+//        if( !$cache_code ){
+//            return $this->echoEncrypData(116);
+//        }
+//
+//        if( $cache_code != $smscode ){
+//            $this->echoEncrypData(1,'验证码不正确');
+//        }
+        if(md5($password) !== md5($repassword))$this->echoEncrypData(1,'请确认两次密码输入一致');
         $data1 = array(
-            'phone' =>$phone,
+            'account' =>$account,
             'table_id' => $area_id
         );
         $res1=M()->table('baseinfo.user_area')->add($data1);
         $data2= array(
-            'phone' =>$phone,
-            'password' => md5(md5($password).$phone),
-            'nickname' => $phone,
-            'account_code' => $area_id.$phone,
+            'account' =>$account,
+            'password' => md5(md5($password).$account),
+            'nickname' => $account,
+            'account_code' => $area_id.$account,
             'create_time' => time(),
             'create_addr_code' => $area_id
         );
-        $this->autoBuildDatabase($phone);
+        $this->autoBuildDatabase($account);
         $res2=M()->table("baseinfo.user_info_".$area_id)->add($data2);
         if($res1 and $res2){
-            $this->echoEncrypData(0);
+            $this->echoEncrypData(0,'注册成功');
         }else{
             $this->echoEncrypData(1,'注册失败');
         }
     }
 
     /*
-     * App-用户登陆
-     *@param  phone   手机号
+     * 用户登陆
+     *@param  account /phone   账号或者手机号
      * @param password 密码
      * */
     public function login(){
+        $account=$this->pdata['account'];
         $phone = $this->pdata['phone'];
         $password =$this->pdata['password'];
-        if(!$phone || !$password){
+        if(!($phone || $account) || !$password){
             $this->echoEncrypData(1,'登陆参数不完整');
         }
-        if( !form_validate('phone',trim($phone))){
-            $this->echoEncrypData(106);
+        if($account){
+            if( !form_validate('account',trim($account))){
+                $this->echoEncrypData(106);
+            }
+            $table_id = M('user_area')->field('table_id,account,status')->where(['account'=>$account])->find();
+        }else{
+            if( !form_validate('phone',trim($phone))){
+                $this->echoEncrypData(106);
+            }
+            $table_id = M('user_area')->field('table_id,account,status')->where(['phone'=>$phone])->find();
         }
-        $table_id = M('user_area')->field('table_id,openId,status')->where(['phone'=>$phone])->find();
+
         if(!$table_id){
-            $this->echoEncrypData(1,'该用户不存在，请注册！');
+            $this->echoEncrypData(1,'该用户不存在，请前往注册!');
         }
         if( $table_id['status'] != 1 ){
             $this->echoEncrypData(1,'该账号存在异常，暂无法登陆');
         }
-        if($this->checkLogin($phone)){
-            $this->echoEncrypData(1,'您已登陆，无需重复操作');
-        }
-        $res = M('user_info_'.$table_id['table_id'])->where(['phone'=>$phone,'password'=>md5(md5($password).$phone)])->count();
+        $res = M('user_info_'.$table_id['table_id'])->where("(account= '{$account}' or phone='{$phone}') and password ='".md5(md5($password).$phone)."'")->count();
         if(!$res){
             $this->echoEncrypData(1,'账号或密码错误');
         }else{
-            $account['phone'] = $phone;
-            $account['openId'] =$table_id['openId'];
             $account['table_id'] =$table_id['table_id'];
-            $account['account_code']=$account['table_id'].$account['phone'];
-            $this->account_code = $account['account_code'];
-            $this->account = $account;
-            $this->appToken=true;
-            $this->phone = $phone;
-            session('account'.$phone,$account);
+            $this->account_code = $table_id['table_id'].$table_id['account'];
+            $this->appToken=true; //返回apptoken
+            session('account'.$this->account_code,$account);
             $this->echoEncrypData(0);
         }
-
     }
-    protected function checkLogin($phone){
-        $account=session('account'.$phone);
+    protected function checkLogin($account_code){
+        $account=session('account'.$account_code);
         if(!$account){
             return false;
         }
@@ -239,9 +239,9 @@ class RegiestController extends BaseController
     /*
     * 自动创建数据库
     * */
-    protected function autoBuildDatabase($phone){
+    protected function autoBuildDatabase($account){
         $model=new Model\UserAreaModel();
-        $data=$model->getUserInfoByPhone($phone);
+        $data=$model->getUserInfoByPhone($account);
         $this->executeSql('databases.sql',$data);
     }
     public function executeSql($fileName,$data){
