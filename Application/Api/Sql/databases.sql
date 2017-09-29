@@ -1,10 +1,11 @@
 CREATE TABLE  if not exists `user_info_$city_id` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '电话号码(为空则用户没有验证手机号)',
-  `password` varchar(255) COLLATE utf8_unicode_ci  COMMENT '密码',
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `account` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '电话号码(为空则用户没有验证手机号)',
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '密码',
   `nickname` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '昵称',
   `realname` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '真实姓名',
-  `account_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户唯一识别符 采用区域+手机号形式',
+  `account_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户唯一识别符 采用区域+acount_num',
   `signature` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个性签名',
   `wechat_num` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '微信账号',
   `qq_num` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'qq账号',
@@ -16,7 +17,8 @@ CREATE TABLE  if not exists `user_info_$city_id` (
   `is_online` tinyint(1) NOT NULL DEFAULT '0' COMMENT '在线状态 0：离线 1：在线',
   `create_time` int(10) unsigned NOT NULL COMMENT '注册时间',
   `create_addr_code` int(10) unsigned NOT NULL COMMENT '注册地的区域id',
-  `sex` tinyint(1) NOT NULL DEFAULT '0' COMMENT '性别 0：保密 1：男 2：女',
+  `sex` tinyint(1) DEFAULT '0' COMMENT '性别 0：保密 1：男 2：女',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `account_code` (`account_code`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息库，由区域分表';
 
