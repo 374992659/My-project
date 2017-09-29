@@ -142,6 +142,7 @@ class RegiestController extends BaseController
         $area_id = trim($this->pdata['area_id']);
         $password  = trim($this->pdata['password']);
         $repassword   = trim($this->pdata['repassword']);
+        $this->echoEncrypData(1,'',array($account,$area_id,$password,$repassword));
         if(!$account || !$password || !$repassword || !$area_id){
             $this->echoEncrypData(1,'注册信息不完整');
         }
@@ -152,18 +153,6 @@ class RegiestController extends BaseController
         if( $account ){
             $this->echoEncrypData(1,'该账号已被注册');
         }
-        //获取缓存验证码
-//        $key_yzm_val = 'regiest_'.$account;
-//        $yzm_Mem = unserialize(S($key_yzm_val));
-//        $cache_code = $yzm_Mem['hash'];
-//        $cache_code = 5465;//测试
-//        if( !$cache_code ){
-//            return $this->echoEncrypData(116);
-//        }
-//
-//        if( $cache_code != $smscode ){
-//            $this->echoEncrypData(1,'验证码不正确');
-//        }
         if(md5($password) !== md5($repassword))$this->echoEncrypData(1,'请确认两次密码输入一致');
         $data1 = array(
             'account' =>$account,
@@ -188,46 +177,102 @@ class RegiestController extends BaseController
     }
 
     /*
-     * 用户登陆
-     *@param  account /phone   账号或者手机号
-     * @param password 密码
+     * 用户账号登陆
+     *@param  account    账号
+     * @param password  密码
      * */
-    public function login(){
+    public function accountLogin(){
         $account=$this->pdata['account'];
-        $phone = $this->pdata['phone'];
         $password =$this->pdata['password'];
-        if(!($phone || $account) || !$password){
+        if(!$account || !$password){
             $this->echoEncrypData(1,'登陆参数不完整');
         }
-        if($account){
-            if( !form_validate('account',trim($account))){
-                $this->echoEncrypData(106);
-            }
-            $table_id = M('user_area')->field('table_id,account,status')->where(['account'=>$account])->find();
-        }else{
-            if( !form_validate('phone',trim($phone))){
-                $this->echoEncrypData(106);
-            }
-            $table_id = M('user_area')->field('table_id,account,status')->where(['phone'=>$phone])->find();
+        if( !form_validate('account',trim($account))){
+            $this->echoEncrypData(106);
         }
-
+        $table_id = M('user_area')->field('table_id,account,status')->where(['account'=>$account])->find();
         if(!$table_id){
             $this->echoEncrypData(1,'该用户不存在，请前往注册!');
         }
-        if( $table_id['status'] != 1 ){
+        if( intval($table_id['status']) !== 1 ){
             $this->echoEncrypData(1,'该账号存在异常，暂无法登陆');
         }
-        $res = M('user_info_'.$table_id['table_id'])->where("(account= '{$account}' or phone='{$phone}') and password ='".md5(md5($password).$phone)."'")->count();
+        $res = M('user_info_'.$table_id['table_id'])->where(['account'=>$account,'password'=>md5(md5($password).$account)])->count();
         if(!$res){
             $this->echoEncrypData(1,'账号或密码错误');
         }else{
             $account['table_id'] =$table_id['table_id'];
             $this->account_code = $table_id['table_id'].$table_id['account'];
-            $this->appToken=true; //返回apptoken
+            $this->appToken=true;   //返回apptoken
             session('account'.$this->account_code,$account);
             $this->echoEncrypData(0);
         }
     }
+
+    /*
+     * 发送手机登录验证码
+     * @param phone 手机号
+     * */
+    public function sendPhoneLogin(){
+        $phone=$this->pdata['phone'];
+        if (!form_validate('phone', trim($phone))) {
+            $this->echoEncrypData(106);
+        }
+        $count = M('user_area')->where(['phone'=>$phone])->getField('status');
+        if(!$count){
+            $this->echoEncrypData(1,'该用户不存在，请前往注册!');
+        }
+        if( intval($count['status']) !== 1 ){
+            $this->echoEncrypData(1,'该账号存在异常，暂无法登陆');
+        }
+        if ($this->account_code > 0) {
+            $this->echoEncrypData(112, '已登录，无需重复登录');
+        }
+        $SMS=new \Api\Controller\SendSmsController();
+        $SMS->SendMassage($phone,'login_', '美e家园', 'SMS_94280318', $code);
+        if($code !== 0){
+            $this->echoEncrypData($code);
+        }else{
+            $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
+        }
+    }
+
+
+    /*
+   * 用户手机号登陆
+   *@param  phone    手机号
+   * @param smscode 验证码
+   * */
+    public function phoneLogin(){
+        $phone = $this->pdata['phone'];
+        $smscode =$this->pdata['smscode'];
+        if(!$phone || !$smscode){
+            $this->echoEncrypData(1,'登陆参数不完整');
+        }
+        //获取缓存验证码
+        $key_yzm_val = 'login_'.$phone;
+        $yzm_Mem = unserialize(S($key_yzm_val));
+        $cache_code = $yzm_Mem['hash'];
+        if( !$cache_code ){
+            return $this->echoEncrypData(116);
+        }
+        if( $cache_code != $smscode ){
+            $this->echoEncrypData(1,'验证码不正确');
+        }
+        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
+        $account['table_id'] =$table_id['table_id'];
+        $this->account_code = $table_id['table_id'].$table_id['account'];
+        $this->appToken=true;   //返回apptoken
+        session('account'.$this->account_code,$account);
+        $this->echoEncrypData(0);
+    }
+
+
+
+
+
+
+
     protected function checkLogin($account_code){
         $account=session('account'.$account_code);
         if(!$account){
