@@ -148,8 +148,8 @@ class RegiestController extends BaseController
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
-        $account = M('user_area')->where(['account'=>$account])->count();
-        if( $account ){
+        $account_count = M('user_area')->where(['account'=>$account])->count();
+        if( $account_count ){
             $this->echoEncrypData(1,'该账号已被注册');
         }
         if(md5($password) !== md5($repassword))$this->echoEncrypData(1,'请确认两次密码输入一致');
