@@ -39,7 +39,7 @@ $(document).ready(function(){
         console.log(afterDate);
         // ajax向后台传输数据
         $.ajax({
-            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=wxBindPhone&is_wap=1",
+            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=regiest&is_wap=1",
             type:"POST",
             data:{"data":afterDate},
             success:function(data){
