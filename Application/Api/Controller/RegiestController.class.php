@@ -145,7 +145,7 @@ class RegiestController extends BaseController
         if(!$account || !$password || !$repassword || !$area_id){
             $this->echoEncrypData(1,'注册信息不完整');
         }
-        if( !form_validate('account',trim($account))){ //账号格式 字母开头6-12位
+        if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
         $account = M('user_area')->where(['account'=>$account])->count();
