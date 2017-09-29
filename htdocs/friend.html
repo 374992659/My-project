@@ -28,7 +28,15 @@
         .weui-media-box_appmsg .weui-media-box__hd {
             width: 50px;
         }
-
+        .linkBtn{
+            width:25px;
+        }
+        .weui-cell__bd>p{
+            font-size: 12px;
+        }
+        .weui-cell__ft{
+            font-size: 12px;
+        }
     </style>
 </head>
 <body>
@@ -71,16 +79,16 @@
     <!--好友列表-->
     <div class="weui-cells">
         <!--我的好友-->
-        <div class="weui-cell LinkBtn">
-            <div class="weui-cell__hd "><img class="linkBtn" style="width:25px" src="image/right.png" ></div>
+        <div class="weui-cell LinkBtn" title="1">
+            <div class="weui-cell__hd "><img class="linkBtn" style="" src="image/right.png" ></div>
             <div class="weui-cell__bd">
-                <p style="font-size: 12px">我的好友</p>
+                <p style="">我的好友</p>
             </div>
-            <div class="weui-cell__ft" style="font-size: 12px">10/20</div>
+            <div class="weui-cell__ft" style="">10/20</div>
         </div>
         <!--好友列表-->
         <div class="weui-panel weui-panel_access" style="display: none">
-            <div class="weui-panel__bd">
+            <div class="weui-panel__bd friend">
                 <!--好友1-->
                 <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
@@ -102,7 +110,6 @@
                     </div>
                 </a>
             </div>
-
         </div>
     </div>
         <!--陌生人-->

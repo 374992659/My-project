@@ -65,10 +65,10 @@
                     <label for="" class="weui-label">性别</label>
                 </div>
                 <div class="weui-cell__bd">
-                    <select class="weui-select" name="select2">
+                    <select class="weui-select gender" name="select2">          <option value="3">请选择</option>
                         <option value="1">男</option>
                         <option value="2">女</option>
-                        <option value="3">不限</option>
+                        <option value="0">保密</option>
                     </select>
                 </div>
             </div>
@@ -78,8 +78,8 @@
                     <label for="" class="weui-label">年龄</label>
                 </div>
                 <div class="weui-cell__bd">
-                    <select class="weui-select" name="select2">
-                        <option value="1">16岁以下</option>
+                    <select class="weui-select age" name="select2"><option value="0">请选择</option>
+                        <option value="1">0-16</option>
                         <option value="2">16-18</option>
                         <option value="3">18-22</option>
                         <option value="4">22-25</option>
@@ -99,15 +99,12 @@
                     <select name="city" id="city">
                         <option value="">请选择</option>
                     </select>
-                    <select name="districtAndCounty" id="districtAndCounty">
-                        <option value="">请选择</option>
-                    </select>
                 </div>
             </div>
         </div>
         <!--提交按钮-->
         <div class="demos-content-padded" style="margin-top: 40px">
-            <a href="nearbyFriend.html" class="weui-btn weui-btn_primary">查找</a>
+            <button href="nearbyFriend.html" class="weui-btn weui-btn_primary searchBtn">查找</button>
         </div>
         <!--底部说明链接-->
         <div class="weui-footer weui-footer_fixed-bottom">
@@ -128,5 +125,14 @@
         });
     </script>
     <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
+    <script src="js/addRess.js"></script>
+    <script src="js/addFrisSeach.js"></script>
+    <script >
+            addRess();
+    </script>
 </body>
 </html>
