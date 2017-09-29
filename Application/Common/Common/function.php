@@ -39,40 +39,40 @@ function is_weixin()
 function form_validate($type='',$data){
     if($data){
         $data=trim($data);
-        if($type=='tel'||$type=='phone'){                            //手机号验证
+        if($type==='tel'||$type==='phone'){                            //手机号验证
             $pattern='/^1[3|4|5|6|7|8]{1}\d{9}|\d{3}-\d{8}|\d{4}-\d{7}$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='password'||$type=='pwd'){                           //密码数字字母下划线，长度8-18位,字母开头
+        }elseif($type==='password'||$type==='pwd'){                           //密码数字字母下划线，长度8-18位,字母开头
             $pattern='/^[a-z|A-Z][\w]{7,17}$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='id_card'){                                          //身份证验证
+        }elseif($type==='id_card'){                                          //身份证验证
             $pattern='/^\d{15}|\d{18}|\d{14}[x|X]|\d{17}[x|X]$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='email'){                                            //邮箱验证
+        }elseif($type==='email'){                                            //邮箱验证
             $pattern='/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='InterURL'){                                         //域名验证
+        }elseif($type==='InterURL'){                                         //域名验证
             $pattern='/^http://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='real_name'){                                        //姓名验证 长度最少2位，最长12位
+        }elseif($type==='real_name'){                                        //姓名验证 长度最少2位，最长12位
             $pattern='/^[\u4e00-\u9fa5]{2,12}$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='nickname'){                                         //昵称验证 中文、数字、下划线、字母均可，长度最少2位，最长12位
+        }elseif($type==='nickname'){                                         //昵称验证 中文、数字、下划线、字母均可，长度最少2位，最长12位
             $pattern='/^[\u4e00-\u9fa5]*\w*[\u4e00-\u9fa5]*{2,12}$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='account'){                                     //常用用户名验证，数字、字母，6-12位
+        }elseif($type==='account'){                                     //常用用户名验证，数字、字母，6-12位
             $pattern='^/[a-zA-Z0-9]{6,12}$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='QQ'){                                               //腾讯QQ号从10000开始
+        }elseif($type==='QQ'){                                               //腾讯QQ号从10000开始
             $pattern='/^[1-9][0-9]{4,}$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='zip_code'){                                         //中国邮政编码为6位数字,首位不为0
+        }elseif($type==='zip_code'){                                         //中国邮政编码为6位数字,首位不为0
             $pattern='/^[1-9]\d{5}(?!\d)$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type=='id_address'){                                       //ip地址验证
+        }elseif($type==='id_address'){                                       //ip地址验证
             $pattern='/^\d+\.\d+\.\d+\.\d+$/';
             return preg_match($pattern,$data)?true:false;
-        }elseif($type==''){                                                 //type为空，直接验证data是否为空
+        }elseif($type===''){                                                 //type为空，直接验证data是否为空
             return $data?true:false;
         }
     }else{
