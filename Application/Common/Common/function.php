@@ -39,7 +39,7 @@ function is_weixin()
 function form_validate($type='',$data){
     if($data){
         $data=trim($data);
-        if($type==='tel'||$type==='phone'){                            //手机号验证
+        if($type==='tel' || $type==='phone'){                            //手机号验证
             $pattern='/^1[3|4|5|6|7|8]{1}\d{9}|\d{3}-\d{8}|\d{4}-\d{7}$/';
             return preg_match($pattern,$data)?true:false;
         }elseif($type==='password'||$type==='pwd'){                           //密码数字字母下划线，长度8-18位,字母开头
@@ -61,7 +61,7 @@ function form_validate($type='',$data){
             $pattern='/^[\u4e00-\u9fa5]*\w*[\u4e00-\u9fa5]*{2,12}$/';
             return preg_match($pattern,$data)?true:false;
         }elseif($type==='account'){                                     //常用用户名验证，数字、字母，6-12位
-            $pattern='^/[a-zA-Z0-9]{6,12}$/';
+            $pattern='^/[a-z|A-Z|0-9]{6,12}$/';
             return preg_match($pattern,$data)?true:false;
         }elseif($type==='QQ'){                                               //腾讯QQ号从10000开始
             $pattern='/^[1-9][0-9]{4,}$/';
