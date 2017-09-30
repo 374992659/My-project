@@ -12,6 +12,20 @@ use Api\Model;
 
 class RegiestController extends BaseController
 {
+    /*
+     * 获取图片验证码
+     * */
+    public function getPicCode(){
+        $config =array(
+                'fontSize'    =>   30,
+                'length'      =>    4,
+            );
+        $Verify=new \Think\Verify($config);
+        $Verify->entry();
+    }
+
+
+
     /**
      *
      * 发送微信验证验证码
@@ -32,7 +46,6 @@ class RegiestController extends BaseController
             $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
         }
     }
-
 
     /*
      * 微信版- 用户绑定手机号
@@ -169,6 +182,8 @@ class RegiestController extends BaseController
         $this->autoBuildDatabase($account);
         $res2=M()->table("baseinfo.user_info_".$area_id)->add($data2);
         if($res1 and $res2){
+            $this->appToken=true;
+            $this->account_code = $area_id.$account;
             $this->echoEncrypData(0,'注册成功');
         }else{
             $this->echoEncrypData(1,'注册失败');
@@ -232,8 +247,6 @@ class RegiestController extends BaseController
             $this->echoEncrypData(0);
         }
         $this->echoEncrypData(1);
-
-
     }
 
 
@@ -327,8 +340,6 @@ class RegiestController extends BaseController
         session('account'.$this->account_code,$account);
         $this->echoEncrypData(0);
     }
-
-
 
 
 
