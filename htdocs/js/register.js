@@ -14,23 +14,6 @@ $(document).ready(function(){
         area_id=$(this).val();
         return area_id;
     });
-    // var $_GET = (function() {
-    //     var url = window.document.location.href.toString();
-    //     var u = url.split("?");
-    //     if (typeof(u[1]) == "string"){
-    //         u = u[1].split("&");
-    //         var get = {};
-    //         for (var i in u) {
-    //             var j = u[i].split("=");
-    //             get[j[0]] = j[1];
-    //         }
-    //         return get;
-    //     } else {
-    //         return {};
-    //     }
-    // })();
-    // var openId=$_GET['openId'];
-    // 绑定点击事件提交数据
     $(".regBtn").click(function(){
         // 获取账号
         var numeber=$(".account").val();

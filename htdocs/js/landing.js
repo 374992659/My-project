@@ -85,6 +85,7 @@ $(document).ready(function(){
             success:function(data){
                 // 数据解密
                 data=jsDecodeData(data);
+                localStorage.setItem("apptoken",apptoken);
                 if(data.errcode===0){
                     window.location.href="friend.html"
                 }else{

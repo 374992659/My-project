@@ -39,6 +39,7 @@ $(document).ready(function(){
             repasword=$(".repassword").val();
         // 对传送数据进行转换
         data=["",JSON.stringify({"apptoken":apptoken,"phone":phone,"smscode":getCode,"newpwd":newpasword,"renewpwd":repasword})];
+        console.log(data);
         // 对数据进行加密
         jsonEncryptDate=jsEncryptData(data);
         // 发起ajax请求
