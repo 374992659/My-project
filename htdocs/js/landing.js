@@ -1,9 +1,8 @@
 $(document).ready(function(){
     var phone=null;
-    var apptoken=localStorage.getItem("apptonken");
     // 账号登录发起ajax请求
     $(".accregBtn").click(function(){
-
+        var apptoken=localStorage.getItem("apptonken");
         // 获取用户输入的账号
         var account=$(".account").val();
         console.log(account);
@@ -40,6 +39,7 @@ $(document).ready(function(){
     // 电话号码登录
     //    向手机发送验证码
     $(".getCodeBtn").click(function(){
+        var apptoken=localStorage.getItem("apptonken");
         var phone=$(".phone").val();
         console.log(phone);
         // 转换数据格式json
@@ -71,8 +71,10 @@ $(document).ready(function(){
     $(".phoneregBtn").click(function(){
         // 获取验证码
         var code=$(".code").val();
+        var apptoken=localStorage.getItem("apptonken");
         // 数据格式转换
         data=["",JSON.stringify({"smscode":code,"phone":phone,"apptoken":apptoken})];
+        console.log(data);
         // 数据加密
         jsonEncryptDate=jsEncryptData(data);
         $.ajax({
