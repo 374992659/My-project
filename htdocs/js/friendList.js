@@ -11,29 +11,12 @@ $(document).ready(function() {
         type: 'post',
         success: function (data) {
             data = jsDecodeData(data);
-            localStorage.setItem("apptoken",apptoken);
             console.log(data);
-            if(data.errcode === 114) {
-                window.location.href ="landing.html";
-            }
-        }
-    });
-    // 功能1、获取好友分组信息
-    var token=localStorage.getItem("apptoken");
-    ta=["", JSON.stringify({"apptoken":token})];
-
-    $.ajax({
-        url:url+"friends_getGroup",
-        type:"POST",
-        data:{"data":ta},
-        success:function (data){
-            // 解密返回数据
-            data = jsDecodeData(data);
-            console.log(data);
-            localStorage.setItem("apptoken", data.apptoken);
-            var html = "";
-            $.each(data.data, function (i, item) {
-                html += `
+            if(data.errcode === 0) {
+                localStorage.setItem("apptoken",apptoken);
+                var html = "";
+                $.each(data.data, function (i, item) {
+                    html += `
     <div class="weui-cells">
         <div class="weui-cell LinkBtn" title="${item.group_id}">
             <div class="weui-cell__hd "><img class="linkBtn" style="" src="image/right.png" ></div>
@@ -46,12 +29,18 @@ $(document).ready(function() {
     </div>
      <div class="weui-panel weui-panel_access friendList" style="display: none">
         <div class="weui-panel__bd friend"></div>
-     </div>>               
+     </div>               
                     `
-            });
-            $(".group").html(html);
+                });
+                $(".group").html(html);
+            }else{
+                window.location.href ="landing.html";
+
+            }
         }
     });
+    // 功能1、获取好友分组信息
+
     // 功能2、获取分组下的好友信息
     $(".group .weui-cells").on("click", ".LinkBtn", function () {
         // 获取group_id
