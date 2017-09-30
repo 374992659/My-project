@@ -238,7 +238,7 @@ class RegiestController extends BaseController
         $renewpwd = $this->pdata['renewpwd'];
         if(!$phone || !$smscode || !$newpwd || !$renewpwd)$this->echoEncrypData(21);
         //获取缓存验证码
-        if($newpwd === $renewpwd)$this->echoEncrypData(1,'两次密码输入不一致');
+        if($newpwd !== $renewpwd)$this->echoEncrypData(1,'两次密码输入不一致');
         $key_yzm_val = 'ForgetPwd_'.$phone;
         $yzm_Mem = unserialize(S($key_yzm_val));
         $cache_code = $yzm_Mem['hash'];
