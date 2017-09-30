@@ -70,6 +70,7 @@ $(document).ready(function(){
     // 登录
     $(".phoneregBtn").click(function(){
         // 获取验证码
+        var phone=$(".phone").val();
         var code=$(".code").val();
         var apptoken=localStorage.getItem("apptonken");
         // 数据格式转换
