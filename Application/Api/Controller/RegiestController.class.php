@@ -39,7 +39,7 @@ class RegiestController extends BaseController
     public function sendWxRegistMsg()
     {
         $phone = $this->pdata['phone'];
-        if(!preg_match('/^1[3|4|5|6|7|8]{1}\d{9}$/',$phone)){
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$phone)){
             $this->echoEncrypData(106);
         }
 
@@ -77,7 +77,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(1,'验证码不正确');
         }
 
-        if(!preg_match('/^1[3|4|5|6|7|8]{1}\d{9}$/',$phone)){
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$phone)){
             $this->echoEncrypData(106);
         }
         $wx =session('wxdata'.$openId);
@@ -127,7 +127,7 @@ class RegiestController extends BaseController
     public function sendRegistMsg()
     {
         $phone = $this->pdata['phone'];
-        if(!preg_match('/^1[3|4|5|6|7|8]{1}\d{9}$/',$phone)){
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$phone)){
             $this->echoEncrypData(106);
         }
 
@@ -204,7 +204,7 @@ class RegiestController extends BaseController
      * */
     public function sendForgetPwd(){
         $phone=$this->pdata['phone'];
-        if (!preg_match('/^1[3|4|5|6|7|8]{1}\d{9}|\d{3}-\d{8}|\d{4}-\d{7}$/',$phone)){
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$phone)){
             $this->echoEncrypData(106);
         }
         $count = M('user_area')->where(['phone'=>$phone])->getField('status');
@@ -297,7 +297,7 @@ class RegiestController extends BaseController
      * */
     public function sendPhoneLogin(){
         $phone=$this->pdata['phone'];
-        if(!preg_match('/^1[3|4|5|6|7|8]{1}\d{9}$/',$phone)){
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$phone)){
             $this->echoEncrypData(106);
         }
         $count = M('user_area')->where(['phone'=>$phone])->getField('status');
