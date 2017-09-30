@@ -176,6 +176,68 @@ class RegiestController extends BaseController
     }
 
     /*
+     * 發送忘記密碼短信認證
+     *@param phone 手機號
+     * */
+    public function sendForgetPwd(){
+        $phone=$this->pdata['phone'];
+        if (!preg_match('/^1[3|4|5|6|7|8]{1}\d{9}|\d{3}-\d{8}|\d{4}-\d{7}$/',$phone)){
+            $this->echoEncrypData(106);
+        }
+        $count = M('user_area')->where(['phone'=>$phone])->getField('status');
+        if(!$count){
+            $this->echoEncrypData(1,'该手机号还未绑定账号!');
+        }
+        if( intval($count['status']) !== 1 ){
+            $this->echoEncrypData(1,'该账号存在异常，暂无法执行该操作');
+        }
+
+        $SMS=new \Api\Controller\SendSmsController();
+        $SMS->SendMassage($phone,'ForgetPwd_', '美e家园', 'SMS_94280318', $code);
+        if($code !== 0){
+            $this->echoEncrypData($code);
+        }else{
+            $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
+        }
+    }
+
+    /*
+     * 忘记密码
+     * @param phone 手机号
+     * @param smscode 短信验证码
+     * @param newpwd 新密码
+     * @param renewpwd  确认新密码
+     * */
+    public function forgetPassword(){
+        $phone = $this->pdata['phone'];
+        $smscode = $this->pdata['smscode'];
+        $newpwd = $this->pdata['newpwd'];
+        $renewpwd = $this->pdata['renewpwd'];
+        if(!$phone || !$smscode || !$newpwd || !$renewpwd)$this->echoEncrypData(21);
+        //获取缓存验证码
+        if($newpwd === $renewpwd)$this->echoEncrypData(1,'两次密码输入不一致');
+        $key_yzm_val = 'ForgetPwd_'.$phone;
+        $yzm_Mem = unserialize(S($key_yzm_val));
+        $cache_code = $yzm_Mem['hash'];
+        if( !$cache_code ){
+            return $this->echoEncrypData(116);
+        }
+        if( $cache_code != $smscode ){
+            $this->echoEncrypData(1,'验证码不正确');
+        }
+        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
+        if($table_id){
+            $res = M('user_info_'.$table_id['table_id'])->where(['phone'=>$phone])->save(['password'=>md5(md5($newpwd).$table_id['account'])]);
+            if(!$res)$this->echoEncrypData(1);
+            $this->echoEncrypData(0);
+        }
+        $this->echoEncrypData(1);
+
+
+    }
+
+
+    /*
      * 用户账号登陆
      *@param  account    账号
      * @param password  密码
