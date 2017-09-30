@@ -17,7 +17,7 @@ class RegiestController extends BaseController
      * */
     public function getPicCode(){
         $config =array(
-                'fontSize'    =>   40,
+                'fontSize'    =>   50,
                 'length'      =>    4,
             );
         $Verify=new \Think\Verify($config);
