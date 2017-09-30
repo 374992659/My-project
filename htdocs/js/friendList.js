@@ -2,8 +2,7 @@
 $(document).ready(function() {
     //强制跳转到登录页面
     var apptoken = localStorage.getItem("apptoken");
-    token = ["", JSON.stringify({"apptoken": apptoken})];
-    data = ['', JSON.stringify({'url': "http://wx.junxiang.ren/project/htdocs/landing.html", "apptoken": apptoken})];
+    data = ['', JSON.stringify({"apptoken": apptoken})];
     console.log(data);
     encreptdata = jsEncryptData(data);
     $.ajax({
@@ -17,7 +16,7 @@ $(document).ready(function() {
             var url = data.data;
             console.log(url);
             if (data.errcode === 114) {
-                window.location.href = url;
+                window.location.href = "landing.html";
             }
         }
     });
@@ -26,7 +25,7 @@ $(document).ready(function() {
     $.ajax({
         url: url + "friends_getGroup",
         type: "POST",
-        data: {"data": token},
+        data: {"data": data},
         success: function (data) {
             // 解密返回数据
             data = jsDecodeData(data);
@@ -58,7 +57,7 @@ $(document).ready(function() {
         // 获取group_id
         var apptoken=localStorage.getItem("apptoken");
         var title=$(this).attr("title");
-        data=["",JSON.stringify({"group_id":value,"apptoken":apptoken})];
+        data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
         console.log(data);
         encreptdata = jsEncryptData(data);
         console.log(encreptdata);
