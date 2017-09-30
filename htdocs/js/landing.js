@@ -76,7 +76,7 @@ $(document).ready(function(){
         // 数据加密
         jsonEncryptDate=jsEncryptData(data);
         $.ajax({
-            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=phoneLogin&is_wap",
+            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=phoneLogin&is_wap=1",
             type:"POST",
             data:{"data":jsonEncryptDate},
             success:function(data){
