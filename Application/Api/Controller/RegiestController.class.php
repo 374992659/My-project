@@ -24,9 +24,13 @@ class RegiestController extends BaseController
         $Verify->useNoise = false;
         $Verify->entry();
     }
-
-
-
+    /**
+     * 验证码检查
+     */
+    function check_verify($code, $id = ""){
+        $verify = new \Think\Verify();
+        return $verify->check($code, $id);
+    }
     /**
      *
      * 发送微信验证验证码
@@ -150,15 +154,18 @@ class RegiestController extends BaseController
      * @param area_id 区域
      * @param password 密码
      * @param repassword 确认密码
+     * @param piccode图片验证码
      * */
     public function regiest(){
         $account   = trim($this->pdata['account']);
         $area_id = trim($this->pdata['area_id']);
         $password  = trim($this->pdata['password']);
         $repassword   = trim($this->pdata['repassword']);
-        if(!$account || !$password || !$repassword || !$area_id){
+        $piccode = trim($this->pdata['piccode']);
+        if(!$account || !$password || !$repassword || !$area_id ||!$piccode){
             $this->echoEncrypData(1,'注册信息不完整');
         }
+        if($this->check_verify($piccode))$this->echoEncrypData(1,'验证码不正确');
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
