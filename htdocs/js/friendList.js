@@ -11,7 +11,7 @@ $(document).ready(function(){
         type:'post',
           success:function(data){
              data=jsDecodeData(data);
-             localStorage.setItem("apptoken",data.apptoken);
+             localStorage.setItem("apptoken",apptoken);
               console.log(data);
               var url=data.data;
               console.log(url);
@@ -25,10 +25,13 @@ $(document).ready(function(){
         $.ajax({
             url:url+"friends_getGroup",
             type:"POST",
+            data:{"data":apptoken},
             success:function(data){
                 data=jsDecodeData(data);
+                console.log(data);
                 var result=data.data;
                 if(data.errcode===0){
+                    localStorage.setItem("apptoken",apptoken);
                     for(var i=0,len=result.length;i<len;i++){
                         var item=$("<div title="+result[i].group_id +" class=\"weui-cells\"><div class=\"weui-cell LinkBtn\">\n" +
                             "            <div class=\"weui-cell__hd \"><img class=\"linkBtn\" style=\"\" src=\"image/right.png\" ></div>\n" +
@@ -44,12 +47,11 @@ $(document).ready(function(){
 
         });
         // 功能2、获取分组下的好友信息
-
     $(".LinkBtn").click(function(e){
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var value=$(this).attr("title");
-            data=["",JSON.stringify({"group_id":value})];
+            data=["",JSON.stringify({"group_id":value,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
             console.log(encreptdata);
@@ -61,6 +63,7 @@ $(document).ready(function(){
                  // 解密数据
                  data=jsDecodeData(data);
                  console.log(data);
+                 localStorage.setItem("apptoken",apptoken);
                  var html="";
                  var result=data.data;
                     $.each(result,function(i,item){

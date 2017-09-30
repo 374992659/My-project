@@ -54,7 +54,7 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",apptoken);
                 if(data.errcode===0){
                     alert("修改密码正确");
-                    window.location.herf="landing.html"
+                    window.location.herf="landing.html";
                 }else{
                     alert(data.errmsg);
                 }
