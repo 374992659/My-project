@@ -51,7 +51,7 @@ $(document).ready(function(){
         $.ajax({
             url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendPhoneLogin&is_wap=1",
             type:"POST",
-            data:{"phone":phone},
+            data:{"data":jsonEncryptDate},
             success:function(data){
                    // 解密返回的数据
                 data=jsDecodeData(data);
