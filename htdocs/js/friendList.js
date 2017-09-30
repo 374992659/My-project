@@ -2,7 +2,7 @@
 $(document).ready(function(){
      //强制跳转到登录页面
     var apptoken=localStorage.getItem("apptoken");
-    data=['',JSON.stringify({'url':"http://wx.junxiang.ren/project/htdocs/index.html","apptoken":apptoken})];
+    data=['',JSON.stringify({'url':"http://wx.junxiang.ren/project/htdocs/landing.html","apptoken":apptoken})];
     console.log(data);
     encreptdata = jsEncryptData(data);
      $.ajax({
@@ -16,7 +16,7 @@ $(document).ready(function(){
               var url=data.data;
               console.log(url);
               if(data.errcode===114){
-                  // window.location.href=url;
+                   window.location.href=url;
               }
        }
     });
@@ -50,7 +50,7 @@ $(document).ready(function(){
             var apptoken=localStorage.getItem("apptoken");
             var value=$(this).attr("title");
             data=["",JSON.stringify({"group_id":value})];
-            console.log(apptoken);
+            console.log(data);
             encreptdata = jsEncryptData(data);
             console.log(encreptdata);
          $.ajax({
