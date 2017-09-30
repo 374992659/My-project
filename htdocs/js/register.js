@@ -1,4 +1,11 @@
 $(document).ready(function(){
+    // 图片验证码刷新
+    $(".refreshImg").click(function(){
+        console.log(123);
+        var timestamp = new Date().getTime();
+        $(this).attr('src',"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=getPicCode&p="+timestamp );
+
+    });
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
     //
