@@ -25,7 +25,7 @@ $(document).ready(function(){
             if(data.errcode===0){
                 window.location.href="friend.html";
             }else{
-                alert(data.errmsg);
+                console.log(data.errmsg);
             }
         }
 
