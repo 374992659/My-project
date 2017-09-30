@@ -21,6 +21,7 @@ class RegiestController extends BaseController
                 'length'      =>    4,
             );
         $Verify=new \Think\Verify($config);
+        $Verify->useNoise = false;
         $Verify->entry();
     }
 
