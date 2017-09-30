@@ -19,6 +19,7 @@ class BaseController extends Controller
     public $pdata;                      //提交数据
     public $debugging = false;         //调试状态
     public $appToken = ''; //apptoken是否有true 或者false
+
     public function _initialize(){
         //获取数据
         if ( $_SERVER['REQUEST_METHOD'] == 'GET' )
@@ -56,10 +57,10 @@ class BaseController extends Controller
                         return $this->echoEncrypData(1, '签名错误');
                     }
                 }
-                $this->pdata = json_decode(trim($data[1], '"'), true);
+                $this->pdata =  json_decode(trim($data[1],'"'), true);
                 $this->nowVersion = isset($this->pdata['version'])&&$this->pdata['version']?$this->pdata['version']:$this->nowVersion;
                 if( isset($this->pdata['apptoken']) && $this->pdata['apptoken'] ){
-                    $this->appToken =  $this->pdata['apptoken'];
+                    $this->appToken =  true;
                     $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
                     $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
                 }
@@ -80,7 +81,6 @@ class BaseController extends Controller
             $aesArrJson = json_encode($aesArr);
             $aesToken = $aesLib->aes128cbcEncrypt($aesArrJson, C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY'));
         }
-
         $arr = array(
             'errcode'   => $errcode,
             'errmsg'    => $errmsg ? $errmsg : $this->getErrorMsg($errcode),

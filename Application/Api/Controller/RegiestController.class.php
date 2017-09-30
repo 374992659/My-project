@@ -348,11 +348,6 @@ class RegiestController extends BaseController
         session('account'.$this->account_code,$account);
         $this->echoEncrypData(0);
     }
-
-
-
-
-
     protected function checkLogin($account_code){
         $account=session('account'.$account_code);
         if(!$account){
