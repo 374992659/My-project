@@ -216,7 +216,7 @@ class RegiestController extends BaseController
         }
 
         $SMS=new \Api\Controller\SendSmsController();
-        $SMS->SendMassage($phone,'ForgetPwd_', '美e家园', 'SMS_94280318', $code);
+        $SMS->SendMassage($phone,'forgetPwd_', '美e家园', 'SMS_94280318', $code);
         if($code !== 0){
             $this->echoEncrypData($code);
         }else{
@@ -239,7 +239,7 @@ class RegiestController extends BaseController
         if(!$phone || !$smscode || !$newpwd || !$renewpwd)$this->echoEncrypData(21);
         //获取缓存验证码
         if($newpwd !== $renewpwd)$this->echoEncrypData(1,'两次密码输入不一致');
-        $key_yzm_val = 'ForgetPwd_'.$phone;
+        $key_yzm_val = 'forgetPwd_'.$phone;
         $yzm_Mem = unserialize(S($key_yzm_val));
         $cache_code = $yzm_Mem['hash'];
         if( !$cache_code ){
