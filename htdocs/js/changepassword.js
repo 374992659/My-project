@@ -25,7 +25,7 @@ $(document).ready(function(){
             }
         })
     });
-    // 修改密码
+    // b 修改密码
     $(".changePasswordBtn").click(function(){
         // 获取手机号码
         var phone=$(".phone").val();
@@ -51,6 +51,7 @@ $(document).ready(function(){
                 // 解密返回的数据
                 data=jsDecodeData(data);
                 console.log(data);
+                localStorage.setItem("apptoken",apptoken);
                 if(data.errcode===0){
                     alert("修改密码正确");
                     window.location.herf="landing.html"
