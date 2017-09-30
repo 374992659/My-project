@@ -1,8 +1,8 @@
 
 $(document).ready(function() {
     //强制跳转到登录页面
-    var apptoken = localStorage.getItem("apptoken");
-    data = ['', JSON.stringify({"apptoken": apptoken})];
+    var apptoken=localStorage.getItem("apptoken");
+    data=["", JSON.stringify({"apptoken":apptoken})];
     console.log(data);
     encreptdata = jsEncryptData(data);
     $.ajax({
@@ -11,22 +11,22 @@ $(document).ready(function() {
         type: 'post',
         success: function (data) {
             data = jsDecodeData(data);
-            localStorage.setItem("apptoken", apptoken);
+            localStorage.setItem("apptoken",apptoken);
             console.log(data);
-            var url = data.data;
-            console.log(url);
-            if (data.errcode === 114) {
-                window.location.href = "landing.html";
+            if(data.errcode === 114) {
+                window.location.href ="landing.html";
             }
         }
     });
+    // 功能1、获取好友分组信息
+    var token=localStorage.getItem("apptoken");
+    data=["", JSON.stringify({"apptoken":token})];
 
-    // 功能1、 获取好友分组信息
     $.ajax({
-        url: url + "friends_getGroup",
-        type: "POST",
-        data: {"data": data},
-        success: function (data) {
+        url:url+"friends_getGroup",
+        type:"POST",
+        data:{"data":data},
+        success:function (data){
             // 解密返回数据
             data = jsDecodeData(data);
             console.log(data);
