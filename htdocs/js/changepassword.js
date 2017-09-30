@@ -12,7 +12,7 @@ $(document).ready(function(){
         jsonEncryptDate=jsEncryptData(data);
         // 发起ajax请求
         $.ajax({
-            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendPhoneLogin&is_wap=1",
+            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendForgetPwd&is_wap=1",
             type:"POST",
             data:{"data":jsonEncryptDate},
             success:function(data){
