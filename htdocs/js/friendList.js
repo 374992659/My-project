@@ -20,12 +20,12 @@ $(document).ready(function() {
     });
     // 功能1、获取好友分组信息
     var token=localStorage.getItem("apptoken");
-    data=["", JSON.stringify({"apptoken":token})];
+    ta=["", JSON.stringify({"apptoken":token})];
 
     $.ajax({
         url:url+"friends_getGroup",
         type:"POST",
-        data:{"data":data},
+        data:{"data":ta},
         success:function (data){
             // 解密返回数据
             data = jsDecodeData(data);
