@@ -1,11 +1,10 @@
 // 功能修改密码
 $(document).ready(function(){
-    var phone=$(".phone").val();
     // a、获取验证码
     $(".accregBtn").click(function(){
-        var apptoken=localStorage.getItem("apptoken");
         // 获取手机号码
-
+        var phone=$(".phone").val();
+        var apptoken=localStorage.getItem("apptoken");
         console.log(phone);
         // 转换数据格式json
         data=["",JSON.stringify({"phone":phone,"apptoken":apptoken})];
@@ -37,12 +36,12 @@ $(document).ready(function(){
             repasword=$(".repassword").val();
     });
     // 对传送数据进行转换
-    data=["",JSON.stringify({"apptoken":apptoken,"phone":phone,"getCode":getCode,"newpassword":newpassword,"repasword":repasword})];
+    data=["",JSON.stringify({"apptoken":apptoken,"phone":phone,"smscode":getCode,"newpwd":newpassword,"renewpwd":repasword})];
     // 对数据进行加密
     jsonEncryptDate=jsEncryptData(data);
     // 发起ajax请求
     $.ajax({
-        url:"",
+        url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=forgetPasswor&is_wap=1",
         type:"POST",
         data:{"data":jsonEncryptDate},
         success:function(data){
