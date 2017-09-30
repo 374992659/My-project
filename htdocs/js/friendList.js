@@ -34,7 +34,10 @@ $(document).ready(function() {
                 });
                 $(".group").html(html);
             }else{
-                window.location.href ="landing.html";
+                if(data.errcode===114){
+                    // window.location.href ="landing.html";
+                }
+               console.log()
 
             }
         }
