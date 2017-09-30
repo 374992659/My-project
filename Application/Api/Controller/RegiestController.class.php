@@ -329,7 +329,7 @@ class RegiestController extends BaseController
         $phone = $this->pdata['phone'];
         $smscode =$this->pdata['smscode'];
         if(!$phone || !$smscode){
-            $this->echoEncrypData(1,'登陆参数不完整');
+            $this->echoEncrypData(21);
         }
         //获取缓存验证码
         $key_yzm_val = 'login_'.$phone;
