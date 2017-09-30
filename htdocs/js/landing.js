@@ -11,6 +11,7 @@ $(document).ready(function(){
     data=["",JSON.stringify({"account":account,"password":password,"apptoken":apptoken})];
     // 对数据进行aes加密
     var jsonEncryptDate=jsEncryptData(data);
+    console.log(jsonEncryptDate);
     // 账号登录发起ajax请求
     $.ajax({
         url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=login&is_wap=1",
@@ -34,10 +35,12 @@ $(document).ready(function(){
     //    向手机发送验证码
     $(".getCodeBtn").click(function(){
         var phone=$(".phone").val();
+        console.log(phone);
         // 转换数据格式json
         data=["",JSON.stringify({"phone":phone,"apptoken":apptoken})];
         // 加密数据
         jsonEncryptDate=jsEncryptData(data);
+        console.log(jsonEncryptDate);
         $.ajax({
             url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendPhoneLogin$is_wap=1",
             type:"POST",
