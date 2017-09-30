@@ -186,7 +186,7 @@ class RegiestController extends BaseController
         if(!$account || !$password){
             $this->echoEncrypData(1,'登陆参数不完整');
         }
-        if( !form_validate('account',trim($account))){
+        if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){
             $this->echoEncrypData(106);
         }
         $table_id = M('user_area')->field('table_id,account,status')->where(['account'=>$account])->find();
@@ -214,7 +214,7 @@ class RegiestController extends BaseController
      * */
     public function sendPhoneLogin(){
         $phone=$this->pdata['phone'];
-        if (!form_validate('phone', trim($phone))) {
+        if (!preg_match('/^1[3|4|5|6|7|8]{1}\d{9}|\d{3}-\d{8}|\d{4}-\d{7}$/',$phone)) {
             $this->echoEncrypData(106);
         }
         $count = M('user_area')->where(['phone'=>$phone])->getField('status');
