@@ -46,9 +46,10 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":josnEncyptData},
             success:function(data){
-                // 解密数据
+                //解密数据
                 data=jsDecodeData(data);
                 localStorage.setItem("apptoken",data.apptoken);
+                localStorage.setItem("data",data.data);
                 console.log(data);
                 if(data.errcode===0){
                     window.location.href="nearbyFriend.html"
