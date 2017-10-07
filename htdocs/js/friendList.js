@@ -59,8 +59,8 @@ $(document).ready(function() {
             data:{"data":encreptdata},
             success:function(data){
                 data=jsDecodeData(data);
-                localStorage.setItem("apptoken",data.apptoken);
                 if(data===0){
+                    localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
                         if(item.group_id===title){
