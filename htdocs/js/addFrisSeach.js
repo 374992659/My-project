@@ -32,10 +32,10 @@ $(document).ready(function(){
             paramsex = sex;
         data = ["", JSON.stringify({
             "apptoken": apptoken,
-            "paramarea_id": paramarea_id,
-            "parammin_age": parammin_age,
-            "parammax_age": parammax_age,
-            "paramsex": paramsex
+            "param area_id":paramarea_id,
+            "param min_age":parammin_age,
+            "param max_age":parammax_age,
+            "param sex":paramsex
         })];
         console.log(data);
         // 加密数据
@@ -52,6 +52,10 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     window.location.href="nearbyFriend.html"
+                }else{
+                    if(data.errcode===114){
+                        window.location.href="landing.html"
+                    }
                 }
             }
         });
