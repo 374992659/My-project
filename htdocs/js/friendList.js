@@ -68,15 +68,14 @@ $(document).ready(function() {
                               
                     <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="${item.friend_signature}">
+                            <img class="weui-media-box__thumb" src="${item.friend_portrait}">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title">${item.friend_nicname}</h4>
-                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体星球有一定的形状，有自己的运行轨道。</p>
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc">${item.friend_signature}</p>
                         </div>
-                    </a>                                  
-                
-                                                            
+                    </a>
+
                            `
                         }
 
