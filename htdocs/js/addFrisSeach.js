@@ -1,8 +1,6 @@
 $(document).ready(function(){
         var area="";
         var agelength=[];
-        var minage=agelength[0];
-        var maxage=agelength[1];
         var sex="";
         $("#city").change(function(){
 
@@ -39,6 +37,7 @@ $(document).ready(function(){
             "parammax_age": parammax_age,
             "paramsex": paramsex
         })];
+        console.log(data);
         // 加密数据
         josnEncyptData=jsEncryptData( data );
         console.log(josnEncyptData);
