@@ -59,7 +59,7 @@ $(document).ready(function(){
         var name=$("#flockName").val();
         //获取群分类id
         var id=null;
-        $("#flockClass").chang(
+        $("#flockClass").change(
             id=$(this).val()
         );
         //获取apptoken
