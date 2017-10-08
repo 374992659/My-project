@@ -1,5 +1,5 @@
 $(document).ready(function(e){
-//   功能1删除好友分组
+//   功能1 删除好友分组
     $(".groupList .weui-cell").on("click","delBtn",function(){
         //获取apptoken
         var apptoken=localStorage.getItem("apptone");
@@ -21,7 +21,7 @@ $(document).ready(function(e){
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
                 $(e.target).parent().remove();
-                alert("确认删除");
+                alert("确认删除?");
                 alert("删除成功")
             }else{
                 alert("删除失败")
@@ -32,7 +32,7 @@ $(document).ready(function(e){
 
 
     });
-//   功能2新建好友分组
+//   功能2 新建好友分组
     $(".addGroupBtn").click(function(){
         var apptoken=localStorage.getItem(apptoken);
         console.log(apptoken);
@@ -44,13 +44,13 @@ $(document).ready(function(e){
 //                转换好友名称数据格式
         data=["",JSON.stringify({"groupName":groupName,"apptoken":apptoken})];
 //                对名字进行加密
-        var jsonEncryptData=jsEncryptData(data);
-        console.log(name);
-//                向后台传送数据
+        console.log(data);
+         jsonEncryptData=jsEncryptData(data);
+//        向后台传送数据
         $.ajax({
             url:url+"friends_addGroup",
             type:"POST",
-            data:{"data":data},
+            data:{"data":jsonEncryptData},
             success:function(data){
                 //数据解密
                 data=jsDecodeData(data);
@@ -90,7 +90,7 @@ $(document).ready(function(e){
                         </div>
                         `
                     });
-                    $(".groupList").append(html);
+                    $(".groupList").html(html);
                     $(document).on('click','#show-success',function(){
                             $.toptip('操作成功', 'success');
                         });

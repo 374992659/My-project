@@ -32,7 +32,7 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         if(item.role==title){
                             html+=`
-                        <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg">
+                        <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
                                 <img class="weui-media-box__thumb " src="${item.group_portrait}" alt="" >
                             </div>

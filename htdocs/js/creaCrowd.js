@@ -73,7 +73,7 @@ $(document).ready(function(){
         $.ajax({
             url:url+"group_addGroup",
             type:"POST",
-            data:{"data":data},
+            data:{"data":jsonEncryptDate},
             success:function(data){
                 //Ω‚√‹ ˝æ›
                 data=jsDecodeData(data);

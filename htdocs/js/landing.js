@@ -35,7 +35,7 @@ $(document).ready(function(){
 
     });
 
-    // 电话号码登录
+// 电话号码登录
     // 向手机发送验证码
     $(".getCodeBtn").click(function(){
         var apptoken=localStorage.getItem("apptonken");
@@ -87,7 +87,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    //window.location.href="friend.html"
+                    window.location.href="friend.html"
                 }else{
                     alert(data.errmsg);
                 }

@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>我的话题之我要吐槽</title>
+    <title>群转让</title>
     <link rel="stylesheet" href="css/flockFile.css">
     <link rel="stylesheet" href="JQuery_weui/weui.min.css">
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
@@ -19,8 +19,8 @@
     </script>
     <style>
         .linkBtn{
-            width: 2rem;
-            height: 2rem;
+            width: 25px;
+
         }
         .weui-check__label{
             padding: 0;
@@ -29,13 +29,13 @@
             padding-left: 0;
         }
         .weui-cell__bd>p{
-            font-size: 12px;
+            font-size: 15px;
         }
         .weui-cell__ft>span{
             font-size: 12px;
         }
         .weui-media-box__title{
-            font-size: 12px;
+            font-size: 15px;
         }
         .weui-media-box__desc{
             font-size: 12px;
@@ -80,7 +80,7 @@
                 <div class="weui-cells weui-cells_checkbox">
                     <label class="weui-cell weui-check__label" for="s1">
                         <div class="weui-cell__hd">
-                            <input type="checkbox" class="weui-check" name="checkbox1" id="s1" >
+                            <input type="radio" class="weui-check" name="checkbox1" id="s1" >
                             <i class="weui-icon-checked"></i>
                         </div>
                         <div class="weui-cell__bd">
@@ -101,7 +101,7 @@
                 <div class="weui-cells weui-cells_checkbox">
                     <label class="weui-cell weui-check__label" for="s2">
                         <div class="weui-cell__hd">
-                            <input type="checkbox" class="weui-check" name="checkbox1" id="s2" >
+                            <input type="radio" class="weui-check" name="checkbox1" id="s2" >
                             <i class="weui-icon-checked"></i>
                         </div>
                         <div class="weui-cell__bd">
@@ -145,7 +145,7 @@
                 <div class="weui-cells weui-cells_checkbox">
                     <label class="weui-cell weui-check__label" for="h1">
                         <div class="weui-cell__hd">
-                            <input type="checkbox" class="weui-check" name="checkbox1" id="h1">
+                            <input type="radio" class="weui-check" name="checkbox1" id="h1">
                             <i class="weui-icon-checked"></i>
                         </div>
                         <div class="weui-cell__bd">
@@ -167,7 +167,7 @@
                 <div class="weui-cells weui-cells_checkbox">
                     <label class="weui-cell weui-check__label" for="h2">
                         <div class="weui-cell__hd">
-                            <input type="checkbox" class="weui-check" name="checkbox1" id="h2">
+                            <input type="radio" class="weui-check" name="checkbox1" id="h2">
                             <i class="weui-icon-checked"></i>
                         </div>
                         <div class="weui-cell__bd">
@@ -192,14 +192,18 @@
     <!--群成员end-->
 </div>
 
-<script src="js/jquery-1.11.3.js"></script>
-<script src="JQuery_weui/fastclick.js"></script>
-<script>
-    $(function () {
-        FastClick.attach(document.body);
-    });
-</script>
-<script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
     <script src="js/discu_flock_makeOver.js"></script>
 </body>
 </html>
