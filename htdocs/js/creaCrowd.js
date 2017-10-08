@@ -58,10 +58,8 @@ $(document).ready(function(){
         //获取群名字
         var name=$("#flockName").val();
         //获取群分类id
-        var  id=null;
-        $("#flockClass").change(
-          id=$(this).val()
-        );
+        var  id=$("#flockClass option:selected").val();
+        console.log(id);
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //获取小区code（可填）
