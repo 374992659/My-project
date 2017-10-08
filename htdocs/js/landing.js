@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    var phone=null;
     // 账号登录发起ajax请求
     $(".accregBtn").click(function(){
         var apptoken=localStorage.getItem("apptonken");
@@ -37,7 +36,7 @@ $(document).ready(function(){
     });
 
     // 电话号码登录
-    //    向手机发送验证码
+    // 向手机发送验证码
     $(".getCodeBtn").click(function(){
         var apptoken=localStorage.getItem("apptonken");
         var phone=$(".phone").val();
@@ -58,7 +57,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     // 保存apptoken
-                    localStorage.setItem("apptoken",apptoken);
+                    localStorage.setItem("apptoken",data.apptoken);
                     console.log(data.errcode)
                 }
 

@@ -6,33 +6,37 @@ $(document).ready(function() {
     console.log(data);
     encreptdata = jsEncryptData(data);
     $.ajax({
-        url: url + "friends_getGroup",
-        data: {"data": encreptdata},
-        type: 'post',
+        url:url+"friends_getGroup",
+        type:"POST",
+        data:{"data":encreptdata},
         success: function (data) {
             data = jsDecodeData(data);
             console.log(data);
             if(data.errcode === 0) {
-                localStorage.setItem("apptoken",apptoken);
+                localStorage.setItem("apptoken",data.apptoken);
                 var html = "";
                 $.each(data.data, function (i, item) {
                     html += `
-    <div class="weui-cells">
+     <div class="weui-cells">
         <div class="weui-cell LinkBtn" title="${item.group_id}">
-            <div class="weui-cell__hd "><img class="linkBtn" style="" src="image/right.png" ></div>
+            <div class="weui-cell__hd ">
+               <img class="linkBtn" style="" src="image/right.png" >
+            </div>
             <div class="weui-cell__bd">
                 <p style="">${item.group_name}</p>
             </div>
-            <div class="weui-cell__ft" style="">${item.online_num}/${item.total}</div>
+            <div class="weui-cell__ft" style="">
+                ${item.online_num}/${item.total}
+            </div>
         </div>
-        
-    </div>
+     </div>
      <div class="weui-panel weui-panel_access friendList" style="display: none">
-        <div class="weui-panel__bd friend"></div>
+        <div class="weui-panel__bd friend">
+        </div>
      </div>               
-                    `
+        `
                 });
-                $(".group").html(html);
+          $(".group").html(html);
             }else{
                 if(data.errcode===114){
                     // window.location.href ="landing.html";
@@ -42,7 +46,6 @@ $(document).ready(function() {
             }
         }
     });
-    // 功能1、获取好友分组信息
 
     // 功能2、获取分组下的好友信息
     $(".group .weui-cells").on("click", ".LinkBtn", function () {
