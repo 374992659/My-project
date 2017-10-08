@@ -22,9 +22,9 @@ $(document).ready(function(){
             success:function(data){
                 // 解密返回的数据
                 data=jsDecodeData(data);
-                // 把apptoken存在本地
-                localStorage.setItem("apptoken",data.apptoken);
                 if(data.errcode===0){
+                    // 把apptoken存在本地
+                    localStorage.setItem("apptoken",data.apptoken);
                     window.location.href="friend.html";
                 }else{
                     console.log(data.errmsg);
@@ -56,9 +56,9 @@ $(document).ready(function(){
                    // 解密返回的数据
                 data=jsDecodeData(data);
                 console.log(data);
-                // 保存apptoken
-                    localStorage.setItem("apptoken",apptoken);
                 if(data.errcode===0){
+                    // 保存apptoken
+                    localStorage.setItem("apptoken",apptoken);
                     console.log(data.errcode)
                 }
 
@@ -85,8 +85,8 @@ $(document).ready(function(){
             success:function(data){
                 // 数据解密
                 data=jsDecodeData(data);
-                localStorage.setItem("apptoken",apptoken);
                 if(data.errcode===0){
+                    localStorage.setItem("apptoken",apptoken);
                     window.location.href="friend.html"
                 }else{
                     alert(data.errmsg);
