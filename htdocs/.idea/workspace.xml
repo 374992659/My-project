@@ -21,7 +21,7 @@
     <favorites_list name="host9.22" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.3475298">
+    <splitter split-orientation="horizontal" split-proportion="0.1">
       <split-first>
         <leaf>
           <file leaf-file-name="createCrowd.html" pinned="false" current-in-tab="true">
@@ -78,8 +78,18 @@
                 <state vertical-scroll-proportion="0.35908598">
                   <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
                   <folding>
-                    <element signature="e#361#1316#0" expanded="false" />
+                    <element signature="e#386#1341#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="addRess.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/js/addRess.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -573,6 +583,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="19.23077">
           <caret line="65" column="22" selection-start-line="65" selection-start-column="22" selection-end-line="65" selection-end-column="22" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -661,13 +672,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/addRess.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/creaCrowd.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34226552">
@@ -679,6 +683,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1363636">
           <caret line="163" column="47" selection-start-line="161" selection-start-column="3" selection-end-line="163" selection-end-column="47" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -714,6 +719,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/addRess.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/createCrowd.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-21.428572">
@@ -727,7 +740,7 @@
         <state vertical-scroll-proportion="0.35908598">
           <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
           <folding>
-            <element signature="e#361#1316#0" expanded="false" />
+            <element signature="e#386#1341#0" expanded="false" />
           </folding>
         </state>
       </provider>

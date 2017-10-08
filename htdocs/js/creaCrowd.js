@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    var url="";
     $('#uploaderInput').change(function(event) {
         // 根据这个 <input> 获取文件的 HTML5 js 对象
         var files = event.target.files, file;
         //获取图片路径
         var url=files[0].name;
+        localStorage.setItem("url",url);
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //预览图片
@@ -51,16 +51,16 @@ $(document).ready(function(){
         //
         //    }
         //});
-        return url;
     });
     $(".createBtn").click(function(){
         //获取群头像
+        var url=localStorage.getItem("url");
         //获取群名字
         var name=$("#flockName").val();
         //获取群分类id
-        var id=null;
+        var  id=null;
         $("#flockClass").change(
-            id=$(this).val()
+          id=$(this).val()
         );
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
