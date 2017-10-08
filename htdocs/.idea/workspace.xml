@@ -75,8 +75,8 @@
           <file leaf-file-name="creaCrowd.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/js/creaCrowd.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.3264418">
-                  <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+                <state vertical-scroll-proportion="0.3264418">
+                  <caret line="76" column="35" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
                   <folding>
                     <element signature="e#386#1341#0" expanded="false" />
                   </folding>
@@ -87,12 +87,22 @@
           <file leaf-file-name="creaCrowd.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/creaCrowd.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-6.1538463">
-                  <caret line="68" column="38" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="38" />
+                <state vertical-scroll-proportion="8.461538">
+                  <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
                   <folding>
                     <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="url.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/js/url.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.0">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -174,9 +184,9 @@
         <option value="$PROJECT_DIR$/grouping.html" />
         <option value="$PROJECT_DIR$/js/grouping.js" />
         <option value="$PROJECT_DIR$/friend.html" />
-        <option value="$PROJECT_DIR$/creaCrowd.html" />
         <option value="$PROJECT_DIR$/createCrowd.html" />
         <option value="$PROJECT_DIR$/js/createCrowd.js" />
+        <option value="$PROJECT_DIR$/creaCrowd.html" />
         <option value="$PROJECT_DIR$/js/creaCrowd.js" />
       </list>
     </option>
@@ -667,14 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/url.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1363636">
@@ -731,10 +733,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/url.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/creaCrowd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.1538463">
-          <caret line="68" column="38" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="38" />
+        <state vertical-scroll-proportion="8.461538">
+          <caret line="70" column="42" selection-start-line="70" selection-start-column="42" selection-end-line="70" selection-end-column="42" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -744,8 +754,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/creaCrowd.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.3264418">
-          <caret line="59" column="17" selection-start-line="59" selection-start-column="17" selection-end-line="59" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.3264418">
+          <caret line="76" column="35" selection-start-line="76" selection-start-column="35" selection-end-line="76" selection-end-column="35" />
           <folding>
             <element signature="e#386#1341#0" expanded="false" />
           </folding>
