@@ -39,7 +39,7 @@
         <!--已有的分组列表-->
         <div class="weui-cells groupList">
             <!--我的同学-->
-            <div class="weui-cell">
+            <div class="weui-cell" title="1">
                 <div class="weui-cell__hd"><img src=""></div>
                 <div class="weui-cell__bd">
                     <p style="font-size: 15px">我的同学</p>
@@ -75,18 +75,6 @@
         });
     </script>
     <script src="JQuery_weui/jquery-weui.js"></script>
-    <script>
-        $(document)
-                .on('click', '#show-success', function() {
-                    $.toptip('操作成功', 'success');
-                });
-        $(document).ready(function(){
-            $(".delBtn").click(function(e){
-                console.log($(e.target));
-                $(e.target).parent().remove();
-            });
-        });
-    </script>
     <script src="js/url.js"></script>
     <script src="js/aes.js"></script>
     <script src="js/pad-zeropadding.js"></script>

@@ -54,7 +54,7 @@
     <div id="creaCrowd" style="padding: 10px">
         <!--群头像-->
         <div class="weui-cells weui-cells_form">
-             <div class="weui-uploader__input-box">
+             <div class="weui-uploader__input-box upload">
                  <input id="uploaderInput" class="weui-uploader__input" type="file">
              </div>
              <div class="flockHead" style="display: none">
@@ -67,15 +67,13 @@
         <!--群分类-->
         <label for="flockClass">群分类：</label>
         <select name="" id="flockClass">
-            <option value="同学群">同学群</option>
-            <option value="社区群">社区群</option>
-            <option value="兴趣爱好群">兴趣爱好群</option>
-            <option value="同学群">同学群</option>
-            <option value="同学群">同学群</option>
+            <option value="1">同学群</option>
+            <option value="2">社区群</option>
+            <option value="3">兴趣爱好群</option>
         </select>
         <br>
         <!--提交按钮-->
-        <button  class="weui-btn weui-btn_primary" style="margin-top: 50px">提交</button>
+        <button  class="weui-btn weui-btn_primary createBtn" style="margin-top: 50px">提交</button>
         <!--底部链接-->
         <div class="weui-footer weui-footer_fixed-bottom">
             <p class="weui-footer__links">
@@ -101,6 +99,10 @@
         });
     </script>
     <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
     <script src="js/creaCrowd.js"></script>
 </body>
 </html>
