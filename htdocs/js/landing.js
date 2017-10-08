@@ -86,8 +86,8 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",apptoken);
-                    window.location.href="friend.html"
+                    localStorage.setItem("apptoken",data.apptoken);
+                    //window.location.href="friend.html"
                 }else{
                     alert(data.errmsg);
                 }
