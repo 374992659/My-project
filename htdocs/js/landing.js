@@ -87,7 +87,7 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",apptoken);
-                    window.location.href="friend.html"
+                    //window.location.href="friend.html"
                 }else{
                     alert(data.errmsg);
                 }
