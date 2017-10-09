@@ -48,7 +48,7 @@ class Events
    public static function onMessage($client_id, $message) {
         // 向所有人发送
        var_dump($message);
-       $message = json_decode($message,true);
+       $message = json_decode(trim($message,'"'));
        var_dump($message);
         Gateway::sendToAll("$client_id said $message");
    }
