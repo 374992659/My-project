@@ -36,7 +36,7 @@ $gateway->pingInterval = 10;
 // 心跳数据
 $gateway->pingData = '{"type":"ping"}';
 
-
+/*
 // 当客户端连接上来时，设置连接的onWebSocketConnect，即在websocket握手时的回调
 $gateway->onConnect = function($connection)
 {
@@ -51,7 +51,7 @@ $gateway->onConnect = function($connection)
         // onWebSocketConnect 里面$_GET $_SERVER是可用的
          var_dump($_GET, $_SERVER);
     };
-};
+};*/
 
 
 // 如果不是在根目录启动，则运行runAll方法
