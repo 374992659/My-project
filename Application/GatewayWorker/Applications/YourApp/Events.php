@@ -47,11 +47,11 @@ class Events
     * @param mixed $message 具体消息
     */
    public static function onMessage($client_id, $message) {
-       $message = json_decode($message);
-       var_dump($message);
-       switch($message['type']) {
-           case 1: Gateway::sendToAll("$client_id said ".$message['content']);  // 向所有人发送
-       }
+       Gateway::sendToAll("$client_id said ".$message['content']);
+//       $message = json_decode($message,true);
+//       switch($message['type']) {
+//           case 1: Gateway::sendToAll("$client_id said ".$message['content']);  // 向所有人发送
+//       }
 
    }
    
