@@ -17,30 +17,30 @@ $(document).ready(function(){
     });
 
     $(".createBtn").click(function(){
-        //获取图片
+        //鑾峰彇鍥剧墖
         var pic=localStorage.getItem("fd");
         var name=$("#flockName").val();
 
         var  id=$("#flockClass option:selected").val();
         console.log(id);
         var apptoken=localStorage.getItem("apptoken");
-        //数据格式转换
+        //鏁版嵁鏍煎紡杞崲
         data=["",JSON.stringify({"group_name":name,"group_portrait":pic,"group_type":id,"apptoken":apptoken})];
         console.log(data);
-        //加密数据
+        //鍔犲瘑鏁版嵁
         jsonEncryptDate=jsEncryptData(data);
-        //发起请求
+        //鍙戣捣璇锋眰
         $.ajax({
             url:url+"group_addGroup",
             type:"POST",
             data:{"data":jsonEncryptDate},
             success:function(data){
-                //解密数据
+                //瑙ｅ瘑鏁版嵁
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    alert("创建成功");
+                    alert("鍒涘缓鎴愬姛");
                     window.location.href="createCrowd.html"
                 }else{
                     if(data.errcode===114){
