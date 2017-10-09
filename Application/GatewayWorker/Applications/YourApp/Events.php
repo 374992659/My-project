@@ -38,7 +38,6 @@ class Events
         Gateway::sendToCurrentClient("Your client_id is $client_id\n");
         // 向所有人发送
         Gateway::sendToAll("$client_id login\n");
-        Gateway::bindUid($client_id,$uid);
     }
     
    /**
