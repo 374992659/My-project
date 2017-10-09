@@ -11,6 +11,7 @@ body, div, ul, a {
     color: black;
     padding: 0;
     margin: 0;
+    font-size: 12px;
 }
 
 a {
@@ -30,12 +31,14 @@ a:hover {
 .right {
     float: right
 }
-/*样式内容*/
-.picture>li{
+.flockPic{
     margin-right: 10px;
 }
-
-
-
-
-
+.ulPicture:after{
+    content: " ";
+    display: block;
+    clear: both;
+}
+.weui-btn_primary {
+    background-color: red;
+}

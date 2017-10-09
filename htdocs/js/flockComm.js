@@ -42,6 +42,10 @@ $(document).ready(function(){
                 }
             }
 
+        });
+        $(".groupNotice").on("click",".weui-media-box",function () {
+            var commId=$(this).attr("title");
+            localStorage.setItem("commId",commId);
         })
     }
 

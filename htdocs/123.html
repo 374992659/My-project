@@ -1,33 +1,100 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="Generator" content="EditPlus®">
-    <meta name="Author" content="">
-    <meta name="Keywords" content="">
-    <meta name="Description" content="">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>我的话题之我要吐槽</title>
-    <link rel="stylesheet" href="css/flockFile.css">
-    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
-    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
-    <link rel="stylesheet" href="JQuery_weui/demos.css">
-    <script>
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
-    </script>
-</head>
-<body>
+$(document).ready(function(){
+$('#uploaderInput').change(function(event) {
+// ������� <input> ��ȡ�ļ��� HTML5 js ����
+var files = event.target.files, file;
+//��ȡͼƬ·��
+var url=files[0].name;
+localStorage.setItem("url",url);
+//��ȡapptoken
+var apptoken=localStorage.getItem("apptoken");
+//Ԥ��ͼƬ
+if (files && files.length > 0) {
+var data = new FormData();
+console.log(data);
+// ��ȡĿǰ�ϴ����ļ�·��
+file = files[0];
+// ���ڿ���̨�����������������ʲô
+console.log(file.name);
 
+// ��ô���ǿ�����һ�������ļ���СУ��Ķ���
+if(file.size > 1024 * 1024 * 2) {
+alert('ͼƬ��С���ܳ��� 2MB!');
+return false;
+}
+// !!!!!!
+// �����ǹؼ��Ĺؼ���ͨ����� file ��������һ�����õ�ͼ�� URL
+// ��ȡ window �� URL ����
+var URL = window.URL || window.webkitURL;
+// ͨ�� file ����Ŀ�� url
+var imgURL = URL.createObjectURL(file);
+var upload=$(".upload");
+var flockHead=$(".flockHead");
+if(upload.is(":hidden")){
+upload.show();
+flockHead.hide();
+}else{
+upload.hide();
+flockHead.show();
+$('.flockHead img').attr('src', imgURL);
+}
 
-<script src="js/jquery-1.11.3.js"></script>
-<script src="JQuery_weui/fastclick.js"></script>
-<script>
-    $(function () {
-        FastClick.attach(document.body);
-    });
-</script>
-<script src="JQuery_weui/jquery-weui.js"></script>
+}
+//��ͼƬ��apptoken��������ת��
+
+//��������
+//�ϴ�ͼƬ
+//$.ajax({
+//    url:url+"group_uploadGroupP",
+//    type:"POST",
+//    data:{},
+//    success:function(data){
+//
+//    }
+//});
+});
+$(".createBtn").click(function(){
+//��ȡȺͷ��
+var url=localStorage.getItem("url");
+//��ȡȺ����
+var name=$("#flockName").val();
+//��ȡȺ����id
+var  id=$("#flockClass option:selected").val();
+console.log(id);
+//��ȡapptoken
+var apptoken=localStorage.getItem("apptoken");
+//��ȡС��code�����
+
+//���ݸ�ʽת��
+data=["",JSON.stringify({"group_name":name,"group_portrait":url,"group_type":id,"apptoken":apptoken})]
+console.log(data);
+//���ݼ���
+jsonEncryptDate=jsEncryptData(data);
+//����ajax����
+$.ajax({
+url:url+"group_addGroup",
+type:"POST",
+data:{"data":jsonEncryptDate},
+success:function(data){
+//��������
+data=jsDecodeData(data);
+console.log(data);
+if(data.errcode===0){
+localStorage.setItem("apptoken",data.apptoken);
+alert("�����ɹ�");
+window.location.href="createCrowd.html"
+}else{
+if(data.errcode===114){
+alert("��¼��ʱ�����µ�¼");
+//window.location.href="landing.html"
+}else{
+alert(data.errmsg);
+}
+}
+}
+})
+});
+});
+
+ry_weui/jquery-weui.js"></script>
 </body>
 </html>

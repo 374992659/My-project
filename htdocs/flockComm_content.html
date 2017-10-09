@@ -13,9 +13,13 @@
     <link rel="stylesheet" href="JQuery_weui/weui.min.css">
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/flockComm_content.css">
     <script>
         document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
     </script>
+    <style>
+
+    </style>
 </head>
 <body>
     <div>
@@ -25,15 +29,19 @@
                 <li class="weui-media-box__info__meta">文字来源：<span>你大爷</span></li>
                 <li class="weui-media-box__info__meta">时间：<span>2017.12.03</span></li>
             </ul>
-            <p class="weui-media-box__desc" style="-webkit-line-clamp:100;color:black;text-indent:2em">
+            <ul class="ulPicture">
+                <li class="lf flockPic">
+                    <img src="image/firenda.jpg" alt="" style="width: 100px">
+                </li>
+                <li class="lf">
+                    <img src="image/firenda.jpg" alt="" style="width: 100px">
+                </li>
+            </ul>
+            <p class="weui-media-box__desc" style="-webkit-line-clamp:100000;color:black;text-indent:2em">
                     由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-            </p>
 
+            </p>
+            <button   class="weui-btn weui-btn_mini weui-btn_primary delBtn">删除</button>
         </div>
     </div>
 
@@ -45,5 +53,10 @@
     });
 </script>
 <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
+    <script src="js/flockComm_content.js"></script>
 </body>
 </html>
