@@ -48,8 +48,8 @@ class Events
     */
    public static function onMessage($client_id, $message) {
        $message = json_encode($message,true);
-       switch($message.type) {
-           case 1: Gateway::sendToAll("$client_id said ".$message.content);  // 向所有人发送
+       switch($message) {
+           case 1: Gateway::sendToAll("$client_id said ".$message);  // 向所有人发送
        }
 
    }
