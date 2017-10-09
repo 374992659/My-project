@@ -20,7 +20,7 @@
 //declare(ticks=1);
 
 use \GatewayWorker\Lib\Gateway;
-
+use Api\Controller;
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
@@ -39,6 +39,7 @@ class Events
         Gateway::sendToCurrentClient("Your client_id is $client_id\n");
         // 向所有人发送
         Gateway::sendToAll("$client_id login\n");
+        Gateway::bindUid($client_id,$uid);
     }
     
    /**
@@ -47,8 +48,11 @@ class Events
     * @param mixed $message 具体消息
     */
    public static function onMessage($client_id, $message) {
-        // 向所有人发送
-        Gateway::sendToAll("$client_id said $message");
+       $message = json_decode($message,true);
+       switch($message['type']) {
+           case 1: Gateway::sendToAll("$client_id said $message");  // 向所有人发送
+       }
+
    }
    
    /**
