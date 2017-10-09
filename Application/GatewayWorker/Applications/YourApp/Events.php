@@ -35,6 +35,7 @@ class Events
      * @param int $client_id 连接id
      */
     public static function onConnect($client_id) {
+        echo 'hello';
         // 向当前client_id发送数据 
         Gateway::sendToClient($client_id, "Hello $client_id\n");
         // 向所有人发送
@@ -47,7 +48,8 @@ class Events
     * @param mixed $message 具体消息
     */
    public static function onMessage($client_id, $message) {
-        // 向所有人发送 
+        // 向所有人发送
+       echo 'message';
         Gateway::sendToAll("$client_id said $message");
    }
    
