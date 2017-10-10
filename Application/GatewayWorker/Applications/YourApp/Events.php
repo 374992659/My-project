@@ -50,11 +50,11 @@ class Events
    public static function onMessage($client_id, $message) {
        $message = json_decode($message);
        $account_code = '';
-       var_dump($message->apptoken);
        if($message){
            $apptoken = $message->apptoken;
            $aesLib = new \Common\Lib\AesLib();
-           $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,'5edd3f6060e20220', '622102f9149e022d'),true):'';
+           var_dump(json_decode($aesLib->aes128cbcDecrypt($apptoken,'5edd3f6060e20220','622102f9149e022d'),true));
+           $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,'5edd3f6060e20220','622102f9149e022d'),true):'';
        };
        var_dump($account_code);
        if(!$account_code)return;
