@@ -64,7 +64,7 @@ $(document).ready(function(){
                                 </ul>
                             </div>
                         </div>
-                        `
+                        `;
                         $(".img").append(Li);
                     });
                     $("#flockPhoto").append(html);

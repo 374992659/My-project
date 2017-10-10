@@ -9,7 +9,9 @@ $(document).ready(function(){
         var photoAlbum = new FormData();
         photoAlbum.append('fileToUpload', file);
         if(url){
-           var LiImg=$("");
+           var LiImg=`
+           <li class="weui-uploader__file img1" ><img style="width: 79px;height: 79px" src="${url}" alt=""/></li>
+           `;
             $("#uploaderFiles").append(LiImg);
         }
 

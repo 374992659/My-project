@@ -63,33 +63,5 @@ $(".flockVote").on("click",".weui-panel",function(){
     // 获取当title
     var vote_id=$(this).attr("title");
     localStorage.setItem("vote_id",vote_id)
-});
-// 删除投票
-    $(".flockVote").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__bd .delBtn",function () {
-        // 获取群号
-        var code=localStorage.getItem("group_num");
-        // 获取投票id
-        var vote_id=$(this).attr("title");
-        // 获取apptoken
-        var apptoken=localStorage.getItem("apptoken");
-        // 数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoken,"group_num":code,"vote_id":vote_id})];
-        // 加密
-        jsonEncryptData=jsEncryptData(data);
-        $.ajax({
-            url:url+"group_delVote",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function (data) {
-                // 解密
-                data=jsDecodeData(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    console.log("删除成功")
-                }else{
-                    console.log(data.errmsg);
-                }
-            }
-        })
-    })
+    });
 });
