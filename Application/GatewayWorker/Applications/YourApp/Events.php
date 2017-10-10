@@ -21,7 +21,6 @@
 
 use \GatewayWorker\Lib\Gateway;
 use \Api\Model;
-use \Common\Lib\AesLib;
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
@@ -52,7 +51,7 @@ class Events
        $account_code = '';
        if($message){
            $apptoken = $message->apptoken;
-           $aesLib = new AesLib();
+           $aesLib = new \Common\Lib\AesLib();
            $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,'5edd3f6060e20220', '622102f9149e022d'),true):'';
        };
        var_dump($account_code);
