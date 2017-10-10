@@ -21,7 +21,7 @@
 
 use \GatewayWorker\Lib\Gateway;
 use \Api\Model;
-require_once '../../../Common/Lib/AesLib.class.php';
+include_once '../../../Common/Lib/AesLib.class.php';
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
