@@ -57,8 +57,8 @@ class Events
        if(!$account_code)return;
        switch ($message->type){
            case 1: Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
-           $user_arr = $_SESSION('user_arr');
-           if(!in_array($account_code['account_code'],$user_arr)){$user_arr[]=$account_code['account_code'];$_SESSION('user_arr',$user_arr);};
+           $user_arr = $_SESSION['user_arr'];
+           if(!in_array($account_code['account_code'],$user_arr)){$user_arr[]=$account_code['account_code'];$_SESSION['user_arr']=$user_arr;};
            $user_group = new Model\UserGroupModel($account_code['account_code']);
            $group_arr=$user_group->getGroup();
            if($group_arr){
