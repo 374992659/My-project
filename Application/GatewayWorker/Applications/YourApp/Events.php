@@ -64,10 +64,9 @@ class Events
                foreach ($group_arr as $k=>$v){
                    Gateway::joinGroup($client_id,$v);  //将用户加入群组
                }
-               var_dump(Gateway::getClientIdByUid('270117608006762'));
                Gateway::sendToClient($client_id,'hello world');
            };break;
-           case 2:
+           case 2:Gateway::sendToUid($message->account_code,$message->content);
        }
    }
    
