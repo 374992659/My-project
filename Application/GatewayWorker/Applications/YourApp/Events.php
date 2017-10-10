@@ -21,6 +21,7 @@
 
 use \GatewayWorker\Lib\Gateway;
 use \Api\Model;
+use \Common\Lib;
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
