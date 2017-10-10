@@ -6,7 +6,6 @@ $(document).ready(function(){
         var targetElement = e.target,
             file = targetElement.files[0],
             url=window.URL.createObjectURL(this.files[0]) ;
-        console.log(file.name);
         var photoAlbum = new FormData();
         photoAlbum.append('fileToUpload', file);
         if(url){
@@ -27,7 +26,7 @@ $(document).ready(function(){
         $.ajax({
             url:url+"group_getGroupPic",
             type:"POST",
-            data:{"data":josnEncyptData},
+            data:{"data":jsonEncryptData},
             success:function(data){
                 //解密数据
                 data=jsDecodeData(data);
