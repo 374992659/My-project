@@ -55,7 +55,7 @@ class Events
            var_dump($message->apptoken);
            $account_code=$message->apptoken?json_decode($aesLib->aes128cbcDecrypt($message->apptoken,'5edd3f6060e20220','622102f9149e022d'),true):'';
        };
-       var_dump($account_code);
+       var_dump($aesLib->aes128cbcDecrypt($message->apptoken,'5edd3f6060e20220','622102f9149e022d'));
 //       if(!$account_code)return;
        switch ($message->type){
            case 1: Gateway::bindUid($client_id,$account_code);    //绑定客户端id及用户code
