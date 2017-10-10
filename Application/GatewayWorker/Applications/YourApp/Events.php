@@ -52,13 +52,12 @@ class Events
        $message = json_decode($message);
        $account_code = '';
        var_dump($message->apptoken);
-       var_dump(C('APP_KEY.TOKEN_AES_IV'));
-       var_dump(C('APP_KEY.TOKEN_AES_KEY'));
        if($message){
            $apptoken = $message->apptoken;
            $aesLib = new \Common\Lib\AesLib();
-           $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')),true):'';
+           $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,'5edd3f6060e20220', '622102f9149e022d'),true):'';
        };
+       var_dump($account_code);
        if(!$account_code)return;
        switch ($message->type){
            case 1: Gateway::bindUid($client_id,$account_code);    //绑定客户端id及用户code
