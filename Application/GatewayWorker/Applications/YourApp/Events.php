@@ -52,7 +52,7 @@ class Events
        $account_code = '';
        if($message){
            $apptoken = $message->apptoken;
-           $aesLib = new \Common\Lib\AesLib();
+           $aesLib = new Lib\AesLib();
            $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')),true):'';
        };
        if(!$account_code)return array('errcode'=>1,'errmsg'=>'请重新登录');
