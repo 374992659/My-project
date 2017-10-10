@@ -60,8 +60,8 @@ class Events
            case 1: Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
            $user_arr = $_SESSION['user_arr'];
            if(!in_array($account_code['account_code'],$user_arr)){$user_arr[]=$account_code['account_code'];$_SESSION['user_arr']=$user_arr;};
-           $user_group = new \Api\Model\UserGroupModel($account_code['account_code']);
-           $group_arr=$user_group->getGroup();
+           $group_arr=json_decode($message->group_arr,true);
+           var_dump($group_arr);
            if($group_arr){
                foreach ($group_arr as $k=>$v){
                    Gateway::joinGroup($client_id,$v['group_code']);  //将用户加入群组
