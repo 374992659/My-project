@@ -20,7 +20,8 @@
 //declare(ticks=1);
 use \GatewayWorker\Lib\Gateway;
 use \Api\Model;
-require_once APP_PATH.'Common/Lib/Aes.class.php';
+use \Think\Controller;
+require_once APP_PATH.'/Common/Lib/Aes.class.php';
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
