@@ -19,7 +19,7 @@
  */
 //declare(ticks=1);
 use \GatewayWorker\Lib\Gateway;
-use Api\Model;
+use Think\Model;
 
 require_once '../Common/Lib/AesLib.class.php';
 require_once '../Api/Model/UserGroupModel.class.php';
