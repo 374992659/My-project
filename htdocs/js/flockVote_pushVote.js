@@ -57,7 +57,7 @@ $("#time-format").datetimePicker({
     title: '自定义格式',
     yearSplit: '-',
     monthSplit: '-',
-    dateSplit: '-',
+    dateSplit: '',
     times: function () {
         return [  // 自定义的时间
             {
@@ -93,4 +93,143 @@ $("#time-inline").datetimePicker({
     onChange: function (picker, values, displayValues) {
         console.log(values);
     }
-})
+});
+// 添加选项
+(function(){
+var num=2;
+    $(".add").click(function(){
+        num++;
+        var option=$("<div class=\"weui-cell \">\n" +
+            "                <div class=\"weui-cell__bd addOption\">\n" +
+            "                    <span><img style=\"width: 20px;position: relative;z-index: 100\" src=\"image/minus.png\" alt=\"\" class=\"delImg\"></span>\n" +
+            "                    <input class=\"weui-input delImg\" name='option' type=\"text\" placeholder=\"选项"+num +"\"  maxlength=\"40\" style=\"font-size: 12px\">\n" +
+            "                </div>\n" +
+            "            </div>");
+        $(this).before(option);
+        console.log(num);
+
+        });
+    // 删除选项函数
+    $(".option").on("click",".weui-cell .addOption span .delImg",function () {
+        console.log(123);
+        $(this).parent().parent().parent().remove();
+
+    });
+
+})();
+// 是否匿名名
+(function(){
+    var num=0;
+    $(".switch").click(function(){
+        num++;
+        if(num%2===0){
+            $(".switch").attr("value","否")
+        }else{
+            $(".switch").attr("value","是")
+        }
+        console.log(num);
+    });
+
+})();
+
+// 请求数据
+$(document).ready(function(){
+    // 上传图片
+    $(".votePic").change(function(e){
+        var targetElement = e.target,
+            file = targetElement.files[0],
+            url=window.URL.createObjectURL(this.files[0]) ;
+        var fd = new FormData();
+        fd.append('fileToUpload', file);
+        localStorage.setItem("fd",fd);
+        if(url){
+            localStorage.setItem("voteImg",url);
+           $(".voteImg").attr("src",url)
+        }
+
+    });
+    // 图片预览功能
+$(".voteImg").click(function(){
+    var url=localStorage.getItem("voteImg");
+    if($(".weui-gallery").is(":hidden")){
+        $(".weui-gallery").show();
+        $(".weui-gallery__img img").attr("src",url)
+    }
+});
+$(".weui-gallery").click(function(){
+    $(".weui-gallery").hide();
+
+});
+// 删除功能
+    $(".weui-icon-delete").click(function(){
+        console.log(123);
+        $(".voteImg").removeAttr("src");
+        console.log(321);
+    });
+// 发布投票
+    $(".submitBtn").click(function(){
+        // 获取图片
+        var picture="";
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+        // 获取群号码
+            group_code="",
+        // 获取主题
+            title=$(".title").val(),
+        // 获取内容
+            content=$(".content").val();
+        console.log(content);
+        // 获取选项内容
+            var   option={};
+            $("input[name='option']").each(function(i,item){
+                option["选项"+i]=$(this).val();
+            });
+            console.log(option);
+        // 获取话题类型
+        var type=$(".voteType").find("option:selected").text();
+        console.log(type);
+        // 获取小区code
+        var code="";
+        // 获取结束时间
+        var overTime=$(".voteEndTime").val();
+        // 获取是否匿名
+        var anonymous=$(".switch").val();
+        // 数据格式转换
+        Choice=JSON.stringify(option);
+        data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":code,"group_num":group_code,"end_time":overTime,"anonymous":anonymous})];
+        console.log(data);
+        console.log(Choice);
+// 数据加密
+    jsonEncryptData=jsEncryptData(data);
+    choice=jsonEncryptData(Choice);
+    // 发起ajax请求
+        $.ajax({
+            url:url+"group_addVote",
+            type:"POST",
+            data:{"data":jsonEncryptData,"data":choice},
+            success:function(data){
+                // 解密数据
+                data=jsDecodeData(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    alert("发布成功");
+                    window.location.href="flockVote.html";
+                }else{
+                    console.log(data.errmsg);
+                }
+            }
+        })
+
+
+
+
+
+
+    });
+
+
+
+});
+
+
+

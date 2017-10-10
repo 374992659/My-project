@@ -44,4 +44,9 @@ textarea{
     position: absolute;
     top:4px;
 }
-/*投票类型*/
+/*投票主题*/
+.weui-gallery__img {
+    overflow: hidden;
+    height: 50%;
+    top: 30%;
+}

@@ -9,49 +9,55 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>投票</title>
+    <title>发布投票</title>
 
     <link rel="stylesheet" href="JQuery_weui/weui.min.css">
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/flockVote_pushVote.css">
-    <script>
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
-    </script>
+
 </head>
 <body>
     <div class="weui-cells weui-cells_form">
         <!--投票主题-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input title" minlength="2" maxlength="10" type="text" placeholder="请输投票主题(2-10个字)" style="font-size: 12px;padding-left: 0">
+                </div>
+            </div>
+        </div>
+        <!--投票内容-->
         <div class="weui-cell">
             <div class="weui-cell__bd" style="font-size: 10px">
-                <textarea class="weui-textarea" placeholder="请输入投票主题" rows="3" maxlength="200" style="font-size: 12px"></textarea>
+                <textarea class="weui-textarea content" placeholder="请输入主要内容" rows="3" maxlength="200" style="font-size: 12px"></textarea>
                 <div class="weui-textarea-counter"><span>0</span>/200</div>
             </div>
         </div>
         <!--选项-->
-        <div class="weui-cells">
+        <div class="weui-cells option">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <input class="weui-input" type="text" placeholder="选项1" maxlength="40" style="font-size: 12px">
+                    <input class="weui-input " name="option" type="text" placeholder="选项1" maxlength="40" style="font-size: 12px">
                 </div>
             </div>
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <input class="weui-input" type="text" placeholder="选项2" maxlength="40"  style="font-size: 12px">
+                    <input class="weui-input" name="option" type="text" placeholder="选项2" maxlength="40"  style="font-size: 12px">
                 </div>
             </div>
             <!--添加的选项-->
-            <div class="weui-cell ">
-                <div class="weui-cell__bd addOption">
-                    <span><img style="width: 20px;" src="image/minus.png" alt="" ></span>
-                    <input class="weui-input" type="text" placeholder="添加选项"  maxlength="40"  style="font-size: 12px">
-                </div>
-            </div>
+            <!--<div class="weui-cell ">-->
+                <!--<div class="weui-cell__bd addOption">-->
+                    <!--<span><img style="width: 20px;" src="image/minus.png" alt="" ></span>-->
+                    <!--<input class="weui-input" type="text" placeholder="添加选项"  maxlength="40"  style="font-size: 12px">-->
+                <!--</div>-->
+            <!--</div>-->
             <!--添加选项-->
-            <div class="weui-cell ">
+            <div class="weui-cell add">
                 <div class="weui-cell__bd addOption">
-                    <span><img style="width: 20px;" src="image/addpic.png" alt="" ></span>
-                    <input class="weui-input" type="text" placeholder="添加选项"  maxlength="40" style="font-size: 12px">
+                    <span><img style="width: 20px;" src="image/addpic.png" alt="" class=""></span>
+                    <input class="weui-input" disabled="disabled" type="text" placeholder="添加选项"  maxlength="40" style="font-size: 12px">
                 </div>
             </div>
         </div>
@@ -64,7 +70,7 @@
             <label for="" class="weui-label" style="font-size: 12px">投票类型</label>
         </div>
         <div class="weui-cell__bd" style="text-align: right">
-            <select class="weui-select " name="select2" style="width: 70px;font-size: 12px">
+            <select class="weui-select voteType" name="select2" style="width: 70px;font-size: 12px">
                 <option value="1">单选</option>
                 <option value="2">多选</option>
             </select>
@@ -90,14 +96,14 @@
         <div class="weui-cell">
             <div class="weui-cell__hd"><label for="time-format" class="weui-label" style="font-size: 12px">结束时间</label></div>
             <div class="weui-cell__bd">
-                <input class="weui-input" id="time-format" type="text" value="2017-10-12 12:13" style="text-align: right;padding-left: 0;font-size: 12px">
+                <input class="weui-input voteEndTime" id="time-format" type="text" value="2017-10-12 12:13" style="text-align: right;padding-left: 0;font-size: 12px">
             </div>
         </div>
         <!--是否匿名-->
         <div class="weui-cell weui-cell_switch">
             <div class="weui-cell__bd" style="font-size: 12px">匿名投票</div>
             <div class="weui-cell__ft">
-                <input class="weui-switch" type="checkbox">
+                <input class="weui-switch switch" type="checkbox" value="">
             </div>
         </div>
         <!--手机号-->
@@ -119,10 +125,14 @@
                     <div class="weui-uploader__hd">
                         <p class="weui-uploader__title" style="font-size: 12px">图片上传</p>
                     </div>
-                    <div class="weui-uploader__bd">
-
+                    <ul class="ulVoteImg">
+                       <li class="lf" style="margin-right: 10px">
+                            <img src="" style="height: 79px;width: 79px" alt="" class="voteImg">
+                        </li>
+                    </ul>
+                    <div class="weui-uploader__bd lf">
                         <div class="weui-uploader__input-box">
-                            <input id="uploaderInput" class="weui-uploader__input" type="file" multiple="">
+                            <input id="uploaderInput" class="weui-uploader__input votePic" type="file">
                         </div>
                     </div>
                 </div>
@@ -131,9 +141,19 @@
     </div>
 <!--提交按钮-->
     <div class="demos-content-padded">
-        <button class="weui-btn weui-btn_primary">发布</button>
+        <button class="weui-btn weui-btn_primary submitBtn">发布</button>
     </div>
-
+    <!--图片预览功能-->
+    <div class="weui-gallery" style="display: none">
+        <span class="weui-gallery__img" style="text-align: center">
+            <img src="" alt="" style="width: 100%">
+        </span>
+        <div class="weui-gallery__opr">
+            <a href="javascript:" class="weui-gallery__del" >
+                <i class="weui-icon-delete weui-icon_gallery-delete" style="position: relative;z-index: 100000"></i>
+            </a>
+        </div>
+    </div>
 
 
 
@@ -149,6 +169,10 @@
     });
 </script>
 <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
 <script src="js/flockVote_pushVote.js"></script>
 </body>
 </html>
