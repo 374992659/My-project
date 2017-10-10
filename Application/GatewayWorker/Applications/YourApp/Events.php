@@ -20,6 +20,7 @@
 //declare(ticks=1);
 
 use \GatewayWorker\Lib\Gateway;
+use \Api\Model;
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
@@ -46,10 +47,26 @@ class Events
     * @param mixed $message 具体消息
     */
    public static function onMessage($client_id, $message) {
-
        $message = json_decode($message);
+       $account_code = '';
+       if($message){
+           $apptoken = $message->apptoken;
+           $aesLib = new \Common\Lib\AesLib();
+           $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')),true):'';
+       };
+       if(!$account_code)return array('errcode'=>1,'errmsg'=>'请重新登录');
        switch ($message->type){
-           case 1: Gateway::sendToAll("$client_id said $message->content"); // 向所有人发送
+           case 1: Gateway::bindUid($client_id,$account_code);    //绑定客户端id及用户code
+           $user_arr = session('user_arr');
+           if(!in_array($account_code,$user_arr)){$user_arr[]=$account_code;session('user_arr',$user_arr);};
+           $user_group = new Model\UserGroupModel($account_code);
+           $group_arr=$user_group->getGroup();
+           if($group_arr){
+               foreach ($group_arr as $k=>$v){
+                   Gateway::joinGroup($client_id,$v['group_code']);  //将用户加入群组
+               }
+           };break;
+           case 2: Gateway::sendToAll("$client_id said $message->content"); // 向所有人发送
        }
    }
    
