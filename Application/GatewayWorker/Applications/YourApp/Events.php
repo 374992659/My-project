@@ -22,7 +22,6 @@ use \GatewayWorker\Lib\Gateway;
 use Think\Model;
 
 require_once '../Common/Lib/AesLib.class.php';
-require_once '../Api/Model/UserGroupModel.class.php';
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
