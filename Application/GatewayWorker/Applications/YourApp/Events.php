@@ -60,11 +60,11 @@ class Events
            $user_arr = $_SESSION['user_arr'];
            if(!in_array($account_code['account_code'],$user_arr)){$user_arr[]=$account_code['account_code'];$_SESSION['user_arr']=$user_arr;};
            $group_arr=json_decode($message->group_arr,true);
-           var_dump($group_arr);
            if($group_arr){
                foreach ($group_arr as $k=>$v){
                    Gateway::joinGroup($client_id,$v);  //将用户加入群组
                }
+               Gateway::sendToClient($client_id,Gateway::getClientIdByUid('270117608006762'));
            };break;
            case 2: Gateway::sendToAll("$client_id said $message->content"); // 向所有人发送
        }
