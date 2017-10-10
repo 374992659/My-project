@@ -20,7 +20,7 @@
 //declare(ticks=1);
 use \GatewayWorker\Lib\Gateway;
 use Api\Model;
-use Think\Controller;
+
 require_once '../Common/Lib/AesLib.class.php';
 /**
  * 主逻辑
@@ -52,7 +52,7 @@ class Events
        $account_code = '';
        if($message){
            $apptoken = $message->apptoken;
-           $aesLib = new AesLib();
+           $aesLib = new \Common\Lib\AesLib();
            $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,'5edd3f6060e20220', '622102f9149e022d'),true):'';
        };
        var_dump($account_code);
