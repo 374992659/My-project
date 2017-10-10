@@ -22,7 +22,6 @@
 use \GatewayWorker\Lib\Gateway;
 use \Api\Model;
 use \Common\Lib;
-use Think\Controller;
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
@@ -51,7 +50,6 @@ class Events
    public static function onMessage($client_id, $message) {
        $message = json_decode($message);
        $account_code = '';
-       var_dump($message->apptoken);
        if($message){
            $apptoken = $message->apptoken;
            $aesLib = new \Common\Lib\AesLib();
