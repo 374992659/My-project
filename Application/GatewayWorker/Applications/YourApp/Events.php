@@ -18,10 +18,9 @@
  * 然后观察一段时间workerman.log看是否有process_timeout异常
  */
 //declare(ticks=1);
-
 use \GatewayWorker\Lib\Gateway;
 use \Api\Model;
-require_once("../../../Common/Lib/AesLib.class.php");
+require_once '../../vendor/autoload.php';
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
