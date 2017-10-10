@@ -52,6 +52,7 @@ class Events
        $account_code = '';
        if($message){
            $aesLib = new \Common\Lib\AesLib();
+           var_dump($message->apptoken);
            $account_code=$message->apptoken?json_decode($aesLib->aes128cbcDecrypt($message->apptoken,'5edd3f6060e20220','622102f9149e022d'),true):'';
        };
        var_dump($account_code);
