@@ -63,7 +63,7 @@ class Events
            var_dump($group_arr);
            if($group_arr){
                foreach ($group_arr as $k=>$v){
-                   Gateway::joinGroup($client_id,$v['group_code']);  //将用户加入群组
+                   Gateway::joinGroup($client_id,$v);  //将用户加入群组
                }
            };break;
            case 2: Gateway::sendToAll("$client_id said $message->content"); // 向所有人发送
