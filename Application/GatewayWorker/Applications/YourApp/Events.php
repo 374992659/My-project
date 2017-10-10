@@ -50,12 +50,15 @@ class Events
    public static function onMessage($client_id, $message) {
        $message = json_decode($message);
        $account_code = '';
+       var_dump($message->apptoken);
+       var_dump(C('APP_KEY.TOKEN_AES_IV'));
+       var_dump(C('APP_KEY.TOKEN_AES_KEY'));
        if($message){
            $apptoken = $message->apptoken;
            $aesLib = new \Common\Lib\AesLib();
            $account_code=$apptoken?json_decode($aesLib->aes128cbcDecrypt($apptoken,C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')),true):'';
        };
-       if(!$account_code)return array('errcode'=>1,'errmsg'=>'请重新登录');
+       if(!$account_code)return;
        switch ($message->type){
            case 1: Gateway::bindUid($client_id,$account_code);    //绑定客户端id及用户code
            $user_arr = session('user_arr');
