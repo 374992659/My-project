@@ -69,9 +69,7 @@ class Events
                         };
                         //获取用户在线的好友
                         $user_friends = $db->query('select user_code from user_friends');
-                        var_dump($user_friends);
                         $online_user = Gateway::getAllClientSessions();
-                        var_dump($online_user);
                         $online_friends = array();
                         if($user_friends){
                             foreach ($user_friends as $key=>$val){
@@ -82,9 +80,15 @@ class Events
                                     }
                                 }
                             }
-                            var_dump($online_friends);
                         }
-                        Gateway::sendToClient($client_id,'hello world');
+                        $data = array(
+                            'errocode'=>0,
+                            'data'=>array(
+                                'online_friends'=>$online_friends,
+                            )
+                        );
+                        $encryDate= $aesLib->aes128cbcEncrypt($data,'5efd3f6550e20330','625202f5549e061d');
+                        Gateway::sendToClient($client_id,$encryDate);
                         break;
            case 2:  Gateway::sendToUid($message->account_code,$message->content);break; //发送消息给好友
            case 3:  Gateway::sendToGroup($message->group,$message->content);break;   //发送消息给群组
