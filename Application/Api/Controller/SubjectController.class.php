@@ -233,7 +233,7 @@ class SubjectController extends VersionController
     * 点赞/取消点赞话题评论
     * @param garden_code 话题发布所属小区code
     * @param subject subject_id  话题id
-    *@param commont_id  评论id 可填
+    *@param commont_id  评论id
     * @param is_cancel 是否取消 可填
     * */
     protected function editSubjectCommontLikes_v1_0_0(){
@@ -267,7 +267,7 @@ class SubjectController extends VersionController
     * 删除评论
     * @param garden_code 话题发布所属小区code
     * @param subject_id  话题id
-    *@param commont_id  评论id 可填
+    *@param commont_id  评论id
     * */
     protected function delSubjectCommont_v1_0_0(){
         $garden_code=$this->pdata['garden_code'];
