@@ -101,9 +101,10 @@ class Events
     * @param int $client_id 连接id
     */
    public static function onClose($client_id) {
-       $user_code = Gateway::getSession($client_id);
-       var_dump($_SESSION['account_code']);
-
+       $user_code = $_SESSION['account_code'];
+       $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
+        $user_friends = $db->select('user_code')->column();
+        var_dump($user_friends);
        // 向所有人发送 
        GateWay::sendToAll(json_encode($_SESSION['account_code']));
    }
