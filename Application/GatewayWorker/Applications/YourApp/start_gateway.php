@@ -16,7 +16,6 @@ use \Workerman\WebServer;
 use \GatewayWorker\Gateway;
 use \GatewayWorker\BusinessWorker;
 use \Workerman\Autoloader;
-require_once './src/Connection.php';
 
 // gateway 进程，这里使用Text协议，可以用telnet测试
 $gateway = new Gateway("Websocket://0.0.0.0:8282");
@@ -36,12 +35,6 @@ $gateway->registerAddress = '127.0.0.1:1238';
 $gateway->pingInterval = 30;
 // 心跳数据
 $gateway->pingData = '{"type":"ping"}';
-
-$gateway->onWorkerStart = function($connection){
-    global $db;
-    $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-    var_dump($db->query('show tables;'));
-};
 
 
 /*

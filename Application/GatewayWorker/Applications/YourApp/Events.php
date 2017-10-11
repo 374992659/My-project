@@ -20,7 +20,8 @@
 //declare(ticks=1);
 use \GatewayWorker\Lib\Gateway;
 use Think\Model;
-
+use \Workerman\Autoloader;
+require_once './src/Connection.php';
 require_once '../Common/Lib/AesLib.class.php';
 /**
  * 主逻辑
@@ -41,7 +42,10 @@ class Events
         // 向所有人发送
        // Gateway::sendToAll("$client_id login\n");
     }
-    
+    public static function onWorkerStart(){
+        global $db;
+        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+    }
    /**
     * 当客户端发来消息时触发
     * @param int $client_id 连接id
