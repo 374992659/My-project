@@ -63,7 +63,7 @@ class Events
                array_push($user_arr,$account_code['account_code']);
                $_SESSION['user_arr']=$user_arr;
            }
-           var_dump($_SESSION['user_arr']);
+           var_dump($_SESSION);
            $group_arr=json_decode($message->group_arr,true);
            if($group_arr){
                foreach ($group_arr as $k=>$v){
