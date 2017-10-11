@@ -60,7 +60,7 @@ class Events
                    var_dump($account_code['account_code']);
            $user_arr = $_SESSION['user_arr'] ? $_SESSION['user_arr'] : array() ;
            if(@!in_array($account_code['account_code'],$user_arr)){
-               array_push($user_arr,$account_code['account_code']);
+               $user_arr[$account_code['account_code']]=$account_code['account_code'];
                $_SESSION['user_arr']=$user_arr;
            }
            var_dump($_SESSION);
