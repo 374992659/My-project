@@ -68,9 +68,8 @@ class Events
                                }
                                Gateway::sendToClient($client_id,'hello world');
                         };break;
-           case 2: Gateway::sendToUid($message->account_code,$message->content);break;
-           case 3: Gateway::sendToGroup($message->group,$message->content);
-                        var_dump(Gateway::getClientCountByGroup('27025565'));
+           case 2: Gateway::sendToUid($message->account_code,$message->content);break; //发送消息给好友
+           case 3: Gateway::sendToGroup($message->group,$message->content);break;   //发送消息给群组
        }
    }
    
