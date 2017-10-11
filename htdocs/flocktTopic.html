@@ -15,14 +15,11 @@
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/flockTopic.css">
-    <script>
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
-    </script>
 </head>
 <body>
     <div id="flockTopic">
         <div class="weui-cells">
-            <a class="weui-cell weui-cell_access" href="hotTopic_spit.html" style="padding: 5px 15px">
+            <a class="weui-cell weui-cell_access" href="flockTopic_push.html" style="padding: 5px 15px">
                 <div class="weui-cell__bd">
                     <p style="font-size: 15px">发布话题</p>
                 </div>
@@ -35,8 +32,8 @@
         </div>
         <!--话题内容-->
         <div class="weui-panel weui-panel_access">
-            <div class="weui-panel__bd">
-                <a href="hotTopic_myTopicText.html" class="weui-media-box weui-media-box_appmsg">
+            <div class="weui-panel__bd GroupSubjectList">
+                <a href="flockTopic_content.html" class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__bd">
                         <div class="topic">
                             <h4 class="weui-media-box__title lf" style="font-size: 13px">标题一：</h4>
@@ -79,5 +76,10 @@
     });
 </script>
 <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
+    <script src="js/flockTopic.js"></script>
 </body>
 </html>
