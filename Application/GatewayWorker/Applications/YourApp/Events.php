@@ -22,6 +22,7 @@ use \GatewayWorker\Lib\Gateway;
 use Think\Model;
 
 require_once '../Common/Lib/AesLib.class.php';
+require_once './src/Connection.php';
 /**
  * 主逻辑
  * 主要是处理 onConnect onMessage onClose 三个方法
@@ -37,9 +38,9 @@ class Events
      */
     public static function onConnect($client_id) {
         // 向当前client_id发送数据
-        Gateway::sendToCurrentClient("Your client_id is $client_id\n");
+        //Gateway::sendToCurrentClient("Your client_id is $client_id\n");
         // 向所有人发送
-        Gateway::sendToAll("$client_id login\n");
+       // Gateway::sendToAll("$client_id login\n");
     }
     
    /**

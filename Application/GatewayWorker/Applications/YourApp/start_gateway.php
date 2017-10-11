@@ -32,7 +32,7 @@ $gateway->startPort = 2900;
 $gateway->registerAddress = '127.0.0.1:1238';
 
 // 心跳间隔
-$gateway->pingInterval = 10;
+$gateway->pingInterval = 30;
 // 心跳数据
 $gateway->pingData = '{"type":"ping"}';
 
