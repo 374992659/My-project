@@ -64,6 +64,7 @@ class Events
                         $group_arr=json_decode($message->group_arr,true);
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
+                                   var_dump($v);
                                    Gateway::joinGroup($client_id,$v);      //将用户加入群组
                                }
                                Gateway::sendToClient($client_id,'hello world');
