@@ -76,9 +76,10 @@ class Events
                         if($user_friends){
                             foreach ($user_friends as $key=>$val){
                                 $user_client_id=Gateway::getClientIdByUid($val['user_code']);
-                                var_dump($user_client_id);
-                                if(array_key_exists($user_client_id,$online_user)){
-                                    $online_friends[]=$val['user_code'];
+                                if($user_client_id){
+                                    if(array_key_exists($user_client_id[0],$online_user)){
+                                        $online_friends[]=$val['user_code'];
+                                    }
                                 }
                             }
                             var_dump($online_friends);
