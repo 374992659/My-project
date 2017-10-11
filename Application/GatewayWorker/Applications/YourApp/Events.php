@@ -69,6 +69,7 @@ class Events
                                }
                                Gateway::sendToClient($client_id,'hello world');
                         };
+                        global $db;
                         $user = $db->query('show tables;');
                         var_dump($user);
                         break;
