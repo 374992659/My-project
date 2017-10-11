@@ -60,11 +60,11 @@ class Events
                        Gateway::setSession($client_id,$account_code);
                        $user_arr=Gateway::getAllClientSessions();
                        $_SESSION['user_arr']=$user_arr;
-                       var_dump($user_arr);
+                       print_r($user_arr);
                         $group_arr=json_decode($message->group_arr,true);
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
-                                   var_dump($v);
+                                   print_r($v);
                                    Gateway::joinGroup($client_id,$v);      //将用户加入群组
                                }
                                Gateway::sendToClient($client_id,'hello world');
