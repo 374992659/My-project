@@ -57,6 +57,7 @@ class Events
        if(!$account_code)return;
        switch ($message->type){
            case 1:  Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
+                        $_SESSION['account_code'] = $account_code['account_code'];
                         Gateway::updateSession($client_id,$account_code);
                         $table_id= substr($account_code['account_code'],0,4);
 //                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
@@ -101,10 +102,10 @@ class Events
     */
    public static function onClose($client_id) {
        $user_code = Gateway::getSession($client_id);
-       var_dump($user_code);
+       var_dump($_SESSION['account_code']);
 
        // 向所有人发送 
-       GateWay::sendToAll(json_encode($user_code));
+       GateWay::sendToAll(json_encode($_SESSION['account_code']));
    }
 }
 
