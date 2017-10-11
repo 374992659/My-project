@@ -57,7 +57,7 @@ class Events
        if(!$account_code)return;
        switch ($message->type){
            case 1: Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
-                       Gateway::setSession($client_id,$account_code);
+                       Gateway::updateSession($client_id,$account_code);
                        $user_arr=Gateway::getAllClientSessions();
                        $_SESSION['user_arr']=$user_arr;
                        print_r($user_arr);
