@@ -103,7 +103,7 @@ class Events
    public static function onClose($client_id) {
        $user_code = $_SESSION['account_code'];
        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
-        $user_friends = $db->select('user_code')->column();
+        $user_friends = $db->select('user_code')->from('user_friends')->column();
         var_dump($user_friends);
        // 向所有人发送 
        GateWay::sendToAll(json_encode($_SESSION['account_code']));
