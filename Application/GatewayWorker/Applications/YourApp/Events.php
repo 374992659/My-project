@@ -56,20 +56,17 @@ class Events
        };
        if(!$account_code)return;
        switch ($message->type){
-           case 1: Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
-                   var_dump($user_arr=Gateway::getAllClientSessions());
-           if(@!in_array($account_code['account_code'],$user_arr)){
-               $user_arr[$account_code['account_code']]=$account_code['account_code'];
-               $_SESSION['user_arr']=$user_arr;
-           }
-           var_dump($_SESSION);
-           $group_arr=json_decode($message->group_arr,true);
-           if($group_arr){
-               foreach ($group_arr as $k=>$v){
-                   Gateway::joinGroup($client_id,$v);  //将用户加入群组
-               }
-               Gateway::sendToClient($client_id,'hello world');
-           };break;
+           case 1:Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
+                    var_dump($user_arr=Gateway::getAllClientSessions());
+                    $user_arr[$client_id]=$account_code;
+                    var_dump($user_arr=Gateway::getAllClientSessions());
+                    $group_arr=json_decode($message->group_arr,true);
+                    if($group_arr){
+                           foreach ($group_arr as $k=>$v){
+                               Gateway::joinGroup($client_id,$v);      //将用户加入群组
+                           }
+                           Gateway::sendToClient($client_id,'hello world');
+                    };break;
            case 2:Gateway::sendToUid($message->account_code,$message->content);
        }
    }
