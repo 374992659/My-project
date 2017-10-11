@@ -55,12 +55,11 @@ class Events
            $account_code=$message->apptoken?json_decode($aesLib->aes128cbcHexDecrypt($message->apptoken,'5edd3f6060e20220','622102f9149e022d'),true):'';
        };
        if(!$account_code)return;
+       print_r($account_code);
        switch ($message->type){
            case 1: Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
                        Gateway::updateSession($client_id,$account_code);
-                       $user_arr=Gateway::getAllClientSessions();
-                       $_SESSION['user_arr']=$user_arr;
-                       print_r($user_arr);
+                       print_r(Gateway::getAllClientSessions());
                         $group_arr=json_decode($message->group_arr,true);
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
