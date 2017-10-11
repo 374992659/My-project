@@ -75,10 +75,12 @@ class Events
                         $online_friends = array();
                         if($user_friends){
                             foreach ($user_friends as $key=>$val){
-                                if(array_key_exists($val['user_code'],$online_user)){
+                                $user_client_id=Gateway::getClientIdByUid($val['user_code']);
+                                if(array_key_exists($user_client_id,$online_user)){
                                     $online_friends[]=$val['user_code'];
                                 }
                             }
+                            var_dump($online_friends);
                         }
                         Gateway::sendToClient($client_id,'hello world');
                         break;
