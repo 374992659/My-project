@@ -87,8 +87,8 @@ class Events
                                 'online_friends'=>$online_friends,
                             )
                         );
-                        $encryDate= $aesLib->aes128cbcEncrypt($data,'5efd3f6550e20330','625202f5549e061d');
-                        Gateway::sendToClient($client_id,$encryDate);
+//                        $encryDate= $aesLib->aes128cbcEncrypt(json_encode($data),'5efd3f6550e20330','625202f5549e061d');
+                        Gateway::sendToClient($client_id,json_encode($online_friends));
                         break;
            case 2:  Gateway::sendToUid($message->account_code,$message->content);break; //发送消息给好友
            case 3:  Gateway::sendToGroup($message->group,$message->content);break;   //发送消息给群组
