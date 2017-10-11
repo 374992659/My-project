@@ -59,17 +59,27 @@ class Events
            case 1:  Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
                         Gateway::updateSession($client_id,$account_code);
                         $table_id= substr($account_code['account_code'],0,4);
-                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
-                        $group_arr = $db->query('select group_code  from user_group where status = 1');
-                        var_dump($group_arr);
-                        $group_arr=json_decode($message->group_arr,true);
+                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'303117608006762');
+                        $group_arr = $db->query('select group_code  from user_group where status = 1;');
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
-                                   Gateway::joinGroup($client_id,$v);                                   //将用户加入群组
+                                   Gateway::joinGroup($client_id,$v['group_code']);                                   //将用户加入群组
                                }
-                               Gateway::sendToClient($client_id,'hello world');
                         };
-
+                        //获取用户在线的好友
+                        $user_friends = $db->query('select user_code form user_friends');
+                        var_dump($user_friends);
+                        $online_user = Gateway::getAllClientSessions();
+                        var_dump($online_user);
+                        $online_friends = array();
+                        if($user_friends){
+                            foreach ($user_friends as $key=>$val){
+                                if(array_key_exists($val['user_code'],$online_user)){
+                                    $online_friends[]=$val['user_code'];
+                                }
+                            }
+                        }
+                        Gateway::sendToClient($client_id,'hello world');
                         break;
            case 2:  Gateway::sendToUid($message->account_code,$message->content);break; //发送消息给好友
            case 3:  Gateway::sendToGroup($message->group,$message->content);break;   //发送消息给群组
