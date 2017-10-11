@@ -58,7 +58,7 @@ class Events
        switch ($message->type){
            case 1: var_dump(Gateway::bindUid($client_id,$account_code['account_code']));    //绑定客户端id及用户code
                    var_dump($account_code['account_code']);
-           $user_arr = $_SESSION['user_arr'];
+           $user_arr = $_SESSION['user_arr'] ? $_SESSION['user_arr']: array() ;
            if(@!in_array($account_code['account_code'],$user_arr)){array_push($user_arr,$account_code['account_code']);$_SESSION['user_arr']=$user_arr;};
            var_dump($_SESSION['user_arr']);
            $group_arr=json_decode($message->group_arr,true);
