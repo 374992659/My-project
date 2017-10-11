@@ -68,7 +68,9 @@ class Events
                                }
                                Gateway::sendToClient($client_id,'hello world');
                         };break;
-           case 2: Gateway::sendToUid($message->account_code,$message->content);
+           case 2: Gateway::sendToUid($message->account_code,$message->content);break;
+           case 3: Gateway::sendToGroup($message->group,$message->content);
+                        var_dump(Gateway::getClientCountByGroup('27025565'));
        }
    }
    
