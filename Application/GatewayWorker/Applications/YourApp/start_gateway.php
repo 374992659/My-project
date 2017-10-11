@@ -40,6 +40,7 @@ $gateway->pingData = '{"type":"ping"}';
 $gateway->onWorkerStart = function($connection){
     global $db;
     $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+    var_dump($db->query('show tables;'));
 };
 
 
