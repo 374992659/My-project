@@ -59,6 +59,7 @@ class Events
            case 1:  Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
                         $_SESSION['account_code'] = $account_code['account_code'];
                         Gateway::updateSession($client_id,$account_code);
+
                         $table_id= substr($account_code['account_code'],0,4);
 //                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
                         $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
@@ -90,6 +91,15 @@ class Events
                                 'online_friends'=>$online_friends,
                             )
                         );
+                        $data2 = array(
+                            'errcode'=>0,
+                            'errmsg'=>'login',
+                            'data'=>array(
+                                'type'=>2,
+                                'user_code'=>$account_code['account_code'],
+                            )
+                        );
+                        Gateway::sendToUid($online_friends,json_encode($data2));
                         Gateway::sendToClient($client_id,json_encode($data));
                         break;
            case 2:  Gateway::sendToUid($message->account_code,$message->content);break; //发送消息给好友
@@ -103,6 +113,8 @@ class Events
     */
    public static function onClose($client_id) {
        $user_code = $_SESSION['account_code'];
+       Gateway::unbindUid($client_id,$user_code);
+//       $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$user_code);
        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
        $user_friends = $db->select('user_code')->from('user_friends')->column();
        if($user_friends){
@@ -110,13 +122,14 @@ class Events
                'errcode'=>0,
                'errmsg'=>'logout',
                'data'=>array(
-                   'type'=>2,
+                   'type'=>3,
                    'user_code'=>$user_code,
                )
            );
            // 向所有好友发送
            Gateway::sendToUid($user_friends,json_encode($data));
        }
+       $_SESSION['account_code']='';
    }
 }
 
