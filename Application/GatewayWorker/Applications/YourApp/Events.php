@@ -45,6 +45,7 @@ class Events
     public static function onWorkerStart(){
         global $db;
         $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+        var_dump($db->query('show tables;'));
     }
    /**
     * 当客户端发来消息时触发
