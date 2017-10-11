@@ -59,8 +59,8 @@ class Events
            case 1:  Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
                         Gateway::updateSession($client_id,$account_code);
                         $table_id= substr($account_code['account_code'],0,4);
-//                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
-                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
+                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
+//                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
                         $group_arr = $db->query('select group_code  from user_group where status = 1;');
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
@@ -84,6 +84,7 @@ class Events
                         $data = array(
                             'errocode'=>0,
                             'data'=>array(
+                                'type'=>1,
                                 'online_friends'=>$online_friends,
                             )
                         );
@@ -99,7 +100,13 @@ class Events
     * @param int $client_id 连接id
     */
    public static function onClose($client_id) {
+       $user_code = Gateway::getSession($client_id);
+       var_dump($user_code);
+
        // 向所有人发送 
-       GateWay::sendToAll("$client_id logout");
+       GateWay::sendToAll(json_encode($user_code));
    }
 }
+
+
+//返回数据 type类型为 1 为获取在线用户列表
