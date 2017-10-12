@@ -37,21 +37,20 @@ a:hover {
 label{
     font-size: 12px;
     display: inline-block;
-    width: 30%;
+    width: 25%;
     height: 30px;
     text-align: right;
 }
 #pushPlay{
-    padding: 1rem;
+    padding: 5px;
 }
 #pushPlay li{
-    padding: 5px 0;
     border-bottom: 1px solid #b1b3b5;
 }
 #pushPlay input{
     outline: none;
     padding: 4px;
-    width: 60%;
+    width: 65%;
 
 }
 #pushPlay .time input{
@@ -59,13 +58,13 @@ label{
 
 }
 /*添加标签的显示位置*/
-.weui-flex>div{
+.labelBox>li{
     text-align: center;
-    border: 1px solid blueviolet;
     border-radius: 3px;
     margin-right: 2px;
     font-size: 10px;
     background: blue;
+    color:red;
 }
 /*上传图片*/
 .picPlace li{
@@ -75,7 +74,19 @@ label{
     border: 1px solid #b1b3b5;
     float:left ;
 }
-
+.picPlace li{
+    position: relative;
+}
+.delImg{
+    position: absolute;
+    top:0;
+    right: -1px;
+}
+.weui-gallery__img {
+    overflow: hidden;
+    height: 50%;
+    top: 30%;
+}
 
 
 

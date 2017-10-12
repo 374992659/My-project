@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/flockPlay_push.css">
-    <script>
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
-    </script>
 </head>
 <body>
     <form action="" id="pushPlay">
@@ -27,8 +24,8 @@
             </li>
             <li class="time" style="font-size: 12px">
                 <label for="time">活动时间：</label>
-                <input type="text"  id="other-date1" data-options='{"type":"YYYY-MM-DD","beginYear":2012,"endYear":2022,"limitTime":true}'> 到
-                <input type="text"  id="other-date2" data-options='{"type":"YYYY-MM-DD","beginYear":2012,"endYear":2022,"limitTime":true}'>
+                <input type="text" id="other-date1" required data-options="{&quot;type&quot;:&quot;YYYY-MM-DD&quot;,&quot;beginYear&quot;:2012,&quot;endYear&quot;:2022,&quot;limitTime&quot;:true}"> 到
+                <input type="text"  id="other-date2" required data-options='{"type":"YYYY-MM-DD","beginYear":2012,"endYear":2022,"limitTime":true}'>
             </li>
             <li>
                 <label for="gatherPlace">集合地点：</label>
@@ -50,8 +47,11 @@
             <li>
                 <label for="vehicle">出行方式：</label>
                 <select name="" id="vehicle" style="width: 180px;height: 30px;outline: none">
-                    <option value="自驾游">自驾游</option>
-                    <option value="组团游">组团游</option>
+                    <option value="0">请选择</option>
+                    <option value="1">汽车自驾</option>
+                    <option value="2">徒步</option>
+                    <option value="3">行车骑行</option>
+                    <option value="4">摩托车骑行</option>
                 </select>
 
             </li>
@@ -69,9 +69,9 @@
             <li>
                 <label for="changPlan">费用类型：</label>
                 <select name="" id="changPlan" style="width: 180px;height: 30px;outline: none">
-                    <option value="AA制">AA制</option>
-                    <option value="群主">群主</option>
-                    <option value="发布人">发布人</option>
+                    <option value="1">AA制</option>
+                    <option value="2">自驾游</option>
+                    <option value="3">发布人</option>
                 </select>
             </li>
             <li>
@@ -84,22 +84,24 @@
             </li>
             <li>
                 <label for="line">路线规划：</label>
-                <input type="text" id="line" required autofocus>
+                <input type="text" id="line" autofocus>
             </li>
             <li class="addLabel">
-                <label for="add">添加标签：</label>
+                <label>添加标签：</label>
                 <!--添加标签位置-->
-                <input type="text" placeholder="如：美女" maxlength="5" style="width: 70px">
+                <input type="text" class="labelPlace" placeholder="如：美女" maxlength="5" style="width: 70px">
                 <!--添加标签按钮-->
-                <button  style="display:inline-block;border:none;font-size: 12px;background: #3e79b5;color: white;padding: 2px 4px;border-radius: 2px">添加标签</button>
+                <p class="LabelBtn" style="display:inline-block;border:none;font-size: 12px;background: #3e79b5;color: white;padding: 2px 4px;border-radius: 2px;position: relative;z-index: 1000000">添加标签</p>
+
+                <!--<div class="weui-flex labelBox">-->
+                    <!--<div class="weui-flex__item" style="width: 25%"><div class="placeholder" style="color:brown;width: 100%">美女多的很</div></div>-->
+                    <!--<div class="weui-flex__item"><div class="placeholder" style="color:red;">帅哥</div></div>-->
+                    <!--<div class="weui-flex__item"><div class="placeholder" style="color:green;">海得起</div></div>-->
+                    <!--<div class="weui-flex__item"><div class="placeholder" style="color:gold;">自驾游</div></div>-->
+                <!--</div>-->
                 <!--添加标签显示位置-->
-                <div class="weui-flex">
-                    <div class="weui-flex__item" style="width: 25%"><div class="placeholder" style="color:brown;width: 100%">美女多的很</div></div>
-                    <div class="weui-flex__item"><div class="placeholder" style="color:red;">帅哥</div></div>
-                    <div class="weui-flex__item"><div class="placeholder" style="color:green;">海得起</div></div>
-                    <div class="weui-flex__item"><div class="placeholder" style="color:gold;">自驾游</div></div>
-                </div>
-                <div class="weui-cells__tips" style="text-align: center;background: beige">添加4个标签，每个标签最对5个字</div>
+                <ul style="display: flex; flex-direction: row;flex-wrap: wrap;" class="labelBox">
+                </ul>
             </li>
             <li class="addpic">
                 <!--添加图片-->
@@ -112,8 +114,8 @@
                                 </div>
                                 <!--上传图片的位置-->
                                 <ul class="picPlace">
-                                    <li><img src="" alt="" ></li>
-                                    <li><img src="" alt=""></li>
+                                    <!--<li><img src="" alt="" ></li>-->
+                                    <!--<li><img src="" alt=""></li>-->
                                 </ul>
                                 <!--图片添加按钮-->
                                 <div class="weui-uploader__bd lf">
@@ -124,7 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="weui-cells__tips" style="text-align: center;background: beige">可上传2张可主题相关的照片</div>
+                    <div class="weui-cells__tips" style="text-align: center;background: beige">可上传3张可主题相关的照片</div>
                 </div>
             </li>
             <li>
@@ -133,7 +135,6 @@
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
                             <textarea class="weui-textarea" placeholder="此次出行的概要介绍" maxlength="200" rows="3" style="font-size: 12px"></textarea>
-                            <div class="weui-textarea-counter"><span style="font-size: 15px">0</span>/200</div>
                         </div>
                     </div>
                 </div>
@@ -142,7 +143,18 @@
     </form>
     <!--提交按钮-->
     <div class="demos-content-padded">
-        <button class="weui-btn weui-btn_primary">发布</button>
+        <button class="weui-btn weui-btn_primary subBtn">发布</button>
+    </div>
+    <!--图片放大预览-->
+    <div class="weui-gallery" style="display: none">
+        <span class="weui-gallery__img" style="text-align: center">
+            <img src="" alt="" style="width: 100%">
+        </span>
+        <div class="weui-gallery__opr">
+            <a href="javascript:" class="weui-gallery__del" >
+
+            </a>
+        </div>
     </div>
 <script src="js/jquery-1.11.3.js"></script>
 <script src="JQuery_weui/fastclick.js"></script>
@@ -152,6 +164,10 @@
     });
 </script>
 <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
     <script src="js/flockPlay_push.js"></script>
 </body>
 </html>

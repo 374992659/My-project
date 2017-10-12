@@ -6,7 +6,7 @@ ul, p, h3, h2, input, h4 {
     margin: 0;
 }
 body{
-    background: #b1b3b5;
+    background:#E0E0E0;
 }
 body, div, ul, a {
     font-family: "Microsoft YaHei", simSun, "Lucida Grande", "Lucida Sans Unicode", Arial;
@@ -50,7 +50,13 @@ a:hover {
     padding: 10px 4px;
     border-bottom: 1px solid blanchedalmond;
 }
-
+.success{
+    /*display: none;*/
+    background: green;
+    color:	#000079;
+    font-size: 15px;
+    text-align: center;
+}
 
 
 

@@ -1,8 +1,6 @@
 $(document).ready(function(){
 //添加选项
-
     $(".addOption").click(function(){
-
         var $li=$("<li class=\"option\">\n" +
             "<img src=\"image/del.png\" class=\"delImg\" style=\"width: 20px;vertical-align: middle;position: relative;z-index: 1000\" alt=\"\">\n" +
             "<label for=\"\" style=\"width: 21.5%\">选项：</label>\n" +
@@ -16,9 +14,10 @@ $(document).ready(function(){
     });
 
     });
-// 添加图片
-    $("#selectImg").change(function(){
-        console.log("nihao ")
-    });
+    // 结束时间
+    $.date('#other-date1');
+    // 上传图片
+    var upload=$("#uploaderFiles");
+    addpic(upload);
 });
 

@@ -2,7 +2,7 @@ $(document).ready(function(e){
 //   功能1 删除好友分组
     $(".groupList .weui-cell").on("click","delBtn",function(){
         //获取apptoken
-        var apptoken=localStorage.getItem("apptone");
+        var apptoken=localStorage.getItem("apptoken");
         //获取当前group_id
         var group_id=$(e.target).parent().attr("title");
         //数据转换

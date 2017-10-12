@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    "use strict";
     // 创建时间函数
     (function(){
         /*
@@ -22,7 +23,7 @@ $(document).ready(function(){
             tend = isTouch ? "touchend" : "mouseup",
             tcancel = isTouch ? "touchcancel" : "mouseleave";
 
-        opts = {
+       var opts = {
             beginYear: 2010,
             endYear: 2020,
             type:'YYYY-MM-DD',
@@ -89,7 +90,7 @@ $(document).ready(function(){
                     e.preventDefault();
                     T = e.pageY || e.touches[0].pageY;
                     if(!isTouch){isPress = true;}
-                })
+                });
                 $(document).on(tmove,'#date-wrapper ol', function(e){
                     var e = e.originalEvent,that = $(this);
                     e.stopPropagation();
@@ -109,21 +110,21 @@ $(document).ready(function(){
                     }
                     if (that.position().top > 0) that.css('top', '0');
                     if (that.position().top < -(that.height() - (120))) that.css('top', '-' + (that.height() - (120)) + 'px');
-                })
+                });
                 $(document).on(tend,'#date-wrapper ol', function(e){
                     var e = e.originalEvent,that = $(this);
                     e.stopPropagation();
                     e.preventDefault();
                     isPress = false;
                     dragEnd(that);
-                })
+                });
                 $(document).on(tcancel,'#date-wrapper ol', function(e){
                     var e = e.originalEvent,that = $(this);
                     e.stopPropagation();
                     e.preventDefault();
                     isPress = false;
                     dragEnd(that);
-                })
+                });
                 function dragEnd(that){
                     //滚动调整
                     var t = that.position().top;
@@ -202,11 +203,11 @@ $(document).ready(function(){
                             },
                             600);
                         if($(this).attr('id') == 'd-year'){
-                            yTop = liTop;
+                          var  yTop = liTop;
                         }else if($(this).attr('id') == 'd-month'){
-                            mTop = liTop;
+                          var  mTop = liTop;
                         }else if($(this).attr('id') == 'd-day'){
-                            dTop = liTop;
+                           var dTop = liTop;
                         }
                     })
                 } else {
@@ -222,11 +223,11 @@ $(document).ready(function(){
                 createDate.toNow(true);
                 createDate.show(false);
             }
-        }
+        };
         createDate.slide();
         var opt,activeEl;
         function DateTool(obj){
-            var that = $(obj)
+            var that = $(obj);
             that.bind('click',function() {
                 if (!$('#date-wrapper').is(':visible')) {
                     if(that.get(0).tagName == 'INPUT'){that.blur();}
@@ -269,11 +270,11 @@ $(document).ready(function(){
         }
         jQuery.date = function(obj){
             return new DateTool(obj);
-        }
+        };
         //取消
         $(document).on('click','#d-cancel',function(){
             createDate.clear();
-        })
+        });
         //确定
         $(document).on('click','#d-confirm',function(){
             var y = $('#d-year .active').text(),
@@ -307,4 +308,135 @@ $(document).ready(function(){
     $.date('#other-date1');
     $.date('#other-date2');
     $.date('#gathertime');
+    // 添加群活动函数
+    (function(){
+        // 获取tag 标签 可填
+        $(".LabelBtn").click(function(){
+            var LabelCon=$(".labelPlace").val();
+            if(LabelCon){
+                var Label=`
+                          <li class="itemLi">${LabelCon}</li>   
+            `;
+                $(".labelBox").append(Label);
+
+            }
+        });
+        // 图片上传
+        $("#uploaderInput").change(function(e){
+            var targetElement = e.target,
+                file = targetElement.files[0],
+                url=window.URL.createObjectURL(this.files[0]) ;
+            console.log(file.name);
+            var fd = new FormData();
+            fd.append('fileToUpload', file);
+            localStorage.setItem("flockPlayPic",fd);
+            if(url){
+               var html=`
+                <li><img class="pushPlayImg" src="${url}" alt="" style="width:80px ;height: 80px" >
+                <img src="image/del.png" alt="" class="delImg">
+                </li>
+               
+               `
+            }
+            localStorage.setItem("pushPlay_Img",url);
+            $(".picPlace").append(html)
+        });
+        // 取消删除图片
+        $(".picPlace").on("click","li .delImg",function(){
+            $(this).parent().remove();
+        });
+        // 图片放大预览
+        (function(){
+            $(".picPlace").on("click","li .pushPlayImg",function(){
+                console.log(123);
+                var url=localStorage.getItem("pushPlay_Img");
+                if($(".weui-gallery").is(":hidden")){
+                    $(".weui-gallery").show();
+                    $(".weui-gallery__img img").attr("src",url)
+                }
+            });
+            $(".weui-gallery").click(function(){
+                $(".weui-gallery").hide();
+
+            });
+        })();
+        $(".subBtn").click(function(){
+            // 获取apptoken
+            var apptoken=localStorage.getItem("apptoken");
+            // 获取title 标题
+            var title=$("#topic").val();
+            // 获取start_time 开始时间
+            var start_time=$("#other-date1").val();
+            // 获取end_time 结束时间
+            var end_time=$("#other-date2").val();
+            // 获取destination 目的地
+            var destination=$("#bourn").val();
+            // 获取collection_time 集合时间
+            var collection_time=$("#gathertime").val();
+            // 获取collection_place 集合地
+            var collection_place=$("#gatherPlace").val();
+            // 获取contact 联系人
+            var contact=$("#linkman").val();
+            // 获取phone 联系电话
+            var phone=$("#contactWay").val();
+            // 获取transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
+            var transport="";
+            $("#vehicle").change(function(){
+                transport=$(this).val();
+                console.log(transport);
+                return transport;
+            });
+            // 获取garden_code 小区code
+            var garden_code="";
+            // 获取garden_name 小区名称
+            var garden_name="";
+            // 获取total_num 目标人数
+            var total_num=$("#number").val();
+            // 获取cost_type 花费类型 1：AA制 2：自驾游 3：发布人请客 ...
+            var cost_type="";
+            $("#changPlan").change(function(){
+                cost_type=  $(this).val();
+                return cost_type
+            });
+            // 获取average_cost 人均消费
+            var average_cost=$("#perCapita").val();
+            // 获取rote_planning 路线规划 可填
+            var rote_planning=$("#line").val();
+            // 获取tag 标签 可填
+            var tag={arrayTag:[]};
+            var tagLi=$(".labelBox").find($(".itemLi"));
+            $.each(tagLi,function(i,item){
+                tag.array.push($(this).text());
+            });
+            console.log(tag);
+            // 获取picture 图片 可填
+            var picture="";
+            // 获取detailed_introduction 详细介绍 可填
+            var detailed_introduction=$(".weui-textarea").val();
+            // 获取group_num 群号码
+            var group_num=localStorage.getItem("group_num");
+            // 数据格式转换
+         var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tag,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"garden_code":garden_code,"garden_name":garden_name,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":picture,"detailed_introduction":detailed_introduction,"group_num":group_num})];
+            console.log(data);
+            // 数据加密
+            var jsonEncryptData=jsEncryptData(data);
+            $.ajax({
+                url:url+"group_addGroupActivity",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密数据
+                    var data=jsDecodeData(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",apptoken);
+                        alert("发布成功");
+                    }else{
+                        console.log(data.errmsg);
+                    }
+                }
+
+            })
+        })
+    })();
+
 });

@@ -57,17 +57,17 @@
     </style>
 </head>
 <body>
+<P class="success">发布成功</P>
     <div id="spitTopic">
         <!--发布内容-->
         <form action="">
             <ul>
                 <li>
                     <label for="">标题：</label>
-                    <input type="text" maxlength="12">
+                    <input type="text" maxlength="12" required autofocus>
                     <div class="weui-cells__tips" style="text-align: center;background:	#E0E0E0;font-size: 10px">标题最多输入12个字</div>
                 </li>
                 <li>
-                    <label for="">内容：</label>
                     <div class="weui-cells weui-cells_form">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
@@ -100,7 +100,8 @@
                 </li>
                 <li>
                     <label for="">结束时间：</label>
-                    <input type="text">
+                    <input type="text" id="gathertime" data-options='{"type":"YYYY-MM-DD hh:mm","beginYear":2010,"endYear":2020}'
+                           style="width: 170px">
                 </li>
                 <li style="position: relative">
                     <label for="">图片：</label>
@@ -109,13 +110,13 @@
                             <div class="weui-cell__bd">
                                 <div class="weui-uploader">
                                     <div class="weui-uploader__bd">
-                                        <ul class="weui-uploader__files" id="uploaderFiles">
-                                            <li class="weui-uploader__file" style="padding: 0">
-                                                <img src="image/firendc.jpg" style="width: 70px" alt="">
-                                            </li>
-                                            <li class="weui-uploader__file"  style="padding: 0">
-                                                <img src="image/firendd.jpg" style="width: 70px" alt="">
-                                            </li>
+                                        <ul class="weui-uploader__files .picPlace" id="uploaderFiles">
+                                            <!--<li class="weui-uploader__file" style="padding: 0">-->
+                                                <!--<img src="image/firendc.jpg" style="width: 70px" alt="">-->
+                                            <!--</li>-->
+                                            <!--<li class="weui-uploader__file"  style="padding: 0">-->
+                                                <!--<img src="image/firendd.jpg" style="width: 70px" alt="">-->
+                                            <!--</li>-->
                                         </ul>
                                         <div class="weui-uploader__input-box">
                                             <input id="uploaderInput" class="weui-uploader__input" type="file"  multiple="">
@@ -170,6 +171,17 @@
             </p>
             <p class="weui-footer__text">Copyright © 2016 jqweui.io</p>
         </div>
+        <!--图片放大预览-->
+        <div class="weui-gallery" style="display: none">
+        <span class="weui-gallery__img" style="text-align: center">
+            <img src="" alt="" style="width: 100%">
+        </span>
+            <div class="weui-gallery__opr">
+                <a href="javascript:" class="weui-gallery__del" >
+
+                </a>
+            </div>
+        </div>
     </div>
     <script src="js/jquery-1.11.3.js"></script>
     <script src="JQuery_weui/fastclick.js"></script>
@@ -178,7 +190,7 @@
             FastClick.attach(document.body);
         });
     </script>
-    <script src="js/hotTopic_spit.js"></script>
+
     <script src="js/jquery-weui.js"></script>
     <script src="js/city-picker.js"></script>
     <script>
@@ -199,5 +211,12 @@
             }
         });
     </script>
+<script src="js/url.js"></script>
+<script src="js/aes.js"></script>
+<script src="js/pad-zeropadding.js"></script>
+<script src="js/encrypt-decode.js"></script>
+<script src="js/TIME.js"></script>
+<script src="js/addPicture.js"></script>
+<script src="js/hotTopic_spit.js"></script>
 </body>
 </html>

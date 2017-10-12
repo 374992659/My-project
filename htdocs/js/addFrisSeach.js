@@ -3,7 +3,6 @@ $(document).ready(function(){
         var agelength=[];
         var sex="";
         $("#city").change(function(){
-
            area=$(this).val();
            console.log(area);
             return area;
@@ -23,7 +22,6 @@ $(document).ready(function(){
             console.log(sex);
             return sex;
         });
-
     $(".searchBtn").click(function() {
         var apptoken = localStorage.getItem("apptoken");
         var paramarea_id = area,
