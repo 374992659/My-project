@@ -104,7 +104,6 @@ $(document).ready(function(e){
                     console.log(data.errmsg);
                 }
             }
-
         });
 //  功能3修改好友分组
         $(".groupList").on("click",".weui-cell .alterBtn",function(e){
