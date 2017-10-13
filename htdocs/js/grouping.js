@@ -42,7 +42,7 @@ $(document).ready(function(e){
         var groupName= $(".groupName").val();
         console.log(groupName);
 //                转换好友名称数据格式
-        data=["",JSON.stringify({"groupName":groupName,"apptoken":apptoken})];
+        data=["",JSON.stringify({"group_name":groupName,"apptoken":apptoken})];
 //                对名字进行加密
         console.log(data);
          jsonEncryptData=jsEncryptData(data);
