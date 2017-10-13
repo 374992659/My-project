@@ -363,6 +363,11 @@ class RegiestController extends BaseController
         $model=new Model\UserAreaModel();
         $data=$model->getUserInfoByPhone($account);
         $this->executeSql('databases.sql',$data);
+        $m =new MongoClient();
+        $db = $m->user_info_.$account['account_code'];
+        $db->createCollection('group_chat');//群聊记录
+        $db->createCollection('group_new_message');//群新消息
+        $db->createCollection('friendds_chat');// 好友聊天记录
     }
     public function executeSql($fileName,$data){
         $sql=file_get_contents(C('SQL_PATH').$fileName);
