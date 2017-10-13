@@ -107,17 +107,57 @@ class Events
                         Gateway::sendToClient($client_id,json_encode($data));
                         break;
            case 2:  $friend_code = $message->account_code;                                                      //发送消息给好友
+                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                        $table_id =substr($account_code['account_code'],0,4);
+                        $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
+                        $mongo =new MongoClient();
+                        $database1=$mongo->user_info_.$account_code;
+                        $collection1 = $database1->friends_chat;
+                        $data = array(
+                            'sender_code'=>$account_code['account_code'],
+                            'sender_nickname'=>$user_info['nickname'],
+                            'send_portrait'=>$user_info['portrait'],
+                            'content'=>$message->content,
+                            'type'=>$message->type,
+                            'send_time'=>time(),
+                        );
+                        $collection1->insert($data);    //发送用户聊天记录表插入数据
                         $is_online = Gateway::isUidOnline($friend_code);
-                        if($is_online){
+                        if($is_online){                         //用户在线
+                            //接收用户聊天记录表插入数据
+                            $database2=$mongo->user_info_.$message->account_code;
+                            $collection2 = $database2->friends_chat;
+                            $collection2->insert($data);
                             Gateway::sendToUid($message->account_code,$message->content);
                             Gateway::sendToCurrentClient(json_encode(self::returnData(0)));
                             break;
-                        }else{//存储用户离线消息
-
+                        }else{                              //存储用户离线消息
+                            $db2 = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$message->account_code);
+                            $db2->insert('offline_user_message')->cols(array(
+                                'sender_code'=>$account_code['account_code'],
+                                'content'=>$message->content,
+                                'type'=>$message->type,
+                                'send_time'=>time(),
+                            ));
                         }
-
-
-           case 3:  Gateway::sendToGroup($message->group,$message->content);break;          //发送消息给群组
+           case 3:  $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                        $table_id =substr($account_code['account_code'],0,4);
+                        $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
+                        $data =array(
+                            'sender_code'=>$account_code['account_code'],
+                            'send_nickname'=>$user_info['nickname'],
+                            'send_portrait'=>$user_info['send_portrait'],
+                            'content'=>$message->content,
+                            'send_time'=>time(),
+                            'group'=>$message->group,
+                            'type'=>$message->type,
+                        );
+                        $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
+                        $mongo =new MongoClient();
+                        $database= $mongo->user_info_.$create_code;
+                        $collection = $database->group_chat;
+                        $collection->insert($data);   //插入数据
+                        Gateway::sendToGroup($message->group,$message->content);break; //发送消息给群组
            case 4:  $client_id = Gateway::getClientIdByUid($message->account_code);                //获取某一用户在线状态
                         $is_online = Gateway::isOnline($client_id);
                         $data =  array(
