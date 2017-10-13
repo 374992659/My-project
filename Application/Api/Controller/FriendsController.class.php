@@ -30,11 +30,11 @@ class FriendsController extends VersionController
                             $v['group_name'] = $val['group_name'];
                         }
                     }
+                }else{
+                    $this->echoEncrypData(5,'');
                 }
                 $data2[$k]=$v;
             }
-        }else{
-            $this->echoEncrypData(5,'');
         }
 
         $this->echoEncrypData(0,'',$data2);
