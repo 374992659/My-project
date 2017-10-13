@@ -368,9 +368,9 @@ class RegiestController extends BaseController
         $baseinfo->online_user->insert(array('account_code'=>$data['account_code'],'status'=>0,'offline_time'=>0)); //用户表中加入数据
         $db = $m->user_info_.$data['account_code'];
         $group_chat=$db->createCollection('group_chat');//群聊记录
-        $group_chat->ensureIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1));
+        $group_chat->ensureIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1,'group'=>1));
         $group_new_message = $db->createCollection('group_new_message');//群新消息
-        $group_new_message->ensureIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1));
+        $group_new_message->ensureIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1,'group'=>1));
         $friends_chat=$db->createCollection('friends_chat');// 好友聊天记录
         $friends_chat->ensureIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1));
     }
