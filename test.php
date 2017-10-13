@@ -9,4 +9,4 @@ $m =new MongoClient();
 $db = $m->local;
 $collection = $db->runoob;
 $res = $collection->insert(array('myname'=>'hah'));
-var_dump($res);
+print_r($res);
