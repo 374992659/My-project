@@ -7,5 +7,5 @@
  */
 $m =new MongoClient();
 $db = $m->local;
-$collection = $db->createCollection("runoob1");
+$collection = $db->createCollection("runoob");
 var_dump($collection);
