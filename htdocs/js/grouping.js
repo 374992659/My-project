@@ -12,7 +12,7 @@ $(document).ready(function(e){
             data:{"data":jsonEncryptData},
             success:function(data){
 //           解密获取的数据
-                data=jsDecodeData( data );
+                data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
                     console.log(data);
@@ -65,9 +65,8 @@ $(document).ready(function(e){
                 data=jsDecodeData(data);
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
-                $(e.target).parent().remove();
                 alert("确认删除?");
-                alert("删除成功")
+                $(e.target).parent().remove();
             }else{
                 alert("删除失败")
             }
@@ -128,7 +127,7 @@ $(document).ready(function(e){
                     data=jsDecodeData(data);
                     if(data.errcode===0){
                         console.log(data);
-                        localStorage.setItem("apptoken",data.apptoekn);
+                        localStorage.setItem("apptoken",data.apptoken);
                         group();
                     }else{
                         console.log(data.errmsg);
