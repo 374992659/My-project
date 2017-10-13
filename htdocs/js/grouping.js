@@ -126,8 +126,9 @@ $(document).ready(function(e){
                 data:{"data":jsonEncryptData},
                 success:function(data){
                     // 解密
-                    var data=jsDecodeData(data);
+                    data=jsDecodeData(data);
                     if(data.errcode===0){
+                        console.log(data);
                         localStorage.setItem("apptoken");
                         group();
                     }else{
