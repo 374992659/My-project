@@ -8,5 +8,5 @@
 $m =new MongoClient();
 $db = $m->local;
 $collection = $db->runoob;
-$res = $collection->update(array('myname'=>'hah'),array('myname'=>1));
+$res = $collection->remove(array('myname'=>'hah'));
 print_r($res);
