@@ -129,7 +129,7 @@ $(document).ready(function(e){
                     data=jsDecodeData(data);
                     if(data.errcode===0){
                         console.log(data);
-                        localStorage.setItem("apptoken");
+                        localStorage.setItem("apptoken",data.apptoekn);
                         group();
                     }else{
                         console.log(data.errmsg);
