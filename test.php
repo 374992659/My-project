@@ -9,4 +9,4 @@ $m =new MongoClient();
 $db = $m->local;
 $collection = $db->runoob;
 $res = $collection->remove(array('myname'=>'hah'));
-var_dump($collection);
+var_dump($res);
