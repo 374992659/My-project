@@ -107,7 +107,7 @@ $(document).ready(function(e){
 
         });
 //  功能3修改好友分组
-        $(".groupList").on("click",".weui-cell .alterBtn",function(){
+        $(".groupList").on("click",".weui-cell .alterBtn",function(e){
             console.log(123);
             // 获取apptoken
             var apptoken=localStorage.getItem("apptoken"),
