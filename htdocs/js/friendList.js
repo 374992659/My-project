@@ -1,6 +1,6 @@
 
 $(document).ready(function() {
-    //强制跳转到登录页面
+    //功能1 请求好友分组
     var apptoken=localStorage.getItem("apptoken");
     data=["", JSON.stringify({"apptoken":apptoken})];
     console.log(data);
@@ -29,14 +29,14 @@ $(document).ready(function() {
                 ${item.online_num}/${item.total}
             </div>
         </div>
-     </div>
-     <div class="weui-panel weui-panel_access friendList" style="display: none">
-        <div class="weui-panel__bd friend">
-        </div>
-     </div>               
+        <div class="weui-panel weui-panel_access friendList" style="display: none">
+            <div class="weui-panel__bd friend">
+            </div>
+        </div> 
+     </div>                  
         `
                 });
-          $(".group").html(html);
+          $(".group").append(html);
             }else{
                 if(data.errcode===114){
                     // window.location.href ="landing.html";
@@ -46,9 +46,8 @@ $(document).ready(function() {
             }
         }
     });
-
-    // 功能2、获取分组下的好友信息
-    $(".group .weui-cells").on("click", ".LinkBtn", function () {
+    // 功能2 请求好友分组下的好友信息
+    (function(){
         // 获取group_id
         var apptoken=localStorage.getItem("apptoken");
         var title=$(this).attr("title");
@@ -67,8 +66,7 @@ $(document).ready(function() {
                     var html="";
                     $.each(data.data,function(i,item){
                         if(item.group_id===title){
-                            html+=`
-                              
+                            html+=`                             
                     <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}">
@@ -78,16 +76,16 @@ $(document).ready(function() {
                             <p class="weui-media-box__desc">${item.friend_signature}</p>
                         </div>
                     </a>
-
                            `
                         }
-
                     });
                     $(".friend").html(html)
                 }
             }
         });
-
+    })();
+    // 功能显示隐藏分组下的好友信息
+    $(".group").on("click", ".weui-cells .LinkBtn", function () {
         if($(this).next().is(":hidden")){
             $(this).next().show();
             $(this).children().children("img").css("transform","rotate(90deg)");

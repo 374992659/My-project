@@ -1,4 +1,47 @@
 $(document).ready(function(e){
+    "use strict";
+    //  获取好友分组接口
+    var group=function(){
+        var apptoken=localStorage.getItem("apptoken");
+        var  data=["",JSON.stringify({"apptoken":apptoken})];
+        var jsonEncryptData=jsEncryptData(data);
+        console.log(apptoken);
+        $.ajax({
+            url:url+"friends_getGroup",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+//           解密获取的数据
+                data=jsDecodeData( data );
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html="";
+                    $.each(data.data,function(i,item){
+                        html+=`
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src=""></div>
+                <div class="weui-cell__bd">
+                     <div class="weui-cell__bd">
+                         <input class="weui-input" style="font-size: 15px;color:black" type="text" placeholder="" value="${item.group_name}">
+                     </div>
+                </div>
+                <button class="delBtn"  style="margin-left: 10px" title="${item.group_id}">删除</button>
+                <button class="alterBtn"  style="margin-left: 10px" title="${item.group_id}">确认修改</button>
+            </div>
+                        `
+                    });
+                    $(".groupList").html(html);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip('操作成功', 'success');
+                    });
+                }else{
+                    console.log(data.errmsg)
+                }
+            }
+        });
+    };group();
+
 //   功能1 删除好友分组
     $(".groupList .weui-cell").on("click","delBtn",function(){
         //获取apptoken
@@ -9,7 +52,7 @@ $(document).ready(function(e){
         var  data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})];
         console.log(data);
         //数据加密
-        jsonEncryptDate=jsEncryptData(data);
+      var  jsonEncryptDate=jsEncryptData(data);
         console.log(jsonEncryptDate);
         $.ajax({
             url:url+"friends_delGroup",
@@ -42,10 +85,10 @@ $(document).ready(function(e){
         var groupName= $(".groupName").val();
         console.log(groupName);
 //                转换好友名称数据格式
-        data=["",JSON.stringify({"group_name":groupName,"apptoken":apptoken})];
+      var  data=["",JSON.stringify({"group_name":groupName,"apptoken":apptoken})];
 //                对名字进行加密
         console.log(data);
-         jsonEncryptData=jsEncryptData(data);
+        var jsonEncryptData=jsEncryptData(data);
 //        向后台传送数据
         $.ajax({
             url:url+"friends_addGroup",
@@ -56,53 +99,43 @@ $(document).ready(function(e){
                 data=jsDecodeData(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    console.log(data.errmsg)
+                    console.log(data.errmsg);
+                    group();
                 }else{
                     console.log(data.errmsg);
                 }
             }
 
         });
-//  当创建了新的好友分组后马上请求->获取好友分组接口
-        
-      var apptoken=localStorage.getItem("apptoken");
-      data=["",JSON.stringify({"apptoken":apptoken})];
-      jsonEncryptData=jsEncryptData(data);
-      console.log(apptoken);
-        $.ajax({
-            url:url+"friends_getGroup",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-//           解密获取的数据
-                data=jsDecodeData( data );
-                console.log(data);
-                if(data.errcode===0){
-                localStorage.setItem("apptoken",data.apptoken);
-                var html="";
-                    $.each(data.data,function(i,item){
-                        html+=`
-                        <div class="weui-cell" title="${item.group_id}">
-                            <div class="weui-cell__hd">
-                                <img src="">
-                            </div>
-                            <div class="weui-cell__bd">
-                                <p style="font-size: 15px">${item.group_name}</p>
-                            </div>
-                            <div class="weui-cell__ft" style="font-size: 12px">${item.online_num}/${item.total}</div>
-                            <button class="delBtn" style="margin-left: 10px">删除</button>
-                        </div>
-                        `
-                    });
-                    $(".groupList").html(html);
-                    $(document).on('click','#show-success',function(){
-                            $.toptip('操作成功', 'success');
-                        });
-                }else{
-                    console.log(data.errmsg)
+//  功能3修改好友分组
+        $(".groupList").on("click",".weui-cell .alterBtn",function(){
+            // 获取apptoken
+            var apptoken=localStorage.getItem("apptoken"),
+            // 分组id
+            group_id=$(this).attr("title"),
+            // 新分组名字
+            group_name=$(this).parent().children("input").val();
+            // 数据格式转换
+           var data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id,"group_name":group_name})];
+            // 加密
+            var jsonEncryptData=jsEncryptData(data);
+            $.ajax({
+                url:url+"friends_editGroup",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken");
+                        group();
+                    }else{
+                        console.log(data.errmsg);
+                    }
                 }
-            }
+            })
+        })
 
-        });
+
     });
 });
