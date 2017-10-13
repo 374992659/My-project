@@ -43,12 +43,12 @@ $(document).ready(function(e){
     };group();
 
 //   功能1 删除好友分组
-    $(".groupList").on("click"," .weui-cell .delBtn",function(){
+    $(".groupList").on("click"," .weui-cell .delBtn",function(e){
         console.log(132);
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //获取当前group_id
-        var group_id=$(e.target).parent().attr("title");
+        var group_id=$(this).attr("title");
         //数据转换
         var  data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})];
         console.log(data);
