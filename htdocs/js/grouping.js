@@ -104,38 +104,37 @@ $(document).ready(function(e){
                 }
             }
         });
-//  功能3修改好友分组
-        $(".groupList").on("click",".weui-cell .alterBtn",function(e){
-            console.log(123);
-            // 获取apptoken
-            var apptoken=localStorage.getItem("apptoken"),
+
+      });
+    //  功能3修改好友分组
+    $(".groupList").on("click",".weui-cell .alterBtn",function(e){
+        console.log(123);
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
             // 分组id
             group_id=$(this).attr("title"),
             // 新分组名字
             group_name=$(e.target).parent().find("input").val();
-            // 数据格式转换
-           var data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id,"group_name":group_name})];
-           console.log(data);
-            // 加密
-            var jsonEncryptData=jsEncryptData(data);
-            $.ajax({
-                url:url+"friends_editGroup",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    // 解密
-                    data=jsDecodeData(data);
-                    if(data.errcode===0){
-                        console.log(data);
-                        localStorage.setItem("apptoken",data.apptoken);
-                        group();
-                    }else{
-                        console.log(data.errmsg);
-                    }
+        // 数据格式转换
+        var data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id,"group_name":group_name})];
+        console.log(data);
+        // 加密
+        var jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"friends_editGroup",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                data=jsDecodeData(data);
+                if(data.errcode===0){
+                    console.log(data);
+                    localStorage.setItem("apptoken",data.apptoken);
+                    group();
+                }else{
+                    console.log(data.errmsg);
                 }
-            })
+            }
         })
-
-
-    });
+    })
 });
