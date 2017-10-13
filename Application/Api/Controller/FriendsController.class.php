@@ -37,7 +37,7 @@ class FriendsController extends VersionController
             }
         }
 
-        $this->echoEncrypData(0,'',$data2);
+        $this->echoEncrypData(0,'',$data1);
     }
     /*
      * 添加好友分组
