@@ -26,8 +26,8 @@ $(document).ready(function(e){
                          <input class="weui-input" style="font-size: 15px;color:black" type="text" placeholder="" value="${item.group_name}">
                      </div>
                 </div>
-                <button class="delBtn"  style="margin-left: 10px" title="${item.group_id}">删除</button>
-                <button class="alterBtn"  style="margin-left: 10px" title="${item.group_id}">确认修改</button>
+                <button class="delBtn"  style="margin-left: 10px;position: relative;z-index: 10000" title="${item.group_id}">删除</button>
+                <button class="alterBtn"  style="margin-left: 10px;position: relative;z-index: 10000" title="${item.group_id}">确认修改</button>
             </div>
                         `
                     });
@@ -43,7 +43,8 @@ $(document).ready(function(e){
     };group();
 
 //   功能1 删除好友分组
-    $(".groupList .weui-cell").on("click","delBtn",function(){
+    $(".groupList").on("click"," .weui-cell .delBtn",function(){
+        console.log(132);
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //获取当前group_id
@@ -109,6 +110,7 @@ $(document).ready(function(e){
         });
 //  功能3修改好友分组
         $(".groupList").on("click",".weui-cell .alterBtn",function(){
+            console.log(123);
             // 获取apptoken
             var apptoken=localStorage.getItem("apptoken"),
             // 分组id
