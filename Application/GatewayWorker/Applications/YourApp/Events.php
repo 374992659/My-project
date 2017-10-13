@@ -46,6 +46,11 @@ class Events
     * 当客户端发来消息时触发
     * @param int $client_id 连接id
     * @param mixed $message 具体消息
+    * PS: message中type为  1：表示用户上线 对该用户返回其在线好友的数组
+    *                                   2：表示发送消息给好友
+    *                                   3：发送消息给群组
+    *                                   4：获取某一用户在线状态 在添加好友后使用
+    *                                   5：获取群内用户在线状态
     */
    public static function onMessage($client_id, $message) {
        $message = json_decode($message);
@@ -59,10 +64,9 @@ class Events
            case 1:  Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
                         $_SESSION['account_code'] = $account_code['account_code'];
                         Gateway::updateSession($client_id,$account_code);
-
                         $table_id= substr($account_code['account_code'],0,4);
-//                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
-                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
+                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
+//                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
                         $group_arr = $db->query('select group_code  from user_group where status = 1;');
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
@@ -102,8 +106,44 @@ class Events
                         Gateway::sendToUid($online_friends,json_encode($data2));
                         Gateway::sendToClient($client_id,json_encode($data));
                         break;
-           case 2:  Gateway::sendToUid($message->account_code,$message->content);break; //发送消息给好友
-           case 3:  Gateway::sendToGroup($message->group,$message->content);break;   //发送消息给群组
+           case 2:  $friend_code = $message->account_code;                                                      //发送消息给好友
+                        $is_online = Gateway::isUidOnline($friend_code);
+                        if($is_online){
+                            Gateway::sendToUid($message->account_code,$message->content);
+                            Gateway::sendToCurrentClient(json_encode(self::returnData(0)));
+                            break;
+                        }else{//存储用户离线消息
+
+                        }
+
+
+           case 3:  Gateway::sendToGroup($message->group,$message->content);break;          //发送消息给群组
+           case 4:  $client_id = Gateway::getClientIdByUid($message->account_code);                //获取某一用户在线状态
+                        $is_online = Gateway::isOnline($client_id);
+                        $data =  array(
+                            'errcode'=>0,
+                            'errmsg'=>'is_online',
+                            'data'=>array(
+                                'is_online'=>$is_online              //0:不在线 1：在线
+                            )
+                        );
+                        Gateway::sendToCurrentClient(json_encode($data));
+                        break;
+           case 5:  $group_code = $message->group_code;                                                         //获取群内用户在线状态
+                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//查找群创建人code
+                        $user_code = $db->select('user_code')->from('group_area')->where("group_code =$group_code")->single();
+                        $db2 =new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$user_code);//查找群内用户
+                        $user_arr  = $db2->select('user_code')->from('group_user')->where("group_code =$group_code")->column();
+                        if($user_arr){
+                            foreach ($user_arr as $key=>$val){
+                                if(!Gateway::isUidOnline($val)){
+                                    unset($user_arr[$key]);
+                                }
+                            }
+                        }
+                        $arr = array('group_online_user'=>$user_arr);
+                        $data = self::returnData(0,'group_online_user',$arr);
+                        Gateway::sendToCurrentClient(json_encode($data));
        }
    }
    
@@ -114,8 +154,8 @@ class Events
    public static function onClose($client_id) {
        $user_code = $_SESSION['account_code'];
        Gateway::unbindUid($client_id,$user_code);
-//       $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$user_code);
-       $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
+       $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$user_code);
+//       $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
        $user_friends = $db->select('user_code')->from('user_friends')->column();
        if($user_friends){
            $data = array(
@@ -131,6 +171,16 @@ class Events
        }
        $_SESSION['account_code']='';
    }
+   public function returnData($errcode,$errmsg='',$data=''){
+        $arr =array(
+            'errcode'=>$errcode,
+            'errmsg'=>$errmsg,
+            'data'=>$data
+        );
+        return $arr;
+   }
+
+
 }
 
 
