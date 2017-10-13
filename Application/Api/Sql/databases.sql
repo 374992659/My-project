@@ -60,6 +60,19 @@ CREATE TABLE  if not exists `group_chat_log` (
   `group_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '消息所属群的code'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `offline_user_message` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `sender_code` varchar(50) NOT NULL COMMENT '发送人code',
+  `content` varchar(500) NOT NULL COMMENT '消息内容',
+  `send_time` int(11) NOT NULL COMMENT '发送时间',
+  `type` tinyint(2) NOT NULL COMMENT '消息类型 1：文字消息 2：语音消息 3:图片消息 4：文件消息',
+  `status` tinyint(1) NOT NULL COMMENT '是否已经接收',
+  PRIMARY KEY (`id`),
+  KEY `sender_code` (`sender_code`),
+  KEY `type` (`type`),
+  KEY `status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='离线好友消息表';
+
 CREATE TABLE if not exists `vote_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `vote_id` int(11) NOT NULL COMMENT '投票id',
