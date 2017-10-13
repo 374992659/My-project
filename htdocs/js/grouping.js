@@ -72,10 +72,7 @@ $(document).ready(function(e){
                 alert("删除失败")
             }
            }
-
         });
-
-
     });
 //   功能2 新建好友分组
     $(".addGroupBtn").click(function(){
@@ -120,6 +117,7 @@ $(document).ready(function(e){
             group_name=$(this).parent().children("input").val();
             // 数据格式转换
            var data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id,"group_name":group_name})];
+           console.log(data);
             // 加密
             var jsonEncryptData=jsEncryptData(data);
             $.ajax({
