@@ -6,6 +6,6 @@
  * Time: 11:33
  */
 $m =new MongoClient();
-$db = $m->test;
+$db = $m->local;
 $collection = $db->createCollection("runoob");
 echo "集合创建成功";
