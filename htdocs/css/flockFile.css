@@ -36,3 +36,28 @@ a:hover {
 .writerTime span{
     margin-right: 10px;
 }
+.weui-cell {
+     padding:0;
+    margin-bottom:10px ;
+}
+.weui-label {
+    width: 80px;
+}
+.headline:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.weui-media-box {
+    padding: 0;
+
+}
+.weui-navbar>a{
+    font-weight: bold;
+    font-size: 15px;
+    padding: 5px;
+    background:	#ECFFFF;
+}
+.weui-navbar + .weui-tab__bd {
+    padding-top: 20px;
+}

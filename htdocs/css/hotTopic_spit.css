@@ -29,8 +29,58 @@ a:hover {
     float: right
 }
 /*我的话题之我要吐槽*/
+#spitTopic .topicList>li{
+    margin-top: 10px;
+}
+/*上传图片*/
+#uploaderFiles li{
+    margin-right: 3px;
+    width:78px ;
+    height: 78px;
+    border: 1px solid #b1b3b5;
+    float:left ;
+    position: relative;
+}
+.delImg{
+    position: absolute;
+    top:0;
+    right: -1px;
+}
+.weui-gallery__img {
+    overflow: hidden;
+    height: 50%;
+    top: 30%;
+}
+label{
+    display: inline-block;
+    width: 25%;
+    text-align: right;
+    font-size: 12px;
+}
+input{
+    width: 60%;
+    outline: none;
+    padding: 4px;
+}
 
+#spitTopic{
+    padding:10px 10px;
+    background: 	#F0F0F0;
+}
+.area select{
+    width: 80px;
+}
+.weui-input {
+    font-size: 12px;
+}
 
+.weui-uploader__file {
+    border: 1px solid #d0d0d0;
+    box-sizing: border-box;
+    width: 70px;
+    height: 70px;
+
+}
 
 
 

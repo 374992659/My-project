@@ -73,9 +73,10 @@ label{
     height: 68px;
     border: 1px solid #b1b3b5;
     float:left ;
+    position: relative;
 }
 .picPlace li{
-    position: relative;
+
 }
 .delImg{
     position: absolute;

@@ -14,64 +14,23 @@
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/hotTopic_spit.css">
-    <style>
-        label{
-            display: inline-block;
-            width: 25%;
-            text-align: right;
-            font-size: 12px;
-        }
-        input{
-            width: 60%;
-            outline: none;
-            padding: 4px;
-        }
-        #spitTopic ul li{
-            padding: 5px 0;
-            border-bottom: 1px solid #b1b3b5;
-        }
-        #spitTopic{
-            padding:10px 10px;
-            background: 	#F0F0F0;
-        }
-        .area select{
-            width: 80px;
-        }
-        .weui-input {
-          font-size: 12px;
-        }
-
-
-        .weui-uploader__input-box {
-            width: 70px;
-            height: 70px;
-        }
-
-        .weui-uploader__file {
-            border: 1px solid #d0d0d0;
-            box-sizing: border-box;
-            width: 70px;
-            height: 70px;
-
-        }
-    </style>
 </head>
 <body>
-<P class="success">发布成功</P>
+<P class="success" style="display:none">发布成功</P>
     <div id="spitTopic">
         <!--发布内容-->
         <form action="">
-            <ul>
+            <ul class="topicList">
                 <li>
                     <label for="">标题：</label>
-                    <input type="text" maxlength="12" required autofocus>
+                    <input type="text" maxlength="12" required autofocus class="title">
                     <div class="weui-cells__tips" style="text-align: center;background:	#E0E0E0;font-size: 10px">标题最多输入12个字</div>
                 </li>
                 <li>
                     <div class="weui-cells weui-cells_form">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
-                                <textarea style="font-size: 12px" maxlength="200" class="weui-textarea" placeholder="请输入吐槽内容" rows="3"></textarea>
+                                <textarea style="font-size: 12px" maxlength="200" class="weui-textarea content" placeholder="请输入吐槽内容" rows="3"></textarea>
                                 <div class="weui-textarea-counter" style="font-size: 10px"><span>0</span>/200</div>
                             </div>
                         </div>
@@ -83,17 +42,13 @@
                 </li>
                 <li>
                     <label for="">选项：</label>
-                    <input type="text">
+                    <input type="text" name="option">
                 </li>
                 <li>
                     <label for="">选项：</label>
-                    <input type="text">
+                    <input type="text" name="option">
                 </li>
-                <!--<li class="option">-->
-                    <!--<img src="image/del.png" class="delImg" style="width: 10%;vertical-align: middle;position: relative;z-index: 1000" alt="">-->
-                    <!--<label for="" style="width: 18%">选项2：</label>-->
-                    <!--<input type="text">-->
-                <!--</li>-->
+                    <!--增加选项的位置-->
                 <li  class="addOption">
                     <label for="">添加选项：</label>
                     <img style="width: 30px;vertical-align: middle;position: relative;z-index: 100" src="image/add.png" alt="">
@@ -109,17 +64,12 @@
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
                                 <div class="weui-uploader">
-                                    <div class="weui-uploader__bd">
-                                        <ul class="weui-uploader__files .picPlace" id="uploaderFiles">
-                                            <!--<li class="weui-uploader__file" style="padding: 0">-->
-                                                <!--<img src="image/firendc.jpg" style="width: 70px" alt="">-->
-                                            <!--</li>-->
-                                            <!--<li class="weui-uploader__file"  style="padding: 0">-->
-                                                <!--<img src="image/firendd.jpg" style="width: 70px" alt="">-->
-                                            <!--</li>-->
+                                        <ul class="picPlace" id="uploaderFiles">
+
                                         </ul>
+                                    <div class="weui-uploader__bd lf">
                                         <div class="weui-uploader__input-box">
-                                            <input id="uploaderInput" class="weui-uploader__input" type="file"  multiple="">
+                                            <input id="uploaderInput" class="weui-uploader__input" type="file" multiple="">
                                         </div>
                                     </div>
                                 </div>
@@ -128,15 +78,15 @@
                     </div>
                 </li>
                 <li>
-                    <label for="">投票类型：</label>
-                    <select name="" id="">
+                    <label for="type">投票类型：</label>
+                    <select name="" id="type">
                         <option value="单选">单选</option>
                         <option value="多选">多选</option>
                     </select>
                 </li>
                 <li>
-                    <label for="">是否匿名：</label>
-                    <select name="" id="">
+                    <label for="isPublic">是否匿名：</label>
+                    <select name="" id="isPublic">
                     <option value="是">是</option>
                     <option value="否">否</option>
                     </select>
@@ -152,8 +102,8 @@
                     </div>
                 </li>
                 <li>
-                    <label for="">推送物管：</label>
-                    <select name="" id="">
+                    <label for="isPush">推送物管：</label>
+                    <select name="" id="isPush">
                         <option value="是">是</option>
                         <option value="否">否</option>
                     </select>
@@ -162,7 +112,7 @@
         </form>
         <!--提交按钮-->
         <div class="demos-content-padded">
-            <button class="weui-btn weui-btn_primary">提交</button>
+            <button class="weui-btn weui-btn_primary subBtn">提交</button>
         </div>
         <!--底部链接-->
         <div class="weui-footer">

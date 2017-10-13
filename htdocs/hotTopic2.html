@@ -10,33 +10,10 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>热门话题</title>
-
     <link rel="stylesheet" href="JQuery_weui/weui.min.css">
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/flockFile.css">
-    <script>
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';
-    </script>
-    <style>
-        .headline:after{
-            content: "";
-            display: block;
-            clear: both;
-        }
-        .weui-media-box {
-            padding: 0;
-
-        }
-        .weui-navbar>a{
-            font-size: 13px;
-            padding: 5px;
-            background: lightblue;
-        }
-        .weui-navbar + .weui-tab__bd {
-            padding-top: 20px;
-        }
-    </style>
 </head>
 <body>
 <div class="weui-tab">
@@ -57,23 +34,20 @@
     <div class="weui-tab__bd">
         <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active" style="padding: 15px ">
             <!--消息地区显示-->
-            <form action="">
-                <select name="" id="">
-                    <option value="四川">四川</option>
-                    <option value="湖南">湖南</option>
-                </select>
-                <select>
-                    <option value="四川">四川</option>
-                    <option value="湖南">湖南</option>
-                </select>
-                <select>
-                    <option value="四川">四川</option>
-                    <option value="湖南">湖南</option>
-                </select>
-            </form>
+            <div class="weui-cell weui-cell_vcode">
+                <div class="weui-cell__hd"><label class="weui-label">话题区域</label></div>
+                <div class="weui-cell__bd" id="sanji" >
+                    <select name="province" id="province">
+                        <option value="">请选择</option>
+                    </select>
+                    <select name="city" id="city">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
             <!--该地区消息-->
             <div>
-                <div class="weui-panel__bd" >
+                <div class="weui-panel__bd hotTopicList" >
                     <a href="hotTopic_info.html">
                         <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                             <div class="headline">
@@ -82,7 +56,7 @@
                             </div>
 
                             <p class="weui-media-box__desc" style="font-size: 12px">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                            <div style="font-size: 12px;text-align: right;color: #c2c0be">阅读量 <span>100</span> 回帖数 <span>10</span></div>
+                            <div style="font-size: 12px;text-align: right;color: #c2c0be">阅读量 <span>10000000</span> 回帖数 <span>10</span></div>
                         </div>
                     </a>
                     <a href="hotTopic_info.html">
@@ -122,5 +96,14 @@
     });
 </script>
 <script src="JQuery_weui/jquery-weui.js"></script>
+<script src="js/url.js"></script>
+<script src="js/aes.js"></script>
+<script src="js/pad-zeropadding.js"></script>
+<script src="js/encrypt-decode.js"></script>
+<script src="js/hotTopic2.js"></script>
+<script src="js/addRess.js"></script>
+<script >
+    addRess();
+</script>
 </body>
 </html>
