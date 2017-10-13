@@ -15,6 +15,7 @@ $(document).ready(function(e){
                 data=jsDecodeData( data );
                 console.log(data);
                 if(data.errcode===0){
+                    console.log(data);
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
@@ -48,7 +49,7 @@ $(document).ready(function(e){
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //获取当前group_id
-        var group_id=$(this).attr("title");
+        var group_id=$(e.target).attr("title");
         //数据转换
         var  data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})];
         console.log(data);
