@@ -34,7 +34,7 @@ $(document).ready(function(e){
     });
 //   功能2 新建好友分组
     $(".addGroupBtn").click(function(){
-        var apptoken=localStorage.getItem(apptoken);
+        var apptoken=localStorage.getItem("apptoken");
         console.log(apptoken);
         console.log(1);
 //                请求添加好友分组接口
