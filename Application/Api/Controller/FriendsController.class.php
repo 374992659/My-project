@@ -35,9 +35,15 @@ class FriendsController extends VersionController
                 }
                 $data2[$k]=$v;
             }
+            $this->echoEncrypData(0,'',$data2);
+        }else{
+            foreach ($data1  as $k=>$v){
+                $data1[$k]['total']=0;
+                $data1[$k]['online_num']=0;
+            }
+            $this->echoEncrypData(0,'',$data1);
         }
 
-        $this->echoEncrypData(0,'',$data1);
     }
     /*
      * 添加好友分组
