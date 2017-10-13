@@ -114,7 +114,7 @@ $(document).ready(function(e){
             // 分组id
             group_id=$(this).attr("title"),
             // 新分组名字
-            group_name=$(this).parent().children("input").val();
+            group_name=$(e.target).parent().children().children().val();
             // 数据格式转换
            var data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id,"group_name":group_name})];
            console.log(data);
