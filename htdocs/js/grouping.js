@@ -28,7 +28,7 @@ $(document).ready(function(e){
                      </div>
                 </div>
                 <button class="delBtn"  style="margin-left: 10px;position: relative;z-index: 10000" title="${item.id}">删除</button>
-                <button class="alterBtn" value="${item.group_name}"  style="margin-left: 10px;position: relative;z-index: 10000" title="${item.id}">确认修改</button>
+                <button class="alterBtn" style="margin-left: 10px;position: relative;z-index: 10000" title="${item.id}">确认修改</button>
             </div>
                         `
                     });
@@ -112,7 +112,7 @@ $(document).ready(function(e){
             // 分组id
             group_id=$(this).attr("title"),
             // 新分组名字
-            group_name=$(e.target).val();
+            group_name=$(e.target).parent().find("input").val();
             // 数据格式转换
            var data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id,"group_name":group_name})];
            console.log(data);
