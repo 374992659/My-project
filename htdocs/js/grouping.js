@@ -64,12 +64,15 @@ $(document).ready(function(e){
 
         });
 //  当创建了新的好友分组后马上请求->获取好友分组接口
+        
       var apptoken=localStorage.getItem("apptoken");
+      data=["",JSON.stringify({"apptoken":apptoken})];
+      jsonEncryptData=jsEncryptData(data);
       console.log(apptoken);
         $.ajax({
             url:url+"friends_getGroup",
             type:"POST",
-            data:{"data":apptoken},
+            data:{"data":jsonEncryptData},
             success:function(data){
 //           解密获取的数据
                 data=jsDecodeData( data );
