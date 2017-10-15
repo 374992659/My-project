@@ -1,0 +1,224 @@
+$(document).ready(function(){
+    "use strict";
+    $(".a").click(function(){
+        $(".publishDis").show();
+    });
+    $(".publishBtn").click(function(){
+        $(".publishDis").hide();
+
+    });
+    // 获取apptoken
+    var apptoken=localStorage.getItem("apptoken");
+    // 获取群号码
+    var group_num=localStorage.getItem("group_num");
+    // 获取话题id
+    var subject_id=localStorage.getItem("subject_id");
+// 数据格式转换
+    var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
+// 数据加密
+    var jsonEncryptData=jsEncryptData(data);
+$.ajax({
+    url:url+"group_getGroupSubjectInfo",
+    type:"POST",
+    data:{"data":jsonEncryptData},
+    success:function(data){
+        // 解密数据
+        var data=jsDecodeData(data);
+        if(data.errcode===0){
+            // 获取去用户的id
+            var userCode="";
+            localStorage.setItem("apptoken",data.apptoken);
+            var html=`
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd" style="background: #F0F0F0">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${data.data.title}</h4>
+                    <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
+                        <li class="weui-media-box__info__meta">作者：<a href=""><span>${data.data.nickname}</span></a></li>
+                        <li class="weui-media-box__info__meta">时间：${data.data.create_time}</li>
+                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</li>
+                    </ul>
+                    <p class="weui-media-box__desc" style=" text-indent:2em">
+                        ${data.data.content}
+                    </p>
+                </div>
+                <div class="weui-media-box weui-media-box_text" style="background: 	#FCFCFC">
+                    <div class="weui-media-box__desc" style="font-size: 12px">
+                        <div class="weui-flex">
+                            <div class="weui-flex__item">
+                                阅读数量：<span>${data.data.read_num}</span>
+                            </div>
+                            <div class="weui-flex__item">
+                                评论：<span >${data.data.commont_num}</span>
+                            </div>
+                        </div>
+                        <div class="weui-flex" style="margin-top: 10px">
+                            <div class="weui-flex__item">
+                                点赞：<span >
+                                <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">${data.data.likes_num}
+                             </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-media-box__desc" style="font-size: 12px;margin-top: 10px">
+                        <a href="" style="">律师援助</a>
+                        <span style="margin-left:10px ">分享</span>
+                        <span style="margin-left:10px " class="commentBtn">评论</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+            `;
+            // 所有评论
+             var alldiscuss="";
+             // 我的评论
+             var mydiscuss="";
+                // 对所有评论循环遍历
+                $.each(data.data.commont_list,function(i,item){
+                    alldiscuss+=`
+                    <div class="weui-media-box weui-media-box_text">
+                            <div class="topic">
+                            <a href=""><p class="weui-media-box__title lf">${item.nickname}</p></a>                              
+                                <span class="right" style="font-size: 12px">${item.create_time}</span>
+                            </div>
+                            <p class="weui-media-box__desc">
+                                ${item.content}
+                            </p>
+                            <div style="text-align: right;font-size: 12px">
+                                <img title="${item.commont_id}" class="disPraiseImg" src="image/no-praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                <span>${item.commont_likes}</span>
+                            </div>
+                    </div>
+                                     
+                    `;
+                    if(item.user===userCode){
+                        mydiscuss+=`
+                            <!--我的评论1-->
+                    
+                        <div class="weui-media-box weui-media-box_text">
+                            <div class="topic">
+                                <p class="weui-media-box__title lf">${item.nickname}</p>
+                                <span class="right" style="font-size: 12px">${item.create_time}</span>
+                            </div>
+                            <p class="weui-media-box__desc">
+                                ${item.content}
+                            </p>
+                            <div style="text-align: right;font-size: 12px"><img title="${item.commont_id}" class="disPraiseImg" src="image/no-praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                <span>${item.commont_likes}</span>
+                            </div>
+                        </div>
+                   
+                        
+                        `
+                    }
+                });
+             $(".topicBox").html(html);
+            $("#tab1").append(mydiscuss);
+            $("#tab2").append(alldiscuss);
+            // 发表评论
+            (function(){
+                // 弹出评论窗口
+                $(".topicBox").on("click",".weui-panel .weui-panel__bd .weui-media-box__desc .commentBtn",function(){
+                    $(".publishDis").show();
+                });
+                // 发表评论内容
+                $(".publishBtn").click(function(){
+                    // 获取apptoken
+                    var apptoken=localStorage.getItem("apptoken");
+                    // 获取群号码
+                    var group_num=localStorage.getItem("group_num");
+                    // 获取话题id
+                    var subject_id=localStorage.getItem("subject_id");
+                    // 获取内容
+                    var content=$(".commentText").val();
+                    // 数据格式转换
+                    var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"content":content})];
+                    // 加密
+                    var jsonEncryptData=jsEncryptData(data);
+                    $.ajax({
+                        url:url+"group_addGroupSubjectCommon",
+                        type:"POST",
+                        data:{"data":jsonEncryptData},
+                        success:function(data){
+                            // 解密数据
+                            data=jsDecodeData(data);
+                            if(data.errcode===0){
+                                localStorage.setItem("apptoken",data.apptoken);
+                                $(".publishDis").hide();
+                            }else{
+                                console.log(data.errmsg);
+                            }
+                        }
+                    });
+                });
+            })();
+            // 群话题点赞
+            $(".topicBox").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(){
+                // 获取apptoken
+                var apptoken=localStorage.getItem("apptoken");
+                // 获取群号码
+                var group_num=localStorage.getItem("group_num");
+                // 获取话题id
+                var subject_id=localStorage.getItem("subject_id");
+                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
+                // 加密
+                var jsonEncryptData=jsEncryptData(data);
+                $.ajax({
+                   url:url+"group_addGroupSubjectLikes",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function (data) {
+                        // 解密
+                    data=jsDecodeData(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoekn);
+                        $(this).attr("src","image/praise.png")
+                    }else{
+                        console.log(data.errmsg);
+
+                    }
+                   }
+                });
+
+            });
+            //   评论点赞
+            $(".weui-tab__bd-item").on("click",".weui-panel__bd .weui-media-box .disPraiseImg",function(){
+                // 获取评论id
+                var commont_id=$(this).attr("title");
+                // 获取apptoken
+                var apptoken=localStorage.getItem("apptoken");
+                // 获取群号码
+                var group_num=localStorage.getItem("group_num");
+                // 获取话题id
+                var subject_id=localStorage.getItem("subject_id");
+// 数据格式转换
+                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id})];
+// 数据加密
+                var jsonEncryptData=jsEncryptData(data);
+                $.ajax({
+                    url:url+'group_addGroupSubjectCommontLikes',
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function(data){
+                        // 解密
+                        var data=jsDecodeData(data);
+                        if(data.errcode===0){
+                            localStorage.setItem("apptoken",data.apptoken);
+                            $(this).attr("src","image/praise.png")
+                        }else{
+                            console.log(data.errmsg);
+                        }
+                    }
+                })
+            })
+
+        }
+    }
+})
+
+
+
+
+
+
+});
