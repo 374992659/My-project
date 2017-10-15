@@ -14,71 +14,6 @@
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/hotTopic_myTopicText.css">
-    <style>
-        .weui-media-box__desc {
-            -webkit-line-clamp: 2000000;
-        }
-        .weui-media-box:before {
-
-            border-top: 1px solid #9D9D9D;
-            color: #9D9D9D;
-
-        }
-        .weui-flex__item{
-            color:	#d0d0d0;
-        }
-        .weui-navbar__item {
-            padding:0;
-        }
-        .weui-navbar {
-            width: 50%;
-        }
-        .weui-navbar + .weui-tab__bd {
-            padding-top: 30px;
-        }
-        .weui-media-box__title{
-            color: 	#4A4AFF;
-            font-size: 13px;
-        }
-        .weui-media-box {
-            padding-top: 5px;
-
-        }
-        .weui-media-box_text .weui-media-box__title {
-            margin-bottom: 0;
-        }
-
-        .topic:after{
-            content: "";
-            display: block;
-            clear: both;
-        }
-        .weui-media-box__info {
-            margin: 10px 0;
-
-        }
-        .readNum span{
-            margin-right: 10px;
-        }
-        .readNum{
-            margin-top: 10px;
-        }
-        .comment{
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            font-size: 12px;
-            justify-content:space-between;
-
-        }
-        .comment li{
-            margin-right: 5px;
-        }
-        .weui-media-box {
-            padding:10px 15px;
-
-        }
-    </style>
 </head>
 <body>
     <div id="topicText">
@@ -142,7 +77,7 @@
                     <!--我的评论-->
                     <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
                         <!--我的评论1-->
-                        <div class="weui-panel__bd myDiscuss">
+                        <div class="weui-panel__bd myDiscuss discuss">
                             <!--我的评论1-->
                             <div class="weui-media-box weui-media-box_text">
                                 <div class="topic">
@@ -155,7 +90,8 @@
                                 <p class="weui-media-box__desc">
                                     由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                                 </p>
-                                <div style="text-align: right;font-size: 12px">
+                                <div style="text-align: right;font-size: 12px"  class="praise">
+                                    <img src=" image/del.png" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
                                     <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                     <span>40000</span>
                                 </div>
@@ -172,7 +108,7 @@
                                 <p class="weui-media-box__desc">
                                     由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                                 </p>
-                                <div style="text-align: right;font-size: 12px">
+                                <div style="text-align: right;font-size: 12px"  class="praise">
                                     <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                     <span>40000</span>
                                 </div>
@@ -181,7 +117,7 @@
                     </div>
                     <!--全部评论-->
                     <div id="tab2" class="weui-tab__bd-item">
-                        <div class="weui-panel__bd allDiscuss">
+                        <div class="weui-panel__bd allDiscuss discuss">
                             <!--全部评论1-->
                             <div class="weui-media-box weui-media-box_text">
                                 <div class="topic">
@@ -194,7 +130,7 @@
                                 <p class="weui-media-box__desc">
                                     由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                                 </p>
-                                <div style="text-align: right;font-size: 12px">
+                                <div style="text-align: right;font-size: 12px"  class="praise">
                                     <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                     <span>40000</span>
                                 </div>
@@ -211,7 +147,7 @@
                                 <p class="weui-media-box__desc">
                                     由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                                 </p>
-                                <div style="text-align: right;font-size: 12px">
+                                <div style="text-align: right;font-size: 12px"  class="praise">
                                     <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                     <span>40000</span>
                                 </div>
@@ -228,7 +164,7 @@
                                 <p class="weui-media-box__desc">
                                     由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                                 </p>
-                                <div style="text-align: right;font-size: 12px">
+                                <div style="text-align: right;font-size: 12px"  class="praise">
                                     <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                     <span>40000</span>
                                 </div>
@@ -238,6 +174,41 @@
                 </div>
             </div>
         </div>
+        <!--投票-->
+        <div class="topicVote">
+            <!--内容-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" placeholder="请输入文本">
+                        <i class="weui-icon-success-no-circle">发表</i>
+                    </div>
+                </div>
+            </div>
+            <!--投票选项-->
+            <div class="weui-cells weui-cells_radio optionList">
+                <label class="weui-cell weui-check__label" for="x1">
+                    <div class="weui-cell__bd">
+                        <p>阿萨德大神ad阿萨德分隔发送的双</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" class="weui-check" name="radio1" id="x1">
+                        <span class="weui-icon-checked"></span>
+                    </div>
+                </label>
+                <label class="weui-cell weui-check__label" for="x2">
+
+                    <div class="weui-cell__bd">
+                        <p>的分广告 分隔分隔分隔分隔分隔发广告分隔</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" name="radio1" class="weui-check" id="x2" checked="checked">
+                        <span class="weui-icon-checked"></span>
+                    </div>
+                </label>
+
+            </div>
+        </div>
     </div>
     <!--评论窗口-->
     <div class="weui-cells weui-footer_fixed-bottom publishDis" style="display: none">
@@ -245,7 +216,6 @@
             <div class="weui-cell__bd" >
                 <input class="weui-input commentText" type="text" placeholder="请输入文本" style="font-size: 12px">
             </div>
-
             <div class="weui-cell__ft publishBtn" style="font-size: 12px;position: relative;z-index: 1000">发布</div>
         </div>
     </div>

@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>我的话题——我的话题</title>
+    <title>我的话题</title>
     <link rel="stylesheet" href="JQuery_weui/weui.min.css">
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
@@ -24,8 +24,8 @@
 </head>
 <body>
     <div id="myTopic" style="padding: 5px">
-        <div class="weui-panel__bd">
-            <a href="hotTopic_myTopicText.html">
+        <div class="weui-panel__bd myTopicList">
+            <a href="hotTopic_myTopicText.html" class="myTopic_id">
                 <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                     <div class="headline">
                         <h4 class="weui-media-box__title lf" style="font-size: 15px;">标题一</h4>
@@ -69,5 +69,10 @@
         });
     </script>
     <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
+    <script src="js/hotTopic_myTopic.js"></script>
 </body>
 </html>

@@ -14,23 +14,7 @@
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/hotTopic_ad.css">
-    <style>
-        .weui-navbar__item {
-            padding: 5px 0;
-            font-size: 12px;
-        }
-        .weui-navbar + .weui-tab__bd {
-            padding-top: 30px;
-        }
-        .weui-media-box {
-            padding:0 0 15px 0;
 
-        }
-        .weui-tab__bd-item{
-            padding:0 10px;
-        }
-        select{margin-left: 5px}
-    </style>
 </head>
 <body>
     <div id="hotAd">
@@ -51,25 +35,29 @@
             <div class="weui-tab__bd">
                 <!--全部广告-->
                 <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-                    <div class="weui-panel__bd">
+                    <div class="weui-panel__bd allAdList">
+                        <!--广告1-->
+                        <a href="hotTopic_addCon.html" class="adList" >
+                            <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
+                                <h4 class="weui-media-box__title" style="font-size: 13px">标题一</h4>
+                                <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                            </div>
+                        </a>
+                        <!--广告2-->
                         <a href="hotTopic_addCon.html" >
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">标题一</h4>
                                 <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
                             </div>
                         </a>
+                        <!--广告3-->
                         <a href="hotTopic_addCon.html" >
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">标题一</h4>
                                 <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
                             </div>
                         </a>
-                        <a href="hotTopic_addCon.html" >
-                            <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
-                                <h4 class="weui-media-box__title" style="font-size: 13px">标题一</h4>
-                                <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                            </div>
-                        </a>
+                        <!--广告4-->
                         <a href="hotTopic_addCon.html" >
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">标题一</h4>
@@ -80,8 +68,8 @@
                 </div>
                 <!--我的广告-->
                 <div id="tab2" class="weui-tab__bd-item">
-                    <div class="weui-panel__bd">
-                        <a href="hotTopic_addCon.html" >
+                    <div class="weui-panel__bd myAdList" >
+                        <a href="hotTopic_addCon.html" class="adList">
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">标题一</h4>
                                 <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
@@ -96,7 +84,7 @@
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
-                                <input style="font-size: 13px" maxlength="20" class="weui-input" type="text" placeholder="请输标题内容">
+                                <input style="font-size: 13px" maxlength="20" class="weui-input adTitle" type="text" placeholder="请输标题内容">
                             </div>
                         </div>
                     </div>
@@ -104,29 +92,21 @@
                     <!--投放区域-->
                     <form action="">
                         <div class="weui-cells__title" style="color: black">投放区域：</div>
-                        <select name="" id="">
-                            <option value="四川">四川</option>
-                            <option value="湖南">湖南</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="四川">四川</option>
-                            <option value="湖南">湖南</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="四川">四川</option>
-                            <option value="湖南">湖南</option>
-                        </select>
-                        <select name="" id="">
-                            <option value="四川">四川</option>
-                            <option value="湖南">湖南</option>
-                        </select>
+                        <div class="weui-cell__bd" id="sanji" >
+                            <select name="province" id="province">
+                                <option value="">请选择</option>
+                            </select>
+                            <select name="city" id="city">
+                                <option value="">请选择</option>
+                            </select>
+                        </div>
                     </form>
                     <!--发布内容-->
                     <div class="weui-cells__title" style="font-size: 15px;color: black">内容：</div>
                     <div class="weui-cells weui-cells_form">
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
-                                <textarea style="font-size: 13px" maxlength="200" class="weui-textarea" placeholder="请输入发布广告的大概内容" rows="3"></textarea>
+                                <textarea style="font-size: 13px" maxlength="200" class="weui-textarea adContent" placeholder="请输入发布广告的大概内容" rows="3"></textarea>
                                 <div class="weui-textarea-counter">
                                 </div>
                             </div>
@@ -135,7 +115,7 @@
                     <div class="weui-cells__tips" style="text-align: center;background: beige">标题最多200个字</div>
                     <!--发布广告按钮-->
                     <div class="demos-content-padded">
-                        <button class="weui-btn weui-btn_primary" style="margin-top:80px">发布</button>
+                        <button class="weui-btn weui-btn_primary addBtn" style="margin-top:80px">发布</button>
                     </div>
                     <!--底部链接-->
                     <div class="weui-footer " style="margin-top: 30px">
@@ -156,5 +136,14 @@
         });
     </script>
     <script src="JQuery_weui/jquery-weui.js"></script>
+    <script src="js/url.js"></script>
+    <script src="js/aes.js"></script>
+    <script src="js/pad-zeropadding.js"></script>
+    <script src="js/encrypt-decode.js"></script>
+    <script src="js/hotTopic_add.js"></script>
+    <script src="js/addRess.js"></script>
+    <script >
+        addRess();
+    </script>
 </body>
 </html>
