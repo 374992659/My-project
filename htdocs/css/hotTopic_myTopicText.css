@@ -34,4 +34,86 @@ a:hover {
     clear:both;
 }
 /*话题内容具体样式*/
+.weui-media-box__desc {
+    -webkit-line-clamp: 2000000;
+}
+.weui-media-box:before {
 
+    border-top: 1px solid #9D9D9D;
+    color: #9D9D9D;
+
+}
+.weui-flex__item{
+    color:	#d0d0d0;
+}
+.weui-navbar__item {
+    padding:0;
+}
+.weui-navbar {
+    width: 50%;
+}
+.weui-navbar + .weui-tab__bd {
+    padding-top: 30px;
+}
+.weui-media-box__title{
+    color: 	#4A4AFF;
+    font-size: 13px;
+}
+.weui-media-box {
+    padding-top: 5px;
+
+}
+.weui-media-box_text .weui-media-box__title {
+    margin-bottom: 0;
+}
+
+.topic:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.weui-media-box__info {
+    margin: 10px 0;
+
+}
+.readNum span{
+    margin-right: 10px;
+}
+.readNum{
+    margin-top: 10px;
+}
+.comment{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 12px;
+    justify-content:space-between;
+
+}
+.comment li{
+    margin-right: 5px;
+}
+.weui-media-box {
+    padding:10px 15px;
+
+}
+.optionList p{
+    font-size: 12px;
+}
+.weui-cell {
+    padding: 2px 15px;
+
+}
+.weui-input {
+    width: 80%;
+    font-size: 15px;
+}
+.weui-icon-success-no-circle:before {
+    content: "";
+}
+.weui-icon-success-circle, .weui-icon-success-no-circle {
+    width: 18%;
+    height: 1.41176471em;
+    font-size: 15px;
+    text-align: center;
+}

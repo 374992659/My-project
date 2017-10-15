@@ -1,0 +1,53 @@
+/*通用样式*/
+ul,p,h3,h2,input,h4{
+    list-style:none;
+    text-decoration:none;
+    padding:0;
+    margin:0;
+}
+body,div,ul,a{
+    font-family: "Microsoft YaHei",simSun,"Lucida Grande","Lucida Sans Unicode",Arial;
+    color:#666;
+    padding:0;
+    margin:0;
+}
+a{
+    color:#666;
+    text-decoration:none;
+}
+a:hover{
+    color:#C97200;
+    text-decoration:none;
+}
+.lf{float:left;}
+.right{float:right}
+/*样式内容*/
+.flockTopic_push{
+    padding:5px 10px;
+}
+.weui-input,.weui-textarea,.weui-uploader__title{
+    font-size: 12px;
+}
+.weui-cells__title{
+    color:black;
+}
+.sumBtn{
+    margin-top: 100px;
+}
+.weui-cells__tips{
+    background: 	#F0F0F0;
+    text-align: center;
+}
+.weui-uploader__file{
+    position: relative;
+}
+.delImg{
+    position: absolute;
+    top:0;
+    right: 0;
+}
+.weui-gallery__img {
+    overflow: hidden;
+    height: 50%;
+    top: 30%;
+}
