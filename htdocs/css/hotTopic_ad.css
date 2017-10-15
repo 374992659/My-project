@@ -31,7 +31,21 @@ a:hover {
     float: right
 }
 /*热门话题广告样式*/
+.weui-navbar__item {
+    padding: 5px 0;
+    font-size: 12px;
+}
+.weui-navbar + .weui-tab__bd {
+    padding-top: 30px;
+}
+.weui-media-box {
+    padding:0 0 15px 0;
 
+}
+.weui-tab__bd-item{
+    padding:0 10px;
+}
+select{margin-left: 5px}
 
 
 
