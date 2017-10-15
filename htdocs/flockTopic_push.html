@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>发布群话题</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/flockTopic_push.css">
+</head>
+<body>
+    <div class="flockTopic_push">
+        <!--标题-->
+        <div class="weui-cells__title">标题：</div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <input class="weui-input topicTitle" type="text" placeholder="请输入标题" minlength="2" maxlength="10">
+                </div>
+            </div>
+            <div class="weui-cells__tips">标题2-10个字</div>
+        </div>
+        <!--图片-->
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <div class="weui-uploader">
+                        <div class="weui-uploader__hd">
+                            <p class="weui-uploader__title">图片上传</p>
+                        </div>
+                        <div class="weui-uploader__bd">
+                            <ul class="weui-uploader__files" id="uploaderFiles">
+                               <!--<li class="weui-uploader__file" >-->
+                                    <!--<img src="" alt="">-->
+                                   <!--<img src="image/del.png" alt="">-->
+                                <!--</li>-->
+                            </ul>
+                            <div class="weui-uploader__input-box">
+                                <input id="uploaderInput" class="weui-uploader__input" type="file"  multiple="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--内容-->
+        <div class="weui-cells__title">内容：</div>
+        <div class="weui-cells weui-cells_form">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <textarea class="weui-textarea topicContent" placeholder="请输入文本" rows="3"></textarea>
+                </div>
+            </div>
+            <div class="weui-cells__tips">标题2-200个字</div>
+        </div>
+        <!--提交按钮-->
+        <button class="weui-btn weui-btn_primary sumBtn">按钮</button>
+    </div>
+    <!--图片放大预览-->
+    <div class="weui-gallery" style="display: none">
+        <span class="weui-gallery__img" style="text-align: center">
+            <img src="" alt="" style="width: 100%">
+        </span>
+        <div class="weui-gallery__opr">
+            <a href="javascript:" class="weui-gallery__del" >
+
+            </a>
+        </div>
+    </div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+<script src="js/url.js"></script>
+<script src="js/aes.js"></script>
+<script src="js/pad-zeropadding.js"></script>
+<script src="js/encrypt-decode.js"></script>
+<script src="js/flockTopic_push.js"></script>
+</body>
+</html>
