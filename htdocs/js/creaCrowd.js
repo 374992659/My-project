@@ -1,6 +1,6 @@
 $(document).ready(function(){
     "use strict";
-    $('#uploaderInput').change(function(e) {
+    $('#form').change(function(e) {
         var targetElement = e.target,
             file = targetElement.files[0],
             url=window.URL.createObjectURL(this.files[0]) ;
@@ -17,7 +17,7 @@ $(document).ready(function(){
             contentType : false, // 不设置Content-type请求头
             success : function(data){
                 // 解密
-               
+
                 console.log(data);
                 console.log(123);
 
