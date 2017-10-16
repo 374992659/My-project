@@ -9,7 +9,7 @@ $(document).ready(function(){
             url:url+"group_uploadGroupP", //用于文件上传的服务器端请求地址
             type:"post",
             data:{"data":json},
-            dataType: 'HTML',
+            dataType:"text",
             fileElementId: 'uploaderInput', //文件上传域的ID
             success:function(data){
                 //解密
