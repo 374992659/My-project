@@ -12,8 +12,8 @@ $(document).ready(function(){
             $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
             $(".flockHead").attr("style","display:block");
             $.ajax({
-                url:url+"group_uploadGroupP",
                 type:"POST",
+                url:url+"group_uploadGroupP",
                 data:fd,
                 cache : false,
                 processData : false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
