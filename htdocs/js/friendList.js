@@ -64,7 +64,7 @@ $(document).ready(function() {
                 success:function(data){
                     data=jsDecodeData(data);
                     console.log(data);
-                    if(data===0){
+                    if(data.errcode===0){
                         console.log(132);
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
