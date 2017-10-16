@@ -5,13 +5,17 @@ $(document).ready(function(){
             file = targetElement.files[0];
              // url=window.URL.createObjectURL(this.files[0]) ;
         console.log(file);
-        var formdata=new FormData($("#form")[0]);
-        // localStorage.setItem("groupHeadPic",fd);
+        var fd = new FormData();
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
+        fd.append('file',targetElement.files[0]);
+        fd.append('data',json);
+
+        // localStorage.setItem("groupHeadPic",fd);
+
         console.log(data);
-        $.ajaxFileUpload({
+        $.ajax({
             type:"POST",
             url:url+"group_uploadGroupP",
             fileElementId:'uploaderInput',
