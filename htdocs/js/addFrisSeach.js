@@ -55,9 +55,16 @@ $(document).ready(function(){
                     window.location.href="landing.html"
                 }else{
                     var html=`
-                       <p style="text-align: center">${data.errmsg}</p>
+                       <p style="text-align: center;background: green;color: red;">${data.errmsg}</p>
                        `;
-                    $(".hint").html(html)
+                    $(".hint").html(html);
+                    $.extend({
+                        show:function(){
+                            $(".hint").html();
+                        }
+                    });
+                    setInterval("show()",3000);
+
                 }
             }
         });
