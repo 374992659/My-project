@@ -4,7 +4,7 @@ $(document).ready(function(){
         var targetElement = e.target;
             console.log(targetElement);
              // url=window.URL.createObjectURL(this.files[0]) ;
-        console.log(file);
+       
         var fd = new FormData();
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken})];
