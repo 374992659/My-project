@@ -8,7 +8,7 @@ $(document).ready(function(){
         var formdata=new FormData($("#form")[0]);
         // localStorage.setItem("groupHeadPic",fd);
         var apptoken=localStorage.getItem("apptoken");
-        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"formdata":formdata})];
         var json=jsEncryptData(data);
         console.log(data);
         $.ajax({
