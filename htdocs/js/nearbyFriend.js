@@ -6,10 +6,10 @@ $(document).ready(function(){
     console.log(data);
     // 把json中为数组
    info=JSON.parse(data);
-    console.log(info);
+    console.log(info.data.protrait);
     var apptoken=localStorage.getItem("apptoken");
     var html="";
-    $.each(info,function(i,item){
+    $.each(info.data,function(i,item){
         html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
