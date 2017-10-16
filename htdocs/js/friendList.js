@@ -20,10 +20,10 @@ $(document).ready(function() {
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.group_id}">
             <div class="weui-cell__hd ">
-               <img class="linkBtn" style="" src="image/right.png" >
+               <img class="linkBtn" style="" src="image/right.png"  title="${item.group_id}">
             </div>
             <div class="weui-cell__bd">
-                <p style="">${item.group_name}</p>
+                <p style=""  title="${item.group_id}"${item.group_name}</p>
             </div>
             <div class="weui-cell__ft" style="">
                 ${item.online_num}/${item.total}
