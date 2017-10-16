@@ -106,10 +106,15 @@ class Events
                         //获取群未读消息
                         $mongo = new MongoClient();
                         $group_arr_str = implode(',',$group_arr);             //用户群字符串
-                    var_dump($group_arr_str);
                         $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();
-                        var_dump($group_data);
+                        if($group_data){
+                            foreach ($group_data as $key=>$val){
+                                $user_database = $mongo->user_info_.$val['user_code'];
+                                $data = $user_database->group_new_message.find();
+                                var_dump($data);
+                            }
+                        }
                         $data = array(
                             'errocode'=>0,
                             'type'=>1,
