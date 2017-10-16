@@ -112,6 +112,7 @@ class Events
                             foreach ($group_data as $key=>$val){
 //                                $user_database = $mongo->user_info_.$val['user_code'];
                                 $user_database = $mongo->user_info_030117608006762;
+                                var_dump($user_database->group_new_message);
                                 $message = $user_database->group_new_message->find();
                                 var_dump($message);
                             }
