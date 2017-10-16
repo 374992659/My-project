@@ -108,12 +108,12 @@ class Events
                         $group_arr_str = implode(',',$group_arr);             //用户群字符串
                         $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();
+                        $mongo = new MongoClient();
                         if($group_data){
                             foreach ($group_data as $key=>$val){
 //                                $user_database = $mongo->user_info_.$val['user_code'];
-                                $mongo = new MongoClient();
-                                $user_database = $mongo->baseinfo;
-                                $message = $user_database->test->find(array('title'=>'12123'));
+                                $user_database = $mongo->user_info_030117608006762;
+                                $message = $user_database->group_new_message->find();
                                 var_dump(iterator_to_array($message));
                             }
                         }
