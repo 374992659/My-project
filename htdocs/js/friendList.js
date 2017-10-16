@@ -18,7 +18,7 @@ $(document).ready(function() {
                 $.each(data.data, function (i, item) {
                     html += `
      <div class="weui-cells">
-        <div class="weui-cell LinkBtn"  title="${item.group_id}">
+        <div class="weui-cell LinkBtn"  value="${item.group_id}">
             <div class="weui-cell__hd ">
                <img class="linkBtn" style="" src="image/right.png" >
             </div>
@@ -45,12 +45,12 @@ $(document).ready(function() {
             }
         }
     });
-    $(".group").on("click", ".weui-cells .LinkBtn", function (e) {
+    $(".group").on("click", ".weui-cells .LinkBtn", function (event) {
         // 功能2 请求好友分组下的好友信息
         (function(){
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
-            var title=e.target.attr("title");
+            var title=event.target.val();
             data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
