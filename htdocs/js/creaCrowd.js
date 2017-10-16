@@ -14,7 +14,7 @@ $(document).ready(function(){
         $.ajax({
             type:"POST",
             url:url+"group_uploadGroupP",
-            data:json,
+            data:{"data":json},
             success : function(data){
                 // 解密
                 data=jsDecodeData(data);
