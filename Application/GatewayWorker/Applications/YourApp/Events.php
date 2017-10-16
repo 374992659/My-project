@@ -106,7 +106,7 @@ class Events
                         //获取群未读消息
                         $mongo = new MongoClient();
                         foreach($group_arr as $k=>$v){
-                            $create_code = M('baseinfo')
+//                            $create_code = M('baseinfo')
                         }
                         $data = array(
                             'errocode'=>0,
