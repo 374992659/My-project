@@ -2,16 +2,15 @@ $(document).ready(function(){
     "use strict";
     $('#form').change(function(e) {
         var targetElement = e.target,
-            file = targetElement.files[0],
-            url=window.URL.createObjectURL(this.files[0]) ;
+            file = targetElement.files[0];
+            // url=window.URL.createObjectURL(this.files[0]) ;
         console.log(file);
-        var fd = new FormData();
-        fd.append('fileToUpload', file);
+        var formdata=new FormData($("#form1").[0]);
         // localStorage.setItem("groupHeadPic",fd);
         $.ajax({
             type:"POST",
             url:url+"group_uploadGroupP",
-            data:fd,
+            data:formdata,
             cache : false,
             processData : false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
             contentType : false, // 不设置Content-type请求头
