@@ -170,7 +170,7 @@ class FriendsController extends VersionController
      * 按账号搜索用户
      * @param account 用户账号
      * */
-    protected function searchUserCode(){
+    protected function searchUserCode_v1_0_0(){
         $user_code = $this->pdata['account'];
         if(!$user_code){
             $this->echoEncrypData(21);
