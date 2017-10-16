@@ -51,10 +51,10 @@ $(document).ready(function(){
         console.log(id);
         var apptoken=localStorage.getItem("apptoken");
         //数据格式转换
-        data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken})];
+       var data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken})];
         console.log(data);
         //加密数据
-        jsonEncryptDate=jsEncryptData(data);
+      var  jsonEncryptDate=jsEncryptData(data);
         //发起请求
         $.ajax({
             url:url+"group_addGroup",
