@@ -24,7 +24,7 @@ class UserFriendsModel extends Model
      * 获取每个分组下总人数以及在线人数
      * */
     public function getFriendsNum(){
-        $data = $this->query('select group_id,count(*) as total from user_friends group by group_id');
+        $data = $this->query('select group_id,count(*) as total from user_friends GROUP BY  group_code');
         return $data;
         if($data){
             foreach($data as $k=>$v){
