@@ -45,7 +45,7 @@ $(document).ready(function() {
             }
         }
     });
-    $(".group").on("click", ".weui-cells .LinkBtn", function (e) {
+    $(".group").on("click", ".LinkBtn", function (e) {
         // 功能2 请求好友分组下的好友信息
         (function(){
             // 获取group_id
