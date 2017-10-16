@@ -52,7 +52,7 @@ $(document).ready(function() {
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
-            console.log($(e.target));
+            console.log(title);
             data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
@@ -64,7 +64,7 @@ $(document).ready(function() {
                 success:function(data){
                     data=jsDecodeData(data);
                     console.log(data);
-                    if(data.errcode===title){
+                    if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
