@@ -6,7 +6,7 @@ $(document).ready(function(){
         console.log(file);
         var fd = new FormData();
         fd.append('fileToUpload', file);
-        localStorage.setItem("groupHeadPic",fd);
+        // localStorage.setItem("groupHeadPic",fd);
         if(url){
             $(".flockHead img").attr("src", url);
             $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
@@ -24,8 +24,8 @@ $(document).ready(function(){
                     data=jsDecodeData(data);
                     console.log(data);
                 }
-            })
-
+            });
+console.log(123);
         }
 
     });
