@@ -17,8 +17,8 @@ $(document).ready(function() {
                 var html = "";
                 $.each(data.data, function (i, item) {
                     html += `
-     <div class="weui-cells LinkBtn" title="${item.group_id}">
-        <div class="weui-cell">
+     <div class="weui-cells">
+        <div class="weui-cell LinkBtn"  title="${item.group_id}">
             <div class="weui-cell__hd ">
                <img class="linkBtn" style="" src="image/right.png" >
             </div>
@@ -45,7 +45,7 @@ $(document).ready(function() {
             }
         }
     });
-    $(".group").on("click", ".LinkBtn", function (e) {
+    $(".group").on("click", ".weui-cells .LinkBtn", function (e) {
         // 功能2 请求好友分组下的好友信息
         (function(){
             // 获取group_id
