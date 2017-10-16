@@ -1,15 +1,16 @@
 $(document).ready(function(){
     "use strict";
     $('#form').change(function(e) {
-        var targetElement = e.target,
-            file = targetElement.files[0];
+        var targetElement = e.target;
+            console.log(targetElement);
+           var file = targetElement.files[0];
              // url=window.URL.createObjectURL(this.files[0]) ;
         console.log(file);
         var fd = new FormData();
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
-        fd.append('file',targetElement.files[0]);
+        fd.append('file',file);
         fd.append('data',json);
 
         // localStorage.setItem("groupHeadPic",fd);
