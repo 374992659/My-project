@@ -17,8 +17,6 @@ $(document).ready(function(){
                 console.log(13);
             },
              error:function(data){
-                 data=jsDecodeData(data);
-                 console.log(data);
                  console.log(123);
              }//返回值类型 一般设置为json
         });
