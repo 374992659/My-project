@@ -107,7 +107,7 @@ class Events
 
                         $group_arr_str = implode(',',$group_arr);             //用户群字符串
                         $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                        $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();
+                        $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
                         $mongo = new MongoClient();
                         if($group_data){
                             foreach ($group_data as $key=>$val){
