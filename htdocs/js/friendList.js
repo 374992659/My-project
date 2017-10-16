@@ -46,12 +46,12 @@ $(document).ready(function() {
             }
         }
     });
-    $(".group").on("click", ".weui-cells .LinkBtn", function (event) {
+    $(".group").on("click", ".weui-cells .LinkBtn", function (e) {
         // 功能2 请求好友分组下的好友信息
         (function(){
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
-            var title=$(this).attr("title");
+            var title=$(e.target).attr("title");
             data=["",JSON.stringify({"group_id":1,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
@@ -63,13 +63,13 @@ $(document).ready(function() {
                 success:function(data){
                     data=jsDecodeData(data);
                     console.log(data);
-                    if(data.errcode===0){
+                    if(data.errcode===title){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
                             "use strict";
                             html+=`
-                    <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
+                    <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg skipChat">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}">
                         </div>
@@ -127,7 +127,7 @@ $(document).ready(function() {
                     var html="";
                     $.each(data.data,function(i,item){
                         html+=`
-                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg"
+                    <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg skipChat"
                     title="${item.friend_user_code}" value="1">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
@@ -140,7 +140,6 @@ $(document).ready(function() {
                     `
                     });
                     $(".keyFriend").append(html);
-
                 }else if(data.errcode===301){
                     var html=`
                      <p style="text-align: center">${data.errmsg}</p>               
@@ -154,4 +153,8 @@ $(document).ready(function() {
         });
 
     });
+    // 点击好友跳转到聊天页面
+    function skipChat(e){
+      var  title=$(e.target).attr("title");
+    }
 });

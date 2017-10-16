@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#searchInput").on("input",function(){
+        $(".keyFriend").empty();
         var key=$("#searchInput").val();
         console.log(key);
         var apptoken=localStorage.getItem("apptoken");
@@ -43,7 +44,6 @@ $(document).ready(function(){
                     `
                 });
                 $(".keyFriend").append(html);
-                $(".keyFriend").empty();
             }else if(data.errcode===301){
                 // var html=`
                 //      <p style="text-align: center">${data.errmsg}</p>

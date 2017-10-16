@@ -1,9 +1,10 @@
-$(document).ready(function(e){
+$(document).ready(function(){
     "use strict";
     //  获取好友分组接口
     var group=function(){
         var apptoken=localStorage.getItem("apptoken");
         var  data=["",JSON.stringify({"apptoken":apptoken})];
+        console.log(data);
         var jsonEncryptData=jsEncryptData(data);
         console.log(apptoken);
         $.ajax({
