@@ -183,6 +183,7 @@ class RegiestController extends BaseController
             'account' =>$account,
             'password' => md5(md5($password).$account),
             'nickname' => $account,
+            'portrait'=>'http://39.108.237.198/project/Application/Common/Source/Img/default_portrait.jpg',
             'account_code' => $area_id.$account,
             'create_time' => time(),
             'create_addr_code' => $area_id
