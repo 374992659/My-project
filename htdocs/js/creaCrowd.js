@@ -19,7 +19,7 @@ $(document).ready(function(){
             type:"POST",
             url:url+"group_uploadGroupP",
             fileElementId:'uploaderInput',
-            data:{"data":json},
+            data:fd,
             secureuri:false,
             success : function(data){
                 // 解密
