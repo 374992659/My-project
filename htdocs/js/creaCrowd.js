@@ -6,7 +6,7 @@ $(document).ready(function(){
         console.log(file.name);
         var fd = new FormData();
         fd.append('fileToUpload', file);
-        localStorage.setItem("fd",fd);
+        localStorage.setItem("groupHeadPic",fd);
         if(url){
             $(".flockHead img").attr("src", url);
             $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
@@ -17,30 +17,31 @@ $(document).ready(function(){
     });
 
     $(".createBtn").click(function(){
-        //鑾峰彇鍥剧墖
+        //获取图片
         var pic=localStorage.getItem("fd");
+        // 群名称
         var name=$("#flockName").val();
-
+        // 群分类
         var  id=$("#flockClass option:selected").val();
         console.log(id);
         var apptoken=localStorage.getItem("apptoken");
-        //鏁版嵁鏍煎紡杞崲
-        data=["",JSON.stringify({"group_name":name,"group_portrait":pic,"group_type":id,"apptoken":apptoken})];
+        //数据格式转换
+        data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken})];
         console.log(data);
-        //鍔犲瘑鏁版嵁
+        //加密数据
         jsonEncryptDate=jsEncryptData(data);
-        //鍙戣捣璇锋眰
+        //发起请求
         $.ajax({
             url:url+"group_addGroup",
             type:"POST",
-            data:{"data":jsonEncryptDate},
+            data:{"data":jsonEncryptDate,"data.group_portrait":pic},
             success:function(data){
-                //瑙ｅ瘑鏁版嵁
+                //解密数据
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    alert("鍒涘缓鎴愬姛");
+                    alert("创建成功");
                     window.location.href="createCrowd.html"
                 }else{
                     if(data.errcode===114){
