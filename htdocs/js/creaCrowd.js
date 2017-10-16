@@ -3,22 +3,20 @@ $(document).ready(function(){
     $('#form').change(function(e) {
         var targetElement = e.target,
             file = targetElement.files[0];
-            // url=window.URL.createObjectURL(this.files[0]) ;
+             // url=window.URL.createObjectURL(this.files[0]) ;
         console.log(file);
         var formdata=new FormData($("#form")[0]);
         // localStorage.setItem("groupHeadPic",fd);
         var apptoken=localStorage.getItem("apptoken");
-        var data=["",JSON.stringify({"apptoken":apptoken,"formdata":formdata})];
+        var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         console.log(data);
         $.ajax({
             type:"POST",
             url:url+"group_uploadGroupP",
             data:json,
-
             success : function(data){
                 // 解密
-// 解密
                 data=jsDecodeData(data);
                 console.log(data);
                 console.log(123);
