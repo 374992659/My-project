@@ -97,6 +97,7 @@ $(document).ready(function() {
     });
     // 按关键词搜索好友
     $("#searchInput").on("input",function(){
+        $(".keyFriend").empty();
         var key=$("#searchInput").val();
         console.log(key);
         var apptoken=localStorage.getItem("apptoken");
@@ -139,7 +140,7 @@ $(document).ready(function() {
                     `
                     });
                     $(".keyFriend").append(html);
-                    $(".keyFriend").html();
+
                 }else if(data.errcode===301){
                     var html=`
                      <p style="text-align: center">${data.errmsg}</p>               
