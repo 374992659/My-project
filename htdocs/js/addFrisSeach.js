@@ -51,10 +51,13 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     window.location.href="nearbyFriend.html"
+                }else if(data.errocde===114){
+                    window.location.href="landing.html"
                 }else{
-                    if(data.errcode===114){
-                        window.location.href="landing.html"
-                    }
+                    var html=`
+                       <p style="text-align: center">${data.errmsg}</p>
+                       `;
+                    $(".hint").html(html)
                 }
             }
         });

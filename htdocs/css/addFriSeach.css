@@ -27,9 +27,35 @@ a:hover {
 }
 /*添加好友高级搜索页面样式表*/
 
-
-
-
+label{font-size: 15px}
+.weui-select {
+    width: 100%;
+    font-size: 13px;
+    line-height:normal;
+    padding:10px 5px;
+    position: relative;
+}
+.my_select{
+    font-size: 12px;
+    line-height:normal;
+    padding:10px 5px;
+    width: 80px;
+}
+.weui-label{
+    width: 70px;
+}
+.weui-btn {
+    line-height: 2;
+}
+option{
+    padding-left: 5px;
+}
+.weui-cell_select-after .weui-select {
+    padding-left: 10px;
+}
+#province,#city{
+    width: 30%;
+}
 
 
 
