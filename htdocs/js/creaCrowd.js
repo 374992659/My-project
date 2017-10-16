@@ -1,25 +1,26 @@
 $(document).ready(function(){
     "use strict";
-    $('#form').change(function(e) {
+    $('#uploaderInput').change(function(e) {
         var targetElement = e.target;
             console.log(targetElement);
              // url=window.URL.createObjectURL(this.files[0]) ;
-
-        var fd = new FormData();
+        console.log($("#uploaderInput")[0].files[0]);
+        var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
+        formData.append("file",$("#uploaderInput")[0].files[0]);
+
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
-        fd.append('data',json);
-
-        // localStorage.setItem("groupHeadPic",fd);
-
-        console.log(data);
+        formData.append("data",json);
+        console.log(formData);
         $.ajax({
             type:"POST",
             url:url+"group_uploadGroupP",
-            fileElementId:'uploaderInput',
-            data:fd,
-            secureuri:false,
+            //fileElementId:'uploaderInput',
+            data:formData,
+            processData : false,
+            contentType : false,
+            //secureuri:false,
             success : function(data){
                 // 解密
                 data=jsDecodeData(data);
