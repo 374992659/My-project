@@ -67,10 +67,11 @@ class Events
                         $table_id= substr($account_code['account_code'],0,4);
                         $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
 //                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
-                        $group_arr = $db->query('select group_code  from user_group where status = 1;');
+//                        $group_arr = $db->query('select group_code  from user_group where status = 1;');
+                        $group_arr = $db->select('group_code')->from('user_group')->where('status =1')->column();
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
-                                   Gateway::joinGroup($client_id,$v['group_code']);                                   //将用户加入群组
+                                   Gateway::joinGroup($client_id,$v);                                   //将用户加入群组
                                }
                         };
                         //获取用户在线的好友
@@ -87,24 +88,45 @@ class Events
                                 }
                             }
                         }
+                        //获取好友未读消息
+                        $result = $db->select()->from('offline_user_message')->query();
+                        $friends_new_message = array();
+                        if($result){
+                            foreach ($result as $k=>$v){
+                                if(!array_key_exists($v['sender_code'],$friends_new_message)){
+                                    $friends_new_message[$v['sender_code']]['sender_code'] = $v['sender_code'];
+                                    $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
+                                    $friends_new_message[$v['sender_code']]['message_num']=1;
+                                }else{
+                                    $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
+                                    $friends_new_message[$v['sender_code']]['message_num']++;
+                                }
+                            }
+                        }
+                        //获取群未读消息
+                        $mongo = new MongoClient();
+                        foreach($group_arr as $k=>$v){
+                            $create_code = M('baseinfo')
+                        }
                         $data = array(
                             'errocode'=>0,
+                            'type'=>1,
                             'errmsg'=>'online_friends_list',
                             'data'=>array(
-                                'type'=>1,
                                 'online_friends'=>$online_friends,
+                                'friends_new_message'=>$friends_new_message,
                             )
                         );
                         $data2 = array(
                             'errcode'=>0,
+                            'type'=>2,
                             'errmsg'=>'login',
                             'data'=>array(
-                                'type'=>2,
                                 'user_code'=>$account_code['account_code'],
                             )
                         );
-                        Gateway::sendToUid($online_friends,json_encode($data2));
-                        Gateway::sendToClient($client_id,json_encode($data));
+                        Gateway::sendToUid($online_friends,json_encode($data2)); //给好友提示上线
+                        Gateway::sendToClient($client_id,json_encode($data));     //获取在线好友列表 好友未读消息  群未读消息
                         break;
            case 2:  $friend_code = $message->account_code;                                                      //发送消息给好友
                         $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
@@ -128,8 +150,8 @@ class Events
                             $database2=$mongo->user_info_.$message->account_code;
                             $collection2 = $database2->friends_chat;
                             $collection2->insert($data);
-                            Gateway::sendToUid($message->account_code,$message->content);
-                            Gateway::sendToCurrentClient(json_encode(self::returnData(0)));
+                            $send_data = self::returnData(0,2,'',$data);
+                            Gateway::sendToUid($message->account_code,json_encode($send_data));
                             break;
                         }else{                              //存储用户离线消息
                             $db2 = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$message->account_code);
@@ -154,7 +176,7 @@ class Events
                         );
                         $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
                         $mongo =new MongoClient();
-                        $database= $mongo->user_info_.$create_code;
+                        $database= $mongo->user_info_.$create_code; //群聊记录保存在创建人分库
                         $collection = $database->group_chat;
                         $collection->insert($data);   //插入数据
                         Gateway::sendToGroup($message->group,$message->content);break; //发送消息给群组
@@ -211,9 +233,10 @@ class Events
        }
        $_SESSION['account_code']='';
    }
-   public function returnData($errcode,$errmsg='',$data=''){
+   public function returnData($errcode,$type,$errmsg='',$data=''){
         $arr =array(
             'errcode'=>$errcode,
+            'type'=>$type,
             'errmsg'=>$errmsg,
             'data'=>$data
         );
@@ -224,4 +247,4 @@ class Events
 }
 
 
-//返回数据 type类型为 1 为获取在线用户列表 2为好友上线通知 3为好友下线通知
+//返回数据 type类型为 1 为获取在线好友、好友未读消息、群未读消息  2为好友上线通知（本地保存的好友列表更新） 3为好友下线通知
