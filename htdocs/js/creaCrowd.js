@@ -10,7 +10,6 @@ $(document).ready(function(){
             type:"post",
             data:{"data":json},
             dataType : 'text',
-            secureuri: false, //是否需要安全协议，一般设置为false
             fileElementId: 'uploaderInput', //文件上传域的ID
             success:function(data){
                 //解密
@@ -19,9 +18,9 @@ $(document).ready(function(){
                 console.log(13);
             },
              error:function(XMLHttpRequest, textStatus, errorThrown){
-                 alert(XMLHttpRequest.status);
-                 alert(XMLHttpRequest.readyState);
-                 alert(textStatus);
+                 console.log(XMLHttpRequest.status);
+                 console.log(XMLHttpRequest.readyState);
+                 console.log(textStatus);
                  console.log(123);
              }//返回值类型 一般设置为json
         });
