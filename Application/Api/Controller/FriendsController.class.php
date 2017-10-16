@@ -198,7 +198,7 @@ class FriendsController extends VersionController
                 $this->echoEncrypData(0,'',$data);
             }
         }catch (Exception $e){
-            $this->echoEncrypData(1,$e);
+            $this->echoEncrypData(1,'未找到符合条件的用户');
         }
 
     }
