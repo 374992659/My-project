@@ -22,6 +22,7 @@ $(document).ready(function(){
                     "use strict";
                     // 解密
                     data=jsDecodeData(data);
+                    console.log(123);
                     console.log(data);
                 }
             });
