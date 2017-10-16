@@ -44,7 +44,7 @@ $(document).ready(function(){
                 });
                 $(".keyFriend").append(html);
             }else{
-                console.log(data.errmsg);
+                console.log(data);
                 if(data.errcode===114){
                     //alert("登录超时需重新登录");
                     //window.location.href="landing.html";
