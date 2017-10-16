@@ -14,8 +14,11 @@ $(document).ready(function(){
                 //解密
                 data=jsDecodeData(data);
                 console.log(data);
+                console.log(13);
             },
-             error:function(){
+             error:function(data){
+                 data=jsDecodeData(data);
+                 console.log(data);
                  console.log(123);
              }//返回值类型 一般设置为json
         });
