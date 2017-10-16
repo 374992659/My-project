@@ -114,7 +114,7 @@ class Events
                                 $mongo = new MongoClient();
                                 $user_database = $mongo->baseinfo;
                                 $message = $user_database->test->find(array('title'=>'12123'));
-                                var_dump($message);
+                                var_dump(iterator_to_array($message));
                             }
                         }
                         $data = array(
