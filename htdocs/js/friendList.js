@@ -42,7 +42,6 @@ $(document).ready(function() {
                     // window.location.href ="landing.html";
                 }
                console.log()
-
             }
         }
     });
