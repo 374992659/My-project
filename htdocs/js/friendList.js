@@ -52,7 +52,7 @@ $(document).ready(function() {
             var apptoken=localStorage.getItem("apptoken");
             var title=$(this).attr("title");
             console.log($(this));
-            data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
+            data=["",JSON.stringify({"group_id":title,"apptoken":1})];
             console.log(data);
             encreptdata = jsEncryptData(data);
             console.log(encreptdata);
