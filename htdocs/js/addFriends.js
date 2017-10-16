@@ -44,10 +44,10 @@ $(document).ready(function(){
                 });
                 $(".keyFriend").append(html);
             }else if(data.errcode===301){
-                var html=`
-                     <p style="text-align: center">${data.errmsg}</p>               
-                `;
-                $(".keyFriend").html(html);
+                // var html=`
+                //      <p style="text-align: center">${data.errmsg}</p>
+                // `;
+                // $(".keyFriend").html(html);
             }else{
 
             }

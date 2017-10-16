@@ -101,11 +101,11 @@ $(document).ready(function() {
         console.log(key);
         var apptoken=localStorage.getItem("apptoken");
         if(key!==""){
-            $(".addFriendCondition").hide();
+            $(".group").hide();
             $(".keyFriend").show();
         }else{
             $(".keyFriend").hide();
-            $(".addFriendCondition").show();
+            $(".group").show();
         }
         //数据格式转换
         data=["",JSON.stringify({"key":key,"apptoken":apptoken})];
