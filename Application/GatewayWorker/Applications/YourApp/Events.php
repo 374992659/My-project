@@ -74,6 +74,7 @@ class Events
                                    Gateway::joinGroup($client_id,$v);                                   //将用户加入群组
                                }
                         };
+                        var_dump($group_arr);
                         //获取用户在线的好友
                         $user_friends = $db->query('select user_code from user_friends');
                         $online_user = Gateway::getAllClientSessions();
