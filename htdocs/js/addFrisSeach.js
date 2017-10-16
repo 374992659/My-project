@@ -47,7 +47,8 @@ $(document).ready(function(){
                 //解密数据
                 data=jsDecodeData(data);
                 localStorage.setItem("apptoken",data.apptoken);
-                localStorage.setItem("data",data.data);
+                info=[JSON.stringify({"data":data.data})];
+                localStorage.setItem("data",info);
                 console.log(data);
                 if(data.errcode===0){
                     console.log(data);
