@@ -51,7 +51,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     console.log(data);
-                    // window.location.href="nearbyFriend.html"
+                   window.location.href="nearbyFriend.html"
                 }else if(data.errocde===114){
                     window.location.href="landing.html"
                 }else{
