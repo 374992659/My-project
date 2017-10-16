@@ -6,7 +6,7 @@ $(document).ready(function(){
     console.log(data);
     // 把json中为数组
    info=JSON.parse(data);
-    console.log(info);
+    console.log(info.data);
     var apptoken=localStorage.getItem("apptoken");
     var html="";
     $.each(info,function(i,item){
