@@ -11,7 +11,7 @@ $(document).ready(function(){
     var html="";
     $.each(info,function(i,item){
         html+=`
-        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${tiem.account_code}" value="1">
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb" src="${item.protrait}" alt="">
             </div>
