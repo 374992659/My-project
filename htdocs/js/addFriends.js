@@ -46,7 +46,7 @@ $(document).ready(function(){
                 $(".keyFriend").append(html);
             }else if(data.errcode===301){
                 var html=`
-                     <p style="text-align: center">${date.errcode}</p>               
+                     <p style="text-align: center">${data.errcode}</p>               
                 `;
                 $(".keyFriend").html(html);
             }else{
