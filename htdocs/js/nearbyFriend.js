@@ -5,11 +5,11 @@ $(document).ready(function(){
     var data=localStorage.getItem("data");
     console.log(data);
     // 把json中为数组
-    info=JSON.parse(data);
+   JSON.parse(data);
     console.log(info);
     var apptoken=localStorage.getItem("apptoken");
     var html="";
-    $.each(info,function(i,item){
+    $.each(data.data,function(i,item){
         html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
