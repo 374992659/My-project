@@ -1,6 +1,16 @@
-
 jQuery.extend({
 
+    handleError: function( s, xhr, status, e )      {
+        // If a local callback was specified, fire it
+        if ( s.error ) {
+            s.error.call( s.context || s, xhr, status, e );
+        }
+
+        // Fire the global callback
+        if ( s.global ) {
+            (s.context ? jQuery(s.context) : jQuery.event).trigger( "ajaxError", [xhr, s, e] );
+        }
+    },
 
     createUploadIframe: function(id, uri)
     {
@@ -31,7 +41,7 @@ jQuery.extend({
     },
     createUploadForm: function(id, fileElementId)
     {
-        //create form
+        //create form    
         var formId = 'jUploadForm' + id;
         var fileId = 'jUploadFile' + id;
         var form = $('<form  action="" method="POST" name="' + formId + '" id="' + formId + '" enctype="multipart/form-data"></form>');
@@ -47,26 +57,12 @@ jQuery.extend({
         $(form).appendTo('body');
         return form;
     },
-    addOtherRequestsToForm: function(form,data)
-    {
-        // add extra parameter
-        var originalElement = $('<input type="hidden" name="" value="">');
-        for (var key in data) {
-            name = key;
-            value = data[key];
-            var cloneElement = originalElement.clone();
-            cloneElement.attr({'name':name,'value':value});
-            $(cloneElement).appendTo(form);
-        }
-        return form;
-    },
 
     ajaxFileUpload: function(s) {
-        // TODO introduce global settings, allowing the client to modify them for all requests, not only timeout
+        // TODO introduce global settings, allowing the client to modify them for all requests, not only timeout        
         s = jQuery.extend({}, jQuery.ajaxSettings, s);
         var id = new Date().getTime()
         var form = jQuery.createUploadForm(id, s.fileElementId);
-        if ( s.data ) form = jQuery.addOtherRequestsToForm(form,s.data);
         var io = jQuery.createUploadIframe(id, s.secureuri);
         var frameId = 'jUploadFrame' + id;
         var formId = 'jUploadForm' + id;
@@ -141,15 +137,15 @@ jQuery.extend({
                 jQuery(io).unbind()
 
                 setTimeout(function()
-                {	try
-                    {
-                        $(io).remove();
-                        $(form).remove();
+                {    try
+                {
+                    $(io).remove();
+                    $(form).remove();
 
-                    } catch(e)
-                    {
-                        jQuery.handleError(s, xml, null, e);
-                    }
+                } catch(e)
+                {
+                    jQuery.handleError(s, xml, null, e);
+                }
 
                 }, 100)
 
@@ -204,17 +200,7 @@ jQuery.extend({
             jQuery.globalEval( data );
         // Get the JavaScript object, if JSON is used.
         if ( type == "json" )
-        {
-            // If you add mimetype in your response,
-            // you have to delete the '<pre></pre>' tag.
-            // The pre tag in Chrome has attribute, so have to use regex to remove
-            var data = r.responseText;
-            var rx = new RegExp("<pre.*?>(.*?)</pre>","i");
-            var am = rx.exec(data);
-            //this is the desired data extracted
-            var data = (am) ? am[1] : "";    //the only submatch or empty
             eval( "data = " + data );
-        }
         // evaluate scripts within html
         if ( type == "html" )
             jQuery("<div>").html(data).evalScripts();
@@ -222,4 +208,3 @@ jQuery.extend({
         return data;
     }
 })
-
