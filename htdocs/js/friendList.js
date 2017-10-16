@@ -65,6 +65,7 @@ $(document).ready(function() {
                     data=jsDecodeData(data);
                     console.log(data);
                     if(data===0){
+                        console.log(132);
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
@@ -84,7 +85,6 @@ $(document).ready(function() {
                             }
                         });
                         $(".friend").html(html);
-                        console.log(13);
                     }
                 }
             });
