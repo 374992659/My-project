@@ -16,7 +16,6 @@ $(document).ready(function() {
                 localStorage.setItem("apptoken",data.apptoken);
                 var html = "";
                 $.each(data.data, function (i, item) {
-                    console.log(item);
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.group_id}">
@@ -70,9 +69,8 @@ $(document).ready(function() {
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
-                            console.log(item);
-                            if(item.group_id===1){
-                                html+=`                             
+                            "use strict";
+                            html+=`
                     <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}">
@@ -82,8 +80,7 @@ $(document).ready(function() {
                             <p class="weui-media-box__desc">${item.friend_signature}</p>
                         </div>
                     </a>
-                           `
-                            }
+                            `
                         });
                         $(".friend").html(html);
                     }
