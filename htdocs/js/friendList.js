@@ -50,7 +50,7 @@ $(document).ready(function() {
         (function(){
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
-            var title=event.target.val();
+            var title=$(this).val();
             data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
