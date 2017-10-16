@@ -4,7 +4,7 @@ $(document).ready(function(){
         var targetElement = e.target;
             console.log(targetElement);
              // url=window.URL.createObjectURL(this.files[0]) ;
-       
+
         var fd = new FormData();
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken})];
@@ -18,7 +18,7 @@ $(document).ready(function(){
             type:"POST",
             url:url+"group_uploadGroupP",
             fileElementId:'uploaderInput',
-            data:json,
+            data:fd,
             secureuri:false,
             success : function(data){
                 // 解密
