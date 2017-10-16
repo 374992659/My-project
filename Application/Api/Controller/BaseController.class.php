@@ -47,7 +47,7 @@ class BaseController extends Controller
                 //Aes解密
                 $data = $aesLib->aes128cbcHexDecrypt($appdata['data'], C('APP_KEY.AES_IV'), C('APP_KEY.AES_KEY'));
                 if( !$data ){
-                    return $this->echoEncrypData(114, '');
+                    return $this->echoEncrypData(115, '');
                 }
                 $data = json_decode($data, true);
                 if( !isset($_GET['is_wap']) || intval($_GET['is_wap'] )!= 1 ){
