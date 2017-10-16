@@ -50,7 +50,8 @@ $(document).ready(function(){
                 localStorage.setItem("data",data.data);
                 console.log(data);
                 if(data.errcode===0){
-                    window.location.href="nearbyFriend.html"
+                    console.log(data);
+                    // window.location.href="nearbyFriend.html"
                 }else if(data.errocde===114){
                     window.location.href="landing.html"
                 }else{
