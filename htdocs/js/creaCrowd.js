@@ -14,7 +14,10 @@ $(document).ready(function(){
                 //解密
                 data=jsDecodeData(data);
                 console.log(data);
-            } //返回值类型 一般设置为json
+            },
+             error:function(){
+                 console.log(123);
+             }//返回值类型 一般设置为json
         });
     //    var targetElement = e.target;
     //        console.log(targetElement);
