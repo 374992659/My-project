@@ -3,7 +3,7 @@ $(document).ready(function(){
         var targetElement = e.target,
             file = targetElement.files[0],
             url=window.URL.createObjectURL(this.files[0]) ;
-        console.log(file.name);
+        console.log(file);
         var fd = new FormData();
         fd.append('fileToUpload', file);
         localStorage.setItem("groupHeadPic",fd);
@@ -13,8 +13,22 @@ $(document).ready(function(){
             $(".flockHead").attr("style","display:block");
         }
 
-
+        $.ajax({
+            url:url+"group_uploadGroupP",
+            type:"POST",
+            data:fd,
+            cache : false,
+            processData : false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+            contentType : false, // 不设置Content-type请求头
+            success : function(data){
+                "use strict";
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+            }
+        })
     });
+
 
     $(".createBtn").click(function(){
         //获取图片
@@ -26,7 +40,7 @@ $(document).ready(function(){
         console.log(id);
         var apptoken=localStorage.getItem("apptoken");
         //数据格式转换
-        data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken,"group_portrait":pic})];
+        data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken})];
         console.log(data);
         //加密数据
         jsonEncryptDate=jsEncryptData(data);
@@ -34,7 +48,7 @@ $(document).ready(function(){
         $.ajax({
             url:url+"group_addGroup",
             type:"POST",
-            data:{"data":jsonEncryptDate},
+            data:{"data":jsonEncryptDate,"data_"},
             success:function(data){
                 //解密数据
                 data=jsDecodeData(data);
