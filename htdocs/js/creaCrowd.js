@@ -9,13 +9,15 @@ $(document).ready(function(){
             url:url+"group_uploadGroupP", //用于文件上传的服务器端请求地址
             type:"post",
             data:{"data":json},
-            //dataType : 'text',
+            dataType: 'HTML',
             fileElementId: 'uploaderInput', //文件上传域的ID
             success:function(data){
                 //解密
                 data=jsDecodeData(data);
+                var str = $(data).find("body").text();//获取返回的字符串
+                var json = $.parseJSON(str);//把字符串转化为json对象
                 console.log(data);
-                console.log(13);
+                console.log(json);
             },
              error:function(XMLHttpRequest, textStatus, errorThrown){
                  console.log(XMLHttpRequest.status);
