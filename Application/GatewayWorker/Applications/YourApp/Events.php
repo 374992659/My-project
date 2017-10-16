@@ -116,7 +116,7 @@ class Events
                                 if($user_database->group_new_message->count()){
                                     $message = $user_database->group_new_message->find();
                                     foreach ($message as $v){
-                                        var_dump($v);
+                                        print_r($v);
                                     }
                                 }
                             }
