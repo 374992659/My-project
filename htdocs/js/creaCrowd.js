@@ -48,7 +48,7 @@ $(document).ready(function(){
         $.ajax({
             url:url+"group_addGroup",
             type:"POST",
-            data:{"data":jsonEncryptDate,"data_"},
+            data:{"data":jsonEncryptDate},
             success:function(data){
                 //解密数据
                 data=jsDecodeData(data);
