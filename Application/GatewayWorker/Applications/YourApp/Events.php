@@ -111,7 +111,7 @@ class Events
                         if($group_data){
                             foreach ($group_data as $key=>$val){
                                 $user_database = $mongo->user_info_.$val['user_code'];
-                                $data = $user_database->group_new_message.find();
+                                $data = $user_database->group_new_message->find();
                                 var_dump($data);
                             }
                         }
