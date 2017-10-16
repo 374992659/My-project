@@ -11,7 +11,7 @@ $(document).ready(function(){
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         console.log(data);
-        $.ajax({
+        $.ajaxFileUpload({
             type:"POST",
             url:url+"group_uploadGroupP",
             fileElementId:'uploaderInput',
