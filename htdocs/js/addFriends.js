@@ -11,7 +11,7 @@ $(document).ready(function(){
             $(".addFriendCondition").show();
         }
         //数据格式转换
-        data=["",JSON.stringify({"key":key,"apptoken":apptoken})];
+       data=["",JSON.stringify({"key":key,"apptoken":apptoken})];
         console.log(data);
         //数据加密
         jsonEncryptDate=jsEncryptData(data);
