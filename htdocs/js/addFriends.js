@@ -15,7 +15,7 @@ $(document).ready(function(){
         console.log(data);
         //数据加密
         jsonEncryptDate=jsEncryptData(data);
-       
+
         //发起ajax请求
         $.ajax({
             url:url+"friends_searchFriends",
@@ -73,7 +73,7 @@ $(document).ready(function(){
         $.ajax({
             url:url+"friends_addFriend",
             type:"POST",
-            data:{"data":data},
+            data:{"data":jsonEncryptDate},
             success:function(data){
                 //数据解密
                 data=jsDecodeData(data);
