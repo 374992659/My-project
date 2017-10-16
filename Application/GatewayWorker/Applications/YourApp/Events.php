@@ -74,7 +74,6 @@ class Events
                                    Gateway::joinGroup($client_id,$v);                                   //将用户加入群组
                                }
                         };
-                        var_dump($group_arr);
                         //获取用户在线的好友
                         $user_friends = $db->query('select user_code from user_friends');
                         $online_user = Gateway::getAllClientSessions();
@@ -106,9 +105,10 @@ class Events
                         }
                         //获取群未读消息
                         $mongo = new MongoClient();
-                        foreach($group_arr as $k=>$v){
-//                            $create_code = M('baseinfo')
-                        }
+                        $group_arr_str = implode(',',$group_arr);             //用户群字符串
+                        $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                        $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in ('".$group_arr_str."')")->query();
+                        var_dump($group_data);
                         $data = array(
                             'errocode'=>0,
                             'type'=>1,
