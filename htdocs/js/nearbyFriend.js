@@ -32,7 +32,7 @@ $(document).ready(function(){
         //获取分组id
             var group_id=$(this).parent().attr("value");
         //数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoken,"account_code":title,"param group_id":group_id})];
+        data=["",JSON.stringify({"apptoken":apptoken,"account_code":title,"group_id":group_id})];
         //数据加密
         jsonEncryptDate=jsEncryptData(data);
         console.log(data);
