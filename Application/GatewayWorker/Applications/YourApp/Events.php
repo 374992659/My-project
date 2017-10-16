@@ -113,7 +113,7 @@ class Events
 //                                $user_database = $mongo->user_info_.$val['user_code'];
                                 $mongo = new MongoClient();
                                 $user_database = $mongo->baseinfo;
-                                $message = $user_database->test->insert(array('title'=>'12123','content'=>'32445'));
+                                $message = $user_database->test->find(array('title'=>'12123'));
                                 var_dump($message);
                             }
                         }
