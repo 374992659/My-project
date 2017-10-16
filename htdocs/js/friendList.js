@@ -18,7 +18,7 @@ $(document).ready(function() {
                 $.each(data.data, function (i, item) {
                     html += `
      <div class="weui-cells">
-        <div class="weui-cell LinkBtn"  value="${item.group_id}">
+        <div class="weui-cell LinkBtn"  title="${item.group_id}">
             <div class="weui-cell__hd ">
                <img class="linkBtn" style="" src="image/right.png" >
             </div>
@@ -51,7 +51,7 @@ $(document).ready(function() {
         (function(){
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
-            var title=$(this).val();
+            var title=$(this).attr("title");
             data=["",JSON.stringify({"group_id":1,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
