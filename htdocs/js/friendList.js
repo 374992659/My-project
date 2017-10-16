@@ -9,7 +9,7 @@ $(document).ready(function() {
         url:url+"friends_getGroup",
         type:"POST",
         data:{"data":encreptdata},
-        success: function (data) {
+        success: function (data){
             data = jsDecodeData(data);
             console.log(data);
             if(data.errcode === 0) {
@@ -52,7 +52,7 @@ $(document).ready(function() {
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
-            data=["",JSON.stringify({"group_id":1,"apptoken":apptoken})];
+            data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
             console.log(encreptdata);
