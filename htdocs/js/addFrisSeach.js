@@ -30,10 +30,10 @@ $(document).ready(function(){
             paramsex = sex;
         data = ["", JSON.stringify({
             "apptoken": apptoken,
-            "param area_id":paramarea_id,
-            "param min_age":parammin_age,
-            "param max_age":parammax_age,
-            "param sex":paramsex
+            "area_id":paramarea_id,
+            "min_age":parammin_age,
+            "max_age":parammax_age,
+            "sex":paramsex
         })];
         console.log(data);
         // 加密数据

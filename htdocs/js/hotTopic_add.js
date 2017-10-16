@@ -3,24 +3,24 @@
  */
 $(document).ready(function(){
     "use strict";
-    //获取apptoken
+    //鑾峰彇apptoken
     var apptoken=localStorage.getItem("apptoken"),
         city_id=localStorage.getItem("city_id"),
         garden_code="";
-    //功能1 获取全部广告
+    //鍔熻兘1 鑾峰彇鍏ㄩ儴骞垮憡
     var allAd=function(){
-        //数据格式转换
+        //鏁版嵁鏍煎紡杞崲
         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
-        //加密
-        jsonEncryptData=jsEncryptData(data);
+            //鍔犲瘑
+            jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
             url:url+"Subject_getAdList",
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
-                //解密
-               var data=jsDecodeData(data);
+                //瑙ｅ瘑
+                var data=jsDecodeData(data);
                 if(data.errcode===0){
                     console.log(data);
                     localStorage.setItem("apptoken",data.apptoekn);
@@ -40,11 +40,11 @@ $(document).ready(function(){
             }
         })
     };allAd();
-    //功能2 获取我的广告
+    //鍔熻兘2 鑾峰彇鎴戠殑骞垮憡
     var myAd=function(){
-        //数据格式转换
+        //鏁版嵁鏍煎紡杞崲
         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
-        //加密
+            //鍔犲瘑
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
@@ -52,7 +52,7 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
-                //解密
+                //瑙ｅ瘑
                 var data=jsDecodeData(data);
                 if(data.errcode===0){
                     console.log(data);
@@ -73,41 +73,41 @@ $(document).ready(function(){
             }
         })
     }; myAd();
-    //功能3 发布广告
+    //鍔熻兘3 鍙戝竷骞垮憡
     $(".addBtn").click(function(){
         pushAd();
     });
     var pushAd=function(){
         var apptoken=localStorage.getItem("apptoken");
-        //获取主题
+        //鑾峰彇涓婚
         var title=$(".adTitle").val(),
-        //获取内容
-           content=$(".adContent").val(),
-         //城市id
+            //鑾峰彇鍐呭
+            content=$(".adContent").val(),
+            //鍩庡競id
             city_id="",
-            //小区id
+            //灏忓尯id
             garden_code="";
         $("#city").change(function(){
             city_id=  $(this).val();
         });
-        //数据格式转换
+        //鏁版嵁鏍煎紡杞崲
         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
-        //加密
+        //鍔犲瘑
         var jsonEncryptData=jsEncryptData(data);
         $.ajax({
             url:url+"Subject_addAd",
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
-                //解密
+                //瑙ｅ瘑
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                   localStorage.setItem("apptoken",data.apptoken);
+                    localStorage.setItem("apptoken",data.apptoken);
                     myAd();
                     allAd();
                     $(document).on('click','#show-success',function(){
-                        $.toptip('操作成功', 'success');
+                        $.toptip('鎿嶄綔鎴愬姛', 'success');
                     });
                 }
             }

@@ -4,11 +4,11 @@ $(document).ready(function(){
         console.log(key);
         var apptoken=localStorage.getItem("apptoken");
         if(key!==""){
-            $(".weui-cells").hide();
+            $(".addFriendCondition").hide();
             $(".keyFriend").show();
         }else{
             $(".keyFriend").hide();
-            $(".weui-cells").show();
+            $(".addFriendCondition").show();
         }
         //数据格式转换
         data=["",JSON.stringify({"key":key,"apptoken":apptoken})];
@@ -23,8 +23,8 @@ $(document).ready(function(){
             success:function(data){
                 //解密数据
                 data=jsDecodeData(data);
-                console.log(data);
             if(data.errcode===0){
+                console.log(data);
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 $.each(data.data,function(i,item){
@@ -44,6 +44,7 @@ $(document).ready(function(){
                 });
                 $(".keyFriend").append(html);
             }else{
+                console.log(data.errmsg);
                 if(data.errcode===114){
                     //alert("登录超时需重新登录");
                     //window.location.href="landing.html";
