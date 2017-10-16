@@ -31,6 +31,7 @@ $(document).ready(function() {
         </div>
         <div class="weui-panel weui-panel_access friendList" style="display: none">
             <div class="weui-panel__bd friend">
+                    
             </div>
         </div> 
      </div>                  
