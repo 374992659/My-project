@@ -165,6 +165,28 @@ class FriendsController extends VersionController
             $this->echoEncrypData(0);
         }
     }
+
+    /*
+     * 按账号搜索用户
+     * @param account 用户账号
+     * */
+    protected function searchUserCode(){
+        $user_code = $this->pdata['account'];
+        if(!$user_code){
+            $this->echoEncrypData(21);
+        }
+        $data = M('baseinfo.user_area')->where('account ='.$user_code)->getField('table_id');
+        if(!$data){
+            $this->echoEncrypData(1,'该用户不存在');
+        }
+        $res=M('user_info_'.$data)->field('account,account_code,signature,portrait,nickname')->where('account ='.$user_code)->find();
+        if(!$res){
+            $this->echoEncrypData(1,'该用户不存在');
+        }
+        $this->echoEncrypData(0,'',$res);
+    }
+
+
     /*
      * 高级搜索
      * @param area_id 区域id  必填
@@ -191,7 +213,7 @@ class FriendsController extends VersionController
             $map['sex'] = $sex;
         }
         try{
-            $data=M('user_info_'.$area_id)->field('account_code,signature,portrait,nickname')->where($map)->select();
+            $data=M('user_info_'.$area_id)->field('account,account_code,signature,portrait,nickname')->where($map)->select();
             if(!$data){
                 $this->echoEncrypData(1,'未找到符合条件的用户');
             }else{
