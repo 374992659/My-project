@@ -8,7 +8,7 @@ $(document).ready(function(){
         var formdata=new FormData($("#form")[0]);
         // localStorage.setItem("groupHeadPic",fd);
         var apptoken=localStorage.getItem("apptoken");
-        var data=["",JSON.stringify({"apptoken":apptoken,"formdata":formdata})];
+        var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         console.log(data);
         $.ajax({
@@ -16,6 +16,7 @@ $(document).ready(function(){
             url:url+"group_uploadGroupP",
             fileElementId:'uploaderInput',
             data:{"data":json},
+            secureuri:false,
             success : function(data){
                 // 解密
                 data=jsDecodeData(data);
