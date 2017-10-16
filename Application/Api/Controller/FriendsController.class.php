@@ -193,12 +193,12 @@ class FriendsController extends VersionController
         try{
             $data=M('user_info_'.$area_id)->field('account_code,signature,portrait,nickname')->where($map)->select();
             if(!$data){
-                $this->echoEncrypData(1,'未找到符合条件的用户1');
+                $this->echoEncrypData(1,'未找到符合条件的用户');
             }else{
                 $this->echoEncrypData(0,'',$data);
             }
         }catch (Exception $e){
-            $this->echoEncrypData(1,'未找到符合条件的用户2');
+            $this->echoEncrypData(1,$e);
         }
 
     }
