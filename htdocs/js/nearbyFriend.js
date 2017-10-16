@@ -14,7 +14,7 @@ $(document).ready(function(){
         html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb" src="${item.protrait}" alt="">
+                <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
             </div>
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title name">${item.nickname}</h4>
@@ -23,9 +23,9 @@ $(document).ready(function(){
             <button class="addFriend">加为好友</button>
         </a>
         `
-
     });
     $(".weui-panel__bd").append(html);
+    // 添加好友
     $(".nearFriend .weui-media-box").on("click",".addFriend",function(){
         //获取account_code
             var title=$(this).parent().attr("title");
