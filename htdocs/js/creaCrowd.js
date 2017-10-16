@@ -16,7 +16,8 @@ $(document).ready(function(){
             contentType : false, // 不设置Content-type请求头
             success : function(data){
                 // 解密
-
+// 解密
+                data=jsDecodeData(data);
                 console.log(data);
                 console.log(123);
 
