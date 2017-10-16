@@ -4,6 +4,9 @@
 $(document).ready(function(){
     var data=localStorage.getItem("data");
     console.log(data);
+    // 把json中为数组
+    info=JSON.parse(data);
+    console.log(info);
     var apptoken=localStorage.getItem("apptoken");
     var html="";
     $.each(data,function(i,item){
