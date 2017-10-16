@@ -26,16 +26,15 @@ $(document).ready(function(){
         console.log(id);
         var apptoken=localStorage.getItem("apptoken");
         //数据格式转换
-        data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken})];
+        data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken,"group_portrait":pic})];
         console.log(data);
         //加密数据
         jsonEncryptDate=jsEncryptData(data);
-        pic=jsEncryptData(pic);
         //发起请求
         $.ajax({
             url:url+"group_addGroup",
             type:"POST",
-            data:{"data":jsonEncryptDate,"data.group_portrai":pic},
+            data:{"data":jsonEncryptDate},
             success:function(data){
                 //解密数据
                 data=jsDecodeData(data);
