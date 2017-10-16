@@ -52,7 +52,6 @@ $(document).ready(function() {
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(this).val();
-            console.log(title);
             data=["",JSON.stringify({"group_id":1,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
