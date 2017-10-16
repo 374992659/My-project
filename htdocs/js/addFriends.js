@@ -44,12 +44,13 @@ $(document).ready(function(){
                     `
                 });
                 $(".keyFriend").append(html);
+            }else if(data.errcode===301){
+                var html=`
+                     <p style="text-align: center">${date.errcode}</p>               
+                `;
+                $(".keyFriend").html(html);
             }else{
-                console.log(data);
-                if(data.errcode===114){
-                    //alert("登录超时需重新登录");
-                    //window.location.href="landing.html";
-                }
+
             }
 
             }
