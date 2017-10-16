@@ -95,5 +95,61 @@ $(document).ready(function() {
         }
 
     });
+    // 按关键词搜索好友
+    $("#searchInput").on("input",function(){
+        var key=$("#searchInput").val();
+        console.log(key);
+        var apptoken=localStorage.getItem("apptoken");
+        if(key!==""){
+            $(".addFriendCondition").hide();
+            $(".keyFriend").show();
+        }else{
+            $(".keyFriend").hide();
+            $(".addFriendCondition").show();
+        }
+        //数据格式转换
+        data=["",JSON.stringify({"key":key,"apptoken":apptoken})];
+        console.log(data);
+        //数据加密
+        jsonEncryptDate=jsEncryptData(data);
+        //发起ajax请求
+        $.ajax({
+            url:url+"friends_searchFriends",
+            type:"POST",
+            data:{"data":jsonEncryptDate},
+            success:function(data){
+                //解密数据
+                data=jsDecodeData(data);
+                if(data.errcode===0){
+                    console.log(data);
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html="";
+                    $.each(data.data,function(i,item){
+                        html+=`
+                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg"
+                    title="${item.friend_user_code}" value="1">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc">${item.friend_signature}</p>
+                        </div>                      
+                    </a>
+                    `
+                    });
+                    $(".keyFriend").append(html);
+                }else if(data.errcode===301){
+                    var html=`
+                     <p style="text-align: center">${data.errmsg}</p>               
+                `;
+                    $(".keyFriend").html(html);
+                }else{
 
+                }
+
+            }
+        });
+
+    });
 });
