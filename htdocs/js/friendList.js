@@ -45,12 +45,12 @@ $(document).ready(function() {
             }
         }
     });
-    $(".group").on("click", ".weui-cells .LinkBtn", function () {
+    $(".group").on("click", ".weui-cells .LinkBtn", function (e) {
         // 功能2 请求好友分组下的好友信息
         (function(){
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
-            var title=$(this).attr("title");
+            var title=e.target.attr("title");
             data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
