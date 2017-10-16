@@ -58,11 +58,9 @@ $(document).ready(function(){
                        <p style="text-align: center;background: green;color: red;">${data.errmsg}</p>
                        `;
                     $(".hint").html(html);
-                    $.extend({
-                        show:function(){
+                        var show=function(){
                             $(".hint").html();
-                        }
-                    });
+                        };
                     setInterval("show()",3000);
 
                 }
