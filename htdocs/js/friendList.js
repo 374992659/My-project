@@ -139,6 +139,7 @@ $(document).ready(function() {
                     `
                     });
                     $(".keyFriend").append(html);
+                    $(".keyFriend").html();
                 }else if(data.errcode===301){
                     var html=`
                      <p style="text-align: center">${data.errmsg}</p>               

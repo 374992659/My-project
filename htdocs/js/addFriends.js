@@ -17,7 +17,7 @@ $(document).ready(function(){
         jsonEncryptDate=jsEncryptData(data);
         //发起ajax请求
         $.ajax({
-            url:url+"friends_searchFriends",
+            url:url+"friends_searchUserCode",
             type:"POST",
             data:{"data":jsonEncryptDate},
             success:function(data){
@@ -43,6 +43,7 @@ $(document).ready(function(){
                     `
                 });
                 $(".keyFriend").append(html);
+                $(".keyFriend").html();
             }else if(data.errcode===301){
                 // var html=`
                 //      <p style="text-align: center">${data.errmsg}</p>
