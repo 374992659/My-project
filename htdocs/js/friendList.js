@@ -67,6 +67,7 @@ $(document).ready(function() {
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
+                            console.log(item);
                             if(item.group_id===1){
                                 html+=`                             
                     <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
