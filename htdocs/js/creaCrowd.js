@@ -10,11 +10,12 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken,"formdata":formdata})];
         var json=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             type:"POST",
             url:url+"group_uploadGroupP",
             data:json,
-           
+
             success : function(data){
                 // 解密
 // 解密
