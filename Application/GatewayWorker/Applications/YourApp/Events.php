@@ -65,8 +65,8 @@ class Events
                         $_SESSION['account_code'] = $account_code['account_code'];
                         Gateway::updateSession($client_id,$account_code);
                         $table_id= substr($account_code['account_code'],0,4);
-                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
-//                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
+//                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
+                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
 //                        $group_arr = $db->query('select group_code  from user_group where status = 1;');
                         $group_arr = $db->select('group_code')->from('user_group')->where('status =1')->column();
                         if($group_arr){
