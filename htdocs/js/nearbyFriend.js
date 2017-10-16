@@ -35,6 +35,7 @@ $(document).ready(function(){
         data=["",JSON.stringify({"apptoken":apptoken,"account_code":title,"param group_id":group_id})];
         //数据加密
         jsonEncryptDate=jsEncryptData(data);
+        console.log(data);
         //发起ajax请求
         $.ajax({
             url:url+"friends_addFriend",
