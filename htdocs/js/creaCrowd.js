@@ -5,7 +5,7 @@ $(document).ready(function(){
             file = targetElement.files[0];
             // url=window.URL.createObjectURL(this.files[0]) ;
         console.log(file);
-        var formdata=new FormData($("#form1").[0]);
+        var formdata=new FormData($("#form").[0]);
         // localStorage.setItem("groupHeadPic",fd);
         $.ajax({
             type:"POST",
