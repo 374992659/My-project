@@ -45,27 +45,29 @@ $(document).ready(function() {
             }
         }
     });
-    // 功能2 请求好友分组下的好友信息
-    (function(){
-        // 获取group_id
-        var apptoken=localStorage.getItem("apptoken");
-        var title=$(this).attr("title");
-        data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
-        console.log(data);
-        encreptdata = jsEncryptData(data);
-        console.log(encreptdata);
-        $.ajax({
-            url:url+"friends_getGroupFriends",
-            type:"POST",
-            data:{"data":encreptdata},
-            success:function(data){
-                data=jsDecodeData(data);
-                if(data===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    var html="";
-                    $.each(data.data,function(i,item){
-                        if(item.group_id===title){
-                            html+=`                             
+    $(".group").on("click", ".weui-cells .LinkBtn", function () {
+        // 功能2 请求好友分组下的好友信息
+        (function(){
+            // 获取group_id
+            var apptoken=localStorage.getItem("apptoken");
+            var title=$(this).attr("title");
+            data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
+            console.log(data);
+            encreptdata = jsEncryptData(data);
+            console.log(encreptdata);
+            $.ajax({
+                url:url+"friends_getGroupFriends",
+                type:"POST",
+                data:{"data":encreptdata},
+                success:function(data){
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var html="";
+                        $.each(data.data,function(i,item){
+                            if(item.group_id===title){
+                                html+=`                             
                     <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}">
@@ -76,15 +78,14 @@ $(document).ready(function() {
                         </div>
                     </a>
                            `
-                        }
-                    });
-                    $(".friend").html(html)
+                            }
+                        });
+                        $(".friend").html(html)
+                    }
                 }
-            }
-        });
-    })();
-    // 功能显示隐藏分组下的好友信息
-    $(".group").on("click", ".weui-cells .LinkBtn", function () {
+            });
+        })();
+        // 功能显示隐藏分组下的好友信息
         if($(this).next().is(":hidden")){
             $(this).next().show();
             $(this).children().children("img").css("transform","rotate(90deg)");

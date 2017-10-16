@@ -15,7 +15,6 @@ $(document).ready(function(e){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    console.log(data);
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
