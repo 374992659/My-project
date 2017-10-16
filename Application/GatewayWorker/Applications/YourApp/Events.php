@@ -110,8 +110,8 @@ class Events
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();
                         if($group_data){
                             foreach ($group_data as $key=>$val){
-                                $user_database = $mongo->user_info_.$val['user_code'];
-                                var_dump($user_database);
+//                                $user_database = $mongo->user_info_.$val['user_code'];
+                                $user_database = $mongo->user_info_030117608006762;
                                 $data = $user_database->group_new_message->find();
                                 var_dump($data);
                             }
