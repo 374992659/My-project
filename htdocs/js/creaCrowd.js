@@ -8,6 +8,7 @@ $(document).ready(function(){
         $.ajaxFileUpload({
             url:url+"group_uploadGroupP", //用于文件上传的服务器端请求地址
             data:{"data":json},
+            dataType : 'text',
             secureuri: false, //是否需要安全协议，一般设置为false
             fileElementId: 'uploaderInput', //文件上传域的ID
             success:function(data){
