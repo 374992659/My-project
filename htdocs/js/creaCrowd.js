@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    "use strict";
     $('#uploaderInput').change(function(e) {
         var targetElement = e.target,
             file = targetElement.files[0],
@@ -15,10 +16,13 @@ $(document).ready(function(){
             processData : false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
             contentType : false, // 不设置Content-type请求头
             success : function(data){
-                "use strict";
                 // 解密
-                data=jsDecodeData(data);
+               
+                console.log(data);
                 console.log(123);
+
+            },
+            error:function (data) {
                 console.log(data);
             }
         });
@@ -26,10 +30,8 @@ $(document).ready(function(){
             $(".flockHead img").attr("src", url);
             $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
             $(".flockHead").attr("style","display:block");
-           ;
-console.log(123);
         }
-
+        console.log(123);
     });
 
 
