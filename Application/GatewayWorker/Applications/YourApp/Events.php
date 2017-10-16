@@ -113,8 +113,12 @@ class Events
                             foreach ($group_data as $key=>$val){
 //                                $user_database = $mongo->user_info_.$val['user_code'];
                                 $user_database = $mongo->user_info_030117608006762;
-                                $message = $user_database->group_new_message->find();
-                                var_dump(iterator_to_array($message));
+                                if($user_database->group_new_message->count()){
+                                    $message = $user_database->group_new_message->find();
+                                    foreach ($message as $v){
+                                        var_dump($v);
+                                    }
+                                }
                             }
                         }
                         $data = array(
