@@ -18,7 +18,7 @@ $(document).ready(function(){
 
     $(".createBtn").click(function(){
         //获取图片
-        var pic=localStorage.getItem("fd");
+        var pic=localStorage.getItem("groupHeadPic");
         // 群名称
         var name=$("#flockName").val();
         // 群分类
@@ -26,7 +26,7 @@ $(document).ready(function(){
         console.log(id);
         var apptoken=localStorage.getItem("apptoken");
         //数据格式转换
-        data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken})];
+        data=["",JSON.stringify({"group_name":name,"group_type":id,"group_portrait":pic,"apptoken":apptoken})];
         console.log(data);
         //加密数据
         jsonEncryptDate=jsEncryptData(data);
@@ -34,15 +34,15 @@ $(document).ready(function(){
         $.ajax({
             url:url+"group_addGroup",
             type:"POST",
-            data:{"data":jsonEncryptDate,"data.group_portrait":pic},
+            data:{"data":jsonEncryptDate},
             success:function(data){
                 //解密数据
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    alert("创建成功");
-                    window.location.href="createCrowd.html"
+                    alert("good");
+                    // window.location.href="createCrowd.html"
                 }else{
                     if(data.errcode===114){
                         alert("");
