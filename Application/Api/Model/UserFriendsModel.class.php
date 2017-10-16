@@ -25,6 +25,7 @@ class UserFriendsModel extends Model
      * */
     public function getFriendsNum(){
         $data = $this->query('select group_id,count(*) as total from user_friends group by group_id');
+        return $data;
         if($data){
             foreach($data as $k=>$v){
                 $v['friend_user'] = $this->query('select friend_user_code from user_friends where group_id='. $v['group_id']);
