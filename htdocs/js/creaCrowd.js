@@ -7,10 +7,13 @@ $(document).ready(function(){
         console.log(file);
         var formdata=new FormData($("#form")[0]);
         // localStorage.setItem("groupHeadPic",fd);
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken,"formdata":formdata})];
+        var json=jsEncryptData(data);
         $.ajax({
             type:"POST",
             url:url+"group_uploadGroupP",
-            data:formdata,
+            data:{"data":json},
             cache : false,
             processData : false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
             contentType : false, // 不设置Content-type请求头
