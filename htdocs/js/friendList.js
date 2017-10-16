@@ -16,6 +16,7 @@ $(document).ready(function() {
                 localStorage.setItem("apptoken",data.apptoken);
                 var html = "";
                 $.each(data.data, function (i, item) {
+                    console.log(123);
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.group_id}">
