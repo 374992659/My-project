@@ -23,18 +23,18 @@ class FriendsController extends VersionController
         $model = new Model\UserFriendsModel($account_code);
         $data2 = $model->getFriendsNum();
         if($data2){
-            foreach($data2 as $k=>$v){
-                if($data1){
-                    foreach($data1 as $key =>$val){
-                        if($v['group_id'] == $val['id']){
-                            $v['group_name'] = $val['group_name'];
-                        }
-                    }
-                }else{
-                    $this->echoEncrypData(5,'');
-                }
-                $data2[$k]=$v;
-            }
+//            foreach($data2 as $k=>$v){
+//                if($data1){
+//                    foreach($data1 as $key =>$val){
+//                        if($v['group_id'] == $val['id']){
+//                            $v['group_name'] = $val['group_name'];
+//                        }
+//                    }
+//                }else{
+//                    $this->echoEncrypData(5,'');
+//                }
+//                $data2[$k]=$v;
+//            }
             $this->echoEncrypData(0,'',$data2);
         }else{
             foreach ($data1  as $k=>$v){
