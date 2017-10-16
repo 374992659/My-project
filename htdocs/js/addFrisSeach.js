@@ -58,10 +58,10 @@ $(document).ready(function(){
                        <p style="text-align: center;background: green;color: red;">${data.errmsg}</p>
                        `;
                     $(".hint").html(html);
-                        var show=function(){
+                         function show(){
                             $(".hint").html();
-                        };
-                    setInterval("show()",3000);
+                        }
+                    setTimeout("show()",1000);
 
                 }
             }
