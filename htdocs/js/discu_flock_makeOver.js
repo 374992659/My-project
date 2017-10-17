@@ -101,6 +101,7 @@ $(document).ready(function(){
     });
     //功能2 转让群
     $(".affirmBtn").click(function(){
+        var success=$(".success");
         // 获取群号
         var group_num=localStorage.getItem("group_num"),
         // 获取用户code
@@ -125,18 +126,17 @@ $(document).ready(function(){
                     var html=`
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
-                    $(".success").html(html);
-                    $.extend({
-                        hidden:function(){
-                           $(".success").hide();
-                        }
-                    });
-                    setInterval("hidden()",3000);
+                    success.html(html);
                 }else{
                     var html=`
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
                     $(".success").html(html);
+                    var hideTop=function(){
+                        success.hide();
+                    };
+                    setTimeout("hideTop()", 5000);
+
                 }
             }
         })
