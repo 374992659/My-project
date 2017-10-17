@@ -57,20 +57,11 @@ $(document).ready(function(){
                    $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
                    $(".flockHead").attr("style","display:block");
                }
-                console.log(123);
-
             },
            error:function (data) {
                 console.log(data);
            }
        });
-        //上传前的预览
-       // if(url){
-       //      $(".flockHead img").attr("src", url);
-       //     $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
-       //      $(".flockHead").attr("style","display:block");
-       //  }
-        //console.log(123);
     });
 
 
@@ -99,12 +90,15 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    alert("good");
-                    // window.location.href="createCrowd.html"
+                    var html=`
+                    <p style="text-align: center;background: green">创建成功</p>
+                    `;
+                    $(".success").append(html);
+                    window.location.href="createCrowd.html"
                 }else{
                     if(data.errcode===114){
-                        alert("");
-                        //window.location.href="landing.html"
+                      
+                        window.location.href="landing.html"
                     }else{
                         alert(data.errmsg);
                     }
