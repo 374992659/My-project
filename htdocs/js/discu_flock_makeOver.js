@@ -108,7 +108,7 @@ $(document).ready(function(){
         // 获取apptoken
             apptoken=localStorage.getItem("apptoekn"),
         // 数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoekn,"group_num":group_num,"user_code":user_code})],
+        data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
         // 数据加密
         jsonEncryptData=jsEncryptData(data);
         $.ajax({
