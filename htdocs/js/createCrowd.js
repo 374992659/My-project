@@ -40,7 +40,7 @@ $(document).ready(function(){
                             `
                     });
                     console.log($(this).find(".groupList"));
-                    $(this).find(".groupList").html(html);
+                    $(this).find(".groupList").append(html);
                     var groupList=$(this).find(".groupList");
                     console.log(groupList);
                     var img=$(this).find(".imgBtn");
