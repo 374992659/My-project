@@ -37,6 +37,7 @@ $(document).ready(function(){
                         </div>
                             `
                     });
+                    console.log($(this).parent().find(".groupList"));
                     $(this).parent().find(".groupList").html(html);
                 }else{
                     console.log(data.errmsg);
