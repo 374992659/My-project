@@ -78,8 +78,8 @@ $(document).ready(function(){
                             ueserNum=i+1;
                         }
                     });
-                    $(".administrator").html(manege);
-                    $(".member").html(user);
+                    $(".manegeList").html(manege);
+                    $(".userList").html(user);
                     $(".manegeNum span").append(manegeNum);
                     $(".userNum span").append(ueserNum);
                     console.log(2);
