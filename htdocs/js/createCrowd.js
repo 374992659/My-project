@@ -37,8 +37,18 @@ $(document).ready(function(){
                         </div>
                             `
                     });
-                    console.log($(this).parent().find(".groupList"));
-                    $(this).parent().find(".groupList").html(html);
+                    console.log($(this).find(".groupList"));
+                    $(this).find(".groupList").html(html);
+                    var groupList=$(this).find(".groupList");
+                    var img=$(this).find(".imgBtn");
+                    if(groupList.is(":hidden")){
+                        groupList.show();
+                        img.css("transform","rotate(90deg)");
+                    }else{
+                        groupList.hide();
+                        img.removeAttr("style");
+                    }
+
                 }else{
                     console.log(data.errmsg);
                 }
