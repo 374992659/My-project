@@ -81,3 +81,14 @@ function chttpPost($url = '', $postData = '', $options = array())
     curl_close($ch);
     return $data;
 }
+/*
+ * 获取mongodb数据库中表的主键
+ * */
+function getNextIncVal($dbName,$collectionName){
+    $mongo = new MongoClient();
+    $database = $mongo->$dbName;
+    $data = $database->counters->findAndModify(array('_id'=>$collectionName),array('$inc'=>array('inc_val'=>1),null,array('new'=>true)));
+    return $data['inc_val'];
+}
+
+
