@@ -26,7 +26,8 @@ $(document).ready(function(){
                         menageGroup="",
                         joinGroup="";
                     $.each(data.data,function(i,item){
-                        if(item.role===1){
+                        console.log(item.role);
+                        if(item.role==1){
                             myGroup+=`
                         <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
@@ -39,7 +40,7 @@ $(document).ready(function(){
                         </div>
                             `;
                             myGroupNum=i+1;
-                        }else if(item.role===2){
+                        }else if(item.role==2){
                             menageGroup+=`
                         <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
