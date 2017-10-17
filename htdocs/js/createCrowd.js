@@ -4,8 +4,8 @@ $(document).ready(function(){
   var getMyGroup=function(){ //获取apptoken
       var apptoken=localStorage.getItem("apptoken");
       //当前的群类型title
-      var title=$(this).attr("title");
-      console.log(title);
+      // var title=$(this).attr("title");
+      // console.log(title);
       //数据格式转换
       var data=["",JSON.stringify({"apptoken":apptoken,"value":title})];
       //数据加密
