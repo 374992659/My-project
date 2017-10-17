@@ -110,7 +110,8 @@ class Events
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
                         $mongo = new MongoClient();
                         $data = $mongo->baseinfo->test;
-                        $data->insert(array('_id'=>self::getNextIncVal('baseinfo','test'),'val'=>'test'));
+                        var_dump(getNextIncVal('baseinfo','test'));
+//                        $data->insert(array('_id'=>self::getNextIncVal('baseinfo','test'),'val'=>'test'));
 //                        if($group_data){
 //                            foreach ($group_data as $key=>$val){
 ////                                $user_database = $mongo->user_info_.$val['user_code'];
@@ -276,7 +277,7 @@ class Events
         $database = $mongo->$dbName;
         $data = $database->command(array('findandmodify'=>'counters','update'=>array('$inc'=>array('inc_val'=>1),'query'=>array('_id'=>$collectionName),'new'=>true,'upsert'=>true)));
         $mongo->close();
-        return $data['value']['inc_val'];
+        return $data;
     }
 
 
