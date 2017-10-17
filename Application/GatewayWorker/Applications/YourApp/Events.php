@@ -276,7 +276,6 @@ class Events
         $mongo = new MongoClient();
         $database = $mongo->$dbName;
         $data = $database->command(array('findandmodify'=>'counters','update'=>array('$inc'=>array('inc_val'=>1),'query'=>array('name'=>$collectionName),'new'=>true,'upsert'=>true)));
-        $mongo->close();
         return $data;
     }
 
