@@ -3,6 +3,7 @@ $(document).ready(function(){
     "use strict";
     $(".particpation").click(function(){
         //获取apptoken
+         console.log($(this));
         var apptoken=localStorage.getItem("apptoken");
         //当前的群类型title
         var title=$(this).attr("title");
@@ -26,7 +27,6 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
-                        console.log(item);
                             html+=`
                         <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
@@ -40,6 +40,7 @@ $(document).ready(function(){
                             `
                     });
                     var groupList=$(e.target).find(".groupList");
+
                     groupList.append(html);
                     console.log(groupList);
                     var img=$(e.target).find(".imgBtn");
