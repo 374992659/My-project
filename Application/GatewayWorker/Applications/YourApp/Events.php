@@ -123,7 +123,7 @@ class Events
                                    }
                                     $count = $user_database->group_new_message->count(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']));
                                     var_dump($count);
-                                    $content =iterator_to_array($user_database->greoup_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code'])));
+                                    $content =iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code'])));
                                     var_dump($content);
                                 }
                             }
