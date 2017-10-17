@@ -374,6 +374,10 @@ class RegiestController extends BaseController
         $group_new_message->ensureIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1,'group'=>1));
         $friends_chat=$db->createCollection('friends_chat');// 好友聊天记录
         $friends_chat->ensureIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1));
+        $counters=$db->createCollection('counters');// 自增id表
+        $db->counters->insert(array('_id'=>'group_chat','inc_val'=>0));
+        $db->counters->insert(array('_id'=>'friends_chat','inc_val'=>0));
+        $db->counters->insert(array('_id'=>'group_new_message','inc_val'=>0));
     }
     public function executeSql($fileName,$data){
         $sql=file_get_contents(C('SQL_PATH').$fileName);
