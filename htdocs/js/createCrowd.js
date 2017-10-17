@@ -22,6 +22,7 @@ $(document).ready(function(){
               var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
+                    console.log(123);
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
