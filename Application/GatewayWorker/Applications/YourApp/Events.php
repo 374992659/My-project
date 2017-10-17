@@ -120,7 +120,8 @@ class Events
                                     foreach ( $group_time as $item) {
                                         $time = $item['time'];
                                    }
-                                    $message['count'] = $user_database->group_new_message->count(array('time'=>array('$gte'=>$time)));
+                                    $count = $user_database->group_new_message->count(array('send_time'=>array('$gte'=>$time)));
+
                                     var_dump($message);
                                 }
                             }
