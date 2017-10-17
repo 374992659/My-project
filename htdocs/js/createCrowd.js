@@ -39,7 +39,7 @@ $(document).ready(function(){
                             `
                         }
                     });
-                    $(".groupList").html(html);
+                    $(this).children().last().html(html);
                 }else{
                     console.log(data.errmsg);
                 }

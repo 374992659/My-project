@@ -66,8 +66,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    alert("发布成功");
-                    window.location.href="floclComm.html";
+                    // window.location.href="floclComm.html";
                 }else{
                     console.log(data.errmsg);
                 }
