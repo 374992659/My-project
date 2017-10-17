@@ -39,10 +39,10 @@ $(document).ready(function(){
                         </div>
                             `
                     });
-                    var groupList=$(this).find(".groupList");
+                    var groupList=$(e.target).find(".groupList");
                     groupList.append(html);
                     console.log(groupList);
-                    var img=$(this).find(".imgBtn");
+                    var img=$(e.target).find(".imgBtn");
                     console.log(img);
                     if(groupList.is(":hidden")){
                         console.log(1);
