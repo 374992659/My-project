@@ -274,7 +274,7 @@ class Events
   * */
     public static function getNextIncVal($dbName,$collectionName){
         $mongo = new MongoClient();
-        $database = $mongo->$dbName;
+        $database = $mongo->baseinfo;
         $data = $database->command(array('findandmodify'=>'counters','update'=>array('$inc'=>array('inc_val'=>1),'query'=>array('name'=>$collectionName),'new'=>true,'upsert'=>true)));
         return $data;
     }
