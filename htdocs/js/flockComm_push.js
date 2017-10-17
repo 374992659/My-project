@@ -26,7 +26,7 @@ $(document).ready(function(){
                     console.log(data.data.file_path);
                     localStorage.setItem("flockCommPic",data.data.file_path);
                     var img=`
-                    <img src="${Url}" alt="" style="width: 77px" class="img2">
+                    <img src="${Url}" alt="" style="width: 77px;height: 77px" class="img2">
                     `;
                     $(".picture li").append(img);
                 }
