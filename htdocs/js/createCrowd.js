@@ -41,7 +41,9 @@ $(document).ready(function(){
                     console.log($(this).find(".groupList"));
                     $(this).find(".groupList").html(html);
                     var groupList=$(this).find(".groupList");
+                    console.log(groupList);
                     var img=$(this).find(".imgBtn");
+                    console.log(img);
                     if(groupList.is(":hidden")){
                         groupList.show();
                         img.css("transform","rotate(90deg)");
