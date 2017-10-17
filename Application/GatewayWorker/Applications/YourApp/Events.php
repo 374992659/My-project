@@ -137,7 +137,7 @@ class Events
                                 $group_new_message[$val['group_code']]['count']=$count;
                                 $group_new_message[$val['group_code']]['content']=$content;
                             }
-                            var_dump($group_new_message);
+                            print_r($group_new_message);
                         }
                         $data = array(
                             'errocode'=>0,
