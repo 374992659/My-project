@@ -23,8 +23,9 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    console.log(data.data.file_path);
-                    localStorage.setItem("flockCommPic",data.data.file_path);
+                    console.log(data.data[0]);
+                    localStorage.setItem("flockCommPic",data.data[0]);
+                    console.log(data.data[0]);
                     $("img").attr({
                         "src":Url,
                         "style":"width:77px;height:77px"
