@@ -17,7 +17,7 @@ $(document).ready(function(){
             url:url+"group_getMyGroup",
             type:"POST",
             data:{"data":jsonEncryptDate},
-            success:function(data){
+            success:function(data,e){
                 //数据解密
               var data=jsDecodeData(data);
                 console.log(data);
