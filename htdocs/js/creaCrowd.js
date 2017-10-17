@@ -52,7 +52,8 @@ $(document).ready(function(){
                console.log(data);
                if(data.errcode===0){
                    console.log(data.data.file_path);
-                   localStorage.setItem("createCrowdPic",data.data.file_path)
+                   localStorage.setItem("createCrowdPic",data.data.file_path);
+                   $(".flockHead img").attr("src",data.data.file_path)
                }
                 console.log(123);
 
@@ -61,13 +62,6 @@ $(document).ready(function(){
                 console.log(data);
            }
        });
-        //上传前的预览
-       // if(url){
-       //      $(".flockHead img").attr("src", url);
-       //     $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
-       //      $(".flockHead").attr("style","display:block");
-       //  }
-        //console.log(123);
     });
 
 
