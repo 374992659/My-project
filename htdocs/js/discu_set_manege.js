@@ -80,7 +80,7 @@ $(document).ready(function(){
     //功能三 设置管理员
     $(".linkman").on("click",".weui-panel__bd .weui-media-box .setBtn",function(){
         var success=$(".success");
-        var hide=function(){
+        var hideTop=function(){
             success.empty();
         };
         //获取group_num 群号码
@@ -106,14 +106,14 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.ermsg}</p>
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
                     success.html(html);
                     setTimeout(hideTop,3000);
                     getGroupUser();
                 }else{
                     var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.ermsg}</p>
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
                     success.html(html);
                     setTimeout(hideTop,3000);
