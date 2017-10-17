@@ -130,12 +130,13 @@ $(document).ready(function(){
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
                     success.html(html);
+                    setTimeout(hideTop,3000);
                 }else{
                     var html=`
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
                     $(".success").html(html);
-                    setTimeout(hideTop,5000);
+                    setTimeout(hideTop,3000);
 
                 }
             }
