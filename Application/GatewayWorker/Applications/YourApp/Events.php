@@ -122,7 +122,7 @@ class Events
                                    }
                                     $count = $user_database->group_new_message->count(array('send_time'=>array('$gte'=>$time)));
 
-                                    var_dump($message);
+                                    var_dump($count);
                                 }
                             }
                         }
