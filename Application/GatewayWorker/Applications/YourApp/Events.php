@@ -259,7 +259,7 @@ class Events
        }
        $_SESSION['account_code']='';
    }
-   public function returnData($errcode,$type,$errmsg='',$data=''){
+   public static function returnData($errcode,$type,$errmsg='',$data=''){
         $arr =array(
             'errcode'=>$errcode,
             'type'=>$type,
@@ -271,7 +271,7 @@ class Events
     /*
   * 获取mongodb数据库中表的主键
   * */
-    public function getNextIncVal($dbName,$collectionName){
+    public static function getNextIncVal($dbName,$collectionName){
         $mongo = new MongoClient();
         $database = $mongo->$dbName;
         $data = $database->counters->findAndModify(array('_id'=>$collectionName),array('$inc'=>array('inc_val'=>1),null,array('new'=>true)));
