@@ -224,7 +224,7 @@ class GroupController extends VersionController
         $model=new Model\GroupNoticeModel($create_code);
         $res = $model->addGroupNotice($title,$content,$portrait,$user_code,$group_num);
         if(!$res){
-            $this->echoEncrypData(222);
+            $this->echoEncrypData(222,array($title,$content,$portrait,$user_code,$group_num));
         }
         $this->echoEncrypData(0);
     }
