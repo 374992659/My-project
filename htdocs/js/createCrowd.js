@@ -46,9 +46,10 @@ $(document).ready(function(){
                     var img=$(this).find(".imgBtn");
                     console.log(img);
                     if(groupList.is(":hidden")){
+                        console.log(1);
                         groupList.show();
                         img.css("transform","rotate(90deg)");
-                    }else{
+                    }else{console.log(2);
                         groupList.hide();
                         img.removeAttr("style");
                     }
