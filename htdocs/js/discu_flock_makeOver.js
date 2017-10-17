@@ -1,82 +1,93 @@
 $(document).ready(function(){
-    //»ñÈ¡ÈººÅÂë
-    var code="";
-    //»ñÈ¡apptoken
-    var apptoken=localStorage.getItem("apptoken");
-    //Êı¾İ¸ñÊ½×ª»»
-    data=["",JSON.stringify({"group_num":code,"apptoken":apptoken})];
-    //Êı¾İ¼ÓÃÜ
-    $.ajax({
-        url:url+"group_getGroupUser",
-        type:"POST",
-        data:{"data":data},
-        success:function(data){
-            //½âÃÜÊı¾İ
-            data=jsDecodeData(data);
-            console.log(data);
-            if(data.errcode===0){
-                localStorage.setItem("apptoken",data.apptoken);
-                var htmlAdministrator="";
-                var htmlMember="";
-                $.each(data.data,function(i,item){
-                    if(item.role==1||item.role==2){
-                        htmlAdministrator+=`
-                    <div class="weui-cells weui-cells_checkbox" title="${item.user_code}">
-                         <label class="weui-cell weui-check__label" for="s1">
-                            <div class="weui-cell__hd">
-                                <input type="checkbox" class="weui-check" name="checkbox1" id="s1" value="${item.usere_code}">
-                                <i class="weui-icon-checked"></i>
-                            </div>
-                            <div class="weui-cell__bd">
-                                <div class="weui-panel__bd">
-                                    <div  class="weui-media-box weui-media-box_appmsg">
-                                        <div class="weui-media-box__hd">
-                                            <img class="weui-media-box__thumb" src="${item.portrait}">
-                                        </div>
-                                        <div class="weui-media-box__bd">
-                                            <h4 class="weui-media-box__title">${item.nicename}</h4>
-                                            <p class="weui-media-box__desc">ÓÉ¸÷ÖÖÎïÖÊ×é³ÉµÄ¾ŞĞÍÇò×´ÌìÌå£¬½Ğ×öĞÇÇò¡£ĞÇÇòÓĞÒ»¶¨µÄĞÎ×´£¬ÓĞ×Ô¼ºµÄÔËĞĞ¹ìµÀ¡£</p>
-                                        </div>
+    "use strict";
+    var getGroupUser=function(){
+        //è·å–ç¾¤å·ç 
+        var group_num=localStorage.getItem("group_num"),
+            //è·å–apptoken
+            apptoken=localStorage.getItem("apptoken"),
+            //æ•°æ®æ ¼å¼è½¬æ¢
+            data=["",JSON.stringify({"group_num":group_num,"apptoken":apptoken})],
+            //æ•°æ®åŠ å¯†
+            jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"group_getGroupUser",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                //è§£å¯†æ•°æ®
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    console.log(1);
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var ueserNum="";
+                    var manegeNum="";
+                    var manege="";
+                    var user="";
+                    $.each(data.data,function(i,item){
+                        if(item.role==1||item.role==2){
+                            console.log(item);
+                            manege+=`
+                <div class="weui-cells weui-cells_checkbox ">
+                    <label class="weui-cell weui-check__label" for="s1">
+                        <div class="weui-cell__hd">
+                            <input type="radio" class="weui-check" name="checkbox1" id="s1" >
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-panel__bd">
+                                <div  class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="image/firenda.jpg">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">æ˜µç§°ï¼š</h4>
+                                        <p class="weui-media-box__desc">ç”±å„ç§ç‰©è´¨ç»„æˆçš„å·¨å‹çƒçŠ¶å¤©ä½“ï¼Œå«åšæ˜Ÿçƒã€‚æ˜Ÿçƒæœ‰ä¸€å®šçš„å½¢çŠ¶ï¼Œæœ‰è‡ªå·±çš„è¿è¡Œè½¨é“ã€‚</p>
                                     </div>
                                 </div>
                             </div>
-                         </label>
-                    </div>
-                        `
-                    }else{
-                        htmlMember+=`
-                    <div class="weui-cells weui-cells_checkbox" title="${item.user_code}">
-                        <label class="weui-cell weui-check__label" for="s1">
-                            <div class="weui-cell__hd">
-                                <input type="checkbox" class="weui-check" name="checkbox1" id="s1" value="${item.user_code}">
-                                <i class="weui-icon-checked"></i>
-                            </div>
-                            <div class="weui-cell__bd">
-                                <div class="weui-panel__bd">
-                                    <div  class="weui-media-box weui-media-box_appmsg">
-                                        <div class="weui-media-box__hd">
-                                            <img class="weui-media-box__thumb" src="${item.portrait}">
-                                        </div>
-                                        <div class="weui-media-box__bd">
-                                            <h4 class="weui-media-box__title">${item.nicename}</h4>
-                                            <p class="weui-media-box__desc">ÓÉ¸÷ÖÖÎïÖÊ×é³ÉµÄ¾ŞĞÍÇò×´ÌìÌå£¬½Ğ×öĞÇÇò¡£ĞÇÇòÓĞÒ»¶¨µÄĞÎ×´£¬ÓĞ×Ô¼ºµÄÔËĞĞ¹ìµÀ¡£</p>
-                                        </div>
+                        </div>
+                    </label>
+                </div>
+                    `;
+                            manegeNum=i+1;
+                        }else{
+                            user+=`
+                <div class="weui-cells weui-cells_checkbox ">
+                    <label class="weui-cell weui-check__label" for="s1">
+                        <div class="weui-cell__hd">
+                            <input type="radio" class="weui-check" name="checkbox1" id="s1" >
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-panel__bd">
+                                <div  class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="image/firenda.jpg">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">æ˜µç§°ï¼š</h4>
+                                        <p class="weui-media-box__desc">ç”±å„ç§ç‰©è´¨ç»„æˆçš„å·¨å‹çƒçŠ¶å¤©ä½“ï¼Œå«åšæ˜Ÿçƒã€‚æ˜Ÿçƒæœ‰ä¸€å®šçš„å½¢çŠ¶ï¼Œæœ‰è‡ªå·±çš„è¿è¡Œè½¨é“ã€‚</p>
                                     </div>
                                 </div>
                             </div>
-                        </label>
-                    </div>
-                        `
-                    }
-                });
-                $(".administrator").html(htmlAdministrator);
-                $(".member").html(htmlMember);
+                        </div>
+                    </label>
+                </div>
+                        `;
+                            ueserNum=i+1;
+                        }
+                    });
+                    $(".administrator").html(manege);
+                    $(".member").html(user);
+                    $(".manegeNum span").append(manegeNum);
+                    $(".userNum span").append(ueserNum);
+                    console.log(2);
+                }
             }
-        }
 
-    });
-
-
+        });
+    };getGroupUser();
     $(".LinkBtn").click(function(){
         console.log($(this));
         if($(this).next().is(":hidden")){
@@ -87,7 +98,5 @@ $(document).ready(function(){
             $(this).children(".weui-cell__hd").children("img").removeAttr("style")
         }
     });
-    //Èº×ªÈÃÌá½»
-    //»ñÈ¡ÓÃ»§code
-    var title=$('input:radio:checked').val();
+
 });

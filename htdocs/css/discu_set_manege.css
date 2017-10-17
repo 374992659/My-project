@@ -51,7 +51,7 @@ a:hover {
     height: 40px;
     line-height: 40px;
 }
-.manegeNum{
+.manegeNum,.userNum{
     font-size: 13px;
     color:black;
 }
