@@ -1,12 +1,6 @@
 
 $(document).ready(function(){
-    $(".particpation").click(function(e){
-        // //获取当前元素子元素的最后一个子元素
-        // var groupList=$(this).find(".weui-panel__bd");
-        // console.log(groupList);
-        // //获取img
-        // var Img=$(this).find(".imgBtn");
-        // console.log(Img);
+    $(".particpation").click(function(){
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //当前的群类型title
@@ -21,10 +15,10 @@ $(document).ready(function(){
         $.ajax({
             url:url+"group_getMyGroup",
             type:"POST",
-            data:{"data":data},
+            data:{"data":jsonEncryptDate},
             success:function(data){
                 //数据解密
-                data=jsDecodeData(data);
+              var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
@@ -46,7 +40,7 @@ $(document).ready(function(){
                     });
                     $(".groupList").html(html);
                 }else{
-                    alert(data.errmsg);
+                    console.log(data.errmsg);
                 }
             }
 
