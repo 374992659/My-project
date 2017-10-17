@@ -26,8 +26,9 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
+                        console.log(item);
                             html+=`
-                        <div href="" class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
+                        <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
                                 <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
                             </div>
