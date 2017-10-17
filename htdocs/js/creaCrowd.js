@@ -54,6 +54,8 @@ $(document).ready(function(){
                    console.log(data.data.file_path);
                    localStorage.setItem("createCrowdPic",data.data.file_path);
                    $(".flockHead img").attr("src",Url);
+                   $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
+                   $(".flockHead").attr("style","display:block");
                }
                 console.log(123);
 
