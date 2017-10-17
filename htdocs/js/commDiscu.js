@@ -17,6 +17,7 @@ $(document).ready(function(){
             data:{"data":jsonEncryptData},
             success:function(data){
                 // 解密
+                var user_menber="";
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
@@ -28,9 +29,12 @@ $(document).ready(function(){
                           <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
                       </li>
                         `;
-                        console.log(i);
+                       user_menber=i+1;
+
                     });
+                    console.log(user_menber);
                     $(".flockMember").prepend(html);
+                    $(".userMember span").append(user_menber);
                 }
             }
         })
