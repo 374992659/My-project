@@ -1,5 +1,6 @@
 
 $(document).ready(function(){
+    "use strict";
     $(".particpation").click(function(){
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -7,10 +8,10 @@ $(document).ready(function(){
         var title=$(this).attr("title");
         console.log(title);
         //数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoken,"value":title})];
+       var data=["",JSON.stringify({"apptoken":apptoken,"value":title})];
         //数据加密
         console.log(data);
-        jsonEncryptDate=jsEncryptData(data);
+       var jsonEncryptDate=jsEncryptData(data);
         //发起ajax请求
         $.ajax({
             url:url+"group_getMyGroup",
@@ -26,7 +27,7 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         if(item.role===title){
                             html+=`
-                        <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg" title="${item.group_num}">
+                        <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
                                 <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
                             </div>
@@ -46,7 +47,14 @@ $(document).ready(function(){
 
         })
     });
-
+    // 跳转页面之前保存群号码
+    $(".saveGroupNum").click(function(){
+       // 获取当前group_num群号码
+        var groupCode=$(this).attr("title");
+        console.log(groupCode);
+        // 存在本地
+        localStorage.setItem("group_num",groupCode)
+    });
     //<!--我创建的群-->
    $(".creaFlock").click(function(){
 
