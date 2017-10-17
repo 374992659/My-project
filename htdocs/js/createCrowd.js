@@ -27,7 +27,7 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         if(item.role===title){
                             html+=`
-                        <a href="" class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
+                        <div href="" class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
                                 <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
                             </div>
@@ -35,7 +35,7 @@ $(document).ready(function(){
                                 <h4 class="weui-media-box__title" style="font-size: 15px">${item.group_name}</h4>
                                 <p class="weui-media-box__desc">${item.group_type_name}</p>
                             </div>
-                        </a>
+                        </div>
                             `
                         }
                     });
