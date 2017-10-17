@@ -49,6 +49,7 @@ $(document).ready(function(){
     });
     // 跳转页面之前保存群号码
     $(".groupList").on("click",".saveGroupNum",function(){
+        console.log(132);
         // 获取当前group_num群号码
         var groupCode=$(this).attr("title");
         console.log(groupCode);
