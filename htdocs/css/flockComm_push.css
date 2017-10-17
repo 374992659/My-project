@@ -40,7 +40,8 @@ a:hover {
     -webkit-transform-origin: 0 100%;
     transform-origin: 0 100%;
     -webkit-transform: scaleY(.5);
-    transform: scaleY(.5);}
+    transform: scaleY(.5);
+}
 
 
 
