@@ -55,3 +55,6 @@ a:hover {
     font-size: 13px;
     color:black;
 }
+.weui-media-box {
+    padding:5px 15px;
+}
