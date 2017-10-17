@@ -38,17 +38,19 @@ a:hover {
 }
 /*群信息*/
 .flockMember>li{
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
     border-radius: 2rem;
     border: 1px solid black;
-    margin-right: 1rem;
+    margin-right: 5px;
     overflow: hidden;
+    text-align: center;
+    line-height: 35px;
 }
 .addMember{
     display: inline-block;
-    width: 60px;
-    height: 60px;
+    width: 35px;
+    height: 35px;
     border-radius: 2rem;
     border: 1px solid black;
     text-align: center;
@@ -63,9 +65,16 @@ a:hover {
     left: 111px;
     z-index: 100;
 }
-
-
-
+.weui-grid__label{
+    font-size: 12px;
+}
+.weui-cells {
+    width: 100%;
+}
+.groupNUM span{
+    font-size: 15px;
+    color:black;
+}
 
 
 
