@@ -79,7 +79,7 @@ $(document).ready(function(){
                     });
                     $(".manegeList").html(manege);
                     $(".userList").html(user);
-                    $(".manegeNum span").append(manegeNum);
+                    $(".manageNum span").append(manegeNum);
                     $(".userNum span").append(ueserNum);
                     console.log(2);
                 }
