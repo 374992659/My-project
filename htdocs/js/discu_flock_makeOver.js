@@ -100,7 +100,7 @@ $(document).ready(function(){
         }
     });
     //功能2 转让群
-    $(".firmBtn").click(function(){
+    $(".affirmBtn").click(function(){
         // 获取群号
         var group_num=localStorage.getItem("group_num"),
         // 获取用户code
@@ -121,7 +121,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    
+
                 }
             }
         })
