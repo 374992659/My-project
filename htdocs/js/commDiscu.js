@@ -20,14 +20,15 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoekn);
+                    localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     $.each(data.data,function(i,item){
                         html+=`
                         <li class="lf">
                           <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
                       </li>
-                        `
+                        `;
+                        console.log(i);
                     });
                     $(".flockMember").prepend(html);
                 }
