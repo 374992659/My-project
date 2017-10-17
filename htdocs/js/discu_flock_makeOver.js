@@ -63,11 +63,10 @@ $(document).ready(function(){
                             <div class="weui-panel__bd">
                                 <div  class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
-                                        <img class="weui-media-box__thumb" src="image/firenda.jpg">
+                                        <img class="weui-media-box__thumb" src="${item.portrait}">
                                     </div>
                                     <div class="weui-media-box__bd">
-                                        <h4 class="weui-media-box__title">昵称：</h4>
-                                        <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                        <h4 class="weui-media-box__title">${item.nickname}</h4>                                      
                                     </div>
                                 </div>
                             </div>
