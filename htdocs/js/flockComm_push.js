@@ -50,7 +50,7 @@ $(document).ready(function(){
         //获取公告图片路径
          commPic=localStorage.getItem("flockCommPic"),
          // 数据格式转换
-        data=["",JSON.stringify({"title":title,"content":content,"portrait":commPic,"group_num":flockCode,"apptoken":apptoken})],
+        data=["",JSON.stringify({"title":title,"content":content,"portrait":commPic,"group_num":group_num,"apptoken":apptoken})],
         // 数据加密
         jsonEncryptDate=jsEncryptData(data);
         console.log(data);
