@@ -91,7 +91,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html=`
-                    <p style="text-align: center;background: green">创建成功</p>
+                    <p style="text-align: center;background: green;color: white">创建成功</p>
                     `;
                     $(".success").append(html);
                     window.location.href="createCrowd.html"
