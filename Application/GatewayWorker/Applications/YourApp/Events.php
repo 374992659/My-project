@@ -110,8 +110,8 @@ class Events
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
                         $mongo = new MongoClient();
                         $data = $mongo->baseinfo->test;
-                        var_dump(self::getNextId($mongo,'baseinfo','online_user'));
-//                        $data->insert(array('_id'=>self::getNextIncVal('baseinfo','test'),'val'=>'test'));
+//                        var_dump(self::getNextId($mongo,'baseinfo','online_user'));
+                        $data->insert(array('_id'=>self::getNextId($mongo,'baseinfo','test'),'val'=>'test'));
 //                        if($group_data){
 //                            foreach ($group_data as $key=>$val){
 ////                                $user_database = $mongo->user_info_.$val['user_code'];
