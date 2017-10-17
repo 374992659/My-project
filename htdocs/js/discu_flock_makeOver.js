@@ -106,11 +106,12 @@ $(document).ready(function(){
         // 获取用户code
             user_code=$('input:radio[name="checkbox1"]:checked').attr("id"),
         // 获取apptoken
-            apptoken=localStorage.getItem("apptoekn"),
+            apptoken=localStorage.getItem("apptoken"),
         // 数据格式转换
         data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
         // 数据加密
         jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"group_setGroupManager",
             type:"POST",
