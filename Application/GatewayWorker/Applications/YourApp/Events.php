@@ -109,18 +109,20 @@ class Events
                         $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
                         $mongo = new MongoClient();
-                        if($group_data){
-                            foreach ($group_data as $key=>$val){
-//                                $user_database = $mongo->user_info_.$val['user_code'];
-                                $user_database = $mongo->user_info_030117608006762;
-                                if($user_database->group_new_message->count()){
-                                    $message = $user_database->group_new_message->find();
-                                    foreach ($message as $v){
-                                        print_r($v);
-                                    }
-                                }
-                            }
-                        }
+                        $data = $mongo->baseinfo->test;
+                        $data->insert(array('_id'=>getNextIncVal('baseinfo','test'),'val'=>'test'));
+//                        if($group_data){
+//                            foreach ($group_data as $key=>$val){
+////                                $user_database = $mongo->user_info_.$val['user_code'];
+//                                $user_database = $mongo->user_info_030117608006762;
+//                                if($user_database->group_new_message->count()){
+//                                    $message = $user_database->group_new_message->find();
+//                                    foreach ($message as $v){
+//                                        print_r($v);
+//                                    }
+//                                }
+//                            }
+//                        }
                         $data = array(
                             'errocode'=>0,
                             'type'=>1,
@@ -148,7 +150,8 @@ class Events
                         $mongo =new MongoClient();
                         $database1=$mongo->user_info_.$account_code;
                         $collection1 = $database1->friends_chat;
-                        $data = array(
+                        $data1 = array(
+                            '_id'=>getNextIncVal('user_info_'.$account_code,'friends_chat'),
                             'sender_code'=>$account_code['account_code'],
                             'sender_nickname'=>$user_info['nickname'],
                             'send_portrait'=>$user_info['portrait'],
@@ -156,15 +159,24 @@ class Events
                             'type'=>$message->type,
                             'send_time'=>time(),
                         );
-                        $collection1->insert($data);    //发送用户聊天记录表插入数据
+                        $collection1->insert($data1);    //发送用户聊天记录表插入数据
                         $is_online = Gateway::isUidOnline($friend_code);
                         if($is_online){                         //用户在线
                             //接收用户聊天记录表插入数据
                             $database2=$mongo->user_info_.$message->account_code;
                             $collection2 = $database2->friends_chat;
-                            $collection2->insert($data);
-                            $send_data = self::returnData(0,2,'',$data);
-                            Gateway::sendToUid($message->account_code,json_encode($send_data));
+                            $data2 = array(
+                                '_id'=>getNextIncVal('user_info_'.$message->account_code,'friends_chat'),
+                                'sender_code'=>$account_code['account_code'],
+                                'sender_nickname'=>$user_info['nickname'],
+                                'send_portrait'=>$user_info['portrait'],
+                                'content'=>$message->content,
+                                'type'=>$message->type,
+                                'send_time'=>time(),
+                            );
+                            $collection2->insert($data2);
+                            $send_data = self::returnData(0,2,'',$data2);
+                            Gateway::sendToUid($message->account_code,json_encode($send_data));//发送给接收人
                             break;
                         }else{                              //存储用户离线消息
                             $db2 = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$message->account_code);
@@ -177,8 +189,10 @@ class Events
                         }
            case 3:  $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                         $table_id =substr($account_code['account_code'],0,4);
-                        $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
-                        $data =array(
+                       $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
+                       $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
+                       $data =array(
+                            '_id'=>getNextIncVal('user_info_'.$create_code,'group_chat'),
                             'sender_code'=>$account_code['account_code'],
                             'send_nickname'=>$user_info['nickname'],
                             'send_portrait'=>$user_info['send_portrait'],
@@ -187,7 +201,6 @@ class Events
                             'group'=>$message->group,
                             'type'=>$message->type,
                         );
-                        $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
                         $mongo =new MongoClient();
                         $database= $mongo->user_info_.$create_code; //群聊记录保存在创建人分库
                         $collection = $database->group_chat;
