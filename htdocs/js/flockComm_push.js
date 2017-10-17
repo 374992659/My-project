@@ -25,7 +25,10 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data.data.file_path);
                     localStorage.setItem("flockCommPic",data.data.file_path);
-                    $(".picture li img").attr("src",Url);
+                    var img=`
+                    <img src="${Url}" alt="" style="width: 77px" class="img2">
+                    `;
+                    $(".picture li").append(img);
                 }
             },
             error:function (data) {
