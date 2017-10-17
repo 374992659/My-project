@@ -51,7 +51,7 @@ $(document).ready(function(){
                data=jsDecodeData(data);
                console.log(data);
                if(data.errcode===0){
-                   console.log(data.file_path);
+                   console.log(data.data.file_path);
                }
                 console.log(123);
 
