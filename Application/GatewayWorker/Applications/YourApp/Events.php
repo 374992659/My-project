@@ -121,8 +121,8 @@ class Events
                                         $time = $item['time'];
                                    }
                                    var_dump($time);
-                                    $message['count'] = $user_database->group_new_message->count();
-                                    var_dump($message['count']);
+                                    $message = $user_database->group_new_message->count();
+                                    var_dump($message);
                                 }
                             }
                         }
