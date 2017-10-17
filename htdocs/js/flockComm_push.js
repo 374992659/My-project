@@ -63,6 +63,7 @@ $(document).ready(function(){
             success:function(data){
                 // 解密数据
                 data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     alert("发布成功");
