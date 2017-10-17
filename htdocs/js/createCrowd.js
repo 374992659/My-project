@@ -55,7 +55,7 @@ $(document).ready(function(){
         console.log(groupCode);
         // 存在本地
         localStorage.setItem("group_num",groupCode);
-        window.local.href="flockChat.html";
+        window.location.href="flockChat.html";
     });
     //<!--我创建的群-->
    $(".creaFlock").click(function(){
