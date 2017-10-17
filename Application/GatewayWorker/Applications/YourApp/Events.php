@@ -123,7 +123,15 @@ class Events
                                    }
                                     $count = $user_database->group_new_message->count(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']));
                                     var_dump($count);
-                                    $content =iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code'])));
+                                    $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code'])));
+                                    foreach ($res as $kk=>$vv){
+                                        $content['sender_code']=$res['sender_code'];
+                                        $content['sender_nickname']=$res['sender_nickname'];
+                                        $content['sender_portrait']=$res['sender_portrait'];
+                                        $content['send_time']=$res['send_time'];
+                                        $content['type']=$res['type'];
+                                        $content['content']=$res['content'];
+                                    }
                                     var_dump($content);
                                 }
                             }
