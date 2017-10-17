@@ -4,11 +4,8 @@ $(document).ready(function(){
     (function(){
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
-        ////当前的群类型title
-        //var title=$(this).attr("title");
-        //console.log(title);
         //数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"value":title})];
+        var data=["",JSON.stringify({"apptoken":apptoken})];
         //数据加密
         console.log(data);
         var jsonEncryptDate=jsEncryptData(data);
