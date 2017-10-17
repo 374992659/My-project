@@ -27,10 +27,10 @@ $(document).ready(function(){
         //          console.log(123);
         //      }//返回值类型 一般设置为json
         // });
-     var targetElement = e.target;
-            console.log(targetElement);
-   var url=window.URL.createObjectURL(this.files[0]) ;
-        console.log(url);
+   //   var targetElement = e.target;
+   //          console.log(targetElement);
+   // var url=window.URL.createObjectURL(this.files[0]) ;
+   //      console.log(url);
         var formData= new FormData();
        var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
@@ -62,11 +62,11 @@ $(document).ready(function(){
            }
        });
         //上传前的预览
-       if(url){
-            $(".flockHead img").attr("src", url);
-           $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
-            $(".flockHead").attr("style","display:block");
-        }
+       // if(url){
+       //      $(".flockHead img").attr("src", url);
+       //     $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
+       //      $(".flockHead").attr("style","display:block");
+       //  }
         //console.log(123);
     });
 
