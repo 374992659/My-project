@@ -22,11 +22,13 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoekn);
                     var  html="";
-                    for(var i=0;i<3;i++){
-                        html+=$("<li class=\"lf\">\n" +
-                            "                          <img src="+data.data[i].portrait+" alt=\"\">\n" +
-                            "                      </li>")
-                    }
+                    $.each(data.data,function(i,item){
+                        html+=`
+                        <li class="lf">
+                          <img src="${item.portrait}" alt="">
+                      </li>
+                        `
+                    });
                     $(".flockMember").prepend(html);
                 }
             }
