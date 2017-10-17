@@ -25,7 +25,7 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         html+=`
                         <li class="lf">
-                          <img src="${item.portrait}" alt="">
+                          <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
                       </li>
                         `
                     });
