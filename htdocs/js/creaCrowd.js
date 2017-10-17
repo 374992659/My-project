@@ -1,7 +1,7 @@
 $(document).ready(function(){
     "use strict";
 
-    $('#uploaderInput').change(function() {
+    $('#uploaderInput').change(function(e) {
         // var apptoken=localStorage.getItem("apptoken");
         // var data=["",JSON.stringify({"apptoken":apptoken})];
         // var json=jsEncryptData(data);
@@ -27,10 +27,10 @@ $(document).ready(function(){
         //          console.log(123);
         //      }//返回值类型 一般设置为json
         // });
-    //    var targetElement = e.target;
-    //        console.log(targetElement);
-    //         // url=window.URL.createObjectURL(this.files[0]) ;
-    //    console.log($("#uploaderInput")[0].files[0]);
+     var targetElement = e.target;
+            console.log(targetElement);
+   var url=window.URL.createObjectURL(this.files[0]) ;
+        console.log(url);
         var formData= new FormData();
        var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
@@ -52,6 +52,7 @@ $(document).ready(function(){
                console.log(data);
                if(data.errcode===0){
                    console.log(data.data.file_path);
+                   localStorage.setItem("createCrowdPic",data.data.file_path)
                }
                 console.log(123);
 
@@ -61,18 +62,18 @@ $(document).ready(function(){
            }
        });
         //上传前的预览
-        //if(url){
-        //    $(".flockHead img").attr("src", url);
-        //    $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
-        //    $(".flockHead").attr("style","display:block");
-        //}
+       if(url){
+            $(".flockHead img").attr("src", url);
+           $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
+            $(".flockHead").attr("style","display:block");
+        }
         //console.log(123);
     });
 
 
     $(".createBtn").click(function(){
         //获取图片
-
+        var pic=localStorage.getItem("createCrowdPic");
         // 群名称
         var name=$("#flockName").val();
         // 群分类
@@ -80,7 +81,7 @@ $(document).ready(function(){
         console.log(id);
         var apptoken=localStorage.getItem("apptoken");
         //数据格式转换
-       var data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken})];
+       var data=["",JSON.stringify({"group_name":name,"group_type":id,"apptoken":apptoken,"group_portrait":pic})];
         console.log(data);
         //加密数据
       var  jsonEncryptDate=jsEncryptData(data);
