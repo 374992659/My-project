@@ -110,7 +110,7 @@ class Events
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
                         $mongo = new MongoClient();
                         $data = $mongo->baseinfo->test;
-                        $data->insert(array('_id'=>getNextIncVal('baseinfo','test'),'val'=>'test'));
+                        $data->insert(array('_id'=>self::getNextIncVal('baseinfo','test'),'val'=>'test'));
 //                        if($group_data){
 //                            foreach ($group_data as $key=>$val){
 ////                                $user_database = $mongo->user_info_.$val['user_code'];
@@ -151,7 +151,7 @@ class Events
                         $database1=$mongo->user_info_.$account_code;
                         $collection1 = $database1->friends_chat;
                         $data1 = array(
-                            '_id'=>getNextIncVal('user_info_'.$account_code,'friends_chat'),
+                            '_id'=>self::getNextIncVal('user_info_'.$account_code,'friends_chat'),
                             'sender_code'=>$account_code['account_code'],
                             'sender_nickname'=>$user_info['nickname'],
                             'send_portrait'=>$user_info['portrait'],
@@ -166,7 +166,7 @@ class Events
                             $database2=$mongo->user_info_.$message->account_code;
                             $collection2 = $database2->friends_chat;
                             $data2 = array(
-                                '_id'=>getNextIncVal('user_info_'.$message->account_code,'friends_chat'),
+                                '_id'=>self::getNextIncVal('user_info_'.$message->account_code,'friends_chat'),
                                 'sender_code'=>$account_code['account_code'],
                                 'sender_nickname'=>$user_info['nickname'],
                                 'send_portrait'=>$user_info['portrait'],
@@ -192,7 +192,7 @@ class Events
                        $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
                        $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
                        $data =array(
-                            '_id'=>getNextIncVal('user_info_'.$create_code,'group_chat'),
+                            '_id'=>self::getNextIncVal('user_info_'.$create_code,'group_chat'),
                             'sender_code'=>$account_code['account_code'],
                             'send_nickname'=>$user_info['nickname'],
                             'send_portrait'=>$user_info['send_portrait'],
@@ -268,6 +268,15 @@ class Events
         );
         return $arr;
    }
+    /*
+  * 获取mongodb数据库中表的主键
+  * */
+    public function getNextIncVal($dbName,$collectionName){
+        $mongo = new MongoClient();
+        $database = $mongo->$dbName;
+        $data = $database->counters->findAndModify(array('_id'=>$collectionName),array('$inc'=>array('inc_val'=>1),null,array('new'=>true)));
+        return $data['inc_val'];
+    }
 
 
 }
