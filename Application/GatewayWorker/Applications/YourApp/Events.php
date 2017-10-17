@@ -124,6 +124,7 @@ class Events
                                    var_dump($val['group_code']);
                                     $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
                                     $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code'])));
+                                    $content=array();
                                     foreach ($res as $kk=>$vv){
                                         $content[$vv['group']]['sender_code']=$vv['sender_code'];
                                         $content[$vv['group']]['sender_nickname']=$vv['sender_nickname'];
