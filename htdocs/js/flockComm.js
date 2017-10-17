@@ -10,11 +10,12 @@ $(document).ready(function(){
     data=["",JSON.stringify({"group_num":code,"apptoken":apptoken})];
         //数据加密
      jsonEncryptData=jsEncryptData(data);
+     console.log(data);
         //发起ajax请求
         $.ajax({
             url:url+"group_getGroupNotice",
             type:"POST",
-            data:{},
+            data:{"data":jsonEncryptData},
             success:function(data){
                 //解密数据
                 data=jsDecodeData(data);
@@ -35,7 +36,7 @@ $(document).ready(function(){
                     });
                     $(".groupNotice").html(html);
                 }else{
-                    if(errcode===114){
+                    if(data.errcode===114){
                         alert("登录超时");
                         window.location.href="landing.html"
                     }
