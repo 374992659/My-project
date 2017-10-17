@@ -116,7 +116,7 @@ class Events
                                     $group_time = $mongo->baseinfo->user_group_time->find(array('user_code'=>'030117608006762','group_code'=>$val['group_code']),array('time'));
 //                                    $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
                                    $group_time = iterator_to_array($group_time);
-                                    $message['count'] = $user_database->group_new_message->count(array('send_time'=>array('$gt'=>$group_time['time'])));
+                                    $message['count'] = $user_database->group_new_message->count(array('send_time'=>array('$egt'=>$group_time['time'])));
 //                                    var_dump($message['count']);
                                 }
                             }
