@@ -79,16 +79,20 @@ $(document).ready(function(){
     });
     //功能三 设置管理员
     $(".linkman").on("click",".weui-panel__bd .weui-media-box .setBtn",function(){
+        var success=$(".success");
+        var hide=function(){
+            success.empty();
+        };
         //获取group_num 群号码
-        var group_num=localStorage.getItem("group_num");
+        var group_num=localStorage.getItem("group_num"),
         //获取user_code 用户code
-        var title=$(this).attr("title");
+         title=$(this).attr("title"),
         //获取apptoken
-        var apptoken=localStorage.getItem("apptoken");
+         apptoken=localStorage.getItem("apptoken"),
         //数据格式转换
-       var data=["",JSON.stringify({"group_num":group_num,"user_code":title,"apptoken":apptoken})];
+        data=["",JSON.stringify({"group_num":group_num,"user_code":title,"apptoken":apptoken})],
         //数据加密
-       var jsonEncryptData=jsEncryptData(data);
+        jsonEncryptData=jsEncryptData(data);
         console.log(data);
         //发起ajax请求
         $.ajax({
@@ -101,9 +105,18 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.ermsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                     getGroupUser();
                 }else{
-                    alert(data.errmsg);
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.ermsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                 }
             }
         })
