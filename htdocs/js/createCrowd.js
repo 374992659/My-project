@@ -39,6 +39,7 @@ $(document).ready(function(){
                         </div>
                             `
                     });
+                    console.log(html);
                     console.log($(this).find(".groupList"));
                     $(this).find(".groupList").append(html);
                     var groupList=$(this).find(".groupList");
