@@ -108,6 +108,7 @@ class Events
                         $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
                         $mongo = new MongoClient();
+                        $group_new_message = array();
                         if($group_data){
                             foreach ($group_data as $key=>$val){
 //                                $user_database = $mongo->user_info_.$val['user_code'];
@@ -120,9 +121,9 @@ class Events
                                     foreach ( $group_time as $item) {
                                         $time = $item['time'];
                                    }
-                                    $count = $user_database->group_new_message->count(array('send_time'=>array('$gte'=>$time)));
-
-                                    var_dump($count);
+                                    $count = $user_database->group_new_message->count(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']));
+                                    $content =iterator_to_array($user_database->greoup_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code'])));
+                                    var_dump($content);
                                 }
                             }
                         }
