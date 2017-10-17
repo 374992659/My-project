@@ -41,7 +41,7 @@ $(document).ready(function(){
                     });
                     console.log($(this).find(".groupList"));
                     console.log($(this));
-                    $(e.target).find(".groupList").append(html);
+                    $(".groupList").append(html);
                     var groupList=$(this).find(".groupList");
                     console.log(groupList);
                     var img=$(this).find(".imgBtn");
