@@ -39,5 +39,10 @@ $(document).ready(function(){
             }
         })
     };getGroupUser();
+    // 页面跳转到添加群成员页面
+    $(".addGroupUser").click(function(){
+        window.location.href="discu_addfriend.html";
+    });
+
 
 });
