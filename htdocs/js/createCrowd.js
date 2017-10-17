@@ -2,8 +2,8 @@
 $(document).ready(function(){
     "use strict";
     $(".particpation").click(function(){
+        var that=$(this);
         //获取apptoken
-         console.log($(this));
         var apptoken=localStorage.getItem("apptoken");
         //当前的群类型title
         var title=$(this).attr("title");
@@ -39,11 +39,11 @@ $(document).ready(function(){
                         </div>
                             `
                     });
-                    var groupList=$(e.target).find(".groupList");
+                    var groupList=that.find(".groupList");
 
                     groupList.append(html);
                     console.log(groupList);
-                    var img=$(e.target).find(".imgBtn");
+                    var img=that.find(".imgBtn");
                     console.log(img);
                     if(groupList.is(":hidden")){
                         console.log(1);
