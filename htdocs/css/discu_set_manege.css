@@ -45,3 +45,9 @@ a:hover {
 .weui-media-box__desc{
     font-size: 12px;
 }
+.weui-media-box_appmsg .weui-media-box__hd {
+    margin-right: .8em;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+}

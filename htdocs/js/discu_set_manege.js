@@ -21,6 +21,8 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(1);
                     localStorage.setItem("apptoken",data.apptoken);
+                    var ueserNum="";
+                    var manegeNum="";
                     var htmlAdministrator="";
                     var htmlMember="";
                     $.each(data.data,function(i,item){
@@ -36,7 +38,8 @@ $(document).ready(function(){
                         </div>
                         <button class="setBtn" title="${item.user_code}">撤销</button>
                     </div>
-                    `
+                    `;
+                            manegeNum=i+1;
                         }else{
                             htmlMember+=`
                     <div  class="weui-media-box weui-media-box_appmsg">
@@ -49,11 +52,14 @@ $(document).ready(function(){
                         </div>
                         <button class="setBtn" title="${item.user_code}">添加</button>
                     </div>
-                        `
+                        `;
+                            ueserNum=i+1;
                         }
                     });
                     $(".administrator").html(htmlAdministrator);
                     $(".member").html(htmlMember);
+                    $(".manegeNum span").append(manegeNum);
+                    $(".userNum span").append(ueserNum);
                     console.log(2);
                 }
             }
