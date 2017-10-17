@@ -27,7 +27,7 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         if(item.role===title){
                             html+=`
-                        <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
+                        <a href="" class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
                                 <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
                             </div>
@@ -53,7 +53,8 @@ $(document).ready(function(){
         var groupCode=$(this).attr("title");
         console.log(groupCode);
         // 存在本地
-        localStorage.setItem("group_num",groupCode)
+        localStorage.setItem("group_num",groupCode);
+        window.local.href="flockChat.html";
     });
     //<!--我创建的群-->
    $(".creaFlock").click(function(){
