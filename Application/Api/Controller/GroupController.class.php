@@ -222,7 +222,8 @@ class GroupController extends VersionController
             $this->echoEncrypData(307);
         }
         $model=new Model\GroupNoticeModel($create_code);
-        $res = $model->addGroupNotice($title,$content,$portrait,$user_code,$group_num);
+        $nickname =M('baseinfo.user_info_'.$user_code)->where(['user_code'=>$user_code])->getField('nickname');
+        $res = $model->addGroupNotice($title,$content,$portrait,$user_code,$nickname,$group_num);
         if(!$res){
             $this->echoEncrypData(222,array($title,$content,$portrait,$user_code,$group_num));
         }

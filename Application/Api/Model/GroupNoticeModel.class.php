@@ -26,12 +26,13 @@ class GroupNoticeModel extends Model
     * @param user_code 创建用户code
     * @param group_num 所属群num
      * */
-    public function addGroupNotice($title,$content,$portrait,$user_code,$group_num){
+    public function addGroupNotice($title,$content,$portrait,$user_code,$nickname,$group_num){
         $data = array(
             'title' =>$title,
             'content' =>$content,
             'portrait' =>$portrait,
             'user_code' =>$user_code,
+            'nickname'=>$nickname,
             'group_num' =>$group_num,
             'create_time' =>time()
         );
