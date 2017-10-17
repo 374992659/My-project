@@ -2,61 +2,61 @@ $(document).ready(function(){
     "use strict";
 
     $('#uploaderInput').change(function() {
-        var apptoken=localStorage.getItem("apptoken");
-        var data=["",JSON.stringify({"apptoken":apptoken})];
-        var json=jsEncryptData(data);
-        $.ajaxFileUpload({
-            url:url+"group_uploadGroupP", //用于文件上传的服务器端请求地址
-            type:"post",
-            data:{"data":json},
-            dataType:"text",
-            fileElementId: 'uploaderInput', //文件上传域的ID
-            success:function(data){
-                //解密
-                data=jsDecodeData(data);
-                var str = $(data).find("body").text();//获取返回的字符串
-                var json = $.parseJSON(str);//把字符串转化为json对象
-                console.log(data);
-                console.log(json);
-            },
-             error:function(XMLHttpRequest, textStatus, errorThrown,data){
-                console.log(data);
-                 console.log(XMLHttpRequest.status);
-                 console.log(XMLHttpRequest.readyState);
-                 console.log(textStatus);
-                 console.log(123);
-             }//返回值类型 一般设置为json
-        });
+        // var apptoken=localStorage.getItem("apptoken");
+        // var data=["",JSON.stringify({"apptoken":apptoken})];
+        // var json=jsEncryptData(data);
+        // $.ajaxFileUpload({
+        //     url:url+"group_uploadGroupP", //用于文件上传的服务器端请求地址
+        //     type:"post",
+        //     data:{"data":json},
+        //     dataType:"text",
+        //     fileElementId: 'uploaderInput', //文件上传域的ID
+        //     success:function(data){
+        //         //解密
+        //         data=jsDecodeData(data);
+        //         var str = $(data).find("body").text();//获取返回的字符串
+        //         var json = $.parseJSON(str);//把字符串转化为json对象
+        //         console.log(data);
+        //         console.log(json);
+        //     },
+        //      error:function(XMLHttpRequest, textStatus, errorThrown,data){
+        //         console.log(data);
+        //          console.log(XMLHttpRequest.status);
+        //          console.log(XMLHttpRequest.readyState);
+        //          console.log(textStatus);
+        //          console.log(123);
+        //      }//返回值类型 一般设置为json
+        // });
     //    var targetElement = e.target;
     //        console.log(targetElement);
     //         // url=window.URL.createObjectURL(this.files[0]) ;
     //    console.log($("#uploaderInput")[0].files[0]);
-    //    var formData= new FormData();
-    //    var apptoken=localStorage.getItem("apptoken");
-    //    formData.append("file",$("#uploaderInput")[0].files[0]);
-    //    var data=["",JSON.stringify({"apptoken":apptoken})];
-    //    var json=jsEncryptData(data);
-    //    formData.append("data",json);
-    //    console.log(formData);
-    //    $.ajax({
-    //        type:"POST",
-    //        url:url+"group_uploadGroupP",
-    //        //fileElementId:'uploaderInput',
-    //        data:formData,
-    //        processData : false,
-    //        contentType : false,
-    //        //secureuri:false,
-    //        success : function(data){
-    //            // 解密
-    //            data=jsDecodeData(data);
-    //            console.log(data);
-    //            console.log(123);
-    //
-    //        },
-    //        error:function (data) {
-    //            console.log(data);
-    //        }
-    //    });
+        var formData= new FormData();
+       var apptoken=localStorage.getItem("apptoken");
+        formData.append("file",$("#uploaderInput")[0].files[0]);
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+       var json=jsEncryptData(data);
+        formData.append("data",json);
+       console.log(formData);
+        $.ajax({
+            type:"POST",
+            url:url+"group_uploadGroupP",
+            fileElementId:'uploaderInput',
+            data:formData,
+            processData : false,
+           contentType : false,
+          secureuri:false,
+          success : function(data){
+               // 解密
+               data=jsDecodeData(data);
+               console.log(data);
+                console.log(123);
+   
+            },
+           error:function (data) {
+                console.log(data);
+           }
+       });
         //上传前的预览
         //if(url){
         //    $(".flockHead img").attr("src", url);
