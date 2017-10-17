@@ -48,8 +48,8 @@ $(document).ready(function(){
         })
     });
     // 跳转页面之前保存群号码
-    $(".saveGroupNum").click(function(){
-       // 获取当前group_num群号码
+    $(".groupList").on("click",".saveGroupNum",function(){
+        // 获取当前group_num群号码
         var groupCode=$(this).attr("title");
         console.log(groupCode);
         // 存在本地
