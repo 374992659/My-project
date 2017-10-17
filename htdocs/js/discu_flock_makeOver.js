@@ -137,12 +137,10 @@ $(document).ready(function(){
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
                     $(".success").html(html);
-                    $.extend({
-                        hidden:function(){
-                            $(".success").hide();
-                        }
-                    });
-                    setInterval("hidden()",3000);
+                    var hidden=function(){
+                        $(".success").hide();
+                    };
+                    setTimeout("hidden()",3000);
                 }
             }
         })
