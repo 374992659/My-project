@@ -104,26 +104,22 @@ class Events
                             }
                         }
                         //获取群未读消息
-
                         $group_arr_str = implode(',',$group_arr);             //用户群字符串
                         $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                         $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
                         $mongo = new MongoClient();
-                        $data = $mongo->baseinfo->test;
-//                        var_dump(self::getNextId($mongo,'baseinfo','online_user'));
-                        $data->insert(array('_id'=>self::getNextId($mongo,'baseinfo','test'),'val'=>'test'));
-//                        if($group_data){
-//                            foreach ($group_data as $key=>$val){
-////                                $user_database = $mongo->user_info_.$val['user_code'];
-//                                $user_database = $mongo->user_info_030117608006762;
-//                                if($user_database->group_new_message->count()){
-//                                    $message = $user_database->group_new_message->find();
-//                                    foreach ($message as $v){
-//                                        print_r($v);
-//                                    }
-//                                }
-//                            }
-//                        }
+                        if($group_data){
+                            foreach ($group_data as $key=>$val){
+//                                $user_database = $mongo->user_info_.$val['user_code'];
+                                $user_database = $mongo->user_info_030117608006762;
+                                if($user_database->group_new_message->count()){
+                                    $message = $user_database->group_new_message->find();
+                                    foreach ($message as $v){
+                                        print_r($v);
+                                    }
+                                }
+                            }
+                        }
                         $data = array(
                             'errocode'=>0,
                             'type'=>1,
