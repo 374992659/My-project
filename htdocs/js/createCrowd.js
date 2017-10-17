@@ -1,12 +1,12 @@
 
 $(document).ready(function(){
     $(".particpation").click(function(e){
-        //获取当前元素子元素的最后一个子元素
-        var groupList=$(this).find(".weui-panel__bd");
-        console.log(groupList);
-        //获取img
-        var Img=$(this).find(".imgBtn");
-        console.log(Img);
+        // //获取当前元素子元素的最后一个子元素
+        // var groupList=$(this).find(".weui-panel__bd");
+        // console.log(groupList);
+        // //获取img
+        // var Img=$(this).find(".imgBtn");
+        // console.log(Img);
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //当前的群类型title
@@ -30,7 +30,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
-                        if(item.role==title){
+                        if(item.role===title){
                             html+=`
                         <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
@@ -44,14 +44,7 @@ $(document).ready(function(){
                             `
                         }
                     });
-                    $(".weui-panel__bd").html(html);
-                    // if(groupList.is(":hidden")){
-                    //             groupList.show();
-                    //            Img.css("transform","rotate(90deg)");
-                    //       }else{
-                    //     groupList.hide();
-                    //     Img.removeAttr("style");
-                    //         }
+                    $(".groupList").html(html);
                 }else{
                     alert(data.errmsg);
                 }
