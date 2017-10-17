@@ -1,31 +1,31 @@
 
 $(document).ready(function(){
     "use strict";
-  var getMyGroup=function(){ //获取apptoken
-      var apptoken=localStorage.getItem("apptoken");
-      //当前的群类型title
-      // var title=$(this).attr("title");
-      // console.log(title);
-      //数据格式转换
-      var data=["",JSON.stringify({"apptoken":apptoken,"value":title})];
-      //数据加密
-      console.log(data);
-      var jsonEncryptDate=jsEncryptData(data);
-      //发起ajax请求
-      $.ajax({
-          url:url+"group_getMyGroup",
-          type:"POST",
-          data:{"data":jsonEncryptDate},
-          success:function(data){
-              //数据解密
+    $(".particpation").click(function(){
+        //获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        //当前的群类型title
+        var title=$(this).attr("title");
+        console.log(title);
+        //数据格式转换
+       var data=["",JSON.stringify({"apptoken":apptoken,"value":title})];
+        //数据加密
+        console.log(data);
+       var jsonEncryptDate=jsEncryptData(data);
+        //发起ajax请求
+        $.ajax({
+            url:url+"group_getMyGroup",
+            type:"POST",
+            data:{"data":jsonEncryptDate},
+            success:function(data){
+                //数据解密
               var data=jsDecodeData(data);
-              console.log(data);
-              if(data.errcode===0){
-                  localStorage.setItem("apptoken",data.apptoken);
-                  var html="";
-                  $.each(data.data,function(i,item){
-                      if(item.role===title){
-                          html+=`
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html="";
+                    $.each(data.data,function(i,item){
+                            html+=`
                         <div href="" class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
                                 <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
@@ -36,32 +36,26 @@ $(document).ready(function(){
                             </div>
                         </div>
                             `
-                      }
-                  });
-                  $(this).children().children().last().html(html);
-              }else{
-                  console.log(data.errmsg);
-              }
-          }
-      })
-  };
-
+                    });
+                    $(this).children().children().last().html(html);
+                }else{
+                    console.log(data.errmsg);
+                }
+            }
+        })
+    });
     // 跳转页面之前保存群号码
     $(".groupList").on("click",".saveGroupNum",function(){
         console.log(132);
         // 获取当前group_num群号码
         var groupCode=$(this).attr("title");
         console.log(groupCode);
-
         // 存在本地
         localStorage.setItem("group_num",groupCode);
         window.location.href="flockChat.html";
     });
     //<!--我创建的群-->
    $(".creaFlock").click(function(){
-       var title=$(this).attr("title");
-       console.log(title);
-       getMyGroup();
      console.log(123);
      if($(".myCreate").is(":hidden")){
            $(".myCreate").show();
@@ -73,9 +67,6 @@ $(document).ready(function(){
    });
     //<!--我管理的群-->
    $(".manageFlock").click(function(){
-       var title=$(this).attr("title");
-       console.log(title);
-       getMyGroup();
        if($(".myManage").is(":hidden")){
             $(".myManage").show();
             $(".manageFlBtn").css("transform","rotate(90deg)");
@@ -87,9 +78,6 @@ $(document).ready(function(){
 
     //<!--我加入的群-->
   $(".joinFlock").click(function(){
-      var title=$(this).attr("title");
-      console.log(title);
-      getMyGroup();
       if($(".myJoin").is(":hidden")){
            $(".myJoin").show();
             $(".joinFlBtn").css("transform","rotate(90deg)");
