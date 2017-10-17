@@ -49,7 +49,8 @@ $(document).ready(function(){
                         console.log(1);
                         groupList.show();
                         img.css("transform","rotate(90deg)");
-                    }else{console.log(2);
+                    }else{
+                        console.log(2);
                         groupList.hide();
                         img.removeAttr("style");
                     }
