@@ -28,7 +28,7 @@ $(document).ready(function(){
                             html+=`
                         <a href="flockChat.html" class="weui-media-box weui-media-box_appmsg" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
-                                <img class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
+                                <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
                             </div>
                             <div class="weui-media-box__bd">
                                 <h4 class="weui-media-box__title" style="font-size: 15px">${item.group_name}</h4>
