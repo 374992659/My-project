@@ -30,3 +30,18 @@ a:hover {
 .right {
     float: right
 }
+.linkBtn{
+    width: 25px;
+}
+.weui-cell__bd p{
+    font-size: 15px;
+}
+.weui-cell__ft span{
+    font-size: 12px;
+}
+.weui-media-box__title{
+    font-size: 15px;
+}
+.weui-media-box__desc{
+    font-size: 12px;
+}

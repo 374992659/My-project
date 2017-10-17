@@ -1,58 +1,62 @@
 $(document).ready(function(){
-    //»ñÈ¡ÈººÅÂë
-    var code="";
-    //»ñÈ¡apptoken
-    var apptoken=localStorage.getItem("apptoken");
-    //Êı¾İ¸ñÊ½×ª»»
-    data=["",JSON.stringify({"group_num":code,"apptoken":apptoken})];
-    //Êı¾İ¼ÓÃÜ
-    $.ajax({
-        url:url+"group_getGroupUser",
-        type:"POST",
-        data:{"data":data},
-        success:function(data){
-            //½âÃÜÊı¾İ
-            data=jsDecodeData(data);
-            console.log(data);
-            if(data.errcode===0){
-                localStorage.setItem("apptoken",data.apptoken);
-                var htmlAdministrator="";
-                var htmlMember="";
-                $.each(data.data,function(i,item){
-                    if(item.role==1||item.role==2){
-                        htmlAdministrator+=`
-                    <div  class="weui-media-box weui-media-box_appmsg" title="${item.user_code}">
+    "use strict";
+    var getGroupUser=function(){
+
+        //è·å–ç¾¤å·ç 
+        var group_num=localStorage.getItem("group_num"),
+        //è·å–apptoken
+        apptoken=localStorage.getItem("apptoken"),
+        //æ•°æ®æ ¼å¼è½¬æ¢
+        data=["",JSON.stringify({"group_num":group_num,"apptoken":apptoken})],
+        //æ•°æ®åŠ å¯†
+        jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"group_getGroupUser",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                //è§£å¯†æ•°æ®
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var htmlAdministrator="";
+                    var htmlMember="";
+                    $.each(data.data,function(i,item){
+                        if(item.role===1||item.role===2){
+                            htmlAdministrator+=`
+                    <div  class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="image/2.jpg">
+                            <img class="weui-media-box__thumb" src="{item.portrait}">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title">êÇ³Æ</h4>
-                            <p class="weui-media-box__desc">ÓÉ¸÷ÖÖÎïÖÊ×é³ÉµÄ¾ŞĞÍÇò×´ÌìÌå£¬½Ğ×öĞÇÇò¡£ĞÇÇòÓĞÒ»¶¨µÄĞÎ×´£¬ÓĞ×Ô¼ºµÄÔËĞĞ¹ìµÀ¡£</p>
+                            <h4 class="weui-media-box__title">${item.nickname}</h4>                           
                         </div>
-                        <button class="setBtn">³·Ïú</button>
+                        <button class="setBtn" title="${item.user_code}">æ’¤é”€</button>
                     </div>
                     `
-                    }else{
-                        htmlMember+=`
-                    <div  class="weui-media-box weui-media-box_appmsg" tiltle="${item.user_code}">
+                        }else{
+                            htmlMember+=`
+                    <div  class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="image/2.jpg">
+                            <img class="weui-media-box__thumb" src="{item.portrait}">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title">êÇ³Æ</h4>
-                            <p class="weui-media-box__desc">ÓÉ¸÷ÖÖÎïÖÊ×é³ÉµÄ¾ŞĞÍÇò×´ÌìÌå£¬½Ğ×öĞÇÇò¡£ĞÇÇòÓĞÒ»¶¨µÄĞÎ×´£¬ÓĞ×Ô¼ºµÄÔËĞĞ¹ìµÀ¡£</p>
+                            <h4 class="weui-media-box__title">${item.nickname}</h4>
+                          
                         </div>
-                        <button class="setBtn">Ìí¼Ó</button>
+                        <button class="setBtn" title="${item.user_code}">æ·»åŠ </button>
                     </div>
                         `
-                    }
-                });
-                $(".administrator").html(htmlAdministrator);
-                $(".member").html(htmlMember);
+                        }
+                    });
+                    $(".administrator").html(htmlAdministrator);
+                    $(".member").html(htmlMember);
+                }
             }
-        }
 
-    });
+        });
+    };getGroupUser();
 
     $(".LinkBtn").click(function(){
         console.log($(this));
@@ -64,29 +68,31 @@ $(document).ready(function(){
             $(this).children(".weui-cell__hd").children("img").removeAttr("style")
         }
     });
-    //¹¦ÄÜÈı ÉèÖÃ¹ÜÀíÔ±
-    $(".linkman").on(".setBtn","click",function(){
-        //»ñÈ¡group_num ÈººÅÂë
-        var code="";
-        //»ñÈ¡user_code ÓÃ»§code
+    //åŠŸèƒ½ä¸‰ è®¾ç½®ç®¡ç†å‘˜
+    $(".linkman").on("click",".weui-panel__bd .weui-media-box .setBtn",function(){
+        //è·å–group_num ç¾¤å·ç 
+        var group_num=localStorage.getItem("group_num");
+        //è·å–user_code ç”¨æˆ·code
         var title=$(this).attr("title");
-        //»ñÈ¡apptoken
+        //è·å–apptoken
         var apptoken=localStorage.getItem("apptoken");
-        //Êı¾İ¸ñÊ½×ª»»
-        data=["",JSON.stringify({"group_num":code,"user_code":title,"apptoken":apptoken})];
-        //Êı¾İ¼ÓÃÜ
-        jsonEncryptData=jsEncryptData(data);
-        //·¢ÆğajaxÇëÇó
+        //æ•°æ®æ ¼å¼è½¬æ¢
+       var data=["",JSON.stringify({"group_num":group_num,"user_code":title,"apptoken":apptoken})];
+        //æ•°æ®åŠ å¯†
+       var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        //å‘èµ·ajaxè¯·æ±‚
         $.ajax({
             url:url+"group_setGroupManager",
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
-                //½âÃÜÊı¾İ
+                //è§£å¯†æ•°æ®
                 data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    window.location.reload()
+                    getGroupUser();
                 }else{
                     alert(data.errmsg);
                 }
