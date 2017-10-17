@@ -39,12 +39,10 @@ $(document).ready(function(){
                         </div>
                             `
                     });
-                    console.log($(this).find("groupList"));
-                    console.log($(this).children().children().last());
-                    $(".groupList").append(html);
-                    var groupList=$(this).find("groupList");
+                    var groupList=$(this).find(".groupList");
+                    groupList.append(html);
                     console.log(groupList);
-                    var img=$(this).find("imgBtn");
+                    var img=$(this).find(".imgBtn");
                     console.log(img);
                     if(groupList.is(":hidden")){
                         console.log(1);
@@ -55,7 +53,7 @@ $(document).ready(function(){
                         groupList.hide();
                         img.removeAttr("style");
                     }
-                    console.log(321);
+                    console.log(3);
                 }else{
                     console.log(data.errmsg);
                 }
