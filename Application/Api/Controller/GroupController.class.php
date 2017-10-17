@@ -147,7 +147,7 @@ class GroupController extends VersionController
         if($count >=3 )$this->echoEncrypData(1,'管理员数量已达上限');
         if($this->account_code === $user_code)$this->echoEncrypData(1,'您是群主，请选择其他用户为管理员');
         $res = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>2]);
-        if(!$res)$this->echoEncrypData(1);
+        if(!$res)$this->echoEncrypData(1,'请勿重复操作哟');
         $this->echoEncrypData(0);
     }
     /*
