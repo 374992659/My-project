@@ -19,7 +19,8 @@ $(document).ready(function(){
                 console.log(data);
                 console.log(json);
             },
-             error:function(XMLHttpRequest, textStatus, errorThrown){
+             error:function(XMLHttpRequest, textStatus, errorThrown,data){
+                console.log(data);
                  console.log(XMLHttpRequest.status);
                  console.log(XMLHttpRequest.readyState);
                  console.log(textStatus);
