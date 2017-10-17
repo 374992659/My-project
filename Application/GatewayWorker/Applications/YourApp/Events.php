@@ -113,9 +113,13 @@ class Events
 //                                $user_database = $mongo->user_info_.$val['user_code'];
                                 $user_database = $mongo->user_info_030117608006762;
                                 if($user_database->group_new_message->count()){
+                                    $group_time = $mongo->baseinfo->user_group_time->find(array('user_code'=>'030117608006762'),array('user_code','group_code','time'));
+                                    foreach ($group_time as $v){
+                                        var_dump($v);
+                                    }
                                     $message = $user_database->group_new_message->find();
                                     foreach ($message as $v){
-                                        print_r($v);
+
                                     }
                                 }
                             }
