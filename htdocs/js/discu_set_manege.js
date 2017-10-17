@@ -19,6 +19,7 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
+                    console.log(1);
                     localStorage.setItem("apptoken",data.apptoken);
                     var htmlAdministrator="";
                     var htmlMember="";
@@ -52,6 +53,7 @@ $(document).ready(function(){
                     });
                     $(".administrator").html(htmlAdministrator);
                     $(".member").html(htmlMember);
+                    console.log(2);
                 }
             }
 
