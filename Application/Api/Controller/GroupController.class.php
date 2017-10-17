@@ -216,7 +216,7 @@ class GroupController extends VersionController
         $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
         $mode=new Model\GroupUserModel($create_code);
         $role = $mode->getUserRole($group_num,$this->account_code);
-        if(!$role)$this->echoEncrypData(1,$this->account_code);
+        if(!$role)$this->echoEncrypData(1);
         $role = intval($role);
         if($role !==1 && $role !==2 ){
             $this->echoEncrypData(307);
@@ -224,7 +224,7 @@ class GroupController extends VersionController
         $model=new Model\GroupNoticeModel($create_code);
         $res = $model->addGroupNotice($title,$content,$portrait,$user_code,$group_num);
         if(!$res){
-            $this->echoEncrypData(1);
+            $this->echoEncrypData(222);
         }
         $this->echoEncrypData(0);
     }
