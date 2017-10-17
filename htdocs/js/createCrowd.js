@@ -51,7 +51,7 @@ $(document).ready(function(){
                         groupList.hide();
                         img.removeAttr("style");
                     }
-
+                    console.log(321);
                 }else{
                     console.log(data.errmsg);
                 }
