@@ -145,10 +145,32 @@ class GroupController extends VersionController
         if(intval($role) !== 1)$this->echoEncrypData(500);
         $count =$mode->where(['role' =>2])->count();
         if($count >=3 )$this->echoEncrypData(1,'管理员数量已达上限');
+        if($this->account_code === $user_code)$this->echoEncrypData(1,'您是群主，请选择其他用户为管理员');
         $res = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>2]);
         if(!$res)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
+    /*
+     * 取消管理员
+     * @param group_num 群号码
+     * @param user_code 用户code
+     * */
+    protected function unsetGroupManager_v1_0_0(){
+        $group_num =$this->pdata['group_num'];
+        $user_code =$this->pdata['user_code'];
+        if(!$group_num || !$user_code)$this->echoEncrypData(21);
+        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mode =new Model\GroupUserModel($create_code);
+        $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
+        if(intval($role) !== 1)$this->echoEncrypData(500);
+        $res = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->getField('role');
+        if(intval($res) === 2)$this->echoEncrypData(1,'该用户不是管理员');
+        $result= $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>3]);
+        if(!$result)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
+    }
+
+
     /*
      * 转让群
      * @param group_num 群号码
