@@ -44,14 +44,17 @@ $(document).ready(function(){
             fileElementId:'uploaderInput',
             data:formData,
             processData : false,
-           contentType : false,
-          secureuri:false,
-          success : function(data){
+            contentType : false,
+            secureuri:false,
+            success : function(data){
                // 解密
                data=jsDecodeData(data);
                console.log(data);
+               if(data.errcode===0){
+                   console.log(data.file_path);
+               }
                 console.log(123);
-   
+
             },
            error:function (data) {
                 console.log(data);
@@ -69,7 +72,7 @@ $(document).ready(function(){
 
     $(".createBtn").click(function(){
         //获取图片
-        var pic=localStorage.getItem("groupHeadPic");
+
         // 群名称
         var name=$("#flockName").val();
         // 群分类
