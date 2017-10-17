@@ -121,7 +121,8 @@ class Events
                                     foreach ( $group_time as $item) {
                                         $time = $item['time'];
                                    }
-                                    $count = $user_database->group_new_message->count(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']));
+                                   var_dump($val['group_code']);
+                                    $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
                                     $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code'])));
                                     foreach ($res as $kk=>$vv){
                                         $content[$kk]['sender_code']=$vv['sender_code'];
@@ -137,7 +138,7 @@ class Events
                                 $group_new_message[$val['group_code']]['count']=$count;
                                 $group_new_message[$val['group_code']]['content']=$content;
                             }
-                            print_r($group_new_message);
+                            print_r($group_new_message) ;
                         }
                         $data = array(
                             'errocode'=>0,
