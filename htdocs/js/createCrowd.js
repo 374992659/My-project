@@ -23,8 +23,10 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var myGroup="",
                         myGroupNum="",
-                        menageGroup="",
-                        joinGroup="";
+                        manageGroup="",
+                        manageGroupNum="",
+                        joinGroup="",
+                        joinGroupNum="";
                     $.each(data.data,function(i,item){
                         console.log(item.role);
                         if(item.role==1){
@@ -41,7 +43,7 @@ $(document).ready(function(){
                             `;
                             myGroupNum=i+1;
                         }else if(item.role==2){
-                            menageGroup+=`
+                            manageGroup+=`
                         <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
                                 <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
@@ -51,7 +53,8 @@ $(document).ready(function(){
                                 <p class="weui-media-box__desc">${item.group_type_name}</p>
                             </div>
                         </div>
-                            `
+                            `;
+                            manageGroupNum=i+1;
                         }else{
                             joinGroup+=`
                         <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
@@ -63,13 +66,18 @@ $(document).ready(function(){
                                 <p class="weui-media-box__desc">${item.group_type_name}</p>
                             </div>
                         </div>
-                            `
+                            `;
+                            joinGroupNum=i+1;
                         }
                     });
                     $(".myCreate").append(myGroup);
                     $(".myGroupNum").append(myGroupNum);
-                    $(".myManage").append(menageGroup);
+
+                    $(".myManage").append(manageGroup);
+                    $(".manageGroupNum").append(manageGroupNum);
+                    
                     $(".myJoin").append(joinGroup);
+                    $(".joinGroupNum").append(joinGroupNum);
                 }
             }
         })
