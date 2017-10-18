@@ -19,10 +19,12 @@ $(document).ready(function(){
         var numeber=$(".account").val();
         // 密码
          var password=$(".password").val();
-         //
+         //重复密码
         var repassword=$(".repassword").val();
+        // 获取验证码
+        var  code=$(".code").val();
         // 数据加密
-    info=['', JSON.stringify({"account":numeber,"area_id":area_id,"password":password,'repassword':repassword,"apptoken":apptoken})];
+    info=['', JSON.stringify({"account":numeber,"area_id":area_id,"password":password,'repassword':repassword,"apptoken":apptoken,"piccode":code})];
         console.log(info);
         // 加密后的数据
         var afterDate=jsEncryptData( info );
