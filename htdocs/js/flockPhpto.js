@@ -37,7 +37,7 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
-                                <ul class="img">
+                                <ul id="LiImg">
                                   <!--<li class="lf">-->
                                        <!--<img src="image/firendb.jpg" alt="" class="addPic">-->
                                   <!--</li>-->
@@ -55,7 +55,7 @@ $(document).ready(function(){
                         });
                     });
                     console.log(Li);
-                    $(".img").append(Li);
+                    $("#LiImg").append(Li);
                     $("#flockPhoto").append(html);
                 }
             }
