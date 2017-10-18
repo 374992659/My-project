@@ -32,7 +32,7 @@ $(document).ready(function(){
                         </div>
                         <div class="weui-cell__ft">
                             <input type="radio" class="weui-check" name="radio1" id="${i}">
-                            <span class="weui-icon-checked"></span>
+                            <span class="weui-icon-checked">${item.num}</span>
                         </div>
                     </label>
                     `
@@ -75,45 +75,74 @@ $(document).ready(function(){
                         </div>
                     </div>
                     <div class="demos-content-padded">
-                        <button class="weui-btn weui-btn_primary">投票</button>
+                        <button class="weui-btn weui-btn_primary voteBtn">投票</button>
                     </div>
                 `;
                 $(".voteContent").append(html);
                 $(".optionList").append(voteList);
-                //删除功能
-                $(".voteContent").on("click",".weui-panel__bd .weui-media-box .weui-media-box__bd .delBtn",function(){
-                    // 获取群号
-                    var code=localStorage.getItem("group_num");
-                    // 获取投票id
-                    var vote_id=$(this).attr("title");
-                    // 获取apptoken
-                    var apptoken=localStorage.getItem("apptoken");
-                    // 数据格式转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":code,"vote_id":vote_id})];
-                    // 加密
-                    jsonEncryptData=jsEncryptData(data);
-                    console.log(data);
-                    $.ajax({
-                        url:url+"group_delVote",
-                        type:"POST",
-                        data:{"data":jsonEncryptData},
-                        success:function (data) {
-                            // 解密
-                            data=jsDecodeData(data);
-                            console.log(data);
-                            if(data.errcode===0){
-                                localStorage.setItem("apptoken",data.apptoken);
-                                console.log("删除成功")
-                            }else{
-                                console.log(data.errmsg);
-                            }
-                        }
-                    })
-
-                })
             }else{
                 console.log(data.errmsg);
             }
         }
-    })
+    });
+    // 功能2 删除投票
+    $(".voteContent").on("click",".weui-panel__bd .weui-media-box .weui-media-box__bd .delBtn",function(){
+        // 获取群号
+        var code=localStorage.getItem("group_num");
+        // 获取投票id
+        var vote_id=$(this).attr("title");
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        // 数据格式转换
+        data=["",JSON.stringify({"apptoken":apptoken,"group_num":code,"vote_id":vote_id})];
+        // 加密
+        jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"group_delVote",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function (data) {
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    console.log("删除成功")
+                }else{
+                    console.log(data.errmsg);
+                }
+            }
+        })
+
+    });
+    //功能3 我要投票
+    $(".voteContent").on("click",".demos-content-padded .voteBtn",function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+        // 群号
+            group_num=localStorage.getItem("group_num"),
+        // 投票id
+            vote_id=localStorage.getItem("vote_id"),
+        // 获取choised
+            choised=$("input[name=radio1]:checked").attr("id");
+        // 数据格式转换
+        data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"vote_id":vote_id,"choised":choised})];
+        // 加密
+        jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"group_makeVoteChoice",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken)
+                }
+            }
+        })
+    });
 });
