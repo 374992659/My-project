@@ -67,12 +67,13 @@ $(document).ready(function(){
     //删除群相册
     $("#flockPhoto").on("click",".delBtn",function(){
         if(confirm("删除相册")){
+            var group_num=localStorage.getItem("group_num");
             //获取apptoken
             var apptoken=localStorage.getItem("apptoken");
             //获取相册编号
             var PhotoCode=$(this).attr("title");
             //数据格式转换
-            data=["",JSON.stringify({"apptoken":apptoken,"picture_id":PhotoCode,"group_num":code})];
+            data=["",JSON.stringify({"apptoken":apptoken,"picture_id":PhotoCode,"group_num":group_num})];
             //数据加密
             josnEncyptData=jsEncryptData(data);
             console.log(data);
