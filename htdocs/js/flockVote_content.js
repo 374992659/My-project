@@ -22,7 +22,9 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 var result=data.data;
                 var voteList="";
+                console.log(result.vote_info);
                 $.each(result.vote_info,function(i,item){
+                    console.log(item);
                    voteList+=`
                     <label class="weui-cell weui-check__label" for="x11">
                         <div class="weui-cell__bd">

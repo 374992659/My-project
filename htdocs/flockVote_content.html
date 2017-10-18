@@ -20,7 +20,99 @@
     <div>
         <!--投票的具体内容-->
         <div style="padding: 1rem 1rem" class="weui-panel weui-panel_access voteContent">
-           
+            <div class="weui-panel__bd " >
+
+                    <div  class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="image/friend1.png">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 13px">你大爷的</h4>
+                            <span class="weui-media-box__desc" style="font-size: 10px">2017.12.03</span>
+                            <button class="right">删除</button>
+                        </div>
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title" style="font-size: 10px">标题：星期六到三圣乡室外烧烤</h4>
+                        <ul>
+                            <li class="lf">
+                                <img src="image/firendc.jpg" alt="" class="topic">
+                            </li>
+                            <li class="lf">
+                                <img src="image/firenda.jpg" alt="" class="topic">
+                            </li>
+                            <li class="lf">
+                                <img src="image/firendb.jpg" alt="" class="topic">
+                            </li>
+                        </ul>
+                        <div style="text-align: right;font-size: 10px;color: #b2b2b2">
+                            <span class="lf">单选</span>
+                           <span class="lf">（匿名投票）</span>
+                            票数：<span>100</span>
+                        </div>
+                    </div>
+
+            </div>
+            <!--投票选项框-->
+            <div>
+                <!--单选列表-->
+                <div class="weui-cells weui-cells_radio" style="display: block">
+                    <!--选项1-->
+                    <label class="weui-cell weui-check__label" for="x11">
+                        <div class="weui-cell__bd">
+                            <p>选项少看点了空间撒来看撒娇</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" class="weui-check" name="radio1" id="x11">
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                    <!--选项2-->
+                    <label class="weui-cell weui-check__label" for="x12">
+                        <div class="weui-cell__bd">
+                            <p>选项2</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <input type="radio" name="radio1" class="weui-check" id="x12" checked="checked">
+                            <span class="weui-icon-checked"></span>
+                        </div>
+                    </label>
+                </div>
+                <!--多选列表-->
+                <div class="weui-cells weui-cells_checkbox" style="display: block">
+                    <label class="weui-cell weui-check__label" for="s11" style="">
+                        <div class="weui-cell__hd">
+                            <input type="checkbox" class="weui-check" name="checkbox1" id="s11" checked="checked">
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p>国庆色达日游</p>
+                        </div>
+                    </label>
+                    <label class="weui-cell weui-check__label" for="s12">
+                        <div class="weui-cell__hd">
+                            <input type="checkbox" name="checkbox1" class="weui-check" id="s12">
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <p>周末同学聚会在靖江饭店</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <!--截止时间-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd" style="color: #bbbbbb">
+                        <span>截止时间：</span>
+                        <span>09-28 09:00</span>
+                    </div>
+                </div>
+            </div>
+            <!--投票按钮-->
+            <div class="demos-content-padded">
+                <button class="weui-btn weui-btn_primary">投票</button>
+            </div>
         </div>
     </div>
 
