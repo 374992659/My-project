@@ -219,7 +219,9 @@ $(".weui-gallery").click(function(){
         // 获取小区code
         var code="";
         // 获取结束时间
-        var overTime=$(".voteEndTime").val();
+        var time=$(".voteEndTime").val();
+        // 转换成时间戳
+       var overTime=$.myTime.DateToUnix(time);
         // 获取是否匿名
         var anonymous=$(".switch").val();
         // 数据格式转换
