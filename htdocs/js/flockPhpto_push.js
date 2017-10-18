@@ -5,9 +5,8 @@ $(document).ready(function(){
         var Url=window.URL.createObjectURL(this.files[0]);
         console.log(Url);
         if(Url){
-            var Li="";
-            Li+=`
-            <li class="weui-uploader__file img1" ><img style="width: 77px;height: 77px" class="img" src="${Url}" alt=""/></li>      
+         var  Li=`
+            <li class="weui-uploader__file img1" ><img style="width: 79px;height: 79px" class="img" src="${Url}" alt=""/></li>      
         `;
             $(".picPlace").html(Li);
         }
