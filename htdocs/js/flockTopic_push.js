@@ -2,7 +2,6 @@ $(document).ready(function(){
     "use strict";
     // 上传图片及预览
     $("#uploaderInput").change(function(e){
-
         // let targetElement = e.target,
         // 图片信息组成的数组
         var file =$("#uploaderInput")[0].files;
@@ -19,6 +18,7 @@ $(document).ready(function(){
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         formData.append("data",json);
+        console.log(data);
         $.ajax({
             url:url+"group_uploaSubjectPic",
             type:"POST",
@@ -31,7 +31,7 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoekn)
+                    localStorage.setItem("apptoken",data.apptoken)
                 }else{
                     console.log(data.errmsg);
                 }
