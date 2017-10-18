@@ -407,8 +407,8 @@ $(document).ready(function(){
             var phone=$("#contactWay").val();
             // 获取transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
             var transport="";
-            $("#vehicle option").change(function(){
-                transport=$(this).val();
+            $("#vehicle").change(function(){
+                transport=$("#vehicle").find("option:selected").val();
                 console.log(transport);
                 return transport;
             });
@@ -417,7 +417,7 @@ $(document).ready(function(){
             // 获取garden_name 小区名称
             var garden_name="";
             $("#house").change(function(){
-                garden_name=$(this).html();
+                garden_name=$("#house").find("option:selected").text();
                 console.log(garden_name);
                 return garden_name
             });
