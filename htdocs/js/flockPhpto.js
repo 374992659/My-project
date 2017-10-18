@@ -22,9 +22,6 @@ $(document).ready(function(){
                     var html="";
                     var Li="";
                     $.each(data.data,function(i,item){
-                        for(var i=0;i<item.picture_path;i++){
-                            console.log(item.picture_path[i]);
-                        }
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
                             Li+=`
@@ -65,33 +62,33 @@ $(document).ready(function(){
     };photo();
     //上传图片
     $('#uploaderInput').change(function() {
-        var fileId = $(this).attr("id");
-         var t_files = this.files;
-                var imglength =  $("#view_" + fileId).parent().parent().find(".upload-img").length;
-                 if (imglength==1) {
-                        if (t_files.length > 5) {
-                                 new Message().showMsg("最多选择五张图片");
-                                 return false;
-                           } else if (t_files.length < 1) {
-                               new Message().showMsg("至少选择一张图片");
-                             return false;
-                             }
-                    }else if(t_files.length+imglength>6) {
-                         new Message().showMsg('最多再选择'+ (6-parseInt(imglength)) +'张图片');
-                          return false;
-                    }
-                 var formData = new FormData();
-                  for (var i=0;i<t_files.length;i++){
-                     formData.append('file',t_files[i]);
-                      formData.append('randomCode',fileId+i);
-                      formData.append('upDir','comment')
-                      }
+        // var fileId = $(this).attr("id");
+        //  var t_files = this.files;
+        //         var imglength =  $("#view_" + fileId).parent().parent().find(".upload-img").length;
+        //          if (imglength==1) {
+        //                 if (t_files.length > 5) {
+        //                          new Message().showMsg("最多选择五张图片");
+        //                          return false;
+        //                    } else if (t_files.length < 1) {
+        //                        new Message().showMsg("至少选择一张图片");
+        //                      return false;
+        //                      }
+        //             }else if(t_files.length+imglength>6) {
+        //                  new Message().showMsg('最多再选择'+ (6-parseInt(imglength)) +'张图片');
+        //                   return false;
+        //             }
+        //          var formData = new FormData();
+        //           for (var i=0;i<t_files.length;i++){
+        //              formData.append('file',t_files[i]);
+        //               formData.append('randomCode',fileId+i);
+        //               formData.append('upDir','comment')
+        //               }
         var Url=window.URL.createObjectURL(this.files[0]);
         console.log(Url);
-       // var formData= new FormData();
+        var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         var group_num=localStorage.getItem("group_num");
-       // formData.append("file",$("#uploaderInput")[0].files[0]);
+        formData.append("file",$("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
         var json=jsEncryptData(data);
         formData.append("data",json);
