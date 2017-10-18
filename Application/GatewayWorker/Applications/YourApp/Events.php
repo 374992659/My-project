@@ -113,7 +113,8 @@ class Events
                         $group_new_message = array();
                         if($group_data){
                             foreach ($group_data as $key=>$val){
-                                $user_database = $mongo->user_info_.$val['user_code'];
+                                $userdatastr = 'user_info_'.$val['user_code'];
+                                $user_database = $mongo->$userdatastr;
 //                                $user_database = $mongo->user_info_030117608006762;
                                 if($user_database->group_new_message->count()){
                                     $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
@@ -168,7 +169,8 @@ class Events
                         $table_id =substr($account_code['account_code'],0,4);
                         $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
                         $mongo =new MongoClient();
-                        $database1=$mongo->user_info_.$account_code;
+                        $userdatastr = 'user_info_'.$account_code;
+                        $database1=$mongo->$userdatastr;
                         $collection1 = $database1->friends_chat;
                         $data1 = array(
                             '_id'=>self::getNextId($mongo,'user_info_'.$account_code,'friends_chat'),
@@ -233,7 +235,8 @@ class Events
                             'group'=>$message->group,
                             'type'=>$message->type,
                         );
-                        $database= $mongo->user_info_.$create_code; //群聊记录保存在创建人分库
+                        $userdatastr = 'user_info_'.$create_code;
+                        $database= $mongo->$userdatastr; //群聊记录保存在创建人分库
                         $collection = $database->group_chat;
                         $collection->insert($data);   //插入数据
 
@@ -289,7 +292,8 @@ class Events
                             }
                         }
                         if($data2){
-                            $mongo->user_info_.$account_code['account_code']->group_new_message->batchInsert($data2);//插入聊天记录表
+                            $userdatastr = 'user_info_'.$account_code['account_code'];
+                            $mongo->$userdatastr->group_new_message->batchInsert($data2);//插入聊天记录表
                             $db->delete()->from('offline_user_massage')->where('sender_code ='.$friend_code)->query();
                         }
                         $returnData =self::returnData(0,8);
@@ -359,11 +363,11 @@ class Events
             'new' => true
         );
 
-        $id = $mongo->{$db}->command($command);
+        $id = $mongo->$db->command($command);
         if (isset($id['value']['id'])) {
             return $id['value']['id'];
         }else{
-            $mongo->{$db}->insert(array(
+            $mongo->$db->insert(array(
                 'name' => $name,
                 'id' => $param['init'],     //设置ID起始数值
             ));
