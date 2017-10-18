@@ -414,8 +414,8 @@ $(document).ready(function(){
             // 获取total_num 目标人数
             var total_num=$("#number").val();
             // 获取cost_type 花费类型 1：AA制 2：自驾游 3：发布人请客 ...
-            var cost_type=$("#changPlane option:selected").val();
-           
+            var cost_type=$("#changPlan option:selected").val();
+
             // 获取average_cost 人均消费
             var average_cost=$("#perCapita").val();
             // 获取rote_planning 路线规划 可填
