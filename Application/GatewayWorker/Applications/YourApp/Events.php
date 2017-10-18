@@ -296,8 +296,8 @@ class Events
                         Gateway::sendToCurrentClient(json_encode($returnData));break;
            case 7: $group_code =$message->group_code;
                         $mongo =new MongoClient();
-                        $data = $mongo->baseinfo->user_group_time->findone(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('id','time'));
-                        var_dump($data);
+                        $data = $mongo->baseinfo->user_group_time->find(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('id','time'));
+                        var_dump($account_code['account_code']);
 
 
        }
