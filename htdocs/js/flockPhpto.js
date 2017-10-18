@@ -21,16 +21,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
-                        var Li="";
-                        $.each(item.picture_path,function(i,item){
-                            console.log(item);
-                            Li+=`
-                               <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
-                               </li>
-                            `
-                        });
-                        $(".img").append(Li);
+
                         html+=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -53,6 +44,15 @@ $(document).ready(function(){
                             </div>
                         </div>
                         `;
+                        var Li="";
+                        $.each(item.picture_path,function(i,item){
+                            console.log(item);
+                            Li+=`
+                               <li class="lf">
+                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
+                               </li>
+                            `
+                        }); $(".img").append(Li);
                     });
 
                     $("#flockPhoto").append(html);
