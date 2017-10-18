@@ -44,7 +44,7 @@ $(document).ready(function(){
                         `;
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
-                            Li=`
+                            Li+=`
                                <li class="lf">
                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
                                </li>
@@ -52,8 +52,8 @@ $(document).ready(function(){
                         });
                     });
                     console.log(Li);
-                    $("#LiImg").append(Li);
                     $("#flockPhoto").append(html);
+                    $("#LiImg").append(Li);
                 }
             }
         })
