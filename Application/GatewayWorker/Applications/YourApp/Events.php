@@ -302,6 +302,8 @@ class Events
                         }else{
                             $mongo->baseinfo->user_group_time->insert(array('_id'=>self::getNextId($mongo,'baseinfo','user_group_time'),'user_code'=>$account_code['account_code'],'group_code'=>$group_code,'time'=>time()));
                         }
+                       $returnData =self::returnData(0,9);
+                       Gateway::sendToCurrentClient(json_encode($returnData));break;
        }
    }
    
@@ -373,4 +375,4 @@ class Events
 }
 
 
-//返回数据 type类型为 1 .为获取在线好友、好友未读消息、群未读消息  2.为好友上线通知（本地保存的好友列表更新） 3.为好友下线通知 4.好友消息  5群消息 6.用户在线状态 7.群在线用户 8.读取好友信息成功
+//返回数据 type类型为 1 .为获取在线好友、好友未读消息、群未读消息  2.为好友上线通知（本地保存的好友列表更新） 3.为好友下线通知 4.好友消息  5群消息 6.用户在线状态 7.群在线用户 8.读取好友信息成功 9.读取群消息成功
