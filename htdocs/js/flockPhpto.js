@@ -22,7 +22,6 @@ $(document).ready(function(){
                     var html="";
                     var Li="";
                     $.each(data.data,function(i,item){
-
                         html+=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -38,9 +37,7 @@ $(document).ready(function(){
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
                                 <ul id="LiImg">
-                                  <!--<li class="lf">-->
-                                       <!--<img src="image/firendb.jpg" alt="" class="addPic">-->
-                                  <!--</li>-->
+                                  
                                 </ul>
                             </div>
                         </div>
@@ -55,7 +52,8 @@ $(document).ready(function(){
                         });
                     });
                     console.log(Li);
-                    $(".flockPhoto #LiImg").html(Li);
+                    $("#LiImg").html(Li);
+                    console.log($("#LiImg"));
                     $("#flockPhoto").append(html);
                 }
             }
