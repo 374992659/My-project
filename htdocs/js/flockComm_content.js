@@ -33,7 +33,7 @@ $(document).ready(function(){
                 
                     <h4 class="weui-media-box__title" style="text-align: center;white-space:normal">${item.title}</h4>
             <ul class="weui-media-box__info" style="margin:0 0 15px 0;">
-                <li class="weui-media-box__info__meta">文字来源：<span></span></li>
+                <li class="weui-media-box__info__meta">文字来源：${item.nickname}<span></span></li>
                 <li class="weui-media-box__info__meta">时间：<span>${item.create_time}</span></li>
             </ul>
             <ul class="ulPicture">
@@ -53,13 +53,13 @@ $(document).ready(function(){
                $(".flockContent").html(html);
                $(".flockContent").on("click",".delBtn",function(){
                    var a=confirm("删除公告");
-                    if(a===ture){
+                    if(a==ture){
                         // 获取apptoken
                         var apptoken=localStorage.getItem("apptoken");
                         // 获取群公告id
                         var id=$("delBtn").attr("title");
                         // 获取群号码
-                        var code="";
+                        var code=localStorage.getItem("group_num");
                         // 数据格式转换
                         data=["",JSON.stringify({"apptoken":apptoken,"id":id,"group_num":code})];
                         console.log(data);
@@ -73,6 +73,7 @@ $(document).ready(function(){
                             success:function(data){
                                 // 解密数据
                                 data=jsDecodeData(data);
+                                console.log(data);
                                 if(data.errcode===0){
                                     localStorage.setItem("apptoken",data.apptoken);
 
