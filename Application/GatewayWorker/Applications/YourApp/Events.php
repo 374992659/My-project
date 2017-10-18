@@ -297,9 +297,11 @@ class Events
            case 7: $group_code =$message->group_code;
                         $mongo =new MongoClient();
                         $data = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('id','time'));
-                        var_dump($data);
-
-
+                        if($data){
+                            $mongo->baseinfo->user_group_time->update(array('_id'=>$data['_id']),array('time'=>time()));
+                        }else{
+                            $mongo->baseinfo->user_group_time->insert(array('_id'=>self::getNextId($mongo,'baseinfo','user_group_time'),'user_code'=>$account_code['account_code'],'group_code'=>$group_code,'time'=>time()));
+                        }
        }
    }
    
