@@ -45,7 +45,7 @@ $(document).ready(function(){
                     ${item.content}
                 
             </p>
-            <button title="${item.id}" class="weui-btn weui-btn_mini weui-btn_primary">删除</button>
+            <button title="${item.id}" class="weui-btn weui-btn_mini weui-btn_primary delBtn">删除</button>
                    
                    `
                    }
