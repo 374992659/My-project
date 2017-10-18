@@ -128,9 +128,9 @@ var num=2;
     $(".switch").click(function(){
         num++;
         if(num%2===0){
-            $(".switch").attr("value","否")
+            $(".switch").attr("value",0)
         }else{
-            $(".switch").attr("value","是")
+            $(".switch").attr("value",1)
         }
         console.log(num);
     });
@@ -206,7 +206,7 @@ $(".weui-gallery").click(function(){
             title=$(".title").val(),
         // 获取内容
             content=$(".content").val();
-        console.log(content);
+            console.log(content);
         // 获取选项内容
             var   option={};
             $("input[name='option']").each(function(i,item){
@@ -214,17 +214,15 @@ $(".weui-gallery").click(function(){
             });
             console.log(option);
         // 获取话题类型
-        var type=$(".voteType").find("option:selected").text();
+        var type=$(".voteType").val();
         console.log(type);
         // 获取小区code
         var code="";
         // 获取结束时间
         var time=$(".voteEndTime").val();
         // 转换成时间戳
-        // var stringTime = "2014-07-10 10:21:12";
         var timestamp2 = Date.parse(new Date(time));
         overTime= timestamp2 / 1000;
-       // var overTime=$.myTime.DateToUnix(time);
         // 获取是否匿名
         var anonymous=$(".switch").val();
         // 数据格式转换
