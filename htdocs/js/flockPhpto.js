@@ -20,8 +20,8 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
-                    var Li="";
                     $.each(data.data,function(i,item){
+                        var Li="";
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
                             Li+=`
@@ -30,6 +30,7 @@ $(document).ready(function(){
                                </li>
                             `
                         });
+                        $(".img").append(Li);
                         html+=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -53,7 +54,7 @@ $(document).ready(function(){
                         </div>
                         `;
                     });
-                    $(".img").append(Li);
+
                     $("#flockPhoto").append(html);
                 }
             }
@@ -61,35 +62,16 @@ $(document).ready(function(){
 
     };photo();
     //上传图片
-    $('#uploaderInput').change(function() {
-        // var fileId = $(this).attr("id");
-        //  var t_files = this.files;
-        //         var imglength =  $("#view_" + fileId).parent().parent().find(".upload-img").length;
-        //          if (imglength==1) {
-        //                 if (t_files.length > 5) {
-        //                          new Message().showMsg("最多选择五张图片");
-        //                          return false;
-        //                    } else if (t_files.length < 1) {
-        //                        new Message().showMsg("至少选择一张图片");
-        //                      return false;
-        //                      }
-        //             }else if(t_files.length+imglength>6) {
-        //                  new Message().showMsg('最多再选择'+ (6-parseInt(imglength)) +'张图片');
-        //                   return false;
-        //             }
-        //          var formData = new FormData();
-        //           for (var i=0;i<t_files.length;i++){
-        //              formData.append('file',t_files[i]);
-        //               formData.append('randomCode',fileId+i);
-        //               formData.append('upDir','comment')
-        //               }
-        var Url=window.URL.createObjectURL(this.files[0]);
-        console.log(Url);
+    $('#uploaderInput').change(function(){
+        // 实例化forDate
         var formData= new FormData();
+        // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
+        // 获取群号
         var group_num=localStorage.getItem("group_num");
         var file=$("#uploaderInput")[0].files;
         console.log(file);
+        // 向formDate添加文件
         for(var i=0,len=file.length;i<len;i++){
             console.log(file[i]);
             formData.append("file"+i,file[i]);
