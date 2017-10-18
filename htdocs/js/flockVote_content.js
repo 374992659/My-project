@@ -6,9 +6,10 @@ $(document).ready(function(){
     // 获取投票id
     var vote_id=localStorage.getItem("vote_id");
     // 数据格式转换
-    data =["",JSON.stringify({"apptoken":apptoken,"group_nue":code,"vote_id":vote_id})];
+    data =["",JSON.stringify({"apptoken":apptoken,"group_num":code,"vote_id":vote_id})];
 // 加密
     jsonEncryptData=jsEncryptData(data);
+    console.log(data);
     $.ajax({
         url:url+"group_getVoteInfo",
         type:"POST",
@@ -16,6 +17,7 @@ $(document).ready(function(){
         success:function (data) {
             // 解密
             data=jsDecodeData(data);
+            console.log(data);
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
                 var result=data.data;
