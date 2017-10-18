@@ -17,13 +17,15 @@ $(document).ready(function(){
     var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
 // 数据加密
     var jsonEncryptData=jsEncryptData(data);
+    console.log(data);
 $.ajax({
-    url:url+"group_getGroupSubjectInfo",
+    url:url+"group_getGroupSubjectInf",
     type:"POST",
     data:{"data":jsonEncryptData},
     success:function(data){
         // 解密数据
         var data=jsDecodeData(data);
+        console.log(data);
         if(data.errcode===0){
             // 获取去用户的id
             var userCode="";
