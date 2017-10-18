@@ -136,22 +136,45 @@ var num=2;
     });
 
 })();
-
 // 请求数据
 $(document).ready(function(){
     // 上传图片
-    $(".votePic").change(function(e){
-        var targetElement = e.target,
-            file = targetElement.files[0],
-            url=window.URL.createObjectURL(this.files[0]) ;
-        var fd = new FormData();
-        fd.append('fileToUpload', file);
-        localStorage.setItem("fd",fd);
-        if(url){
-            localStorage.setItem("voteImg",url);
-           $(".voteImg").attr("src",url)
-        }
+    $('#uploaderInput').change(function() {
+        var Url=window.URL.createObjectURL(this.files[0]) ;
+        var formData= new FormData();
+        var apptoken=localStorage.getItem("apptoken");
+        formData.append("file",$("#uploaderInput")[0].files[0]);
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        formData.append("data",json);
+        console.log(formData);
+        $.ajax({
+            type:"POST",
+            url:url+"group_uploadNoticePic",
+            fileElementId:'uploaderInput',
+            data:formData,
+            processData : false,
+            contentType : false,
+            secureuri:false,
+            success : function(data){
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    console.log(data.data[0]);
+                    localStorage.setItem("flockVotePic",data.data[0]);
+                    console.log(data.data[0]);
+                    $(".img").attr({
+                        "src":Url,
+                        "style":"width:77px;height:77px"
+                    });
 
+                }
+            },
+            error:function (data) {
+                console.log(data);
+            }
+        });
     });
     // 图片预览功能
 $(".voteImg").click(function(){
@@ -174,11 +197,11 @@ $(".weui-gallery").click(function(){
 // 发布投票
     $(".submitBtn").click(function(){
         // 获取图片
-        var picture="";
+        var picture=localStorage.getItem("flockVotePic");
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 获取群号码
-            group_code="",
+            group_code=localStorage.getItem("group_num"),
         // 获取主题
             title=$(".title").val(),
         // 获取内容
@@ -200,21 +223,22 @@ $(".weui-gallery").click(function(){
         // 获取是否匿名
         var anonymous=$(".switch").val();
         // 数据格式转换
-        Choice=JSON.stringify(option);
-        data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":code,"group_num":group_code,"end_time":overTime,"anonymous":anonymous})];
+        // Choice=JSON.stringify(option);
+        data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":code,"group_num":group_code,"end_time":overTime,"anonymous":anonymous,"choice":option})];
         console.log(data);
-        console.log(Choice);
+        // console.log(Choice);
 // 数据加密
     jsonEncryptData=jsEncryptData(data);
-    choice=jsonEncryptData(Choice);
+    // choice=jsonEncryptData(Choice);
     // 发起ajax请求
         $.ajax({
             url:url+"group_addVote",
             type:"POST",
-            data:{"data":jsonEncryptData,"data":choice},
+            data:{"data":jsonEncryptData},
             success:function(data){
                 // 解密数据
                 data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     alert("发布成功");

@@ -50,10 +50,9 @@ $(document).ready(function(){
                             </div>
                         </div>
                         `;
-                        $("#flockPhoto").append(html);
-                        $(".LiImg").append(Li);
                     });
-
+                    $("#flockPhoto").append(html);
+                    $(".LiImg").append(Li);
 
                 }
             }

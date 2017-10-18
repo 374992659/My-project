@@ -10,7 +10,6 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>发布投票</title>
-
     <link rel="stylesheet" href="JQuery_weui/weui.min.css">
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
@@ -127,17 +126,19 @@
                     </div>
                     <ul class="ulVoteImg">
                        <li class="lf" style="margin-right: 10px">
-                            <img src="" style="height: 79px;width: 79px" alt="" class="voteImg">
+                            <img class="img" src="" style="height: 79px;width: 79px" alt="" class="voteImg">
                         </li>
                     </ul>
                     <div class="weui-uploader__bd lf">
                         <div class="weui-uploader__input-box">
-                            <input id="uploaderInput" class="weui-uploader__input votePic" type="file">
+                            <form action="" id="form" enctype="multipart/form-data">
+                                <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
-        </div><div class="weui-cells__tips" style="text-align: center;background: beige">可上传一张关于主题相关的照片</div>
+        </div><div class="weui-cells__tips" style="text-align: center;background: beige">可上传1张关于主题相关的照片</div>
     </div>
 <!--提交按钮-->
     <div class="demos-content-padded">
