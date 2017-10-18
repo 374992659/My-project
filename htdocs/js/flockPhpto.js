@@ -22,10 +22,14 @@ $(document).ready(function(){
                     var html="";
                     var Li="";
                     $.each(data.data,function(i,item){
+                        for(var i=0;i<item.picture_path;i++){
+                            console.log(item.picture_path[i]);
+                        }
                         $.each(item.picture_path,function(i,item){
+                            console.log(item);
                             Li+=`
                                <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${item[0]}" alt="" class="addPic">
+                                    <img src="http://wx.junxiang.ren/project/${item[i]}" alt="" class="addPic">
                                </li>
                             `
                         });
