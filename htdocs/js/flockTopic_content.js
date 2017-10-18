@@ -117,14 +117,15 @@ $.ajax({
                    
                         
                         `
-                    }
-                });
-             $(".topicBox").html(html);
-            $("#tab1").append(mydiscuss);
-            $("#tab2").append(alldiscuss);
+                        }
+                    });
+            console.log(html);
+                 $(".topicBox").html(html);
+                $("#tab1").append(mydiscuss);
+                $("#tab2").append(alldiscuss);
+            }
         }
-    }
-});
+    });
     // 发表评论
     (function(){
         // 弹出评论窗口
