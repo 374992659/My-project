@@ -88,8 +88,13 @@ $(document).ready(function(){
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         var group_num=localStorage.getItem("group_num");
-        console.log($("#uploaderInput")[0].files);
-        formData.append("file",$("#uploaderInput")[0].files[0]);
+        var file=$("#uploaderInput")[0].files;
+        console.log(file);
+        for(var i=0,len=file.length;i<len;i++){
+            console.log(file[i]);
+            formData.append("file"+i,file[i]);
+        }
+        // formData.append("file",$("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
         var json=jsEncryptData(data);
         formData.append("data",json);
