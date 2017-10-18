@@ -1,6 +1,6 @@
 $(document).ready(function(){
     //上传图片跳转
-    $('#uploaderInput').change(function(e) {
+    $('#uploaderInput').change(function() {
         // var fileId = $(this).attr("id");
         // var t_files = this.files;
         //         var imglength =  $("#view_" + fileId).parent().parent().find(".upload-img").length;
@@ -45,10 +45,12 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    var LiImg=`
-                      <li class="weui-uploader__file img1" ><img style="height: 77px;width: 77px" class="img" src="${Url}" alt=""/></li>
-                    `;
-                    $("#uploaderFiles").append(LiImg);
+                    localStorage.setItem("apptoken",data.apptoken);
+                    // var LiImg=`
+                    //   <li class="weui-uploader__file img1" ><img style="height: 77px;width: 77px" class="img" src="${Url}" alt=""/></li>
+                    // `;
+                    // $("#uploaderFiles").append(LiImg);
+                    photo()
                 }
             },
             error:function (data) {
