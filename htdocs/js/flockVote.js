@@ -16,6 +16,7 @@ $.ajax({
     success:function(data){
         // 解密
         data=jsDecodeData(data);
+        console.log(data);
         if(data.errcode===0){
             localStorage.setItem("apptoken",data.apptoken);
             var html="";
@@ -52,8 +53,6 @@ $.ajax({
             `
             });
         $(".flockVote").append(html);
-
-
         }else{
             console.log(data.errmsg);
         }
