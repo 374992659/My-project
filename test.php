@@ -6,7 +6,7 @@
  * Time: 11:33
  */
 $m =new MongoClient();
-$db = $m->local;
+$db = $m->newtest;
 $collection = $db->runoob;
-$res = $collection->remove(array('myname'=>1));
+$res = $collection->findOne(array('myname'=>1));
 print_r($res);
