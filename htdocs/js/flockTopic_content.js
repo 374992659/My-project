@@ -45,7 +45,7 @@ $.ajax({
                         <li class="weui-media-box__info__meta">时间：${data.data.create_time}</li>
 
                     </ul>
-                    <p class="weui-media-box__desc" style=" text-indent:2em;font-size: 16px;color:black">
+                    <p class="weui-media-box__desc" style=" text-indent:1em;font-size: 16px;color:black">
                         ${data.data.content}
                     </p>
                 </div>
@@ -67,7 +67,7 @@ $.ajax({
                             </div>
                         </div>
                     </div>
-                    <div class="weui-media-box__desc" style="margin-top: 10px">
+                    <div class="weui-media-box__desc" style="margin-top: 10px;font-size: 15px;color: black">
                         <a href="" style="">律师援助</a>
                         <span style="margin-left:10px ">分享</span>
                         <span style="margin-left:10px " class="commentBtn">评论</span>
