@@ -4,7 +4,7 @@ $(document).ready(function(){
     $('#uploaderInput').change(function(e) {
         // var targetElement = e.target,
         //            file = targetElement.files[0],
-        //          url=window.URL.createObjectURL(this.files[0]);
+                url=window.URL.createObjectURL(this.files[0]);
         //         if(url){
         //            var LiImg=`
         //             <li class="weui-uploader__file img1" ><img style="width: 79px;height: 79px" src="${url}" alt=""/></li>
@@ -36,11 +36,11 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data.data[0]);
                     localStorage.setItem("flockCommPic",data.data[0]);
-                    // $("img").attr({
-                    //     "src":Url,
-                    //     "style":"width:77px;height:77px"
-                    // });
-
+                    var LiImg=`
+                        
+                    <li class="weui-uploader__file img1" ><img class="img" src="${url}" alt=""/></li>
+                    `;
+                    $(".picPlace").append(LiImg);
                 }
             },
             error:function (data) {
