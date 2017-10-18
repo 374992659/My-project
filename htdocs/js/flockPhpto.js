@@ -104,9 +104,9 @@ $(document).ready(function(){
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
                                 <ul class="img">
-                                  <li class="lf">
-                                       <img src="image/firendb.jpg" alt="" class="addPic">
-                                  </li>
+                                  <!--<li class="lf">-->
+                                       <!--<img src="image/firendb.jpg" alt="" class="addPic">-->
+                                  <!--</li>-->
                                 </ul>
                             </div>
                         </div>
