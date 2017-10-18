@@ -26,12 +26,12 @@ $(document).ready(function(){
                 $.each(result.vote_info,function(i,item){
                     console.log(item);
                    voteList+=`
-                    <label class="weui-cell weui-check__label" for="x11">
+                    <label class="weui-cell weui-check__label" for="${i}">
                         <div class="weui-cell__bd">
                             <p>${item.comtent}</p>
                         </div>
                         <div class="weui-cell__ft">
-                            <input type="radio" class="weui-check" name="radio1" id="x11">
+                            <input type="radio" class="weui-check" name="radio1" id="${i}">
                             <span class="weui-icon-checked"></span>
                         </div>
                     </label>
