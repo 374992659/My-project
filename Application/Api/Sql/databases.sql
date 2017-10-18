@@ -68,7 +68,7 @@ CREATE TABLE if NOT EXISTS `offline_user_message`  (
   `type` tinyint(2) NOT NULL COMMENT '消息类型 1：文字消息 2：语音消息 3:图片消息 4：文件消息',
   PRIMARY KEY (`id`),
   KEY `sender_code` (`sender_code`),
-  KEY `type` (`type`),
+  KEY `type` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='离线好友消息表';
 
 CREATE TABLE if not exists `vote_user` (
