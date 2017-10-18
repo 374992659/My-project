@@ -44,7 +44,7 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
-                                <ul id="LiImg">
+                                <ul class="LiImg">
                                   
                                 </ul>
                             </div>
@@ -53,7 +53,7 @@ $(document).ready(function(){
 
                     });
                     $("#flockPhoto").append(html);
-                    $("#LiImg").append(Li);
+                    $(".LiImg").append(Li);
                 }
             }
         })
