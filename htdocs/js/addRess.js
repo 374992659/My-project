@@ -16,7 +16,6 @@ var addRess=function(){
                     <!-- 省改变 -->
                     pro.change(function () {
                         var num1=$(this).val();
-
                         city.find("option").eq(0).siblings().remove();
                         dAC.find("option").eq(0).siblings().remove();
                         if (num1 !== 0) {
@@ -28,10 +27,7 @@ var addRess=function(){
                                 }
                             }
                         }
-
-
                     });
-
                     function init() {
                         for (var i = 0; i < result.length; i++) {
                             if (result[i].parent_id==="0000") {
@@ -41,10 +37,7 @@ var addRess=function(){
                         }
                     }
                 });
-
             }
-
         });
-
     });
 };

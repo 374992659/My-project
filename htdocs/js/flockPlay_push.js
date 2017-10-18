@@ -408,7 +408,7 @@ $(document).ready(function(){
             // 获取transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
             var transport="";
             $("#vehicle").change(function(){
-                transport=$("#vehicle").find("option:selected").val();
+                transport=$("#vehicle option:selected").val();
                 console.log(transport);
                 return transport;
             });
