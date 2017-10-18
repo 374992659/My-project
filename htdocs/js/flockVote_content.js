@@ -38,7 +38,7 @@ $(document).ready(function(){
                     `
                 });
                var html=`
-                 <div class="weui-panel__bd">
+                    <div class="weui-panel__bd">
                         <div  class="weui-media-box weui-media-box_appmsg">
                             <div class="weui-media-box__hd">
                                 <img class="weui-media-box__thumb" src="${result.portrait}">
@@ -64,7 +64,6 @@ $(document).ready(function(){
                     </div>
                         <!--选项-->
                     <div class="weui-cells weui-cells_radio optionList" style="display: block">
-
                     </div>
                             <!--截止时间-->
                     <div class="weui-cells">
@@ -82,7 +81,7 @@ $(document).ready(function(){
                 $(".voteContent").append(html);
                 $(".optionList").append(voteList);
                 //删除功能
-                $(".voteContent").on("click",".weui-media-box .weui-media-box__bd .delBtn",function(){
+                $(".voteContent").on("click",".weui-panel__bd .weui-media-box .weui-media-box__bd .delBtn",function(){
                     // 获取群号
                     var code=localStorage.getItem("group_num");
                     // 获取投票id
@@ -93,6 +92,7 @@ $(document).ready(function(){
                     data=["",JSON.stringify({"apptoken":apptoken,"group_num":code,"vote_id":vote_id})];
                     // 加密
                     jsonEncryptData=jsEncryptData(data);
+                    console.log(data);
                     $.ajax({
                         url:url+"group_delVote",
                         type:"POST",
@@ -100,6 +100,7 @@ $(document).ready(function(){
                         success:function (data) {
                             // 解密
                             data=jsDecodeData(data);
+                            console.log(data);
                             if(data.errcode===0){
                                 localStorage.setItem("apptoken",data.apptoken);
                                 console.log("删除成功")
