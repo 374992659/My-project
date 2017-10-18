@@ -44,7 +44,7 @@ $(document).ready(function(){
                         `;
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
-                            Li+=`
+                            Li=`
                                <li class="lf">
                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
                                </li>
@@ -52,13 +52,11 @@ $(document).ready(function(){
                         });
                     });
                     console.log(Li);
-                    $("#LiImg").html(Li);
-                    console.log($("#LiImg"));
+                    $("#LiImg").append(Li);
                     $("#flockPhoto").append(html);
                 }
             }
         })
-
     };photo();
     //上传图片
     $('#uploaderInput').change(function(){
@@ -75,7 +73,6 @@ $(document).ready(function(){
             console.log(file[i]);
             formData.append("file"+i,file[i]);
         }
-        // formData.append("file",$("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
         var json=jsEncryptData(data);
         formData.append("data",json);
@@ -94,10 +91,6 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    // var LiImg=`
-                    //   <li class="weui-uploader__file img1" ><img style="height: 77px;width: 77px" class="img" src="${Url}" alt=""/></li>
-                    // `;
-                    // $("#uploaderFiles").append(LiImg);
                     photo()
                 }
             },
