@@ -90,7 +90,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    window.location.reload();
+                    photo()
                 }
             },
             error:function (data) {
