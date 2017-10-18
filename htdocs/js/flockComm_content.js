@@ -5,7 +5,7 @@ $(document).ready(function(){
     //
     // });
     // 获取群号码
-    var num="";
+    var num=localStorage.getItem("group_num");
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
     // 数据格式转换
@@ -26,7 +26,7 @@ $(document).ready(function(){
                var id=localStorage.getItem("commId");
                var html="";
                $.each(data.data,function(i,item){
-                   if(item.id===id){
+                   if(item.id==id){
                        html=`
                 
                     <h4 class="weui-media-box__title" style="text-align: center;white-space:normal">${item.title}</h4>
@@ -51,8 +51,8 @@ $(document).ready(function(){
                    `
                    }
                });
-               $(".weui-media-box").html(html);
-               $(".weui-media-box_text").on("click",".delBtn",function(){
+               $(".flockContent").html(html);
+               $(".flockContent").on("click",".delBtn",function(){
                    var a=confirm("删除公告");
                     if(a===ture){
                         // 获取apptoken
