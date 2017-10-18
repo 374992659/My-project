@@ -106,41 +106,43 @@ class Events
                             }
                         }
                         //获取群未读消息
-                        $group_arr_str = implode(',',$group_arr);             //用户群字符串
-                        $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                        $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
-                        $mongo = new MongoClient();
                         $group_new_message = array();
-                        if($group_data){
-                            foreach ($group_data as $key=>$val){
-                                $userdatastr = 'user_info_'.$val['user_code'];
-                                $user_database = $mongo->$userdatastr;
+                        if($group_arr){
+                            $group_arr_str = implode(',',$group_arr);             //用户群字符串
+                            $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                            $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
+                            $mongo = new MongoClient();
+                            if($group_data){
+                                foreach ($group_data as $key=>$val){
+                                    $userdatastr = 'user_info_'.$val['user_code'];
+                                    $user_database = $mongo->$userdatastr;
 //                                $user_database = $mongo->user_info_030117608006762;
-                                if($user_database->group_new_message->count()){
-                                    $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
+                                    if($user_database->group_new_message->count()){
+                                        $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
 //                                    $group_time = $mongo->baseinfo->user_group_time->find(array('user_code'=>'030117608006762','group_code'=>$val['group_code']),array('time'));
-                                   $group_time = iterator_to_array($group_time);
-                                   $time ='';
-                                    foreach ( $group_time as $item) {
-                                        $time = $item['time'];
-                                   }
-                                    $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
-                                    $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
-                                    foreach ($res as $kk=>$vv){
-                                        $content[$kk]['group_code']=$vv['group'];
-                                        $content[$kk]['sender_code']=$vv['sender_code'];
-                                        $content[$kk]['sender_nickname']=$vv['sender_nickname'];
-                                        $content[$kk]['sender_portrait']=$vv['sender_portrait'];
-                                        $content[$kk]['send_time']=$vv['send_time'];
-                                        $content[$kk]['type']=$vv['type'];
-                                        $content[$kk]['content']=$vv['content'];
+                                        $group_time = iterator_to_array($group_time);
+                                        $time ='';
+                                        foreach ( $group_time as $item) {
+                                            $time = $item['time'];
+                                        }
+                                        $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
+                                        $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
+                                        foreach ($res as $kk=>$vv){
+                                            $content[$kk]['group_code']=$vv['group'];
+                                            $content[$kk]['sender_code']=$vv['sender_code'];
+                                            $content[$kk]['sender_nickname']=$vv['sender_nickname'];
+                                            $content[$kk]['sender_portrait']=$vv['sender_portrait'];
+                                            $content[$kk]['send_time']=$vv['send_time'];
+                                            $content[$kk]['type']=$vv['type'];
+                                            $content[$kk]['content']=$vv['content'];
+                                        }
                                     }
+                                    $group_new_message[$val['group_code']]['group_num']=$val['group_num'];
+                                    $group_new_message[$val['group_code']]['group_code']=$val['group_code'];
+                                    $group_new_message[$val['group_code']]['count']=$count;
+                                    $group_new_message[$val['group_code']]['content']=$content;
+                                    $content = array();
                                 }
-                                $group_new_message[$val['group_code']]['group_num']=$val['group_num'];
-                                $group_new_message[$val['group_code']]['group_code']=$val['group_code'];
-                                $group_new_message[$val['group_code']]['count']=$count;
-                                $group_new_message[$val['group_code']]['content']=$content;
-                                $content = array();
                             }
                         }
                         $data = array(
