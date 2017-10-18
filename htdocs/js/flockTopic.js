@@ -20,7 +20,7 @@ $(document).ready(function(){
                var html="";
                $.each(data.data,function(i,item){
                    html+=`
-                   <a href="" class="weui-media-box weui-media-box_appmsg" title="${item.subject_id}">
+                   <div class="weui-media-box weui-media-box_appmsg" title="${item.subject_id}">
                         <div class="weui-media-box__bd">
                             <div class="topic">
                                 <h4 class="weui-media-box__title lf" style="font-size: 13px">${item.title}</h4>
@@ -29,7 +29,7 @@ $(document).ready(function(){
                             <p class="weui-media-box__desc">${item.content}</p>
                             <div style="margin-top: .5rem;text-align: right;font-size: 10px">阅读量：<span>${item.read_num}</span> 回帖数：<span>${item.commont_num}</span></div>
                         </div>
-                   </a>                 
+                   </div>                 
                   `
                });
                $(".GroupSubjectList").append(html);
@@ -38,6 +38,7 @@ $(document).ready(function(){
     });
 // 为a绑定点击事件存储话题id
     $(".GroupSubjectList").on("click",".weui-media-box",function(){
+        console.log(123);
         // 获取话题id
         var topic_id=$(this).attr("title");
         localStorage.setItem("subject_id",topic_id);
