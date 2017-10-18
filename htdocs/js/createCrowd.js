@@ -36,7 +36,7 @@ $(document).ready(function(){
                                 <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
                             </div>
                             <div class="weui-media-box__bd">
-                                <h4 class="weui-media-box__title" style="font-size: 15px">${item.group_name}</h4>
+                                <h4 class="weui-media-box__title" style="font-size: 18px">${item.group_name}</h4>
                                 <p class="weui-media-box__desc">${item.group_type_name}</p>
                             </div>
                         </div>
@@ -49,7 +49,7 @@ $(document).ready(function(){
                                 <img style="width: 50px;height: 50px" class="weui-media-box__thumb " src="http://wx.junxiang.ren/project/${item.group_portrait}" alt="" >
                             </div>
                             <div class="weui-media-box__bd">
-                                <h4 class="weui-media-box__title" style="font-size: 15px">${item.group_name}</h4>
+                                <h4 class="weui-media-box__title" style="font-size: 18px">${item.group_name}</h4>
                                 <p class="weui-media-box__desc">${item.group_type_name}</p>
                             </div>
                         </div>
