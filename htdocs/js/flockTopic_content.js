@@ -81,44 +81,44 @@ $.ajax({
              // 我的评论
              var mydiscuss="";
                 // 对所有评论循环遍历
-                //$.each(data.data.commont_list,function(i,item){
-                //    alldiscuss+=`
-                //    <div class="weui-media-box weui-media-box_text">
-                //            <div class="topic">
-                //            <a href=""><p class="weui-media-box__title lf">${item.nickname}</p></a>
-                //                <span class="right" style="font-size: 12px">${item.create_time}</span>
-                //            </div>
-                //            <p class="weui-media-box__desc">
-                //                ${item.content}
-                //            </p>
-                //            <div style="text-align: right;font-size: 12px">
-                //                <img title="${item.commont_id}" class="disPraiseImg" src="image/no-praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
-                //                <span>${item.commont_likes}</span>
-                //            </div>
-                //    </div>
-                //
-                //    `;
-                //    if(item.user===userCode){
-                //        mydiscuss+=`
-                //
-                //
-                //        <div class="weui-media-box weui-media-box_text">
-                //            <div class="topic">
-                //                <p class="weui-media-box__title lf">${item.nickname}</p>
-                //                <span class="right" style="font-size: 12px">${item.create_time}</span>
-                //            </div>
-                //            <p class="weui-media-box__desc">
-                //                ${item.content}
-                //            </p>
-                //            <div style="text-align: right;font-size: 12px"><img title="${item.commont_id}" class="disPraiseImg" src="image/no-praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
-                //                <span>${item.commont_likes}</span>
-                //            </div>
-                //        </div>
-                //
-                //
-                //        `
-                //        }
-                //    });
+                $.each(data.data.commont_list,function(i,item){
+                    alldiscuss+=`
+                   <div class="weui-media-box weui-media-box_text">
+                            <div class="topic">
+                            <a href=""><p class="weui-media-box__title lf">${item.nickname}</p></a>
+                                <span class="right" style="font-size: 12px">${item.create_time}</span>
+                            </div>
+                           <p class="weui-media-box__desc">
+                                ${item.content}
+                            </p>
+                            <div style="text-align: right;font-size: 12px">
+                                <img title="${item.commont_id}" class="disPraiseImg" src="image/no-praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                <span>${item.commont_likes}</span>
+                            </div>
+                    </div>
+
+                    `;
+                    if(item.user===userCode){
+                        mydiscuss+=`
+
+
+                        <div class="weui-media-box weui-media-box_text">
+                           <div class="topic">
+                               <p class="weui-media-box__title lf">${item.nickname}</p>
+                                <span class="right" style="font-size: 12px">${item.create_time}</span>
+                            </div>
+                            <p class="weui-media-box__desc">
+                                ${item.content}
+                            </p>
+                            <div style="text-align: right;font-size: 12px"><img title="${item.commont_id}" class="disPraiseImg" src="image/no-praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                <span>${item.commont_likes}</span>
+                            </div>
+                        </div>
+
+
+                        `;
+                        }
+                    });
             console.log(html);
                  $("#topicText").html(html);
                 $("#tab1").append(mydiscuss);
