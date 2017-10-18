@@ -51,7 +51,7 @@ $(document).ready(function(){
                             <h4 class="weui-media-box__title" style="font-size: 10px">${result.title}</h4>
                             <ul>
                                 <li class="lf">
-                                    <img src="${result.picture}" alt="" class="topic">
+                                    <img src="http://wx.junxiang.ren/project/${result.picture}" alt="" class="topic">
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 10px;color: #b2b2b2">
@@ -73,9 +73,12 @@ $(document).ready(function(){
                             </div>
                         </div>
                     </div>
+                    <div class="demos-content-padded">
+                        <button class="weui-btn weui-btn_primary">投票</button>
+                    </div>
                 `;
-                $(".optionList").append(voteList);
                 $(".voteContent").append(html);
+                $(".optionList").append(voteList);
                 //删除功能
                 $(".voteContent").on("click",".weui-media-box .weui-media-box__bd .delBtn",function(){
                     // 获取群号
