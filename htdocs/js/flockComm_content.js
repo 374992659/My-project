@@ -12,6 +12,7 @@ $(document).ready(function(){
     data=["",JSON.stringify({"group_num":num,"apptoken":apptoken})];
     // 数据加密
     jsonEncryptDate=jsEncryptData(data);
+    console.log(data);
     // 发起ajax请求
    $.ajax({
        url:url+"group_getGroupNotice",
@@ -20,7 +21,8 @@ $(document).ready(function(){
        success:function(data){
            // 解密数据
            data=jsDecodeData(data);
-           if(data===0){
+           console.log(data);
+           if(data.errcode===0){
                localStorage.setItem("apptoken",data.apptoken);
                // 获取公告id
                var id=localStorage.getItem("commId");
