@@ -32,7 +32,8 @@ $(document).ready(function(){
                         </div>
                         <div class="weui-cell__ft">
                             <input type="radio" class="weui-check" name="radio1" id="${i}">
-                            <span class="weui-icon-checked">${item.num}</span>
+                            <span class="weui-icon-checked"></span>
+                             <span >${item.num}</span>
                         </div>
                     </label>
                     `
