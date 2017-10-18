@@ -2,15 +2,15 @@ $(document).ready(function(){
     "use strict";
     // 功能1 上传图片
     $('#uploaderInput').change(function(e) {
-        var Url=window.URL.createObjectURL(this.files[0]);
-        console.log(Url);
-        if(Url){
-         var  Li=`
-            <li class="weui-uploader__file img1" ><img style="width: 79px;height: 79px" class="img" src="${Url}" alt=""/></li>      
-        `;
-            $(".picPlace").html(Li);
-        }
-
+        var targetElement = e.target,
+                   file = targetElement.files[0],
+                 url=window.URL.createObjectURL(this.files[0]);
+                if(url){
+                   var LiImg=`
+                    <li class="weui-uploader__file img1" ><img style="width: 79px;height: 79px" src="${url}" alt=""/></li>
+                  `;
+                   $("#uploaderFiles").append(LiImg);
+               }
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
