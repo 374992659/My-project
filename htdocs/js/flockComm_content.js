@@ -56,7 +56,7 @@ $(document).ready(function(){
                         // 获取apptoken
                         var apptoken=localStorage.getItem("apptoken");
                         // 获取群公告id
-                        var id=$("delBtn").attr("title");
+                        var id=$(".delBtn").attr("title");
                         // 获取群号码
                         var code=localStorage.getItem("group_num");
                         // 数据格式转换
