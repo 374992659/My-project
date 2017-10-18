@@ -29,7 +29,7 @@ $(document).ready(function(){
                             console.log(item);
                             Li+=`
                                <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${item[i]}" alt="" class="addPic">
+                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
                                </li>
                             `
                         });
