@@ -24,7 +24,7 @@ $(document).ready(function(){
     var jsonEncryptData=jsEncryptData(data);
     console.log(data);
 $.ajax({
-    url:url+"group_getGroupSubjectInf",
+    url:url+"group_getGroupSubjectInfo",
     type:"POST",
     data:{"data":jsonEncryptData},
     success:function(data){
