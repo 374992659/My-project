@@ -221,7 +221,10 @@ $(".weui-gallery").click(function(){
         // 获取结束时间
         var time=$(".voteEndTime").val();
         // 转换成时间戳
-       var overTime=$.myTime.DateToUnix(time);
+        // var stringTime = "2014-07-10 10:21:12";
+        var timestamp2 = Date.parse(new Date(time));
+        overTime= timestamp2 / 1000;
+       // var overTime=$.myTime.DateToUnix(time);
         // 获取是否匿名
         var anonymous=$(".switch").val();
         // 数据格式转换
