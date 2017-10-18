@@ -28,7 +28,7 @@ $.ajax({
                 <a href=" flockVote_content.html">
                     <div  class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="${item.portrait}">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title" style="font-size: 13px">${item.nickname}</h4>
