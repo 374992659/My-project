@@ -8,6 +8,6 @@
 $m =new MongoClient();
 $db = $m->newtest;
 $collection = $db->runoob;
-$collection->insert(array('name'=>'nan'));
+$collection->createIndex(array('name'=>1));
 $res = $collection->findOne(array('myname'=>1));
 print_r($res);
