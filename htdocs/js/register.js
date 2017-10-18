@@ -41,8 +41,7 @@ $(document).ready(function(){
                 console.log(data);
                 console.log(data.errcode);
                 if(data.errcode===0){
-                    alert(data.errmsg);
-                   // window.location.href="friend.html";
+                   window.location.href="friend.html";
                 }else{
                     alert(data.errmsg);
                 }
