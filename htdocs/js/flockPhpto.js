@@ -88,6 +88,7 @@ $(document).ready(function(){
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         var group_num=localStorage.getItem("group_num");
+        console.log($("#uploaderInput")[0].files);
         formData.append("file",$("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
         var json=jsEncryptData(data);
