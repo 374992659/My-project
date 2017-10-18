@@ -191,7 +191,7 @@ class Events
                             'sender_nickname'=>$user_info['nickname'],
                             'send_portrait'=>$user_info['portrait'],
                             'content'=>$message->content,
-                            'type'=>$message->type,
+                            'type'=>$message->message_type,
                             'send_time'=>time(),
                         );
                         $collection1->insert($data1);    //发送用户聊天记录表插入数据
@@ -219,14 +219,14 @@ class Events
                                 'sender_nickname'=>$user_info['nickname'],
                                 'send_portrait'=>$user_info['portrait'],
                                 'content'=>$message->content,
-                                'type'=>$message->type,
+                                'type'=>$message->message_type,
                                 'send_time'=>time(),
                             );
                             $db2 = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$message->account_code);
                             $db2->insert('offline_user_message')->cols(array(
                                 'sender_code'=>$account_code['account_code'],
                                 'content'=>$message->content,
-                                'type'=>$message->type,
+                                'type'=>$message->message_type,
                                 'send_time'=>time(),
                             ));
                             $send_data = self::returnData(0,4,'',$data2);
@@ -246,7 +246,7 @@ class Events
                             'content'=>$message->content,
                             'send_time'=>time(),
                             'group'=>$message->group,
-                            'type'=>$message->type,
+                            'type'=>$message->message_type,
                         );
                         $userdatastr = 'user_info_'.$create_code;
                         $database= $mongo->$userdatastr; //群聊记录保存在创建人分库
