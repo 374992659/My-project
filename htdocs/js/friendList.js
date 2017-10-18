@@ -56,7 +56,6 @@ $(document).ready(function() {
             data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
-            console.log(encreptdata);
             $.ajax({
                 url:url+"friends_getGroupFriends",
                 type:"POST",
@@ -94,7 +93,6 @@ $(document).ready(function() {
             $(this).next().hide();
             $(this).children().children("img").css("transform","rotate(0deg)");
         }
-
     });
     // 按关键词搜索好友
     $("#searchInput").on("input",function(){

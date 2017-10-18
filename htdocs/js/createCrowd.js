@@ -75,7 +75,7 @@ $(document).ready(function(){
 
                     $(".myManage").append(manageGroup);
                     $(".manageGroupNum").append(manageGroupNum);
-                    
+
                     $(".myJoin").append(joinGroup);
                     $(".joinGroupNum").append(joinGroupNum);
                 }
