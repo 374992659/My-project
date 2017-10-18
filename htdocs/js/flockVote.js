@@ -53,7 +53,7 @@ $.ajax({
         </div>
             `
             });
-        $(".flockVote").append(html);
+        $("#flockVote").append(html);
         }else{
             console.log(data.errmsg);
         }
