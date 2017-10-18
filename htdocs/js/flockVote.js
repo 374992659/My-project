@@ -23,9 +23,9 @@ $.ajax({
             $.each(data.data,function(i,item){
                 console.log(item);
                 html+=`
-                <div style="padding: 0 10px" class="weui-panel weui-panel_access" title="${item.vote_id}">
+                <div style="padding: 0 10px" class="weui-panel weui-panel_access voteID" title="${item.vote_id}">
             <div class="weui-panel__bd">
-                <a href=" flockVote_content.html">
+                <div>
                     <div  class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.portrait}">
@@ -48,7 +48,7 @@ $.ajax({
                             <span style="font-size: 10px;">${item.total_user}</span>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
             `
@@ -60,9 +60,10 @@ $.ajax({
     }
 });
 // 存储投票id
-$(".flockVote").on("click",".weui-panel",function(){
+$(".flockVote").on("click",".voteID",function(){
     // 获取当title
     var vote_id=$(this).attr("title");
-    localStorage.setItem("vote_id",vote_id)
+    localStorage.setItem("vote_id",vote_id);
+    window.location.href="flockVote_content.html"
     });
 });
