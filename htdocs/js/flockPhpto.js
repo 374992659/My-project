@@ -22,6 +22,14 @@ $(document).ready(function(){
                     var html="";
                     var Li="";
                     $.each(data.data,function(i,item){
+                        $.each(item.picture_path,function(i,item){
+                        console.log(item);
+                        Li+=`
+                               <li class="lf">
+                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
+                               </li>
+                            `
+                            });
                         html+=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -42,14 +50,7 @@ $(document).ready(function(){
                             </div>
                         </div>
                         `;
-                        $.each(item.picture_path,function(i,item){
-                            console.log(item);
-                            Li+=`
-                               <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
-                               </li>
-                            `
-                        });
+
                     });
                     $("#flockPhoto").append(html);
                     $("#LiImg").append(Li);
