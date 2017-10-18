@@ -410,7 +410,6 @@ $(document).ready(function(){
             $("#vehicle").change(function(){
                 transport=$("#vehicle option:selected").val();
                 console.log(transport);
-                return transport;
             });
             // 获取garden_code 小区code
             var garden_code="1231";
