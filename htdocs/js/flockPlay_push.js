@@ -406,28 +406,16 @@ $(document).ready(function(){
             // 获取phone 联系电话
             var phone=$("#contactWay").val();
             // 获取transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
-            var transport="";
-            $("#vehicle").change(function(){
-                transport=$("#vehicle option:selected").val();
-                console.log(transport);
-            });
+            var transport=$("#vehicle option:selected").val();
             // 获取garden_code 小区code
             var garden_code="1231";
             // 获取garden_name 小区名称
-            var garden_name="";
-            $("#house").change(function(){
-                garden_name=$("#house").find("option:selected").text();
-                console.log(garden_name);
-                return garden_name
-            });
+            var garden_name=$("#house option:selected").text();
             // 获取total_num 目标人数
             var total_num=$("#number").val();
             // 获取cost_type 花费类型 1：AA制 2：自驾游 3：发布人请客 ...
-            var cost_type="";
-            $("#changPlan").change(function(){
-                cost_type=  $(this).val();
-                return cost_type
-            });
+            var cost_type=$("#changPlane option:selected").val();
+           
             // 获取average_cost 人均消费
             var average_cost=$("#perCapita").val();
             // 获取rote_planning 路线规划 可填
