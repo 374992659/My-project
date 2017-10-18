@@ -20,6 +20,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
+                    var Li="";
                     $.each(data.data,function(i,item){
 
                         html+=`
@@ -44,7 +45,6 @@ $(document).ready(function(){
                             </div>
                         </div>
                         `;
-                        var Li="";
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
                             Li+=`
@@ -52,9 +52,10 @@ $(document).ready(function(){
                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
                                </li>
                             `
-                        }); $(".img").append(Li);
+                        });
                     });
-
+                    console.log(Li);
+                    $(".img").append(Li);
                     $("#flockPhoto").append(html);
                 }
             }
