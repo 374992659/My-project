@@ -2,23 +2,52 @@ $(document).ready(function(){
     "use strict";
     // 上传图片及预览
     $("#uploaderInput").change(function(e){
-        let targetElement = e.target,
-            file = targetElement.files[0],
-            url=window.URL.createObjectURL(this.files[0]) ;
-        console.log(file.name);
-        let fd = new FormData();
-        fd.append('fileToUpload', file);
-        if(url){
-           var  LiImg=`
-            <li class="weui-uploader__file" >
-                                    <img src="${url}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
-                                    <img src="image/del.png" alt="" class="delImg">
-                                </li>
-            
-            `
+
+        // let targetElement = e.target,
+        // 图片信息组成的数组
+        var file =$("#uploaderInput")[0].files;
+        // url=window.URL.createObjectURL(this.files[0]);
+        // 输出地址
+        console.log(file[0].name);
+        var formData = new FormData();
+        for(var i=0,len=file.length;i<len;i++){
+            console.log(file[i]);
+            formData.append("topic"+i,file[i]);
         }
-        localStorage.setItem("pushTopic_Img",url);
-        $("#uploaderFiles").append(LiImg);
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        formData.append("data",json);
+        $.ajax({
+            url:url+"group_uploaSubjectPic",
+            type:"POST",
+            data:formData,
+            processData : false,
+            contentType : false,
+            secureuri:false,
+            success:function(data){
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoekn)
+                }else{
+                    console.log(data.errmsg);
+                }
+            }
+        })
+        // if(url){
+        //    var  LiImg=`
+        //     <li class="weui-uploader__file" >
+        //                             <img src="${url}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
+        //                             <img src="image/del.png" alt="" width="20px" class="delImg">
+        //                         </li>
+        //
+        //     `
+        // }
+        // localStorage.setItem("pushTopic_Img",url);
+        // $("#uploaderFiles").append(LiImg);
 
     });
     // 取消删除图片
@@ -57,6 +86,7 @@ $(document).ready(function(){
        console.log(data);
         // 数据加密
        var jsonEncryptData=jsEncryptData(data);
+       console.log(data);
         $.ajax({
             url:url+"group_addGroupSubject",
             type:"POST",
@@ -64,6 +94,7 @@ $(document).ready(function(){
             success:function(data){
                 // 数据解密
                 data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     console.log("发布成功");
