@@ -4,9 +4,9 @@ $(document).ready(function(){
     $('#uploaderInput').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]);
         console.log(Url);
-        var Li=`
-            <li class="weui-uploader__file img1" ><img class="img" src="${Url}" alt=""/></li>
-       
+        var Li="";
+         Li+=`
+            <li class="weui-uploader__file img1" ><img class="img" src="${Url}" alt=""/></li>      
         `;
         $(".picPlace").html(Li);
         var formData= new FormData();
