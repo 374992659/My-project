@@ -2,7 +2,7 @@ $(document).ready(function(){
     //获取群号码
     var code="";
     //上传图片跳转
-    $("#file_input").click(function(){
+    $(".pushPic").click(function(){
             window.location.href="flockPhpto_push.html";
     });
     //向页面添加数据
