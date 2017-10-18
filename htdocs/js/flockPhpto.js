@@ -55,7 +55,7 @@ $(document).ready(function(){
                         });
                     });
                     console.log(Li);
-                    $("#LiImg").append(Li);
+                    $("#LiImg").html(Li);
                     $("#flockPhoto").append(html);
                 }
             }
