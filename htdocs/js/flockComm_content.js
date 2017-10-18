@@ -33,16 +33,13 @@ $(document).ready(function(){
                 
                     <h4 class="weui-media-box__title" style="text-align: center;white-space:normal">${item.title}</h4>
             <ul class="weui-media-box__info" style="margin:0 0 15px 0;">
-                <li class="weui-media-box__info__meta">文字来源：<span>你大爷</span></li>
+                <li class="weui-media-box__info__meta">文字来源：<span>${item.}</span></li>
                 <li class="weui-media-box__info__meta">时间：<span>${item.create_time}</span></li>
             </ul>
             <ul class="ulPicture">
                 <li class="lf flockPic">
-                    <img src="${item.portrait}" alt="" style="width: 100px">
-                </li>
-                <li class="lf">
-                    <img src="image/firenda.jpg" alt="" style="width: 100px">
-                </li>
+                    <img src="http://wx.junxiang.ren/project/${item.portrait}" alt="" style="width: 100px">
+                </li>             
             </ul>
             <p class="weui-media-box__desc" style="-webkit-line-clamp:100000;color:black;text-indent:2em">
                     ${item.content}
