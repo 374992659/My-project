@@ -52,8 +52,7 @@ $(document).ready(function(){
                });
                $(".flockContent").html(html);
                $(".flockContent").on("click",".delBtn",function(){
-                   var a=confirm("删除公告");
-                    if(a===ture){
+                    if(confirm("删除公告")){
                         // 获取apptoken
                         var apptoken=localStorage.getItem("apptoken");
                         // 获取群公告id
