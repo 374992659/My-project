@@ -122,110 +122,105 @@ $.ajax({
              $(".topicBox").html(html);
             $("#tab1").append(mydiscuss);
             $("#tab2").append(alldiscuss);
-            // 发表评论
-            (function(){
-                // 弹出评论窗口
-                $(".topicBox").on("click",".weui-panel .weui-panel__bd .weui-media-box__desc .commentBtn",function(){
-                    $(".publishDis").show();
-                });
-                // 发表评论内容
-                $(".publishBtn").click(function(){
-                    // 获取apptoken
-                    var apptoken=localStorage.getItem("apptoken");
-                    // 获取群号码
-                    var group_num=localStorage.getItem("group_num");
-                    // 获取话题id
-                    var subject_id=localStorage.getItem("subject_id");
-                    // 获取内容
-                    var content=$(".commentText").val();
-                    // 数据格式转换
-                    var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"content":content})];
-                    // 加密
-                    var jsonEncryptData=jsEncryptData(data);
-                    $.ajax({
-                        url:url+"group_addGroupSubjectCommon",
-                        type:"POST",
-                        data:{"data":jsonEncryptData},
-                        success:function(data){
-                            // 解密数据
-                            data=jsDecodeData(data);
-                            if(data.errcode===0){
-                                localStorage.setItem("apptoken",data.apptoken);
-                                $(".publishDis").hide();
-                            }else{
-                                console.log(data.errmsg);
-                            }
-                        }
-                    });
-                });
-            })();
-            // 群话题点赞
-            $(".topicBox").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(){
-                // 获取apptoken
-                var apptoken=localStorage.getItem("apptoken");
-                // 获取群号码
-                var group_num=localStorage.getItem("group_num");
-                // 获取话题id
-                var subject_id=localStorage.getItem("subject_id");
-                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
-                // 加密
-                var jsonEncryptData=jsEncryptData(data);
-                $.ajax({
-                   url:url+"group_addGroupSubjectLikes",
-                    type:"POST",
-                    data:{"data":jsonEncryptData},
-                    success:function (data) {
-                        // 解密
-                    data=jsDecodeData(data);
-                    if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoekn);
-                        $(this).attr("src","image/praise.png")
-                    }else{
-                        console.log(data.errmsg);
-
-                    }
-                   }
-                });
-
-            });
-            //   评论点赞
-            $(".weui-tab__bd-item").on("click",".weui-panel__bd .weui-media-box .disPraiseImg",function(){
-                // 获取评论id
-                var commont_id=$(this).attr("title");
-                // 获取apptoken
-                var apptoken=localStorage.getItem("apptoken");
-                // 获取群号码
-                var group_num=localStorage.getItem("group_num");
-                // 获取话题id
-                var subject_id=localStorage.getItem("subject_id");
-// 数据格式转换
-                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id})];
-// 数据加密
-                var jsonEncryptData=jsEncryptData(data);
-                $.ajax({
-                    url:url+'group_addGroupSubjectCommontLikes',
-                    type:"POST",
-                    data:{"data":jsonEncryptData},
-                    success:function(data){
-                        // 解密
-                        var data=jsDecodeData(data);
-                        if(data.errcode===0){
-                            localStorage.setItem("apptoken",data.apptoken);
-                            $(this).attr("src","image/praise.png")
-                        }else{
-                            console.log(data.errmsg);
-                        }
-                    }
-                })
-            })
-
         }
     }
-})
+});
+    // 发表评论
+    (function(){
+        // 弹出评论窗口
+        $(".topicBox").on("click",".weui-panel .weui-panel__bd .weui-media-box__desc .commentBtn",function(){
+            $(".publishDis").show();
+        });
+        // 发表评论内容
+        $(".publishBtn").click(function(){
+            // 获取apptoken
+            var apptoken=localStorage.getItem("apptoken");
+            // 获取群号码
+            var group_num=localStorage.getItem("group_num");
+            // 获取话题id
+            var subject_id=localStorage.getItem("subject_id");
+            // 获取内容
+            var content=$(".commentText").val();
+            // 数据格式转换
+            var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"content":content})];
+            // 加密
+            var jsonEncryptData=jsEncryptData(data);
+            $.ajax({
+                url:url+"group_addGroupSubjectCommon",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密数据
+                    data=jsDecodeData(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(".publishDis").hide();
+                    }else{
+                        console.log(data.errmsg);
+                    }
+                }
+            });
+        });
+    })();
+    // 群话题点赞
+    $(".topicBox").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        // 获取群号码
+        var group_num=localStorage.getItem("group_num");
+        // 获取话题id
+        var subject_id=localStorage.getItem("subject_id");
+        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
+        // 加密
+        var jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"group_addGroupSubjectLikes",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function (data) {
+                // 解密
+                data=jsDecodeData(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoekn);
+                    $(this).attr("src","image/praise.png")
+                }else{
+                    console.log(data.errmsg);
 
+                }
+            }
+        });
 
-
-
+    });
+    //   评论点赞
+    $(".weui-tab__bd-item").on("click",".weui-panel__bd .weui-media-box .disPraiseImg",function(){
+        // 获取评论id
+        var commont_id=$(this).attr("title");
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        // 获取群号码
+        var group_num=localStorage.getItem("group_num");
+        // 获取话题id
+        var subject_id=localStorage.getItem("subject_id");
+// 数据格式转换
+        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id})];
+// 数据加密
+        var jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+'group_addGroupSubjectCommontLikes',
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $(this).attr("src","image/praise.png")
+                }else{
+                    console.log(data.errmsg);
+                }
+            }
+        })
+    })
 
 
 });
