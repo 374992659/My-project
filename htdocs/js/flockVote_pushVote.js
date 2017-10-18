@@ -224,7 +224,7 @@ $(".weui-gallery").click(function(){
         var anonymous=$(".switch").val();
         // 数据格式转换
         // Choice=JSON.stringify(option);
-        data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":code,"group_num":group_code,"end_time":overTime,"anonymous":anonymous,"choice":option})];
+        data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":123,"group_num":group_code,"end_time":overTime,"anonymous":anonymous,"choice":option})];
         console.log(data);
         // console.log(Choice);
 // 数据加密
