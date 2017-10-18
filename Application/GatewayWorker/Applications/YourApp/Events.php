@@ -99,11 +99,16 @@ class Events
                                     $friends_new_message[$v['sender_code']]['sender_code'] = $v['sender_code'];
                                     $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
                                     $friends_new_message[$v['sender_code']]['message_num']=1;
+                                    $friends_new_message[$v['sender_code']]['recent_time']=$v['send_time'];
                                 }else{
                                     $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
                                     $friends_new_message[$v['sender_code']]['message_num']++;
+                                    if($friends_new_message[$v['sender_code']]['recent_time']<$v['send_time']){
+                                        $friends_new_message[$v['sender_code']]['recent_time']=$v['send_time'];
+                                    }
                                 }
                             }
+                            $friends_new_message = self::multi_array_sort($friends_new_message,'recent_time',SORT_DESC);   //时间倒序
                         }
                         //获取群未读消息
                         $group_new_message = array();
@@ -127,6 +132,7 @@ class Events
                                         }
                                         $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
                                         $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
+                                        $recent_time = 0;
                                         foreach ($res as $kk=>$vv){
                                             $content[$kk]['group_code']=$vv['group'];
                                             $content[$kk]['sender_code']=$vv['sender_code'];
@@ -135,14 +141,19 @@ class Events
                                             $content[$kk]['send_time']=$vv['send_time'];
                                             $content[$kk]['type']=$vv['type'];
                                             $content[$kk]['content']=$vv['content'];
+                                            if($vv['send_time']>$recent_time){
+                                                $recent_time =$vv['send_time'];
+                                            }
                                         }
                                     }
                                     $group_new_message[$val['group_code']]['group_num']=$val['group_num'];
                                     $group_new_message[$val['group_code']]['group_code']=$val['group_code'];
                                     $group_new_message[$val['group_code']]['count']=$count;
                                     $group_new_message[$val['group_code']]['content']=$content;
+                                    $group_new_message[$val['group_code']]['recent_time']=$recent_time;
                                     $content = array();
                                 }
+                                $group_new_message = self::multi_array_sort($group_new_message,'recent_time',SORT_DESC);
                             }
                         }
                         $data = array(
@@ -376,7 +387,24 @@ class Events
             return $param['init'];
         }
     }
-
+    /*
+     * 二维数组排序
+     * */
+    public static function multi_array_sort($multi_array,$sort_key,$sort=SORT_ASC){
+        if(is_array($multi_array)){
+            foreach ($multi_array as $row_array){
+                if(is_array($row_array)){
+                    $key_array[] = $row_array[$sort_key];
+                }else{
+                    return false;
+                }
+            }
+        }else{
+            return false;
+        }
+        array_multisort($key_array,$sort,$multi_array);
+        return $multi_array;
+    }
 
 }
 
