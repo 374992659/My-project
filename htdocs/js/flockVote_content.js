@@ -23,7 +23,7 @@ $(document).ready(function(){
                 var result=data.data;
                 var voteList="";
                 console.log(result.vote_info);
-                $.each(result.choice,function(i,item){
+                $.each(result.vote_info,function(i,item){
                     console.log(item);
                    voteList+=`
                     <label class="weui-cell weui-check__label" for="x11">
