@@ -66,16 +66,18 @@ a:hover {
     z-index: 100;
 }
 .weui-grid__label{
-    font-size: 12px;
+    font-size: 15px;
 }
 .weui-cells {
     width: 100%;
 }
 .userMember {
-    font-size: 13px;
+    font-size: 15px;
     color:black;
 }
-
+.weui-grid{
+    padding: 10px;
+}
 
 
 
