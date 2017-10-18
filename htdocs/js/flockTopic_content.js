@@ -1,7 +1,12 @@
 $(document).ready(function(){
     "use strict";
     $(".a").click(function(){
-        $(".publishDis").show();
+        if($(".publishDis").is(":hidden")){
+            $(".publishDis").show();
+        }else{
+            $(".publishDis").hide();
+        }
+
     });
     $(".publishBtn").click(function(){
         $(".publishDis").hide();
