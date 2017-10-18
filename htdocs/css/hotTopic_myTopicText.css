@@ -90,6 +90,9 @@ a:hover {
     justify-content:space-between;
 
 }
+.weui-media-box__info{
+    font-size: 12px;
+}
 .comment li{
     margin-right: 5px;
 }
@@ -108,7 +111,7 @@ a:hover {
     width: 80%;
     font-size: 15px;
 }
-.weui-icon-success-no-circle:before {
+.weui-icon-success-no-circle:before{
     content: "";
 }
 .weui-icon-success-circle, .weui-icon-success-no-circle {

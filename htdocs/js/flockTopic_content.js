@@ -43,7 +43,7 @@ $.ajax({
                     <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
                         <li class="weui-media-box__info__meta">作者：<a href=""><span>${data.data.nickname}</span></a></li>
                         <li class="weui-media-box__info__meta">时间：${data.data.create_time}</li>
-                        <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</li>
+
                     </ul>
                     <p class="weui-media-box__desc" style=" text-indent:2em">
                         ${data.data.content}
