@@ -210,7 +210,7 @@ $(".weui-gallery").click(function(){
         // 获取选项内容
             var   option={};
             $("input[name='option']").each(function(i,item){
-                option["选项"+i]=$(this).val();
+                option[parseInt(i+1)]=$(this).val();
             });
             console.log(option);
         // 获取话题类型

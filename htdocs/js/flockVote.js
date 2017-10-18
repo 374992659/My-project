@@ -7,6 +7,7 @@ $(document).ready(function(){
     data=["",JSON.stringify({"apptoken":apptoken,"group_num":code})];
     // 加密
     jsonEncryptData=jsEncryptData(data);
+    console.log(data);
     // 加载页面
 $.ajax({
     url:url+"group_getVoteList",
