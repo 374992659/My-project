@@ -50,24 +50,24 @@ $.ajax({
                     </p>
                 </div>
                 <div class="weui-media-box weui-media-box_text" style="background: 	#FCFCFC">
-                    <div class="weui-media-box__desc" style="font-size: 12px">
+                    <div class="weui-media-box__desc" style="font-size: 15px">
                         <div class="weui-flex">
-                            <div class="weui-flex__item" style="font-size: 15px;color: black">
+                            <div class="weui-flex__item" style="color: black">
                                 阅读数量：<span>${data.data.read_num}</span>
                             </div>
-                            <div class="weui-flex__item" style="font-size: 15px;color: black">
+                            <div class="weui-flex__item" style="color: black">
                                 评论：<span >${data.data.commont_num}</span>
                             </div>
                         </div>
                         <div class="weui-flex" style="margin-top: 10px">
-                            <div class="weui-flex__item" style="font-size: 15px;color: black">
+                            <div class="weui-flex__item" style="color: black">
                                 点赞：<span >
                                 <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">${data.data.likes_num}
                              </span>
                             </div>
                         </div>
                     </div>
-                    <div class="weui-media-box__desc" style="font-size: 12px;margin-top: 10px">
+                    <div class="weui-media-box__desc" style="margin-top: 10px">
                         <a href="" style="">律师援助</a>
                         <span style="margin-left:10px ">分享</span>
                         <span style="margin-left:10px " class="commentBtn">评论</span>
