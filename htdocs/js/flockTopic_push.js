@@ -10,7 +10,6 @@ $(document).ready(function(){
         console.log(file[0].name);
         var formData = new FormData();
         for(var i=0,len=file.length;i<len;i++){
-            console.log(file[i]);
             formData.append("topic"+i,file[i]);
         }
         // 获取apptoken
@@ -31,7 +30,17 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var LiImg="";
+                    $.each(data.data,function(i,item){
+                        LiImg+=`
+                         <li class="weui-uploader__file" >
+                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
+                                     <img src="image/del.png" alt="" width="20px" class="delImg">
+                                 </li>
+                        `
+                    });
+                    $(".topicPlace").append(LiImg);
                 }else{
                     console.log(data.errmsg);
                 }
