@@ -100,8 +100,8 @@ $.ajax({
                     `;
                     if(item.user===userCode){
                         mydiscuss+=`
-                            <!--我的评论1-->
-                    
+
+                  
                         <div class="weui-media-box weui-media-box_text">
                             <div class="topic">
                                 <p class="weui-media-box__title lf">${item.nickname}</p>
