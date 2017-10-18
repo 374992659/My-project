@@ -90,6 +90,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    window.location.reload();
                 }
             },
             error:function (data) {
@@ -122,6 +123,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
+                        window.location.reload();
                     }else{
                         console.log(data.errmsg);
                     }
