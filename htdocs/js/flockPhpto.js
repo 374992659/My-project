@@ -1,18 +1,9 @@
 $(document).ready(function(){
     //获取群号码
     var code="";
-    //上传图片
-    $("#file_input").change(function(e){
-        var targetElement = e.target,
-            file = targetElement.files[0],
-            url=window.URL.createObjectURL(this.files[0]) ;
-        var photoAlbum = new FormData();
-        photoAlbum.append('fileToUpload', file);
-        if(url){
-                localStorage.setItem("photoUrl",url);
+    //上传图片跳转
+    $("#file_input").click(function(){
             window.location.href="flockPhpto_push.html";
-        }
-
     });
     //向页面添加数据
     //自调函数
@@ -58,9 +49,9 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                                 <ul class="img">
-                                //    <li class="lf">
-                                //        <img src="image/firendb.jpg" alt="" class="addPic">
-                                //    </li>
+                                  <li class="lf">
+                                       <img src="image/firendb.jpg" alt="" class="addPic">
+                                  </li>
                                 </ul>
                             </div>
                         </div>
@@ -75,8 +66,7 @@ $(document).ready(function(){
     };photo();
     //删除群相册
     $("#flockPhoto").on("click",".delBtn",function(){
-        var affirm=confirm("删除公告");
-        if(affirm===ture){
+        if(confirm("删除相册")){
             //获取apptoken
             var apptoken=localStorage.getItem("apptoken");
             //获取相册编号
