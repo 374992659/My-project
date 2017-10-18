@@ -30,7 +30,7 @@ CREATE DATABASE if not exists certification_application;
 
 use  friends_and_group_$account_code;
 
-CREATE TABLE  if not exists `friends-chat_log` (
+CREATE TABLE  if not exists `friends_chat_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `sender_code` varchar(50) NOT NULL COMMENT '发送人 格式区域id，用户id',
   `sendee_code` varchar(50) NOT NULL COMMENT '接收者 格式：区域id，用户id',
