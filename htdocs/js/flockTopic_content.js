@@ -115,12 +115,12 @@ $.ajax({
                 //            </div>
                 //        </div>
                 //
-                //        
+                //
                 //        `
                 //        }
                 //    });
             console.log(html);
-                 $(".topicBox").html(html);
+                 $("#topicText").html(html);
                 $("#tab1").append(mydiscuss);
                 $("#tab2").append(alldiscuss);
             }
