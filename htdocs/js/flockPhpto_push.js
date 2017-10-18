@@ -17,11 +17,11 @@ $(document).ready(function(){
                          new Message().showMsg('最多再选择'+ (6-parseInt(imglength)) +'张图片');
                          return false;
                      }
-                 var data = new FormData();
+                 var formData = new FormData();
                  for (var i=0;i<t_files.length;i++){
-                         data.append('file',t_files[i]);
-                         data.append('randomCode',fileId+i);
-                         data.append('upDir','comment')
+                     formData.append('file',t_files[i]);
+                     formData.append('randomCode',fileId+i);
+                     formData.append('upDir','comment')
                      }
         var Url=window.URL.createObjectURL(this.files[0]);
         console.log(Url);
