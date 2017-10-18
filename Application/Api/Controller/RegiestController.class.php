@@ -368,24 +368,24 @@ class RegiestController extends BaseController
         $baseinfo=$m->baseinfo;
         $baseinfo->online_user->insert(array('account_code'=>$data['account_code'],'status'=>0,'offline_time'=>0)); //用户表中加入数据
         $db = $m->user_info_.$data['account_code'];
-        $group_chat=$db->createCollection('group_chat');//群聊记录
+        $group_chat=$db->group_chat;//群聊记录
         $group_chat->ensureIndex(array('sender_code'=>1));
         $group_chat->ensureIndex(array('type'=>1));
         $group_chat->ensureIndex(array('send_time'=>1));
         $group_chat->ensureIndex(array('group'=>1));
-        $group_new_message = $db->createCollection('group_new_message');//群新消息
+        $group_new_message = $db->group_new_message;//群新消息
         $group_new_message->ensureIndex(array('sender_code'=>1));
         $group_new_message->ensureIndex(array('type'=>1));
         $group_new_message->ensureIndex(array('send_time'=>1));
         $group_new_message->ensureIndex(array('group'=>1));
-        $friends_chat=$db->createCollection('friends_chat');// 好友聊天记录
+        $friends_chat=$db->friends_chat;// 好友聊天记录
         $friends_chat->ensureIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1));
         $friends_chat->ensureIndex(array('type'=>1));
         $friends_chat->ensureIndex(array('send_time'=>1));
-        $counters=$db->createCollection('counters');// 自增id表
-        $db->counters->save(array('_id'=>'group_chat','inc_val'=>0));
-        $db->counters->save(array('_id'=>'friends_chat','inc_val'=>0));
-        $db->counters->save(array('_id'=>'group_new_message','inc_val'=>0));
+        $counters=$db->counters;// 自增id表
+        $counters->save(array('_id'=>'group_chat','inc_val'=>0));
+        $counters->save(array('_id'=>'friends_chat','inc_val'=>0));
+        $counters->save(array('_id'=>'group_new_message','inc_val'=>0));
     }
     public function executeSql($fileName,$data){
         $sql=file_get_contents(C('SQL_PATH').$fileName);
