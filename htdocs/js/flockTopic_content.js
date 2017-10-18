@@ -1,6 +1,6 @@
 $(document).ready(function(){
     "use strict";
-    $(".a").click(function(){
+    $(".commentBtn").click(function(){
         if($(".publishDis").is(":hidden")){
             $(".publishDis").show();
         }else{
