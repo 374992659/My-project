@@ -415,7 +415,7 @@ class GroupController extends VersionController
         );
         $model=new Model\GroupVoteModel($create_code);
         $result = $model->addGroupVote($data);
-        if(!$result)$this->echoEncrypData(1);
+        if(!$result)$this->echoEncrypData(1,$data);
         $this->echoEncrypData(0);
     }
 
