@@ -21,7 +21,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <textarea class="weui-textarea" placeholder="说点什么吧..." rows="3"></textarea>
-                    <div class="weui-textarea-counter"><span>0</span>/200</div>
+                    <div class="weui-textarea-counter" style="font-size: 15px"><span>0</span>/200</div>
                 </div>
             </div>
         </div>
@@ -36,7 +36,9 @@
                             <li class="weui-uploader__file img1" ><img src="image/firendb.jpg" alt=""/></li>
                         </ul>
                         <div class="weui-uploader__input-box">
-                            <input id="uploaderInput" class="weui-uploader__input" type="file" multiple="">
+                            <form action="" id="form" enctype="multipart/form-data">
+                                <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file" multiple="">
+                            </form>
                         </div>
                     </div>
                 </div>

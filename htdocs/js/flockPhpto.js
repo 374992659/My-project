@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    //获取群号码
-    var code="";
     //上传图片跳转
     $(".pushPic").click(function(){
             window.location.href="flockPhpto_push.html";
@@ -8,10 +6,12 @@ $(document).ready(function(){
     //向页面添加数据
     //自调函数
     var photo=function(){
+        // 获取群号
+        var group_num=localStorage.getItem("group_num");
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //转换数据格式
-        data=["",JSON.stringify({"group_num":code,"apptoken":apptoken})];
+        data=["",JSON.stringify({"group_num":group_num,"apptoken":apptoken})];
         //加密数据
         jsonEncryptData=jsEncryptData(data);
         $.ajax({
@@ -25,13 +25,12 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
+                    var Li="";
                     $.each(data.data,function(i,item){
-                        var Li="";
-                        var img=item.picture_path;
-                        $.each(img,function(){
+                        $.each(item.picture_path,function(i,item){
                            Li+=`
                                <li class="lf">
-                                    <img src="${this}" alt="" class="addPic">
+                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
                                </li>
                             `
                         });
@@ -44,10 +43,11 @@ $(document).ready(function(){
                                     </div>
                                     <div class="weui-media-box__bd" >
                                         <h4 class="weui-media-box__title" style="font-size: 14px;">${item.user_code}</h4>
-                                        <button class="right delBtn" tiltle="${item.id}">删除</button>
+                                        <button class="right delBtn" title="${item.id}">删除</button>
                                         <span class="weui-media-box__desc" style="font-size: 12px">${item.create_time}</span>
                                     </div>
                                 </div>
+                                <p style="font-size: 13px;padding: 0 5px"></p>
                                 <ul class="img">
                                   <li class="lf">
                                        <img src="image/firendb.jpg" alt="" class="addPic">
@@ -56,8 +56,8 @@ $(document).ready(function(){
                             </div>
                         </div>
                         `;
-                        $(".img").append(Li);
                     });
+                    $(".img").append(Li);
                     $("#flockPhoto").append(html);
                 }
             }
@@ -75,6 +75,7 @@ $(document).ready(function(){
             data=["",JSON.stringify({"apptoken":apptoken,"picture_id":PhotoCode,"group_num":code})];
             //数据加密
             josnEncyptData=jsEncryptData(data);
+            console.log(data);
             //发起请求
             $.ajax({
                 url:url+"group_delGroupPic",
@@ -86,7 +87,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        window.location.reload();
+                        photo()
                     }else{
                         console.log(data.errmsg);
                     }
