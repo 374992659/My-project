@@ -338,8 +338,8 @@ class Events
            $data = array(
                'errcode'=>0,
                'errmsg'=>'logout',
+               'type'=>3,
                'data'=>array(
-                   'type'=>3,
                    'user_code'=>$user_code,
                )
            );
