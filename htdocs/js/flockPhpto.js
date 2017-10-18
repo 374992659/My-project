@@ -51,7 +51,6 @@ $(document).ready(function(){
                             `
                         });
                     });
-                    console.log(Li);
                     $("#flockPhoto").append(html);
                     $("#LiImg").append(Li);
                 }
