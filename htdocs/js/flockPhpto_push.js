@@ -13,7 +13,10 @@ $(document).ready(function(){
         //        }
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
-        formData.append("file",$("#uploaderInput")[0].files[0]);
+        for(var i=0; i<$('#uploaderInput')[0].files.length;i++){
+            formData.append('file[]', $('#uploaderInput')[0].files[i]);
+        }
+        // formData.append("file[]",$("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         formData.append("data",json);
@@ -33,7 +36,6 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data.data[0]);
                     localStorage.setItem("flockCommPic",data.data[0]);
-                    console.log(data.data[0]);
                     // $("img").attr({
                     //     "src":Url,
                     //     "style":"width:77px;height:77px"
