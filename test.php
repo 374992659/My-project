@@ -9,3 +9,4 @@ $m =new MongoClient();
 $db = $m->newtest;
 $collection = $db->runoob;
 $collection->createIndex(array('name'=>1));
+var_dump(time());
