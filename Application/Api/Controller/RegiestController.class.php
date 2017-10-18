@@ -364,7 +364,7 @@ class RegiestController extends BaseController
         $model=new Model\UserAreaModel();
         $data=$model->getUserInfoByPhone($account);
         $this->executeSql('databases.sql',$data);
-        $m =new MongoClient();
+        $m =new \MongoClient();
         $baseinfo=$m->baseinfo;
         $baseinfo->online_user->insert(array('account_code'=>$data['account_code'],'status'=>0,'offline_time'=>0)); //用户表中加入数据
         $db = $m->user_info_.$data['account_code'];
@@ -383,9 +383,9 @@ class RegiestController extends BaseController
         $friends_chat->ensureIndex(array('type'=>1));
         $friends_chat->ensureIndex(array('send_time'=>1));
         $counters=$db->createCollection('counters');// 自增id表
-        $db->counters->insert(array('_id'=>'group_chat','inc_val'=>0));
-        $db->counters->insert(array('_id'=>'friends_chat','inc_val'=>0));
-        $db->counters->insert(array('_id'=>'group_new_message','inc_val'=>0));
+        $db->counters->save(array('_id'=>'group_chat','inc_val'=>0));
+        $db->counters->save(array('_id'=>'friends_chat','inc_val'=>0));
+        $db->counters->save(array('_id'=>'group_new_message','inc_val'=>0));
     }
     public function executeSql($fileName,$data){
         $sql=file_get_contents(C('SQL_PATH').$fileName);
