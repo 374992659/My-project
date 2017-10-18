@@ -323,23 +323,41 @@ $(document).ready(function(){
         });
         // 图片上传
         $("#uploaderInput").change(function(e){
-            var targetElement = e.target,
-                file = targetElement.files[0],
-                url=window.URL.createObjectURL(this.files[0]) ;
-            console.log(file.name);
-            var fd = new FormData();
-            fd.append('fileToUpload', file);
-            localStorage.setItem("flockPlayPic",fd);
-            if(url){
-               var html=`
-                <li><img class="pushPlayImg" src="${url}" alt="" style="width:80px ;height: 80px" >
-                <img src="image/del.png" alt="" class="delImg">
-                </li>
-               
-               `
-            }
-            localStorage.setItem("pushPlay_Img",url);
-            $(".picPlace").append(html)
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderInput")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"group_uploadNoticePic",
+                fileElementId:'uploaderInput',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data[0]);
+                        localStorage.setItem("flockVotePic",data.data[0]);
+                        console.log(data.data[0]);
+                        $(".img").attr({
+                            "src":Url,
+                            "style":"width:77px;height:77px"
+                        });
+
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
         });
         // 取消删除图片
         $(".picPlace").on("click","li .delImg",function(){
@@ -366,13 +384,21 @@ $(document).ready(function(){
             // 获取title 标题
             var title=$("#topic").val();
             // 获取start_time 开始时间
-            var start_time=$("#other-date1").val();
+            var startTime=$("#other-date1").val();
+            // 转换成时间戳
+            var timestamp1 = Date.parse(new Date(startTime));
+            var start_time= timestamp1 / 1000;
             // 获取end_time 结束时间
-            var end_time=$("#other-date2").val();
+            var endTime=$("#other-date2").val();
+            // 转换成时间戳
+            var timestamp2 = Date.parse(new Date(endTime));
+            var end_time= timestamp2 / 1000;
             // 获取destination 目的地
             var destination=$("#bourn").val();
             // 获取collection_time 集合时间
-            var collection_time=$("#gathertime").val();
+            var collectionTime=$("#gathertime").val();
+            var timestamp3 = Date.parse(new Date(collectionTime));
+            var collection_time= timestamp3 / 1000;
             // 获取collection_place 集合地
             var collection_place=$("#gatherPlace").val();
             // 获取contact 联系人
@@ -387,9 +413,14 @@ $(document).ready(function(){
                 return transport;
             });
             // 获取garden_code 小区code
-            var garden_code="";
+            var garden_code="1231";
             // 获取garden_name 小区名称
             var garden_name="";
+            $("#house").change(function(){
+                garden_name=$(this).html();
+                console.log(garden_name);
+                return garden_name
+            });
             // 获取total_num 目标人数
             var total_num=$("#number").val();
             // 获取cost_type 花费类型 1：AA制 2：自驾游 3：发布人请客 ...
