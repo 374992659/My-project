@@ -46,18 +46,6 @@ $(document).ready(function(){
                 }
             }
         })
-        // if(url){
-        //    var  LiImg=`
-        //     <li class="weui-uploader__file" >
-        //                             <img src="${url}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
-        //                             <img src="image/del.png" alt="" width="20px" class="delImg">
-        //                         </li>
-        //
-        //     `
-        // }
-        // localStorage.setItem("pushTopic_Img",url);
-        // $("#uploaderFiles").append(LiImg);
-
     });
     // 取消删除图片
     $("#uploaderFiles").on("click",".weui-uploader__file .delImg",function(){
@@ -67,10 +55,10 @@ $(document).ready(function(){
     (function(){
         $("#uploaderFiles").on("click",".weui-uploader__file .pushTopic_Img",function(){
             console.log(123);
-            var url=localStorage.getItem("pushTopic_Img");
+           var URL=$(this).attr("src");
             if($(".weui-gallery").is(":hidden")){
                 $(".weui-gallery").show();
-                $(".weui-gallery__img img").attr("src",url)
+                $(".weui-gallery__img img").attr("src",URL)
             }
         });
         $(".weui-gallery").click(function(){
@@ -85,7 +73,12 @@ $(document).ready(function(){
         // 获取群号码
         var group_num=localStorage.getItem("group_num");
         // 获取图片
-        var topicPic="";
+        var topicPic=[];
+        var imgUrl=$(".topicPlace li img").attr("src");
+        console.log(imgUrl);
+        for(var i=0,len=imgUrl.length;i<len;i++){
+            topicPic.push(imgUrl[i])
+        }
         // 获取标题
         var title=$(".topicTitle").val();
         // 获取内容
