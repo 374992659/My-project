@@ -23,12 +23,12 @@ $(document).ready(function(){
                 var result=data.data;
                 var voteList="";
                 console.log(result.vote_info);
-                $.each(result.vote_info,function(i,item){
+                $.each(result.choice,function(i,item){
                     console.log(item);
                    voteList+=`
                     <label class="weui-cell weui-check__label" for="x11">
                         <div class="weui-cell__bd">
-                            <p>${item.content}</p>
+                            <p>${item.comtent}</p>
                         </div>
                         <div class="weui-cell__ft">
                             <input type="radio" class="weui-check" name="radio1" id="x11">
