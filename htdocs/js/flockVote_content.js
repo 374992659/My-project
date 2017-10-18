@@ -44,7 +44,7 @@ $(document).ready(function(){
                             <div class="weui-media-box__bd">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${result.nickname}</h4>
                                 <span class="weui-media-box__desc" style="font-size: 10px">${result.create_time}</span>
-                                <button class="right" class="delBtn" tiltle="${item.vote_id}">删除</button>
+                                <button class="right" class="delBtn" title="${result.vote_id}">删除</button>
                             </div>
                         </div>
                         <div class="weui-media-box__bd">
