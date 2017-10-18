@@ -6,14 +6,15 @@ $(document).ready(function(){
         console.log(Url);
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
+        var group_num=localStorage.getItem("group_num");
         formData.append("file",$("#uploaderInput")[0].files[0]);
-        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
         var json=jsEncryptData(data);
         formData.append("data",json);
         console.log(formData);
         $.ajax({
             type:"POST",
-            url:url+"group_uploadNoticePic",
+            url:url+"group_addGroupPic",
             fileElementId:'uploaderInput',
             data:formData,
             processData : false,
@@ -25,14 +26,10 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     console.log(data.data[0]);
-                    localStorage.setItem("flockCommPic",data.data[0]);
+                    localStorage.setItem("flockPhotoPic",data.data[0]);
                     var LiImg=`
                       <li class="weui-uploader__file img1" ><img style="height: 77px;width: 77px" class="img" src="${Url}" alt=""/></li>
                     `;
-                    // $(".img").attr({
-                    //     "src":Url,
-                    //     "style":"width:77px;height:77px"
-                    // });
                     $("#uploaderFiles").append(LiImg);
                 }
             },
