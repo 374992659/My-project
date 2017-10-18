@@ -48,7 +48,7 @@ class GroupNoticeModel extends Model
      * @param group_num 所属群num
      * */
     public function getGroupNotice($group_num){
-        $data=$this->field('id,title,content,portrait,create_time')->where(['group_num'=>$group_num])->order('create_time desc ')->select();
+        $data=$this->field('id,title,content,nickname,portrait,create_time')->where(['group_num'=>$group_num])->order('create_time desc ')->select();
         if(!$data) return false;
         return $data;
     }
