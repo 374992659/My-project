@@ -26,12 +26,14 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data.data[0]);
                     localStorage.setItem("flockCommPic",data.data[0]);
-                    console.log(data.data[0]);
-                    $("img").attr({
-                        "src":Url,
-                        "style":"width:77px;height:77px"
-                    });
-
+                    var LiImg=`
+                      <li class="weui-uploader__file img1" ><img style="height: 77px;width: 77px" class="img" src="${Url}" alt=""/></li>
+                    `;
+                    // $(".img").attr({
+                    //     "src":Url,
+                    //     "style":"width:77px;height:77px"
+                    // });
+                    $("#uploaderFiles").append(LiImg);
                 }
             },
             error:function (data) {
