@@ -25,8 +25,6 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    console.log(data.data[0]);
-                    localStorage.setItem("flockPhotoPic",data.data[0]);
                     var LiImg=`
                       <li class="weui-uploader__file img1" ><img style="height: 77px;width: 77px" class="img" src="${Url}" alt=""/></li>
                     `;
