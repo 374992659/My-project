@@ -60,7 +60,7 @@ $.ajax({
     }
 });
 // 存储投票id
-$(".flockVote").on("click",".voteID",function(){
+$("#flockVote").on("click",".voteID",function(){
     // 获取当title
     var vote_id=$(this).attr("title");
     localStorage.setItem("vote_id",vote_id);
