@@ -8,5 +8,4 @@
 $m =new MongoClient();
 $db = $m->newtest;
 $collection = $db->runoob;
-
-print_r($res);
+$collection->createIndex(array('name'=>1));
