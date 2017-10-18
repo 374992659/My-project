@@ -4,11 +4,14 @@ $(document).ready(function(){
     $('#uploaderInput').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]);
         console.log(Url);
-        var Li="";
-         Li+=`
+        if(Url){
+            var Li="";
+            Li+=`
             <li class="weui-uploader__file img1" ><img style="width: 77px;height: 77px" class="img" src="${Url}" alt=""/></li>      
         `;
-        $(".picPlace").html(Li);
+            $(".picPlace").html(Li);
+        }
+
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
