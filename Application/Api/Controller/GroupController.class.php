@@ -400,7 +400,7 @@ class GroupController extends VersionController
         $res = M('baseinfo.user_info_'.$table_id)->Field('nickname,portrait')->where(['account_code'=>$account_code])->find();
         $data=array(
             'title'=>$title,
-            'conten'=>$content,
+            'content'=>$content,
             'picture'=>$picture,
             'choice'=>$choice,
             'type'=>$type,
