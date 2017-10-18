@@ -165,7 +165,7 @@ class RegiestController extends BaseController
         if(!$account || !$password || !$repassword || !$area_id ||!$piccode){
             $this->echoEncrypData(1,'注册信息不完整');
         }
-        if($this->check_verify($piccode))$this->echoEncrypData(1,'验证码不正确');
+        if(!$this->check_verify($piccode))$this->echoEncrypData(1,'验证码不正确');
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
