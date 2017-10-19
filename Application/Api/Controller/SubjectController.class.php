@@ -13,6 +13,24 @@ use Api\Model;
 class SubjectController extends VersionController
 {
     /*
+     * 热门话题图片上传
+     * */
+    protected function uploadSubjectPic_V1_0_0(){
+        import('Vendor.UploadFile');
+        $upload =new \UploadFile();
+        $path=APP_PATH.'Common/Upload/Img/HotSubjectPicture/'.date(m).date(d).'/';
+        $res = $upload->upload($path);
+        if(!$res){
+            $this->echoEncrypData(1,'图片上传失败');
+        }
+        foreach($res as $k=>$v){
+            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
+
+
+    /*
      * 发布热门话题
      * @param title 标题
      * @param content 内容
