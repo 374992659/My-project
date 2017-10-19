@@ -22,7 +22,7 @@ $(document).ready(function(){
               var html="";
               $.each(data.data,function(i,item){
                   html+=`
-                  <a href="" class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
+                  <div class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
                     <div class="weui-media-box__hd">
                         <img class="weui-media-box__thumb" src="${item.picture}">
                     </div>
@@ -32,17 +32,16 @@ $(document).ready(function(){
                         <div style="font-size: 10px" class="weui-media-box__desc" >集合时间；<span>${item.collection_time}</span></div>
                         <div style="font-size: 10px" class="weui-media-box__desc" >集合地点：<span>${item.collection_place}</span></div>
                     </div>
-                </a>
+                </div>
                   `
               });
               $(".flockPlayList").append(html);
-
           }else{
               console.log(data.errmsg);
           }
       }
   });
-    $(".flockPlayList").on("click","storePlay_id",function(){
+    $(".flockPlayList").on("click",".storePlay_id",function(){
         // 获取id
         var activity_id=$(this).attr("title");
         localStorage.setItem("activity_id",activity_id);
