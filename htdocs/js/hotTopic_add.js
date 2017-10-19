@@ -107,8 +107,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        myAd();
-                        allAd();
+                        window.location.reload();
                         $(document).on('click','#show-success',function(){
                             $.toptip('操作成功', 'success');
                         });

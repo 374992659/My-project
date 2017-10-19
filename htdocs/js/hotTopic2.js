@@ -8,7 +8,7 @@ $(document).ready(function(){
         this.city_id=city_id;
         // 小区id
         this.garden_code=garden_code;
-        this.hotTopic=function () {
+        this.hotTopic=function(){
             // 数据格式转换
             console.log(123);
             var data=["",JSON.stringify({"apptoken":this.apptoken,"city_id":this.city_id,"garden_code":this.garden_code})];
@@ -21,6 +21,7 @@ $(document).ready(function(){
                 success:function(data){
                     // 解密
                     var data=jsDecodeData(data);
+                    console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
@@ -53,7 +54,7 @@ $(document).ready(function(){
     // 获取城市id
         city_id=localStorage.getItem("city_id"),
     // 获取小区id
-        garden_code=null;
+        garden_code=270113;
     // 页面加载的时候传参数调用构造函数
     var hot=new hotTopicList(apptokne,city_id,garden_code);
     hot.hotTopic();
