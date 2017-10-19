@@ -5,9 +5,9 @@ $(document).ready(function(){
         // 获取群号
    group_num=localStorage.getItem("group_num"),
         // 获取活动id
-   acticity_id=localStorage.getItem("acticity_id"),
+   activity_id=localStorage.getItem("activity_id"),
     // 数据格式转换
-   data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"acticity_id":acticity_id})];
+   data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"acticity_id":activity_id})];
      // 加密
     var jsonEncryptData=jsEncryptData(data);
     console.log(data);
