@@ -109,7 +109,7 @@ $(document).ready(function(){ "use strict";
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
-                console.log();
+                console.log(data);
                 var success=$(".success");
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoeken);
