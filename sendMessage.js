@@ -91,7 +91,7 @@ $(document).ready(function(){
                 break;
         }
     };
-   // ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
+   ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
     //群聊点击发送
     $(.44).click(function(){
         var content=$(.44).val('content');                        //获取页面发送内容
