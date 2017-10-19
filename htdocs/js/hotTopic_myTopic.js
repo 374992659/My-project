@@ -3,66 +3,66 @@
  */
 $(document).ready(function(){
     "use strict";
-    //»ñÈ¡apptoken
+    //è·å–apptoken
     var apptoken=localStorage.getItem("apptoken"),
-    //¸ñÊ½×ª»»
-    data=["",JSON.stringify({"apptoken":apptoken})];
-    //¼ÓÃÜ
+    //æ ¼å¼è½¬æ¢
+        data=["",JSON.stringify({"apptoken":apptoken})];
+    //åŠ å¯†
     var jsonEncryptData=jsEncryptData(data);
     console.log(data);
-$.ajax({
-    url:url+"Subject_mySubejct",
-    type:"POST",
-    data:{"data":jsonEncryptData},
-    success:function(data){
-        //½âÃÜ
-        var data=jsDecodeData(data);
-        console.log(data);
-        if(data.errcode===0){
-            localStorage.setItem("apptoken",data.apptoken);
-            var html="";
-            var statusSpan="";
-            $.each(data.data,function(i,item){
-                if(item.status===1){
-                    statusSpan=`
-                    <span class="right" style="font-size: 13px;color: green">ÒÑ¾­½â¾ö</span>
+    $.ajax({
+        url:url+"Subject_mySubejct",
+        type:"POST",
+        data:{"data":jsonEncryptData},
+        success:function(data){
+            //è§£å¯†
+            var data=jsDecodeData(data);
+            console.log(data);
+            if(data.errcode===0){
+                localStorage.setItem("apptoken",data.apptoken);
+                var html="";
+                var statusSpan="";
+                $.each(data.data,function(i,item){
+                    if(item.status===1){
+                        statusSpan=`
+                    <span class="right" style="font-size: 13px;color: green">å·²ç»è§£å†³</span>
                     `
-                }else{
-                    statusSpan=`
-                    <span class="right" style="font-size: 13px;color: red">Î´½â¾ö</span>
+                    }else{
+                        statusSpan=`
+                    <span class="right" style="font-size: 13px;color: red">æœªè§£å†³</span>
                     `
-                }
+                    }
                     html+=`
                 <a href="" title="${item.subject_id}" class="myTopic_id">
                     <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                         <div class="headline">
                             <h4 class="weui-media-box__title lf" style="font-size: 15px;">${item.title}</h4>
-                            <span class="right" style="font-size: 13px;color: green">ÒÑ¾­½â¾ö</span>
+                            <span class="right" style="font-size: 13px;color: green">å·²ç»è§£å†³</span>
                         </div>
 
                         <p class="weui-media-box__desc" style="font-size: 12px">${item.content}</p>
-                        <div style="font-size: 12px;text-align: right;color: #c2c0be">ÔÄ¶ÁÁ¿ <span>${item.read_num}</span> »ØÌûÊı <span>${item.commont_num}</span></div>
+                        <div style="font-size: 12px;text-align: right;color: #c2c0be">é˜…è¯»é‡ <span>${item.read_num}</span> å›å¸–æ•° <span>${item.commont_num}</span></div>
                     </div>
                 </a>
                 `
 
 
-            });
-            $(".headline").append(statusSpan);
-            $(".myTopicList").append(html);
-            myLopicID();
-            window.local.href="hotTopic_myTopicText.html";
-        }else{
-            console.log(data.errmsg);
+                });
+                $(".headline").append(statusSpan);
+                $(".myTopicList").append(html);
+                myLopicID();
+                window.local.href="hotTopic_myTopicText.html";
+            }else{
+                console.log(data.errmsg);
+            }
         }
-    }
 
-});
-//µã»÷»°ÌâµÄÊ±ºòÖ´ĞĞµÄº¯Êı
-//¹¦ÄÜ °Ñ»°Ìâid´æÔÚ±¾µØ
+    });
+//ç‚¹å‡»è¯é¢˜çš„æ—¶å€™æ‰§è¡Œçš„å‡½æ•°
+//åŠŸèƒ½ æŠŠè¯é¢˜idå­˜åœ¨æœ¬åœ°
     var myLopicID=function(){
         $(".myTopicList").on("click",".myTopic_id",function(){
-            //»ñÈ¡»°Ìâid
+            //è·å–è¯é¢˜id
             var subject_id=$(thsi).attr("title");
             localStorage.setItem("subject_id",subject_id)
         })
