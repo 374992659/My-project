@@ -63,13 +63,13 @@ class SubjectController extends VersionController
         $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
         $model=new Model\SubjectModel($province_id,$city_id);
         $res = $model->addSubject($data);
-        if(!$res)$this->echoEncrypData(1,$res);
-//        $database=new RegiestController();
-//        $database->executeSql('subject_dynamics.sql',array('province_id'=>$province_id,'city_id'=>$city_id,'subject_id'=>$res));
-//        //在我的话题关联表中添加记录
-//        $my_subject=new Model\MySubjectModel($this->account_code);
-//        $my_subject->addMySubject($garden_code,$res);
-//        $this->echoEncrypData(0);
+        if(!$res)$this->echoEncrypData(1);
+        $database=new RegiestController();
+        $database->executeSql('subject_dynamics.sql',array('province_id'=>$province_id,'city_id'=>$city_id,'subject_id'=>$res));
+        //在我的话题关联表中添加记录
+        $my_subject=new Model\MySubjectModel($this->account_code);
+        $my_subject->addMySubject($garden_code,$res);
+        $this->echoEncrypData(0);
     }
     /*
      * 话题展示
