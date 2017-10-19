@@ -77,7 +77,7 @@ $(document).ready(function(){ "use strict";
         // 参数：garden_name 小区名称
             garden_name=$("#house option:selected").val(),
         // 参数：c 选择项 json格式
-            choise=[],
+            choise={},
         // 参数：end_time 结束时间
             endTime=$("#gathertime").val(),
             // 转换时间戳
@@ -94,7 +94,7 @@ $(document).ready(function(){ "use strict";
         // 获取选项内容
       var  option= $("input[name='option']");
       option.each(function(){
-          choise.push($(this).val());
+          choise[parseInt(i+1)]=$(this).val();
       });
       console.log(choise);
         // 数据格式转换
