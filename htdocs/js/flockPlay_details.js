@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    // 时间戳转换函数
     function getLocalTime(nS) {
         return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
     }
@@ -58,7 +59,7 @@ $(document).ready(function(){
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                    <p>结束时间：${result.end_time}</p>
+                    <p>结束时间：${getLocalTime(result.end_time)}</p>
             </div>
         </div>
         <div class="weui-cell">
@@ -69,7 +70,7 @@ $(document).ready(function(){
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <p>集合时间：${result.collection_time}</p>
+                <p>集合时间：${getLocalTime(result.collection_time)}</p>
             </div>
            
         </div>

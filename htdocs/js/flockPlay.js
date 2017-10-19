@@ -1,5 +1,9 @@
 $(document).ready(function(){
     "use strict";
+    // 时间戳转换函数
+    function getLocalTime(nS) {
+        return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+    }
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken"),
 // 获取群号
@@ -29,7 +33,7 @@ $(document).ready(function(){
                     <div class="weui-media-box__bd">
                         <h4 class="weui-media-box__title" style="font-size: 15px">${item.title}</h4>
                         <div class="weui-media-box__desc" style="font-size: 10px">发起人：<span>${item.nickname}</span></div>
-                        <div style="font-size: 10px" class="weui-media-box__desc" >集合时间；<span>${item.collection_time}</span></div>
+                        <div style="font-size: 10px" class="weui-media-box__desc" >集合时间；<span>${getLocalTime(item.collection_time)}</span></div>
                         <div style="font-size: 10px" class="weui-media-box__desc" >集合地点：<span>${item.collection_place}</span></div>
                     </div>
                 </div>
