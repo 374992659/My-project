@@ -56,7 +56,7 @@ $(document).ready(function(){
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
                     if(html ==='***.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
-                        var current_code = $(.44).val('user_code')   //获取当前聊天好友code
+                        var current_code = $(".elements").val('user_code')   //获取当前聊天好友code
                         if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                             //展示好友发送的聊天信息
 
@@ -76,7 +76,7 @@ $(document).ready(function(){
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
                     if(html ==='***.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
-                        var current_code = $(.44).val('group_code')   //获取当前聊天群的群code
+                        var current_code = $(".elements").val('group_code')   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                             //展示好友发送的聊天信息
 
@@ -96,21 +96,21 @@ $(document).ready(function(){
         console.log(123);
     }
     //群聊点击发送
-    // $(.44).click(function(){
-    //     var content=$(.44).val('content');                        //获取页面发送内容
-    //     var group =$(.44).val('group_code');          //获取发送好友的code
-    //     var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
-    //    ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
-    // })
-    //
-    //
-    // //发送消息给好友
-    // $(.44).click(function(){
-    //     var content=$(.44).val('content');                        //获取页面发送内容
-    //     var account_code =$(.44).val('user_code');          //获取发送好友的code
-    //     var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
-    //    ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
-    // });
+    $(".elements").click(function(){
+        var content=$(".elements").val('content');                        //获取页面发送内容
+        var group =$(".elements").val('group_code');          //获取发送好友的code
+        var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
+       ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+    })
+
+
+    //发送消息给好友
+    $(".elements").click(function(){
+        var content=$(".elements").val('content');                        //获取页面发送内容
+        var account_code =$(".elements").val('user_code');          //获取发送好友的code
+        var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
+       ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+    });
     /*
     * 判断是否存在元素
     * */
