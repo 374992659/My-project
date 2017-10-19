@@ -93,6 +93,7 @@ $(document).ready(function(){
     };
     ws.open=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
+        console.log(123);
     }
     //群聊点击发送
     $(.44).click(function(){
