@@ -50,7 +50,7 @@ $(document).ready(function(){
         <!--活动内容-->
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <p>活动时间：${result.star_time}</p>
+                <p>活动时间：${result.start_time}</p>
             </div>
           
         </div>
