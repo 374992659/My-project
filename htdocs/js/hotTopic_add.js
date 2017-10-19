@@ -75,40 +75,41 @@ $(document).ready(function(){
     }; myAd();
     //功能3 发布广告
     $(".addBtn").click(function(){
+        var pushAd=function(){
+            var apptoken=localStorage.getItem("apptoken");
+            //获取主题
+            var title=$(".adTitle").val(),
+                //获取内容
+                content=$(".adContent").val(),
+                //城市id
+                city_id=$("#city option:selected").val(),
+                //小区id
+                garden_code="123123";
+            //数据格式转换
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
+            //加密
+            var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"Subject_addAd",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    //解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        myAd();
+                        allAd();
+                        $(document).on('click','#show-success',function(){
+                            $.toptip('操作成功', 'success');
+                        });
+                    }
+                }
+            })
+        };
         pushAd();
     });
-    var pushAd=function(){
-        var apptoken=localStorage.getItem("apptoken");
-        //获取主题
-        var title=$(".adTitle").val(),
-            //获取内容
-            content=$(".adContent").val(),
-            //城市id
-            city_id=$("#city option:selected").val(),
-            //小区id
-            garden_code="123123";
-        //数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
-        //加密
-        var jsonEncryptData=jsEncryptData(data);
-        console.log(data);
-        $.ajax({
-            url:url+"Subject_addAd",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                //解密
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    myAd();
-                    allAd();
-                    $(document).on('click','#show-success',function(){
-                        $.toptip('操作成功', 'success');
-                    });
-                }
-            }
-        })
-    };
+
 });
