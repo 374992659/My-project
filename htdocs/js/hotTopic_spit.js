@@ -73,7 +73,7 @@ $(document).ready(function(){ "use strict";
         // 参数：content 内容
             content=$(".content").val(),
         // 参数：garden_code 小区
-            garden_code="13456",
+            garden_code="270113",
         // 参数：garden_name 小区名称
             garden_name=$("#house option:selected").text(),
         // 参数：c 选择项 json格式
@@ -97,9 +97,19 @@ $(document).ready(function(){ "use strict";
       option.each(function(i){
           choise[parseInt(i+1)]=$(this).val();
       });
-      console.log(choise);
-      console.log(typeof type);
-      choise=JSON.stringify(choise);
+        choise=JSON.stringify(choise);
+        console.log(choise);
+        console.log(typeof title);
+        console.log(typeof content);
+        console.log(typeof garden_code);
+        console.log(typeof garden_name);
+        Object.prototype.toString.call(choise);
+        console.log(typeof endTime);
+        console.log(typeof picture);
+        console.log(typeof type);
+        console.log(typeof is_public);
+        console.log(typeof is_push);
+
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":garden_code,"garden_name":garden_name,"choise":choise,"end_time":end_time,"picture":picture,"type":type,"is_public":is_public,"is_push":is_push})];
         // 加密
