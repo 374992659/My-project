@@ -161,7 +161,7 @@ class Events
                         $data = array(
                             'errcode'=>0,
                             'type'=>1,  //上线获取在线好友以及未读消息
-                            'errmsg'=>'online_friends_list',
+                            'errmsg'=>'在线好友及消息',
                             'data'=>array(
                                 'online_friends'=>$online_friends,
                                 'friends_new_message'=>$friends_new_message,
@@ -172,7 +172,7 @@ class Events
                         $data2 = array(
                             'errcode'=>0,
                             'type'=>2,  //向好友发送上线通知
-                            'errmsg'=>'login',
+                            'errmsg'=>'上线',
                             'data'=>array(
                                 'user_code'=>$account_code['account_code'],
                             )
@@ -232,7 +232,7 @@ class Events
                                 'type'=>$message->message_type,
                                 'send_time'=>time(),
                             ));
-                            $send_data = self::returnData(0,4,'',$data2);
+                            $send_data = self::returnData(0,4,'好友消息',$data2);
                             Gateway::sendToUid($message->account_code,json_encode($send_data));//发送给接收人
                             break;
 //                        }
@@ -256,14 +256,14 @@ class Events
                         $collection = $database->group_chat;
                         $collection->insert($data);   //插入数据
 
-                        $returnData =self::returnData(0,5,'',$data);
+                        $returnData =self::returnData(0,5,'群消息',$data);
                         Gateway::sendToGroup($message->group,json_encode($returnData));break; //发送消息给群组
            case 4:  $client_id = Gateway::getClientIdByUid($message->account_code);                //获取某一用户在线状态
                         $is_online = Gateway::isOnline($client_id);
                         $data =  array(
                             'errcode'=>0,
                             'type'=>6,
-                            'errmsg'=>'is_online',
+                            'errmsg'=>'在线状态',
                             'data'=>array(
                                 'is_online'=>$is_online              //0:不在线 1：在线
                             )
@@ -283,7 +283,7 @@ class Events
                             }
                         }
                         $arr = array('group_online_user'=>$user_arr);
-                        $data = self::returnData(0,7,'group_online_user',$arr);
+                        $data = self::returnData(0,7,'群在线用户',$arr);
                         Gateway::sendToCurrentClient(json_encode($data));
                         break;
            case 6:  $friend_code  = $message->account_code;  //拉取好友聊天
