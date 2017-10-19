@@ -67,10 +67,10 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         myAdList+=`
                         <div title="${item.adverse_id}"  class="adList">
-                            <img src="image/delA.png" class="delImg" alt="" title="${item.adverse_id}"/>
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${item.title}</h4>
                                 <p class="weui-media-box__desc">${item.content}</p>
+                                <button class="delBtn" title="${item.adverse_id}">删除</button>
                             </div>
                         </div>
                         `
@@ -122,6 +122,31 @@ $(document).ready(function(){
         allAd();
     });
     //广告删除
+    $(".myAdList").on("click",".adList .weui-media-box .delBtn",function(){
+        var apptoken=localStorage.getItem("apptoken"),
+            city_id=localStorage.getItem("city_id"),
+            adverse_id=$(this).attr("title"),
+        //格式转换
+        data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"adverse_id":adverse_id})],
+        //加密
+        json=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"Subject_delAd",
+            type:"POST",
+            data:{"data":json},
+            success:function(data){
+                //解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                }else{
+                    console.log(data.errmsg);
+                }
+            }
 
+        })
+    });
     //跳转到公告详情页面存广告id
 });
