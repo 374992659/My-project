@@ -92,14 +92,14 @@ $(document).ready(function(){
         }
     };
     ws.open=function(e){
-        ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
+        ws.send(({'type' : 1,'apptoken' :apptoken}));
     }
     //群聊点击发送
     $(.44).click(function(){
         var content=$(.44).val('content');                        //获取页面发送内容
         var group =$(.44).val('group_code');          //获取发送好友的code
         var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
-       // ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+       ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
     })
 
 
@@ -108,7 +108,7 @@ $(document).ready(function(){
         var content=$(.44).val('content');                        //获取页面发送内容
         var account_code =$(.44).val('user_code');          //获取发送好友的code
         var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
-      //  ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+       ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
     });
     /*
     * 判断是否存在元素
