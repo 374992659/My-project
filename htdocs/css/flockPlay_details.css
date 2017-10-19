@@ -47,7 +47,13 @@ a:hover {
 .weui-cell{
     padding-left: 0;
 }
-
+.swiper-container {
+    width: 100%;
+}
+.swiper-container img {
+    display: block;
+    width: 100%;
+}
 
 
 
