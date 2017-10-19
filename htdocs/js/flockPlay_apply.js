@@ -31,9 +31,10 @@ $(document).ready(function(){
                 // 解密
                 var data=jsDecodeData(data);
                 console.log(data);
+                var success=$(".success");
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var success=$(".success");
+
                     success.show();
                     // 定时器
                     $(function(){
@@ -44,9 +45,9 @@ $(document).ready(function(){
                     });
                 }else{
                     console.log(data.errmsg);
-                    (".success").html(data.errmsg);
-                    $(".success").attr("color",red)
-                    (".success").show();
+                    success.html(data.errmsg);
+                    success.attr("color",red);
+                    success.show();
                     // 定时器
                     $(function(){
                         function hidden(){
