@@ -3,9 +3,11 @@
  */
 $(document).ready(function(){
     "use strict";
+    localStorage.setItem("city_id",2701);
     //获取apptoken
     //功能1 获取全部广告
     var allAd=function(){
+
         var apptoken=localStorage.getItem("apptoken"),
             city_id=localStorage.getItem("city_id"),
             garden_code="2701113";
@@ -115,6 +117,8 @@ $(document).ready(function(){
             })
         };
         pushAd();
+        myAd();
+        allAd();
     });
 
 });
