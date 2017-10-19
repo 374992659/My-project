@@ -6,7 +6,7 @@ $(document).ready(function(){
     //获取apptoken
     var apptoken=localStorage.getItem("apptoken"),
         city_id=localStorage.getItem("city_id"),
-        garden_code="132156";
+        garden_code="2701113";
     //功能1 获取全部广告
     var allAd=function(){
         //数据格式转换
@@ -54,6 +54,7 @@ $(document).ready(function(){
             success:function(data){
                 //解密
                 var data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     console.log(data);
                     localStorage.setItem("apptoken",data.apptoekn);
@@ -85,6 +86,7 @@ $(document).ready(function(){
                 city_id=$("#city option:selected").val(),
                 //小区id
                 garden_code="270113";
+                localStorage.setItem("city_id",city_id);
             //数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
             //加密
