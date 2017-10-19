@@ -14,6 +14,7 @@ $(document).ready(function(){
             var data=["",JSON.stringify({"apptoken":this.apptoken,"city_id":this.city_id,"garden_code":this.garden_code})];
             // 加密
             var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
             $.ajax({
                 url:url+"Subject_getSubjectList",
                 type:"POST",
