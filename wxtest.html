@@ -18,6 +18,7 @@
             url:'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx3a8d29551364f089&redirect_uri=http://39.108.237.198/project/wxtest.html&response_type=code&scope=SCOPE&state=STATE#wechat_redirect',
             type:'POST',
             dataType: 'jsonp',
+            crossDomain: true,
             data:'',
             success:function(res){
                 console.log(res);
