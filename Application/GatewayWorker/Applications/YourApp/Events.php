@@ -157,7 +157,7 @@ class Events
                             }
                         }
                         $data = array(
-                            'errocode'=>0,
+                            'errcode'=>0,
                             'type'=>1,  //上线获取在线好友以及未读消息
                             'errmsg'=>'online_friends_list',
                             'data'=>array(
