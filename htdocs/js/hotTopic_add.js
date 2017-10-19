@@ -84,7 +84,7 @@ $(document).ready(function(){
                 //城市id
                 city_id=$("#city option:selected").val(),
                 //小区id
-                garden_code=123123;
+                garden_code="2701123";
             //数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
             //加密
