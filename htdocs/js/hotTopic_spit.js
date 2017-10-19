@@ -93,7 +93,7 @@ $(document).ready(function(){ "use strict";
             is_push=$("#isPush option:selected").val();
         // 获取选项内容
       var  option= $("input[name='option']");
-      option.each(function(){
+      option.each(function(i){
           choise[parseInt(i+1)]=$(this).val();
       });
       console.log(choise);
