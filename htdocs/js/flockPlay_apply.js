@@ -44,7 +44,7 @@ $(document).ready(function(){
                     });
                 }else{
                     console.log(data.errmsg);
-                    (".success").html("报名失败请重新报名");
+                    (".success").html(data.errmsg);
                     $(".success").attr("color",red)
                     (".success").show();
                     // 定时器
