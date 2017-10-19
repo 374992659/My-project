@@ -84,7 +84,7 @@ $(document).ready(function(){ "use strict";
          timestamp2 = Date.parse(new Date(endTime)),
          end_time= timestamp2 / 1000,
         // 参数：picture 图片 可填
-            picture="",
+            picture="asdasd",
         // 参数：type 选择类型
             type=$("#type option:selected").val(),
         // 参数：is_public 是否公开
