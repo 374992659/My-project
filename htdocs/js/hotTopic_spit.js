@@ -87,7 +87,6 @@ $(document).ready(function(){ "use strict";
             picture="asdasd",
         // 参数：type 选择类型
             type=parseInt($("#type option:selected").val()),
-
         // 参数：is_public 是否公开
             is_public=parseInt($("#isPublic option:selected").val()),
         // 参数：is_push 是否需要推送
@@ -98,18 +97,6 @@ $(document).ready(function(){ "use strict";
           choise[parseInt(i+1)]=$(this).val();
       });
         choise=JSON.stringify(choise);
-        console.log(choise);
-        console.log(typeof title);
-        console.log(typeof content);
-        console.log(typeof garden_code);
-        console.log(typeof garden_name);
-        Object.prototype.toString.call(choise);
-        console.log(typeof endTime);
-        console.log(typeof picture);
-        console.log(typeof type);
-        console.log(typeof is_public);
-        console.log(typeof is_push);
-
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":garden_code,"garden_name":garden_name,"choise":choise,"end_time":end_time,"picture":picture,"type":type,"is_public":is_public,"is_push":is_push})];
         // 加密
@@ -125,7 +112,7 @@ $(document).ready(function(){ "use strict";
                 console.log(data);
                 var success=$(".success");
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoeken);
+                    localStorage.setItem("apptoken",data.apptoken);
                     success.show();
                     // 定时器
                     $(function(){
