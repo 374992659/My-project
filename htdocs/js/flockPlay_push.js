@@ -423,8 +423,10 @@ $(document).ready(function(){
             // 获取tag 标签 可填
             var tag={arrayTag:[]};
             var tagLi=$(".labelBox").find($(".itemLi"));
+            console.log(tagLi);
             $.each(tagLi,function(i,item){
-                tag.array.push($(this).text());
+                console.log(item.innerHTML);
+                tag.arrayTag.push(item.innerHTML)
             });
             console.log(tag);
             // 获取picture 图片 可填
