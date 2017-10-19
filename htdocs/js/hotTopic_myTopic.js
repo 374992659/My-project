@@ -4,7 +4,9 @@
 $(document).ready(function(){
     "use strict";
     //获取apptoken
-    var apptoken=localStorage.getItem("apptoken");
+    var apptoken=localStorage.getItem("apptoken"),
+    //格式转换
+    data=["",JSON.stringify({"apptoken":apptoken})];
     //加密
     var jsonEncryptData=jsEncryptData(data);
     console.log(data);
