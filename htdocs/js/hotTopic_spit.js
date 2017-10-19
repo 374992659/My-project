@@ -4,28 +4,25 @@ $(document).ready(function(){ "use strict";
         var $li=`
         <li class="option">         
             <label for="" style="" class="label">  
-                       <img src="image/dell.png" id="delImg" style="width: 20px;vertical-align: middle; alt="">           
+                       <img src="image/dell.png" id="delImg" style="width: 20px;vertical-align: middle;position: relative;z-index: 1000" alt="">           
             选项：                               
             </label>
-            <input type="text" name="option">
+            <input type="text" name="option" value="">
         </li>
         
         
         `;
         $(".addOption").before($li);
   //删除选项
-        $(".topicList").on("click",".option .label #delImg",function(e){
-console.log(123);
-            $(e.target).parent().remove();
+        $(".topicList").on("click",".option .label",function(){
+            console.log(123);
+            $(this).parent().remove();
         });
     $(".delImg").click(function(e){
-
-
-    });
-
+        });
     });
     // 结束时间
-    $.date('#other-date1');
+    $.date('#gathertime');
     // 上传图片
     (function(){
         var that=$("#uploaderInput");
@@ -48,12 +45,12 @@ console.log(123);
             $("#uploaderFiles").append(html);
             // 取消删除图片
             $(".picPlace").on("click","li .delImg",function(){
+                console.log(132);
                 $(this).parent().remove();
             });
 // 图片放大预览
             (function(){
                 $(".picPlace").on("click","li .pushPlayImg",function(){
-                    console.log(123);
                     var url=localStorage.getItem("pic");
                     if($(".weui-gallery").is(":hidden")){
                         $(".weui-gallery").show();
@@ -70,55 +67,41 @@ console.log(123);
     // 发送数据
     $(".subBtn").click(function(){
         // 获取apptoken
-        var apptone=localStorage.getItem("apptoken"),
+        var apptoken=localStorage.getItem("apptoken"),
         // 参数：title 标题
             title=$(".title").val(),
         // 参数：content 内容
             content=$(".content").val(),
         // 参数：garden_code 小区
-            garden_code="",
+            garden_code="13456",
         // 参数：garden_name 小区名称
-            garden_name="",
+            garden_name=$("#house option:selected").val(),
         // 参数：c 选择项 json格式
-            choise={
-            optionArr:[]
-            },
+            choise=[],
         // 参数：end_time 结束时间
-            end_time=$("#gathertime").val(),
+            endTime=$("#gathertime").val(),
+            // 转换时间戳
+         timestamp2 = Date.parse(new Date(endTime)),
+         end_time= timestamp2 / 1000,
         // 参数：picture 图片 可填
             picture="",
         // 参数：type 选择类型
-            type=null,
+            type=$("#type option:selected").val(),
         // 参数：is_public 是否公开
-            is_public=null,
+            is_public=$("#isPublic option:selected").val(),
         // 参数：is_push 是否需要推送
-            is_push=null;
+            is_push=$("#isPush option:selected").val();
         // 获取选项内容
       var  option= $("input[name='option']");
-      $.each(option,function(i,item){
-          choise.optionArr.push($(this).text())
-
+      option.each(function(){
+          choise.push($(this).val());
       });
-        // 获取图片数据
-
-        // 获取选择类型
-        $("#type").change(function(){
-            type= $(this).val();
-
-        });
-        // 获取是否公开
-        $("#isPublic").change(function(){
-            is_public=$(this).val()
-
-        });
-        // 获取是否推送物管
-        $("#isPush").change(function(){
-            is_push=$(this).val()
-        });
+      console.log(choise);
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":garden_code,"garden_name":garden_name,"choise":choise,"end_time":end_time,"picture":picture,"type":type,"is_public":is_public,"is_push":is_push})];
         // 加密
         var  jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"Subject_addSubject",
             type:"POST",
@@ -126,6 +109,7 @@ console.log(123);
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
+                console.log();
                 var success=$(".success");
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoeken);
@@ -135,19 +119,19 @@ console.log(123);
                         function hidden(){
                             success.hide();
                         }
-                        setInterval(hidden,3000);
+                        setTimeout(hidden,3000);
                     });
                 }else{
                     console.log(data.errmsg);
                     success.html("失败请重新操作");
-                    success.attr("color",red)
+                    success.attr("color",'red');
                     success.show();
                     // 定时器
                     $(function(){
                         function hidden(){
                             success.hide();
                         }
-                        setInterval(hidden,3000);
+                        setTimeout(hidden,3000);
                     });
                 }
             }

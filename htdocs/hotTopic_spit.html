@@ -37,16 +37,19 @@
                     </div>
                 </li>
                 <li>
-                    <label for="">小区：</label>
-                    <input type="text">
+                    <label for="house">小区：</label>
+                    <select name="" id="house">
+                        <option value="0">保利花语</option>
+                        <option value="1">美年美岸</option>
+                    </select>
                 </li>
                 <li>
                     <label for="">选项：</label>
-                    <input type="text" name="option">
+                    <input type="text" name="option" value="">
                 </li>
                 <li>
                     <label for="">选项：</label>
-                    <input type="text" name="option">
+                    <input type="text" name="option" value="">
                 </li>
                     <!--增加选项的位置-->
                 <li  class="addOption">
@@ -54,8 +57,8 @@
                     <img style="width: 30px;vertical-align: middle;position: relative;z-index: 100" src="image/add.png" alt="">
                 </li>
                 <li>
-                    <label for="">结束时间：</label>
-                    <input type="text" id="gathertime" data-options='{"type":"YYYY-MM-DD hh:mm","beginYear":2010,"endYear":2020}'
+                    <label for="gathertime">结束时间：</label>
+                    <input type="text" id="gathertime" required autofocus data-options='{"type":"YYYY-MM-DD hh:mm","beginYear":2010,"endYear":2020}'
                            style="width: 170px">
                 </li>
                 <li style="position: relative">
@@ -95,7 +98,14 @@
                     <div class="weui-cells weui-cells_form" style="display: inline-block;vertical-align: middle">
                         <div class="weui-cell" style="padding: 0">
                             <div class="weui-cell__bd">
-                                <input class="weui-input" id="start" type="text" value="四川省 成都市 武侯区">
+                                <div class="weui-cell__bd" id="sanji" >
+                                    <select name="province" id="province">
+                                        <option value="">请选择</option>
+                                    </select>
+                                    <select name="city" id="city">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
@@ -142,24 +152,9 @@
     </script>
 
     <script src="js/jquery-weui.js"></script>
-    <script src="js/city-picker.js"></script>
+    <script src="js/addRess.js"></script>
     <script>
-        $("#start").cityPicker({
-            title: "选择出发地",
-            onChange: function (picker, values, displayValues) {
-                console.log(values, displayValues);
-            }
-        });
-        $("#end").cityPicker({
-            title: "选择目的地"
-        });
-        $("#home-city").cityPicker({
-            title: "选择目的地",
-            showDistrict: false,
-            onChange: function (picker, values, displayValues) {
-                console.log(values, displayValues);
-            }
-        });
+        addRess();
     </script>
 <script src="js/url.js"></script>
 <script src="js/aes.js"></script>

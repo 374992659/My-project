@@ -34,7 +34,6 @@ $(document).ready(function(){
                 var success=$(".success");
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-
                     success.show();
                     // 定时器
                     $(function(){
