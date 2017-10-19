@@ -91,7 +91,7 @@ $(document).ready(function(){
                 break;
         }
     };
-    wx.open=function(e){
+    ws.open=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
     }
     //群聊点击发送
