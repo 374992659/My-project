@@ -13,10 +13,10 @@ $(document).ready(function(){
     console.log(jsonEncryptData);
     console.log(data);
     $.ajax({
-        url:url+"group _getGroupActivityInfo",
+        url:url+"group_getGroupActivityInfo",
         type:"POST",
         data:{"data":jsonEncryptData},
-            success: function (data) {
+        success: function (data) {
                 // 解密
                // var data=jsDecodeData(data);
                 console.log(data);
