@@ -47,10 +47,14 @@ a:hover {
 }
 select{margin-left: 5px}
 .delImg{
-    position: relative;
+    position: absolute;
+    top:0;
+    right: 0;
     width: 20px;
 }
-
+.adList{
+    position: relative;
+}
 
 
 
