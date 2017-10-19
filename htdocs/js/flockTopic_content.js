@@ -75,7 +75,35 @@ $.ajax({
                 </div>
             </div>
         </div>
-        
+        <div class="discuss">
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                    我的评论
+                </a>
+                <a class="weui-navbar__item" href="#tab2">
+                    全部评论
+                </a>
+            </div>
+            <div class="weui-tab__bd">
+                <!--我的评论-->
+                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                    <div class="weui-panel__bd myDiscuss discuss">
+                        
+                      
+                    </div>
+                </div>
+                <!--全部评论-->
+                <div id="tab2" class="weui-tab__bd-item">
+                    <div class="weui-panel__bd allDiscuss discuss">
+                        
+                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
             `;
             // 所有评论
              var alldiscuss="";
