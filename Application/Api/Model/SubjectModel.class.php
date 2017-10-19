@@ -25,7 +25,7 @@ class SubjectModel extends Model
      * */
     public function addSubject($data){
         $res =$this->add($data);
-        if(!$res)return false;
+        if(!$res)return $this->getError();
         return $res;
     }
     /*
