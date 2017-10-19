@@ -41,6 +41,19 @@ CREATE TABLE  if not exists `friends_chat_log` (
   `status` tinyint(2) unsigned NOT NULL COMMENT '查看状态 0：未查看 1：已查看'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='好友聊天记录';
 
+CREATE TABLE `friends_apply` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `user_code` varchar(50) NOT NULL COMMENT '用户code',
+  `user_nickname` varchar(100) NOT NULL COMMENT '用户昵称',
+  `user_portrait` varchar(500) NOT NULL COMMENT '用户头像',
+  `create_time` int(11) NOT NULL COMMENT '申请时间',
+  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '处理状态 1：已处理 0：未处理',
+  `result` tinyint(2) DEFAULT NULL COMMENT '处理结果   1：接受 2：拒绝',
+  PRIMARY KEY (`id`),
+  KEY `user_code` (`user_code`),
+  KEY `status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='好友申请消息';
+
 CREATE TABLE  if not exists `friends_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `user_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户唯一标识。区域id+手机号的形式',
