@@ -66,7 +66,7 @@ $(document).ready(function(){
                     var myAdList="";
                     $.each(data.data,function(i,item){
                         myAdList+=`
-                        <div href="hotTopic_addCon.html" title="${item.adverse_id}"  class="adList">
+                        <div title="${item.adverse_id}"  class="adList">
                             <img src="image/delA.png" class="delImg" alt="" title="${item.adverse_id}"/>
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${item.title}</h4>
