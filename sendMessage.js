@@ -11,6 +11,7 @@ $(document).ready(function(){
             case 1:            //1 .在线好友、好友未读消息、群未读消息
                 if(parseInt(result.errcode) === 0){
                     var data = JSON.parse(result.data);
+                    console.log(data);
                     localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                     var friends_new_message = data.friends_new_message;
                     if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
@@ -93,7 +94,6 @@ $(document).ready(function(){
     };
     ws.open=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :'99066CAEA6014CCB4BC7A24466980523494439DC9011E7C4AB0C00AB6BBB378FB1D80A063EB5C3CE525F5F369343A936'}));
-        console.log(123);
     }
     //群聊点击发送
     $(".elements").click(function(){
