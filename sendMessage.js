@@ -11,7 +11,7 @@ $(document).ready(function(){
         switch(parseInt(result.type)){
             case 1:            //1 .在线好友、好友未读消息、群未读消息
                 if(parseInt(result.errcode) === 0){
-                    var data = JSON.parse(result.data);
+                    var data = (result.data);
                     console.log(data);
                     localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                     var friends_new_message = data.friends_new_message;
@@ -26,7 +26,7 @@ $(document).ready(function(){
                 break;
             case 2:           //2.好友上线通知 更新本地在线好友列表
                 if(parseInt(result.errcode) === 0){
-                    var data = JSON.parse(result.data);
+                    var data = (result.data);
                     var friend_code = data.user_code;
                     var online_friends = localStorage.getItem('online_friends');
                     if(!contains(online_friends,friend_code)){
@@ -37,7 +37,7 @@ $(document).ready(function(){
                 break;
             case 3:           //3.好友下线通知 更新本地在线好友列表
                 if(parseInt(result.errcode) === 0){
-                    var data = JSON.parse(result.data);
+                    var data = (result.data);
                     var friend_code = data.user_code;
                     var online_friends = localStorage.getItem('online_friends');
                     if(contains(online_friends,friend_code)){
@@ -53,7 +53,7 @@ $(document).ready(function(){
                 break;
             case 4:          //4.接收到好友消息
                 if(parseInt(result.errcode) === 0){
-                    var data = JSON.parse(result.data);
+                    var data =(result.data);
                     var pathname = window.location.pathname;
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
@@ -73,7 +73,7 @@ $(document).ready(function(){
                 break;
             case 5:         //接收到群消息
                 if(parseInt(result.errcode) === 0){
-                    var data = JSON.parse(result.data);
+                    var data =(result.data);
                     var pathname = window.location.pathname;
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
