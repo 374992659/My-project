@@ -25,7 +25,7 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 if(data.errcode===0){
                     console.log(data);
-                    localStorage.setItem("apptoken",data.apptoekn);
+                    localStorage.setItem("apptoken",data.apptoken);
                     var allAdList="";
                     $.each(data.data,function(i,item){
                         allAdList+=`
