@@ -50,8 +50,8 @@ $(document).ready(function(){
                 });
                 $(".headline").append(statusSpan);
                 $(".myTopicList").append(html);
-                myLopicID();
-                window.location.href="hotTopic_myTopicText.html";
+
+
             }else{
                 console.log(data.errmsg);
             }
@@ -60,11 +60,11 @@ $(document).ready(function(){
     });
 //点击话题的时候执行的函数
 //功能 把话题id存在本地
-    var myLopicID=function(){
         $(".myTopicList").on("click",".myTopic_id",function(){
             //获取话题id
             var subject_id=$(thsi).attr("title");
             localStorage.setItem("subject_id",subject_id)
+            window.location.href="hotTopic_myTopicText.html";
         })
-    };
+
 });
