@@ -75,7 +75,7 @@ $(document).ready(function(){ "use strict";
         // 参数：garden_code 小区
             garden_code="13456",
         // 参数：garden_name 小区名称
-            garden_name=$("#house option:selected").val(),
+            garden_name=$("#house option:selected").text(),
         // 参数：c 选择项 json格式
             choise={},
         // 参数：end_time 结束时间
