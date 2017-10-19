@@ -36,16 +36,17 @@ $(document).ready(function(){
                   `
               });
               $(".flockPlayList").append(html);
-              $(".flockPlayList").on("click","storePlay_id",function(){
-                  // 获取id
-                  var activity_id=$(this).attr("title");
-                  localStorage.setItem("activity_id",activity_id);
+             
 
-              });
-              window.location.href="flockPlay_details.html";
           }else{
               console.log(data.errmsg);
           }
       }
-  })
+  });
+    $(".flockPlayList").on("click","storePlay_id",function(){
+        // 获取id
+        var activity_id=$(this).attr("title");
+        localStorage.setItem("activity_id",activity_id);
+        window.location.href="flockPlay_details.html";
+    });
 });
