@@ -46,7 +46,10 @@ a:hover {
     padding:0 10px;
 }
 select{margin-left: 5px}
-
+.delImg{
+    position: relative;
+    width: 20px;
+}
 
 
 

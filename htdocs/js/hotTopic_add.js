@@ -66,12 +66,13 @@ $(document).ready(function(){
                     var myAdList="";
                     $.each(data.data,function(i,item){
                         myAdList+=`
-                        <a href="hotTopic_addCon.html" title="${item.adverse_id}"  class="adList">
+                        <div href="hotTopic_addCon.html" title="${item.adverse_id}"  class="adList">
+                            <img src="image/delA.png" class="delImg" alt="" title="${item.adverse_id}"/>
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${item.title}</h4>
                                 <p class="weui-media-box__desc">${item.content}</p>
                             </div>
-                        </a>
+                        </div>
                         `
                     });
                     $(".myAdList").append( myAdList)
@@ -120,5 +121,7 @@ $(document).ready(function(){
         myAd();
         allAd();
     });
+    //广告删除
 
+    //跳转到公告详情页面存广告id
 });
