@@ -51,7 +51,7 @@ $(document).ready(function(){
                 $(".headline").append(statusSpan);
                 $(".myTopicList").append(html);
                 myLopicID();
-                window.local.href="hotTopic_myTopicText.html";
+                window.location.href="hotTopic_myTopicText.html";
             }else{
                 console.log(data.errmsg);
             }
