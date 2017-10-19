@@ -156,6 +156,8 @@ class Events
                                 $group_new_message = self::multi_array_sort($group_new_message,'recent_time',SORT_DESC);
                             }
                         }
+                        //获取添加好友申请
+                        $new_friends_apply=$db->select()->from('friends_apply')->where('status =0')->query();   //未处理的添加好友申请
                         $data = array(
                             'errcode'=>0,
                             'type'=>1,  //上线获取在线好友以及未读消息
@@ -163,7 +165,8 @@ class Events
                             'data'=>array(
                                 'online_friends'=>$online_friends,
                                 'friends_new_message'=>$friends_new_message,
-                                'group_new_message'=>$group_new_message
+                                'group_new_message'=>$group_new_message,
+                                'new_friends_apply'=>$new_friends_apply,
                             )
                         );
                         $data2 = array(
@@ -309,9 +312,9 @@ class Events
                             $mongo->$userdatastr->group_new_message->batchInsert($data2);//插入聊天记录表
                             $db->delete()->from('offline_user_massage')->where('sender_code ='.$friend_code)->query();
                         }
-                        $returnData =self::returnData(0,8);
+                        $returnData =self::returnData(0,8,'好友消息读取成功');
                         Gateway::sendToCurrentClient(json_encode($returnData));break;
-           case 7: $group_code =$message->group_code;
+           case 7: $group_code =$message->group_code;            //读取群消息
                         $mongo =new MongoClient();
                         $data = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('id','time'));
                         if($data){
@@ -319,8 +322,27 @@ class Events
                         }else{
                             $mongo->baseinfo->user_group_time->insert(array('_id'=>self::getNextId($mongo,'baseinfo','user_group_time'),'user_code'=>$account_code['account_code'],'group_code'=>$group_code,'time'=>time()));
                         }
-                       $returnData =self::returnData(0,9);
-                       Gateway::sendToCurrentClient(json_encode($returnData));break;
+                       $returnData =self::returnData(0,8,'群消息读取成功');
+                       Gateway::sendToCurrentClient(json_encode($returnData));
+                       break;
+           case 8: $user_code = $message->user_code; //添加好友请求
+                        if($user_code === $account_code['account_code']){
+                            $returnData =self::returnData(0,8,'不能添加自己为好友哦');
+                            Gateway::sendToCurrentClient(json_encode($returnData));
+                        }
+                        $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                        $table_id =substr($account_code['account_code'],0,4);
+                        $user_info= $baseinfo->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
+                        $data = array(
+                            'user_code'=>$account_code['account_code'],
+                            'user_nickname'=>$user_info['nickname'],
+                            'user_portrait'=>$user_info['portrait'],
+                            'create_time'=>time(),
+                            'status'=>0,
+                        );
+                        $group_data = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'group_and_friends_'.$user_code);
+                        $group_data->insert('friends_apply')->cols($data);
+                        break;
        }
    }
    
@@ -409,4 +431,4 @@ class Events
 }
 
 
-//返回数据 type类型为 1 .为获取在线好友、好友未读消息、群未读消息  2.为好友上线通知（本地保存的好友列表更新） 3.为好友下线通知 4.好友消息  5群消息 6.用户在线状态 7.群在线用户 8.读取好友信息成功 9.读取群消息成功
+//返回数据 type类型为 1 .为获取在线好友、好友未读消息、群未读消息  2.为好友上线通知（本地保存的好友列表更新） 3.为好友下线通知 4.好友消息  5群消息 6.用户在线状态 7.群在线用户 8.提示展示型消息
