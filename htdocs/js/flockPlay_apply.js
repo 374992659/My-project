@@ -46,7 +46,7 @@ $(document).ready(function(){
                 }else{
                     console.log(data.errmsg);
                     success.html(data.errmsg);
-                    success.attr("color",red);
+                    success.attr("color","red");
                     success.show();
                     // 定时器
                     $(function(){
