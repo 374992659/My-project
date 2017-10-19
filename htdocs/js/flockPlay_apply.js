@@ -22,6 +22,7 @@ $(document).ready(function(){
        var  data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id,"name":name,"phone":phone,"number":number,"plot":plot,"consume":consume})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"group_enrollGroupActivity",
             type:"POST",
@@ -29,6 +30,7 @@ $(document).ready(function(){
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var success=$(".success");
