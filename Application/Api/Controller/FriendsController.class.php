@@ -151,17 +151,36 @@ class FriendsController extends VersionController
             $data1['group_id'] =$group_id;
             $account=$this->account_code;
             $table_id2=substr($account,0,4);
-            $data2 = M('baseinfo.user_info_'.$table_id2)->field('account_code as user_code , nickname ,portrait')->where(['account_code'=>$account])->find();
+            $data2 = M('baseinfo.user_info_'.$table_id2)->field('account_code as user_code , nickname ,portrait,signature')->where(['account_code'=>$account])->find();
             $data = array_merge($data1,$data2);
         }
-        $model=new Model\UserFriendsModel($account);
-        $res =$model->addFriends($data);
-        if(!$res){
+        $redata['user_code'] = $data['friend_user_code'];
+        $redata['nickname'] = $data['friend_nickname'];
+        $redata['portrait'] = $data['friend_portrait'];
+        $redata['friend_user_code'] = $data['user_code'];
+        $redata['friend_nickname'] = $data['nickname'];
+        $redata['friend_portrait'] = $data['portrait'];
+        $redata['group_id'] = 1;
+        $redata['friend_signature'] = $data['signature'];
+        $model1=new Model\UserFriendsModel($account);
+        $model1->startTrans();
+        $res1 =$model1->addFriends($data);
+        $model2 =new Model\UserFriendsModel($account_code); // 好友的好友表添加我的数据
+        $model2->startTrans();
+        $res2 =$model2->addFriends($redata);
+        if(!$res1 || !$res2){
+            $model1->rollback();
+            $model2->rollback();
             $this->echoEncrypData(1,'添加好友失败,请重试');
         }else{
-            if(is_numeric($res)){
-                $this->echoEncrypData($res);
+            if(is_numeric($res1)){
+                $this->echoEncrypData($res1);
             }
+            if(is_numeric($res2)){
+                $this->echoEncrypData($res2);
+            }
+            $model1->commit();
+            $model2->commit();
             $this->echoEncrypData(0);
         }
     }
