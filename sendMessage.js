@@ -96,22 +96,22 @@ $(document).ready(function(){
         alert(123);
         // ws.send(JSON.stringify({'type' : 1,'apptoken' :'99066CAEA6014CCB4BC7A24466980523494439DC9011E7C4AB0C00AB6BBB378FB1D80A063EB5C3CE525F5F369343A936'}));
     }
-    //群聊点击发送
-    $(".elements").click(function(){
-        var content=$(".elements").val('content');                        //获取页面发送内容
-        var group =$(".elements").val('group_code');          //获取发送好友的code
-        var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
-       ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
-    })
-
-
-    //发送消息给好友
-    $(".elements").click(function(){
-        var content=$(".elements").val('content');                        //获取页面发送内容
-        var account_code =$(".elements").val('user_code');          //获取发送好友的code
-        var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
-       ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
-    });
+    // //群聊点击发送
+    // $(".elements").click(function(){
+    //     var content=$(".elements").val('content');                        //获取页面发送内容
+    //     var group =$(".elements").val('group_code');          //获取发送好友的code
+    //     var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
+    //    ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+    // })
+    //
+    //
+    // //发送消息给好友
+    // $(".elements").click(function(){
+    //     var content=$(".elements").val('content');                        //获取页面发送内容
+    //     var account_code =$(".elements").val('user_code');          //获取发送好友的code
+    //     var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
+    //    ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+    // });
     /*
     * 判断是否存在元素
     * */
