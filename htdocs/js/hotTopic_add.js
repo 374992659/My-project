@@ -82,7 +82,6 @@ $(document).ready(function(){
     }; myAd();
     //功能3 发布广告
     $(".addBtn").click(function(){
-        var pushAd=function(){
             var apptoken=localStorage.getItem("apptoken");
             //获取主题
             var title=$(".adTitle").val(),
@@ -116,10 +115,6 @@ $(document).ready(function(){
                     }
                 }
             })
-        };
-        pushAd();
-        myAd();
-        allAd();
     });
     //广告删除
     $(".myAdList").on("click",".adList .weui-media-box .delBtn",function(){
