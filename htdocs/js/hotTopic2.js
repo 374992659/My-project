@@ -21,6 +21,7 @@ $(document).ready(function(){
                 data:{"data":jsonEncryptData},
                 success:function(data){
                     // 解密
+                    console.log(data);
                     var data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
