@@ -36,7 +36,6 @@ $(document).ready(function(){
                   `
               });
               $(".flockPlayList").append(html);
-             
 
           }else{
               console.log(data.errmsg);
