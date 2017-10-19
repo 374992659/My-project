@@ -15,15 +15,15 @@ $(document).ready(function(){
     $.ajax({
         url:url+"group _getGroupActivityInfo",
         type:"POST",
-        data:{"data":jsonEncryptData,
-        success:function(data){
-            // 解密
-            // var data=jsDecodeData(data);
-            console.log(data);
-            if(data.errcode===0){
-            var result=data.data;
-                localStorage.setItem("apptoken",data.apptoekn);
-                var html=`                
+        data:{"data":jsonEncryptData},
+            success: function (data) {
+                // 解密
+                // var data=jsDecodeData(data);
+                console.log(data);
+                if (data.errcode === 0) {
+                    var result = data.data;
+                    localStorage.setItem("apptoken", data.apptoekn);
+                    var html = `                
         <div class="swiper-container">          
             <div class="swiper-wrapper">
                 <!-- Slides -->
@@ -141,16 +141,18 @@ $(document).ready(function(){
                 
                 
                 `;
-                  if(result.enroll_status===0){
-                      $(".Btn").attr("disabled", true);
-                  }
-                $("#flockPlay_details").html(html);
-                // 我要报名
-                $("#flockPlay_details").on("click",".Btn",function(){
-                    localStorage.setItem("activity_id",$(this).val());
-                    window.location.href="flockPlay_apply.html";
-                })
+                    if (result.enroll_status === 0) {
+                        $(".Btn").attr("disabled", true);
+                    }
+                    $("#flockPlay_details").html(html);
+
+                }
             }
-        }
+
+    });
+    // 我要报名
+    $("#flockPlay_details").on("click", ".Btn", function () {
+        localStorage.setItem("activity_id", $(this).val());
+        window.location.href = "flockPlay_apply.html";
     })
 });
