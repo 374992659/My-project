@@ -60,7 +60,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     console.log(data);
-                    localStorage.setItem("apptoken",data.apptoekn);
+                    localStorage.setItem("apptoken",data.apptoken);
                     var myAdList="";
                     $.each(data.data,function(i,item){
                         myAdList+=`
