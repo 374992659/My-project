@@ -7,7 +7,7 @@ $(document).ready(function(){
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
     ws.onmessage = function (e) {
         var result = JSON.parse(e.data);                   //服务器返回结果
-        console.log(parseInt(result.type));
+        console.log(parseInt(result.errcode));
         switch(parseInt(result.type)){
             case 1:            //1 .在线好友、好友未读消息、群未读消息
                 if(parseInt(result.errcode) === 0){
