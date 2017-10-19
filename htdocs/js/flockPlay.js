@@ -1,13 +1,14 @@
 $(document).ready(function(){
     "use strict";
     // 获取apptoken
-    var apptoken=localStorage.getItem("apptoken");
+    var apptoken=localStorage.getItem("apptoken"),
 // 获取群号
-   var group_num=localStorage.getItem("group_nim");
+    group_num=localStorage.getItem("group_num"),
    // 数据格式转换
-    var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
+    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})],
    //  加密
-  var jsonEncryptData=jsEncryptData(data);
+ jsonEncryptData=jsEncryptData(data);
+  console.log(data);
   $.ajax({
       url:url+"group_getGroupActivityList",
       type:"POST",
@@ -15,6 +16,7 @@ $(document).ready(function(){
       success:function(data){
           // 解密数据
           var data=jsDecodeData(data);
+          console.log(data);
           if(data.errcode===0){
               localStorage.setItem("apptoken",data.apptoken);
               var html="";
