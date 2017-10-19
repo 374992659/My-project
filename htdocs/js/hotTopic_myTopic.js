@@ -33,7 +33,7 @@ $(document).ready(function(){
                     `
                     }
                     html+=`
-                <a href="" title="${item.subject_id}" class="myTopic_id">
+                <div title="${item.subject_id}" class="myTopic_id">
                     <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                         <div class="headline">
                             <h4 class="weui-media-box__title lf" style="font-size: 15px;">${item.title}</h4>
@@ -43,7 +43,7 @@ $(document).ready(function(){
                         <p class="weui-media-box__desc" style="font-size: 12px">${item.content}</p>
                         <div style="font-size: 12px;text-align: right;color: #c2c0be">阅读量 <span>${item.read_num}</span> 回帖数 <span>${item.commont_num}</span></div>
                     </div>
-                </a>
+                </div>
                 `
 
 
@@ -63,7 +63,8 @@ $(document).ready(function(){
         $(".myTopicList").on("click",".myTopic_id",function(){
             //获取话题id
             var subject_id=$(thsi).attr("title");
-            localStorage.setItem("subject_id",subject_id)
+            console.log(subject_id);
+            localStorage.setItem("subject_id",subject_id);
             window.location.href="hotTopic_myTopicText.html";
         })
 
