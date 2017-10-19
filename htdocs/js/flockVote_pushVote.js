@@ -215,6 +215,7 @@ $(".weui-gallery").click(function(){
             console.log(option);
         // 获取话题类型
         var type=$(".voteType").val();
+       console.log(typeof type);
         console.log(type);
         // 获取小区code
         var code="";

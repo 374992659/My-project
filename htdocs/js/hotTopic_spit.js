@@ -86,17 +86,19 @@ $(document).ready(function(){ "use strict";
         // 参数：picture 图片 可填
             picture="asdasd",
         // 参数：type 选择类型
-            type=$("#type option:selected").val(),
+            type=parseInt($("#type option:selected").val()),
+
         // 参数：is_public 是否公开
-            is_public=$("#isPublic option:selected").val(),
+            is_public=parseInt($("#isPublic option:selected").val()),
         // 参数：is_push 是否需要推送
-            is_push=$("#isPush option:selected").val();
+            is_push=parseInt($("#isPush option:selected").val());
         // 获取选项内容
       var  option= $("input[name='option']");
       option.each(function(i){
           choise[parseInt(i+1)]=$(this).val();
       });
       console.log(choise);
+      console.log(typeof type);
             choise=JSON.stringify(choise);
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":garden_code,"garden_name":garden_name,"choise":choise,"end_time":end_time,"picture":picture,"type":type,"is_public":is_public,"is_push":is_push})];
@@ -109,7 +111,7 @@ $(document).ready(function(){ "use strict";
             data:{"data":jsonEncryptData},
             success:function(data){
                 // 解密
-                var data=jsDecodeData(data);
+               var data=jsDecodeData(data);
                 console.log(data);
                 var success=$(".success");
                 if(data.errcode===0){
