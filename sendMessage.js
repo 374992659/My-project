@@ -7,12 +7,10 @@ $(document).ready(function(){
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
     ws.onmessage = function (e) {
         var result = JSON.parse(e.data);                   //服务器返回结果
-        console.log((result));
         switch(parseInt(result.type)){
             case 1:            //1 .在线好友、好友未读消息、群未读消息
                 if(parseInt(result.errcode) === 0){
                     var data = (result.data);
-                    console.log(data);
                     localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                     var friends_new_message = data.friends_new_message;
                     if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
