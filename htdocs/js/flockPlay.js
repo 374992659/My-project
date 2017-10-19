@@ -30,7 +30,7 @@ $(document).ready(function(){
                         <h4 class="weui-media-box__title" style="font-size: 15px">${item.title}</h4>
                         <div class="weui-media-box__desc" style="font-size: 10px">发起人：<span>${item.nickname}</span></div>
                         <div style="font-size: 10px" class="weui-media-box__desc" >集合时间；<span>${item.collection_time}</span></div>
-                        <div style="font-size: 10px" class="weui-media-box__desc" >集合地点：<span>${item.collection.place}</span></div>
+                        <div style="font-size: 10px" class="weui-media-box__desc" >集合地点：<span>${item.collection_place}</span></div>
                     </div>
                 </a>
                   `
