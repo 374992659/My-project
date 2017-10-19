@@ -140,7 +140,7 @@ class FriendsController extends VersionController
         if(!trim($account_code) || !trim($group_id)){
             $this->echoEncrypData(21);
         }
-        if($account_code ==$this->account_code){
+        if($account_code === $this->account_code){
             $this->echoEncrypData(303);
         }
         $table_id=substr($account_code,0,4);
