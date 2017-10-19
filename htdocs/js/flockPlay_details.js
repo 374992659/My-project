@@ -22,7 +22,7 @@ $(document).ready(function(){
                 console.log(data);
                 if (data.errcode === 0) {
                     var result = data.data;
-                    localStorage.setItem("apptoken", data.apptoekn);
+                    localStorage.setItem("apptoken",data.apptoken);
                     var html = `                
         <div class="swiper-container">          
             <div class="swiper-wrapper">
@@ -50,9 +50,13 @@ $(document).ready(function(){
         <!--活动内容-->
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <p>活动时间：${result.start_time}</p>
+                <p>开始时间：${getLocalTime(result.start_time)}</p>
+            </div>         
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                    <p>结束时间：${result.end_time}</p>
             </div>
-          
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
@@ -81,44 +85,37 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <p>所属小区：${result.garden_name}</p>
-            </div>
-           
+            </div>          
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <p>目标人数：${result.total_num}</p>
             </div>
-
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <p>费用类型：${result.cost_type}</p>
-            </div>
-            
+            </div>            
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <p>预计人均消费：${result.average_cost}</p>
-            </div>
-           
+            </div>          
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <p>目的地：${result.destination}</p>
-            </div>
-           
+            </div>           
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <p>交通工具：${result.transport}</p>
-            </div>
-            
+            </div>            
         </div>
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <p>线路规划：${result.rote_planning}</p>
-            </div>
-          
+            </div>      
        </div>
         <div class="weui-cells">
             <div class="weui-cell">
@@ -136,16 +133,16 @@ $(document).ready(function(){
             </div>
         </div>
               <!--按钮-->
-        <input type="button" class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}">我要报名</input>
-        <!--已报名列表-->  
-                
-                
+        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}">我要报名</button>                             
                 `;
-                    if (result.enroll_status === 0) {
+                    var startTime=$("#other-date1").val();
+                    // 转换成时间戳
+                    var timestamp1 = Date.parse(new Date(startTime));
+                    var start_time= timestamp1 / 1000;
+                    if (result.enroll_status==0) {
                         $(".Btn").attr("disabled", true);
                     }
                     $("#flockPlay_details").html(html);
-
                 }
             }
 
