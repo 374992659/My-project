@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    function getLocalTime(nS) {
+        return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+    }
     "use strict";
         // 获取apptoken
     var apptoken=localStorage.getItem("apptoken"),
