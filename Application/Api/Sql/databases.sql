@@ -73,7 +73,7 @@ CREATE TABLE  if not exists `group_chat_log` (
   `group_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '消息所属群的code'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE if NOT EXISTS `offline_user_message`  (
+CREATE TABLE if NOT EXISTS `offline_user_messageoffline_user_message`  (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `sender_code` varchar(50) NOT NULL COMMENT '发送人code',
   `content` varchar(500) NOT NULL COMMENT '消息内容',
@@ -291,8 +291,8 @@ CREATE TABLE if not EXISTS `subject_$city_id` (
   `end_time` int(11) NOT NULL,
   `picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '话题图片',
   `type` tinyint(2) NOT NULL DEFAULT '1' COMMENT '投票类型 1：单选 2：多选',
-  `is_public` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '0:不公开 1：公开',
-  `is_push` tinyint(2) NOT NULL DEFAULT '0' COMMENT '0：不需要推送 1:需要推送',
+  `is_public` tinyint(2) unsigned NOT NULL  COMMENT '2:不公开 1：公开',
+  `is_push` tinyint(2) NOT NULL COMMENT '2：不需要推送 1:需要推送',
   `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户code',
   `nickname` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户昵称',
   `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '头像',
