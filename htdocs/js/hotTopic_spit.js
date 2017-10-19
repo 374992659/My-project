@@ -99,7 +99,7 @@ $(document).ready(function(){ "use strict";
       });
       console.log(choise);
       console.log(typeof type);
-            choise=JSON.stringify(choise);
+            // choise=JSON.stringify(choise);
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":garden_code,"garden_name":garden_name,"choise":choise,"end_time":end_time,"picture":picture,"type":type,"is_public":is_public,"is_push":is_push})];
         // 加密
