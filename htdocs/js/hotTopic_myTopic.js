@@ -62,7 +62,7 @@ $(document).ready(function(){
 //功能 把话题id存在本地
         $(".myTopicList").on("click",".myTopic_id",function(){
             //获取话题id
-            var subject_id=$(thsi).attr("title");
+            var subject_id=$(this).attr("title");
             console.log(subject_id);
             localStorage.setItem("subject_id",subject_id);
             window.location.href="hotTopic_myTopicText.html";
