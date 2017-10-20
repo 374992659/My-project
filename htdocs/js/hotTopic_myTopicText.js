@@ -142,7 +142,7 @@ $(document).ready(function(){
                 // 获取评论内容
             var content=$(".commentText").val(),
             //数据格式转换
-             data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"subject_content":content})],
+             data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":parseInt(subject_id),"subject_content":content})],
             //数据加密
             jsonEncryptData=jsEncryptData(data);
             console.log(data);
