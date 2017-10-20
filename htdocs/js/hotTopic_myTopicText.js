@@ -30,59 +30,62 @@ $(document).ready(function(){
                     var  myDiscuss="";
                     var allDiscuss="";
                        // 循环评论
-                       // $.each(item.commont_list,function(i,item){
-                       //     if(item.user_code===user_code){
-                       //         //自己的评论
-                       //         myDiscuss+=`
-                       //         <div class="weui-media-box weui-media-box_text">
-                       //          <div class="topic">
-                       //              <a href="">
-                       //                  <p class="weui-media-box__title lf">${item.nickname}</p>
-                       //              </a>
-                       //
-                       //              <span class="right" style="font-size: 12px">${item.create_tiem}</span>
-                       //          </div>
-                       //          <p class="weui-media-box__desc">
-                       //              ${item.content}
-                       //          </p>
-                       //          <div style="text-align: right;font-size: 12px" class="praise">
-                       //              <img src=" image/del.png"  title="${item.commont_id}" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
-                       //              <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
-                       //              <span>${item.commont_likes_num}</span>
-                       //          </div>
-                       //      </div>
-                       //
-                       //         `;
-                       //         if(item.is_likes===0){
-                       //             // 移除点赞功能
-                       //         }
-                       //     }
-                       //     //所有的评轮
-                       //     allDiscuss+=`
-                       //     <div class="weui-media-box weui-media-box_text">
-                       //          <div class="topic">
-                       //              <a href="">
-                       //                  <p class="weui-media-box__title lf">${item.nickname}</p>
-                       //              </a>
-                       //
-                       //              <span class="right" style="font-size: 12px">${item.create_tiem}</span>
-                       //          </div>
-                       //          <p class="weui-media-box__desc">
-                       //              ${item.content}
-                       //          </p>
-                       //          <div style="text-align: right;font-size: 12px"  class="praise">
-                       //              <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
-                       //              <span>${item.commont_likes_num}</span>
-                       //          </div>
-                       //      </div>
-                       //
-                       //     `
-                       // });
+                    if(result.commont_lis){
+                        $.each(result.commont_list,function(i,item){
+
+                            if(item.user_code===user_code){
+                                //自己的评论
+                                myDiscuss+=`
+                                <div class="weui-media-box weui-media-box_text">
+                                 <div class="topic">
+                                     <a href="">
+                                         <p class="weui-media-box__title lf">${item.nickname}</p>
+                                     </a>
+                       
+                                     <span class="right" style="font-size: 12px">${item.create_tiem}</span>
+                                 </div>
+                                 <p class="weui-media-box__desc">
+                                     ${item.content}
+                                 </p>
+                                 <div style="text-align: right;font-size: 12px" class="praise">
+                                     <img src=" image/del.png"  title="${item.commont_id}" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
+                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <span>${item.commont_likes_num}</span>
+                                 </div>
+                             </div>
+                       
+                                `;
+                                if(item.is_likes===0){
+                                    // 移除点赞功能
+                                }
+                            }
+                            //所有的评轮
+                            allDiscuss+=`
+                            <div class="weui-media-box weui-media-box_text">
+                                 <div class="topic">
+                                   <a href="">
+                                        <p class="weui-media-box__title lf">${item.nickname}</p>
+                                     </a>
+                       
+                                     <span class="right" style="font-size: 12px">${item.create_tiem}</span>
+                                 </div>
+                                 <p class="weui-media-box__desc">
+                                     ${item.content}
+                                 </p>
+                                 <div style="text-align: right;font-size: 12px"  class="praise">
+                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <span>${item.commont_likes_num}</span>
+                                 </div>
+                             </div>
+                       
+                            `;
+                        });
+                    }
                         html=`
                     <div class="weui-media-box weui-media-box_text">
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
                         <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
-                            <li class="weui-media-box__info__meta">作者：<span>${result.nicename}</span></li>
+                            <li class="weui-media-box__info__meta">作者：<span>${result.nickname}</span></li>
                             <li class="weui-media-box__info__meta">时间：${result.create_time}</li>
                            
                         </ul>
@@ -107,9 +110,7 @@ $(document).ready(function(){
                            <li>
                               反对人数 <span>1321</span>
                            </li>
-                           <li>
-                               <a href="">律师援助</a>
-                           </li>
+                         
                        </ul>
                     </div>
                         `;

@@ -82,18 +82,18 @@ a:hover {
 .readNum{
     margin-top: 10px;
 }
-.comment{
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    font-size: 12px;
-    justify-content:space-between;
+/*.comment{*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*flex-wrap: wrap;*/
+    /*font-size: 12px;*/
+    /*justify-content:space-between;*/
 
-}
+/*}*/
 
-.comment li{
-    margin-right: 5px;
-}
+/*.comment li{*/
+    /*margin-right: 5px;*/
+/*}*/
 .weui-media-box {
     padding:10px 15px;
 
