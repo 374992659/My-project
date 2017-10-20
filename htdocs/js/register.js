@@ -43,7 +43,7 @@ $(document).ready(function(){
                 console.log(data.errcode);
                 if(data.errcode===0){
                     var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${item.errmsg}</p>
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
                     $(".topHint").html(html);
                     $(".topHint").show();
@@ -55,7 +55,7 @@ $(document).ready(function(){
                    window.location.href="friend.html";
                 }else{
                     var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${item.errmsg}</p>
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
                     $(".topHint").html(html);
                     $(".topHint").show();
@@ -63,7 +63,6 @@ $(document).ready(function(){
                         $(".topHint").hide()
                     }
                     setTimeout(hide(),3000);
-                    alert(data.errmsg);
                 }
             }
         })
