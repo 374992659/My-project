@@ -77,6 +77,7 @@ $(document).ready(function(){
                                      ${item.content}
                                  </p>
                                  <div style="text-align: right;font-size: 12px"  class="praise">
+                                     <img src=" image/del.png"  title="${item.commont_id}" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
                                      <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                      <span>${item.commont_likes_num}</span>
                                  </div>
@@ -241,7 +242,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-
+                    pageSuccess();
                 }else{
                     console.log(data.errmsg);
                 }
