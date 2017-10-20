@@ -193,7 +193,7 @@ $(document).ready(function(){
         });
     })();
     // 群话题点赞
-    $(".discuss").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(){
+    $("#topicText").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 获取群号码
@@ -225,7 +225,7 @@ $(document).ready(function(){
 
     });
     //   评论点赞
-    $(".weui-tab__bd-item").on("click",".weui-media-box .praise .disPraiseImg",function(){
+    $(".discuss").on("click",".weui-media-box .praise .disPraiseImg",function(){
         // 获取评论id
         var commont_id=$(this).attr("title");
         // 获取apptoken
