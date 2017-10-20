@@ -100,9 +100,11 @@ $(document).ready(function(){
                         </div>
                         <div class="weui-flex" style="margin-top: 10px">
                             <div class="weui-flex__item" style="color: black">
-                                点赞：<span >
-                                <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">${data.data.likes_num}
-                             </span>
+                                点赞：
+                                <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">
+                                <span >
+                                ${data.data.likes_num}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -216,6 +218,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png");
+                    $(".CommonPraiseImg").
                 }else{
                     console.log(data.errmsg);
 
