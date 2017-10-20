@@ -14,17 +14,10 @@
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/userLanding.css">
-    <!--<script>-->
-        <!--document.documentElement.style.fontSize = document.documentElement.clientWidth /30 + 'px';-->
-    <!--</script>-->
     <style>
     </style>
 </head>
 <body>
-<!--头部提示-->
-
-    <!--<p class="topHint" style="text-align: center;background: green;font-size: 15px;display: none;color: red">asd asd </p>-->
-
 <!--注册页面-->
    <div id="userLand">
       <div class="weui-cells">
@@ -42,7 +35,7 @@
                    <label class="weui-label">账号</label>
                </div>
                <div class="weui-cell__bd">
-                   <input class="weui-input account" type="tel" placeholder="请输入账号6-12位数字或字母"  minlength="6" maxlength="12"   onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                   <input class="weui-input account" type="tel" placeholder="6-12位数字或字母(必填)"  minlength="6" maxlength="12"   onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
                </div>
 
            </div>
@@ -54,7 +47,7 @@
                    <label class="weui-label">密码</label>
                </div>
                <div class="weui-cell__bd">
-                   <input class="weui-input password" type="password" placeholder="数字或字母"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                   <input class="weui-input password" type="password" placeholder="数字或字母(必填)"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
                </div>
            </div>
             <!--确认密码-->
@@ -63,7 +56,7 @@
                    <label class="weui-label">确认密码</label>
                </div>
                <div class="weui-cell__bd">
-                   <input class="weui-input repassword" type="password" placeholder="请确认密码" >
+                   <input class="weui-input repassword" type="password" placeholder="请确认密码(必填)" >
                </div>
            </div>
            <div class="weui-cell weui-cell_vcode">

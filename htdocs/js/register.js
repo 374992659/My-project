@@ -35,27 +35,18 @@ $(document).ready(function(){
             data:{"data":afterDate},
             success:function(data){
                 data=jsDecodeData( data );
-                console.log(data.apptoken);
                 localStorage.setItem("apptoken",data.apptoken);
-               var  cityID=$("#city option:selected").val();
-
-                console.log(data);
-                console.log(data.errcode);
                 if(data.errcode===0){
-                   $(".topHint p").html(data.errmsg);
-                   $(".topHint").attr("style","display:block");
-                    function hide() {
-                        $(".topHint").hide()
-                    }
-                    setTimeout(hide(),3000);
+                    var  cityID=$("#city option:selected").val();
                     localStorage.setItem("city_id",cityID);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
                    window.location.href="friend.html";
                 }else{
                     $(document).on('click','#show-success',function(){
                         $.toptip(data.errmsg, 'success');
                     });
-
-                    console.log(123);
                 }
             }
         })
