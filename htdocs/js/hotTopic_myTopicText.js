@@ -106,12 +106,12 @@ $(document).ready(function(){
                     if(result.choise_votes){
                           $.each(result.choise_votes,function(i,item){
                               option+=`
-                <label class="weui-cell weui-check__label" for="x1">
+                <label class="weui-cell weui-check__label" >
                     <div class="weui-cell__bd">
                         <p>${item.content}</p>
                     </div>
                     <div class="weui-cell__ft">
-                        <input type="radio" class="weui-check" name="radio1" id="x1">
+                        <input type="radio" class="weui-check" name="radio1">
                         <span class="weui-icon-checked"></span>
                     </div>
                 </label>
