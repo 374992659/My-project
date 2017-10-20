@@ -52,7 +52,7 @@ $(document).ready(function(){
                    window.location.href="friend.html";
                 }else{
                     $(".topHint p").html(data.errmsg);
-                    $(".topHint").attr("style","display:block");
+                    $(".topHint").show();
 
                     function hide() {
                         $(".topHint").hide()
