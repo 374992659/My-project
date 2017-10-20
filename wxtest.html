@@ -32,7 +32,7 @@
         })();
         var code = $_GET['code'];
 		var url = location.href;
-        api_url =  'http://39.108.237.198/project/index.php?m=Api&c=regiest&a=getOpenid&debugging=test';
+        api_url =  'http://39.108.237.198/project/index.php?m=Api&c=regiest&a=getCode&debugging=test';
 		if(!code){
             $.post({
                 url:api_url,
@@ -41,6 +41,16 @@
                 data:{'url':url},
                 success:function(res){
                     location.href = res.data;
+                }
+            })
+        }else{
+            $.post({
+                url:'http://39.108.237.198/project/index.php?m=Api&c=regiest&a=GetOpenidFromMp&debugging=test',
+                type:'POST',
+                crossDomain: true,
+                data:{'code':code},
+                success:function(res){
+                    location.href = res;
                 }
             })
         }
