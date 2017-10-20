@@ -512,7 +512,7 @@ class RegiestController extends BaseController
      * 获取基础支持的accessToken
      * */
     public function getAccessToken(){
-//        $accesstoken =  S('accessToken');
+        $accesstoken =  S('accessToken');
         if(!$accesstoken){
             $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx3a8d29551364f089&secret=d6ced1ed28305e5ab8ad6794df07635d';
             $ch = curl_init();
