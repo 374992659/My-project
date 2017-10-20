@@ -51,8 +51,8 @@ $(document).ready(function(){
                     localStorage.setItem("city_id",cityID);
                    window.location.href="friend.html";
                 }else{
-                    $(".topHint p").html(data.errmsg).show(300).delay(3000).hide(300);
-                    
+                    $(".topHint").html(data.errmsg).show(300).delay(3000).hide(300);
+
                     console.log(123);
                 }
             }
