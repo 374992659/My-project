@@ -1,4 +1,4 @@
-// $(document).ready(function(){
+$(document).ready(function(){
     "use strict";
     // 获取用户user_code;
     var user_code="";
@@ -26,13 +26,15 @@
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var result=data.data;
+                    var user_code=result.user_code;
+                    // 投票选项
+                    var choise="";
                     var html="";
                     var  myDiscuss="";
                     var allDiscuss="";
                        // 循环评论
                     if(result.commont_lis){
                         $.each(result.commont_list,function(i,item){
-
                             if(item.user_code===user_code){
                                 //自己的评论
                                 myDiscuss+=`
@@ -81,6 +83,20 @@
                             `;
                         });
                     }
+                    // 循环投票选项
+                      if(result.choise_votes){
+                        $.each(result.choise_votes,function(i,item){
+                            choise+=`
+                            <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                  <p>${item.content}</p>
+                            </div>
+                             <div class="weui-cell__ft">${item.num}</div>
+                        </div>
+                            
+                            `
+                        })
+                      }
                         html=`
                     <div class="weui-media-box weui-media-box_text">
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
@@ -99,24 +115,14 @@
                             <span>分享</span>
                         </div>
                     </div>
-                    <div class="weui-media-box weui-media-box_text" style="background: 	#FCFCFC">
-                       <ul class="comment">
-                           <li>
-                               中立人数 <span>132112312</span>
-                           </li>
-                           <li>
-                               同意人数 <span>1321</span>
-                           </li>
-                           <li>
-                              反对人数 <span>1321</span>
-                           </li>
-                         
-                       </ul>
+                    <div class="weui-cells choiseList">
+                       
                     </div>
                         `;
+                    $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
-                    $(".hotTopicContent").html(html);
+                    $(".choiseList").append(choise);
                 }
             }
         })
