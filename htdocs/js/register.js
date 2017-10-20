@@ -54,7 +54,7 @@ $(document).ready(function(){
                     localStorage.setItem("city_id",cityID);
                    window.location.href="friend.html";
                 }else{
-                    console.log(123);
+                   
                     var html=`
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
@@ -64,6 +64,7 @@ $(document).ready(function(){
                         $(".topHint").hide()
                     }
                     setTimeout(hide(),3000);
+                    console.log(123);
                 }
             }
         })
