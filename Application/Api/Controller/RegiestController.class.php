@@ -418,6 +418,7 @@ class RegiestController extends BaseController
 //            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
             $baseUrl = urlencode($url);
             $url = $this->__CreateOauthUrlForCode($baseUrl);
+            $this->echoEncrypData(0,'',$url);
             Header("Location: $url");
             exit();
         } else {
