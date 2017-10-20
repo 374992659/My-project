@@ -409,24 +409,15 @@ class RegiestController extends BaseController
      * 获取微信openId
      * @param url 回调地址
      * */
-    public function getOpenid()
+    public function getCode()
     {
         $url = $this->pdata['url'];
-        //通过code获得openid
-        if (!isset($_GET['code'])){
-            //触发微信返回code码
-//            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
-            $baseUrl = urlencode($url);
-            $url = $this->__CreateOauthUrlForCode($baseUrl);
-            $this->echoEncrypData(0,'',$url);
-            Header("Location: $url");
-            exit();
-        } else {
-            //获取code码，以获取openid
-            $code = $_GET['code'];
-            $openid = $this->getOpenidFromMp($code);
-            return $openid;
-        }
+        //触发微信返回code码
+        $baseUrl = urlencode($url);
+        $url = $this->__CreateOauthUrlForCode($baseUrl);
+        $this->echoEncrypData(0,'',$url);
+//        Header("Location: $url");
+        exit();
     }
     /**
      *
@@ -452,8 +443,9 @@ class RegiestController extends BaseController
      *
      * @return openid
      */
-    public function GetOpenidFromMp($code)
+    public function GetOpenidFromMp()
     {
+        $code = $this->pdate['code'];
         $url = $this->__CreateOauthUrlForOpenid($code);
         //初始化curl
         $ch = curl_init();
@@ -476,6 +468,7 @@ class RegiestController extends BaseController
         $data = json_decode($res,true);
         $this->data = $data;
         $openid = $data['openid'];
+        $this->echoEncrypData(0,'',$openid);
         return $openid;
     }
 
