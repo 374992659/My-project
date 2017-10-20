@@ -5,7 +5,7 @@ $(document).ready(function(){
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken"),
     // 获取话题发布所属的小区
-        garden_code=localStorage.getItem("garden_code"),
+        garden_code=270113,
     // 获取话题id
         subject_id=localStorage.getItem("subject_id");
     // 数据格式转换
