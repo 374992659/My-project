@@ -118,11 +118,13 @@ a:hover {
     font-size: 15px;
     text-align: center;
 }
-.weui-input {
+.publishDis .weui-input {
     width: 100%;
+    height: 2.411765em;
+    line-height: 2.41176471;
 }
-.weui-input {
-    width: 100%;
+.topicVote .weui-input {
+    width: 80%;
     height: 2.411765em;
     line-height: 2.41176471;
 }
