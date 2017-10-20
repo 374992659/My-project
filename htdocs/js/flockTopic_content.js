@@ -106,9 +106,10 @@ $(document).ready(function(){
                         </div>
                     `;
                      // 对所有评论循环遍历
-                     $.each(data.data.commont_list,function(i,item){
-                         if(item.user_code=userCode){
-                             mydiscuss+=`
+                    if(data.data.commont_list){
+                        $.each(data.data.commont_list,function(i,item){
+                            if(item.user_code=userCode){
+                                mydiscuss+=`
                          <div class="weui-media-box weui-media-box_text">
                              <div class="topic">
                                <a href="">
@@ -126,8 +127,8 @@ $(document).ready(function(){
                               </div>
                           </div>
                               `;
-                         }
-                    alldiscuss+=`
+                            }
+                            alldiscuss+=`
                           <div class="weui-media-box weui-media-box_text">
                               <div class="topic">
                                   <a href="">
@@ -146,7 +147,9 @@ $(document).ready(function(){
                           </div>
                     
                          `;
-                     });
+                        });
+                    }
+
                     $("#topicText").html(html);
                     $(".myDiscuss").append(mydiscuss);
                     $(".allDiscuss").append(alldiscuss);
