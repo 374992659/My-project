@@ -46,7 +46,7 @@ $(document).ready(function(){
                             <p class="weui-media-box__desc">
                                ${item.content}
                             </p>
-                            <div style="text-align: right;font-size: 12px"  class="praise">
+                            <div style="text-align: right;font-size: 12px" class="praise">
                                 <img src=" image/del.png" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
                                 <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px;position: relative;z-index: 10000">
                                 <span class="praiseNum">${item.commont_likes}</span>
@@ -230,7 +230,7 @@ $(document).ready(function(){
 
     });
     //   评论点赞
-    $(".discuss").on("click",".weui-media-box_text .praise .disPraiseImg",function(){
+    $(".weui-tab__bd-item .discuss").on("click",".weui-media-box_text .praise .disPraiseImg",function(e){
         console.log(123);
         // 获取评论id
         var commont_id=$(this).attr("title");
