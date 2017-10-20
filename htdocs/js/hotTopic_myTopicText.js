@@ -25,10 +25,10 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    var result=data.data;
                     var html="";
                     var  myDiscuss="";
                     var allDiscuss="";
-                    $.each(data.data,function(i,item){
                        // 循环评论
                        // $.each(item.commont_list,function(i,item){
                        //     if(item.user_code===user_code){
@@ -80,19 +80,19 @@ $(document).ready(function(){
                        // });
                         html=`
                     <div class="weui-media-box weui-media-box_text">
-                        <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${item.title}</h4>
+                        <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
                         <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
-                            <li class="weui-media-box__info__meta">作者：<span>${item.nicename}</span></li>
-                            <li class="weui-media-box__info__meta">时间：${item.create_time}</li>
-                            <li class="weui-media-box__info__meta weui-media-box__info__meta_extra">其它信息</li>
+                            <li class="weui-media-box__info__meta">作者：<span>${iresult.nicename}</span></li>
+                            <li class="weui-media-box__info__meta">时间：${result.create_time}</li>
+                           
                         </ul>
                         <p class="weui-media-box__desc" style=" text-indent:2em">
-                            ${item.content}
+                            ${result.content}
                         </p>
                         <div style="text-align: right;font-size: 12px" class="readNum">
-                            阅读量 <span>${item.read_num}</span>
-                            <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${item.total_votes}</span>
-                            <span class="topicDiscu">评论 ${item.commont_num}</span>
+                            阅读量 <span>${result.read_num}</span>
+                            <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${result.total_votes}</span>
+                            <span class="topicDiscu">评论 ${result.commont_num}</span>
                             <span>分享</span>
                         </div>
                     </div>
@@ -112,8 +112,7 @@ $(document).ready(function(){
                            </li>
                        </ul>
                     </div>
-                        `
-                    });
+                        `;
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
                     $(".hotTopicContent").html(html);
