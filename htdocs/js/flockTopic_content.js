@@ -2,7 +2,7 @@ $(document).ready(function(){
 
     "use strict";
 // 加载页面
-    var getPage=function(){
+
         // 时间戳转换函数
         var getLocalTime=function (nS) {
             return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
@@ -112,7 +112,7 @@ $(document).ready(function(){
                                 <a href="">
                                     <p class="weui-media-box__title lf">${item.nickname}</p>
                                 </a>
-                                <span class="right" style="font-size: 12px">new Date(parseInt(${item.create_time}) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');</span>
+                                <span class="right" style="font-size: 12px">getLocalTime(${item.create_time})</span>
                             </div>
                             <p class="weui-media-box__desc">
                                ${item.content}
@@ -132,7 +132,6 @@ $(document).ready(function(){
                 }
             }
         });
-    };getPage();
 
     // 发表评论
     (function(){
@@ -196,7 +195,6 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png")
-                    getPage();
                 }else{
                     console.log(data.errmsg);
 
