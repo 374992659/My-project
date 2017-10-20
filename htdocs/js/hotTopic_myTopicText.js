@@ -1,4 +1,4 @@
-$(document).ready(function(){
+// $(document).ready(function(){
     "use strict";
     // 获取用户user_code;
     var user_code="";
