@@ -1,5 +1,9 @@
 $(document).ready(function(){
     "use strict";
+    // 时间戳转换函数
+    function getLocalTime(nS) {
+        return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+    }
 // 加载页面
     var getPage=function(){
         // 获取apptoken
