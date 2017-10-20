@@ -120,7 +120,7 @@ class WeChatController extends BaseController
      * 获取基础支持的accessToken
      * */
     protected function getAccessToken(){
-//        $accesstoken =  S('accessToken');
+        $accesstoken =  S('accessToken');
         if(!$accesstoken){
             $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.C('APPID').'&secret='.C('APPSECRET');
             $ch = curl_init();
@@ -136,7 +136,7 @@ class WeChatController extends BaseController
             S('accessToken',json_encode($data),$data['expires_in']);
             return $data['access_token'];
         }else{
-            return json_decode($accesstoken,true);
+            return json_decode($accesstoken,true)['access_token'];
         }
     }
     /*
