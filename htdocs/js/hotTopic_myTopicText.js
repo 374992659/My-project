@@ -270,7 +270,7 @@ $(document).ready(function(){
         })
     });
     // 功能6 话题投票
-    $(".publishBtn").click(function(){
+    $(".topicVote").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
             garden_code=270113,
