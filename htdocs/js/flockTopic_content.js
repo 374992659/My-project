@@ -32,6 +32,79 @@ $(document).ready(function(){
                     var alldiscuss="";
                     // 我的评论
                     var mydiscuss="";
+                    
+                    var html=`
+                        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd" style="background: #F0F0F0">
+                <div class="weui-media-box weui-media-box_text">
+                    <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${data.data.title}</h4>
+                    <ul class="weui-media-box__info" style="font-size: 15px;color: #BEBEBE">
+                        <li class="weui-media-box__info__meta">作者：<a href=""><span>${data.data.nickname}</span></a></li>
+                        <li class="weui-media-box__info__meta">时间：${data.data.create_time}</li>
+
+                    </ul>
+                    <p class="weui-media-box__desc" style=" text-indent:1em;font-size: 16px;color:black">
+                        ${data.data.content}
+                    </p>
+                </div>
+                <div class="weui-media-box weui-media-box_text" style="background: 	#FCFCFC">
+                    <div class="weui-media-box__desc" style="font-size: 15px">
+                        <div class="weui-flex">
+                            <div class="weui-flex__item" style="color: black">
+                                阅读数量：<span>${data.data.read_num}</span>
+                            </div>
+                            <div class="weui-flex__item" style="color: black">
+                                评论：<span >${data.data.commont_num}</span>
+                            </div>
+                        </div>
+                        <div class="weui-flex" style="margin-top: 10px">
+                            <div class="weui-flex__item" style="color: black">
+                                点赞：
+                                <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">
+                                <span class="praiseNum">
+                                ${data.data.likes_num}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-media-box__desc" style="margin-top: 10px;font-size: 15px;color: black">
+                        <a href="" style="">律师援助</a>
+                        <span style="margin-left:10px ">分享</span>
+                        <span style="margin-left:10px " class="commentBtn">评论</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                <div class="discuss">
+        <div class="weui-tab">
+            <div class="weui-navbar">
+                <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                    我的评论
+                </a>
+                <a class="weui-navbar__item" href="#tab2">
+                    全部评论
+                </a>
+            </div>
+            <div class="weui-tab__bd">
+                <!--我的评论-->
+                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                    <div class="weui-panel__bd myDiscuss discuss">
+                        
+                      
+                    </div>
+                </div>
+                <!--全部评论-->
+                <div id="tab2" class="weui-tab__bd-item">
+                    <div class="weui-panel__bd allDiscuss discuss">
+                        
+                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                        </div>
+                    `;
                     // 对所有评论循环遍历
                     $.each(data.data.commont_list,function(i,item){
                         if(item.user_code=userCode){
@@ -74,79 +147,6 @@ $(document).ready(function(){
                         
                         `
                     });
-                    var html=`
-        <div class="weui-panel weui-panel_access">
-            <div class="weui-panel__bd" style="background: #F0F0F0">
-                <div class="weui-media-box weui-media-box_text">
-                    <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${data.data.title}</h4>
-                    <ul class="weui-media-box__info" style="font-size: 15px;color: #BEBEBE">
-                        <li class="weui-media-box__info__meta">作者：<a href=""><span>${data.data.nickname}</span></a></li>
-                        <li class="weui-media-box__info__meta">时间：${data.data.create_time}</li>
-
-                    </ul>
-                    <p class="weui-media-box__desc" style=" text-indent:1em;font-size: 16px;color:black">
-                        ${data.data.content}
-                    </p>
-                </div>
-                <div class="weui-media-box weui-media-box_text" style="background: 	#FCFCFC">
-                    <div class="weui-media-box__desc" style="font-size: 15px">
-                        <div class="weui-flex">
-                            <div class="weui-flex__item" style="color: black">
-                                阅读数量：<span>${data.data.read_num}</span>
-                            </div>
-                            <div class="weui-flex__item" style="color: black">
-                                评论：<span >${data.data.commont_num}</span>
-                            </div>
-                        </div>
-                        <div class="weui-flex" style="margin-top: 10px">
-                            <div class="weui-flex__item" style="color: black">
-                                点赞：
-                                <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">
-                                <span class="praiseNum">
-                                ${data.data.likes_num}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="weui-media-box__desc" style="margin-top: 10px;font-size: 15px;color: black">
-                        <a href="" style="">律师援助</a>
-                        <span style="margin-left:10px ">分享</span>
-                        <span style="margin-left:10px " class="commentBtn">评论</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="discuss">
-        <div class="weui-tab">
-            <div class="weui-navbar">
-                <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
-                    我的评论
-                </a>
-                <a class="weui-navbar__item" href="#tab2">
-                    全部评论
-                </a>
-            </div>
-            <div class="weui-tab__bd">
-                <!--我的评论-->
-                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-                    <div class="weui-panel__bd myDiscuss discuss">
-                        
-                      
-                    </div>
-                </div>
-                <!--全部评论-->
-                <div id="tab2" class="weui-tab__bd-item">
-                    <div class="weui-panel__bd allDiscuss discuss">
-                        
-                     
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-            `;
-
                     $("#topicText").html(html);
                     $("#tab1").append(mydiscuss);
                     $(".allDiscuss").append(alldiscuss);
