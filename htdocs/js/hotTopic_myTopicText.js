@@ -271,7 +271,7 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken"),
             garden_code=270113,
             subject_id=localStorage.getItem("subject_id"),
-            choise=[],
+            choise={},
             content=$(".contentVote").val();
             $(".optionList input[name=radio1]:checked").each(function(i,item){
                 choise[parseInt(i+1)]=$(this).parent().prev().children().html()
