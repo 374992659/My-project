@@ -33,17 +33,16 @@
         var code = $_GET['code'];
 		var url = location.href;
         api_url =  'http://39.108.237.198/project/index.php?m=Api&c=regiest&a=getOpenid&debugging=test';
-		if(code){
-            var api_url =  'http://39.108.237.198/project/index.php?m=Api&c=regiest&a=getOpenid&debugging=test&code='+code;
+		if(!code){
+            $.post({
+                url:api_url,
+                type:'POST',
+                crossDomain: true,
+                data:{'url':url},
+                success:function(res){
+                    location.href = res.data;
+                }
+            })
         }
-        $.post({
-            url:api_url,
-            type:'POST',
-            crossDomain: true,
-            data:{'url':url},
-            success:function(res){
-                location.href = res.data;
-            }
-        })
     })
 </script>
