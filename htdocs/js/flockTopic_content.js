@@ -219,8 +219,8 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png");
                    var a=$(".praiseNum").html();
-                   console.log(typeof a);
-                    $(".praiseNum").html(a+"1")
+                   a=parseInt(a);
+                    $(".praiseNum").html(a+1)
                 }else{
                     console.log(data.errmsg);
 
