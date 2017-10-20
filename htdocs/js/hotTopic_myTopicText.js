@@ -180,6 +180,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(".publishDis").hide();
+                        pageSuccess()
                     }else{
                         console.log(data.errmsg);
                     }
