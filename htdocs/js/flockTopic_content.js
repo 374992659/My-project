@@ -230,7 +230,7 @@ $(document).ready(function(){
 
     });
     //   评论点赞
-    $(".myDiscuss").on("click",".weui-media-box .praise .disPraiseImg",function(){
+    $(".discuss").on("click",".weui-media-box_text .praise .disPraiseImg",function(){
         console.log(123);
         // 获取评论id
         var commont_id=$(this).attr("title");
