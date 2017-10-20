@@ -33,7 +33,7 @@ $(document).ready(function(){
                     var  myDiscuss="";
                     var allDiscuss="";
                        // 循环评论
-                    if(result.commont_lis){
+                    if(result.commont_list){
                         $.each(result.commont_list,function(i,item){
                             if(item.user_code===user_code){
                                 //自己的评论
