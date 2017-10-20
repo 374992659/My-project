@@ -147,7 +147,7 @@ $(document).ready(function(){
                     //
                     //      `;
                     // });
-                    // $("#topicText").html(html);
+                    $("#topicText").html(html);
                     $(".myDiscuss").append(mydiscuss);
                     $(".allDiscuss").append(alldiscuss);
                 }
