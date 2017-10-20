@@ -33,7 +33,6 @@ $(document).ready(function(){
                     var alldiscuss="";
                     // 我的评论
                     var mydiscuss="";
-
                     var html=`
                         <div class="weui-panel weui-panel_access">
             <div class="weui-panel__bd" style="background: #F0F0F0">
@@ -149,7 +148,7 @@ $(document).ready(function(){
                          `;
                     });
                     $("#topicText").html(html);
-                    $("#tab1").append(mydiscuss);
+                    $(".myDiscuss").append(mydiscuss);
                     $(".allDiscuss").append(alldiscuss);
                 }
             }
