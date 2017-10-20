@@ -9,7 +9,7 @@
 
 namespace Api\Controller;
 use Api\Model;
-require_once './Application/Common/lib/Wxpay.Api.php';
+include_once './Application/Common/lib/Wxpay.Api.php';
 class RegiestController extends BaseController
 {
     /*
