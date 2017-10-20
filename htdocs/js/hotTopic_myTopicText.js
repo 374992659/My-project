@@ -160,7 +160,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         pageSuccess();
-                        $(".publishBtn").hide();
+                        $(".publishDis").hide();
                     }else{
                         console.log(data.errmsg);
                     }
