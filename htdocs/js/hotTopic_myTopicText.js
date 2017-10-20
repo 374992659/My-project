@@ -28,6 +28,8 @@ $(document).ready(function(){
                     var result=data.data;
                     var user_code=result.user_code;
                     // 投票选项
+                    var option="";
+                    // 每个选项的投票情况投票选项
                     var choise="";
                     var html="";
                     var  myDiscuss="";
@@ -100,6 +102,20 @@ $(document).ready(function(){
                             `
                         })
                       }
+                      // 循环添加投票选项
+                    if(result.choise_votes){
+                        option+=`
+                <label class="weui-cell weui-check__label" for="x1">
+                    <div class="weui-cell__bd">
+                        <p>${item.content}</p>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <input type="radio" class="weui-check" name="radio1" id="x1">
+                        <span class="weui-icon-checked"></span>
+                    </div>
+                </label>
+                        `
+                    }
                         html=`
                     <div class="weui-media-box weui-media-box_text">
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
@@ -126,6 +142,7 @@ $(document).ready(function(){
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
                     $(".choiseList").append(choise);
+                    $(".optionList").append(option);
                 }
             }
         })
