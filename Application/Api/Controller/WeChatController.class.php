@@ -145,6 +145,7 @@ class WeChatController extends BaseController
     public function sendMessage(){
         $openId = $this->pdata['openId'];
         $accessToken = $this->getAccessToken();
+        $this->echoEncrypData(0,'',$accessToken);
         $postData = '{
            "touser":"'.$openId.'",
            "template_id":"59Whrb8yTsqLaEY7rXxRdBlPylOUyCf1t37cie9q0Xo",
