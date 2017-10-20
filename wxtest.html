@@ -15,7 +15,27 @@
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script>
     $(function(){
+        var $_GET = (function() {
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            if (typeof(u[1]) == "string") {
+                u = u[1].split("&");
+                var get = {};
+                for (var i in u) {
+                    var j = u[i].split("=");
+                    get[j[0]] = j[1];
+                }
+                return get;
+            } else {
+                return {};
+            }
+        })();
+        var code = $_GET['code'];
 		var url = location.href;
+		data =  {'url':url};
+		if(code){
+            var data = {'url':url,'code':code};
+        }
         $.post({
             url:'http://39.108.237.198/project/index.php?m=Api&c=regiest&a=getOpenid&debugging=test',
             type:'POST',
