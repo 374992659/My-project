@@ -413,6 +413,7 @@ class RegiestController extends BaseController
     {
         $url = $this->pdata['url'];
         //通过code获得openid
+        $this->echoEncrypData(0,'',$url);
         if (!isset($_GET['code'])){
             //触发微信返回code码
 //            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
