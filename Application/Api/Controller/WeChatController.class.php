@@ -155,23 +155,23 @@ class WeChatController extends BaseController
                        "value":"恭喜你购买成功！",
                        "color":"#173177"
                    },
-                   "keynote1":{
+                   "keyword1":{
                        "value":"巧克力",
                        "color":"#173177"
                    },
-                   "keynote2": {
+                   "keyword2": {
                        "value":"39.8元",
                        "color":"#173177"
                    },
-                   "keynote3": {
+                   "keyword3": {
                        "value":"2014年9月22日",
                        "color":"#173177"
                    },
-                   "keynote4": {
+                   "keyword4": {
                        "value":"2014年9月22日",
                        "color":"#173177"
                    },
-                   "keynote5": {
+                   "keyword5": {
                        "value":"2014年9月22日",
                        "color":"#173177"
                    },
