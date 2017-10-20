@@ -1,17 +1,6 @@
 $(document).ready(function(){
     "use strict";
-    $(".commentBtn").click(function(){
-        if($(".publishDis").is(":hidden")){
-            $(".publishDis").show();
-        }else{
-            $(".publishDis").hide();
-        }
 
-    });
-    $(".publishBtn").click(function(){
-        $(".publishDis").hide();
-
-    });
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
     // 获取群号码
@@ -165,6 +154,7 @@ $.ajax({
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"group_addGroupSubjectLikes",
             type:"POST",
@@ -172,6 +162,7 @@ $.ajax({
             success:function (data) {
                 // 解密
                 data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoekn);
                     $(this).attr("src","image/praise.png")
@@ -197,6 +188,7 @@ $.ajax({
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id})];
 // 数据加密
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+'group_addGroupSubjectCommontLikes',
             type:"POST",
@@ -204,6 +196,7 @@ $.ajax({
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(this).attr("src","image/praise.png")
@@ -212,7 +205,18 @@ $.ajax({
                 }
             }
         })
-    })
+    });
+    $(".commentBtn").click(function(){
+        if($(".publishDis").is(":hidden")){
+            $(".publishDis").show();
+        }else{
+            $(".publishDis").hide();
+        }
 
+    });
+    $(".publishBtn").click(function(){
+        $(".publishDis").hide();
+
+    });
 
 });
