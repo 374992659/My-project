@@ -270,5 +270,31 @@ $(document).ready(function(){
         })
     });
     // 功能6 话题投票
+    $(".publishBtn").click(function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+            garden_code=270113,
+            subject_id=localStorage.getItem("subject_id"),
+            choise="",
+            content=$(".commentText").val();
+        // 数据格式转换
+        var data=["",JSON.stringify({"apptoekn":apptoken,"garden_code":garden_code,"subject_id":subject_id,"choise":choise,"content":content})],
+        // 加密
+        jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"Subject_addSubjectVote",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken)
+                }
+            }
+        })
+    })
 
 });
