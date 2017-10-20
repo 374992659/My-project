@@ -136,7 +136,7 @@ class WeChatController extends BaseController
             S('accessToken',json_encode($data),$data['expires_in']);
             return $data['access_token'];
         }else{
-            return json_decode($accesstoken,true)['access_token'];
+            return json_decode($accesstoken,true);
         }
     }
     /*
