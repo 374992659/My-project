@@ -271,8 +271,13 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken"),
             garden_code=270113,
             subject_id=localStorage.getItem("subject_id"),
-            choise="",
+            choise=[],
             content=$(".contentVote").val();
+            $(".optionList input[name=radio1]:checked]").each(function(i){
+                choise.push($(this).parent().prev().children().html)
+
+            });
+            console.log(choise);
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"choise":choise,"content":content})],
         // 加密
