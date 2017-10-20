@@ -219,7 +219,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png");
                    var a=$(".praiseNum").html();
-                    $(".praiseNum").html(a+1)
+                    $(".praiseNum").html(a+"1")
                 }else{
                     console.log(data.errmsg);
 
