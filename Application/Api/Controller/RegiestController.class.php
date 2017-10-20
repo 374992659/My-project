@@ -445,7 +445,7 @@ class RegiestController extends BaseController
      */
     public function GetOpenidFromMp()
     {
-        $code = $this->pdate['code'];
+        $code = $this->pdata['code'];
         $url = $this->__CreateOauthUrlForOpenid($code);
         //初始化curl
         $ch = curl_init();
