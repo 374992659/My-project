@@ -211,14 +211,14 @@ $(document).ready(function(){
             url:url+"group_addGroupSubjectLikes",
             type:"POST",
             data:{"data":jsonEncryptData},
-            success:function (data) {
+            success:function (data,e) {
                 // 解密
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png");
-                   var a=$(this).siblings().html();
+                   var a=$(e.target).siblings().html();
                    console.log(a);
                     a=parseInt(a);
                     $(this).next().html(a+1)
