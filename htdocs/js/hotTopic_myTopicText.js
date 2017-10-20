@@ -36,6 +36,10 @@ $(document).ready(function(){
                     if(result.commont_list){
                         $.each(result.commont_list,function(i,item){
                             if(item.user_code===user_code){
+                                if(item.is_likes==0){
+                                // 移除点赞功能
+
+                            }
                                 //自己的评论
                                 myDiscuss+=`
                                 <div class="weui-media-box weui-media-box_text">
@@ -44,7 +48,7 @@ $(document).ready(function(){
                                          <p class="weui-media-box__title lf">${item.nickname}</p>
                                      </a>
                        
-                                     <span class="right" style="font-size: 12px">${item.create_tiem}</span>
+                                     <span class="right" style="font-size: 12px">${item.create_time}</span>
                                  </div>
                                  <p class="weui-media-box__desc">
                                      ${item.content}
@@ -57,9 +61,7 @@ $(document).ready(function(){
                              </div>
                        
                                 `;
-                                if(item.is_likes===0){
-                                    // 移除点赞功能
-                                }
+
                             }
                             //所有的评轮
                             allDiscuss+=`
@@ -184,7 +186,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                   img.attr("src","image/praise.png");
+                    img.attr("src","image/praise.png");
                     pageSuccess();
                 }else{
                     console.log(data.errmsg);
