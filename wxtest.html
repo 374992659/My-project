@@ -39,6 +39,7 @@
         $.post({
             url:api_url,
             type:'POST',
+            dataType: 'jsonp',
             data:{'url':url},
             success:function(res){
                 console.log(res);
