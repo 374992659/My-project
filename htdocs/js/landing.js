@@ -19,9 +19,9 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":jsonEncryptDate},
             success:function(data){
+                console.log(data);
                 // 解密返回的数据
                 data=jsDecodeData(data);
-                console.log(data);
                 if(data.errcode===0){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
