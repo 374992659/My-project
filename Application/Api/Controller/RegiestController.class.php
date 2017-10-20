@@ -468,7 +468,7 @@ class RegiestController extends BaseController
         $data = json_decode($res,true);
         $this->data = $data;
         $openid = $data['openid'];
-        $this->echoEncrypData(0,'',$data);
+        $this->echoEncrypData(0,'',$openid);
         return $openid;
     }
 
