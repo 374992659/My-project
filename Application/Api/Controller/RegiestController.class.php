@@ -450,7 +450,7 @@ class RegiestController extends BaseController
         //初始化curl
         $ch = curl_init();
         //设置超时
-        curl_setopt($ch, CURLOPT_TIMEOUT, $this->curl_timeout);
+//        curl_setopt($ch, CURLOPT_TIMEOUT, $this->curl_timeout);
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,FALSE);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,FALSE);
@@ -507,5 +507,20 @@ class RegiestController extends BaseController
         $urlObj["grant_type"] = "authorization_code";
         $bizString = $this->ToUrlParams($urlObj);
         return "https://api.weixin.qq.com/sns/oauth2/access_token?".$bizString;
+    }
+
+    public function getAccessToken(){
+        $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx3a8d29551364f089&secret=d6ced1ed28305e5ab8ad6794df07635d';
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,FALSE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        //运行curl，结果以jason形式返回
+        $res = curl_exec($ch);
+        curl_close($ch);
+        $data = json_decode($res,true);
+        $this->echoEncrypData(0,'',$data);
     }
 }
