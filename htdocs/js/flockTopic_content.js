@@ -218,8 +218,8 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png");
-                   var a=$(e.target).siblings().innerHTML;
-                   console.log($(e.target));
+                   var a=$(e.target).siblings().html();
+                   console.log(a);
                     a=parseInt(a);
                     $(this).next().html(a+1)
                 }else{
