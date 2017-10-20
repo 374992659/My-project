@@ -89,7 +89,7 @@ $(document).ready(function(){
                         });
                     }
                     // 循环投票选项
-                      if(result.choise_votes){
+                    if(result.choise_votes){
                         $.each(result.choise_votes,function(i,item){
                             choise+=`
                             <div class="weui-cell">
@@ -104,7 +104,8 @@ $(document).ready(function(){
                       }
                       // 循环添加投票选项
                     if(result.choise_votes){
-                        option+=`
+                          $.each(result.choise_votes,function(i,item){
+                              option+=`
                 <label class="weui-cell weui-check__label" for="x1">
                     <div class="weui-cell__bd">
                         <p>${item.content}</p>
@@ -115,6 +116,8 @@ $(document).ready(function(){
                     </div>
                 </label>
                         `
+                          });
+
                     }
                         html=`
                     <div class="weui-media-box weui-media-box_text">
