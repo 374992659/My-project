@@ -57,11 +57,11 @@
             }
         }else{
             $.post({
-                url:'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN',
+                url:'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx3a8d29551364f089&secret=d6ced1ed28305e5ab8ad6794df07635d',
                 type:'POST',
                 data:{'code':code},
                 success:function(res){
-                    localStorage.setItem('openId',res.data);
+                    console.log(res);
                 }
             })
         }
