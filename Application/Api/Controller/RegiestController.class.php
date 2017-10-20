@@ -514,7 +514,7 @@ class RegiestController extends BaseController
     public function getAccessToken(){
         $accesstoken =  S('accessToken');
         if(!$accesstoken){
-            $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx3a8d29551364f089&secret=d6ced1ed28305e5ab8ad6794df07635d';
+            $url='https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid='.C('APPID').'&secret='.C('APPSECRET');
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,FALSE);
