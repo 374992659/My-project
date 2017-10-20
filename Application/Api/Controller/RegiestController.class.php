@@ -417,7 +417,7 @@ class RegiestController extends BaseController
             //触发微信返回code码
 //            $baseUrl = urlencode('http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].$_SERVER['QUERY_STRING']);
             $baseUrl = urlencode($url);
-            $this->echoEncrypData(0,'',$url);
+//            $this->echoEncrypData(0,'',$url);
             $url = $this->__CreateOauthUrlForCode($baseUrl);
             Header("Location: $url");
             exit();
