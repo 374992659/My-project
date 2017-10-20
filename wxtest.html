@@ -50,12 +50,20 @@
                     type:'POST',
                     data:{'code':code},
                     success:function(res){
+                        console.log(res.data);
                         localStorage.setItem('openId',res.data);
                     }
                 })
             }
         }else{
-            alert(openId);
+            $.post({
+                url:'https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=ACCESS_TOKEN',
+                type:'POST',
+                data:{'code':code},
+                success:function(res){
+                    localStorage.setItem('openId',res.data);
+                }
+            })
         }
     })
 </script>
