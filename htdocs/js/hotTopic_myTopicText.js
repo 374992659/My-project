@@ -273,9 +273,8 @@ $(document).ready(function(){
             subject_id=localStorage.getItem("subject_id"),
             choise=[],
             content=$(".contentVote").val();
-            $(".optionList input[name=radio1]:checked").each(function(i){
-                choise.push($(this).parent().prev().children().html)
-
+            $(".optionList input[name=radio1]:checked").each(function(i,item){
+                choise[parseInt(i+1)]=$(this).parent().prev().children().html()
             });
             console.log(choise);
         // 数据格式转换
