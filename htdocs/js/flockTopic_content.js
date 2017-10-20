@@ -1,12 +1,12 @@
 $(document).ready(function(){
-
+    // 时间戳转换函数
+    var getLocalTime=function (nS) {
+        return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+    };
     "use strict";
 // 加载页面
+    var getPage=function(){
 
-        // 时间戳转换函数
-        var getLocalTime=function (nS) {
-            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
-        };
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 获取群号码
@@ -132,6 +132,7 @@ $(document).ready(function(){
                 }
             }
         });
+    };getPage();
 
     // 发表评论
     (function(){
@@ -195,6 +196,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png")
+                    getPage();
                 }else{
                     console.log(data.errmsg);
 
