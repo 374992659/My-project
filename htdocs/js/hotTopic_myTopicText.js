@@ -179,7 +179,6 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        pageSuccess();
                         $(".publishDis").hide();
                     }else{
                         console.log(data.errmsg);
@@ -276,7 +275,7 @@ $(document).ready(function(){
             garden_code=270113,
             subject_id=localStorage.getItem("subject_id"),
             choise="",
-            content=$(".commentText").html();
+            content=$(".commentText").val();
         // 数据格式转换
         var data=["",JSON.stringify({"apptoekn":apptoken,"garden_code":garden_code,"subject_id":subject_id,"choise":choise,"content":content})],
         // 加密
