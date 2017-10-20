@@ -4,7 +4,6 @@ $(document).ready(function(){
         console.log(123);
         var timestamp = new Date().getTime();
         $(this).attr('src',"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=getPicCode&p="+timestamp );
-
     });
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
@@ -38,11 +37,32 @@ $(document).ready(function(){
                 data=jsDecodeData( data );
                 console.log(data.apptoken);
                 localStorage.setItem("apptoken",data.apptoken);
+               var  cityID=$("#city option:selected").val();
+
                 console.log(data);
                 console.log(data.errcode);
                 if(data.errcode===0){
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${item.errmsg}</p>
+                    `;
+                    $(".topHint").html(html);
+                    $(".topHint").show();
+                    function hide() {
+                        $(".topHint").hide()
+                    }
+                    setTimeout(hide(),3000);
+                    localStorage.setItem("city_id",cityID);
                    window.location.href="friend.html";
                 }else{
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${item.errmsg}</p>
+                    `;
+                    $(".topHint").html(html);
+                    $(".topHint").show();
+                    function hide() {
+                        $(".topHint").hide()
+                    }
+                    setTimeout(hide(),3000);
                     alert(data.errmsg);
                 }
             }
