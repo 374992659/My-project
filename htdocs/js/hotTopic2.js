@@ -11,7 +11,7 @@ $(document).ready(function(){
         this.hotTopic=function(){
             // 数据格式转换
             console.log(123);
-            var data=["",JSON.stringify({"apptoken":this.apptoken,"city_id":this.city_id,"garden_code":this.garden_code})];
+            var data=["",JSON.stringify({"apptoken":this.apptoken,"city_id":this.city_id})];
             // 加密
             var jsonEncryptData=jsEncryptData(data);
             console.log(data);
