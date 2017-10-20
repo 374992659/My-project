@@ -61,7 +61,8 @@
                 type:'POST',
                 data:'',
                 success:function(res){
-                    alert('accessToken',res.data.access_token);
+                    alert(res.data.access_token)
+                    localStorage.setItem('accessToken',res.data.access_token);
                 }
             })
         }
