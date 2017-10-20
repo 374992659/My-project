@@ -99,7 +99,6 @@ $.ajax({
              // 我的评论
              var mydiscuss="";
                 // 对所有评论循环遍历
-            console.log(html);
                  $("#topicText").html(html);
                 $("#tab1").append(mydiscuss);
                 $("#tab2").append(alldiscuss);
