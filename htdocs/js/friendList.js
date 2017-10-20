@@ -40,7 +40,7 @@ $(document).ready(function() {
           $(".group").append(html);
             }else{
                 if(data.errcode===114){
-                    // window.location.href ="landing.html";
+                    window.location.href ="landing.html";
                 }
                console.log()
             }
@@ -69,7 +69,7 @@ $(document).ready(function() {
                         $.each(data.data,function(i,item){
                             "use strict";
                             html+=`
-                    <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg skipChat">
+                    <div href="friendChat.html" class="weui-media-box weui-media-box_appmsg skipChat">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}">
                         </div>
@@ -77,7 +77,7 @@ $(document).ready(function() {
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
                             <p class="weui-media-box__desc">${item.friend_signature}</p>
                         </div>
-                    </a>
+                    </div>
                             `
                         });
                         $(".friend").html(html);
@@ -153,7 +153,7 @@ $(document).ready(function() {
 
     });
     // 点击好友跳转到聊天页面
-    function skipChat(e){
+    function freandChat(e){
       var  title=$(e.target).attr("title");
     }
 });

@@ -30,16 +30,50 @@ a:hover {
 .right {
     float: right
 }
-/*用户登录样式*/
+label{
+    font-size: 15px;
+}
+.weui-input{
+    font-size: 12px;
+    height: 25px;
+}
+.weui-cell {
+    padding: 15px 10px;
+}
+.weui-vcode-btn{
+    height: 20px;
+    line-height: 20px;
+}
+.weui-media-box__desc {
 
-/*用户登录star*/
-
-/*用户登录end*/
-
-/*电话star*/
-
-/*电话star*/
-/*验证码star*/
+    -webkit-line-clamp: 3;
+}
+.weui-media-box {
+    padding: 25px 15px 15px 15px;
+    position: relative;
+}
+.weui-btn {
+    position: relative;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    line-height: 2;
+    border-radius: 5px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    overflow: hidden;
+}
+select{
+    font-size: 12px;
+    width: 30%;
+    height: 25px;
+}
 
 
 
