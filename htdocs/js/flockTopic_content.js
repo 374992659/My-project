@@ -201,6 +201,7 @@ $(document).ready(function(){
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
+        console.log(data);
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
@@ -214,7 +215,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    $(".CommonPraiseImg").attr("src","image/praise.png")
+                    $(".CommonPraiseImg").attr("src","image/praise.png");
                     getPage();
                 }else{
                     console.log(data.errmsg);
@@ -225,7 +226,8 @@ $(document).ready(function(){
 
     });
     //   评论点赞
-    $(".discuss").on("click",".weui-media-box .praise .disPraiseImg",function(){
+    $(".myDiscuss").on("click",".weui-media-box .praise .disPraiseImg",function(){
+        console.log(123);
         // 获取评论id
         var commont_id=$(this).attr("title");
         // 获取apptoken
