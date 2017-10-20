@@ -108,7 +108,7 @@ $.ajax({
     // 发表评论
     (function(){
         // 弹出评论窗口
-        $(".topicBox").on("click",".weui-panel .weui-panel__bd .weui-media-box__desc .commentBtn",function(){
+        $("#topicText").on("click",".weui-panel .weui-panel__bd .weui-media-box__desc .commentBtn",function(){
             $(".publishDis").show();
         });
         // 发表评论内容
@@ -143,7 +143,7 @@ $.ajax({
         });
     })();
     // 群话题点赞
-    $(".topicBox").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(){
+    $("#topicText").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 获取群号码
