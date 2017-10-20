@@ -49,7 +49,6 @@ $(document).ready(function(){
                 }
             })
         }
-
     }
     // 获取apptoken
     var apptokne=localStorage.getItem("apptoken"),
