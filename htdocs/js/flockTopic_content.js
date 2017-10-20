@@ -216,7 +216,6 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png");
-                    getPage();
                 }else{
                     console.log(data.errmsg);
 
