@@ -42,6 +42,7 @@ class GroupSubjectModel extends Model
      * @param subject_id 话题id
      * */
     public function getGroupSubjectInfo($subject_id){
+        $subject_id= intval($subject_id);
         $data = $this->where(['subject_id'=>$subject_id])->find();
         if(!$data)return false;
         return $data;
