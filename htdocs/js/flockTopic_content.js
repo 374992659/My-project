@@ -1,21 +1,19 @@
 $(document).ready(function(){
     // 时间戳转换函数
-    var getLocalTime=function (nS) {
-        return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
-    };
+    function getLocalTime(nS){
+        return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17)}
     "use strict";
-// 加载页面
+    // 加载页面
     var getPage=function(){
-
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 获取群号码
         var group_num=localStorage.getItem("group_num");
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
-// 数据格式转换
+    // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
-// 数据加密
+    // 数据加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
@@ -30,6 +28,32 @@ $(document).ready(function(){
                     // 获取用户的id
                     var userCode="";
                     localStorage.setItem("apptoken",data.apptoken);
+                    // 所有评论
+                    var alldiscuss="";
+                    // 我的评论
+                    var mydiscuss="";
+                    // 对所有评论循环遍历
+                    $.each(data.data.commont_list,function(i,item){
+                        alldiscuss+=`
+                        <div class="weui-media-box weui-media-box_text">
+                            <div class="topic">
+                                <a href="">
+                                    <p class="weui-media-box__title lf">${item.nickname}</p>
+                                </a>
+                                <span class="right" style="font-size: 12px">getLocalTime(${item.create_time})</span>
+                            </div>
+                            <p class="weui-media-box__desc">
+                               ${item.content}
+                            </p>
+                            <div style="text-align: right;font-size: 12px"  class="praise">
+                                <img src=" image/del.png" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
+                                <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                <span>${item.commont_likes}</span>
+                            </div>
+                        </div>
+                        
+                        `
+                    });
                     var html=`
         <div class="weui-panel weui-panel_access">
             <div class="weui-panel__bd" style="background: #F0F0F0">
@@ -100,32 +124,7 @@ $(document).ready(function(){
         </div>
     </div>
             `;
-                    // 所有评论
-                    var alldiscuss="";
-                    // 我的评论
-                    var mydiscuss="";
-                    // 对所有评论循环遍历
-                    $.each(data.data.commont_list,function(i,item){
-                        alldiscuss+=`
-                        <div class="weui-media-box weui-media-box_text">
-                            <div class="topic">
-                                <a href="">
-                                    <p class="weui-media-box__title lf">${item.nickname}</p>
-                                </a>
-                                <span class="right" style="font-size: 12px">getLocalTime(${item.create_time})</span>
-                            </div>
-                            <p class="weui-media-box__desc">
-                               ${item.content}
-                            </p>
-                            <div style="text-align: right;font-size: 12px"  class="praise">
-                                <img src=" image/del.png" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
-                                <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
-                                <span>${item.commont_likes}</span>
-                            </div>
-                        </div>
-                        
-                        `
-                    });
+
                     $("#topicText").html(html);
                     $("#tab1").append(mydiscuss);
                     $(".allDiscuss").append(alldiscuss);

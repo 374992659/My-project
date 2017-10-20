@@ -27,7 +27,7 @@ $(document).ready(function(){
                 if (data.errcode === 0) {
                     var result = data.data;
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html = `                
+                    var html=`              
         <div class="swiper-container">          
             <div class="swiper-wrapper">
                 <!-- Slides -->
@@ -137,7 +137,7 @@ $(document).ready(function(){
             </div>
         </div>
               <!--按钮-->
-        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}">我要报名</button>                             
+        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}">我要报名</button>           
                 `;
                     var startTime=$("#other-date1").val();
                     // 转换成时间戳
