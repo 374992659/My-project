@@ -59,7 +59,7 @@
             $.post({
                 url:'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=sendMessage&debugging=test',
                 type:'POST',
-                data:'',
+                data:{'openId':openId},
                 success:function(res){
                    console.log(res);
                 }
