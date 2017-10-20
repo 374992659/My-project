@@ -26,7 +26,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     // 获取用户的id
-                    var userCode="";
+                    var userCode=data.data.user_code;
                     localStorage.setItem("apptoken",data.apptoken);
                     // 所有评论
                     var alldiscuss="";
@@ -34,6 +34,26 @@ $(document).ready(function(){
                     var mydiscuss="";
                     // 对所有评论循环遍历
                     $.each(data.data.commont_list,function(i,item){
+                        if(item.user_code=userCode){
+                            mydiscuss+=`
+                            <div class="weui-media-box weui-media-box_text">
+                            <div class="topic">
+                                <a href="">
+                                    <p class="weui-media-box__title lf">${item.nickname}</p>
+                                </a>
+                                <span class="right" style="font-size: 12px">getLocalTime(${item.create_time})</span>
+                            </div>
+                            <p class="weui-media-box__desc">
+                               ${item.content}
+                            </p>
+                            <div style="text-align: right;font-size: 12px"  class="praise">
+                                <img src=" image/del.png" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
+                                <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                <span>${item.commont_likes}</span>
+                            </div>
+                        </div>                                                      
+                            `
+                        }
                         alldiscuss+=`
                         <div class="weui-media-box weui-media-box_text">
                             <div class="topic">
