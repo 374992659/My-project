@@ -108,7 +108,7 @@ $(document).ready(function(){
             }
         });
     };getPage();
-   
+
     // 发表评论
     (function(){
         // 弹出评论窗口
@@ -129,6 +129,7 @@ $(document).ready(function(){
             var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"content":content})];
             // 加密
             var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
             $.ajax({
                 url:url+"group_addGroupSubjectCommon",
                 type:"POST",
@@ -136,6 +137,7 @@ $(document).ready(function(){
                 success:function(data){
                     // 解密数据
                     data=jsDecodeData(data);
+                    console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(".publishDis").hide();
