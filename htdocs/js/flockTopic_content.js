@@ -1,11 +1,12 @@
 $(document).ready(function(){
+
     "use strict";
 // 加载页面
     var getPage=function(){
         // 时间戳转换函数
-        function getLocalTime(nS) {
+        var getLocalTime=function (nS) {
             return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
-        }
+        };
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 获取群号码
@@ -111,7 +112,7 @@ $(document).ready(function(){
                                 <a href="">
                                     <p class="weui-media-box__title lf">${item.nickname}</p>
                                 </a>
-                                <span class="right" style="font-size: 12px">getLocalTime(${item.create_time})</span>
+                                <span class="right" style="font-size: 12px">new Date(parseInt(${item.create_time}) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');</span>
                             </div>
                             <p class="weui-media-box__desc">
                                ${item.content}
