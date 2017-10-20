@@ -163,8 +163,8 @@ $.ajax({
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoekn);
-                    $(this).attr("src","image/praise.png")
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $(".CommonPraiseImg").attr("src","image/praise.png")
                 }else{
                     console.log(data.errmsg);
 
