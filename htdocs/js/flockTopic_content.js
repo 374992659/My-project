@@ -195,7 +195,7 @@ $(document).ready(function(){
         });
     })();
     // 群话题点赞
-    $("#topicText").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(){
+    $("#topicText").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(e){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 获取群号码
@@ -211,7 +211,7 @@ $(document).ready(function(){
             url:url+"group_addGroupSubjectLikes",
             type:"POST",
             data:{"data":jsonEncryptData},
-            success:function (data,e) {
+            success:function (data) {
                 // 解密
                 data=jsDecodeData(data);
                 console.log(data);
@@ -219,7 +219,6 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png");
                    var a=$(e.target).siblings().innerHTML;
-                   console.log($(this));
                    console.log(a);
                     a=parseInt(a);
                     $(this).next().html(a+1)
