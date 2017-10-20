@@ -1,30 +1,32 @@
 $(document).ready(function(){
     "use strict";
-
-    // 获取apptoken
-    var apptoken=localStorage.getItem("apptoken");
-    // 获取群号码
-    var group_num=localStorage.getItem("group_num");
-    // 获取话题id
-    var subject_id=localStorage.getItem("subject_id");
+// 加载页面
+    var getPage=function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        // 获取群号码
+        var group_num=localStorage.getItem("group_num");
+        // 获取话题id
+        var subject_id=localStorage.getItem("subject_id");
 // 数据格式转换
-    var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
 // 数据加密
-    var jsonEncryptData=jsEncryptData(data);
-    console.log(data);
-$.ajax({
-    url:url+"group_getGroupSubjectInfo",
-    type:"POST",
-    data:{"data":jsonEncryptData},
-    success:function(data){
-        // 解密数据
-        var data=jsDecodeData(data);
+        var jsonEncryptData=jsEncryptData(data);
         console.log(data);
-        if(data.errcode===0){
-            // 获取去用户的id
-            var userCode="";
-            localStorage.setItem("apptoken",data.apptoken);
-            var html=`
+
+        $.ajax({
+            url:url+"group_getGroupSubjectInfo",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密数据
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    // 获取去用户的id
+                    var userCode="";
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html=`
         <div class="weui-panel weui-panel_access">
             <div class="weui-panel__bd" style="background: #F0F0F0">
                 <div class="weui-media-box weui-media-box_text">
@@ -94,17 +96,19 @@ $.ajax({
         </div>
     </div>
             `;
-            // 所有评论
-             var alldiscuss="";
-             // 我的评论
-             var mydiscuss="";
-                // 对所有评论循环遍历
-                 $("#topicText").html(html);
-                $("#tab1").append(mydiscuss);
-                $("#tab2").append(alldiscuss);
+                    // 所有评论
+                    var alldiscuss="";
+                    // 我的评论
+                    var mydiscuss="";
+                    // 对所有评论循环遍历
+                    $("#topicText").html(html);
+                    $("#tab1").append(mydiscuss);
+                    $("#tab2").append(alldiscuss);
+                }
             }
-        }
-    });
+        });
+    };getPage();
+   
     // 发表评论
     (function(){
         // 弹出评论窗口
@@ -165,6 +169,7 @@ $.ajax({
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png")
+                    getPage();
                 }else{
                     console.log(data.errmsg);
 
