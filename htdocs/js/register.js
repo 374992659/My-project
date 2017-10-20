@@ -42,11 +42,8 @@ $(document).ready(function(){
                 console.log(data);
                 console.log(data.errcode);
                 if(data.errcode===0){
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    $(".topHint").html(html);
-                    $(".topHint").show();
+                   $(".topHint p").html(data.errmsg);
+                   $(".topHint").attr("style","display:block");
                     function hide() {
                         $(".topHint").hide()
                     }
@@ -54,12 +51,9 @@ $(document).ready(function(){
                     localStorage.setItem("city_id",cityID);
                    window.location.href="friend.html";
                 }else{
+                    $(".topHint p").html(data.errmsg);
+                    $(".topHint").attr("style","display:block");
 
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    $(".topHint").html(html);
-                    $(".topHint").show();
                     function hide() {
                         $(".topHint").hide()
                     }
