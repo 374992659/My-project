@@ -36,7 +36,7 @@ $(document).ready(function(){
                     $.each(data.data.commont_list,function(i,item){
                         if(item.user_code=userCode){
                             mydiscuss+=`
-                            <div class="weui-media-box weui-media-box_text">
+                        <div class="weui-media-box weui-media-box_text">
                             <div class="topic">
                                 <a href="">
                                     <p class="weui-media-box__title lf">${item.nickname}</p>
@@ -46,7 +46,7 @@ $(document).ready(function(){
                             <p class="weui-media-box__desc">
                                ${item.content}
                             </p>
-                            <div style="text-align: right;font-size: 12px" class="praise">
+                            <div style="text-align: right;font-size: 12px" class="delPraise">
                                 <img src=" image/del.png" class="delImg" alt="" style="width: 20px;margin-right: 10px"/>
                                 <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px;position: relative;z-index: 10000">
                                 <span class="praiseNum">${item.commont_likes}</span>
@@ -230,7 +230,7 @@ $(document).ready(function(){
 
     });
     //   评论点赞
-    $(".weui-tab__bd-item .discuss").on("click",".weui-media-box_text .praise .disPraiseImg",function(e){
+    $(".weui-tab__bd-item .myDiscuss").on("click",".weui-media-box .delPraise .disPraiseImg",function(e){
         console.log(123);
         // 获取评论id
         var commont_id=$(this).attr("title");
