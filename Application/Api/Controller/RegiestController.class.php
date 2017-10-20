@@ -9,7 +9,7 @@
 
 namespace Api\Controller;
 use Api\Model;
-use Common\Lib\WxPayApi;
+//use Common\Lib\WxPayApi;
 class RegiestController extends BaseController
 {
     /*
