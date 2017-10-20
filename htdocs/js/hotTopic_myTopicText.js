@@ -82,7 +82,7 @@ $(document).ready(function(){
                     <div class="weui-media-box weui-media-box_text">
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
                         <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
-                            <li class="weui-media-box__info__meta">作者：<span>${iresult.nicename}</span></li>
+                            <li class="weui-media-box__info__meta">作者：<span>${result.nicename}</span></li>
                             <li class="weui-media-box__info__meta">时间：${result.create_time}</li>
                            
                         </ul>
