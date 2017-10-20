@@ -21,6 +21,7 @@ $(document).ready(function(){
             success:function(data){
                 // 解密返回的数据
                 data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
