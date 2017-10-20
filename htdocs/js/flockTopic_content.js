@@ -11,7 +11,6 @@ $(document).ready(function(){
         var group_num=localStorage.getItem("group_num");
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
-        subject_id=parseInt(subject_id);
         console.log(typeof subject_id);
     // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
