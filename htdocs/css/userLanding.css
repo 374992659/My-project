@@ -34,7 +34,7 @@ label{
     font-size: 18px;
 }
 .weui-input{
-    font-size: 18px;
+    font-size: 15px;
     height: 25px;
 }
 .weui-cell {
@@ -70,7 +70,7 @@ label{
     overflow: hidden;
 }
 select{
-    font-size: 12px;
+    font-size: 15px;
     width: 30%;
     height: 25px;
 }
