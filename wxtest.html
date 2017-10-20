@@ -51,7 +51,7 @@
                     data:{'code':code},
                     success:function(res){
                         console.log(res.data);
-                        localStorage.setItem('openId',res.data);
+                        localStorage.setItem('openId',res.data.openid);
                     }
                 })
             }
