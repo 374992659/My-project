@@ -102,7 +102,7 @@ $(document).ready(function(){
                             <div class="weui-flex__item" style="color: black">
                                 点赞：
                                 <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">
-                                <span >
+                                <span class="praiseNum">
                                 ${data.data.likes_num}
                                 </span>
                             </div>
@@ -218,7 +218,8 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(".CommonPraiseImg").attr("src","image/praise.png");
-                  
+                   var a=$(".praiseNum").html();
+                   console.log(a);
                 }else{
                     console.log(data.errmsg);
 
