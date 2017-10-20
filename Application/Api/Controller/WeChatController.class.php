@@ -142,7 +142,7 @@ class WeChatController extends BaseController
     /*
      * 推送消息给微信用户（模板消息）
      * */
-    protected function sendMessage(){
+    public function sendMessage(){
         $openId = $this->pdata['openId'];
         $accessToken = $this->getAccessToken();
         $postData = '{
