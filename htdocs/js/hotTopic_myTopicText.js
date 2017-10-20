@@ -207,7 +207,6 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     img.attr("src","image/praise.png");
-                    pageSuccess();
                 }else{
                     console.log(data.errmsg);
                 }
@@ -235,7 +234,6 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoen);
                     $(this).attr("src","image/praise.png");
-                    pageSuccess();
                 }else{
                     console.log(data.errmsg);
                 }
