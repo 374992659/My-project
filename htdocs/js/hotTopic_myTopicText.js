@@ -272,7 +272,7 @@ $(document).ready(function(){
             garden_code=270113,
             subject_id=localStorage.getItem("subject_id"),
             choise="",
-            content=$(".commentText").val();
+            content=$(".contentVote").val();
         // 数据格式转换
         var data=["",JSON.stringify({"apptoekn":apptoken,"garden_code":garden_code,"subject_id":subject_id,"choise":choise,"content":content})],
         // 加密
