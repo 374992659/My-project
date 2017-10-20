@@ -273,7 +273,7 @@ $(document).ready(function(){
             subject_id=localStorage.getItem("subject_id"),
             choise=[],
             content=$(".contentVote").val();
-            $("input[name=radio1]:checked]").each(function(i){
+            $(".optionList input[name=radio1]:checked").each(function(i){
                 choise.push($(this).parent().prev().children().html)
 
             });
