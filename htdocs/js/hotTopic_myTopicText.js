@@ -231,12 +231,11 @@ $(document).ready(function(){
         })
     });
     // 功能4 点赞/取消点赞话题评论
-    $(".discuss").on("click",".weui-media-box .praise .disPraiseImg",function(){
+    $(".discuss").on("click",".weui-media-box .praise .disPraiseImg",function(e){
         //获取评论id
       var  discu_id=$(this).attr("title"),
         //数据格式转换
           data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"commont_id": discu_id})],
-
         //加密
           jsonEncryptData=jsEncryptData(data);
         console.log(data);
@@ -250,8 +249,8 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoen);
-                    $(this).attr("src","image/praise.png");
-                    console.log($(this));
+                    $(e.target).attr("src","image/praise.png");
+                    console.log($(e.target));
                     console.log(data.errmsg);
                 }
             }
@@ -276,6 +275,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    pageSuccess();
                 }else{
                     console.log(data.errmsg);
                 }
