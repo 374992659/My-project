@@ -139,19 +139,20 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-cells choiseList">
                     </div>
-                        `;
-                    $(".hotTopicContent").html(html);
-                    $(".myDiscuss").append(myDiscuss);
-                    $(".allDiscuss").append(allDiscuss);
-                    $(".choiseList").append(choise);
-                    $(".optionList").append(option);
+                        `; console.log(data.data.is_likes);
                     if(data.data.is_likes==1){
-                        console.log();
+
                         $(".CommonPraiseImg").attr({
                             "src","image/praise.png",
                             "disabled","none"
                         })
                     }
+                    $(".hotTopicContent").html(html);
+                    $(".myDiscuss").append(myDiscuss);
+                    $(".allDiscuss").append(allDiscuss);
+                    $(".choiseList").append(choise);
+                    $(".optionList").append(option);
+
                 }
             }
         })
