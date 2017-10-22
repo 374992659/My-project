@@ -248,7 +248,7 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoen);
+                    localStorage.setItem("apptoken",data.apptoken);
                     $(e.target).attr("src","image/praise.png");
                     console.log($(e.target));
                     console.log(data.errmsg);
