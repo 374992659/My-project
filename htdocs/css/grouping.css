@@ -22,6 +22,8 @@ a:hover{
 .lf{float:left;}
 .right{float:right}
 /*添加分组样式*/
-
+.weui-input {
+    font-size: 18px;
+}
 
 
