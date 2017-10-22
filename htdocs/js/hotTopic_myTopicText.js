@@ -112,13 +112,36 @@ $(document).ready(function(){
                           });
 
                     }
+                    if(data.data.is_likes==1){
                         html=`
                     <div class="weui-media-box weui-media-box_text">
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
                         <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
                             <li class="weui-media-box__info__meta">作者：<span>${result.nickname}</span></li>
                             <li class="weui-media-box__info__meta">时间：${result.create_time}</li>
-                           
+
+                        </ul>
+                        <p class="weui-media-box__desc" style=" text-indent:2em">
+                            ${result.content}
+                        </p>
+                        <div style="text-align: right;font-size: 12px" class="readNum">
+                            阅读量 <span>${result.read_num}</span>
+                            <img class="CommonPraiseImg" src="image/praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${result.total_votes}</span>
+                            <span class="topicDiscu">评论 ${result.commont_num}</span>
+                            <span>分享</span>
+                        </div>
+                    </div>
+                    <div class="weui-cells choiseList">
+                    </div>
+                        `
+                    }else{
+                        html=`
+                    <div class="weui-media-box weui-media-box_text">
+                        <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
+                        <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
+                            <li class="weui-media-box__info__meta">作者：<span>${result.nickname}</span></li>
+                            <li class="weui-media-box__info__meta">时间：${result.create_time}</li>
+
                         </ul>
                         <p class="weui-media-box__desc" style=" text-indent:2em">
                             ${result.content}
@@ -132,18 +155,13 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-cells choiseList">
                     </div>
-                        `;
-                    console.log(data.data.is_likes);
-                   
+                        `
+                    }
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
                     $(".choiseList").append(choise);
                     $(".optionList").append(option);
-                    if(data.data.is_likes==1){
-                        console.log(123);
-                        $(".CommonPraiseImg").attr("src","image/praise.png")
-                    }
                 }
             }
         })
