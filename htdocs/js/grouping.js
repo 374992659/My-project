@@ -27,8 +27,8 @@ $(document).ready(function(){
                          <input class="weui-input" style="color:black" type="text" placeholder="" value="${item.group_name}">
                      </div>
                 </div>
-                <button class="delBtn"  style="margin-left: 10px;position: relative;z-index: 10000" title="${item.id}">删除</button>
-                <button class="alterBtn" style="margin-left: 10px;position: relative;z-index: 10000" title="${item.id}">确认修改</button>
+                <button class="delBtn"  style="" title="${item.id}">删除</button>
+                <button class="alterBtn" style="" title="${item.id}">确认修改</button>
             </div>
                         `
                     });

@@ -25,5 +25,15 @@ a:hover{
 .weui-input {
     font-size: 18px;
 }
-
-
+.delBtn{
+    font-size:15px;
+    margin-left: 10px;
+    position: relative;
+    z-index: 10000
+}
+.alterBtn{
+    font-size:15px;
+    margin-left: 10px;
+    position: relative;
+    z-index: 10000
+}
