@@ -99,7 +99,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     console.log(data.errmsg);
-                    group();
+                    //group();
                 }else{
                     console.log(data.errmsg);
                 }
@@ -131,7 +131,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data);
                     localStorage.setItem("apptoken",data.apptoken);
-                    group();
+                   // group();
                 }else{
                     console.log(data.errmsg);
                 }
