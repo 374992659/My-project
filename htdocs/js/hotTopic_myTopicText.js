@@ -30,8 +30,8 @@ $(document).ready(function(){
                     // 投票选项
                     var option="";
                     // 每个选项的投票情况投票选项
-                    var choise="";
                     var html="";
+                    var choise="";
                     var  myDiscuss="";
                     var allDiscuss="";
                        // 循环评论
@@ -67,7 +67,7 @@ $(document).ready(function(){
                                         <p class="weui-media-box__title lf">${item.nickname}</p>
                                      </a>
                        
-                                     <span class="right" style="font-size: 12px">${item.create_tiem}</span>
+                                     <span class="right" style="font-size: 12px">${item.create_time}</span>
                                  </div>
                                  <p class="weui-media-box__desc">
                                      ${item.content}
@@ -134,15 +134,16 @@ $(document).ready(function(){
                     </div>
                         `;
                     console.log(data.data.is_likes);
-                    if(data.data.is_likes==1){
-                        $(".CommonPraiseImg").attr("src","image/praise.png")
-                    }
+                   
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
                     $(".choiseList").append(choise);
                     $(".optionList").append(option);
-
+                    if(data.data.is_likes==1){
+                        console.log(123);
+                        $(".CommonPraiseImg").attr("src","image/praise.png")
+                    }
                 }
             }
         })
