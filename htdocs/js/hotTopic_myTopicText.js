@@ -140,7 +140,6 @@ $(document).ready(function(){
                     <div class="weui-cells choiseList">
                     </div>
                         `;
-                    if(item.user_code===user_code){
                         if(item.is_likes==1){
                             // 移除点赞功能
                             $(".CommonPraiseImg").attr({
@@ -148,7 +147,6 @@ $(document).ready(function(){
                                 "disabled","none"
                             })
                         }
-                    }
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
