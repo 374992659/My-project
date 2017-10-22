@@ -24,7 +24,7 @@ $(document).ready(function(){
                 <div class="weui-cell__hd"><img src=""></div>
                 <div class="weui-cell__bd">
                      <div class="weui-cell__bd">
-                         <input class="weui-input" style="font-size: 15px;color:black" type="text" placeholder="" value="${item.group_name}">
+                         <input class="weui-input" style="font-size: 18px;color:black" type="text" placeholder="" value="${item.group_name}">
                      </div>
                 </div>
                 <button class="delBtn"  style="margin-left: 10px;position: relative;z-index: 10000" title="${item.id}">删除</button>
