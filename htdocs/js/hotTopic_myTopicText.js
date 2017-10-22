@@ -58,15 +58,15 @@ $(document).ready(function(){
                              </div>
 
                                 `;
-                            }
-                            //所有的评轮
-                            allDiscuss+=`
+                            }else{
+                                //所有的评轮
+                                allDiscuss+=`
                             <div class="weui-media-box weui-media-box_text">
                                  <div class="topic">
                                    <a href="">
                                         <p class="weui-media-box__title lf">${item.nickname}</p>
                                      </a>
-                       
+
                                      <span class="right" style="font-size: 12px">${item.create_time}</span>
                                  </div>
                                  <p class="weui-media-box__desc">
@@ -77,8 +77,9 @@ $(document).ready(function(){
                                      <span>${item.commont_likes_num}</span>
                                  </div>
                              </div>
-                       
+
                             `;
+                            }
                         });
                     }
                     // 循环投票选项
@@ -250,7 +251,10 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $(e.target).attr("src","image/praise.png");
-                    console.log($(e.target));
+                    //获取当前元素的下一个兄弟元素的内容+1
+                   var disNum= $(e.target).next().html();
+                    console.log(disNum);
+                    $(e.target).next().html(parseInt(disNum)+1);
                     console.log(data.errmsg);
                 }
             }
@@ -275,6 +279,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    console.log(123);
                     pageSuccess();
                 }else{
                     console.log(data.errmsg);
