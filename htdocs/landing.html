@@ -96,7 +96,8 @@
                             <label class="weui-label">账号</label>
                         </div>
                         <div class="weui-cell__bd">
-                            <input class="weui-input account" placeholder="账号6-12位数字或字母"  minlength="6" maxlength="12"   onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                            <input class="weui-input account" placeholder="账号6-12位数字或字母"  minlength="6" maxlength="12"  onkeyup="value=value.replace(/[^\u4E00-\u9FA5]/g,'')"
+                                   onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\u4E00-\u9FA5]/g,''))">
                         </div>
 
                     </div>
