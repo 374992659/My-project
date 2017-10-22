@@ -112,7 +112,7 @@ $(document).ready(function(){
                           });
 
                     }
-                    if(data.data.is_likes==1){
+                    if(result.is_likes==1){
                         html=`
                     <div class="weui-media-box weui-media-box_text">
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
@@ -223,7 +223,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    img.attr("src","image/praise.png");
+                    pageSuccess();
                 }else{
                     console.log(data.errmsg);
                 }
@@ -251,7 +251,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoen);
                     $(this).attr("src","image/praise.png");
-                }else{
+                    console.log($(this));
                     console.log(data.errmsg);
                 }
             }
