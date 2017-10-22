@@ -54,8 +54,8 @@ a:hover {
 }
 .weui-navbar>a{
     font-weight: bold;
-    font-size: 15px;
-    padding: 5px;
+    font-size: 17px;
+    padding:10px 5px;
     background:	#ECFFFF;
 }
 .weui-navbar + .weui-tab__bd {

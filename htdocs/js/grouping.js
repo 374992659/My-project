@@ -135,10 +135,10 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data);
                     localStorage.setItem("apptoken",data.apptoken);
+                    group();
                     $(document).on('click','#show-success',function(){
                         $.toptip("修改成功", 'success');
                     });
-                    group();
                 }else{
                     $(document).on('click','#show-success',function(){
                         $.toptip(data.errmsg, 'success');
