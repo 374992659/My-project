@@ -37,6 +37,27 @@ $(document).ready(function(){
                        // 循环评论
                     if(result.commont_list){
                         $.each(result.commont_list,function(i,item){
+                                //自己的评论
+                                myDiscuss+=`
+                                <div class="weui-media-box weui-media-box_text">
+                                 <div class="topic">
+                                     <a href="">
+                                         <p class="weui-media-box__title lf">${item.nickname}</p>
+                                     </a>
+                                     <span class="right" style="font-size: 12px">${item.create_time}</span>
+                                 </div>
+                                 <p class="weui-media-box__desc">
+                                     ${item.content}
+                                 </p>
+                                 <div style="text-align: right;font-size: 12px" class="praise">
+                                     <img src=" image/del.png"  title="${item.commont_id}" class="delImg" alt="" style="width: 15px;margin-right: 10px"/>
+                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <span>${item.commont_likes_num}</span>
+                                 </div>
+                             </div>
+
+                                `;
+                            }
                             //所有的评轮
                             allDiscuss+=`
                             <div class="weui-media-box weui-media-box_text">
@@ -113,34 +134,13 @@ $(document).ready(function(){
                     </div>
                         `;
                     if(item.user_code===user_code){
-                        if(item.is_likes==0){
+                        if(item.is_likes==1){
                             // 移除点赞功能
                             $(".CommonPraiseImg").attr({
                                 "src","image/praise.png",
                                 "disabled","none"
                             })
                         }
-                        //自己的评论
-                        myDiscuss+=`
-                                <div class="weui-media-box weui-media-box_text">
-                                 <div class="topic">
-                                     <a href="">
-                                         <p class="weui-media-box__title lf">${item.nickname}</p>
-                                     </a>
-                                     <span class="right" style="font-size: 12px">${item.create_time}</span>
-                                 </div>
-                                 <p class="weui-media-box__desc">
-                                     ${item.content}
-                                 </p>
-                                 <div style="text-align: right;font-size: 12px" class="praise">
-                                     <img src=" image/del.png"  title="${item.commont_id}" class="delImg" alt="" style="width: 15px;margin-right: 10px"/>
-                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
-                                     <span>${item.commont_likes_num}</span>
-                                 </div>
-                             </div>
-
-                                `;
-                    }
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
