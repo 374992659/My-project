@@ -61,7 +61,7 @@ a:hover {
 .weui-navbar + .weui-tab__bd {
     padding-top: 20px;
 }
-select{
-    width: 45%;
+#sanji select{
+    width: 50%;
     font-size: 15px;
 }
