@@ -22,11 +22,3 @@ a:hover{
 .lf{float:left;}
 .right{float:right}
 /*搜索样式*/
-p{
-    font-size: 18px;
-    color: black;
-}
-
-.weui-cell__bd>p {
-    font-size: 18px;
-}
