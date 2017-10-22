@@ -61,3 +61,7 @@ a:hover {
 .weui-navbar + .weui-tab__bd {
     padding-top: 20px;
 }
+select{
+    width: 45%;
+    font-size: 15px;
+}
