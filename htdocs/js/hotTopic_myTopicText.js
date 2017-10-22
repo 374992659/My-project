@@ -38,13 +38,6 @@ $(document).ready(function(){
                     if(result.commont_list){
                         $.each(result.commont_list,function(i,item){
                             if(item.user_code===user_code){
-                            //    if(item.is_likes==0){
-                            //    // 移除点赞功能
-                            //        $(".CommonPraiseImg").attr({
-                            //            "src","image/praise.png",
-                            //            "disabled","none"
-                            //        })
-                            //}
                                 //自己的评论
                                 myDiscuss+=`
                                 <div class="weui-media-box weui-media-box_text">
@@ -139,13 +132,10 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-cells choiseList">
                     </div>
-                        `; console.log(data.data.is_likes);
+                        `;
+                    console.log(data.data.is_likes);
                     if(data.data.is_likes==1){
-
-                        $(".CommonPraiseImg").attr({
-                            "src","image/praise.png",
-                            "disabled","none"
-                        })
+                        $(".CommonPraiseImg").attr("src","image/praise.png")
                     }
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
