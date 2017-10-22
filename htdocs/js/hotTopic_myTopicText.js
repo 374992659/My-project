@@ -38,8 +38,28 @@ $(document).ready(function(){
                     if(result.commont_list){
                         $.each(result.commont_list,function(i,item){
                             if(item.user_code===user_code){
-                                //自己的评论
-                                myDiscuss+=`
+                            //自己的评论
+                                if(item.is_likes==1){
+                                    myDiscuss+=`
+                                <div class="weui-media-box weui-media-box_text">
+                                 <div class="topic">
+                                     <a href="">
+                                         <p class="weui-media-box__title lf">${item.nickname}</p>
+                                     </a>
+                                     <span class="right" style="font-size: 12px">${item.create_time}</span>
+                                 </div>
+                                 <p class="weui-media-box__desc">
+                                     ${item.content}
+                                 </p>
+                                 <div style="text-align: right;font-size: 12px" class="praise">
+                                     <img src=" image/del.png"  title="${item.commont_id}" class="delImg" alt="" style="width: 15px;margin-right: 10px"/>
+                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <span>${item.commont_likes_num}</span>
+                                 </div>
+                             </div>
+                                `
+                                }else{
+                                    myDiscuss+=`
                                 <div class="weui-media-box weui-media-box_text">
                                  <div class="topic">
                                      <a href="">
@@ -56,10 +76,33 @@ $(document).ready(function(){
                                      <span>${item.commont_likes_num}</span>
                                  </div>
                              </div>
+                                `
 
-                                `;
+                                }
+
+                            }
+                            //所有的评轮
+                            if(item.is_likes==1){
+                                allDiscuss+=`
+                            <div class="weui-media-box weui-media-box_text">
+                                 <div class="topic">
+                                   <a href="">
+                                        <p class="weui-media-box__title lf">${item.nickname}</p>
+                                     </a>
+
+                                     <span class="right" style="font-size: 12px">${item.create_time}</span>
+                                 </div>
+                                 <p class="weui-media-box__desc">
+                                     ${item.content}
+                                 </p>
+                                 <div style="text-align: right;font-size: 12px"  class="praise">
+                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <span>${item.commont_likes_num}</span>
+                                 </div>
+                             </div>
+
+                            `
                             }else{
-                                //所有的评轮
                                 allDiscuss+=`
                             <div class="weui-media-box weui-media-box_text">
                                  <div class="topic">
@@ -78,7 +121,7 @@ $(document).ready(function(){
                                  </div>
                              </div>
 
-                            `;
+                            `
                             }
                         });
                     }
@@ -111,7 +154,6 @@ $(document).ready(function(){
                 </label>
                         `
                           });
-
                     }
                     if(result.is_likes==1){
                         html=`
@@ -127,7 +169,7 @@ $(document).ready(function(){
                         </p>
                         <div style="text-align: right;font-size: 12px" class="readNum">
                             阅读量 <span>${result.read_num}</span>
-                            <img class="CommonPraiseImg" src="image/praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${result.total_votes}</span>
+                            <img class="CommonPraiseImg" src="image/praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${result.likes_num}</span>
                             <span class="topicDiscu">评论 ${result.commont_num}</span>
                             <span>分享</span>
                         </div>
@@ -149,8 +191,8 @@ $(document).ready(function(){
                         </p>
                         <div style="text-align: right;font-size: 12px" class="readNum">
                             阅读量 <span>${result.read_num}</span>
-                            <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${result.total_votes}</span>
-                            <span class="topicDiscu">评论 ${result.commont_num}</span>
+                            <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${result.likes_num}</span>
+                            <span class="topicDiscu">评论${result.commont_num}</span>
                             <span>分享</span>
                         </div>
                     </div>
@@ -207,7 +249,7 @@ $(document).ready(function(){
         })
     })();
     // 功能3 点赞/取消点赞话题
-    $(".hotTopicContent").on("click",".weui-media-box_text .readNum .CommonPraiseImg",function(){
+    $(".hotTopicContent").on("click",".weui-media-box_text .readNum .CommonPraiseImg",function(e){
         //数据格式转换
       var img=$(this);
         var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id})],
@@ -224,7 +266,10 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    pageSuccess();
+                    $(e.target).attr("src","image/praise.png");
+                    //获取当前元素的下一个兄弟元素的内容+1
+                    var disNum= $(e.target).next().html();
+                    $(e.target).next().html(parseInt(disNum)+1);
                 }else{
                     console.log(data.errmsg);
                 }
@@ -253,7 +298,6 @@ $(document).ready(function(){
                     $(e.target).attr("src","image/praise.png");
                     //获取当前元素的下一个兄弟元素的内容+1
                    var disNum= $(e.target).next().html();
-                    console.log(disNum);
                     $(e.target).next().html(parseInt(disNum)+1);
                     console.log(data.errmsg);
                 }
