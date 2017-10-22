@@ -69,7 +69,9 @@ $(document).ready(function(){
                     $(e.target).parent().remove();
                 }
             }else{
-                alert("删除失败")
+                $(document).on('click','#show-success',function(){
+                    $.toptip(data.errmsg, 'success');
+                });
             }
            }
         });
@@ -101,7 +103,9 @@ $(document).ready(function(){
                     console.log(data.errmsg);
                     group();
                 }else{
-                    console.log(data.errmsg);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
                 }
             }
         });
@@ -131,9 +135,14 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data);
                     localStorage.setItem("apptoken",data.apptoken);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip("修改成功", 'success');
+                    });
                     group();
                 }else{
-                    console.log(data.errmsg);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
                 }
             }
         })
