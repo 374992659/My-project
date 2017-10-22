@@ -65,8 +65,9 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
-                alert("确认删除?");
-                $(e.target).parent().remove();
+                if(confirm("确认删除?")){
+                    $(e.target).parent().remove();
+                }
             }else{
                 alert("删除失败")
             }
