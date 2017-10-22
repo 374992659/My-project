@@ -15,33 +15,7 @@
     <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/friend.css">
-    <!--<script>-->
-        <!--document.documentElement.style.fontSize = document.documentElement.clientWidth / 30 + 'px';-->
-    <!--</script>-->
-    <style>
-        .weui-tab {
-            max-height: 19px;
-        }
-       .weui-media-box__title{
-            font-size: 16px;
-        }
-        .weui-media-box_appmsg .weui-media-box__hd {
-            width: 50px;
-        }
-        .linkBtn{
-            width:25px;
-        }
-        .weui-cell__bd>p{
-            font-size: 18px;
-        }
-        .weui-cell__ft{
-            font-size: 16px;
-        }
-        .weui-navbar__item{
-            font-size: 16px;
-        }
-    </style>
-</head>
+
 <body>
     <!--搜索框-->
     <div class="weui-search-bar" id="searchBar" >
@@ -58,26 +32,49 @@
         </form>
         <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel" style="font-size: 10px">取消</a>
     </div>
+    <div style="height: 1px;width: 100%;clear: both"></div>
     <!--导航栏-->
-    <div class="weui-tab" style="margin-bottom: 10px">
-        <div class="weui-navbar">
-            <a class="weui-navbar__item weui-bar__item--on" href="addfriends.html">
-                添加好友
-            </a>
-            <a class="weui-navbar__item" href="grouping.html">
-                分组管理
-            </a>
-            <a class="weui-navbar__item" href="hotTopic2.html">
-                热门话题
-            </a>
-            <a class="weui-navbar__item" href="createCrowd.html">
-                建群
-            </a>
-            <a class="weui-navbar__item" href="flockPlay.html">
-                约玩
-            </a>
+    <div class="lr_nb">
+        <div class="slider_wrap line">
+            <div class="wx_items">
+                <div class="item_cell current">
+                    <a href="addfriends.html"><span>添加好友</span></a>
+                </div>
+                <div class="item_cell">
+                    <a href="grouping.html"><span>分组管理</span></a>
+                </div>
+                <div class="item_cell">
+                    <a href="hotTopic2.html"><span>热门话题</span></a>
+                </div>
+                <div class="item_cell">
+                    <a href="createCrowd.html"><span>建群</span></a>
+                </div>
+                <div class="item_cell">
+                    <a href="flockPlay.html"><span>约玩</span></a>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="lr_nb_after"></div>
+    <!--<div class="weui-tab" style="margin-bottom: 10px">-->
+        <!--<div class="weui-navbar">-->
+            <!--<a class="weui-navbar__item weui-bar__item&#45;&#45;on" href="addfriends.html">-->
+                <!--添加好友-->
+            <!--</a>-->
+            <!--<a class="weui-navbar__item" href="grouping.html">-->
+                <!--分组管理-->
+            <!--</a>-->
+            <!--<a class="weui-navbar__item" href="hotTopic2.html">-->
+                <!--热门话题-->
+            <!--</a>-->
+            <!--<a class="weui-navbar__item" href="createCrowd.html">-->
+                <!--建群-->
+            <!--</a>-->
+            <!--<a class="weui-navbar__item" href="flockPlay.html">-->
+                <!--约玩-->
+            <!--</a>-->
+        <!--</div>-->
+    <!--</div>-->
     <!--好友-->
     <div class="group">
         <!--<div class="weui-cells">-->
@@ -194,6 +191,9 @@
     <script src="JQuery_weui/fastclick.js"></script>
     <script>
         $(function () {
+            $(".wx_items .item_cell").click(function(){
+                $(this).addClass('current').siblings().removeClass('current');
+            });
             FastClick.attach(document.body);
         });
     </script>

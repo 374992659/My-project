@@ -35,8 +35,38 @@ body {
     font-size: 12px;
 }
 /*我的联系人样式*/
-
-
+.weui-tab {
+    max-height: 19px;
+}
+.weui-media-box__title{
+    font-size: 16px;
+}
+.weui-media-box_appmsg .weui-media-box__hd {
+    width: 50px;
+}
+.linkBtn{
+    width:25px;
+}
+.weui-cell__bd>p{
+    font-size: 18px;
+}
+.weui-cell__ft{
+    font-size: 16px;
+}
+.weui-navbar__item{
+    font-size: 16px;
+}
+/*滚动水平导航栏 start*/
+.lr_nb{border-bottom:1px solid #E8E8E8;border-top:1px solid #E8E8E8;height:40px;line-height:40px;width:100%;background:#fff;padding: 0px 10px;box-sizing:border-box;z-index:1;max-width:1080px;opacity:1;top:0;-webkit-transition:.3s all;transition:.3s all}
+.lr_nb .slider_wrap.line{overflow:hidden;overflow-x:scroll;width:100%;-webkit-overflow-scrolling:touch;}
+.lr_nb .slider_wrap.line .item_cell{display:inline-block;margin: 0px 10px;;overflow:hidden;position:relative;}
+.lr_nb .slider_wrap.box{overflow:hidden;width:100%}
+.lr_nb .slider_wrap::-webkit-scrollbar{display:none}
+.lr_nb .wx_items{white-space:nowrap}
+.lr_nb .wx_items span{color:#666;font-size: 15px; white-space:nowrap;display:block;-webkit-tap-highlight-color:rgba(0,0,0,0);text-align:center;cursor:pointer}
+.lr_nb .wx_items .current span,.lr_nb .wx_items .current a:visited,.lr_nb .wx_items .current a:link,.lr_nb .wx_items .current a:hover,.lr_nb .wx_items .current a:focus{color:#4fbeab;}
+.lr_nb_after{height:40px;display:block;clear:both;}
+/*滚动水平导航栏 end*/
 
 
 
