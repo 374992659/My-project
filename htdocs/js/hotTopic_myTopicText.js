@@ -323,7 +323,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    console.log(123);
+                   $(".optionList").empty();
                     pageSuccess();
                 }else{
                     console.log(data.errmsg);
