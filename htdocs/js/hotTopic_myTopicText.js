@@ -140,18 +140,17 @@ $(document).ready(function(){
                     <div class="weui-cells choiseList">
                     </div>
                         `;
-                        if(item.is_likes==1){
-                            // 移除点赞功能
-                            $(".CommonPraiseImg").attr({
-                                "src","image/praise.png",
-                                "disabled","none"
-                            })
-                        }
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
                     $(".choiseList").append(choise);
                     $(".optionList").append(option);
+                    if(item.is_likes==1){
+                        $(".CommonPraiseImg").attr({
+                            "src","image/praise.png",
+                            "disabled","none"
+                        })
+                    }
                 }
             }
         })
