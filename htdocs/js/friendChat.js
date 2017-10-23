@@ -154,7 +154,6 @@ $(document).ready(function(){
         </div>                     
            `;
            $("#chatPage").append(html);
-            console.log(html);
         });
         /*
         * 判断是否存在元素
