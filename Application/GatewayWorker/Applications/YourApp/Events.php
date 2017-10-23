@@ -71,7 +71,7 @@ class Events
                         $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
 //                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
                         $group_arr = $db->select('group_code')->from('user_group')->where('status =1')->column();
-                        var_dump($group_arr);
+//                        var_dump($group_arr);
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
                                    Gateway::joinGroup($client_id,$v);                                   //将用户加入群组
@@ -121,10 +121,10 @@ class Events
                         if($group_arr){
                             $group_arr_str = implode(',',$group_arr);             //用户群字符串
 //                            $group_arr_str = substr($group_arr_str,0,(strlen($group_arr_str)));
-                            var_dump($group_arr_str);
+//                            var_dump($group_arr_str);
                             $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                             $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
-                            var_dump($group_data);
+//                            var_dump($group_data);
                             $mongo = new MongoClient();
                             if($group_data){
                                 foreach ($group_data as $key=>$val){
@@ -162,6 +162,9 @@ class Events
                                     $group_new_message[$val['group_code']]['count']=$count;
                                     $group_new_message[$val['group_code']]['content']=$content;
                                     $group_new_message[$val['group_code']]['recent_time']=$recent_time;
+                                    if( $group_new_message[$val['group_code']]['count'] == 0){
+                                        unset( $group_new_message[$val['group_code']]);
+                                    }
                                     $content = array();
                                 }
                                 $group_new_message = self::multi_array_sort($group_new_message,'recent_time',SORT_DESC);
