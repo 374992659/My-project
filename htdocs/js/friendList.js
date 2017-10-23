@@ -10,7 +10,9 @@ $(document).ready(function() {
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode) === 0){
-                        var friends_new_messageNum=0;
+                        var friends_new_messageNum=0,
+                            group_new_messageNum=0,
+                            friends_new_applyNum=0;
                         var data = (result.data);
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message=data.friends_new_message;
@@ -30,7 +32,7 @@ $(document).ready(function() {
                         }
 
                         console.log(friends_new_messageNum);
-                        $("#newsNum").html(friends_new_messageNum);
+                        $("#newsNum").html(friends_new_messageNum+group_new_messageNum+friends_new_applyNum);
                     }
                     break;
 
