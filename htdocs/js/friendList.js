@@ -3,6 +3,7 @@ $(document).ready(function() {
     // 及时通讯
     (function(){
         var apptoken = localStorage.getItem('apptoken');
+        console.log(apptoken);
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
         ws.onmessage = function (e) {
