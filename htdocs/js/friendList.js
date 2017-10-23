@@ -17,7 +17,7 @@ $(document).ready(function() {
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
-                                console.log(friends_new_message);
+                                console.log(friends_new_message.length);
                                $.each(function(i,item){
                                     console.log(i)
                             });
