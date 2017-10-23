@@ -167,7 +167,7 @@ class Events
                                     }
                                     $content = array();
                                 }
-                                $group_new_message = self::multi_array_sort($group_new_message,'recent_time',SORT_DESC);
+//                                $group_new_message = self::multi_array_sort($group_new_message,'recent_time',SORT_DESC);
                             }
                         }
                         //获取添加好友申请
