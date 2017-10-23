@@ -171,7 +171,7 @@ $(document).ready(function(){
         // 获取群code
         var group_num=$(this).attr("title"),
             // 群头像
-            group_head=$(this).val();
+            group_head=$(this).attr("value");
        // 存本地
         localStorage.setItem("group_num",group_num);
         localStorage.setItem("group_head",group_head);
