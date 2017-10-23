@@ -142,7 +142,7 @@ class Events
 //                                        foreach ( $group_time as $item) {
 //                                            $time = $item['time'];
 //                                        }
-                                        var_dump($time);
+//                                        var_dump($time);
                                         $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
                                         $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
                                         foreach ($res as $kk=>$vv){
