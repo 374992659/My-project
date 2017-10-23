@@ -17,7 +17,32 @@ $(document).ready(function(){
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
+                                console.log(friends_new_message);
+                                var html="";
+                                var content="";
+                                $.each(friends_new_message,function(i,item){
+                                    if(item.sender_code===sender_code){
+                                       html=`
+            <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                    <img class="weui-media-box__thumb" src="${item.sender_portrait}" alt="">
+                </div>
+                <div class="weui-media-box__bd content">
+                   
+                </div>
+            </div>
+                                       `;
+                                       $.each(item.content,function(i,item){
+                                           content+=`
+                                            <span class="weui-media-box__desc">${item.content}</span>
+                                           `
+                                       });
+                                        $("#chatPage").prepend(html);
+                                        $(".content").html(content);
+                                        $(".title").html(item.sender_nickname)
+                                    }
 
+                                })
                         }
                         var group_new_message = data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
