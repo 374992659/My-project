@@ -24,14 +24,14 @@ $(document).ready(function(){
                                     if(item.sender_code===sender_code){
                                        $.each(item.content,function(i,item){
                                            html+=`
-            <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                    <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd content">
+                        <span class="weui-media-box__desc">${item.content}</span>
+                    </div>
                 </div>
-                <div class="weui-media-box__bd content">
-                    <span class="weui-media-box__desc">${item.content}</span>
-                </div>
-            </div>
                                        `
                                        });
                                         $("#chatPage").prepend(html);
