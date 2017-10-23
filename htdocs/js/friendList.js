@@ -1,11 +1,12 @@
-
 $(document).ready(function() {
     // 及时通讯
     (function(){
         var apptoken = localStorage.getItem('apptoken');
-        console.log(apptoken);
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
+        var friends_new_messageNum="";
+        var group_new_messageNum="";
+        var friends_new_applyNum="";
         ws.onmessage = function (e) {
             var result = JSON.parse(e.data);                   //服务器返回结果
             switch(parseInt(result.type)){
@@ -13,20 +14,30 @@ $(document).ready(function() {
                     if(parseInt(result.errcode) === 0){
                         var data = (result.data);
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
-                        var friends_new_message = data.friends_new_message;
+                        var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                                 console.log(friends_new_message);
+                            friends_new_message.each(function(i){
+                                console.log(123);
+                            })
                         }
-                        var group_new_message = data.group_new_message;
+                        var group_new_message=data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                             console.log(group_new_message);
+                            group_new_message.each(function(i){
+
+                            })
                         }
-                        var friends_new_apply = data.friends_new_apply;
+                        var friends_new_apply=data.friends_new_apply;
                         if(friends_new_apply){                      //用户添加好友的申请
-                            console.log(riends_new_apply);
+                            console.log(friends_new_apply);
+                            friends_new_apply.each(function(i){
+
+                            })
                         }
                     }
                     break;
+
                 case 2:           //2.好友上线通知 更新本地在线好友列表
                     if(parseInt(result.errcode) === 0){
                         var data = (result.data);
