@@ -26,10 +26,8 @@ $(document).ready(function() {
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
-                            console.log(group_new_message);
-                            group_new_message.each(function(i){
+                            console.log(group_new_message.length);
 
-                            })
                         }
                         var friends_new_apply=data.friends_new_apply;
                         if(friends_new_apply){                      //用户添加好友的申请
