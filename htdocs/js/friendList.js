@@ -137,7 +137,8 @@ $(document).ready(function() {
             return false;
         }
         // 把消息数量添加到页面
-        $("#newsNum").html(1+2);
+        console.log(friends_new_messageNum);
+        $("#newsNum").html(friends_new_messageNum+group_new_messageNum+friends_new_applyNum);
     })();
     //功能1 请求好友分组
     var apptoken=localStorage.getItem("apptoken");
