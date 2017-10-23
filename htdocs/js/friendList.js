@@ -5,7 +5,6 @@ $(document).ready(function() {
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
         var friends_new_messageNum="";
-        friends_new_messageNum=parseInt(friends_new_messageNum);
         var group_new_messageNum="";
         group_new_messageNum=parseInt(group_new_messageNum);
         var friends_new_applyNum="";
