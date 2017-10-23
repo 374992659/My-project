@@ -124,6 +124,9 @@ class Events
                                     $userdatastr = 'user_info_'.$val['user_code'];
                                     $user_database = $mongo->$userdatastr;
 //                                $user_database = $mongo->user_info_030117608006762;
+                                    $recent_time = 0;
+                                    $count = '';
+                                    $content = '';
                                     if($user_database->group_new_message->count()){
                                         $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
 //                                    $group_time = $mongo->baseinfo->user_group_time->find(array('user_code'=>'030117608006762','group_code'=>$val['group_code']),array('time'));
@@ -134,7 +137,7 @@ class Events
                                         }
                                         $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
                                         $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
-                                        $recent_time = 0;
+
                                         foreach ($res as $kk=>$vv){
                                             $content[$kk]['group_code']=$vv['group'];
                                             $content[$kk]['sender_code']=$vv['sender_code'];
