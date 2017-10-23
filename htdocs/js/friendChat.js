@@ -37,7 +37,7 @@ $(document).ready(function(){
                                         $("#chatPage").prepend(html);
                                         $(".header_img").attr("src",header);
                                         console.log(item.sender_nickname);
-                                        document.title = item.sender_nickname;
+                                        document.title = parseInt(item.sender_nickname);
 
                                     }
 
