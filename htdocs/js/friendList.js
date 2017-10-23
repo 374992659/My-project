@@ -206,7 +206,7 @@ $(document).ready(function() {
                         $.each(data.data,function(i,item){
                             "use strict";
                             html+=`
-                    <div href="friendChat.html" class="weui-media-box weui-media-box_appmsg skipChat">
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}">
                         </div>
@@ -290,7 +290,14 @@ $(document).ready(function() {
 
     });
     // 点击好友跳转到聊天页面
-    function freandChat(e){
-      var  title=$(e.target).attr("title");
-    }
+    $(".friend").on("click",".skipChat",function(){
+        // 获取好友code
+        var sender_code=$(this).attr("title"),
+        // 头像
+            header=$(this).find("img").attr("src");
+        // 存本地
+        localStorage.setItem("sender_code",sender_code);
+        localStorage.setItem("header",header);
+        window.location.href="friendChat.html";
+    })
 });
