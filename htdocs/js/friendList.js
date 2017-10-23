@@ -114,8 +114,6 @@ $(document).ready(function() {
             var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
             ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
         });
-
-
         //发送消息给好友
         $(".elements").click(function(){
             var content=$(".elements").val('content');                        //获取页面发送内容
@@ -123,19 +121,16 @@ $(document).ready(function() {
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
             ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
         });
-        /*
-        * 判断是否存在元素
-        * */
+        /**判断是否存在元素**/
         function contains(arr, obj) {
             var i = arr.length;
-            while (i--) {
-                if (arr[i] === obj) {
+            while (i--){
+                if (arr[i] === obj){
                     return true;
                 }
             }
             return false;
         }
-
     })();
     //功能1 请求好友分组
     var apptoken=localStorage.getItem("apptoken");
