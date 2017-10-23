@@ -138,10 +138,10 @@ class Events
                                         $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
 //                                    $group_time = $mongo->baseinfo->user_group_time->find(array('user_code'=>'030117608006762','group_code'=>$val['group_code']),array('time'));
 //                                        $group_time = iterator_to_array($group_time);
-                                        $time ='';
-                                        foreach ( $group_time as $item) {
-                                            $time = $item['time'];
-                                        }
+                                        $time =$group_time['time'];
+//                                        foreach ( $group_time as $item) {
+//                                            $time = $item['time'];
+//                                        }
                                         $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
                                         $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
                                         foreach ($res as $kk=>$vv){
