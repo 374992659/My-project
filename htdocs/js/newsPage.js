@@ -14,7 +14,7 @@ $(document).ready(function(){
                     if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                         console.log(friends_new_message);
                         var html="";
-                        $.each(function(i,item){
+                        $.each(friends_new_message,function(i,item){
                             html+=`
                 <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}" value="${item.sender_portrait}">
                     <div class="weui-media-box__hd">
@@ -33,7 +33,7 @@ $(document).ready(function(){
                     var group_new_message = data.group_new_message;
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
-                                $.each(function(i,item){
+                                $.each(group_new_message,function(i,item){
                                     html+=`
                                     <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_num}" value="${item.group_}">
                     <div class="weui-media-box__hd">
