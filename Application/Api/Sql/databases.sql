@@ -82,7 +82,7 @@ CREATE TABLE if NOT EXISTS `offline_user_messageoffline_user_message`  (
   PRIMARY KEY (`id`),
   KEY `sender_code` (`sender_code`),
   KEY `type` (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='离线好友消息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='离线好友消息表';
 
 CREATE TABLE if not exists `vote_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
