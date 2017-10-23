@@ -137,6 +137,7 @@ $(document).ready(function(){
         //发送消息给好友
         $(".pushBtn").click(function(){
             var apptoken=localStorage.getItem("apptoken");
+            console.log(132);
             var content=$(".chatContent").val();                        //获取页面发送内容
             var account_code =sender_code;          //获取发送好友的code
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
