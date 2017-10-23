@@ -37,15 +37,8 @@ $(document).ready(function(){
                                         $("#chatPage").prepend(html);
                                         $(".header_img").attr("src",header);
                                         console.log(item.sender_nickname);
-                                        // window.document.title=item.sender_nickname;
-                                        var $body = $('body');
                                         document.title = item.sender_nickname;
-                                        var $iframe = $('<iframe src="/favicon.ico"></iframe>');
-                                        $iframe.on('load',function() {
-                                            setTimeout(function() {
-                                                $iframe.off('load').remove();
-                                            }, 0);
-                                        }).appendTo($body);
+
                                     }
 
                                 })
