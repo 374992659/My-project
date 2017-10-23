@@ -160,10 +160,11 @@ $(document).ready(function(){
         // 获取发送方的信息
        var sender_code=$(this).attr("title"),
             header=$(this).val();
+       console.log(header);
        // 存在本地
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
-        window.location.href="friendChat.html";
+        // window.location.href="friendChat.html";
     });
 // 点击跳转到群聊天页面
     $(".newsList").on("click",".groupChat",function(){
@@ -173,7 +174,7 @@ $(document).ready(function(){
             group_head=$(this).val();
        // 存本地
         localStorage.setItem("group_num",group_num);
-        localStorage.setItem("roup_head",group_head);
+        localStorage.setItem("group_head",group_head);
         window.location.href="flockChat.html";
     })
 });
