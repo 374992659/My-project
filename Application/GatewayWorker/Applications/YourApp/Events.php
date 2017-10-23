@@ -95,9 +95,13 @@ class Events
                         $result = $db->select()->from('offline_user_message')->query();
                         $friends_new_message = array();
                         if($result){
+                            $friend_db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                             foreach ($result as $k=>$v){
                                 if(!array_key_exists($v['sender_code'],$friends_new_message)){
-                                    $friends_new_message[$v['sender_code']]['sender_code'] = $v['sender_code'];
+                                    $friends_new_message[$v['sender_code']]['sender_code'] = $v['sender_code'];  //用户code
+                                    $friend_table_id= substr($v['sender_code'],0,4);
+                                    $friends_new_message[$v['sender_code']]['sender_nickname'] = $friend_db->select('nickname')->from('user_info_'.$friend_table_id)->where('account_code ='.$v['sender_code'])->single();      //用户昵称
+                                    $friends_new_message[$v['sender_code']]['sender_portrait'] = $friend_db->select('portrait')->from('user_info_'.$friend_table_id)->where('account_code ='.$v['sender_code'])->single();      //用户头像
                                     $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
                                     $friends_new_message[$v['sender_code']]['message_num']=1;
                                     $friends_new_message[$v['sender_code']]['recent_time']=$v['send_time'];
@@ -137,7 +141,6 @@ class Events
                                         }
                                         $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
                                         $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
-
                                         foreach ($res as $kk=>$vv){
                                             $content[$kk]['group_code']=$vv['group'];
                                             $content[$kk]['sender_code']=$vv['sender_code'];
