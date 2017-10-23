@@ -153,8 +153,8 @@ $(document).ready(function(){
             </div>
         </a>                     
            `;
-           $(".chatPage").append(html);
-            console.log(132);
+           $("#chatPage").append(html);
+            console.log(html);
         });
         /*
         * 判断是否存在元素
