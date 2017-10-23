@@ -56,14 +56,15 @@
                 })
             }
         }else{
-            $.post({
-                url:'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=sendMessage&debugging=test',
-                type:'POST',
-                data:{'openId':openId},
-                success:function(res){
-                   console.log(res);
-                }
-            })
+//            $.post({
+//                url:'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=sendMessage&debugging=test',
+//                type:'POST',
+//                data:{'openId':openId},
+//                success:function(res){
+//                   console.log(res);
+//                }
+//            })
+            location.href = 'https://mp.weixin.qq.com/mp/profile_ext?action=home&__biz='+openId+'==&scene=110#wechat_redirect';
         }
         $.post
     })
