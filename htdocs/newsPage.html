@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>消息</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/newsPage.css">
+</head>
+<body>
+    <!--搜索框-->
+    <div class="weui-search-bar" id="searchBar" >
+        <form class="weui-search-bar__form">
+            <div class="weui-search-bar__box">
+                <i class="weui-icon-search"></i>
+                <input type="search"  class="weui-search-bar__input" id="searchInput" placeholder="搜索" required="">
+                <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+            </div>
+            <label class="weui-search-bar__label" id="searchText">
+                <i class="weui-icon-search"></i>
+                <span style="font-size: 10px">搜索</span>
+            </label>
+        </form>
+        <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel" style="font-size: 10px">取消</a>
+    </div>
+    <div style="height: 1px;width: 100%;clear: both"></div>
+    <!--页面-->
+    <div class="newsPage">
+        <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__bd">
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <span class="newsNum">13</span>
+                        <img class="weui-media-box__thumb" src="image/firenda.jpg"><!--头像-->
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">昵称</h4><!--昵称-->
+                        <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
+                    </div>
+                </a>
+                <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <span class="newsNum">13</span>
+                        <img class="weui-media-box__thumb" src="image/firenda.jpg"><!--头像-->
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">昵称</h4><!--昵称-->
+                        <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        $(".wx_items .item_cell").click(function(){
+            $(this).addClass('current').siblings().removeClass('current');
+        });
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="js/url.js"></script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+<script src="js/aes.js"></script>
+<script src="js/pad-zeropadding.js"></script>
+<script src="js/encrypt-decode.js"></script>
+<script src="js/newsPage.js"></script>
+</body>
+</html>

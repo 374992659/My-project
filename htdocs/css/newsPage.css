@@ -1,0 +1,15 @@
+.weui-media-box__hd{
+    position: relative;
+}
+.newsNum{
+    position: absolute;
+    top:-5px;
+    right: -15px;
+    background: red;
+    height: 15px;
+    line-height: 15px;
+    border-radius: 15px;
+    color: white;
+    padding: 0 2px;
+    font-size: 12px;
+}
