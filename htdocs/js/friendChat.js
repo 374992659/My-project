@@ -1,5 +1,4 @@
-// document.getElementsByTagName('html')[0].style.fontSize = window.innerWidth / 100 + 'px';
-// console.log("window.innerWidth");
+
 $(document).ready(function(){
         $(".imgBtn").click(function(){
             console.log(123);
