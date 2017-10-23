@@ -18,9 +18,11 @@ $(document).ready(function() {
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                                 console.log(friends_new_message);
-                            friends_new_message.each(function(i){
+                               $.each(function(i,item){
+                                    console.log(item.length)
+                            });
                                 console.log(123);
-                            })
+
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
