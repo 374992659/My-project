@@ -18,27 +18,25 @@ $(document).ready(function(){
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                                 console.log(friends_new_message);
+                            var header=localStorage.getItem("header");
                                 var html="";
-                                var content="";
                                 $.each(friends_new_message,function(i,item){
                                     if(item.sender_code===sender_code){
-                                       html=`
+                                       $.each(item.content,function(i,item){
+                                           html+=`
             <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                 <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                    <img class="weui-media-box__thumb" src="${item.sender_portrait}" alt="">
+                    <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
                 </div>
                 <div class="weui-media-box__bd content">
-                   
+                    <span class="weui-media-box__desc">${item.content}</span>
                 </div>
             </div>
-                                       `;
-                                       $.each(item.content,function(i,item){
-                                           content+=`
-                                            <span class="weui-media-box__desc">${item.content}</span>
-                                           `
+                                       `
                                        });
                                         $("#chatPage").prepend(html);
-                                        $(".content").html(content);
+                                        $(".header_img").attr("src",header);
+                                        console.log(item.sender_nickname);
                                         $(".title").html(item.sender_nickname)
                                     }
 
