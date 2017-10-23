@@ -161,7 +161,7 @@ $(document).ready(function(){
        var sender_code=$(this).attr("title"),
             header=$(this).val();
        // 存在本地
-        localStorage.set("sender_code",sender_code);
+        localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
         window.location.href="friendChat.html";
     });
