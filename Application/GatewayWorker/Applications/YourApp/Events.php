@@ -114,6 +114,7 @@ class Events
                         $group_new_message = array();
                         if($group_arr){
                             $group_arr_str = implode(',',$group_arr);             //用户群字符串
+                            $group_arr_str = substr($group_arr_str,0,(strlen($group_arr_str)-1));
                             $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                             $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
                             $mongo = new MongoClient();
