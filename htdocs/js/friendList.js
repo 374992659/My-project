@@ -19,7 +19,7 @@ $(document).ready(function() {
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                                 console.log(friends_new_message);
                                $.each(function(i,item){
-                                    console.log(item.length)
+                                    console.log(i)
                             });
                                 console.log(123);
 
