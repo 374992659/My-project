@@ -10,6 +10,7 @@ $(document).ready(function() {
         group_new_messageNum=parseInt(group_new_messageNum);
         var friends_new_applyNum="";
         friends_new_applyNum=parseInt(friends_new_applyNum);
+        console.log(friends_new_messageNum);
         ws.onmessage = function (e) {
             var result = JSON.parse(e.data);                   //服务器返回结果
             console.log(result);
