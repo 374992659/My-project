@@ -144,14 +144,14 @@ $(document).ready(function(){
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
             ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
            var  html=`
-        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__bd">
                 <span class="weui-media-box__desc right" >${content}</span>
-            </div>-->
-            <div class="weui-media-box__hd" style="margin-left:.8em;">-->
+            </div>
+            <div class="weui-media-box__hd" style="margin-left:.8em;">
                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
             </div>
-        </a>                     
+        </div>                     
            `;
            $("#chatPage").append(html);
             console.log(html);
