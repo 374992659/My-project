@@ -17,21 +17,18 @@ $(document).ready(function() {
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
-                                console.log(friends_new_message.length);
                             friends_new_messageNum=friends_new_message.length
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
-                            console.log(group_new_message.length);
                             group_new_messageNum=group_new_message.length
                         }
                         var friends_new_apply=data.friends_new_apply;
                         if(friends_new_apply){                      //用户添加好友的申请
-                            console.log(friends_new_apply.length);
                             friends_new_applyNum=friends_new_apply.length
                         }
 
-                        console.log(friends_new_messageNum);
+                        // 把消息数量添加到页面
                         $("#newsNum").html(friends_new_messageNum+group_new_messageNum+friends_new_applyNum);
                     }
                     break;
@@ -136,7 +133,6 @@ $(document).ready(function() {
             }
             return false;
         }
-        // 把消息数量添加到页面
 
     })();
     //功能1 请求好友分组
