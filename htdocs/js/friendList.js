@@ -5,8 +5,11 @@ $(document).ready(function() {
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
         var friends_new_messageNum="";
+        friends_new_messageNum=parseInt(friends_new_messageNum);
         var group_new_messageNum="";
+        group_new_messageNum=parseInt(group_new_messageNum);
         var friends_new_applyNum="";
+        friends_new_applyNum=parseInt(friends_new_applyNum);
         ws.onmessage = function (e) {
             var result = JSON.parse(e.data);                   //服务器返回结果
             console.log(result);
@@ -18,23 +21,17 @@ $(document).ready(function() {
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                                 console.log(friends_new_message.length);
-                               $.each(function(i,item){
-                                    console.log(i)
-                            });
-                                console.log(123);
-
+                            friends_new_messageNum=friends_new_message.length
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                             console.log(group_new_message.length);
-
+                            group_new_messageNum=group_new_message.length
                         }
                         var friends_new_apply=data.friends_new_apply;
                         if(friends_new_apply){                      //用户添加好友的申请
-                            console.log(friends_new_apply);
-                            friends_new_apply.each(function(i){
-
-                            })
+                            console.log(friends_new_apply.length);
+                            friends_new_applyNum=friends_new_apply.length
                         }
                     }
                     break;
@@ -139,7 +136,8 @@ $(document).ready(function() {
             }
             return false;
         }
-
+        // 把消息数量添加到页面
+        $("#newsNum").html(friends_new_messageNum+group_new_messageNum+friends_new_applyNum);
     })();
     //功能1 请求好友分组
     var apptoken=localStorage.getItem("apptoken");
