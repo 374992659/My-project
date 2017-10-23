@@ -71,6 +71,7 @@ class Events
                         $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
 //                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
                         $group_arr = $db->select('group_code')->from('user_group')->where('status =1')->column();
+                        var_dump($group_arr);
                         if($group_arr){
                                foreach ($group_arr as $k=>$v){
                                    Gateway::joinGroup($client_id,$v);                                   //将用户加入群组
