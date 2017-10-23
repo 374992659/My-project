@@ -290,7 +290,8 @@ $(document).ready(function() {
 
     });
     // 点击好友跳转到聊天页面
-    $(".friend").on("click",".skipChat",function(){
+    $(".group").on("click",".skipChat",function(){
+        console.log(123);
         // 获取好友code
         var sender_code=$(this).attr("title"),
         // 头像
