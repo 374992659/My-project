@@ -159,7 +159,7 @@ $(document).ready(function(){
     $(".newsList").on("click",".friendChat",function(){
         // 获取发送方的信息
        var sender_code=$(this).attr("title"),
-            header=$(this).val();
+            header=$(this).find("img").attr("src");
        console.log(header);
        // 存在本地
         localStorage.setItem("sender_code",sender_code);
@@ -171,7 +171,7 @@ $(document).ready(function(){
         // 获取群code
         var group_num=$(this).attr("title"),
             // 群头像
-            group_head=$(this).attr("value");
+            group_head=$(this).find("img").attr("src");
        // 存本地
         localStorage.setItem("group_num",group_num);
         localStorage.setItem("group_head",group_head);
