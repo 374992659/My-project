@@ -4,7 +4,7 @@ $(document).ready(function() {
         var apptoken = localStorage.getItem('apptoken');
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
-        var friends_new_messageNum="";
+        var friends_new_messageNum=null;
         var group_new_messageNum="";
         group_new_messageNum=parseInt(group_new_messageNum);
         var friends_new_applyNum="";
