@@ -4,18 +4,13 @@ $(document).ready(function() {
         var apptoken = localStorage.getItem('apptoken');
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
-        var friends_new_messageNum=null;
-        var group_new_messageNum="";
-        group_new_messageNum=parseInt(group_new_messageNum);
-        var friends_new_applyNum="";
-        friends_new_applyNum=parseInt(friends_new_applyNum);
-        console.log(friends_new_messageNum);
         ws.onmessage = function (e) {
             var result = JSON.parse(e.data);                   //服务器返回结果
             console.log(result);
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode) === 0){
+                        var friends_new_messageNum=0;
                         var data = (result.data);
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message=data.friends_new_message;
@@ -33,6 +28,9 @@ $(document).ready(function() {
                             console.log(friends_new_apply.length);
                             friends_new_applyNum=friends_new_apply.length
                         }
+
+                        console.log(friends_new_messageNum);
+                        $("#newsNum").html(friends_new_messageNum);
                     }
                     break;
 
@@ -137,8 +135,7 @@ $(document).ready(function() {
             return false;
         }
         // 把消息数量添加到页面
-        console.log(friends_new_messageNum);
-        $("#newsNum").html(friends_new_messageNum+group_new_messageNum+friends_new_applyNum);
+
     })();
     //功能1 请求好友分组
     var apptoken=localStorage.getItem("apptoken");
