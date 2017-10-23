@@ -59,7 +59,7 @@ body {
 /*滚动水平导航栏 start*/
 .lr_nb{border-bottom:1px solid #E8E8E8;border-top:1px solid #E8E8E8;height:40px;line-height:40px;width:100%;background:#fff;padding: 0px 10px;box-sizing:border-box;z-index:1;max-width:1080px;opacity:1;top:0;-webkit-transition:.3s all;transition:.3s all}
 .lr_nb .slider_wrap.line{overflow:hidden;overflow-x:scroll;width:100%;-webkit-overflow-scrolling:touch;}
-.lr_nb .slider_wrap.line .item_cell{display:inline-block;margin: 0px 10px;;overflow:hidden;position:relative;}
+.lr_nb .slider_wrap.line .item_cell{display:inline-block;margin: 0 10px;position:relative;}/*此处有移除隐藏取消了*/
 .lr_nb .slider_wrap.box{overflow:hidden;width:100%}
 .lr_nb .slider_wrap::-webkit-scrollbar{display:none}
 .lr_nb .wx_items{white-space:nowrap}
@@ -67,7 +67,20 @@ body {
 .lr_nb .wx_items .current span,.lr_nb .wx_items .current a:visited,.lr_nb .wx_items .current a:link,.lr_nb .wx_items .current a:hover,.lr_nb .wx_items .current a:focus{color:#4fbeab;}
 .lr_nb_after{height:40px;display:block;clear:both;}
 /*滚动水平导航栏 end*/
-
+#newsNum{
+    position: absolute;
+    top:0;
+    right:-20px;
+    display: inline-block;
+    height: 15px;
+    background: red;
+    color:white;
+    font-size: 12px;
+    line-height: 15px;
+    z-index: 1000;
+    border-radius: 20px;
+    padding: 0 2px;
+}
 
 
 
