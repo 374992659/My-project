@@ -96,7 +96,7 @@ $(document).ready(function(){
         }
     };
     ws.onopen=function(e){
-        ws.send(JSON.stringify({'type' : 1,'apptoken' :'99066CAEA6014CCB4BC7A24466980523494439DC9011E7C4AB0C00AB6BBB378FB1D80A063EB5C3CE525F5F369343A936'}));
+        ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
     };
     //群聊点击发送
     $(".elements").click(function(){
