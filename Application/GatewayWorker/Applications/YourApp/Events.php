@@ -216,7 +216,6 @@ class Events
                         );
                         $collection1->insert($data1);    //发送用户聊天记录表插入数据
                             $data2 = array(
-                                '_id'=>self::getNextId($mongo,'user_info_'.$message->account_code,'friends_chat'),
                                 'sender_code'=>$account_code['account_code'],
                                 'sender_nickname'=>$user_info['nickname'],
                                 'send_portrait'=>$user_info['portrait'],
