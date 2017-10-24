@@ -13,15 +13,17 @@ $(document).ready(function() {
                     if(parseInt(result.errcode) === 0){
                         var friends_new_messageNum=0,
                             group_new_messageNum=0,
-                            friends_new_applyNum=0;
+                            friends_new_applyNum=0,
+                            online_friends=[];
                         var data = (result.data);
                         // 在线好友
                        $.each(data.online_friends,function(i,item){
+                           online_friends.push(item);
+                           localStorage.setItem("online_friends",JSON.stringify(online_friends));
                            console.log(item);
-                           localStorage.setItem('online_friends',item);
+                          // localStorage.setItem('online_friends',item); //本地保存在线好友列表
                        });
 
-                        // localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         // 好友新消息
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
