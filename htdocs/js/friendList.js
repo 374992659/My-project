@@ -19,11 +19,16 @@ $(document).ready(function() {
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                             console.log(friends_new_messageNum);
-                            friends_new_messageNum=friends_new_message.length
+                            $.each(friends_new_message,function(i,item){
+                                friends_new_messageNum+=item.message.num;
+                            })
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
-                            group_new_messageNum=group_new_message.length
+                            $.each(group_new_messageNum,function(i,item){
+                                group_new_messageNum+=item.count;
+                                console.log(item.count);
+                            })
                         }
                         var friends_new_apply=data.friends_new_apply;
                         if(friends_new_apply){                      //用户添加好友的申请
