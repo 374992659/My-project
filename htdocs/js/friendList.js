@@ -20,7 +20,7 @@ $(document).ready(function() {
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                             console.log(friends_new_messageNum);
                             $.each(friends_new_message,function(i,item){
-                                console.log(item.message.num);
+                                console.log(item_num);
                             })
                         }
                         var group_new_message=data.group_new_message;
@@ -28,7 +28,7 @@ $(document).ready(function() {
                             //群组新消息  已按群分组 时间倒序排列
                             console.log(group_new_message);
                             $.each(group_new_message,function(i,item){
-                                console.log(item.count);
+                                console.log(item);
                             })
                         }
                         var friends_new_apply=data.friends_new_apply;
