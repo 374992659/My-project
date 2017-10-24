@@ -124,8 +124,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        $(this).parent().parent().parent()
-                        photo();
+                        $(this).parent().parent().parent().parent().remove();
                     }else{
                         console.log(data.errmsg);
                     }
