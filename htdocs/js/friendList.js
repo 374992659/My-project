@@ -13,24 +13,27 @@ $(document).ready(function() {
                     if(parseInt(result.errcode) === 0){
                         var friends_new_messageNum=0,
                             group_new_messageNum=0,
-                            friends_new_applyNum=0;
+                            friends_new_applyNum=0,
+                                online_friends={};
                         var data = (result.data);
+                        // 在线好友
+                        $.each(data.online_friends,function(i,item){
+                            console.log(item);
+                        });
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
+                        // 好友新消息
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
-                            console.log(friends_new_messageNum);
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message_num;
-                                console.log(item.message_num);
                             })
                         }
+                        // 群新消息
                         var group_new_message=data.group_new_message;
                         if(group_new_message){
                             //群组新消息  已按群分组 时间倒序排列
-                            console.log(group_new_message);
                             $.each(group_new_message,function(i,item){
                                 group_new_messageNum+=item.count;
-                                console.log(item.count);
                             })
                         }
                         var friends_new_apply=data.friends_new_apply;
@@ -44,7 +47,7 @@ $(document).ready(function() {
                     break;
 
                 case 2:           //2.好友上线通知 更新本地在线好友列表
-                    if(parseInt(result.errcode) === 0){
+                    if(parseInt(result.errcode)===0){
                         var data = (result.data);
                         var friend_code = data.user_code;
                         var online_friends = localStorage.getItem('online_friends');
