@@ -44,12 +44,14 @@ class GroupController extends VersionController
         if(!$group_num) $this->echoEncrypData(1,'群创建失败，请重试');
         $table_id=substr($this->account_code,0,4);
         $group_code=$table_id.$group_num;
-       $data=array(
-            'group_num'=>$group_num,
-            'group_code'=>$group_code,
-            'table_id'=>$table_id,
-            'user_code'=>$this->account_code
-       );
+//       $data=array(
+//            'group_num'=>$group_num,
+//            'group_code'=>$group_code,
+//            'group_name'=>$group_name,
+//            'group_portrait'=>$group_portrait,
+//            'table_id'=>$table_id,
+//            'user_code'=>$this->account_code
+//       );
 //       $count = M('baseinfo.group_area')->where(['user_code'=>$this->account_code])->count();
        $mongo = new \MongoClient();
        $count = $mongo->baseinfo->group_area->count(array('user_code'=>$this->account_code));
@@ -63,6 +65,8 @@ class GroupController extends VersionController
             'group_num'=>$group_num,
             'group_code'=>$group_code,
             'table_id'=>$table_id,
+            'group_name'=>$group_name,
+            'group_portrait'=>$group_portrait,
             'user_code'=>$this->account_code,
             'status'=>1,
             ));
