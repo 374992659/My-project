@@ -22,14 +22,6 @@ $(document).ready(function(){
                     var html="";
                     var Li="";
                     $.each(data.data,function(i,item){
-                        $.each(item.picture_path,function(i,item){
-                        console.log(item);
-                        Li+=`
-                               <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
-                               </li>
-                            `
-                            });
                         html+=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -50,6 +42,15 @@ $(document).ready(function(){
                             </div>
                         </div>
                         `;
+                        // 对图片进行循环
+                        $.each(item.picture_path,function(i,item){
+                            console.log(item);
+                            Li+=`
+                               <li class="lf">
+                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
+                               </li>
+                            `
+                        });
                     });
                     $("#flockPhoto").append(html);
                     $(".LiImg").append(Li);
@@ -123,6 +124,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
+                        $(this).parent().parent().parent()
                         photo();
                     }else{
                         console.log(data.errmsg);
