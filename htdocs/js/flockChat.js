@@ -21,7 +21,27 @@ $(document).ready(function(){
                         var group_new_message = data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 console.log(group_new_message);
-                                $.each()
+                                var html="";
+                               var group_num=localStorage.getItem("group_num");
+                                $.each(group_new_message,function(i,item){
+                                    if(item.group_num===group_num){
+                                        $.each(item.content,function(i,item){
+                                            html+=`
+                                            <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                                                <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                                                    <img class="weui-media-box__thumb" src="${item.sender_portrait}" alt="">
+                                                </div>
+                                                <div class="weui-media-box__bd">
+                                                      <span class="weui-media-box__desc">                     
+                                                            ${item.content}
+                                                      </span>
+                                                </div>
+                                            </a>                                                                                        
+                                            `
+                                        });
+                                        $(".chatPage").prepend(html)
+                                    }
+                                })
                         }
                         var friends_new_apply = data.friends_new_apply;
                         if(friends_new_apply){                      //用户添加好友的申请
