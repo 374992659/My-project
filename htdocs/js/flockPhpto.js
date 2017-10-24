@@ -20,8 +20,8 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
-                    var Li="";
                     $.each(data.data,function(i,item){
+
                         html+=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -43,6 +43,7 @@ $(document).ready(function(){
                         </div>
                         `;
                         // 对图片进行循环
+                        var Li="";
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
                             Li+=`
