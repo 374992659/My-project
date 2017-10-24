@@ -139,7 +139,7 @@ $(document).ready(function(){
         </div>                     
            `;
             $("#chatPage").append(html);
-            $(".chatContent").val().html();
+            $(".chatContent").val().html("");
         });
         //发送消息给好友
         $(".elements").click(function(){
