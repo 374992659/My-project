@@ -19,9 +19,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-
+                    var html="";
                     $.each(data.data,function(i,item){
-                        var html="";
+
                         var Li="";
                         console.log(item);
                         html+=`
