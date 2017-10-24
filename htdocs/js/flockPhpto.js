@@ -20,13 +20,13 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
-                    var Li="";
+
                     $.each(data.data,function(i,item){
-                        console.log(item);
+                        console.log(item);var Li="";
                         html+=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
-                                <div  class="weui-media-box weui-media-box_appmsg" >
+                                <div  class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
                                         <img class="weui-media-box__thumb" src="image/frihead.jpg" style="border-radius: 50px">
                                     </div>
@@ -37,7 +37,6 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
-                               
                             </div>
                             <ul class="LiImg">
                                   
@@ -53,9 +52,10 @@ $(document).ready(function(){
                                </li>
                             `
                         });
+                        $(".LiImg").append(Li);
                     });
                     $(".picPlace").append(html);
-                    $(".LiImg").append(Li);
+
                 }
             }
         })
