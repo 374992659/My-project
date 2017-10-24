@@ -52,14 +52,12 @@ $(document).ready(function(){
                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
                                </li>
                             `
-
                         });
-
                         console.log(Li);
                     });
                     $(".picPlace").append(html);
                     $(".LiImg").append(Li);
-
+                    console.log(Li);
                 }
             }
         })
