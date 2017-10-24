@@ -27,9 +27,9 @@ $(document).ready(function(){
                         html+=`
                         <a href="flockComm_content.html" class="weui-media-box weui-media-box_appmsg" title="${item.id}">
                             <div class="weui-media-box__bd">
-                                <h4 class="weui-media-box__title" style="font-size: 15px">${item.title}</h4>
-                                <p class="weui-media-box__desc">${item.content}</p>
-                                <span class="right time" style="font-size: 12px;color:#b1b3b5;">${item.create_time}</span>
+                                <h4 class="weui-media-box__title" style="font-size: 16px">${item.title}</h4>
+                                <p class="weui-media-box__desc" style="font-size: 14px">${item.content}</p>
+                                <span class="right time" style="font-size: 14px;color:#b1b3b5;">${item.create_time}</span>
                             </div>
                         </a>
                         `
