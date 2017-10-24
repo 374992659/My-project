@@ -38,7 +38,7 @@ $(document).ready(function(){
                 <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum" title="${item.group_num}">${item.count}</span>
-                        <img class="weui-media-box__thumb" src="${item.group_portrait}"><!--头像-->
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
                     </div>
                     <div class="weui-media-box__bd">
                         <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
