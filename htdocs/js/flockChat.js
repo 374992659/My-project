@@ -126,6 +126,7 @@ $(document).ready(function(){
         $(".pushBtn").click(function(){
             var content=$(".chatContent").val();                 //获取页面发送内容
             var group =localStorage.getItem("group_code");       //获取发送好友的code
+            console.log(JSON.stringify({'type':3,'content':content,'apptoken' : apptoken,'group':group,'message_type':message_type}));
             var message_type = 1;                      //消息类型 1:文字消息 2:语音消息 3：文件消息
             ws.send(JSON.stringify({'type':3,'content':content,'apptoken' : apptoken,'group':group,'message_type':message_type}));
             var  html=`
