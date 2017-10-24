@@ -50,11 +50,22 @@ class GroupController extends VersionController
             'table_id'=>$table_id,
             'user_code'=>$this->account_code
        );
-       $count = M('baseinfo.group_area')->where(['user_code'=>$this->account_code])->count();
+//       $count = M('baseinfo.group_area')->where(['user_code'=>$this->account_code])->count();
+       $mongo = new \MongoClient();
+       $count = $mongo->baseinfo->group_area->count(array('user_code'=>$this->account_code));
        if(intval($count) >= 5){
            $this->echoEncrypData(305);
        }
-        $res1 = M('baseinfo.group_area')->add($data);
+//        $res1 = M('baseinfo.group_area')->add($data);
+        $mongo = new \MongoClient();
+        $res1= $mongo->baseinfo->group_area->insert(array(
+            '_id'=>getNextId($mongo,'baseinfo','group_area'),
+            'group_num'=>$group_num,
+            'group_code'=>$group_code,
+            'table_id'=>$table_id,
+            'user_code'=>$this->account_code,
+            'status'=>1,
+            ));
         $mode = new Model\UserGroupModel($this->account_code);
         $res2 =$mode->addGroup($group_name,$group_portrait,$group_code,$group_num,1,$group_type,$garden_code);   //role角色id
         $data = M('baseinfo.user_info_'.$table_id)->field(['nickname,portrait'])->where(['account_code'=>$this->account_code])->find();
@@ -120,7 +131,9 @@ class GroupController extends VersionController
     protected function getGroupUser_v1_0_0(){
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $res = M('baseinfo.group_area')->field('group_code,user_code')->where(['group_num'=>$group_num])->find();
+//        $res = M('baseinfo.group_area')->field('group_code,user_code')->where(['group_num'=>$group_num])->find();
+        $mongo =new \MongoClient();
+        $res = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('group_code','user_code'));
         if(!$res)$this->echoEncrypData(1,'未获取到群信息');
         $model = new Model\GroupUserModel($res['user_code']);
         $data=$model->getGroupUser($res['group_code']);
@@ -139,7 +152,10 @@ class GroupController extends VersionController
         $group_num =$this->pdata['group_num'];
         $user_code =$this->pdata['user_code'];
         if(!$group_num || !$user_code)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $mode =new Model\GroupUserModel($create_code);
         $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
         if(intval($role) !== 1)$this->echoEncrypData(500);
@@ -159,7 +175,10 @@ class GroupController extends VersionController
         $group_num =$this->pdata['group_num'];
         $user_code =$this->pdata['user_code'];
         if(!$group_num || !$user_code)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $mode =new Model\GroupUserModel($create_code);
         $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
         if(intval($role) !== 1)$this->echoEncrypData(500);
@@ -180,7 +199,10 @@ class GroupController extends VersionController
         $group_num =$this->pdata['group_num'];
         $user_code =$this->pdata['user_code'];
         if(!$group_num || !$user_code)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $mode =new Model\GroupUserModel($create_code);
         $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
         if(intval($role) !== 1)$this->echoEncrypData(500);
@@ -213,7 +235,10 @@ class GroupController extends VersionController
         $group_num = $this->pdata['group_num'];
         if(!$title || !$content  || !$user_code  || !$group_num)$this->echoEncrypData(21);
         //查看用户是否是该群管理员或者创建人
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $mode=new Model\GroupUserModel($create_code);
         $role = $mode->getUserRole($group_num,$this->account_code);
         if(!$role)$this->echoEncrypData(1);
@@ -254,7 +279,10 @@ class GroupController extends VersionController
     protected function getGroupNotice_v1_0_0(){
         $group_num = $this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model=new Model\GroupNoticeModel($create_code);
         $res = $model->getGroupNotice($group_num);
         if(!$res) $this->echoEncrypData(5);
@@ -270,7 +298,10 @@ class GroupController extends VersionController
         $id=$this->pdata['id'];
         if(!$id ||!$group_num)$this->echoEncrypData(21);
         //查看用户是否是该群管理员或者创建人
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $mode=new Model\GroupUserModel($create_code);
         $role = $mode->getUserRole($group_num,$this->account_code);
         if(!$role)$this->echoEncrypData(1);
@@ -290,7 +321,10 @@ class GroupController extends VersionController
     protected function addGroupPic_v1_0_0(){
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         import('Vendor.UploadFile');
         $upload =new \UploadFile();
         $path=APP_PATH.'Common/Upload/Img/GroupPicture/'.date(m).date(d).'/';
@@ -316,7 +350,10 @@ class GroupController extends VersionController
     protected function getGroupPic_v1_0_0(){
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model =new Model\GroupPictureModel($create_code);
         $data = $model->getGroupPicture($group_num);
         if(is_numeric($data)) $this->echoEncrypData($data);
@@ -335,7 +372,10 @@ class GroupController extends VersionController
         $picture_id =$this->pdata['picture_id'];
         $group_num=$this->pdata['group_num'];
         if(!$picture_id ||!$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $mode=new Model\GroupUserModel($create_code);
         $role = $mode->getUserRole($group_num,$this->account_code);
         if(!$role)$this->echoEncrypData(1);
@@ -393,7 +433,10 @@ class GroupController extends VersionController
         $end_time = $this->pdata['end_time'];
         $anonymous = $this->pdata['anonymous'];
         if(!$title || !$content || !$picture || !$choice || !$type || !$garden_code || !$end_time || !$anonymous || !$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $account_code=$this->account_code;
         $table_id = substr($account_code,0,4);
         if(!$table_id)$this->echoEncrypData(1);
@@ -428,7 +471,10 @@ class GroupController extends VersionController
         $group_num =$this->pdata['group_num'];
         $vote_id =$this->pdata['vote_id'];
         if(!$group_num || !$vote_id)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $account_code=$this->account_code;
         $model =new Model\GroupVoteModel($create_code);
         $mode = new Model\GroupUserModel($create_code);
@@ -453,7 +499,10 @@ class GroupController extends VersionController
         $vote_id =$this->pdata['vote_id'];
         $choised =$this->pdata['choised'];
         if(!$group_num || !$vote_id || !$choised)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $account_code=$this->account_code;
         $table_id = substr($account_code,0,4);
         if(!$table_id)$this->echoEncrypData(1);
@@ -492,7 +541,10 @@ class GroupController extends VersionController
     protected function getVoteList_v1_0_0(){
         $group_num =$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model = new Model\GroupVoteModel($create_code);
         $res = $model->getVoteList($group_num);
         if(is_numeric($res))$this->echoEncrypData($res);
@@ -508,7 +560,10 @@ class GroupController extends VersionController
         $group_num = $this->pdata['group_num'];
         $vote_id =$this->pdata['vote_id'];
         if(!$group_num || !$vote_id)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $mode = new Model\GroupVoteModel($create_code);
         $data = $mode->getVoteInfo($vote_id);
         $choice_arr = json_decode($data['choice'],true);
@@ -562,7 +617,10 @@ class GroupController extends VersionController
             'portrait'=>$res['portrait'],
             'create_time'=>time(),
         );
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model = new Model\GroupSubjectModel($create_code);
         if(!$subject_id=$model->addGroupSubject($data))$this->echoEncrypData(1);
         $database=new RegiestController();
@@ -596,7 +654,10 @@ class GroupController extends VersionController
         $subject_id = trim($this->pdata['subject_id']);
         $group_num = trim($this->pdata['group_num']);
         if(!$content || !$subject_id || !$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data = array(
@@ -627,7 +688,10 @@ class GroupController extends VersionController
         $subject_id = trim($this->pdata['subject_id']);
         $group_num = trim($this->pdata['group_num']);
         if(!$subject_id || !$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data = array(
@@ -659,7 +723,10 @@ class GroupController extends VersionController
         $group_num = trim($this->pdata['group_num']);
         $commont_id = trim($this->pdata['commont_id']);
         if( !$subject_id || !$group_num || !$commont_id )$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data = array(
@@ -688,7 +755,10 @@ class GroupController extends VersionController
     protected function getGroupSubjectList_v1_0_0(){
         $group_num = $this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model= new Model\GroupSubjectModel($create_code);
         $data = $model->getGroupSubjectList($group_num);
         if(!$data)$this->echoEncrypData(5);
@@ -703,7 +773,10 @@ class GroupController extends VersionController
         $subject_id=$this->pdata['subject_id'];
         $group_num=$this->pdata['group_num'];
         if(!$group_num || !$subject_id)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model= new Model\GroupSubjectModel($create_code);
         $data =$model->getGroupSubjectInfo($subject_id);
         if(!$data)$this->echoEncrypData(1);
@@ -779,7 +852,10 @@ class GroupController extends VersionController
         $detailed_introduction =$this->pdata['detailed_introduction'];
         $group_num =$this->pdata['group_num'];
         if(!$title || !$start_time  || !$end_time  || !$destination  || !$collection_time || !$collection_place  || !$contact  || !$phone  || !$transport  || !$garden_code  || !$garden_name  || !$total_num  || !$cost_type  || !$average_cost || !$group_num) $this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data=array(
@@ -820,7 +896,10 @@ class GroupController extends VersionController
     protected function getGroupActivityList_v1_0_0(){
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model=new Model\GroupActivityModel($create_code);
         $data = $model->getActivityList($group_num);
         if(!$data)$this->echoEncrypData(1);
@@ -836,7 +915,10 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         $activity_id=$this->pdata['activity_id'];
         if(!$group_num || !$activity_id)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model=new Model\GroupActivityModel($create_code);
         $data = $model->getGroupActivityInfo($activity_id);
         $mode =new Model\GroupActivityRegistrationModel($create_code);
@@ -855,7 +937,10 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         $activity_id=$this->pdata['activity_id'];
         if(!$group_num || !$activity_id)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $mode=new Model\GroupActivityModel($create_code);
@@ -885,7 +970,10 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         $activity_id=$this->pdata['activity_id'];
         if(!$group_num || !$activity_id)$this->echoEncrypData(21);
-        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+//        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
         $model=new Model\GroupActivityRegistrationModel($create_code);
         $result=$model->getEnroolStatus($activity_id,$this->account_code);
         if($result == 0)$this->echoEncrypData(1,'您还没有报名哦');
@@ -904,7 +992,9 @@ class GroupController extends VersionController
                 for($k=1;$k <=(5+$i) ;$k++){
                     $code .=mt_rand(0,9);
                 }
-                $res = M('baseinfo.group_area')->where(['group_num'=>$code])->find();
+//                $res = M('baseinfo.group_area')->where(['group_num'=>$code])->find();
+                $mongo = new \MongoClient();
+                $res = $mongo->baseinfo->group_area->count(array('group_num'=>$code));
                 if(!$res){
                     return $code;
                 }

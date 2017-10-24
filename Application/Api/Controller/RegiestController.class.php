@@ -134,8 +134,9 @@ class RegiestController extends BaseController
         if ($this->account_code > 0) {
             $this->echoEncrypData(112, '已登录，无需重复注册');
         }
-
-        $customer = M('user_area')->where(array('phone' => $phone))->getField('id');
+//        $customer = M('user_area')->where(array('phone' => $phone))->getField('id');
+        $mongo = new \MongoClient();
+        $customer =$mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('id'));
         if ($customer > 0) {
             $this->echoEncrypData(118, '已注册无需重复注册');
         }
@@ -169,7 +170,9 @@ class RegiestController extends BaseController
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
-        $account_count = M('user_area')->where(['account'=>$account])->count();
+//        $account_count = M('user_area')->where(['account'=>$account])->count();
+        $mongo = new \MongoClient();
+        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$account));
         if( $account_count ){
             $this->echoEncrypData(1,'该账号已被注册');
         }
@@ -178,7 +181,17 @@ class RegiestController extends BaseController
             'account' =>$account,
             'table_id' => $area_id
         );
-        $res1=M()->table('baseinfo.user_area')->add($data1);
+//        $res1=M()->table('baseinfo.user_area')->add($data1);
+        $mongo = new \MongoClient();
+        $mongo->baseinfo->user_area->insert(array(
+            '_id'=>getNextId($mongo,'baseinfo','user_area'),
+            'account'=> $account,
+            'table_id'=>$area_id,
+            'status'=>1,
+            'account_coe'=>$area_id.$account,
+            'portrait'=>'http://39.108.237.198/project/Application/Common/Source/Img/default_portrait.jpg',
+            'nickname'=>$account,
+        ));
         $data2= array(
             'account' =>$account,
             'password' => md5(md5($password).$account),
@@ -190,7 +203,7 @@ class RegiestController extends BaseController
         );
         $this->autoBuildDatabase($account);
         $res2=M()->table("baseinfo.user_info_".$area_id)->add($data2);
-        if($res1 and $res2){
+        if($res2){
             $this->appToken=true;
             $this->account_code = $area_id.$account;
             $this->echoEncrypData(0,'注册成功');
@@ -208,7 +221,9 @@ class RegiestController extends BaseController
         if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$phone)){
             $this->echoEncrypData(106);
         }
-        $count = M('user_area')->where(['phone'=>$phone])->getField('status');
+//        $count = M('user_area')->where(['phone'=>$phone])->getField('status');
+        $mongo = new \MongoClient();
+        $count =$mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('status'));
         if(!$count){
             $this->echoEncrypData(1,'该手机号还未绑定账号!');
         }
@@ -249,7 +264,9 @@ class RegiestController extends BaseController
         if( $cache_code != $smscode ){
             $this->echoEncrypData(1,'验证码不正确');
         }
-        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
+//        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
+        $mongo = new \MongoClient();
+        $table_id =$mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('table_id','account'));
         if($table_id){
             $res = M('user_info_'.$table_id['table_id'])->where(['phone'=>$phone])->save(['password'=>md5(md5($newpwd).$table_id['account'])]);
             if(!$res)$this->echoEncrypData(1);
@@ -273,7 +290,9 @@ class RegiestController extends BaseController
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){
             $this->echoEncrypData(106);
         }
-        $table_id = M('user_area')->field('table_id,account,status')->where(['account'=>$account])->find();
+//        $table_id = M('user_area')->field('table_id,account,status')->where(['account'=>$account])->find();
+        $mongo = new \MongoClient();
+        $table_id =$mongo->baseinfo->user_area->findOne(array('account'=>$account),array('table_id,account,status'));
         if(!$table_id){
             $this->echoEncrypData(1,'该用户不存在，请前往注册!');
         }
@@ -301,7 +320,9 @@ class RegiestController extends BaseController
         if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$phone)){
             $this->echoEncrypData(106);
         }
-        $count = M('user_area')->where(['phone'=>$phone])->getField('status');
+//        $count = M('user_area')->where(['phone'=>$phone])->getField('status');
+        $mongo = new \MongoClient();
+        $count = $mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('status'));
         if(!$count){
             $this->echoEncrypData(1,'该用户不存在，请前往注册!');
         }
@@ -342,7 +363,9 @@ class RegiestController extends BaseController
         if( $cache_code != $smscode ){
             $this->echoEncrypData(1,'验证码不正确');
         }
-        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
+//        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
+        $mongo = new \MongoClient();
+        $table_id = $mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('table_id,account'));
         $account['table_id'] =$table_id['table_id'];
         $this->account_code = $table_id['table_id'].$table_id['account'];
         $this->appToken=true;   //返回apptoken

@@ -27,7 +27,9 @@ class UserAreaModel extends Model
      * @param string $user_area
      */
     public function addUserArea($openId,$phone,$table_id, & $errmsg){
-        $data=M('user_area')->field('openId,status')->where(array('openId'=>$openId))->find();
+        $mongo = new \MongoClient();
+        $data = $mongo->baseinfo->user_area->findOne(array('openId'=>$openId),array('openId,status'));
+//        $data=M('user_area')->field('openId,status')->where(array('openId'=>$openId))->find();
         if($data){
             $errmsg='该账号已绑定手机号，请勿重复操作';
             return false;
@@ -36,13 +38,19 @@ class UserAreaModel extends Model
             $errmsg='该账号已被暂停使用';
             return false;
         }
-        $data = array(
+//        $data = array(
+//            'openId'=>$openId,
+//            'table_id'=>$table_id,
+//            'phone'=>$phone,
+//            'status'=>1
+//        );
+//        $res = M('User_area')->add($data);
+        $res  = $mongo->baseinfo->user_area->insert(array(
             'openId'=>$openId,
             'table_id'=>$table_id,
             'phone'=>$phone,
             'status'=>1
-        );
-        $res = M('User_area')->add($data);
+        ));
         if(!$res){
             $errmsg = '手机号码绑定失败';
             return false;
@@ -67,14 +75,18 @@ class UserAreaModel extends Model
      * @param string account 账号
      * */
     public function getUserInfoByPhone($account,& $errmsg){
-        $data=M('user_area')->field('id,table_id as city_id')->where(array('account' =>$account))->find();
+//        $data=M('user_area')->field('id,table_id as city_id')->where(array('account' =>$account))->find();
+        $mongo = new \MongoClient();
+        $data = $mongo->baseinfo->user_area->findOne(array('account'=>$account),array('_id,table_id'));
         if(!$data){
             $errmsg = '该账号不存在';
             return false;
         }else{
+            $data['id']=$data['_id'];
+            $data['city_id'] = $data['table_id'];
             $res= M('swf_area')->field('parent_id')->where(array('id'=>$data['city_id']))->find();
             $data['province_id']=$res['parent_id'];
-            $data['account_code'] = $data['city_id'].$account;
+            $data['account_code'] = $data['table_id'].$account;
             return $data;
         }
     }
@@ -86,7 +98,9 @@ class UserAreaModel extends Model
      * */
     public function wxloginSetSession($openId){
         if(!$openId)return false;
-        $data = M('baseinfo.user_area')->field('phone,openId,table_id')->where(['openId'=>$openId])->find();
+//        $data = M('baseinfo.user_area')->field('phone,openId,table_id')->where(['openId'=>$openId])->find();
+        $mongo =new \MongoClient();
+        $data =$mongo->baseinfo->user_area->findOne(array('openId'=>$openId),array('phone','openId','table_id'));
         if(!$data)return false;
         return $data;
     }

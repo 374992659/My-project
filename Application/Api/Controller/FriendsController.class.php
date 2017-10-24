@@ -194,10 +194,13 @@ class FriendsController extends VersionController
         if(!$user_code){
             $this->echoEncrypData(21);
         }
-        $data = M('baseinfo.user_area')->where('account ='.$user_code)->getField('table_id');
+        $mongo = new \MongoClient();
+        $data = $mongo->baseinfo->user_area->findOne(array('account'=>$user_code),array('table_id'));
+//        $data = M('baseinfo.user_area')->where('account ='.$user_code)->getField('table_id');
         if(!$data){
             $this->echoEncrypData(1,'该用户不存在');
         }
+        $data =$data['table_id'];
         $res=M('user_info_'.$data)->field('account,account_code,signature,portrait,nickname')->where('account ='.$user_code)->find();
         if(!$res){
             $this->echoEncrypData(1,'该用户不存在');
