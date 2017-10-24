@@ -10,13 +10,13 @@ $db = $m->baseinfo;
 $collection = $db->user_area;
 $collection->insert(array(
     '_id'=>getNextId($m,'baseinfo','user_area'),
-    'account'=>'17608006762',
+    'account'=>'17608006763',
     'phone'=>'',
     'table_id'=>2701,
     'status'=>1,
-    'account_code'=>'270117608006762',
+    'account_code'=>'270117608006763',
     'portrait'=>'http://39.108.237.198/project/Application/Common/Source/Img/default_portrait.jpg',
-    'nickname'=>'17608006762',
+    'nickname'=>'17608006763',
 ));
 
 
