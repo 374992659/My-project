@@ -27,7 +27,7 @@ $(document).ready(function(){
                                     if(item.group_code===group_code){
                                         $.each(item.content,function(i,item){
                                             html+=`
-                                            <div href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                                            <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                                                 <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                                                     <img class="weui-media-box__thumb" src="${item.sender_portrait}" alt="">
                                                 </div>
