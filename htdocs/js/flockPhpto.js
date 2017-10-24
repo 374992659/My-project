@@ -21,7 +21,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     var Li="";
-                    $.each(data.data,function(i,item){Li=null;
+                    $.each(data.data,function(i,item){
                         console.log(item);
                         html+=`
                         <div class="weui-panel weui-panel_access">
@@ -45,7 +45,6 @@ $(document).ready(function(){
                         `;
                         // 对图片进行循环
                         $.each(item.picture_path,function(i,item){
-
                             console.log(item);
                             Li+=`
                                <li class="lf">
@@ -53,7 +52,6 @@ $(document).ready(function(){
                                </li>
                             `
                         });
-
                     });
                     $(".picPlace").append(html);
                     $(".LiImg").append(Li);
