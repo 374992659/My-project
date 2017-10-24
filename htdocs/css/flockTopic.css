@@ -36,3 +36,6 @@ a:hover {
     display: block;
     clear: both;
 }
+.weui-media-box {
+    padding: 15px;
+}

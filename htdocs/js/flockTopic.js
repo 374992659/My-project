@@ -23,11 +23,11 @@ $(document).ready(function(){
                    <div class="weui-media-box weui-media-box_appmsg" title="${item.subject_id}">
                         <div class="weui-media-box__bd">
                             <div class="topic">
-                                <h4 class="weui-media-box__title lf" style="font-size: 17px">${item.title}</h4>
+                                <h4 class="weui-media-box__title lf" style="font-size: 16px">${item.title}</h4>
                                 <!--<span class="right" style="font-size: 10px">已解决</span>-->
                             </div>
                             <p class="weui-media-box__desc" style="font-size: 15px">${item.content}</p>
-                            <div style="margin-top: .5rem;text-align: right;font-size: 15px">阅读量：<span style="font-size: 14px">${item.read_num}</span> 回帖数：<span style="font-size: 14px">${item.commont_num}</span></div>
+                            <div style="margin-top: .5rem;text-align: right;font-size: 14px">阅读量：<span style="font-size: 14px">${item.read_num}</span> 回帖数：<span style="font-size: 14px">${item.commont_num}</span></div>
                         </div>
                    </div>                 
                   `
