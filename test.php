@@ -14,6 +14,9 @@ $collection->insert(array(
     'phone'=>'15928698477',
     'table_id'=>2701,
     'status'=>1,
+    'account_code'=>'270115928698477',
+    'portrait'=>'http://39.108.237.198/project/Application/Common/Source/Img/default_portrait.jpg',
+    'nickname'=>'15928698477',
 ));
 
 
