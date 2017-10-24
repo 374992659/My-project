@@ -21,7 +21,7 @@ $(document).ready(function() {
                            online_friends.push(item);
                            localStorage.setItem("online_friends",JSON.stringify(online_friends));
                         // 获取所有好友的code
-                           userCode= $(".group").find(".skipChat").attr("title");
+                          var userCode= $(".group").find(".skipChat").attr("title");
                              console.log(userCode);
                              console.log(item)
                        });
