@@ -26,7 +26,6 @@ $(document).ready(function() {
                         var group_new_message=data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                             $.each(group_new_messageNum,function(i,item){
-                                group_new_messageNum+=item.count;
                                 console.log(item.count);
                             })
                         }
