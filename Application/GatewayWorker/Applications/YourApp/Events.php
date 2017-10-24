@@ -215,23 +215,6 @@ class Events
                             'send_time'=>time(),
                         );
                         $collection1->insert($data1);    //发送用户聊天记录表插入数据
-//                        $is_online = Gateway::isUidOnline($friend_code);
-//                        if($is_online){                         //用户在线
-//                            //接收用户聊天记录表插入数据
-//                            $database2=$mongo->user_info_.$message->account_code;
-//                            $collection2 = $database2->friends_chat;
-//                            $data2 = array(
-//                                '_id'=>self::getNextId($mongo,'user_info_'.$message->account_code,'friends_chat'),
-//                                'sender_code'=>$account_code['account_code'],
-//                                'sender_nickname'=>$user_info['nickname'],
-//                                'send_portrait'=>$user_info['portrait'],
-//                                'content'=>$message->content,
-//                                'type'=>$message->type,
-//                                'send_time'=>time(),
-//                            );
-//                            $collection2->insert($data2);
-//                            $send_data = self::returnData(0,4,'',$data2);//
-//                        }else{                              //存储用户离线消息
                             $data2 = array(
                                 '_id'=>self::getNextId($mongo,'user_info_'.$message->account_code,'friends_chat'),
                                 'sender_code'=>$account_code['account_code'],
@@ -253,7 +236,6 @@ class Events
                             $returnData =self::returnData(0,8,'好友消息发送成功');
                             Gateway::sendToCurrentClient(json_encode($returnData));
                             break;
-//                        }
            case 3:  $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//群聊
                         $table_id =substr($account_code['account_code'],0,4);
                        $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
