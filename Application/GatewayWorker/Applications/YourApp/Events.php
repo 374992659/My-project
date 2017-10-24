@@ -224,12 +224,13 @@ class Events
                                 'send_time'=>time(),
                             );
                             $db2 = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$message->account_code);
-                            $db2->insert('offline_user_message')->cols(array(
+                            $res = $db2->insert('offline_user_message')->cols(array(
                                 'sender_code'=>$account_code['account_code'],
                                 'content'=>$message->content,
                                 'type'=>$message->message_type,
                                 'send_time'=>time(),
                             ));
+                            var_dump($res);
                             $send_data = self::returnData(0,4,'好友消息',$data2);
                             Gateway::sendToUid($message->account_code,json_encode($send_data));//发送给接收人
                             $returnData =self::returnData(0,8,'好友消息发送成功');
