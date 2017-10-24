@@ -51,9 +51,9 @@ $(document).ready(function(){
                                </li>
                             `
                         });
-                        $(".picPlace").append(html);
-                        $(".LiImg").append(Li);
                     });
+                    $(".picPlace").append(html);
+                    $(".LiImg").append(Li);
                 }
             }
         })
