@@ -16,7 +16,6 @@ $(document).ready(function(){
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
-                            console.log(friends_new_message);
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){//群组新消息  已按群分组 时间倒序排列
@@ -44,7 +43,6 @@ $(document).ready(function(){
                         }
                         var friends_new_apply = data.friends_new_apply;
                         if(friends_new_apply){                      //用户添加好友的申请
-
                         }
                     }
                     break;
@@ -102,6 +100,7 @@ $(document).ready(function(){
                         var patharr  = pathname.split('/');
                         var html = patharr[parseInt(patharr.length-1)];
                         console.log(data);
+                        console.log(apptoken);
                         if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
                             var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                             if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
