@@ -28,7 +28,7 @@ class UserAreaModel extends Model
      */
     public function addUserArea($openId,$phone,$table_id, & $errmsg){
         $mongo = new \MongoClient();
-        $data = $mongo->baseinfo->user_area->findOne(array('openId'=>$openId),array('openId,status'));
+        $data = $mongo->baseinfo->user_area->findOne(array('openId'=>$openId),array('openId','status'));
 //        $data=M('user_area')->field('openId,status')->where(array('openId'=>$openId))->find();
         if($data){
             $errmsg='该账号已绑定手机号，请勿重复操作';
@@ -77,7 +77,7 @@ class UserAreaModel extends Model
     public function getUserInfoByPhone($account,& $errmsg){
 //        $data=M('user_area')->field('id,table_id as city_id')->where(array('account' =>$account))->find();
         $mongo = new \MongoClient();
-        $data = $mongo->baseinfo->user_area->findOne(array('account'=>$account),array('_id,table_id'));
+        $data = $mongo->baseinfo->user_area->findOne(array('account'=>$account),array('_id','table_id'));
         if(!$data){
             $errmsg = '该账号不存在';
             return false;
