@@ -21,7 +21,7 @@ $(document).ready(function() {
                            online_friends.push(item);
                            localStorage.setItem("online_friends",JSON.stringify(online_friends));
                         // 获取所有好友的code
-                         var   userCode=$(".skipChat").attr("title");
+                           userCode= $(".group").find(".skipChat").attr("title");
                              console.log(userCode);
                              console.log(item)
                        });
@@ -202,7 +202,6 @@ $(document).ready(function() {
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
-            console.log(title);
             data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
             console.log(data);
             encreptdata = jsEncryptData(data);
