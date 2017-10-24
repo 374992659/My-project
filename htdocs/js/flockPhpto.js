@@ -22,7 +22,7 @@ $(document).ready(function(){
                     var html="";
                     var Li="";
                     $.each(data.data,function(i,item){
-console.log(item);
+                        console.log(item);
                         html+=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -37,10 +37,11 @@ console.log(item);
                                     </div>
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
-                                <ul class="LiImg">
-                                  
-                                </ul>
+                               
                             </div>
+                            <ul class="LiImg">
+                                  
+                            </ul>
                         </div>
                         `;
                         // 对图片进行循环
