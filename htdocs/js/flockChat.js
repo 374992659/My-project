@@ -39,7 +39,7 @@ $(document).ready(function(){
                                             </a>                                                                                        
                                             `
                                         });
-                                        $(".chatPage").prepend(html)
+                                        $("#chatPage").prepend(html)
                                     }
                                 })
                         }
