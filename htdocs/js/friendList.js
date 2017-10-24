@@ -17,9 +17,10 @@ $(document).ready(function() {
                                 online_friends={};
                         var data = (result.data);
                         // 在线好友
-                        $.each(data.online_friends,function(i,item){
-                            console.log(item);
-                        });
+                       for(var i=0,len=data.online_friends.length;i<len;i++){
+                           online_friends{i=data.online_friends[i]}
+                       }
+                       console.log(online_friends);
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         // 好友新消息
                         var friends_new_message=data.friends_new_message;
