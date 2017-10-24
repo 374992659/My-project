@@ -276,7 +276,7 @@ $(document).ready(function() {
                     $.each(data.data,function(i,item){
                         html+=`
                     <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg skipChat"
-                    title="${item.friend_user_code}" value="1">
+                    title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
                         </div>
