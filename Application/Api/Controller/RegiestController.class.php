@@ -155,7 +155,8 @@ class RegiestController extends BaseController
      * @param area_id 区域
      * @param password 密码
      * @param repassword 确认密码
-     * @param piccode图片验证码
+     * @param piccode 图片验证码
+     * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫面分享二维码跳转的注册页面会有此数据
      * */
     public function regiest(){
         $account   = trim($this->pdata['account']);
@@ -163,6 +164,7 @@ class RegiestController extends BaseController
         $password  = trim($this->pdata['password']);
         $repassword   = trim($this->pdata['repassword']);
         $piccode = trim($this->pdata['piccode']);
+        $inviter_code = trim($this->pdata['inviter_code']);
         if(!$account || !$password || !$repassword || !$area_id ||!$piccode){
             $this->echoEncrypData(1,'注册信息不完整');
         }
@@ -204,6 +206,23 @@ class RegiestController extends BaseController
         $this->autoBuildDatabase($account);
         $res2=M()->table("baseinfo.user_info_".$area_id)->add($data2);
         if($res2){
+            if($inviter_code){ //存在邀请人
+                $Level = $mongo->baseinfo->user_level->findOne(array('user_code'=>$inviter_code),array('level'));
+                $level = $Level['level'];
+                $mongo->baseinfo->user_level->insert(array(
+                    '_id'=>getNextId($mongo,'baseinfo','user_level'),
+                    'user_code'=> $area_id.$account,
+                    'inviter_code'=>$inviter_code,
+                    'level'=>intval($level)+1
+                ));
+            }else{
+                $mongo->baseinfo->user_level->insert(array(
+                    '_id'=>getNextId($mongo,'baseinfo','user_level'),
+                    'user_code'=> $area_id.$account,
+                    'inviter_code'=>null,
+                    'level'=>0,
+                ));
+            }
             $this->appToken=true;
             $this->account_code = $area_id.$account;
             $this->echoEncrypData(0,'注册成功');
