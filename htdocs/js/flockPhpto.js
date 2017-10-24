@@ -1,6 +1,6 @@
 $(document).ready(function(){
         //向页面添加数据
-        var photo=function(){
+   var photo=function(){
         // 获取群号
         var group_num=localStorage.getItem("group_num");
         //获取apptoken
