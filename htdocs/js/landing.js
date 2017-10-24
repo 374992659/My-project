@@ -22,6 +22,7 @@ $(document).ready(function(){
                 console.log(data);
                 // 解密返回的数据
                 data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
@@ -31,10 +32,7 @@ $(document).ready(function(){
                     console.log(data.errmsg);
                 }
             }
-
-
         });
-
     });
 
 // 电话号码登录
@@ -62,9 +60,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     console.log(data.errcode)
                 }
-
             }
-
         });
         return phone;
     });
@@ -91,7 +87,6 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     window.location.href="friend.html"
                 }else{
-                    console.log(data);
                     alert(data.errmsg);
                 }
             }

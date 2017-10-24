@@ -1,9 +1,7 @@
 
 $(document).ready(function(){
-        // 获取头像
-            var header=localStorage.getItem("header"),
         // 获取发送好友的code
-                sender_code=localStorage.getItem("sender_code");
+        sender_code=localStorage.getItem("sender_code");
     (function(){
         var apptoken = localStorage.getItem('apptoken');
         if(!apptoken)alert('请重新登录');
