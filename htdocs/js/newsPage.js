@@ -16,7 +16,7 @@ $(document).ready(function(){
                         var html="";
                         $.each(friends_new_message,function(i,item){
                             html+=`
-                <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}" value="${item.sender_portrait}">
+                <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum">${item.message_num}</span>
                         <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
@@ -35,9 +35,9 @@ $(document).ready(function(){
                                 var html="";
                                 $.each(group_new_message,function(i,item){
                                     html+=`
-                                    <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
+                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
-                        <span class="newsNum">${item.count}</span>
+                        <span class="newsNum" title="${item.group_num}">${item.count}</span>
                         <img class="weui-media-box__thumb" src="image/firenda.jpg"><!--头像-->
                     </div>
                     <div class="weui-media-box__bd">
@@ -169,6 +169,8 @@ $(document).ready(function(){
     });
 // 点击跳转到群聊天页面
     $(".newsList").on("click",".groupChat",function(){
+        // 获取群num
+        var group_num=$(this).find("span").attr("title");
         // 获取群code
         var group_code=$(this).attr("title"),
             // 群头像
@@ -176,6 +178,7 @@ $(document).ready(function(){
        // 存本地
         localStorage.setItem("group_head",group_head);
         localStorage.setItem("group_code",group_code);
+        localStorage.setItem("group_num",group_num);
         window.location.href="flockChat.html";
     })
 });

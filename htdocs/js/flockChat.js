@@ -22,9 +22,9 @@ $(document).ready(function(){
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 console.log(group_new_message);
                                 var html="";
-                               var group_code=localStorage.getItem("group_code");
+                               var group_num=localStorage.getItem("group_num");
                                 $.each(group_new_message,function(i,item){
-                                    if(item.group_code===group_code){
+                                    if(item.group_num===group_num){
                                         $.each(item.content,function(i,item){
                                             html+=`
                                             <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
