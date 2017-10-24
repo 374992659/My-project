@@ -56,7 +56,7 @@ $(document).ready(function(){
                     });
                     $(".picPlace").append(html);
                     $(".LiImg").append(Li);
-                    Li=""
+                  console.log(Li);
                 }
             }
         })
