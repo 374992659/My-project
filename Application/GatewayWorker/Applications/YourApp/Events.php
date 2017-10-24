@@ -163,7 +163,7 @@ class Events
                                     }
                                     $group_new_message[$val['group_code']]['group_num']=$val['group_num'];
                                     $group_new_message[$val['group_code']]['group_code']=$val['group_code'];
-                                    $group_new_message[$val['group_code']]['nickname']=$val['nickname'];
+                                    $group_new_message[$val['group_code']]['nickname']=$val['group_name'];
                                     $group_new_message[$val['group_code']]['group_portrait']=$val['group_portrait'];
                                     $group_new_message[$val['group_code']]['count']=$count;
                                     $group_new_message[$val['group_code']]['content']=$content;
