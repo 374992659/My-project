@@ -20,6 +20,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
+                    var Li="";
                     $.each(data.data,function(i,item){
 
                         html+=`
@@ -43,7 +44,7 @@ $(document).ready(function(){
                         </div>
                         `;
                         // 对图片进行循环
-                        var Li="";
+
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
                             Li+=`
