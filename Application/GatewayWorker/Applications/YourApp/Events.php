@@ -229,8 +229,7 @@ class Events
                                 'content'=>$message->content,
                                 'type'=>$message->message_type,
                                 'send_time'=>time(),
-                            ));
-                            var_dump($res);
+                            ))->query();
                             $send_data = self::returnData(0,4,'好友消息',$data2);
                             Gateway::sendToUid($message->account_code,json_encode($send_data));//发送给接收人
                             $returnData =self::returnData(0,8,'好友消息发送成功');
