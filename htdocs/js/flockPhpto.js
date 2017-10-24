@@ -53,10 +53,11 @@ $(document).ready(function(){
                             `
                         });
                         $(".LiImg").append(Li);
+                        console.log(Li);
                     });
                     $(".picPlace").append(html);
 
-                    console.log(Li);
+
                 }
             }
         })
