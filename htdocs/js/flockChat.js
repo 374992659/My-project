@@ -122,7 +122,7 @@ $(document).ready(function(){
         };
         //群聊点击发送
         $(".pushBtn").click(function(){
-            var content=$(".chatContent").val('content');                //获取页面发送内容
+            var content=$(".chatContent").val();                //获取页面发送内容
             var group =localStorage.getItem("group_code");           //获取发送好友的code
             var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
             ws.send(JSON.stringify({'type':1,'content':content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
