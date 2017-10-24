@@ -21,7 +21,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     var Li="";
-                    $.each(data.data,function(i,item){
+                    $.each(data.data,function(i,item){Li=null;
                         console.log(item);
                         html+=`
                         <div class="weui-panel weui-panel_access">
@@ -45,7 +45,7 @@ $(document).ready(function(){
                         `;
                         // 对图片进行循环
                         $.each(item.picture_path,function(i,item){
-                            Li=null;
+
                             console.log(item);
                             Li+=`
                                <li class="lf">
