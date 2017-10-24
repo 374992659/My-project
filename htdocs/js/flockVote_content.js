@@ -45,7 +45,7 @@ $(document).ready(function(){
                                 <img class="weui-media-box__thumb" src="${result.portrait}">
                             </div>
                             <div class="weui-media-box__bd">
-                                <h4 class="weui-media-box__title" style="font-size: 15px">${result.nickname}</h4>
+                                <h4 class="weui-media-box__title" style="font-size: 18px">${result.nickname}</h4>
                                 <span class="weui-media-box__desc" style="font-size: 14px">${result.create_time}</span>
                                 <button style="font-size: 14px" class="right delBtn" title="${result.vote_id}">删除</button>
                             </div>
@@ -57,7 +57,7 @@ $(document).ready(function(){
                                     <img src="http://wx.junxiang.ren/project/${result.picture}" alt="" class="topic">
                                 </li>
                             </ul>
-                            <div style="text-align: right;font-size: 10px;color: #b2b2b2">
+                            <div style="text-align: right;font-size: 15px;color: #b2b2b2">
                                 <span class="lf" style="font-size: 15px">单选</span>
                                 <span class="lf" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
                             </div>
