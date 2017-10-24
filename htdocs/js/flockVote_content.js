@@ -45,21 +45,21 @@ $(document).ready(function(){
                                 <img class="weui-media-box__thumb" src="${result.portrait}">
                             </div>
                             <div class="weui-media-box__bd">
-                                <h4 class="weui-media-box__title" style="font-size: 13px">${result.nickname}</h4>
-                                <span class="weui-media-box__desc" style="font-size: 10px">${result.create_time}</span>
-                                <button class="right delBtn" title="${result.vote_id}">删除</button>
+                                <h4 class="weui-media-box__title" style="font-size: 15px">${result.nickname}</h4>
+                                <span class="weui-media-box__desc" style="font-size: 14px">${result.create_time}</span>
+                                <button style="font-size: 14px" class="right delBtn" title="${result.vote_id}">删除</button>
                             </div>
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title" style="font-size: 10px">${result.title}</h4>
+                            <h4 class="weui-media-box__title" style="font-size: 15px">${result.title}</h4>
                             <ul>
                                 <li class="lf">
                                     <img src="http://wx.junxiang.ren/project/${result.picture}" alt="" class="topic">
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 10px;color: #b2b2b2">
-                                <span class="lf">单选</span>
-                                <span class="lf">（匿名投票）</span> 票数：<span>${result.total_user}</span>
+                                <span class="lf" style="font-size: 15px">单选</span>
+                                <span class="lf" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
                             </div>
                         </div>
                     </div>
@@ -70,8 +70,8 @@ $(document).ready(function(){
                     <div class="weui-cells">
                         <div class="weui-cell">
                             <div class="weui-cell__bd" style="color: #bbbbbb">
-                                <span>截止时间：</span>
-                                <span>${result.end_time}</span>
+                                <span  style="font-size: 15px">截止时间：</span>
+                                <span style="font-size: 15px">${result.end_time}</span>
                             </div>
                         </div>
                     </div>
