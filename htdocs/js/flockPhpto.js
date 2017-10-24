@@ -101,7 +101,7 @@ $(document).ready(function(){
         });
     });
     //删除群相册
-    $("#flockPhoto").on("click",".delBtn",function(){
+    $("#flockPhoto").on("click",".delBtn",function(e){
         if(confirm("删除相册")){
             var group_num=localStorage.getItem("group_num");
             //获取apptoken
@@ -125,7 +125,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(this).parent().parent().parent().parent().remove();
-                        console.log($(this).parent().parent().parent().parent());
+                        console.log($(e.target));
                     }else{
                         console.log(data.errmsg);
                     }
