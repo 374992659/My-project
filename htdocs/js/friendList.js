@@ -20,7 +20,6 @@ $(document).ready(function() {
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                             console.log(friends_new_messageNum);
                             $.each(friends_new_message,function(i,item){
-                                friends_new_messageNum+=item.message.num;
                                 console.log(item.message.num);
                             })
                         }
