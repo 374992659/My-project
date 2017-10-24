@@ -26,7 +26,7 @@ $(document).ready(function(){
                 $.each(result.vote_info,function(i,item){
                     console.log(item);
                    voteList+=`
-                    <label class="weui-cell weui-check__label" for="${i}">
+                    <label class="weui-cell weui-check__label" style="padding: 5px 0" for="${i}">
                         <div class="weui-cell__bd">
                             <p>${item.comtent}</p>
                         </div>
