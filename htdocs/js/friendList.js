@@ -20,8 +20,12 @@ $(document).ready(function() {
                        $.each(data.online_friends,function(i,item){
                            online_friends.push(item);
                            localStorage.setItem("online_friends",JSON.stringify(online_friends));
-                           console.log(item);
-                          // localStorage.setItem('online_friends',item); //本地保存在线好友列表
+                        // 获取所有好友的code
+                         var   userCode=$(".skipChat").attr("title");
+                         $.each(userCode,function(i,allCode){
+                             console.log(allCode);
+                             console.log(item)
+                         })
                        });
 
                         // 好友新消息
