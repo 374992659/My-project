@@ -35,7 +35,7 @@ $(document).ready(function(){
                                 var html="";
                                 $.each(group_new_message,function(i,item){
                                     html+=`
-                                    <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_num}" value="${item.group_code}">
+                                    <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum">${item.count}</span>
                         <img class="weui-media-box__thumb" src="image/firenda.jpg"><!--头像-->
@@ -169,14 +169,11 @@ $(document).ready(function(){
     });
 // 点击跳转到群聊天页面
     $(".newsList").on("click",".groupChat",function(){
-        // 获取群num
-        var group_num=$(this).attr("title"),
-            群code
-        var group_code=$(this).arrt("value");
+        // 获取群code
+        var group_code=$(this).attr("title"),
             // 群头像
             group_head=$(this).find("img").attr("src");
        // 存本地
-        localStorage.setItem("group_num",group_num);
         localStorage.setItem("group_head",group_head);
         localStorage.setItem("group_code",group_code);
         window.location.href="flockChat.html";
