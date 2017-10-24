@@ -297,7 +297,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(1,'该用户不存在，请前往注册!');
         }
         if( intval($table_id['status']) !== 1 ){
-            $this->echoEncrypData(1,'该账号存在异常，暂无法登陆');
+            $this->echoEncrypData(1,'该账号存在异常，暂无法登陆',$table_id);
         }
         $res = M('user_info_'.$table_id['table_id'])->where(['account'=>$account,'password'=>md5(md5($password).$account)])->count();
         if(!$res){
