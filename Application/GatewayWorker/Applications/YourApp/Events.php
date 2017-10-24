@@ -202,11 +202,11 @@ class Events
                         $table_id =substr($account_code['account_code'],0,4);
                         $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
                         $mongo =new MongoClient();
-                        $userdatastr = 'user_info_'.$account_code;
+                        $userdatastr = 'user_info_'.$account_code['account_code'];
                         $database1=$mongo->$userdatastr;
                         $collection1 = $database1->friends_chat;
                         $data1 = array(
-                            '_id'=>self::getNextId($mongo,'user_info_'.$account_code,'friends_chat'),
+                            '_id'=>self::getNextId($mongo,'user_info_'.$account_code['account_code'],'friends_chat'),
                             'sender_code'=>$account_code['account_code'],
                             'sender_nickname'=>$user_info['nickname'],
                             'send_portrait'=>$user_info['portrait'],
