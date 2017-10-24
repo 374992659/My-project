@@ -125,7 +125,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(this).parent().parent().parent().parent().remove();
-                        console.log($(e.target));
+                        console.log($(e.target).parent(".weui-panel"));
                     }else{
                         console.log(data.errmsg);
                     }
