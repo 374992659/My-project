@@ -45,6 +45,7 @@ $(document).ready(function(){
                         `;
                         // 对图片进行循环
                         $.each(item.picture_path,function(i,item){
+                            Li=null;
                             console.log(item);
                             Li+=`
                                <li class="lf">
@@ -56,7 +57,7 @@ $(document).ready(function(){
                     });
                     $(".picPlace").append(html);
                     $(".LiImg").append(Li);
-                    Li=null;
+
                   console.log(Li);
                 }
             }
