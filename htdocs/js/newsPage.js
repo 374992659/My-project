@@ -37,7 +37,7 @@ $(document).ready(function(){
                                     html+=`
                                     <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_num}" value="${item.group_code}">
                     <div class="weui-media-box__hd">
-                        <span class="newsNum">13</span>
+                        <span class="newsNum">${item.count}</span>
                         <img class="weui-media-box__thumb" src="image/firenda.jpg"><!--头像-->
                     </div>
                     <div class="weui-media-box__bd">
