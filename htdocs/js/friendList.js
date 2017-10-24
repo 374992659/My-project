@@ -13,14 +13,14 @@ $(document).ready(function() {
                     if(parseInt(result.errcode) === 0){
                         var friends_new_messageNum=0,
                             group_new_messageNum=0,
-                            friends_new_applyNum=0,
-                                online_friends={};
+                            friends_new_applyNum=0;
                         var data = (result.data);
                         // 在线好友
-                       for(var i=0,len=data.online_friends.length;i<len;i++){
-                           online_friends{i=data.online_friends[i]}
-                       }
-                       console.log(online_friends);
+                       $.each(data.online_friends,function(i,item){
+                           console.log(item);
+                           
+                       });
+
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         // 好友新消息
                         var friends_new_message=data.friends_new_message;
