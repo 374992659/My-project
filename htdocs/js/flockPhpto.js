@@ -19,10 +19,10 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html="";
-                    var Li="";
+
                     $.each(data.data,function(i,item){
-                        Li="";
+                        var html="";
+                        var Li="";
                         console.log(item);
                         html+=`
                         <div class="weui-panel weui-panel_access">
