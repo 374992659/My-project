@@ -292,7 +292,7 @@ class RegiestController extends BaseController
         }
 //        $table_id = M('user_area')->field('table_id,account,status')->where(['account'=>$account])->find();
         $mongo = new \MongoClient();
-        $table_id =$mongo->baseinfo->user_area->findOne(array('account'=>$account),array('table_id,account,status'));
+        $table_id =$mongo->baseinfo->user_area->findOne(array('account'=>$account),array('table_id','account','status'));
         if(!$table_id){
             $this->echoEncrypData(1,'该用户不存在，请前往注册!');
         }
@@ -365,7 +365,7 @@ class RegiestController extends BaseController
         }
 //        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
         $mongo = new \MongoClient();
-        $table_id = $mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('table_id,account'));
+        $table_id = $mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('table_id','account'));
         $account['table_id'] =$table_id['table_id'];
         $this->account_code = $table_id['table_id'].$table_id['account'];
         $this->appToken=true;   //返回apptoken
