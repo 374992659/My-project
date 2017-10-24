@@ -18,11 +18,10 @@ $(document).ready(function(){
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                             console.log(friends_new_message);
                         }
-                        var group_new_message = data.group_new_message;
-                        if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
-                                console.log(group_new_message);
+                        var group_new_message=data.group_new_message;
+                        if(group_new_message){//群组新消息  已按群分组 时间倒序排列
                                 var html="";
-                               var group_num=localStorage.getItem("group_num");
+                                var group_num=localStorage.getItem("group_num");
                                 $.each(group_new_message,function(i,item){
                                     if(item.group_num===group_num){
                                         $.each(item.content,function(i,item){
@@ -114,6 +113,9 @@ $(document).ready(function(){
                         }else{    //其他页面 暂不处理
                         }
                     }
+                    break;
+                case 8:
+                    console.log(result);
                     break;
             }
         };

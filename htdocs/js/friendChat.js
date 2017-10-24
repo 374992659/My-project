@@ -14,10 +14,9 @@ $(document).ready(function(){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode) === 0){
                         var data = (result.data);
-                        localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
+                        localStorage.setItem('online_friends',data.online_friends);//本地保存在线好友列表
                         var friends_new_message = data.friends_new_message;
-                        if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
-                                console.log(friends_new_message);
+                        if(friends_new_message){//好友新消息  已按用户分组 时间倒序排列
                             var header=localStorage.getItem("header");
                                 var html="";
                                 $.each(friends_new_message,function(i,item){
@@ -33,14 +32,10 @@ $(document).ready(function(){
                     </div>
                 </div>
                                        `
-                                       });
+                                });
                                         $("#chatPage").prepend(html);
                                         $(".header_img").attr("src",header);
-                                        console.log(item.sender_nickname);
-                                        document.title = parseInt(item.sender_nickname);
-
                                     }
-
                                 })
                         }
                         var group_new_message = data.group_new_message;
@@ -71,7 +66,7 @@ $(document).ready(function(){
                         var online_friends = localStorage.getItem('online_friends');
                         if(contains(online_friends,friend_code)){
                             var i = online_friends.length;
-                            while (i--) {
+                            while (i--){
                                 if (arr[i] === obj) {
                                     online_friends.splice(i,1);
                                 }
