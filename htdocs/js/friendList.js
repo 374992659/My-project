@@ -21,7 +21,7 @@ $(document).ready(function() {
                             console.log(friends_new_messageNum);
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message.num;
-                                console.log(item.item.message.num);
+                                console.log(item.message.num);
                             })
                         }
                         var group_new_message=data.group_new_message;
