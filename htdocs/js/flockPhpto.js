@@ -22,7 +22,7 @@ $(document).ready(function(){
                     var html="";
                     var Li="";
                     $.each(data.data,function(i,item){
-                        
+                        Li="";
                         console.log(item);
                         html+=`
                         <div class="weui-panel weui-panel_access">
