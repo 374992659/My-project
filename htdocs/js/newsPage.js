@@ -35,7 +35,7 @@ $(document).ready(function(){
                                 var html="";
                                 $.each(group_new_message,function(i,item){
                                     html+=`
-                                    <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_num}" value="${item.group_}">
+                                    <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_num}" value="${item.group_code}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum">13</span>
                         <img class="weui-media-box__thumb" src="image/firenda.jpg"><!--头像-->
@@ -47,7 +47,8 @@ $(document).ready(function(){
                 </div>
                                     
                                     `
-                                })
+                                });
+                                $(".newsList").append(html)
                     }
                     var friends_new_apply = data.friends_new_apply;
                     if(friends_new_apply){                      //用户添加好友的申请
