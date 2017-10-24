@@ -31,8 +31,8 @@ $.ajax({
                             <img class="weui-media-box__thumb" src="${item.portrait}">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title" style="font-size: 13px">${item.nickname}</h4>
-                            <span class="weui-media-box__desc" style="font-size: 10px">${item.create_time}</span>
+                            <h4 class="weui-media-box__title" style="font-size: 15px">${item.nickname}</h4>
+                            <span class="weui-media-box__desc" style="font-size: 14px">${item.create_time}</span>
                            
                         </div>
                     </div>
@@ -44,8 +44,8 @@ $.ajax({
                             </li>                          
                         </ul>
                         <div style="text-align: right">
-                            <span style="font-size: 10px;">票数：</span>
-                            <span style="font-size: 10px;">${item.total_user}</span>
+                            <span style="font-size: 14px;">票数：</span>
+                            <span style="font-size: 14px;">${item.total_user}</span>
                         </div>
                     </div>
                 </div>

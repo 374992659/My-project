@@ -52,7 +52,10 @@ a:hover {
     position: relative;
     z-index: 1000;
 }
+.weui-cell {
+    padding: 5px 15px;
 
+}
 
 
 
