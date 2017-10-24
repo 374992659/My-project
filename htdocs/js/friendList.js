@@ -28,7 +28,7 @@ $(document).ready(function() {
                             //群组新消息  已按群分组 时间倒序排列
                             console.log(group_new_message);
                             $.each(group_new_message,function(i,item){
-                                console.log(item);
+                                console.log(item.count);
                             })
                         }
                         var friends_new_apply=data.friends_new_apply;
