@@ -119,7 +119,7 @@ class Events
                         //获取群未读消息
                         $group_new_message = array();
                         if($group_arr){
-                            $group_arr_str = implode(',',$group_arr);             //用户群字符串
+//                            $group_arr_str = implode(',',$group_arr);             //用户群字符串
 //                            $group_arr_str = substr($group_arr_str,0,(strlen($group_arr_str)));
 //                            var_dump($group_arr_str);
 //                            $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
@@ -129,6 +129,7 @@ class Events
                             $group_data = $mongo->baseinfo->group_area->find(array('group_code'=>array('$in'=>$group_arr)));
                             if($group_data){
                                 $group_data = iterator_to_array($group_data);
+                                var_dump($group_data);
                                 foreach ($group_data as $key=>$val){
                                     $userdatastr = 'user_info_'.$val['user_code'];
                                     $user_database = $mongo->$userdatastr;
