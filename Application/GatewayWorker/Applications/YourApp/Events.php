@@ -228,8 +228,7 @@ class Events
 //                                'send_time'=>time(),
 //                            );
 //                            $collection2->insert($data2);
-//                            $send_data = self::returnData(0,4,'',$data2);
-//
+//                            $send_data = self::returnData(0,4,'',$data2);//
 //                        }else{                              //存储用户离线消息
                             $data2 = array(
                                 '_id'=>self::getNextId($mongo,'user_info_'.$message->account_code,'friends_chat'),
@@ -249,6 +248,8 @@ class Events
                             ));
                             $send_data = self::returnData(0,4,'好友消息',$data2);
                             Gateway::sendToUid($message->account_code,json_encode($send_data));//发送给接收人
+                            $returnData =self::returnData(0,8,'好友消息发送成功');
+                            Gateway::sendToCurrentClient(json_encode($returnData));
                             break;
 //                        }
            case 3:  $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//群聊
@@ -270,9 +271,10 @@ class Events
                         $database= $mongo->$userdatastr; //群聊记录保存在创建人分库
                         $collection = $database->group_chat;
                         $collection->insert($data);   //插入数据
-
                         $returnData =self::returnData(0,5,'群消息',$data);
-                        Gateway::sendToGroup($message->group,json_encode($returnData));break; //发送消息给群组
+                        Gateway::sendToGroup($message->group,json_encode($returnData));
+                        $returnData =self::returnData(0,8,'群消息发送成功');
+                        Gateway::sendToCurrentClient(json_encode($returnData));break; //发送消息给群组
            case 4:  $client_id = Gateway::getClientIdByUid($message->account_code);                //获取某一用户在线状态
                         $is_online = Gateway::isOnline($client_id);
                         $data =  array(
