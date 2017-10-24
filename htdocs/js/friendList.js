@@ -21,11 +21,12 @@ $(document).ready(function() {
                             console.log(friends_new_messageNum);
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message.num;
+                                console.log(item.item.message.num);
                             })
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
-                            $.each(group_new_messageNum,function(i,item){
+                            $.each(group_new_message,function(i,item){
                                 console.log(item.count);
                             })
                         }
