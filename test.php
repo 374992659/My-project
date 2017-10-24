@@ -7,16 +7,14 @@
  */
 $m =new MongoClient();
 $db = $m->baseinfo;
-$collection = $db->user_area;
+$collection = $db->group_area;
 $collection->insert(array(
-    '_id'=>getNextId($m,'baseinfo','user_area'),
-    'account'=>'17608006763',
-    'phone'=>'',
+    '_id'=>getNextId($m,'baseinfo','group_area'),
+    'group_num'=>'785750',
+    'group_code'=>'2701785750',
     'table_id'=>2701,
+    'user_code'=>'270115928698477',
     'status'=>1,
-    'account_code'=>'270117608006763',
-    'portrait'=>'http://39.108.237.198/project/Application/Common/Source/Img/default_portrait.jpg',
-    'nickname'=>'17608006763',
 ));
 
 
