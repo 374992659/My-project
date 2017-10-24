@@ -90,6 +90,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     window.location.href="friend.html"
                 }else{
+                    console.log(data);
                     alert(data.errmsg);
                 }
             }
