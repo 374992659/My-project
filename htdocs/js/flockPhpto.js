@@ -51,10 +51,9 @@ $(document).ready(function(){
                                </li>
                             `
                         });
-                        $(".LiImg").append(Li);
                     });
                     $(".picPlace").append(html);
-
+                    $(".LiImg").append(Li);
                 }
             }
         })
