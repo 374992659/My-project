@@ -122,11 +122,13 @@ class Events
                             $group_arr_str = implode(',',$group_arr);             //用户群字符串
 //                            $group_arr_str = substr($group_arr_str,0,(strlen($group_arr_str)));
 //                            var_dump($group_arr_str);
-                            $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                            $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
+//                            $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+//                            $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
 //                            var_dump($group_data);
                             $mongo = new MongoClient();
+                            $group_data = $mongo->baseinfo->group_area->find(array('group_code'=>array('$in'=>$group_arr)));
                             if($group_data){
+                                $group_data = iterator_to_array($group_data);
                                 foreach ($group_data as $key=>$val){
                                     $userdatastr = 'user_info_'.$val['user_code'];
                                     $user_database = $mongo->$userdatastr;
@@ -255,8 +257,10 @@ class Events
            case 3:  $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//群聊
                         $table_id =substr($account_code['account_code'],0,4);
                        $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
-                       $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
+//                       $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
                        $mongo =new MongoClient();
+                       $create_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$message->group),array('user_code'));
+                       $create_code =$create_code['user_code'];
                        $data =array(
                             '_id'=>self::getNextId($mongo,'user_info_'.$create_code,'group_chat'),
                             'sender_code'=>$account_code['account_code'],
@@ -288,8 +292,11 @@ class Events
                         Gateway::sendToCurrentClient(json_encode($data));
                         break;
            case 5:  $group_code = $message->group_code;                                                         //获取群内用户在线状态
-                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//查找群创建人code
-                        $user_code = $db->select('user_code')->from('group_area')->where("group_code =$group_code")->single();
+//                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//查找群创建人code
+//                        $user_code = $db->select('user_code')->from('group_area')->where("group_code =$group_code")->single();
+                        $mongo =new MongoClient();
+                        $user_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$group_code),array('user_code'));
+                        $user_coed = $user_code['user_code'];
                         $db2 =new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$user_code);//查找群内用户
                         $user_arr  = $db2->select('user_code')->from('group_user')->where("group_code =$group_code")->column();
                         if($user_arr){
