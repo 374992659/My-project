@@ -426,7 +426,7 @@ class Events
         if (isset($id['value']['id'])) {
             return $id['value']['id'];
         }else{
-            $mongo->$db->insert(array(
+            $mongo->$db->$name->insert(array(
                 'name' => $name,
                 'id' => $param['init'],     //设置ID起始数值
             ));
