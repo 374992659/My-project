@@ -56,9 +56,10 @@ $(document).ready(function() {
                         var online_friends = localStorage.getItem('online_friends');
                         console.log(online_friends);
                         if(!contains(online_friends,friend_code)){
-                            online_friends.push(friend_code);
+                            var newOnline = JSON.parse(online_friends);
+                            newOnline.push(friend_code);
                         }
-                        localStorage.setItem('online_friends',online_friends);
+                        localStorage.setItem('online_friends',newOnline);
                     }
                     break;
                 case 3:           //3.好友下线通知 更新本地在线好友列表
