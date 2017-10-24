@@ -18,7 +18,7 @@ $(document).ready(function() {
                         // 在线好友
                        $.each(data.online_friends,function(i,item){
                            console.log(item);
-
+                           localStorage.setItem('online_friends',item);
                        });
 
                         // localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
