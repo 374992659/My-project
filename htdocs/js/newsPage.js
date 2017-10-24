@@ -169,13 +169,16 @@ $(document).ready(function(){
     });
 // 点击跳转到群聊天页面
     $(".newsList").on("click",".groupChat",function(){
-        // 获取群code
+        // 获取群num
         var group_num=$(this).attr("title"),
+            群code
+        var group_code=$(this).arrt("value");
             // 群头像
             group_head=$(this).find("img").attr("src");
        // 存本地
         localStorage.setItem("group_num",group_num);
         localStorage.setItem("group_head",group_head);
+        localStorage.setItem("group_code",group_code);
         window.location.href="flockChat.html";
     })
 });
