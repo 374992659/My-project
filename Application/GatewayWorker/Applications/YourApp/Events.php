@@ -129,7 +129,7 @@ class Events
                             $group_data = $mongo->baseinfo->group_area->find(array('group_code'=>array('$in'=>$group_arr)));
                             if($group_data){
                                 $group_data = iterator_to_array($group_data);
-                                var_dump($group_data);
+//                                var_dump($group_data);
                                 foreach ($group_data as $key=>$val){
                                     $userdatastr = 'user_info_'.$val['user_code'];
                                     $user_database = $mongo->$userdatastr;
@@ -163,6 +163,8 @@ class Events
                                     }
                                     $group_new_message[$val['group_code']]['group_num']=$val['group_num'];
                                     $group_new_message[$val['group_code']]['group_code']=$val['group_code'];
+                                    $group_new_message[$val['group_code']]['nickname']=$val['nickname'];
+                                    $group_new_message[$val['group_code']]['group_portrait']=$val['group_portrait'];
                                     $group_new_message[$val['group_code']]['count']=$count;
                                     $group_new_message[$val['group_code']]['content']=$content;
                                     $group_new_message[$val['group_code']]['recent_time']=$recent_time;
