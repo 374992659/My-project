@@ -10,10 +10,10 @@ $db = $m->baseinfo;
 $collection = $db->group_area;
 $collection->insert(array(
     '_id'=>getNextId($m,'baseinfo','group_area'),
-    'group_num'=>'798403',
-    'group_code'=>'2701798403',
+    'group_num'=>'359367',
+    'group_code'=>'2701359367',
     'table_id'=>2701,
-    'user_code'=>'270115928698477',
+    'user_code'=>'270117608006762',
     'status'=>1,
 ));
 
