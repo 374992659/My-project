@@ -168,7 +168,7 @@ $(document).ready(function(){
              </div>
          </div>
             `;
-           console.log((new Date().getTime()).toLocaleDateString()) ;
+           console.log(new Date());
              $("#chatPage").append(html);
              $(".chatContent").val("");
           // 自己发送的消息存本地
