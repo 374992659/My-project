@@ -19,10 +19,8 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-
                     $.each(data.data,function(i,item){
                         console.log(item);
-                        var Li="";
                         html=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -46,7 +44,7 @@ $(document).ready(function(){
                         // 对图片进行循环
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
-                            Li+=`
+                            Li=`
                                <li class="lf">
                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" class="addPic">
                                </li>
@@ -55,7 +53,6 @@ $(document).ready(function(){
                         console.log(Li);
                         $(".picPlace").append(html);
                         $(".LiImg").append(Li);
-                        console.log($(".picPlace"));
                     });
                 }
             }
