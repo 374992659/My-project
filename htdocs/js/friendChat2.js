@@ -86,7 +86,7 @@ $(document).ready(function(){
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
                         var html = patharr[parseInt(patharr.length-1)];
-                        console.log(data);
+                        console.log(123);
                         if(html ==='friendChat.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                             var current_code = localStorage.getItem("sender_code");   //获取当前聊天好友code
                             if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
@@ -95,7 +95,7 @@ $(document).ready(function(){
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${data.sender_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc">
@@ -177,7 +177,7 @@ $(document).ready(function(){
              // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-            
+
         });
         /*
         * 判断是否存在元素
