@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    history= JSON.parse(localStorage.getItem("array"));
+    history= localStorage.getItem("array");
     console.log(history);
     // 获取头像
     var header=localStorage.getItem("header"),
