@@ -1,8 +1,6 @@
 
 $(document).ready(function(){
-    var height=document.body.scrollHeight;
-    console.log(height);
-    $(window).scrollTop(height);
+    console.log($("#chatPage").height());
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
