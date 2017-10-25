@@ -36,8 +36,21 @@ $(document).ready(function(){
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
                                 $.each(group_new_message,function(i,item){
-                                    console.log(item.count);
-                                    html+=`
+                                    if(item.count==0){
+                                        html+=`
+                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
+                    <div class="weui-media-box__hd">
+                        <span class="newsNum" title="${item.group_num}"></span>
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
+                        <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
+                    </div>
+                </div>
+                  `
+                   }else{
+                                      html+=`
                 <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum" title="${item.group_num}">${item.count}</span>
@@ -48,10 +61,10 @@ $(document).ready(function(){
                         <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
                     </div>
                 </div>
-                  `;
+                  `
+                         }
                                 });
-                                $(".newsList").append(html);
-                                console.log($(".newsNum").innerHTML);
+                     $(".newsList").append(html);
                     }
                     var friends_new_apply = data.friends_new_apply;
                     if(friends_new_apply){                      //用户添加好友的申请
