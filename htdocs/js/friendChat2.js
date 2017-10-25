@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    historyNews=localStorage.getItem("array");
+  var  historyNews=localStorage.getItem("array");
     console.log(historyNews);
     // 获取头像
     var header=localStorage.getItem("header"),
@@ -197,11 +197,9 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
-            history= JSON.parse(localStorage.getItem("array"));
-            console.log(history);
-            history[timestamp]=content;
-            console.log(history);
-           localStorage.setItem("array",JSON.stringify(history));
+            historyNews[timestamp]=content;
+            console.log(historyNews);
+           localStorage.setItem("array",historyNews);
         });
         /*
         * 判断是否存在元素
