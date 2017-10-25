@@ -18,7 +18,7 @@ $(document).ready(function(){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode) === 0){
                         // 获取本地存储的历史信息
-                       var historyNews=localStorage.getItem("historyNews");
+                       var historyNews=localStorage.getItem("array");
                        console.log(historyNews);
                         var data = (result.data);
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
@@ -198,7 +198,7 @@ $(document).ready(function(){
             history={};
             history[timestamp]=content;
             console.log(history);
-           localStorage.setItem("historyNews",JSON.stringify(history));
+           localStorage.setItem("array",JSON.stringify(history));
         });
         /*
         * 判断是否存在元素
