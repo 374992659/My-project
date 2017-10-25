@@ -25,6 +25,7 @@ $(document).ready(function(){
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){//好友新消息  已按用户分组 时间倒序排列
                             var html="";
+                            var myhtml="";
                             $.each(friends_new_message,function(i,item){
                                 if(item.sender_code===sender_code){
                                     $.each(item.content,function(i,item){
@@ -40,10 +41,25 @@ $(document).ready(function(){
                 </div>
                                        `
                                     });
+
                                     $("#chatPage").prepend(html);
                                     $(".header_img").attr("src",header);
                                 }
-
+                                $.each(historyNews,function(i,item){
+                                    myhtml+=`
+                                    <p style="font-size: 12px;text-align: center">${getLocalTime(i)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" >${item}</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+             </div>
+         </div>
+                                    
+                                    `
+                                });
+                                $("#chatPage").append(myhtml)
                             });
                         }
                         var group_new_message=data.group_new_message;
