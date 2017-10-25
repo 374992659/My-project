@@ -45,21 +45,21 @@ $(document).ready(function(){
                                     $("#chatPage").prepend(html);
                                     $(".header_img").attr("src",header);
                                 }
-                                $.each(historyNews,function(i,item){
-                                    myhtml+=`
-                                    <p style="font-size: 12px;text-align: center">${getLocalTime(i)}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" >${item}</span>
-            </div>
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-             </div>
-         </div>
-                                    
-                                    `
-                                });
-                                $("#chatPage").append(myhtml)
+        //                         $.each(historyNews,function(i,item){
+        //                             myhtml+=`
+        //                             <p style="font-size: 12px;text-align: center">${getLocalTime(i)}</p>
+        // <div class="weui-media-box weui-media-box_appmsg">
+        //      <div class="weui-media-box__bd">
+        //          <span class="weui-media-box__desc right" >${item}</span>
+        //     </div>
+        //      <div class="weui-media-box__hd" style="margin-left:.8em;">
+        //          <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+        //      </div>
+        //  </div>
+        //
+        //                             `
+        //                         });
+        //                         $("#chatPage").append(myhtml)
                             });
                         }
                         var group_new_message=data.group_new_message;
@@ -195,11 +195,14 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
-            array=JSON.parse(localStorage.getItem("array"));
-            // 再向历史消息里加入刚刚发的
-            array.push(timestamp,content);
-            // 再次存入本地
-            localStorage.setItem("array",JSON.stringify(array));
+            history={};
+            history[timestamp]=content;
+            console.log(history);
+            // array=JSON.parse(localStorage.getItem("array"));
+            // // 再向历史消息里加入刚刚发的
+            // array.push(timestamp,content);
+            // // 再次存入本地
+           localStorage.setItem("array",JSON.stringify(history));
         });
         /*
         * 判断是否存在元素
