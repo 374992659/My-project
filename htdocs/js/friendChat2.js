@@ -128,6 +128,7 @@ $(document).ready(function(){
                     break;
                 case 8:
                     console.log(result);
+                    console.log(result.errcode);
                     break;
             }
         };
