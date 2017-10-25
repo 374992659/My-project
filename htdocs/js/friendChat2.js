@@ -1,10 +1,5 @@
 $(document).ready(function(){
-    function add()
-    {
-        var div = document.getElementById('chatPage');
-        div.scrollTop = div.scrollHeight;
-    }
-
+    document.getElementById("chatPage").scrollIntoView(false);
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
