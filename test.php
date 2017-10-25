@@ -8,7 +8,7 @@
 $m =new MongoClient();
 $db = $m->local;
 $collection = $db->test;
-$collection->save(array('name'=>'123'),array('value'=>'123123'));
+$collection->update(array('name'=>'123'),array('$set'=>array('value'=>'12121212')));
 
 
 
