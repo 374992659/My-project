@@ -74,7 +74,7 @@ $(document).ready(function(){
                     }
                     break;
                 case 4:          //4.接收到好友消息
-                    if(result.errcode== 0){
+                    if(parseInt(result.errcode)===0){
                         var data =(result.data);
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
@@ -148,7 +148,9 @@ $(document).ready(function(){
             //获取页面发送内容
             var account_code =sender_code;          //获取发送好友的code
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
+           console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
+
         //     var  html=`
         // <div class="weui-media-box weui-media-box_appmsg">
         //     <div class="weui-media-box__bd">
