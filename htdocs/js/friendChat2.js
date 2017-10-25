@@ -151,18 +151,18 @@ $(document).ready(function(){
       console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
 
-        //     var  html=`
-        // <div class="weui-media-box weui-media-box_appmsg">
-        //     <div class="weui-media-box__bd">
-        //         <span class="weui-media-box__desc right" >${content}</span>
-        //     </div>
-        //     <div class="weui-media-box__hd" style="margin-left:.8em;">
-        //         <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-        //     </div>
-        // </div>
-        //    `;
-        //     $("#chatPage").append(html);
-        //     $(".chatContent").val("");
+           var  html=`
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" >${content}</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+             </div>
+         </div>
+            `;
+             $("#chatPage").append(html);
+             $(".chatContent").val("");
         });
         /*
         * 判断是否存在元素
