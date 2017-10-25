@@ -283,6 +283,42 @@ CREATE TABLE  if not exists `garden_$city_id` (
   `garden_user` text NOT NULL COMMENT '小区用户列表  序列化后的数组 array（''user_code''=>role,） role 为用户在小区的角色 0： 没有任何身份 1：业主 2：租户 3：业委会 4：业委会主任 '
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小区表 在省份内按市区分表';
 
+CREATE TABLE if NOT EXISTS `garden_message_$city_id` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL COMMENT '通知标题',
+  `content` varchar(1000) NOT NULL COMMENT '通知内容',
+  `garden_code` varchar(50) NOT NULL COMMENT '小区code',
+  `garden_name` varchar(255) NOT NULL COMMENT '小区名称',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `garden_code` (`garden_code`),
+  KEY `create_time` (`create_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='小区通知表';
+
+CREATE TABLE if NOT EXISTS `garden_opinion_$city_id` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL COMMENT '意见标题',
+  `content` varchar(1000) NOT NULL COMMENT '意见内容',
+  `picture` varchar(500) NOT NULL COMMENT '图片',
+  `garden_code` varchar(50) NOT NULL COMMENT '小区code',
+  `garden_name` varchar(100) NOT NULL COMMENT '小区名称',
+  `user_code` varchar(50) NOT NULL COMMENT '用户code',
+  `nickname` varchar(100) NOT NULL COMMENT '创建人昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '创建人头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '处理状态 1：暂未受理 2：正在处理 3:已采纳 4：意见驳回 5已完成',
+  `dealer_code` varchar(50) DEFAULT NULL COMMENT '处理人code',
+  `dealer_name` varchar(100) DEFAULT NULL COMMENT '处理人名称',
+  `dealer_phone` varchar(20) DEFAULT NULL COMMENT '处理人联系方式',
+  `remarks` varchar(500) DEFAULT NULL COMMENT '处理备注',
+  PRIMARY KEY (`id`),
+  KEY `user_code` (`user_code`),
+  KEY `garden_code` (`garden_code`),
+  KEY `create_time` (`create_time`),
+  KEY `status` (`status`),
+  KEY `dealer_code` (`dealer_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='小区意见箱';
+
 CREATE TABLE if not EXISTS `subject_$city_id` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '话题标题',
@@ -377,37 +413,56 @@ CREATE TABLE if NOT EXISTS `activity_registration_$city_id` (
 use certification_application;
 
 CREATE TABLE  if not exists `owner_application_$city_id` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `user_code` int(11) NOT NULL COMMENT '用户id。 区域id+手机号格式',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `user_code` int(11) NOT NULL COMMENT '用户code',
   `real_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '真实姓名',
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '手机号码',
   `room_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '房号',
-  `pictures` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '帮助认证的照片(如：房产证或者购房合同)',
+  `pictures` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '帮助认证的照片(如：房产证或者购房合同)',
   `id_card_num` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证号码',
-  `id_card_pictures` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证照片（正反面）',
-  `garden_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区id  格式：区域id，小区id',
+  `id_card_pictures` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证照片（正反面）',
+  `garden_code` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '小区code',
   `garden_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区名字',
-  `yourself_picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个人照片',
-  `familly_member` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '家庭成员   格式：关系：姓名；关系：姓名',
-  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '申请状态：0：审核中 1：已审核'
+  `garden_picture` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区照片',
+  `garden_addr` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区地址',
+  `yourself_picture` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个人照片',
+  `role` tinyint(2) NOT NULL COMMENT '身份 1：房主 2:其他   默认第一位认证的人为房主',
+  `relation_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '不是房主则填入关系名称',
+  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '申请状态：0：审核中 1：已审核',
+  PRIMARY KEY (`id`),
+  KEY `user_code` (`user_code`),
+  KEY `room_num` (`room_num`),
+  KEY `garden_id` (`garden_code`),
+  KEY `status` (`status`),
+  KEY `role` (`role`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='业主认证申请';
 
+
 CREATE TABLE  if not exists `tenant_application_$city_id` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `user_id` int(11) NOT NULL COMMENT '用户id 区域id，用户id格式',
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+  `user_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户code',
   `real_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '真实姓名',
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '手机号码',
   `room_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '房号',
   `id_card_num` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证号码',
-  `id_card_pictures` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证照片（正反面）',
-  `pictures` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '帮助认证的照片(如：租房合同照片)',
-  `yourself_picture` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个人照片',
-  `owner_id_card_num` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '业主身份证号',
-  `owner_id_card_picture` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '业主身份证照片（正反面）',
-  `garden_id` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区id  格式：区域id，小区id',
+  `id_card_pictures` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证照片（正反面）',
+  `pictures` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '帮助认证的照片(如：租房合同照片)',
+  `yourself_picture` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个人照片',
+  `owner_id_card_num` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '业主身份证号',
+  `owner_id_card_picture` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '业主身份证照片（正反面）',
+  `garden_code` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '小区code',
   `garden_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区名字',
+  `role` tinyint(2) NOT NULL COMMENT '身份 1：主租户  2：其他   默认第一位认证的人为主租户',
+  `relation_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '和主租户的关系  ',
   `contract_period` int(11) NOT NULL COMMENT '合同期限',
-  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '申请状态：0：审核中 1：已审核'
+  `status` tinyint(2) NOT NULL DEFAULT '0' COMMENT '申请状态：0：审核中 1：已审核',
+  PRIMARY KEY (`id`),
+  KEY `user_code` (`user_code`),
+  KEY `garden_code` (`garden_code`),
+  KEY `status` (`status`),
+  KEY `room_num` (`room_num`),
+  KEY `role` (`role`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='租户认证申请';
+
 
 use baseinfo;
