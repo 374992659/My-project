@@ -199,7 +199,7 @@ $(document).ready(function(){
             // 获取本地存的历史消息
             historyNews[timestamp]=content;
             console.log(historyNews);
-           localStorage.setItem("array",JSON.stringify(historyNews));
+           localStorage.setItem("array",historyNews);
         });
         /*
         * 判断是否存在元素
