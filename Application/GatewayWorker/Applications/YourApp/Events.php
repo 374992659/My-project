@@ -245,6 +245,17 @@ class Events
                        $mongo =new MongoClient();
                        $create_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$message->group),array('user_code'));
                        $create_code =$create_code['user_code'];
+                       $user_group= new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$create_code);//创建人群表
+                       $group_status = $user_group->select('community_status,status')->from('user_group')->where('group_code ='.$message->group)->row();
+                       if(intval($group_status['status']) === 2){
+                           $user_group2=new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);//发送人自己的群表修改状态
+                           $user_group2->update('user_group')->cols(['status'=>2])->where('grouo_code ='.$message->group)->query();
+                           $returnData =self::returnData(0,8,'该群已解散');
+                           Gateway::sendToCurrentClient(json_encode($returnData));break;
+                       }elseif(intval($group_status['community_status']) === 2){
+                           $returnData =self::returnData(0,8,'该群已被禁言');
+                           Gateway::sendToCurrentClient(json_encode($returnData));break;
+                       }
                        $data =array(
                             '_id'=>self::getNextId($mongo,'user_info_'.$create_code,'group_chat'),
                             'sender_code'=>$account_code['account_code'],
@@ -349,7 +360,7 @@ class Events
                             'status'=>0,
                         );
                         $group_data = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'group_and_friends_'.$user_code);
-                        $group_data->insert('friends_apply')->cols($data);
+                        $group_data->insert('friends_apply')->cols($data)->query();
                         break;
        }
    }
