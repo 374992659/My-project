@@ -166,9 +166,11 @@ $(document).ready(function(){
              $(".chatContent").val("");
              // 自己发送的消息存本地
             // 获取发送的时间
-           time=(new Date()).toLocaleDateString()+" " +(new Date()).toLocaleTimeString();
-           console.log(time);
-           news=JSON.stringify({time:content});
+            var timestamp = Date.parse(new Date());
+            timestamp = timestamp / 1000;
+            // time=(new Date()).toLocaleDateString()+" " +(new Date()).toLocaleTimeString();
+           console.log(timestamp);
+           news=JSON.stringify({timestamp:content});
             localStorage.setItem("historyNews",news)
         });
         /*
