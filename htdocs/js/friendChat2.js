@@ -166,7 +166,8 @@ $(document).ready(function(){
              $(".chatContent").val("");
              // 自己发送的消息存本地
             // 获取发送的时间
-           time=(new Date()).toLocaleDateString() + " " + (new Date()).toLocaleTimeString();
+           time=(new Date()).toLocaleDateString()+" " +(new Date()).toLocaleTimeString();
+           console.log(time);
            news=JSON.stringify({time:content});
             localStorage.setItem("historyNews",news)
         });
