@@ -199,7 +199,8 @@ $(document).ready(function(){
             // var historyNews=localStorage.getItem("array");
             historyNews[timestamp]=content;
             console.log(historyNews);
-           localStorage.setItem("array",historyNews);
+
+           localStorage.setItem("array",JSON.stringify(historyNews));
         });
         /*
         * 判断是否存在元素
