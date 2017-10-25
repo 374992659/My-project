@@ -19,11 +19,11 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html="";
-                    var Li="";
+
                     $.each(data.data,function(i,item){
                         console.log(item);
-                        html+=`
+                        var Li="";
+                        html=`
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
                                 <div  class="weui-media-box weui-media-box_appmsg">
@@ -53,9 +53,9 @@ $(document).ready(function(){
                             `
                         });
                         console.log(Li);
+                        $(".picPlace").append(html);
+                        $(".LiImg").append(Li);
                     });
-                    $(".picPlace").append(html);
-                    $(".LiImg").append(Li);
                     console.log(Li);
                 }
             }
