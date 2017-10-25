@@ -90,6 +90,7 @@ $(document).ready(function(){
                         console.log(123);
                         if(html ==='friendChat.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                             var current_code = localStorage.getItem("sender_code");   //获取当前聊天好友code
+                             console.log(current_code);
                             if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                                 //展示好友发送的聊天信息
                                 var  html=`
@@ -104,8 +105,8 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
+                                console.log(html);
                                 $("#chatPage").append(html);
-                                $(".chatContent").val("");
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
                                 ws.send(sendMessage);
