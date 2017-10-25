@@ -47,7 +47,7 @@ $(document).ready(function(){
                         <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
                     </div>
                 </div>
-                  `;if(item.count==0){$(".newsNum").html()}
+                  `;if(item.count=0){$(".newsNum").html()}
                                 });
                                 $(".newsList").append(html)
                     }
