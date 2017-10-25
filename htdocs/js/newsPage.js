@@ -51,7 +51,7 @@ $(document).ready(function(){
                   `;
                                 });
                                 $(".newsList").append(html);
-                                if($(".newsNum").html()===0){$(".newsNum").html()}
+                                console.log($(".newsNum").innerHTML);
                     }
                     var friends_new_apply = data.friends_new_apply;
                     if(friends_new_apply){                      //用户添加好友的申请
