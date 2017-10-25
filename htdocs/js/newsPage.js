@@ -36,6 +36,7 @@ $(document).ready(function(){
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
                                 $.each(group_new_message,function(i,item){
+                                    console.log(item.count);
                                     html+=`
                 <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
