@@ -188,6 +188,7 @@ CREATE TABLE if NOT EXISTS `user_group` (
   `group_type` tinyint(2) unsigned NOT NULL COMMENT '群分类id',
   `status` tinyint(2) unsigned NOT NULL DEFAULT '1' COMMENT '群状态 1:正常 2：解散',
   `garden_code` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '小区code type为3时为必填项',
+  `community_status` tinyint(2) DEFAULT '1' COMMENT '1:正常 2:禁言',
   PRIMARY KEY (`id`),
   KEY `group_num` (`group_num`),
   KEY `role` (`role`),

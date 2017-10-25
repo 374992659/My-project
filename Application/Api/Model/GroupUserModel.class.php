@@ -72,4 +72,6 @@ class GroupUserModel extends Model
         if(!$data) return false;
         return $data;
     }
+
+
 }

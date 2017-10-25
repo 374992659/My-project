@@ -37,7 +37,7 @@ class GroupController extends VersionController
         $group_type = $this->pdata['group_type'] ;
         $garden_code = $this->pdata['garden_code'] ;
         if(!$group_name || !$group_portrait || !$group_type) $this->echoEncrypData(21);
-        if(intval($group_type) == 3){
+        if(intval($group_type) == 3){ //社区群
             if(!$garden_code)$this->echoEncrypData(21);
         }
         $group_num = $this->createGroupCode();
@@ -68,6 +68,8 @@ class GroupController extends VersionController
             'group_name'=>$group_name,
             'group_portrait'=>$group_portrait,
             'user_code'=>$this->account_code,
+            'group_type'=>$group_type,
+            'garden_code'=>$garden_code,
             'status'=>1,
             ));
         $mode = new Model\UserGroupModel($this->account_code);
@@ -129,7 +131,90 @@ class GroupController extends VersionController
         $this->echoEncrypData(0,'',$res);
     }
     /*
-     *获取群内用户
+     * 添加群成员
+     * @param user_code 用户code
+     * @param group_num 群号码
+     * */
+    protected function addGroupUser_v1_0_0(){
+        $user_code = $this->pdata['user_code'];
+        $group_num = $this->pdata['group_num'];
+        if(!$user_code || !$group_num)$this->echoEncrypData(21);
+        $mongo = new \MongoClient();
+        $create_data = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code,group_code,group_name,group_portrait,group_type,garden_code'));
+        $account_code = $this->account_code;
+        $user_data = $mongo->baseinfo->user_area->findOne(array('user_code'=>$account_code),array('nickname,portrait'));
+        $group_user = new Model\GroupUserModel($create_data['user_code']);
+        $group_user->startTrans();
+        $res1 = $group_user->addUser($create_data['group_code'],$group_num,$create_data['group_name'],$create_data['group_portrait'],$account_code,$user_data['nickname'],$user_data['portrait'],3);  //1.将用户添加至创建人群用户表
+        $user_group = new Model\UserGroupModel($account_code);
+        $user_group->startTrans();
+        $res2 = $user_group->addGroup($create_data['group_name'],$create_data['group_portrait'],$create_data['group_code'],$group_num,3,$create_data['group_type'],$create_data['garden_code']);
+        if($res1 and $res2){
+            $group_user->commit();
+            $user_group->commit();
+            $this->echoEncrypData(0);
+        }else{
+            $group_user->rollback();
+            $user_group->rollback();
+            $this->echoEncrypData(1);
+        }
+    }
+    /*
+     * 设置/取消群禁言
+     * @param group_num 群号码
+     * @param is_cancel 是否取消 可填 传递此参数 is_cancel=1
+     * */
+    protected function setGroupCommunity(){
+        $account_code = $this->account_code;
+        $group_num = $this->pdata['group_num'];
+        $is_cancel = $this->pdata['is_cancel'];
+        if(!$group_num)$this->echoEncrypData(21);
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
+        if($account_code !== $create_code){
+            $mode =new Model\GroupUserModel($create_code);
+            $role = $mode->where(['group_num'=>$group_num,'user_code'=>$account_code])->getField('role');
+            if(intval($role) >2){
+                $this->echoEncrypData(1,'无权执行此操作');
+            }
+        }
+        $model =new Model\UserGroupModel($create_code);
+        if($is_cancel){
+            $res = $model->where(['group_num'=>$group_num])->save(['community_status'=>1]);
+        }else{
+            $res = $model->where(['group_num'=>$group_num])->save(['community_status'=>2]);
+        }
+        if($res !== false){
+            $this->echoEncrypData(0);
+        }else{
+            $this->echoEncrypData(1);
+        }
+    }
+    /*
+     * 解散群
+     * @param  group_num群号码
+     * */
+    protected function setGroupStatus(){
+        $group_num = $this->pdata['group_num'];
+        if(!$group_num)$this->echoEncrypData(21);
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
+        if($create_code !== $this->account_code){
+            $this->echoEncrypData(1,'无权执行此操作');
+        }
+        $model  = new Model\UserGroupModel($this->account_code);
+        $res = $model->where(['group_num'=>$group_num])->save(['status'=>2]);
+        if($res){
+            $this->echoEncrypData(0);
+        }else{
+            $this->echoEncrypData(1);
+        }
+    }
+
+    /*
+     * 获取群内用户
      * @param group_num 群号码
      * */
     protected function getGroupUser_v1_0_0(){
@@ -141,10 +226,22 @@ class GroupController extends VersionController
         if(!$res)$this->echoEncrypData(1,'未获取到群信息');
         $model = new Model\GroupUserModel($res['user_code']);
         $data=$model->getGroupUser($res['group_code']);
+        $mode = new Model\UserGroupModel($res['user_code']);
+        $community_status = $mode->getCommunity($group_num);
+        $status = $mode->getGroupStatus($group_num);
+        if(intval($status) ===2){
+            $new_model = new Model\UserGroupModel($this->account_code);
+            $new_model->where(['group_num'=>$group_num])->save(['status'=>2]);
+        }
+        $return=array(
+            'Number_data'=>$data,
+            'community_status'=>$community_status,
+            'status'=>$status,
+        );
         if(is_numeric($data)){
             $this->echoEncrypData($data);
         }
-        $this->echoEncrypData(0,'',$data);
+        $this->echoEncrypData(0,'',$return);
     }
 
     /*

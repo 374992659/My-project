@@ -214,7 +214,7 @@ class RegiestController extends BaseController
                     'user_code'=> $area_id.$account,
                     'inviter_code'=>$inviter_code,
                     'level'=>intval($level)+1
-                ));
+                ))->query();
             }else{
                 $mongo->baseinfo->user_level->insert(array(
                     '_id'=>getNextId($mongo,'baseinfo','user_level'),

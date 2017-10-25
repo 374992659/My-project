@@ -66,5 +66,22 @@ class UserGroupModel extends Model
             return $data;
         }
     }
-
+    /*
+     * 获取群禁言状态
+     * @param group_num群号码
+     * */
+    public function getCommunity($group_num){
+        $status = $this->where(['group_num'=>$group_num])->getField('community_status');
+        if(!$status)return false;
+        return $status;
+    }
+    /*
+     * 获取群状态
+     * @param group_num 群号码
+     * */
+    public function getGroupStatus($group_num){
+        $status = $this->where(['group_num'=>$group_num])->getField('status');
+        if(!$status)return false;
+        return $status;
+    }
 }
