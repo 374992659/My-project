@@ -156,7 +156,7 @@ class RegiestController extends BaseController
      * @param password 密码
      * @param repassword 确认密码
      * @param piccode 图片验证码
-     * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫面分享二维码跳转的注册页面会有此数据
+     * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据
      * */
     public function regiest(){
         $account   = trim($this->pdata['account']);
