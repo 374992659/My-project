@@ -1,4 +1,4 @@
-window.location.href="bottom";
+window.location.href="friendChat.html/bottom";
 $(document).ready(function(){
     // 获取头像
     var header=localStorage.getItem("header"),
