@@ -167,7 +167,7 @@ $(document).ready(function(){
              // 自己发送的消息存本地
             // 获取发送的时间
            time=(new Date()).toLocaleDateString() + " " + (new Date()).toLocaleTimeString();
-           news=JSON.stringify({"time":content});
+           news=JSON.stringify({time:content});
             localStorage.setItem("historyNews",news)
         });
         /*
