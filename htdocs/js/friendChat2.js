@@ -79,7 +79,7 @@ $(document).ready(function(){
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
                         var html = patharr[parseInt(patharr.length-1)];
-                       console.log(html);
+                        console.log(123);
                         if(html ==='friendChat.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                             var current_code = localStorage.getItem("sender_code");   //获取当前聊天好友code
                             if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
@@ -128,11 +128,6 @@ $(document).ready(function(){
                     break;
                 case 8:
                     console.log(result);
-                    console.log(result.errcode);
-                    var pathname = window.location.pathname;
-                    var patharr  = pathname.split('/');
-                    var html = patharr[parseInt(patharr.length-1)];
-                    console.log(patharr);
                     break;
             }
         };
