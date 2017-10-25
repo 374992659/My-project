@@ -17,6 +17,9 @@ $(document).ready(function(){
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode) === 0){
+                        // 获取本地存储的历史信息
+                       var historyNews=localStorage.getItem("historyNews");
+                       console.log(historyNews);
                         var data = (result.data);
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message = data.friends_new_message;
@@ -158,7 +161,7 @@ $(document).ready(function(){
       console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
            var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleTimeString()}</p>
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()+ " "+(new Date())}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" >${content}</span>
@@ -176,7 +179,7 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
-            historyNews=JSON.parse(localStorage.getItem("array"));
+            historyNews=JSON.parse(localStorage.getItem("historyNews"));
             // 再向历史消息里加入刚刚发的
             historyNews.push(timestamp,content);
             // 再次存入本地
