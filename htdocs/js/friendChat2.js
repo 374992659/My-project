@@ -5,6 +5,9 @@ $(document).ready(function(){
         sender_code=localStorage.getItem("sender_code");
     (function(){
         var apptoken = localStorage.getItem('apptoken');
+        function getLocalTime(nS) {
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        }
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
         ws.onmessage=function(e){
@@ -22,7 +25,7 @@ $(document).ready(function(){
                                 if(item.sender_code===sender_code){
                                     $.each(item.content,function(i,item){
                                         html+=`
-                <p>${item.send_time}</p>
+                <p style="font-size: 12px">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                         <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
