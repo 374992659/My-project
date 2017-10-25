@@ -34,7 +34,7 @@ $(document).ready(function(){
                     // 我的评论
                     var mydiscuss="";
                     var html=`
-                        <div class="weui-panel weui-panel_access">
+        <div class="weui-panel weui-panel_access">
             <div class="weui-panel__bd" style="background: #F0F0F0">
                 <div class="weui-media-box weui-media-box_text">
                     <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${data.data.title}</h4>
@@ -75,35 +75,35 @@ $(document).ready(function(){
                 </div>
             </div>
         </div>
-                                <div class="discuss">
-        <div class="weui-tab">
-            <div class="weui-navbar">
-                <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
-                    我的评论
-                </a>
-                <a class="weui-navbar__item" href="#tab2">
-                    全部评论
-                </a>
-            </div>
-            <div class="weui-tab__bd">
-                <!--我的评论-->
-                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
-                    <div class="weui-panel__bd myDiscuss discuss">
-                        
-                      
-                    </div>
+        <div class="Discuss">
+            <div class="weui-tab">
+                <div class="weui-navbar">
+                    <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
+                        我的评论
+                    </a>
+                    <a class="weui-navbar__item" href="#tab2">
+                        全部评论
+                    </a>
                 </div>
-                <!--全部评论-->
-                <div id="tab2" class="weui-tab__bd-item">
-                    <div class="weui-panel__bd allDiscuss discuss">
-                        
-                     
+                <div class="weui-tab__bd">
+                    <!--我的评论-->
+                    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                        <div class="weui-panel__bd myDiscuss discuss">
+                            
+                          
+                        </div>
+                    </div>
+                    <!--全部评论-->
+                    <div id="tab2" class="weui-tab__bd-item">
+                        <div class="weui-panel__bd allDiscuss discuss">
+                            
+                         
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-                        </div>
                     `;
                      // 对所有评论循环遍历
                     if(data.data.commont_list){
@@ -233,7 +233,7 @@ $(document).ready(function(){
 
     });
     //   评论点赞
-    $(".weui-tab__bd-item .myDiscuss").on("click",".weui-media-box .delPraise .disPraiseImg",function(e){
+    $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd .weui-tab__bd-item .discuss .weui-media-box .topic .delPraise .disPraiseImg",function(e){
         console.log(123);
         // 获取评论id
         var commont_id=$(this).attr("title");
