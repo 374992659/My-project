@@ -1,6 +1,4 @@
 $(document).ready(function(){
-  var  historyNews=localStorage.getItem("array");
-    console.log(historyNews);
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
@@ -197,6 +195,7 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
+            var historyNews=localStorage.getItem("array");
             historyNews[timestamp]=content;
             console.log(historyNews);
            localStorage.setItem("array",historyNews);
