@@ -169,6 +169,8 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // time=(new Date()).toLocaleDateString()+" " +(new Date()).toLocaleTimeString();
+            arr=[];
+            arr.push(timestamp,content);
             console.log(timestamp);
             news=JSON.stringify({2:content});
             localStorage.setItem("historyNews",news)
