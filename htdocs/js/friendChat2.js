@@ -87,7 +87,7 @@ $(document).ready(function(){
                                 var  html=`
                                 <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right" >${content}</span>
+                                        <span class="weui-media-box__desc right" ></span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
                                         <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
@@ -106,7 +106,7 @@ $(document).ready(function(){
                     }
                     break;
                 case 5:         //接收到群消息
-                    if(parseInt(result.errcode) === 0){
+                    if(parseInt(result.errcode)===-0){
                         var data =(result.data);
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
