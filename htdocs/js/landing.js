@@ -31,8 +31,9 @@ $(document).ready(function(){
                     });
                     window.location.href="friend.html";
                 }else{
-                    console.log(data);
-                    console.log(data.errmsg);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
                 }
             }
         });
