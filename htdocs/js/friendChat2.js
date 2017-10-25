@@ -1,5 +1,12 @@
 $(document).ready(function(){
-console.log(document.body.scrollHeight);
+    function add()
+    {
+        var now = new Date();
+        var div = document.getElementById('chatPage');
+        div.innerHTML = div.innerHTML + 'time_' + now.getTime() + '<br />';
+        div.scrollTop = div.scrollHeight;
+    }
+
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
@@ -157,6 +164,7 @@ console.log(document.body.scrollHeight);
             var apptoken=localStorage.getItem("apptoken");
             var content=$(".chatContent").val();
             //获取页面发送内容
+
             var account_code =sender_code;          //获取发送好友的code
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
       console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
@@ -179,7 +187,7 @@ console.log(document.body.scrollHeight);
              // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-
+            add();
         });
         /*
         * 判断是否存在元素
