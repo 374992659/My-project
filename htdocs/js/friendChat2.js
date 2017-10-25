@@ -1,4 +1,4 @@
-
+console.log($("#chatPage").height());
 $(document).ready(function(){
     console.log($("#chatPage").height());
     // 获取头像
