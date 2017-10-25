@@ -22,6 +22,7 @@ $(document).ready(function(){
                                 if(item.sender_code===sender_code){
                                     $.each(item.content,function(i,item){
                                         html+=`
+                <p>${item.send_time}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                         <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
@@ -164,18 +165,16 @@ $(document).ready(function(){
             `;
              $("#chatPage").append(html);
              $(".chatContent").val("");
-             // 自己发送的消息存本地
+          // 自己发送的消息存本地
              // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-            // time=(new Date()).toLocaleDateString()+" " +(new Date()).toLocaleTimeString();
-            arr=JSON.parse(localStorage.getItem("array"));
-            arr.push(timestamp,content);
+            // 获取本地存的历史消息
+            historyNews=JSON.parse(localStorage.getItem("array"));
+            // 再向历史消息里加入刚刚发的
+            historyNews.push(timestamp,content);
+            // 再次存入本地
             localStorage.setItem("array",JSON.stringify(arr));
-            console.log(arr);
-            console.log(timestamp);
-            news=JSON.stringify({2:content});
-            localStorage.setItem("historyNews",news)
         });
         /*
         * 判断是否存在元素
