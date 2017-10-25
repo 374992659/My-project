@@ -10,6 +10,7 @@ $(document).ready(function(){
                 if(parseInt(result.errcode) === 0){
                     var data = (result.data);
                     localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
+                    // 群消息
                     var friends_new_message = data.friends_new_message;
                     if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                         console.log(friends_new_message);
@@ -30,6 +31,7 @@ $(document).ready(function(){
                         });
                         $(".newsList").append(html);
                     }
+                    // 群消息
                     var group_new_message = data.group_new_message;
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
@@ -45,8 +47,7 @@ $(document).ready(function(){
                         <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
                     </div>
                 </div>
-                                    
-                                    `
+                  `;if(item.count===0){$(".newsNum").html()}
                                 });
                                 $(".newsList").append(html)
                     }
