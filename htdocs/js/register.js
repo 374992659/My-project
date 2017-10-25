@@ -26,7 +26,7 @@ $(document).ready(function(){
     info=['', JSON.stringify({"account":numeber,"area_id":area_id,"password":password,'repassword':repassword,"apptoken":apptoken,"piccode":code})];
         console.log(info);
         // 加密后的数据
-        var afterDate=jsEncryptData( info );
+        var afterDate=jsEncryptData(info);
         console.log(afterDate);
         // ajax向后台传输数据
         $.ajax({

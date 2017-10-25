@@ -47,7 +47,11 @@ $(document).ready(function() {
                         }
 
                         // 把消息数量添加到页面
-                        $("#newsNum").html(friends_new_messageNum+group_new_messageNum+friends_new_applyNum);
+                        if(friends_new_messageNum+group_new_messageNum+friends_new_applyNum==0){
+                            $("#newsNum").html();
+                        }else{
+                            $("#newsNum").html(friends_new_messageNum+group_new_messageNum+friends_new_applyNum);
+                        }
                     }
                     break;
 
