@@ -195,7 +195,7 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
-            history=localStorage.getItem("array");
+            history= JSON.parse(localStorage.getItem("array"));
             console.log(history);
             history[timestamp]=content;
             console.log(history);
