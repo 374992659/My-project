@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    history= localStorage.getItem("array");
-    console.log(history);
+    historyNews=localStorage.getItem("array");
+    console.log(historyNews);
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
