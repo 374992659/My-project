@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    history= JSON.parse(localStorage.getItem("array"));
+    console.log(history);
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
