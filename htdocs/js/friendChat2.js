@@ -170,7 +170,7 @@ $(document).ready(function(){
             timestamp = timestamp / 1000;
             // time=(new Date()).toLocaleDateString()+" " +(new Date()).toLocaleTimeString();
             console.log(timestamp);
-            news=JSON.stringify({"timestamp":content});
+            news=JSON.stringify({1:content});
             localStorage.setItem("historyNews",news)
         });
         /*
