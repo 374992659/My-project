@@ -161,7 +161,7 @@ $(document).ready(function(){
       console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
            var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()+ " "+(new Date())}</p>
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" >${content}</span>
@@ -179,11 +179,11 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
-            array=JSON.parse(localStorage.getItem(" arr"));
+            array=JSON.parse(localStorage.getItem("array"));
             // 再向历史消息里加入刚刚发的
             array.push(timestamp,content);
             // 再次存入本地
-            localStorage.setItem("array",JSON.stringify(arr));
+            localStorage.setItem("array",JSON.stringify(array));
         });
         /*
         * 判断是否存在元素
