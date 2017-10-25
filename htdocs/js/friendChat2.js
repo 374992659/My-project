@@ -180,7 +180,7 @@ $(document).ready(function(){
             // 再向历史消息里加入刚刚发的
             historyNews.push(timestamp,content);
             // 再次存入本地
-            localStorage.setItem("array",JSON.stringify(arr));
+            localStorage.setItem("array",JSON.stringify(historyNews));
         });
         /*
         * 判断是否存在元素
