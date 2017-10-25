@@ -45,7 +45,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                         <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
-                        <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
+                        <p class="weui-media-box__desc">已读消息</p><!--最新的消息-->
                     </div>
                 </div>
                   `
