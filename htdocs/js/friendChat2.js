@@ -187,7 +187,7 @@ $(document).ready(function(){
              </div>
          </div>
             `;
-           console.log();
+             console.log();
              $("#chatPage").append(html);
              $(".chatContent").val("");
           // 自己发送的消息存本地
@@ -195,13 +195,11 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
-            if(!localStorage.getItem(array)){
-                historyNews={};
-            }else{
-                var historyNews=JSON.parse(localStorage.getItem(array));
-            }
-           
-            historyNews[timestamp]=content;
+            historyNews={
+                sender_code:[]
+            };
+
+            historyNews.sender_code.push(timestamp,content);
             console.log(historyNews);
             localStorage.setItem("array",JSON.stringify(historyNews));
         });
