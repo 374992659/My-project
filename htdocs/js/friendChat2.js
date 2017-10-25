@@ -104,19 +104,20 @@ $(document).ready(function(){
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
                         var html = patharr[parseInt(patharr.length-1)];
-                        console.log(123);
+                        console.log(data);
                         if(html ==='friendChat.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                             var current_code = localStorage.getItem("sender_code");   //获取当前聊天好友code
                             if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                                 //展示好友发送的聊天信息
                                 var  html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="image/firenda.jpg" alt="">
+                        <img class="weui-media-box__thumb" src="${data.sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc">
-                               
+                               ${data.content}
                             </span>
                    </div>                   
                 </div>                  `;
@@ -199,7 +200,7 @@ $(document).ready(function(){
                 sender_code:[]
             };
 
-            historyNews.sender_code.push(timestamp,content);
+            historyNews.sender_code.push(timestamp:"content");
             console.log(historyNews);
             localStorage.setItem("array",JSON.stringify(historyNews));
         });
