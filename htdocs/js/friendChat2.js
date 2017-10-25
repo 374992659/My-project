@@ -196,13 +196,13 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
-            historyNews={
-                sender_code:[]
-            };
-
-            historyNews.sender_code.push(timestamp:"content");
-            console.log(historyNews);
-            localStorage.setItem("array",JSON.stringify(historyNews));
+            // historyNews={
+            //     sender_code:[]
+            // };
+            //
+            // historyNews.sender_code.push(timestamp:"content");
+            // console.log(historyNews);
+            // localStorage.setItem("array",JSON.stringify(historyNews));
         });
         /*
         * 判断是否存在元素
