@@ -171,6 +171,7 @@ $(document).ready(function(){
             // time=(new Date()).toLocaleDateString()+" " +(new Date()).toLocaleTimeString();
             arr=[];
             arr.push(timestamp,content);
+            localStorage.setItem("array",JSON.stringify(arr));
             console.log(arr);
             console.log(timestamp);
             news=JSON.stringify({2:content});
