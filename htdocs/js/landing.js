@@ -26,6 +26,9 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
                     window.location.href="friend.html";
                 }else{
                     console.log(data);
