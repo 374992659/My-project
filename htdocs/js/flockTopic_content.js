@@ -110,13 +110,13 @@ $(document).ready(function(){
                         $.each(data.data.commont_list,function(i,item){
                             if(item.user_code=userCode){
                                 mydiscuss+=`
-                         <div class="weui-media-box weui-media-box_text">
+                        <div class="weui-media-box weui-media-box_text">
                              <div class="topic">
                                <a href="">
                                      <p class="weui-media-box__title lf">${item.nickname}</p>
                                  </a>
                                 <span class="right" style="font-size: 12px">${item.create_time}</span>
-                              </div>
+                             </div>
                              <p class="weui-media-box__desc">
                                ${item.content}
                              </p>
@@ -124,8 +124,8 @@ $(document).ready(function(){
                                  <img src=" image/del.png" class="delImg" alt="" style="width: 16px;margin-right: 10px"/>
                                   <img class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
                                  <span class="praiseNum">${item.commont_likes}</span>
-                              </div>
-                          </div>
+                             </div>
+                        </div>
                               `;
                             }
                             alldiscuss+=`
@@ -233,7 +233,7 @@ $(document).ready(function(){
 
     });
     //   评论点赞
-    $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd .weui-tab__bd-item .discuss .weui-media-box .topic .delPraise .disPraiseImg",function(e){
+    $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd .weui-tab__bd-item .discuss .weui-media-box .delPraise .disPraiseImg",function(e){
         console.log(123);
         // 获取评论id
         var commont_id=$(this).attr("title");
