@@ -195,12 +195,10 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             // 获取本地存的历史消息
-
-            var historyNews=localStorage.getItem("array");
+            var historyNews=localStorage.getItem(JSON.parse(array));
             historyNews[timestamp]=content;
             console.log(historyNews);
-
-           localStorage.setItem("array",JSON.stringify(historyNews));
+            localStorage.setItem("array",JSON.stringify(historyNews));
         });
         /*
         * 判断是否存在元素
