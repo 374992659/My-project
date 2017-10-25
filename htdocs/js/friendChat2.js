@@ -5,6 +5,7 @@ $(document).ready(function(){
         sender_code=localStorage.getItem("sender_code");
     (function(){
         var apptoken = localStorage.getItem('apptoken');
+        // 时间戳的转换
         function getLocalTime(nS) {
             return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
         }
@@ -156,7 +157,9 @@ $(document).ready(function(){
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
       console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
+
            var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date().getTime()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" >${content}</span>
