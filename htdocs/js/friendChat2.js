@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    location.hash='bottom';
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
