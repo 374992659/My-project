@@ -158,7 +158,7 @@ $(document).ready(function(){
       console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
            var  html=`
-         <p style="font-size: 12px;text-align: center"></p>
+         <p style="font-size: 12px;text-align: center">${new Date()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" >${content}</span>
@@ -168,7 +168,7 @@ $(document).ready(function(){
              </div>
          </div>
             `;
-           console.log(new Date());
+           console.log();
              $("#chatPage").append(html);
              $(".chatContent").val("");
           // 自己发送的消息存本地
