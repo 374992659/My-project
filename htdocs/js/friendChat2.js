@@ -74,7 +74,7 @@ $(document).ready(function(){
                     }
                     break;
                 case 4:          //4.接收到好友消息
-                    if(parseInt(result.errcode) === 0){
+                    if(result.errcode== 0){
                         var data =(result.data);
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
