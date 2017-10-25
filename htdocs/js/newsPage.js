@@ -48,9 +48,10 @@ $(document).ready(function(){
                         <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
                     </div>
                 </div>
-                  `;if(item.count=0){$(".newsNum").html()}
+                  `;
                                 });
-                                $(".newsList").append(html)
+                                $(".newsList").append(html);
+                                if($(".newsNum").html()===0){$(".newsNum").html()}
                     }
                     var friends_new_apply = data.friends_new_apply;
                     if(friends_new_apply){                      //用户添加好友的申请
