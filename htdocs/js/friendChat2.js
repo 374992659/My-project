@@ -18,14 +18,11 @@ $(document).ready(function(){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode) === 0){
                         // 获取本地存储的历史信息
-                       var historyNews=localStorage.getItem("array");
-                       console.log(historyNews);
                         var data = (result.data);
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){//好友新消息  已按用户分组 时间倒序排列
                             var html="";
-                            var myhtml="";
                             $.each(friends_new_message,function(i,item){
                                 if(item.sender_code===sender_code){
                                     $.each(item.content,function(i,item){
@@ -180,14 +177,7 @@ $(document).ready(function(){
              // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-            // 获取本地存的历史消息
-            // historyNews={
-            //     sender_code:[]
-            // };
-            //
-            // historyNews.sender_code.push(timestamp:"content");
-            // console.log(historyNews);
-            // localStorage.setItem("array",JSON.stringify(historyNews));
+            
         });
         /*
         * 判断是否存在元素
