@@ -100,7 +100,6 @@ $(document).ready(function(){
         // 获取当前group_num群号码
         var group_num=$(this).attr("title");
         // 获取group_code
-        console.log(groupCode);
         var group_code=$(this).find("img").attr("title");
         // 存在本地
         localStorage.setItem("group_num",group_num);
