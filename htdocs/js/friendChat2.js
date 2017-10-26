@@ -44,6 +44,7 @@ $(document).ready(function(){
                                     console.log($("#chatPage").height());
                                     var e=document.getElementById("chatPage");//保持滚动条一直在最底部
                                     e.scrollTop=e.scrollHeight;
+                                    document.documentElement.scrollTop($("#chatPage").height())
                                 }
                             });
                         }
