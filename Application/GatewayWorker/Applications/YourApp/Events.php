@@ -64,304 +64,324 @@ class Events
        if(!$account_code)return;
 
        switch ($message->type){
-           case 1:  Gateway::bindUid($client_id,$account_code['account_code']);    //绑定客户端id及用户code
-                        $_SESSION['account_code'] = $account_code['account_code'];
-                        Gateway::updateSession($client_id,$account_code);
-                        $table_id= substr($account_code['account_code'],0,4);
-                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
+           case 1:                                                          //绑定客户端id及用户code
+                Gateway::bindUid($client_id,$account_code['account_code']);
+                $_SESSION['account_code'] = $account_code['account_code'];
+                Gateway::updateSession($client_id,$account_code);
+                $table_id= substr($account_code['account_code'],0,4);
+                $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
 //                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.'030117608006762');
-                        $group_arr = $db->select('group_code')->from('user_group')->where('status =1')->column();
+                $group_arr = $db->select('group_code')->from('user_group')->where('status =1')->column();
 //                        var_dump($group_arr);
-                        if($group_arr){
-                               foreach ($group_arr as $k=>$v){
-                                   Gateway::joinGroup($client_id,$v);                                   //将用户加入群组
-                               }
-                        };
-                        //获取用户在线的好友
-                        $user_friends = $db->query('select user_code from user_friends');
-                        $online_user = Gateway::getAllClientSessions();
+                if($group_arr){
+                       foreach ($group_arr as $k=>$v){
+                           Gateway::joinGroup($client_id,$v);                                   //将用户加入群组
+                       }
+                };
+                //获取用户在线的好友
+                $user_friends = $db->query('select user_code from user_friends');
+                $online_user = Gateway::getAllClientSessions();
 //                        var_dump($online_user);
-                        $online_friends = array();
-                        if($user_friends){
-                            foreach ($user_friends as $key=>$val){
-                                $user_client_id=Gateway::getClientIdByUid($val['user_code']);
-                                if($user_client_id){
-                                    if(array_key_exists($user_client_id[0],$online_user)){
-                                        $online_friends[]=$val['user_code'];
-                                    }
-                                }
+                $online_friends = array();
+                if($user_friends){
+                    foreach ($user_friends as $key=>$val){
+                        $user_client_id=Gateway::getClientIdByUid($val['user_code']);
+                        if($user_client_id){
+                            if(array_key_exists($user_client_id[0],$online_user)){
+                                $online_friends[]=$val['user_code'];
                             }
                         }
-                        //获取好友未读消息
-                        $result = $db->select()->from('offline_user_message')->query();
-                        $friends_new_message = array();
-                        if($result){
-                            $friend_db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                            foreach ($result as $k=>$v){
-                                if(!array_key_exists($v['sender_code'],$friends_new_message)){
-                                    $friends_new_message[$v['sender_code']]['sender_code'] = $v['sender_code'];  //用户code
-                                    $friend_table_id= substr($v['sender_code'],0,4);
-                                    $friends_new_message[$v['sender_code']]['sender_nickname'] = $friend_db->select('nickname')->from('user_info_'.$friend_table_id)->where('account_code ='.$v['sender_code'])->single();      //用户昵称
-                                    $friends_new_message[$v['sender_code']]['sender_portrait'] = $friend_db->select('portrait')->from('user_info_'.$friend_table_id)->where('account_code ='.$v['sender_code'])->single();      //用户头像
-                                    $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
-                                    $friends_new_message[$v['sender_code']]['message_num']=1;
-                                    $friends_new_message[$v['sender_code']]['recent_time']=$v['send_time'];
-                                }else{
-                                    $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
-                                    $friends_new_message[$v['sender_code']]['message_num']++;
-                                    if($friends_new_message[$v['sender_code']]['recent_time']<$v['send_time']){
-                                        $friends_new_message[$v['sender_code']]['recent_time']=$v['send_time'];
-                                    }
-                                }
+                    }
+                }
+                //获取好友未读消息
+                $result = $db->select()->from('offline_user_message')->query();
+                $friends_new_message = array();
+                if($result){
+                    $friend_db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                    foreach ($result as $k=>$v){
+                        if(!array_key_exists($v['sender_code'],$friends_new_message)){
+                            $friends_new_message[$v['sender_code']]['sender_code'] = $v['sender_code'];  //用户code
+                            $friend_table_id= substr($v['sender_code'],0,4);
+                            $friends_new_message[$v['sender_code']]['sender_nickname'] = $friend_db->select('nickname')->from('user_info_'.$friend_table_id)->where('account_code ='.$v['sender_code'])->single();      //用户昵称
+                            $friends_new_message[$v['sender_code']]['sender_portrait'] = $friend_db->select('portrait')->from('user_info_'.$friend_table_id)->where('account_code ='.$v['sender_code'])->single();      //用户头像
+                            $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
+                            $friends_new_message[$v['sender_code']]['message_num']=1;
+                            $friends_new_message[$v['sender_code']]['recent_time']=$v['send_time'];
+                        }else{
+                            $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
+                            $friends_new_message[$v['sender_code']]['message_num']++;
+                            if($friends_new_message[$v['sender_code']]['recent_time']<$v['send_time']){
+                                $friends_new_message[$v['sender_code']]['recent_time']=$v['send_time'];
                             }
-                            $friends_new_message = self::multi_array_sort($friends_new_message,'recent_time',SORT_DESC);   //时间倒序
                         }
-                        //获取群未读消息
-                        $group_new_message = array();
-                        if($group_arr){
+                    }
+                    $friends_new_message = self::multi_array_sort($friends_new_message,'recent_time',SORT_DESC);   //时间倒序
+                }
+                //获取群未读消息
+                $group_new_message = array();
+                if($group_arr){
 //                            $group_arr_str = implode(',',$group_arr);             //用户群字符串
 //                            $group_arr_str = substr($group_arr_str,0,(strlen($group_arr_str)));
 //                            var_dump($group_arr_str);
 //                            $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
 //                            $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
 //                            var_dump($group_data);
-                            $mongo = new MongoClient();
-                            $group_data = $mongo->baseinfo->group_area->find(array('group_code'=>array('$in'=>$group_arr)));
-                            if($group_data){
-                                $group_data = iterator_to_array($group_data);
+                    $mongo = new MongoClient();
+                    $group_data = $mongo->baseinfo->group_area->find(array('group_code'=>array('$in'=>$group_arr)));
+                    if($group_data){
+                        $group_data = iterator_to_array($group_data);
 //                                var_dump($group_data);
-                                foreach ($group_data as $key=>$val){
-                                    $userdatastr = 'user_info_'.$val['user_code'];
-                                    $user_database = $mongo->$userdatastr;
+                        foreach ($group_data as $key=>$val){
+                            $userdatastr = 'user_info_'.$val['user_code'];
+                            $user_database = $mongo->$userdatastr;
 //                                $user_database = $mongo->user_info_030117608006762;
-                                    $recent_time = 0;
-                                    $count = '';
-                                    $content = '';
-                                    if($user_database->group_new_message->count()){
-                                        $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
+                            $recent_time = 0;
+                            $count = '';
+                            $content = '';
+                            if($user_database->group_new_message->count()){
+                                $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
 //                                    $group_time = $mongo->baseinfo->user_group_time->find(array('user_code'=>'030117608006762','group_code'=>$val['group_code']),array('time'));
 //                                        $group_time = iterator_to_array($group_time);
-                                        $time =$group_time['time']?$group_time['time']:0;
+                                $time =$group_time['time']?$group_time['time']:0;
 //                                        foreach ( $group_time as $item) {
 //                                            $time = $item['time'];
 //                                        }
 //                                        var_dump($time);
-                                        $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
-                                        $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
-                                        foreach ($res as $kk=>$vv){
-                                            $content[$kk]['group_code']=$vv['group'];
-                                            $content[$kk]['sender_code']=$vv['sender_code'];
-                                            $content[$kk]['sender_nickname']=$vv['sender_nickname'];
-                                            $content[$kk]['sender_portrait']=$vv['sender_portrait'];
-                                            $content[$kk]['send_time']=$vv['send_time'];
-                                            $content[$kk]['type']=$vv['type'];
-                                            $content[$kk]['content']=$vv['content'];
-                                            if($vv['send_time']>$recent_time){
-                                                $recent_time =$vv['send_time'];
-                                            }
-                                        }
+                                $count = $user_database->group_new_message->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
+                                $res=iterator_to_array($user_database->group_new_message->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
+                                foreach ($res as $kk=>$vv){
+                                    $content[$kk]['group_code']=$vv['group'];
+                                    $content[$kk]['sender_code']=$vv['sender_code'];
+                                    $content[$kk]['sender_nickname']=$vv['sender_nickname'];
+                                    $content[$kk]['sender_portrait']=$vv['sender_portrait'];
+                                    $content[$kk]['send_time']=$vv['send_time'];
+                                    $content[$kk]['type']=$vv['type'];
+                                    $content[$kk]['content']=$vv['content'];
+                                    if($vv['send_time']>$recent_time){
+                                        $recent_time =$vv['send_time'];
                                     }
-                                    $group_new_message[$val['group_code']]['group_num']=$val['group_num'];
-                                    $group_new_message[$val['group_code']]['group_code']=$val['group_code'];
-                                    $group_new_message[$val['group_code']]['nickname']=$val['group_name'];
-                                    $group_new_message[$val['group_code']]['group_portrait']=$val['group_portrait'];
-                                    $group_new_message[$val['group_code']]['count']=$count;
-                                    $group_new_message[$val['group_code']]['content']=$content;
-                                    $group_new_message[$val['group_code']]['recent_time']=$recent_time;
+                                }
+                            }
+                            $group_new_message[$val['group_code']]['group_num']=$val['group_num'];
+                            $group_new_message[$val['group_code']]['group_code']=$val['group_code'];
+                            $group_new_message[$val['group_code']]['nickname']=$val['group_name'];
+                            $group_new_message[$val['group_code']]['group_portrait']=$val['group_portrait'];
+                            $group_new_message[$val['group_code']]['count']=$count;
+                            $group_new_message[$val['group_code']]['content']=$content;
+                            $group_new_message[$val['group_code']]['recent_time']=$recent_time;
 //                                    if( $group_new_message[$val['group_code']]['count'] == 0){
 //                                        unset( $group_new_message[$val['group_code']]);
 //                                    }
-                                    $content = array();
-                                }
-                                $group_new_message = self::multi_array_sort($group_new_message,'recent_time',SORT_DESC);
-                            }
+                            $content = array();
                         }
-                        //获取添加好友申请
-                        $new_friends_apply=$db->select()->from('friends_apply')->where('status =0')->query();   //未处理的添加好友申请
-                        $data = array(
-                            'errcode'=>0,
-                            'type'=>1,  //上线获取在线好友以及未读消息
-                            'errmsg'=>'在线好友及消息',
-                            'data'=>array(
-                                'online_friends'=>$online_friends,
-                                'friends_new_message'=>$friends_new_message,
-                                'group_new_message'=>$group_new_message,
-                                'new_friends_apply'=>$new_friends_apply,
-                            )
-                        );
-                        $data2 = array(
-                            'errcode'=>0,
-                            'type'=>2,  //向好友发送上线通知
-                            'errmsg'=>'上线',
-                            'data'=>array(
-                                'user_code'=>$account_code['account_code'],
-                            )
-                        );
-                        Gateway::sendToUid($online_friends,json_encode($data2)); //给好友提示上线
-                        Gateway::sendToClient($client_id,json_encode($data));     //获取在线好友列表 好友未读消息  群未读消息
-                        break;
-           case 2:  $friend_code = $message->account_code;                                                      //发送消息给好友
-                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                        $table_id =substr($account_code['account_code'],0,4);
-                        $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
-                        $mongo =new MongoClient();
-                        $userdatastr = 'user_info_'.$account_code['account_code'];
-                        $database1=$mongo->$userdatastr;
-                        $collection1 = $database1->friends_chat;
-                        $data1 = array(
-                            '_id'=>self::getNextId($mongo,'user_info_'.$account_code['account_code'],'friends_chat'),
-                            'sender_code'=>$account_code['account_code'],
-                            'sender_nickname'=>$user_info['nickname'],
-                            'send_portrait'=>$user_info['portrait'],
-                            'content'=>$message->content,
-                            'type'=>$message->message_type,
-                            'send_time'=>time(),
-                        );
-                        $collection1->insert($data1);    //发送用户聊天记录表插入数据
-                            $data2 = array(
-                                'sender_code'=>$account_code['account_code'],
-                                'sender_nickname'=>$user_info['nickname'],
-                                'send_portrait'=>$user_info['portrait'],
-                                'content'=>$message->content,
-                                'type'=>$message->message_type,
-                                'send_time'=>time(),
-                            );
-                            $db2 = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$message->account_code);
-                            $res = $db2->insert('offline_user_message')->cols(array(
-                                'sender_code'=>$account_code['account_code'],
-                                'content'=>$message->content,
-                                'type'=>$message->message_type,
-                                'send_time'=>time(),
-                            ))->query();
-                            $send_data = self::returnData(0,4,'好友消息',$data2);
-                            Gateway::sendToUid($message->account_code,json_encode($send_data));//发送给接收人
-                            $returnData =self::returnData(0,8,'好友消息发送成功');
-                            Gateway::sendToCurrentClient(json_encode($returnData));
-                            break;
-           case 3:  $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//群聊
-                        $table_id =substr($account_code['account_code'],0,4);
-                       $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
+                        $group_new_message = self::multi_array_sort($group_new_message,'recent_time',SORT_DESC);
+                    }
+                }
+                //获取添加好友申请
+                $new_friends_apply=$db->select()->from('friends_apply')->where('status =0')->query();   //未处理的添加好友申请
+                $data = array(
+                    'errcode'=>0,
+                    'type'=>1,  //上线获取在线好友以及未读消息
+                    'errmsg'=>'在线好友及消息',
+                    'data'=>array(
+                        'online_friends'=>$online_friends,
+                        'friends_new_message'=>$friends_new_message,
+                        'group_new_message'=>$group_new_message,
+                        'new_friends_apply'=>$new_friends_apply,
+                    )
+                );
+                $data2 = array(
+                    'errcode'=>0,
+                    'type'=>2,  //向好友发送上线通知
+                    'errmsg'=>'上线',
+                    'data'=>array(
+                        'user_code'=>$account_code['account_code'],
+                    )
+                );
+                Gateway::sendToUid($online_friends,json_encode($data2)); //给好友提示上线
+                Gateway::sendToClient($client_id,json_encode($data));     //获取在线好友列表 好友未读消息  群未读消息
+                break;
+           case 2:                                          //发送消息给好友
+                $friend_code = $message->account_code;
+                $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                $table_id =substr($account_code['account_code'],0,4);
+                $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
+                $mongo =new MongoClient();
+                $userdatastr = 'user_info_'.$account_code['account_code'];
+                $database1=$mongo->$userdatastr;
+                $collection1 = $database1->friends_chat;
+                $friends_user_info = $mongo->baseinfo->user_area->findOne(array('user_code'=>$message->account_code),array('nickname','portrait'));
+                $data1 = array(
+                    '_id'=>self::getNextId($mongo,'user_info_'.$account_code['account_code'],'friends_chat'),
+                    'sender_code'=>$account_code['account_code'],
+                    'sender_nickname'=>$user_info['nickname'],
+                    'send_portrait'=>$user_info['portrait'],
+                    'getter_code'=>$message->account_code,
+                    'getter_nickname'=>$friends_user_info['nickname'],
+                    'getter_portrait'=>$friends_user_info['portrait'],
+                    'content'=>$message->content,
+                    'type'=>$message->message_type,
+                    'send_time'=>time(),
+                );
+                $collection1->insert($data1);    //发送用户聊天记录表插入数据
+                    $data2 = array(
+                        'sender_code'=>$account_code['account_code'],
+                        'sender_nickname'=>$user_info['nickname'],
+                        'send_portrait'=>$user_info['portrait'],
+                        'content'=>$message->content,
+                        'type'=>$message->message_type,
+                        'send_time'=>time(),
+                    );
+                    $db2 = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$message->account_code);
+                    $res = $db2->insert('offline_user_message')->cols(array(
+                        'sender_code'=>$account_code['account_code'],
+                        'content'=>$message->content,
+                        'type'=>$message->message_type,
+                        'send_time'=>time(),
+                    ))->query();
+                    $send_data = self::returnData(0,4,'好友消息',$data2);
+                    Gateway::sendToUid($message->account_code,json_encode($send_data));//发送给接收人
+                    $returnData =self::returnData(0,8,'好友消息发送成功');
+                    Gateway::sendToCurrentClient(json_encode($returnData));
+                    break;
+           case 3://群聊
+                $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                $table_id =substr($account_code['account_code'],0,4);
+               $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
 //                       $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
-                       $mongo =new MongoClient();
-                       $create_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$message->group),array('user_code'));
-                       $create_code =$create_code['user_code'];
-                       $user_group= new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$create_code);//创建人群表
-                       $group_status = $user_group->select('community_status,status')->from('user_group')->where('group_code ='.$message->group)->row();
-                       if(intval($group_status['status']) === 2){
-                           $user_group2=new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);//发送人自己的群表修改状态
-                           $user_group2->update('user_group')->cols(['status'=>2])->where('grouo_code ='.$message->group)->query();
-                           $returnData =self::returnData(0,8,'该群已解散');
-                           Gateway::sendToCurrentClient(json_encode($returnData));break;
-                       }elseif(intval($group_status['community_status']) === 2){
-                           $returnData =self::returnData(0,8,'该群已被禁言');
-                           Gateway::sendToCurrentClient(json_encode($returnData));break;
-                       }
-                       $data =array(
-                            '_id'=>self::getNextId($mongo,'user_info_'.$create_code,'group_chat'),
-                            'sender_code'=>$account_code['account_code'],
-                            'send_nickname'=>$user_info['nickname'],
-                            'send_portrait'=>$user_info['send_portrait'],
-                            'content'=>$message->content,
-                            'send_time'=>time(),
-                            'group'=>$message->group,
-                            'type'=>$message->message_type,
-                        );
-                        $userdatastr = 'user_info_'.$create_code;
-                        $database= $mongo->$userdatastr; //群聊记录保存在创建人分库
-                        $collection = $database->group_chat;
-                        $collection->insert($data);   //插入数据
-                        $returnData =self::returnData(0,5,'群消息',$data);
-                        Gateway::sendToGroup($message->group,json_encode($returnData));
-                        $returnData =self::returnData(0,8,'群消息发送成功');
-                        Gateway::sendToCurrentClient(json_encode($returnData));break; //发送消息给群组
-           case 4:  $client_id = Gateway::getClientIdByUid($message->account_code);                //获取某一用户在线状态
-                        $is_online = Gateway::isOnline($client_id);
-                        $data =  array(
-                            'errcode'=>0,
-                            'type'=>6,
-                            'errmsg'=>'在线状态',
-                            'data'=>array(
-                                'is_online'=>$is_online              //0:不在线 1：在线
-                            )
-                        );
-                        Gateway::sendToCurrentClient(json_encode($data));
-                        break;
-           case 5:  $group_code = $message->group_code;                                                         //获取群内用户在线状态
-//                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//查找群创建人code
-//                        $user_code = $db->select('user_code')->from('group_area')->where("group_code =$group_code")->single();
-                        $mongo =new MongoClient();
-                        $user_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$group_code),array('user_code'));
-                        $user_coed = $user_code['user_code'];
-                        $db2 =new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$user_code);//查找群内用户
-                        $user_arr  = $db2->select('user_code')->from('group_user')->where("group_code =$group_code")->column();
-                        if($user_arr){
-                            foreach ($user_arr as $key=>$val){
-                                if(!Gateway::isUidOnline($val)){
-                                    unset($user_arr[$key]);
-                                }
-                            }
+               $mongo =new MongoClient();
+               $create_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$message->group),array('user_code'));
+               $create_code =$create_code['user_code'];
+               $user_group= new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$create_code);//创建人群表
+               $group_status = $user_group->select('community_status,status')->from('user_group')->where('group_code ='.$message->group)->row();
+               if(intval($group_status['status']) === 2){
+                   $user_group2=new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);//发送人自己的群表修改状态
+                   $user_group2->update('user_group')->cols(['status'=>2])->where('grouo_code ='.$message->group)->query();
+                   $returnData =self::returnData(0,8,'该群已解散');
+                   Gateway::sendToCurrentClient(json_encode($returnData));break;
+               }elseif(intval($group_status['community_status']) === 2){
+                   $returnData =self::returnData(0,8,'该群已被禁言');
+                   Gateway::sendToCurrentClient(json_encode($returnData));break;
+               }
+               $data =array(
+                    '_id'=>self::getNextId($mongo,'user_info_'.$create_code,'group_chat'),
+                    'sender_code'=>$account_code['account_code'],
+                    'send_nickname'=>$user_info['nickname'],
+                    'send_portrait'=>$user_info['send_portrait'],
+                    'content'=>$message->content,
+                    'send_time'=>time(),
+                    'group'=>$message->group,
+                    'type'=>$message->message_type,
+                );
+                $userdatastr = 'user_info_'.$create_code;
+                $database= $mongo->$userdatastr; //群聊记录保存在创建人分库
+                $collection = $database->group_chat;
+                $collection->insert($data);   //插入数据
+                $returnData =self::returnData(0,5,'群消息',$data);
+                Gateway::sendToGroup($message->group,json_encode($returnData));
+                $returnData =self::returnData(0,8,'群消息发送成功');
+                Gateway::sendToCurrentClient(json_encode($returnData));break; //发送消息给群组
+           case 4:      //获取某一用户在线状态
+                $client_id = Gateway::getClientIdByUid($message->account_code);
+                $is_online = Gateway::isOnline($client_id);
+                $data =  array(
+                    'errcode'=>0,
+                    'type'=>6,
+                    'errmsg'=>'在线状态',
+                    'data'=>array(
+                        'is_online'=>$is_online              //0:不在线 1：在线
+                    )
+                );
+                Gateway::sendToCurrentClient(json_encode($data));
+                break;
+           case 5:                                               //获取群内用户在线状态
+                $group_code = $message->group_code;
+    //                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//查找群创建人code
+    //                        $user_code = $db->select('user_code')->from('group_area')->where("group_code =$group_code")->single();
+                $mongo =new MongoClient();
+                $user_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$group_code),array('user_code'));
+                $user_coed = $user_code['user_code'];
+                $db2 =new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$user_code);//查找群内用户
+                $user_arr  = $db2->select('user_code')->from('group_user')->where("group_code =$group_code")->column();
+                if($user_arr){
+                    foreach ($user_arr as $key=>$val){
+                        if(!Gateway::isUidOnline($val)){
+                            unset($user_arr[$key]);
                         }
-                        $arr = array('group_online_user'=>$user_arr);
-                        $data = self::returnData(0,7,'群在线用户',$arr);
-                        Gateway::sendToCurrentClient(json_encode($data));
-                        break;
-           case 6:  $friend_code  = $message->account_code;  //拉取好友聊天
-                        if(!$friend_code) die ;
-                        $mongo= new MongoClient();
-                        $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                        $table_id =substr($friend_code,0,4);
-                        $user_info= $baseinfo->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$friend_code)->row();
-                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
-                        $data = $db->select()->from('offline_user_message')->where('sender_code ='.$friend_code)->query();
-                        $data2 = array();
-                        $id=array();
-                        if($data){
-                            foreach ($data as $k=>$v){
-                                $data2[$k]['_id']=self::getNextId($mongo,'user_info_'.$account_code['account_code'],'friends_chat');
-                                $data2[$k]['sender_code']=$v['sender_code'];
-                                $data2[$k]['sender_nickname']=$user_info['nickname'];
-                                $data2[$k]['send_portrait']=$user_info['portrait'];
-                                $data2[$k]['content']=$v['content'];
-                                $data2[$k]['type']=$v['type'];
-                                $data2[$k]['send_time']=$v['send_time'];
-                            }
-                        }
-                        if($data2){
-                            $userdatastr = 'user_info_'.$account_code['account_code'];
-                            $mongo->$userdatastr->group_new_message->batchInsert($data2);//插入聊天记录表
-                            $db->delete()->from('offline_user_massage')->where('sender_code ='.$friend_code)->query();
-                        }
-                        $returnData =self::returnData(0,8,'好友消息读取成功');
-                        Gateway::sendToCurrentClient(json_encode($returnData));break;
-           case 7: $group_code =$message->group_code;            //读取群消息
-                        $mongo =new MongoClient();
-                        $data = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('id','time'));
-                        if($data){
-                            $mongo->baseinfo->user_group_time->update(array('_id'=>$data['_id']),array('$set'=>array('time'=>time())));
-                        }else{
-                            $mongo->baseinfo->user_group_time->insert(array('_id'=>self::getNextId($mongo,'baseinfo','user_group_time'),'user_code'=>$account_code['account_code'],'group_code'=>$group_code,'time'=>time()));
-                        }
-                       $returnData =self::returnData(0,8,'群消息读取成功');
-                       Gateway::sendToCurrentClient(json_encode($returnData));
-                       break;
-           case 8: $user_code = $message->user_code; //添加好友请求
-                        if($user_code === $account_code['account_code']){
-                            $returnData =self::returnData(0,8,'不能添加自己为好友哦');
-                            Gateway::sendToCurrentClient(json_encode($returnData));
-                        }
-                        $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                        $table_id =substr($account_code['account_code'],0,4);
-                        $user_info= $baseinfo->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
-                        $data = array(
-                            'user_code'=>$account_code['account_code'],
-                            'user_nickname'=>$user_info['nickname'],
-                            'user_portrait'=>$user_info['portrait'],
-                            'create_time'=>time(),
-                            'status'=>0,
-                        );
-                        $group_data = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'group_and_friends_'.$user_code);
-                        $group_data->insert('friends_apply')->cols($data)->query();
-                        break;
+                    }
+                }
+                $arr = array('group_online_user'=>$user_arr);
+                $data = self::returnData(0,7,'群在线用户',$arr);
+                Gateway::sendToCurrentClient(json_encode($data));
+                break;
+           case 6:                                            //拉取好友聊天
+                $friend_code  = $message->account_code;
+                if(!$friend_code) die ;
+                $mongo= new MongoClient();
+               $friend_info = $mongo->baseinfo->user_area->findOne(array('user_code'=>$friend_code),array('nickname','portrait'));
+                $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
+                $data = $db->select()->from('offline_user_message')->where('sender_code ='.$friend_code)->query();
+                $user_info =$mongo->baseinfo->user_area->findOne(array('user_code'=>$account_code['account_code']),array('nickname','portrait'));
+                $data2 = array();
+                $id=array();
+                if($data){
+                    foreach ($data as $k=>$v){
+                        $data2[$k]['_id']=self::getNextId($mongo,'user_info_'.$account_code['account_code'],'friends_chat');
+                        $data2[$k]['sender_code']=$v['sender_code'];
+                        $data2[$k]['sender_nickname']=$friend_info['nickname'];
+                        $data2[$k]['send_portrait']=$friend_info['portrait'];
+                        $data2[$k]['getter_code']=$account_code['account_code'];
+                        $data2[$k]['getter_nickname']=$user_info['portrait'];
+                        $data2[$k]['getter_portrait']=$user_info['portrait'];
+                        $data2[$k]['content']=$v['content'];
+                        $data2[$k]['type']=$v['type'];
+                        $data2[$k]['send_time']=$v['send_time'];
+                    }
+                }
+                if($data2){
+                    $userdatastr = 'user_info_'.$account_code['account_code'];
+                    $mongo->$userdatastr->friends_chat->batchInsert($data2);//插入聊天记录表
+                    $db->delete()->from('offline_user_massage')->where('sender_code ='.$friend_code)->query();
+                }
+                $returnData =self::returnData(0,8,'好友消息读取成功');
+                Gateway::sendToCurrentClient(json_encode($returnData));break;
+           case 7:                                    //读取群消息
+                $group_code =$message->group_code;
+                $mongo =new MongoClient();
+                $data = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('id','time'));
+                if($data){
+                    $mongo->baseinfo->user_group_time->update(array('_id'=>$data['_id']),array('$set'=>array('time'=>time())));
+                }else{
+                    $mongo->baseinfo->user_group_time->insert(array('_id'=>self::getNextId($mongo,'baseinfo','user_group_time'),'user_code'=>$account_code['account_code'],'group_code'=>$group_code,'time'=>time()));
+                }
+               $returnData =self::returnData(0,8,'群消息读取成功');
+               Gateway::sendToCurrentClient(json_encode($returnData));
+               break;
+           case 8://添加好友请求
+               $user_code = $message->user_code;
+                if($user_code === $account_code['account_code']){
+                    $returnData =self::returnData(0,8,'不能添加自己为好友哦');
+                    Gateway::sendToCurrentClient(json_encode($returnData));
+                }
+                $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
+                $table_id =substr($account_code['account_code'],0,4);
+                $user_info= $baseinfo->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
+                $data = array(
+                    'user_code'=>$account_code['account_code'],
+                    'user_nickname'=>$user_info['nickname'],
+                    'user_portrait'=>$user_info['portrait'],
+                    'create_time'=>time(),
+                    'status'=>0,
+                );
+                $group_data = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'group_and_friends_'.$user_code);
+                $group_data->insert('friends_apply')->cols($data)->query();
+                break;
+           case 9:               //获取好友聊天记录 获取最近7天
+                $user_code = $message->user_code;
+                $account_code=$account_code['account_code'];
+                $mongo =new MongoClient();
+                $user_info ='user_info_'.$account_code;
+                $data = $mongo->$user_info->friends_chat->find(array('sender_code'=>$user_code,''))
        }
    }
    
