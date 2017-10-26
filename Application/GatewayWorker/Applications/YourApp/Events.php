@@ -341,7 +341,7 @@ class Events
                 if($data2){
                     $userdatastr = 'user_info_'.$account_code['account_code'];
                     $mongo->$userdatastr->friends_chat->batchInsert($data2);//插入聊天记录表
-                    $db->delete('offline_user_massage')->where('sender_code ='.$friend_code)->query();
+                    $db->delete('offline_user_message')->where('sender_code ='.$friend_code)->query();
                 }
                 $returnData =self::returnData(0,8,'好友消息读取成功');
                 Gateway::sendToCurrentClient(json_encode($returnData));break;
