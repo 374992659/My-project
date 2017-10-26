@@ -168,7 +168,7 @@ $(document).ready(function(){
         };
         // 聊天记录
         $(".historyNews").click(function(){
-        console.log(123);
+            console.log(123);
             ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
         });
         //群聊点击发送
