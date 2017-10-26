@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-   console.log(document.documentElement.scrollHeight);
+   console.log($(document.body).height());
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
