@@ -24,15 +24,13 @@ $(document).ready(function(){
                     var  html="";
                     $.each(data.data,function(i,item){
                         console.log(item.community_status);
-                        localStorage.setItem("community_status",item.community_status);
-                        $.each(item.Number_data,function(i,item){
-                            console.log(item)
+
                       //       html+=`
                       //   <li class="lf">
                       //     <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
                       // </li>
                       //   `;
-                        });
+                        
                     });
                     $(".flockMember").prepend(html);
                 }
