@@ -189,11 +189,11 @@ $(document).ready(function(){
             // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-            sender_code={
+            arr={
                 myNews:[]
             };
             arr.myNews[timestamp]=content;
-            console.log(arr)
+            localStorage.setItem(sender_code,arr)
         });
         /*
         * 判断是否存在元素
