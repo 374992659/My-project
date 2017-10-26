@@ -157,8 +157,7 @@ $(document).ready(function(){
                     break;
                 case 9:
                     if(parseInt(result.errcode)===-0){
-                        历史消息
-                        console.log();
+                        console.log(result);
                     }
                     break
             }
