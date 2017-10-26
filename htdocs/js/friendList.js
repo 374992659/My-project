@@ -110,8 +110,9 @@ $(document).ready(function() {
                             //     friends_new_apply+=item.count;
                             // });
                             var num=1;
-                           var a= $("#newsNum").html(1);
-                           console.log(a);
+                            num++;
+                            $("#newsNum").html(num);
+                           console.log(num);
                             console.log(132);
                         }
 
