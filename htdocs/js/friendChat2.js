@@ -190,14 +190,6 @@ $(document).ready(function(){
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
             var historyNews=localStorage.getItem("historyNews");
-            if(historyNews){
-                    var sender_code=localStorage.getItem("historyNews")
-            }else{
-                var sender_code=[];
-                    sender_code[timestamp]=content;
-                 var data=JSON.stringify(sender_code);
-                  localStorage.setItem("historyNews",data)
-            }
         });
         /*
         * 判断是否存在元素
