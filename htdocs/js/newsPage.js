@@ -82,7 +82,6 @@ $(document).ready(function(){
                     var friend_code = data.user_code;
                     var online_friends = localStorage.getItem('online_friends');
                     if(!contains(online_friends,friend_code)){
-                        online_friends.push(friend_code);
                     }
                     localStorage.setItem('online_friends',online_friends);
                 }
