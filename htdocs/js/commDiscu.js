@@ -24,8 +24,9 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     $.each(data.data,function(i,item){
-                        console.log(item.ommunity_status);
-                        localStorage.setItem("ommunity_status",item.ommunity_status);
+                        console.log(item);
+                        console.log(item.community_status);
+                        localStorage.setItem("ommunity_status",item.community_status);
                         $.each(item.Number_data,function(i,item){
                             html+=`
                         <li class="lf">
