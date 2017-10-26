@@ -210,7 +210,7 @@ class Events
                 $userdatastr = 'user_info_'.$account_code['account_code'];
                 $database1=$mongo->$userdatastr;
                 $collection1 = $database1->friends_chat;
-                $friends_user_info = $mongo->baseinfo->user_area->findOne(array('user_code'=>$message->account_code),array('nickname','portrait'));
+                $friends_user_info = $mongo->baseinfo->user_area->findOne(array('account_code'=>$message->account_code),array('nickname','portrait'));
                 $data1 = array(
                     '_id'=>self::getNextId($mongo,'user_info_'.$account_code['account_code'],'friends_chat'),
                     'sender_code'=>$account_code['account_code'],
@@ -321,7 +321,7 @@ class Events
                $friend_info = $mongo->baseinfo->user_area->findOne(array('user_code'=>$friend_code),array('nickname','portrait'));
                 $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
                 $data = $db->select()->from('offline_user_message')->where('sender_code ='.$friend_code)->query();
-                $user_info =$mongo->baseinfo->user_area->findOne(array('user_code'=>$account_code['account_code']),array('nickname','portrait'));
+                $user_info =$mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code['account_code']),array('nickname','portrait'));
                 $data2 = array();
                 $id=array();
                 if($data){
@@ -341,7 +341,7 @@ class Events
                 if($data2){
                     $userdatastr = 'user_info_'.$account_code['account_code'];
                     $mongo->$userdatastr->friends_chat->batchInsert($data2);//插入聊天记录表
-                    $db->delete()->from('offline_user_massage')->where('sender_code ='.$friend_code)->query();
+                    $db->delete('offline_user_massage')->where('sender_code ='.$friend_code)->query();
                 }
                 $returnData =self::returnData(0,8,'好友消息读取成功');
                 Gateway::sendToCurrentClient(json_encode($returnData));break;
