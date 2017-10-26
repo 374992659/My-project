@@ -381,7 +381,11 @@ class Events
                 $account_code=$account_code['account_code'];
                 $mongo =new MongoClient();
                 $user_info ='user_info_'.$account_code;
-                $data = $mongo->$user_info->friends_chat->find(array('sender_code'=>$user_code,''))
+                $limit_time = time()-7*24*60*60;
+                $data = $mongo->$user_info->friends_chat->find(array('$or'=>array(array('sender_code'=>$user_code),array('getter_code'=>$user_code))),array('send_time'=>array('$gte'=>$limit_time)))->sort(array('send_time'=>-1));
+                $return = iterator_to_array($data);
+                $returnData = self::returnData(0,9,'好友聊天记录获取成功',$return);
+               Gateway::sendToCurrentClient(json_encode($returnData));
        }
    }
    
