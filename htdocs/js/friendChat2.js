@@ -156,7 +156,8 @@ $(document).ready(function(){
                     console.log(result);
                     break;
                 case 9:
-                    if(parseInt(result.errcode)===-0){
+                    if(parseInt(result.errcode)===0){
+                        console.log(1);
                         console.log(result);
                     }
                     break
