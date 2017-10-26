@@ -7,9 +7,7 @@
  */
 
 namespace Api\Controller;
-
-
-use think\console\command\make\Model;
+use Api\Model;
 
 class UserCenterController extends VersionController
 {
@@ -26,7 +24,7 @@ class UserCenterController extends VersionController
      * @param birth_month 出生月份 可填
      * @param hobby 爱好  字符串 用英文逗号间隔 可填
      * */
-    protected function updateUserInfo(){
+    protected function updateUserInfo_v1_0_0(){
         $account_code = $this->account_code;
         $city_id = substr($account_code,0,4);
         $portrait = $this->pdata['portrait'];
@@ -56,7 +54,20 @@ class UserCenterController extends VersionController
         $this->echoEncrypData(1);
     }
     /*
+     * 获取我的account_code
+     * */
+    protected function getMyAcoountCode_v1_0_0(){
+        $this->echoEncrypData(0,'',array('account_code'=>$this->account_code));
+    }
+    /*
      * 获取我的个人资料
      * */
-
+    protected function getMyInfo_v1_0_0(){
+        $account_code=$this->account_code;
+        $city_id=substr($account_code,0,4);
+        $user_info =new Model\UserInfoModel($city_id);
+        $data = $user_info->getUserinfo($account_code);
+        if(!$data)$this->echoEncrypData(1);
+        $this->echoEncrypData(0,'',$data);
+    }
 }
