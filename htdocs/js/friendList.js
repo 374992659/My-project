@@ -109,7 +109,7 @@ $(document).ready(function() {
                             // $.each(group_new_message,function(i,item){
                             //     friends_new_apply+=item.count;
                             // });
-                           var num=$("#newsNum").innerHTML;
+                           var num=$("#newsNum").html();
                             num++;
                             $("#newsNum").html(num);
                            console.log(num);
