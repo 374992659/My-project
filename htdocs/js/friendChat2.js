@@ -105,8 +105,11 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
-                                console.log(html);
-                                $("#chatPage").append(html);
+
+                                var chatPage=$("#chatPage");
+                                chatPage.append(html);
+                                console.log(chatPage.height());
+                                document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
                                 ws.send(sendMessage);
