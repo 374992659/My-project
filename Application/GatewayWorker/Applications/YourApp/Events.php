@@ -331,7 +331,7 @@ class Events
                         $data2[$k]['sender_nickname']=$friend_info['nickname'];
                         $data2[$k]['send_portrait']=$friend_info['portrait'];
                         $data2[$k]['getter_code']=$account_code['account_code'];
-                        $data2[$k]['getter_nickname']=$user_info['portrait'];
+                        $data2[$k]['getter_nickname']=$user_info['nickname'];
                         $data2[$k]['getter_portrait']=$user_info['portrait'];
                         $data2[$k]['content']=$v['content'];
                         $data2[$k]['type']=$v['type'];
