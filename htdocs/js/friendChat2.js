@@ -189,11 +189,15 @@ $(document).ready(function(){
             // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-            arr={
-                myNews:[]
-            };
-            arr.myNews[timestamp]=content;
-            localStorage.setItem(sender_code,JSON.stringify(arr))
+            var historyNews=localStorage.getItem("historyNews");
+            if(historyNews){
+                    var sender_code=localStorage.getItem("historyNews")
+            }else{
+                var sender_code=new Array();
+                    sender_code[timestamp]=content;
+                  JSON.stringify(sender_code);
+                  localStorage.setItem("historyNews",sender_code)
+            }
         });
         /*
         * 判断是否存在元素
