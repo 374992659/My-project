@@ -109,9 +109,11 @@ $(document).ready(function() {
                             // $.each(group_new_message,function(i,item){
                             //     friends_new_apply+=item.count;
                             // });
+                           var a= $("#newsNum").html();
+                           console.log(a);
                             console.log(132);
                         }
-                        
+
                     }
                     break;
                 case 5:         //接收到群消息
