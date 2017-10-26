@@ -50,7 +50,7 @@ $(document).ready(function() {
                         if(friends_new_messageNum+group_new_messageNum+friends_new_applyNum==0){
                             $("#newsNum").html();
                         }else{
-                            $("#newsNum").html(friends_new_messageNum+group_new_messageNum+friends_new_applyNum);
+                            $("#newsNum").html(parseInt(friends_new_messageNum)+parseInt(group_new_messageNum)+parseInt(friends_new_applyNum));
                         }
                     }
                     break;

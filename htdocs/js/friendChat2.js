@@ -15,12 +15,12 @@ $(document).ready(function(){
         }
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
-        (function(){
 
-            var apptoken=localStorage.getItem("apptoekn");
+        (function(){
             var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
             ws.send(sendMessage);
         })();
+
         ws.onmessage=function(e){
             var result = JSON.parse(e.data);                   //服务器返回结果
            console.log(result);
