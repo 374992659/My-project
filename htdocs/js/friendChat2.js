@@ -189,10 +189,10 @@ $(document).ready(function(){
             // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-            arr={
-                myNwes:[]
+            sender_code={
+                myNews:[]
             };
-            arr.myNwes[timestamp]=content;
+            arr.myNews[timestamp]=content;
             console.log(arr)
         });
         /*
