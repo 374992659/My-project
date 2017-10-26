@@ -85,7 +85,7 @@ $(document).ready(function() {
                         }
                     }
                     break;
-                case 4:          //4.接收到好友消息
+                case 4:        //4.接收到好友消息
                     if(parseInt(result.errcode) === 0){
                         var data =(result.data);
                         var pathname = window.location.pathname;
@@ -100,9 +100,9 @@ $(document).ready(function() {
                             //     var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
                             //     ws.send(sendMessage);
                             // }
-                            $.each(friends_new_message,function(i,item){
-                                friends_new_messageNum+=item.message_num;
-                            });
+                            // $.each(friends_new_message,function(i,item){
+                            //     friends_new_messageNum+=item.message_num;
+                            // });
                             // $.each(group_new_message,function(i,item){
                             //     group_new_messageNum+=item.count;
                             // });
@@ -111,11 +111,7 @@ $(document).ready(function() {
                             // });
                             console.log(132);
                         }
-                         if(friends_new_messageNum+group_new_messageNum+friends_new_applyNum==0){
-                             $("#newsNum").html();
-                         }else{
-                            $("#newsNum").html(parseInt(friends_new_messageNum)+parseInt(group_new_messageNum)+parseInt(friends_new_applyNum));
-                        }
+                        
                     }
                     break;
                 case 5:         //接收到群消息
