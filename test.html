@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <div id="qrcde"></div>
 </head>
 <body>
 
@@ -10,3 +11,13 @@
 </html>
 <script src="jquery-3.2.1.min.js"></script>
 <script src="sendMessage.js"></script>
+<script src="qrcode.min.js"></script>
+<script>
+    $(function(){
+        $('#qrcde').qrcode({
+            width: 200,
+            height:200,
+            text:order_id,
+        })
+    });
+</script>
