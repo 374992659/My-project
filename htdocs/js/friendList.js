@@ -11,6 +11,9 @@ $(document).ready(function() {
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode)=== 0){
+                        var friends_new_messageNum=0,
+                            group_new_messageNum=0,
+                            friends_new_apply=0;
                         var data = (result.data);
                         // 在线好友
                        $.each(data.online_friends,function(i,item){
@@ -97,9 +100,6 @@ $(document).ready(function() {
                             }
                         }else if(html="friend.html"){//其他页面暂不处理
                             // 获取新消息
-                            var friends_new_messageNum=0,
-                                group_new_messageNum=0,
-                                friends_new_apply=0;
                             $.each(friends_new_message,function(i,item){
                                  friends_new_messageNum+=item.message_num;
                              });
