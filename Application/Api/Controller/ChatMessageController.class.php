@@ -12,7 +12,7 @@ namespace Api\Controller;
 class ChatMessageController extends VersionController
 {
     /*
-     * 好友语音消息/文件上传
+     * 好友语音/文件/图片消息上传
      * */
     protected function uploadFriendsFile_v1_0_0(){
         import('Vendor.UploadFile');
