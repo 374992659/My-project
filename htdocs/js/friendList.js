@@ -13,7 +13,8 @@ $(document).ready(function() {
                     if(parseInt(result.errcode)=== 0){
                         var friends_new_messageNum=0,
                             group_new_messageNum=0,
-                            friends_new_apply=0;
+                            friends_new_applyNum=0,
+                            online_friends=[];
                         var data = (result.data);
                         // 在线好友
                        $.each(data.online_friends,function(i,item){
