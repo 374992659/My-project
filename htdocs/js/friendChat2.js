@@ -160,12 +160,11 @@ $(document).ready(function(){
             var apptoken=localStorage.getItem("apptoken");
             var content=$(".chatContent").val();
             //获取页面发送内容
-
             var account_code =sender_code;          //获取发送好友的code
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
-      console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
-            ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
-           var  html=`
+            if(!content==null){
+                ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
+                var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
@@ -176,15 +175,19 @@ $(document).ready(function(){
              </div>
          </div>
             `;
-            var chatPage=$("#chatPage");
-             chatPage.append(html);
-             $(".chatContent").val("");
-           //保持滚动条一直在最底部
-            document.body.scrollTop=chatPage.height();
-          // 自己发送的消息存本地
-             // 获取发送的时间戳
-            var timestamp = Date.parse(new Date());
-            timestamp = timestamp / 1000;
+                var chatPage=$("#chatPage");
+                chatPage.append(html);
+                $(".chatContent").val("");
+                //保持滚动条一直在最底部
+                document.body.scrollTop=chatPage.height();
+                // 自己发送的消息存本地
+                // 获取发送的时间戳
+                var timestamp = Date.parse(new Date());
+                timestamp = timestamp / 1000;
+            }else{
+                $(".pushBtn").attr("disable",disabled)
+            }
+
         });
         /*
         * 判断是否存在元素
