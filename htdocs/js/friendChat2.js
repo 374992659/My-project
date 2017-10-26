@@ -89,7 +89,6 @@ $(document).ready(function(){
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
                         var html = patharr[parseInt(patharr.length-1)];
-                        console.log(123);
                         if(html ==='friendChat.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                             var current_code = localStorage.getItem("sender_code");   //获取当前聊天好友code
                              console.log(current_code);
@@ -110,7 +109,6 @@ $(document).ready(function(){
 
                                 var chatPage=$("#chatPage");
                                 chatPage.append(html);
-                                console.log(chatPage.height());
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
@@ -149,6 +147,9 @@ $(document).ready(function(){
                     history=function(){
                         ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
                         console.log(123);
+                        ws.send(sendMessage);
+
+
                     };history();
                     break
             }
