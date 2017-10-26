@@ -31,7 +31,7 @@ $(document).ready(function(){
                              </li>
                                `;
                         })
-                        
+
                     });
                     $(".flockMember").prepend(html);
                 }
