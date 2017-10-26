@@ -38,4 +38,14 @@ class GroupSubjectDynamicsModel extends Model
         return $data;
     }
 
+    /*
+     * 删除指定动态
+     * @param id 动态id
+     * */
+    public function delgroupSubjectDynamics($id){
+        $res =$this->where(['id'=>$id])->delete();
+        if(!$res)return false;
+        return $res;
+    }
+
 }
