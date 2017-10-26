@@ -16,15 +16,15 @@ $(document).ready(function(){
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
 
-        (function(){
-            var pathname = window.location.pathname;
-            var patharr  = pathname.split('/');
-            var html = patharr[parseInt(patharr.length-1)];
-            if(html==="friendChat.html"){
-                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
-                ws.send(sendMessage);
-            }
-        })();
+        // (function(){
+        //     var pathname = window.location.pathname;
+        //     var patharr  = pathname.split('/');
+        //     var html = patharr[parseInt(patharr.length-1)];
+        //     if(html==="friendChat.html"){
+        //         var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
+        //         ws.send(sendMessage);
+        //     }
+        // })();
 
         ws.onmessage=function(e){
             var result = JSON.parse(e.data);                   //服务器返回结果
@@ -156,6 +156,10 @@ $(document).ready(function(){
                     console.log(result);
                     break;
                 case 9:
+                    if(parseInt(result.errcode)===-0){
+                        历史消息
+                        console.log();
+                    }
                     break
             }
         };
@@ -163,7 +167,7 @@ $(document).ready(function(){
             ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
         };
         // 聊天记录
-        $("").click(function(){
+        $(".historyNews").click(function(){
 
             ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
         });
