@@ -106,9 +106,10 @@ $(document).ready(function(){
                     var html = patharr[parseInt(patharr.length-1)];
                     if(html ==='newsPage.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                         console.log(123);
-                        var num=$("#newsNum").html();
+                        var num=$(".newsNum").html();
+                        console.log(num);
                         num++;
-                        $("#newsNum").html(num);
+                        $(".newsNum").html(num);
                     }
                 }
                 break;
