@@ -1,17 +1,13 @@
 $(document).ready(function(){
     // 先加载历史消息在显示未读消息此出加载历史消息。历史消息存子在localStorage里
 
-    // 获取头像
-    var header=localStorage.getItem("header"),
+        // 获取头像
+         var header=localStorage.getItem("header"),
         // 获取发送好友的code
         sender_code=localStorage.getItem("sender_code");
+
     (function(){
-        var ws = new WebSocket('ws://39.108.237.198:8282');
-        var apptoken=localStorage.getItem("apptoekn");
-        var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
-        ws.send(sendMessage);
-    })();
-    (function(){
+        // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
         // 时间戳的转换
         function getLocalTime(nS) {
@@ -19,6 +15,12 @@ $(document).ready(function(){
         }
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
+        (function(){
+
+            var apptoken=localStorage.getItem("apptoekn");
+            var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
+            ws.send(sendMessage);
+        })();
         ws.onmessage=function(e){
             var result = JSON.parse(e.data);                   //服务器返回结果
            console.log(result);
