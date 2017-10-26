@@ -38,13 +38,10 @@ $(document).ready(function(){
                 </div>
                                        `
                                     });
-
-                                    $("#chatPage").prepend(html);
+                                var chatPage=$("#chatPage");
+                                    chatPage.prepend(html);
                                     $(".header_img").attr("src",header);
-                                    console.log($("#chatPage").height());
-                                    var e=document.getElementById("chatPage");//保持滚动条一直在最底部
-                                    e.scrollTop=e.scrollHeight;
-                                    document.body.scrollTop=$("#chatPage").height()
+                                    document.body.scrollTop=chatPage.height()
                                 }
                             });
                         }
@@ -176,11 +173,11 @@ $(document).ready(function(){
              </div>
          </div>
             `;
-             console.log();
-             $("#chatPage").append(html);
+            var chatPage=$("#chatPage");
+             chatPage.append(html);
              $(".chatContent").val("");
-            var e=document.getElementById("chatPage");//保持滚动条一直在最底部
-            e.scrollTop=e.scrollHeight;
+           //保持滚动条一直在最底部
+            document.body.scrollTop=chatPage.height();
           // 自己发送的消息存本地
              // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
