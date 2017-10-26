@@ -1,5 +1,4 @@
 $(document).ready(function(){
-   console.log($("#chatPage").height());
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
@@ -43,6 +42,8 @@ $(document).ready(function(){
                                     $("#chatPage").prepend(html);
                                     $(".header_img").attr("src",header);
                                     console.log($("#chatPage").height());
+                                    var e=document.getElementById("chatPage");//保持滚动条一直在最底部
+                                    e.scrollTop=e.scrollHeight;
                                 }
                             });
                         }
