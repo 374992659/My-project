@@ -23,7 +23,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     $.each(data.data,function(i,item){
-                        $.each(item.Number_data,function(i,item){
+                        $.each(item,function(i,item){
                             console.log(item);
                         })
 
