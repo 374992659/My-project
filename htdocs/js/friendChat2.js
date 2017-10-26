@@ -193,7 +193,7 @@ $(document).ready(function(){
                 myNews:[]
             };
             arr.myNews[timestamp]=content;
-            localStorage.setItem(sender_code,arr)
+            localStorage.setItem(sender_code,JSON.stringify(arr))
         });
         /*
         * 判断是否存在元素
