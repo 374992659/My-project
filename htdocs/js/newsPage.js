@@ -8,10 +8,6 @@ $(document).ready(function(){
         switch(parseInt(result.type)){
             case 1:            //1 .在线好友、好友未读消息、群未读消息
                 if(parseInt(result.errcode) === 0){
-                    var friends_new_messageNum=0,
-                        group_new_messageNum=0,
-                        friends_new_applyNum=0,
-                        online_friends=[];
                     var data = (result.data);
                     localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                     // 群消息
