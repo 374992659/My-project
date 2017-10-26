@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    // 先加载历史消息在显示未读消息此出加载历史消息。历史消息存子在localStorage里
+
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
@@ -163,7 +165,7 @@ $(document).ready(function(){
             var account_code =sender_code;          //获取发送好友的code
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
             if(content==null||content.length==0){
-               $(".pushBtn").disabled=true;
+               $(".pushBtn").attr("disabled",true);
             }else{
 
             } ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
@@ -187,15 +189,19 @@ $(document).ready(function(){
             // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-
+            arr={
+                myNwes:[]
+            };
+            arr.myNwes[timestamp]=content;
+            console.log(arr)
         });
         /*
         * 判断是否存在元素
         * */
-        function contains(arr, obj) {
+        function contains(arr, obj){
             var i = arr.length;
-            while (i--) {
-                if (arr[i] === obj) {
+            while (i--){
+                if (arr[i] === obj){
                     return true;
                 }
             }
@@ -203,7 +209,6 @@ $(document).ready(function(){
         }
     })();
     $(".imgBtn").click(function(){
-        console.log(123);
         if($(".weui-grids").is(":hidden")){
             $(".weui-grids").show();
         }else{
