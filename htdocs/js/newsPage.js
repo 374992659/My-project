@@ -105,6 +105,7 @@ $(document).ready(function(){
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
                     if(html ==='newsPage.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
+                        console.log(123);
                         var num=$("#newsNum").html();
                         num++;
                         $("#newsNum").html(num);
