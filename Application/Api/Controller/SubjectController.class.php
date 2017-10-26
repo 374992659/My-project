@@ -299,6 +299,9 @@ class SubjectController extends VersionController
         if($user_code !==$this->account_code)$this->echoEncrypData(500);
         $res = $model->delSubjectCommont($commont_id);
         if(is_numeric($res))$this->echoEncrypData($res);
+        $new_model =new Model\SubjectModel($province_id,$city_id);
+        $res = $new_model->where(['id ='.$subject_id])->getField('commont_num');
+        $new_model->where(['id ='.$subject_id])->save(['commont_id'=>$res-1]);
         if(!$res)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }

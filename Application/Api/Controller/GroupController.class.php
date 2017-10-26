@@ -164,7 +164,7 @@ class GroupController extends VersionController
      * @param group_num 群号码
      * @param is_cancel 是否取消 可填 传递此参数 is_cancel=1
      * */
-    protected function setGroupCommunity(){
+    protected function setGroupCommunity_v1_0_0(){
         $account_code = $this->account_code;
         $group_num = $this->pdata['group_num'];
         $is_cancel = $this->pdata['is_cancel'];
@@ -180,7 +180,7 @@ class GroupController extends VersionController
             }
         }
         $model =new Model\UserGroupModel($create_code);
-        if($is_cancel){
+        if(intval($is_cancel) === 1){
             $res = $model->where(['group_num'=>$group_num])->save(['community_status'=>1]);
         }else{
             $res = $model->where(['group_num'=>$group_num])->save(['community_status'=>2]);
@@ -195,7 +195,7 @@ class GroupController extends VersionController
      * 解散群
      * @param  group_num群号码
      * */
-    protected function setGroupStatus(){
+    protected function setGroupStatus_v1_0_0(){
         $group_num = $this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
         $mongo = new \MongoClient();
@@ -748,7 +748,7 @@ class GroupController extends VersionController
      * 添加话题评论
      *@param content 内容
      *@param subject_id 话题id
-     *@param group_num   群号码
+     *@param group_num  群号码
      * */
     protected function addGroupSubjectCommon_v1_0_0(){
         $content = trim($this->pdata['content']);
@@ -781,13 +781,40 @@ class GroupController extends VersionController
         $this->echoEncrypData(0);
     }
     /*
+     * 删除群话题评论
+     * @param group_num 群号码
+     * @param subject_id 话题id
+     * @param commont_id 群话题评论id
+     * */
+    protected function delGroupSubjectCommon_v1_0_0(){
+        $subject_id = $this->pdata['subject_id'];
+        $commont_id=$this->pdata['commont_id'];
+        $group_num =$this->pdata['group_num'];
+        if(!$subject_id || !$commont_id || !$group_num)$this->echoEncrypData(21);
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
+        $model=new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
+        $res = $model->delgroupSubjectDynamics($commont_id);
+        $new_model = new Model\GroupSubjectModel($create_code);
+        $res = $new_model->where('id ='.$subject_id)->getField('commont_num');
+        $new_model->where('id ='.$subject_id)->save(['commont_num'=>$res-1]);
+        if(!$res){
+            $this->echoEncrypData(1);
+        }
+        $this->echoEncrypData(0);
+
+    }
+    /*
      * 群话题点赞
      * @param group_num 群号码
      * @param subject_id 话题id
+     * @param is_cancel 是否取消 可填 需要取消则传递此参数等于1
      * */
     protected function addGroupSubjectLikes_v1_0_0(){
         $subject_id = trim($this->pdata['subject_id']);
         $group_num = trim($this->pdata['group_num']);
+        $is_cancel =$this->pdata['is_cancel'];
         if(!$subject_id || !$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
         $mongo = new \MongoClient();
@@ -803,6 +830,18 @@ class GroupController extends VersionController
             'create_time'=>time(),
         );
         $model=new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
+        if(intval($is_cancel) === 1){
+            $id = $model->where(['group_num'=>$group_num,'user_code'=>$this->account_code,'type'=>2])->getField('id');
+            if(!$id){
+                $this->echoEncrypData(1,'您还没有点过赞哦');
+            }else{
+                $res = $model->where(['id'=>$id])->delete();
+                if(!$res){
+                    $this->echoEncrypData(1);
+                }
+                $this->echoEncrypData(0);
+            }
+        }
         $model->startTrans();
         $res1=$model->addGroupSubjectDynamics($data);
         $res2=$model->execute('update group_subject set likes_num = likes_num+1 where id ='.$subject_id);
@@ -818,11 +857,13 @@ class GroupController extends VersionController
      * @param group_num 群号码
      * @param commont_id 群话题评论id
      * @param subject_id 话题id
+     * @param is_cancel 是否取消 可填 需要取消则传递此参数等于1
      * */
     protected function addGroupSubjectCommontLikes_v1_0_0(){
         $subject_id = trim($this->pdata['subject_id']);
         $group_num = trim($this->pdata['group_num']);
         $commont_id = trim($this->pdata['commont_id']);
+        $is_cancel = trim($this->pdata['is_cancel']);
         if( !$subject_id || !$group_num || !$commont_id )$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
         $mongo = new \MongoClient();
@@ -839,9 +880,21 @@ class GroupController extends VersionController
             'create_time'=>time(),
         );
         $model=new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
+        if(intval($is_cancel) === 1){
+            $id = $model->where(['group_num'=>$group_num,'user_code'=>$this->account_code,'type'=>3,'commont_id'=>$commont_id])->getField('id');
+            if(!$id){
+                $this->echoEncrypData(1,'您还没有点过赞哦');
+            }else{
+                $res = $model->where(['id'=>$id])->delete();
+                if(!$res){
+                    $this->echoEncrypData(1);
+                }
+                $this->echoEncrypData(0);
+            }
+        }
         $model->startTrans();
         $res1=$model->addGroupSubjectDynamics($data);
-        $res2=$model->execute('update group_subject_dynamics_'.$subject_id.' set commont_likes = commont_likes+1 where id='.$commont_id);
+        $res2=$model->execute('update group_subject_dynamics_'.intval($subject_id).' set commont_likes=commont_likes+1 where id='.$commont_id);
         if(!$res1 || !$res2){
             $model->rollback();
             $this->echoEncrypData(1);
@@ -883,6 +936,8 @@ class GroupController extends VersionController
         if(!$data)$this->echoEncrypData(1);
         $mode= new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
         $res = $mode->getGroupSubjectDynamics(1);//1:评论 2：话题点赞 3：评论点赞
+        $is_like = $mode->where(['subject_id'=>$subject_id,'user_code'=>$this->account_code,'type'=>2])->count();
+        $is_like?$data['is_like']=1:$data['is_like']=0;
         $data['commont_list']=$res;
         $model->execute('update group_subject set read_num = read_num+1 where id='.$subject_id);
         $this->echoEncrypData(0,'',$data);
