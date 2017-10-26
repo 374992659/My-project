@@ -23,8 +23,10 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     $.each(data.data,function(i,item){
-                        console.log(item);
-                        
+                        $.each(item,function(i,item){
+                            console.log(item);
+                        })
+
                       //       html+=`
                       //   <li class="lf">
                       //     <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
