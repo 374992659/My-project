@@ -145,6 +145,13 @@ $(document).ready(function(){
                 case 8:
                     console.log(result);
                     break;
+                case 9:
+                    history=function(){
+                        var message_type = 1;                      //消息类型 1:文字消息 2:语音消息 3：文件消息
+                        ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'account_code'sender_code,'message_type':message_type}));
+                        
+                    };history();
+                    break
             }
         };
         ws.onopen=function(e){
