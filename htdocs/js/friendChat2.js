@@ -1,3 +1,6 @@
+setTimeout(function () {
+    ($('#chatPage').children("div:last-child")[0]).scrollIntoView();
+},100);
 $(document).ready(function(){
    console.log(document.body.scrollHeight);
     // 获取头像
