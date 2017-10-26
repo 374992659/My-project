@@ -142,7 +142,7 @@ class GroupController extends VersionController
         $mongo = new \MongoClient();
         $create_data = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code,group_code,group_name,group_portrait,group_type,garden_code'));
         $account_code = $this->account_code;
-        $user_data = $mongo->baseinfo->user_area->findOne(array('user_code'=>$account_code),array('nickname,portrait'));
+        $user_data = $mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code),array('nickname,portrait'));
         $group_user = new Model\GroupUserModel($create_data['user_code']);
         $group_user->startTrans();
         $res1 = $group_user->addUser($create_data['group_code'],$group_num,$create_data['group_name'],$create_data['group_portrait'],$account_code,$user_data['nickname'],$user_data['portrait'],3);  //1.将用户添加至创建人群用户表
