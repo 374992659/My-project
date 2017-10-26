@@ -76,8 +76,8 @@ $(document).ready(function() {
                         var online_friends = localStorage.getItem('online_friends');
                         if(contains(online_friends,friend_code)){
                             var i = online_friends.length;
-                            while (i--) {
-                                if (arr[i] === obj) {
+                            while (i--){
+                                if (arr[i] === obj){
                                     online_friends.splice(i,1);
                                 }
                             }

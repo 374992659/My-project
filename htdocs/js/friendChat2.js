@@ -22,11 +22,7 @@ $(document).ready(function(){
            console.log(result);
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
-                    if(parseInt(result.errcode) === 0){
-                        var friends_new_messageNum=0,
-                            group_new_messageNum=0,
-                            friends_new_applyNum=0,
-                            online_friends=[];
+                    if(parseInt(result.errcode)===0){
                         // 获取本地存储的历史信息
                         var data = (result.data);
                         localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
@@ -121,33 +117,6 @@ $(document).ready(function(){
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
                                 ws.send(sendMessage);
                             }
-                        }else if(html="friend.html"){    //其他页面 暂不处理
-                                  // 获取新消息
-                            $.each(friends_new_message,function(i,item){
-                                friends_new_messageNum+=item.message_num;
-                            });
-                            $.each(group_new_message,function(i,item){
-                                group_new_messageNum+=item.count;
-                            });
-                            $.each(group_new_message,function(i,item){
-                                friends_new_apply+=item.count;
-                            })
-                        }else if(html="newsPage.html"){
-                            $.each(friends_new_message,function(i,item){
-                                friends_new_messageNum+=item.message_num;
-                            });
-                            $.each(group_new_message,function(i,item){
-                                group_new_messageNum+=item.count;
-                            });
-                            $.each(group_new_message,function(i,item){
-                                friends_new_apply+=item.count;
-                            })
-
-                        }
-                        if(friends_new_messageNum+group_new_messageNum+friends_new_applyNum==0){
-                            $("#newsNum").html();
-                        }else{
-                            $("#newsNum").html(parseInt(friends_new_messageNum)+parseInt(group_new_messageNum)+parseInt(friends_new_applyNum));
                         }
                     }
                     break;
