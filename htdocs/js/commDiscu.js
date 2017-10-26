@@ -25,7 +25,7 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         console.log(item);
                         console.log(item.community_status);
-                        localStorage.setItem("ommunity_status",item.community_status);
+                        localStorage.setItem("community_status",item.community_status);
                         $.each(item.Number_data,function(i,item){
                       //       html+=`
                       //   <li class="lf">
