@@ -10,14 +10,14 @@
 </body>
 </html>
 <script src="jquery-3.2.1.min.js"></script>
-<script src="sendMessage.js"></script>
 <script src="qrcode.min.js"></script>
 <script>
     $(function(){
+        var url ='https://www.baidu.com';
         $('#qrcde').qrcode({
             width: 200,
             height:200,
-            text:order_id,
+            text:url,
         })
     });
 </script>
