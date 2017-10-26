@@ -1,4 +1,4 @@
-
+console.log($(document.body).height());
 $(document).ready(function(){
    console.log($(document.body).height());
     // 获取头像
