@@ -17,7 +17,6 @@ $(document).ready(function(){
             data:{"data":jsonEncryptData},
             success:function(data){
                 // 解密
-                var num="";
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
@@ -28,17 +27,14 @@ $(document).ready(function(){
                         console.log(item.community_status);
                         localStorage.setItem("ommunity_status",item.community_status);
                         $.each(item.Number_data,function(i,item){
-                            html+=`
-                        <li class="lf">
-                          <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
-                      </li>
-                        `;
-                        num=i+1;
+                      //       html+=`
+                      //   <li class="lf">
+                      //     <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
+                      // </li>
+                      //   `;
                         });
                     });
-                    console.log(num);
                     $(".flockMember").prepend(html);
-                    $(".userMember span").append(num);
                 }
             }
         })
