@@ -185,7 +185,7 @@ $(document).ready(function(){
                 var timestamp = Date.parse(new Date());
                 timestamp = timestamp / 1000;
             }else{
-                $(".pushBtn").attr("disable",disabled)
+                $(".pushBtn").disabled=true;
             }
 
         });
