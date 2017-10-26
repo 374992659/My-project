@@ -182,7 +182,6 @@ $(document).ready(function(){
              // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-            add();
         });
         /*
         * 判断是否存在元素
