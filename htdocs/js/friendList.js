@@ -63,7 +63,7 @@ $(document).ready(function() {
                         console.log(online_friends);
                         if(!contains(online_friends,friend_code)){
                             var newOnline = JSON.parse(online_friends);
-                            newOnline.push(friend_code);
+                            // newOnline.push(friend_code);
                         }
                         localStorage.setItem('online_friends',newOnline);
                     }
