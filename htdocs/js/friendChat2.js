@@ -193,10 +193,10 @@ $(document).ready(function(){
             if(historyNews){
                     var sender_code=localStorage.getItem("historyNews")
             }else{
-                var sender_code=new Array();
+                var sender_code=[];
                     sender_code[timestamp]=content;
-                  JSON.stringify(sender_code);
-                  localStorage.setItem("historyNews",sender_code)
+                 var data=JSON.stringify(sender_code);
+                  localStorage.setItem("historyNews",data)
             }
         });
         /*
