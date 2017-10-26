@@ -99,8 +99,33 @@ $(document).ready(function() {
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
                                 ws.send(sendMessage);
                             }
-                        }else{    //其他页面 暂不处理
+                        }else if(html="friend.html"){    //其他页面 暂不处理
+                            // 获取新消息
+                            $.each(friends_new_message,function(i,item){
+                                friends_new_messageNum+=item.message_num;
+                            });
+                            $.each(group_new_message,function(i,item){
+                                group_new_messageNum+=item.count;
+                            });
+                            $.each(group_new_message,function(i,item){
+                                friends_new_apply+=item.count;
+                            })
+                        }else if(html="newsPage.html"){
+                            $.each(friends_new_message,function(i,item){
+                                friends_new_messageNum+=item.message_num;
+                            });
+                            $.each(group_new_message,function(i,item){
+                                group_new_messageNum+=item.count;
+                            });
+                            $.each(group_new_message,function(i,item){
+                                friends_new_apply+=item.count;
+                            })
 
+                        }
+                        if(friends_new_messageNum+group_new_messageNum+friends_new_applyNum==0){
+                            $("#newsNum").html();
+                        }else{
+                            $("#newsNum").html(parseInt(friends_new_messageNum)+parseInt(group_new_messageNum)+parseInt(friends_new_applyNum));
                         }
                     }
                     break;
