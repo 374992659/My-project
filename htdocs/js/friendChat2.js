@@ -1,6 +1,5 @@
-console.log($(document.body).height());
 $(document).ready(function(){
-   console.log($(document.body).height());
+   console.log($("#chatPage").height());
     // 获取头像
     var header=localStorage.getItem("header"),
         // 获取发送好友的code
