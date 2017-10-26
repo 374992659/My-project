@@ -103,12 +103,13 @@ $(document).ready(function() {
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message_num;
                             });
-                            $.each(group_new_message,function(i,item){
-                                group_new_messageNum+=item.count;
-                            });
-                            $.each(group_new_message,function(i,item){
-                                friends_new_apply+=item.count;
-                            })
+                            // $.each(group_new_message,function(i,item){
+                            //     group_new_messageNum+=item.count;
+                            // });
+                            // $.each(group_new_message,function(i,item){
+                            //     friends_new_apply+=item.count;
+                            // });
+                            console.log(132);
                         }
                          if(friends_new_messageNum+group_new_messageNum+friends_new_applyNum==0){
                              $("#newsNum").html();
