@@ -10,7 +10,7 @@ CREATE TABLE if NOT EXISTS `group_subject_dynamics_$subject_id` (
   `nickname` varchar(50) NOT NULL COMMENT '昵称',
   `portrait` varchar(255) NOT NULL COMMENT '头像',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
-  `commont_likes` int(11) DEFAULT NULL COMMENT '评论点赞数量',
+  `commont_likes` int(11) DEFAULT '0' COMMENT '评论点赞数量',
   PRIMARY KEY (`id`),
   KEY `type` (`type`),
   KEY `common_id` (`commont_id`),
