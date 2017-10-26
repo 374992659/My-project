@@ -937,6 +937,23 @@ class GroupController extends VersionController
         $mode= new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
         $res = $mode->getGroupSubjectDynamics(1);//1:评论 2：话题点赞 3：评论点赞
         $is_like = $mode->where(['subject_id'=>$subject_id,'user_code'=>$this->account_code,'type'=>2])->count();
+        $res2 = $mode->field('commont_id')->where(['subject_id'=>$subject_id,'user_code'=>$this->account_code,'type'=>3])->select();//我的所有评论点赞
+        $commont_likes = array();
+        if($res2){
+            foreach($res2 as $key=>$val){
+                $commont_likes[$val['commont_id']]=$val['commont_id'];
+            }
+        }
+        if($res){
+            foreach ($res as $k=>$v){
+                if(array_key_exists($v['id'],$commont_likes)){
+                    $v['is_likes'] = 1;
+                }else{
+                    $v['is_likes'] =0;
+                }
+                $res[$k]=$v;
+            }
+        }
         $is_like?$data['is_like']=1:$data['is_like']=0;
         $data['commont_list']=$res;
         $model->execute('update group_subject set read_num = read_num+1 where id='.$subject_id);
