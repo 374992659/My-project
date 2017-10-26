@@ -318,7 +318,7 @@ class Events
                 $friend_code  = $message->account_code;
                 if(!$friend_code) die ;
                 $mongo= new MongoClient();
-               $friend_info = $mongo->baseinfo->user_area->findOne(array('user_code'=>$friend_code),array('nickname','portrait'));
+               $friend_info = $mongo->baseinfo->user_area->findOne(array('account_code'=>$friend_code),array('nickname','portrait'));
                 $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
                 $data = $db->select()->from('offline_user_message')->where('sender_code ='.$friend_code)->query();
                 $user_info =$mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code['account_code']),array('nickname','portrait'));
