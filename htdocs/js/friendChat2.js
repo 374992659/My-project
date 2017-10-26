@@ -177,7 +177,7 @@ $(document).ready(function(){
              console.log();
              $("#chatPage").append(html);
              $(".chatContent").val("");
-            ("#chatPage").scrollTop=("#chatPage").scrollHeight;
+           consoe.log(("#chatPage").scrollTop) ;
           // 自己发送的消息存本地
              // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
