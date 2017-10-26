@@ -42,6 +42,7 @@ $(document).ready(function(){
 
                                     $("#chatPage").prepend(html);
                                     $(".header_img").attr("src",header);
+                                    console.log($("#chatPage").height());
                                 }
                             });
                         }
