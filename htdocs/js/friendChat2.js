@@ -6,6 +6,12 @@ $(document).ready(function(){
         // 获取发送好友的code
         sender_code=localStorage.getItem("sender_code");
     (function(){
+        var ws = new WebSocket('ws://39.108.237.198:8282');
+        var apptoken=localStorage.getItem("apptoekn");
+        var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
+        ws.send(sendMessage);
+    })();
+    (function(){
         var apptoken = localStorage.getItem('apptoken');
         // 时间戳的转换
         function getLocalTime(nS) {
@@ -143,17 +149,17 @@ $(document).ready(function(){
                     console.log(result);
                     break;
                 case 9:
-                    history=function(){
-                        console.log(132);
-                        ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
-                        ws.send(sendMessage);
-                    };history();
                     break
             }
         };
         ws.onopen=function(e){
             ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
         };
+        // 聊天记录
+        $("").click(function(){
+
+            ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
+        });
         //群聊点击发送
         $(" ").click(function(){
             var content=$(".chatContent").val();                 //获取页面发送内容
