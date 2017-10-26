@@ -17,8 +17,13 @@ $(document).ready(function(){
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
 
         (function(){
-            var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
-            ws.send(sendMessage);
+            var pathname = window.location.pathname;
+            var patharr  = pathname.split('/');
+            var html = patharr[parseInt(patharr.length-1)];
+            if(html==="friendChat.html"){
+                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
+                ws.send(sendMessage);
+            }
         })();
 
         ws.onmessage=function(e){
