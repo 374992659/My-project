@@ -148,7 +148,7 @@ $(document).ready(function(){
                 case 9:
                     history=function(){
                         ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
-
+                        console.log(123);
                     };history();
                     break
             }
