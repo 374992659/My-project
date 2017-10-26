@@ -14,7 +14,7 @@ use think\console\command\make\Model;
 class UserCenterController extends VersionController
 {
     /*
-     * 修改/完善个人资料
+     * 修改个人资料
      * @param portrait 用户头像
      * @param nickname 用户昵称
      * @param realname 真实姓名 可填
@@ -47,8 +47,16 @@ class UserCenterController extends VersionController
         ));
         if($res !== false){
             $mongo = new \MongoClient();
-            $mongo->baseinfo->user_area->save(array(''))
+            $mongo->baseinfo->user_area->update(array('account_code'=>$account_code),array(
+                'portrait'=>$portrait,
+                'nickname'=>$nickname,
+            ));
+            $this->echoEncrypData(0);
         }
-
+        $this->echoEncrypData(1);
     }
+    /*
+     * 获取我的个人资料
+     * */
+
 }

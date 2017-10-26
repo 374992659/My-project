@@ -158,4 +158,20 @@ class BaseController extends Controller
         );
         return $code == '-999'? $error : (isset($error[$code])?$error[$code]: null);
     }
+    /*
+     * 检测参数是否为空
+     * @param Array param 需要检测的参数
+     * */
+    public function checkParam($param){
+        if($param){
+            foreach($param as $k=>$v){
+                if(!$v){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
 }
