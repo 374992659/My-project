@@ -147,9 +147,8 @@ $(document).ready(function(){
                     break;
                 case 9:
                     history=function(){
-                        var message_type = 1;                      //消息类型 1:文字消息 2:语音消息 3：文件消息
-                        ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'account_code'sender_code,'message_type':message_type}));
-                        
+                        ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
+
                     };history();
                     break
             }
