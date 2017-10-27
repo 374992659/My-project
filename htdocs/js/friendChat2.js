@@ -172,7 +172,7 @@ $(document).ready(function(){
                 case 9:
                     if(parseInt(result.errcode)===0){
                         console.log(1);
-                        console.log(result);
+                        console.log(result.data);
                     }
                     break
             }
@@ -194,7 +194,7 @@ $(document).ready(function(){
         // 聊天记录
         $(".historyNews").click(function(){
             ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
-           console.log(result.data);
+
         });
         //群聊点击发送
         $(" ").click(function(){
