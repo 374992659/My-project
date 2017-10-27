@@ -101,6 +101,7 @@ $(document).ready(function(){
                              if(arr){
                                 arr.sender_code[data.send_time]=data.content;
                                  console.log(arr);
+                                 localStorage.setItem("history",JSON.stringify(arr));
                              }else{
                                  arr={
                                      sender_code:{}
