@@ -121,9 +121,9 @@ $(document).ready(function(){
                              }else{
                                  arr=[];
                                  arr[sender_code]=[];
-                                 arr[sender_code].push(["content",data.content]);
+                                 arr[sender_code].push(["content",data.content],["time",data.send_time]);
                                  console.log(arr);
-                                 localStorage.setItem("history",JSON.stringify(arr[sender_code]))
+                                 localStorage.setItem("history",JSON.stringify(arr))
                              }
 
                                 //展示好友发送的聊天信息
