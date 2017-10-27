@@ -111,6 +111,7 @@ $(document).ready(function(){
                             var current_code = localStorage.getItem("sender_code");   //获取当前聊天好友code
                             if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                                // 把好友消息存在本地
+                                console.log(data.content);
                              var arr=JSON.parse(localStorage.getItem("history"));
                              if(arr){
                                  news["send_content"]=data.content;
