@@ -220,6 +220,21 @@ $(document).ready(function(){
             //保持滚动条一直在最底部
             document.body.scrollTop=chatPage.height();
             // 自己发送的消息存本地
+            // 把好友消息存在本地
+            var arr=JSON.parse(localStorage.getItem("history"));
+            if(arr){
+                arr.current_code[data.send_time]=data.content;
+                console.log(arr);
+                localStorage.setItem("history",JSON.stringify(arr));
+            }else{
+                arr={
+                    current_code:{}
+                };
+                arr.current_code[data.send_time]=data.content;
+                localStorage.setItem("history",JSON.stringify(arr));
+            }
+
+            console.log(arr);
             // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
