@@ -22,14 +22,11 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
+                    console.log(data.data);
                     $.each(data.data,function(i,item){
                         $.each(item,function(i,item){
                             console.log(item);
-                                   html+=`
-                              <li class="lf">
-                                 <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
-                             </li>
-                               `;
+
                         })
 
                     });
