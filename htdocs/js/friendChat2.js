@@ -173,33 +173,41 @@ $(document).ready(function(){
                     if(parseInt(result.errcode)===0){
                         console.log(1);
                         console.log(result.data);
-                        var html="";
+                        var send_html="";
+                        var get_html="";
                         $.each(result.data,function(i,item){
-                            html+=`
-                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                            if(item.sender_code==sender_code){
+                                send_html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc">
-                               ${item.content}
+                               ${data.content}
                             </span>
                    </div>                   
                 </div> 
-         <p style="font-size: 12px;text-align: center">${item.send_time}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" >${item.content}</span>
-            </div>
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-             </div>
-         </div>
-                            
-                            `
+                               
+                                `
+                            }else if(item.getter_code==sender_code){
+                                get_html+=`
+                                 <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+                                 <div class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__bd">
+                                        <span class="weui-media-box__desc right" >${content}</span>
+                                    </div>
+                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
+                                        <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                                    </div>
+                                 </div>   
+                                `
+                            }
                         });
-                        $("#chatPage").append(html);
+                        $("#chatPage").append(send_html);
+                        $("#chatPage").prepend(get_html);
+
                     }
                     break
             }
