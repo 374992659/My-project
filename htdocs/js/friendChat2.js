@@ -122,8 +122,10 @@ $(document).ready(function(){
                                 arr=[
                                 ];
                                 arr[sender_code]=[];
-                                 arr[sender_code]["content"]=data.content;
-                                 arr[sender_code]["sederCode"]=sender_code;
+                                var hash=[];
+                                hash["content"]=data.content;
+                                hash["sederCode"]=sender_code;
+                                 arr[sender_code].push(hash);
                                  console.log(arr);
                              }
 
