@@ -115,13 +115,18 @@ $(document).ready(function(){
                              var arr=JSON.parse(localStorage.getItem("history"));
                             console.log(arr);
                              if(arr){
-                                 arr[sender_code]=[];
-                                 arr[sender_code]["content"]=data.content;
-                                 localStorage.setItem("history",JSON.stringify(arr[sender_code]));
+                                 hash=[];
+                                 hash["content"]=data.content;
+                                 hash["time"]=data.send_time;
+                                 arr[sender_code].push(hash);
+                                 localStorage.setItem("history",JSON.stringify(arr));
                              }else{
                                  arr=[];
                                  arr[sender_code]=[];
-                                 arr[sender_code].push(["content",data.content],["time",data.send_time]);
+                                 hash=[];
+                                 hash["content"]=data.content;
+                                 hash["time"]=data.send_time;
+                                 arr[sender_code].push(hash);
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr))
                              }
