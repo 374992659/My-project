@@ -8,8 +8,9 @@ $(document).ready(function(){
         // 获取用户输入的密码
         var password=$(".password").val();
         console.log(password);
+        var openId=localStorage.getItem("openId");
         // 转换数据格式为json
-        data=["",JSON.stringify({"account":account,"password":password,"apptoken":apptoken})];
+        data=["",JSON.stringify({"openId":openId,"account":account,"password":password,"apptoken":apptoken})];
         console.log(data);
         // 对数据进行aes加密
         var jsonEncryptDate=jsEncryptData(data);
