@@ -5,11 +5,8 @@ $(document).ready(function(){
         var historyNews=localStorage.getItem("history");
         console.log(historyNews);
         var html="";
-        $.each(historyNews,function(i,item){
-            html+=`
-              
-            `
-        });
+
+        
     })();
 
         // 获取头像
