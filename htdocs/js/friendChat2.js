@@ -123,10 +123,7 @@ $(document).ready(function(){
                              }else{
                                 arr=[];
                                 arr[sender_code]=[];
-                                 var hash=[];
-                                 hash["content"]=data.content;
-                                 hash["sederCode"]=sender_code;
-                                 arr[sender_code].push(hash);
+                                 arr[sender_code]["content"]=content;
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr[sender_code]))
                              }
