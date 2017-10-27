@@ -173,11 +173,11 @@ $(document).ready(function(){
                     if(parseInt(result.errcode)===0){
                         console.log(1);
                         console.log(result.data);
-                        var send_html="";
-                        var get_html="";
+                        var html="";
+                       html="";
                         $.each(result.data,function(i,item){
                             if(item.sender_code==sender_code){
-                                send_html+=`
+                                html+=`
                 <div calss="sendHtml">
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -195,7 +195,7 @@ $(document).ready(function(){
                                
                                 `
                             }else if(item.getter_code==sender_code){
-                                get_html+=`
+                                html+=`
                             <div class="getHtml">
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
@@ -211,8 +211,8 @@ $(document).ready(function(){
                                 `
                             }
                         });
-                        $("#chatPage").append(send_html);
-                        $(".sendHtml").before(get_html);
+                        $("#chatPage").append(html);
+                        $
 
                     }
                     break
