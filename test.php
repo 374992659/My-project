@@ -12,7 +12,7 @@ $collection = $db->test;
 
 $obj = $m->selectCollection('baseinfo','garden_user_2701');
 
-var_dump($e);
+var_dump($obj);
 
 
 
