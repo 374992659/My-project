@@ -1,6 +1,8 @@
 $(document).ready(function(){
     // 先加载历史消息在显示未读消息此出加载历史消息。历史消息存子在localStorage里
-
+    //     获取历史消息
+    var historyNews=localStorage.getItem("history");
+    console.log(historyNews);
         // 获取头像
          var header=localStorage.getItem("header"),
         // 获取发送好友的code
