@@ -119,7 +119,8 @@ $(document).ready(function(){
                                  hash["content"]=data.content;
                                  hash["time"]=data.send_time;
                                  arr[sender_code].push(hash);
-                                 localStorage.setItem("history",JSON.stringify(arr));
+                                 data=JSON.stringify(arr);
+                                 localStorage.setItem("history",arr);
                              }else{
                                  arr=[];
                                  arr[sender_code]=[];
