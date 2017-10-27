@@ -175,7 +175,7 @@ class UserCenterController extends VersionController
      * 业主认证上传图片
      * */
     protected function uploadOwnerApplicationPic_v1_0_0(){
-        vendor('UploadFile');
+        import('Vendor.UploadFile');
         $upload =new \UploadFile();
         $path=APP_PATH.'Common/Upload/OwnerApplication/'.date(m).date(d).'/';
         $res = $upload->upload($path);
