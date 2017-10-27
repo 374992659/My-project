@@ -122,11 +122,11 @@ $(document).ready(function(){
                                  data=JSON.stringify(arr);
                                  localStorage.setItem("history",arr);
                              }else{
-                                 arr={
-                                     sender_code:[
-                                         {"content":data.content}
-                                     ]
-                                 };
+                                 arr=[];
+                                 hash=[];
+                                 hash["content"]=data.content;
+                                 hash["time"]=data.send_time;
+                                 arr[sender_code].push(hash);
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr))
                              }
