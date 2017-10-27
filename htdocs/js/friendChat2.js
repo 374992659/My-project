@@ -121,10 +121,10 @@ $(document).ready(function(){
                                  arr={
                                     news:[]
                                  };
-                                 arr.news[send_time]=data.send_time;
-                                 arr.news[send_code]=current_code;
-                                 arr.news[send_content]=data.content;
-                                 arr.news[get_code]=data.content;
+                                 arr.news["send_time"]=data.send_time;
+                                 arr.news["send_code"]=current_code;
+                                 arr.news["send_content"]=data.content;
+                                 arr.news["get_code"]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }
 
