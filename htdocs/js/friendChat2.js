@@ -221,9 +221,13 @@ $(document).ready(function(){
             document.body.scrollTop=chatPage.height();
             // 自己发送的消息存本地
             // 把好友消息存在本地
+            // 获取发送的时间戳
+            var timestamp = Date.parse(new Date());
+            timestamp = timestamp / 1000;
+
             var arr=JSON.parse(localStorage.getItem("history"));
             if(arr){
-                arr.current_code[data.send_time]=data.content;
+                arr.current_code[timestamp]=content;
                 console.log(arr);
                 localStorage.setItem("history",JSON.stringify(arr));
             }else{
@@ -235,10 +239,7 @@ $(document).ready(function(){
             }
 
             console.log(arr);
-            // 获取发送的时间戳
-            var timestamp = Date.parse(new Date());
-            timestamp = timestamp / 1000;
-            var historyNews=localStorage.getItem("historyNews");
+
         });
         /*
         * 判断是否存在元素
