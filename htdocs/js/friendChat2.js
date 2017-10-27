@@ -118,12 +118,7 @@ $(document).ready(function(){
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
-                                    news=[];
-                                 news["send_time"]=data.send_time;
-                                 news["send_code"]=current_code;
-                                 news["send_content"]=data.content;
-                                 news["get_code"]=data.content;
-                                 localStorage.setItem("history",JSON.stringify(arr));
+
                              }
 
                                 console.log(arr);
@@ -199,6 +194,7 @@ $(document).ready(function(){
         // 聊天记录
         $(".historyNews").click(function(){
             ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
+           consoe.log(result.data);
         });
         //群聊点击发送
         $(" ").click(function(){
