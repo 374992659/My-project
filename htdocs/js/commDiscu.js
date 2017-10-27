@@ -63,6 +63,7 @@ $(document).ready(function(){
                     $(document).on('click','#show-success',function(){
                         $.toptip(data.errmsg, 'success');
                     });
+                    $(".setSpeak").val(0)
                 }else{
                     $(document).on('click','#show-success',function(){
                         $.toptip(data.errmsg, 'success');
