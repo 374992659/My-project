@@ -86,10 +86,22 @@ class UserCenterController extends VersionController
         }
         $path = 'http://39.108.237.198/project/'.$data[0];
         $mongo =new \MongoClient();
+        $old_path = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code),array('portrait'));
         $mongo->baseinfo->user_area->update(array('account_code'=>$this->account_code),array('$set'=>array('portrait'=>$path)));
         $city_id = substr($this->account_code,0,4);
-        M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->save(['portrait'=>$path]);
-        $this->echoEncrypData(0,'');
+        M()->startTrans();
+        $res = M('user_info_'.$city_id)->where(['account_code'=>$this->account_code])->save(['portrait'=>$path]);
+        if($res !== false){
+            if($old_path['portrait'] !== 'http://39.108.237.198/project/Application/Common/Source/Img/default_portrait.jpg'){
+                @unlink($old_path['portrait']);
+            }
+            M()->commit();
+            $this->echoEncrypData(0);
+        }else{
+            $mongo->baseinfo->user_area->update(array('account_code'=>$this->account_code),array('$set'=>array('portrait'=>$old_path['portrait'])));
+            M()->rollback();
+            $this->echoEncrypData(1);
+        }
     }
 
 
@@ -159,7 +171,22 @@ class UserCenterController extends VersionController
         $this->echoEncrypData(0);
     }
 
-    /**/
+    /*
+     * 业主认证上传图片
+     * */
+    protected function uploadOwnerApplicationPic_v1_0_0(){
+        vendor('UploadFile');
+        $upload =new \UploadFile();
+        $path=APP_PATH.'Common/Upload/OwnerApplication/'.date(m).date(d).'/';
+        $res = $upload->upload($path);
+        if(!$res){
+            $this->echoEncrypData(1,'图片上传失败');
+        }
+        foreach($res as $k=>$v){
+            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
 
 
 
