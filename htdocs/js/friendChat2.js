@@ -3,10 +3,16 @@ $(document).ready(function(){
     //     获取历史消息
     (function(){
         var historyNews=localStorage.getItem("history");
+        historyNews=JSON.parse(historyNews);
         console.log(historyNews);
         var html="";
+        $.each(historyNews,function(i,item){
+            html+=`
+            
+            `
 
-        
+        })
+
     })();
 
         // 获取头像
@@ -107,15 +113,18 @@ $(document).ready(function(){
                                // 把好友消息存在本地
                              var arr=JSON.parse(localStorage.getItem("history"));
                              if(arr){
-                                arr.current_code[data.send_time]=data.content;
+                                 arr.news[send_content]=data.content;
+                                 arr.news[send_time]=data.send_time;
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
                                  arr={
-                                     current_code:{},
-                                     get_code:{}
+                                    news:[]
                                  };
-                                 arr.current_code[data.send_time]=data.content;
+                                 arr.news[send_time]=data.send_time;
+                                 arr.news[send_code]=current_code;
+                                 arr.news[send_content]=data.content;
+                                 arr.news[get_code]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }
 
@@ -233,22 +242,6 @@ $(document).ready(function(){
             // 获取发送的时间戳
             var timestamp = Date.parse(new Date());
             timestamp = timestamp / 1000;
-
-            var arr=JSON.parse(localStorage.getItem("history"));
-            if(arr){
-                arr.get_code[timestamp]=content;
-                console.log(arr);
-                localStorage.setItem("history",JSON.stringify(arr));
-            }else{
-                arr={
-                    current_code:{},
-                    get_code:{}
-                };
-                arr.get_code[timestamp]=content;
-                localStorage.setItem("history",JSON.stringify(arr));
-            }
-
-            console.log(arr);
 
         });
         /*
