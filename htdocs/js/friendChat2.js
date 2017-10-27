@@ -113,18 +113,16 @@ $(document).ready(function(){
                                // 把好友消息存在本地
                              var arr=JSON.parse(localStorage.getItem("history"));
                              if(arr){
-                                 arr.news["send_content"]=data.content;
-                                 arr.news["send_time"]=data.send_time;
+                                 news["send_content"]=data.content;
+                                 news["send_time"]=data.send_time;
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
-                                 arr={
-                                    news:[]
-                                 };
-                                 arr.news["send_time"]=data.send_time;
-                                 arr.news["send_code"]=current_code;
-                                 arr.news["send_content"]=data.content;
-                                 arr.news["get_code"]=data.content;
+                                    news=[];
+                                 news["send_time"]=data.send_time;
+                                 news["send_code"]=current_code;
+                                 news["send_content"]=data.content;
+                                 news["get_code"]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }
 
