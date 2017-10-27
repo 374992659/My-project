@@ -210,7 +210,7 @@
             })();
             var code = $_GET['code'];
             var url = location.href;
-
+            console.log(1);
             api_url =  'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=getCode&debugging=test';
             var openId =localStorage.getItem('openId');
             if(!openId){
@@ -220,9 +220,9 @@
                         type:'POST',
                         data:{'url':url},
                         success:function(res){
-console.log(res);return;
+                            console.log(2);
+                            console.log(res);return;
                             location.href=res.data;
-
                         }
                     })
                 }else{
