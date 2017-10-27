@@ -99,14 +99,14 @@ $(document).ready(function(){
                                // 把好友消息存在本地
                              var arr=JSON.parse(localStorage.getItem("history"));
                              if(arr){
-                                arr.sender_code[data.send_time]=data.content;
+                                arr.current_code[data.send_time]=data.content;
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
                                  arr={
-                                     sender_code:{}
+                                     current_code:{}
                                  };
-                                 arr.sender_code[data.send_time]=data.content;
+                                 arr.current_code[data.send_time]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }
 
