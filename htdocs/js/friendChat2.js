@@ -129,7 +129,7 @@ $(document).ready(function(){
                                 hash["sederCode"]=sender_code;
                                  arr[sender_code].push(hash);
                                  console.log(arr);
-                                 localStorage.setItem("history",JSON.stringify(arr))
+                                 localStorage.setItem("history",arr)
                              }
 
                                 //展示好友发送的聊天信息
