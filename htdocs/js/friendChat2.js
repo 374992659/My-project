@@ -181,10 +181,6 @@ $(document).ready(function(){
         };
 
         // 聊天记录
-        var historyNews=function(){
-            console.log(123);
-            ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
-        };historyNews();
         $(".historyNews").click(function(){
             ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
         });
