@@ -121,12 +121,12 @@ $(document).ready(function(){
                                  arr[sender_code].push(hash);
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
-                                arr={};
+                                arr=[];
                                 arr[sender_code]=[];
-                                arr.seder_code[content]=data.content;
-                                arr.seder_code[sederCode]=sender_code;
+                                arr[seder_code]["content"]=data.content;
+                                arr[seder_code]["sederCode"]=sender_code;
                                  console.log(arr);
-                                 localStorage.setItem("history",JSON.stringify(arr))
+                                 localStorage.setItem("history",JSON.stringify(arr[sender_code]))
                              }
 
                                 //展示好友发送的聊天信息
