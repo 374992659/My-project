@@ -123,8 +123,8 @@ $(document).ready(function(){
                              }else{
                                 arr={};
                                 arr[sender_code]=[];
-                                arr.seder_code["content"]=data.content;
-                                arr.seder_code["sederCode"]=sender_code;
+                                arr.seder_code[content]=data.content;
+                                arr.seder_code[sederCode]=sender_code;
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr))
                              }
