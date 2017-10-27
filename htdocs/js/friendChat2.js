@@ -116,12 +116,12 @@ $(document).ready(function(){
                             console.log(arr);
                              if(arr){
                                  arr[sender_code]=[];
-                                 arr[sender_code]["content"]=content;
+                                 arr[sender_code]["content"]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
                                  arr=[];
                                  arr[sender_code]=[];
-                                 arr[sender_code]["content"]=content;
+                                 arr[sender_code]["content"]=data.content;
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr[sender_code]))
                              }
