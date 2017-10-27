@@ -99,7 +99,8 @@ $(document).ready(function(){
                                // 把好友消息存在本地
                              var arr=JSON.parse(localStorage.getItem("history"));
                              if(arr){
-                                 console.log(arr);
+                                var a= arr.sender_code[data.send_time]=data.content;
+                                 console.log(a);
                              }else{
                                  arr={
                                      sender_code:{}
