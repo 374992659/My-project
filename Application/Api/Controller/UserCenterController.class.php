@@ -86,7 +86,7 @@ class UserCenterController extends VersionController
         }
         $path = 'http://39.108.237.198/project/'.$data[0];
         $mongo =new \MongoClient();
-        $mongo->baseinfo->userarea->update(array('account_code'=>$this->account_code),array('$set'=>array('portrait'=>$path)));
+        $mongo->baseinfo->user_area->update(array('account_code'=>$this->account_code),array('$set'=>array('portrait'=>$path)));
         $city_id = substr($this->account_code,0,4);
         M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->save(['portrait'=>$path]);
         $this->echoEncrypData(0,'');
