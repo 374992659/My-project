@@ -40,8 +40,7 @@ $(document).ready(function(){
         window.location.href="discu_addfriend.html";
     });
     //设置禁言
-    $(". setSpeak").click(function(){
-
+    $(".setSpeak").click(function(){
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         //获取群号
