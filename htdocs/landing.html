@@ -189,7 +189,8 @@
         </div>
     </div>
 
-<script src="js/jquery-1.11.3.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-1.11.3.js"></script>
 <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
  <script>
         $(function(){
@@ -214,7 +215,6 @@
             var openId =localStorage.getItem('openId');
             if(!openId){
                 if(!code){
-                    console.log(123);
                     $.post({
                         url:APIURL,
                         type:'POST',
