@@ -213,14 +213,15 @@
             var APIURL =  'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=getCode&debugging=test';
             var openId =localStorage.getItem('openId');
             if(!openId){
+                console.log(123);
                 if(!code){
                     $.post({
                         url:APIURL,
                         type:'POST',
                         data:{'url':Url},
                         success:function(res){
-                            console.log(res);return;
-
+                            console.log(res);
+                            location.href=res.data;
                         }
                     })
                 }else{
