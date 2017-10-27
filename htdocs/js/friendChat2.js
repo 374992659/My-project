@@ -122,7 +122,7 @@ $(document).ready(function(){
                                 arr=[
                                 ];
                                 arr[sender_code]=[];
-                                 arr[sender_code][content]=data.content;
+                                 arr[sender_code]["c"]=data.content;
                                  console.log(arr);
                              }
 
