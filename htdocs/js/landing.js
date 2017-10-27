@@ -10,7 +10,7 @@ $(document).ready(function(){
         console.log(password);
         var openId=localStorage.getItem("openId");
         // 转换数据格式为json
-        alert(apptoken);
+        alert(openId);
         alert(account);
         alert(password);
         data=["",JSON.stringify({"openId":openId,"account":account,"password":password,"apptoken":apptoken})];
