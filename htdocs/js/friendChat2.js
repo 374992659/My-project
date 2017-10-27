@@ -104,7 +104,7 @@ $(document).ready(function(){
                                  localStorage.setItem("history",JSON.stringify(current_code1));
                              }else{
                                  current_code1=[];
-                                 arr[data.send_time]=data.content;
+                                 current_code1[data.send_time]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }
 
