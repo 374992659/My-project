@@ -122,15 +122,12 @@ $(document).ready(function(){
                                  data=JSON.stringify(arr);
                                  localStorage.setItem("history",arr);
                              }else{
-                                 arr=[];
-                                 arr[sender_code]=[];
-                                 Arry=[];
-                                 Arry["content"]=data.content;
-                                 Arry["time"]=data.send_time;
-                                 arr[sender_code].push(Arry);
+                                 arr={
+                                     sender_code:[
+                                         {"content":data.content}
+                                     ]
+                                 };
                                  console.log(arr);
-                                 // arr=JSON.parse(arr);
-
                                  localStorage.setItem("history",arr)
                              }
                                 //展示好友发送的聊天信息
