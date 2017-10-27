@@ -23,14 +23,8 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     console.log(data.data);
-                    $.each(data.data,function(i,item){
-                        $.each(item,function(i,item){
-                            console.log(item);
 
-                        })
-
-                    });
-                    $(".flockMember").prepend(html);
+                    //$(".flockMember").prepend(html);
                 }
             }
         })
