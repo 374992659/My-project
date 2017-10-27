@@ -156,6 +156,7 @@ class RegiestController extends BaseController
      * @param password 密码
      * @param repassword 确认密码
      * @param piccode 图片验证码
+     * @param openId 微信openid
      * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据
      * */
     public function regiest(){
@@ -165,6 +166,10 @@ class RegiestController extends BaseController
         $repassword   = trim($this->pdata['repassword']);
         $piccode = trim($this->pdata['piccode']);
         $inviter_code = trim($this->pdata['inviter_code']);
+        $openId = trim($this->pdata['openId']);
+        if(intval($_GET['is_wap']) === 1){
+            if(!$openId)$this->echoEncrypData(21);
+        }
         if(!$account || !$password || !$repassword || !$area_id ||!$piccode){
             $this->echoEncrypData(1,'注册信息不完整');
         }
@@ -191,6 +196,7 @@ class RegiestController extends BaseController
             'table_id'=>$area_id,
             'status'=>1,
             'account_coe'=>$area_id.$account,
+            'openId'=>$openId,
             'portrait'=>'http://39.108.237.198/project/Application/Common/Source/Img/default_portrait.jpg',
             'nickname'=>$account,
         ));
@@ -214,7 +220,7 @@ class RegiestController extends BaseController
                     'user_code'=> $area_id.$account,
                     'inviter_code'=>$inviter_code,
                     'level'=>intval($level)+1
-                ))->query();
+                ));
             }else{
                 $mongo->baseinfo->user_level->insert(array(
                     '_id'=>getNextId($mongo,'baseinfo','user_level'),
@@ -303,6 +309,10 @@ class RegiestController extends BaseController
     public function accountLogin(){
         $account=$this->pdata['account'];
         $password =$this->pdata['password'];
+        $openId = $this->pdata['openId'];
+        if(intval($_GET['is_wap']) === 1){
+            if(!$openId)$this->echoEncrypData(21);
+        }
         if(!$account || !$password){
             $this->echoEncrypData(1,'登陆参数不完整');
         }
@@ -325,6 +335,7 @@ class RegiestController extends BaseController
             $account['table_id'] =$table_id['table_id'];
             $this->account_code = $table_id['table_id'].$table_id['account'];
             $this->appToken=true;   //返回apptoken
+            $mongo->baseinfo->user_area->update(array('account'=>$account),array('$set'=>array('openId'=>$openId)));
             session('account'.$this->account_code,$account);
             $this->echoEncrypData(0);
         }
@@ -422,7 +433,7 @@ class RegiestController extends BaseController
         $group_new_message->createIndex(array('send_time'=>1));
         $group_new_message->createIndex(array('group'=>1));
         $friends_chat=$db->friends_chat;// 好友聊天记录
-        $friends_chat->createIndex(array('sender_code'=>1,'type'=>1,'send_time'=>1));
+        $friends_chat->createIndex(array('sender_code'=>1));
         $friends_chat->createIndex(array('type'=>1));
         $friends_chat->createIndex(array('send_time'=>1));
         $counters=$db->counters;// 自增id表

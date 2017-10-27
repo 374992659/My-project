@@ -165,7 +165,7 @@ class BaseController extends Controller
     public function checkParam($param){
         if($param){
             foreach($param as $k=>$v){
-                if(!$v){
+                if(!$this->pdata[$v]){
                     return false;
                 }
             }
