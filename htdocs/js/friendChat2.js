@@ -115,14 +115,12 @@ $(document).ready(function(){
                              var arr=JSON.parse(localStorage.getItem("history"));
                             console.log(arr);
                              if(arr){
-                                 var hash=[];
-                                 hash["content"]=data.content;
-                                 hash["sederCode"]=sender_code;
-                                 arr[sender_code].push(hash);
+                                 arr[sender_code]=[];
+                                 arr[sender_code]["content"]=content;
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
-                                arr=[];
-                                arr[sender_code]=[];
+                                 arr=[];
+                                 arr[sender_code]=[];
                                  arr[sender_code]["content"]=content;
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr[sender_code]))
