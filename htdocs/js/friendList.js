@@ -66,7 +66,7 @@ $(document).ready(function() {
                             // var newOnline = JSON.parse(online_friends);
                             // newOnline.push(friend_code);
                         }
-                        localStorage.setItem('online_friends',newOnline);
+                        // localStorage.setItem('online_friends',newOnline);
                     }
                     break;
                 case 3:           //3.好友下线通知 更新本地在线好友列表
