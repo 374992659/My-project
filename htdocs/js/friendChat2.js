@@ -119,11 +119,12 @@ $(document).ready(function(){
                                  arr[sender_code]["content"]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr[sender_code]));
                              }else{
-                                 arr=[];
-                                 arr[sender_code]=[];
-                                 arr[sender_code]["content"]=data.content;
+                                 arr={sender_code:[]};
+                                 hash=[];
+                                 hash["content"]=data.content;
+                                 arr.sender_code.push(hash);
                                  console.log(arr);
-                                 localStorage.setItem("history",JSON.stringify(arr[sender_code]))
+                                 localStorage.setItem("history",JSON.stringify(arr))
                              }
 
                                 //展示好友发送的聊天信息
