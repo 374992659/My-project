@@ -71,6 +71,29 @@ class UserCenterController extends VersionController
         $this->echoEncrypData(0,'',$data);
     }
     /*
+     * 上传用户头像 成功后图片路劲已直接写入数据库 返回状态不返回路径
+     * */
+    protected function uploadUserPortrait_v1_0_0(){
+        import('Vendor.UploadFile');
+        $upload =new \UploadFile();
+        $path=APP_PATH.'Common/Upload/Portrait/'.date(m).date(d).'/';
+        $res = $upload->upload($path);
+        if(!$res){
+            $this->echoEncrypData(1,'图片上传失败');
+        }
+        foreach($res as $k=>$v){
+            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+        }
+        $path = 'http://39.108.237.198/project/'.$data[0];
+        $mongo =new \MongoClient();
+        $mongo->baseinfo->userarea->update(array('account_code'=>$this->account_code),array('$set'=>array('portrait'=>$path)));
+        $city_id = substr($this->account_code,0,4);
+        M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->save(['portrait'=>$path]);
+        $this->echoEncrypData(0,'');
+    }
+
+
+    /*
      *  业主认证   表中照片均以json字符串形式传递路劲
      * @param real_name 真实姓名
      * @param phone 手机号码
@@ -113,7 +136,7 @@ class UserCenterController extends VersionController
             $garden_code = $this->pdata['garden_code'];
         }
         $city_id = substr($this->account_code,0,4);
-        $model = new Model\OwnerApplicationController($city_id);
+        $model = new Model\OwnerApplicationController($city_id); //该记录根据用户所属地区分表
         $res = $model->addApplication(array(
             'user_code'=>$this->account_code,
             'real_name'=>$this->pdata['real_name'],
@@ -135,6 +158,9 @@ class UserCenterController extends VersionController
         if(!$res)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
+
+    /**/
+
 
 
     /*
