@@ -26,6 +26,7 @@ $(document).ready(function(){
                     var htmlAdministrator="";
                     var htmlMember="";
                     $.each(data.data.Number_data,function(i,item){
+                        console.log(item);
                         if(item.role==1||item.role==2){
                             console.log(item);
                             htmlAdministrator+=`
