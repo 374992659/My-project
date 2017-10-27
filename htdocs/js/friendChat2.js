@@ -101,6 +101,7 @@ $(document).ready(function(){
                                   sender_code:{}
                                 };
                                 arr.sender_code[data.send_time]=data.content;
+                                localStorage.setItem("history",JSON.stringify(arr));
                                 console.log(arr);
                                 //展示好友发送的聊天信息
                                 var  html=`
@@ -115,7 +116,6 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
-
                                 var chatPage=$("#chatPage");
                                 chatPage.append(html);
                                 document.body.scrollTop=chatPage.height();
