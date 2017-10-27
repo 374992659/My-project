@@ -128,9 +128,9 @@ $(document).ready(function(){
                                  hash["content"]=data.content;
                                  hash["time"]=data.send_time;
                                  arr[sender_code].push(hash);
-                                 console.log(arr);
+                                 console.log(arr.toString());
                                  // arr=JSON.parse(arr);
-                                 arr.split(",");
+
                                  localStorage.setItem("history",arr)
                              }
                                 //展示好友发送的聊天信息
