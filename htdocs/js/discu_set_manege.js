@@ -25,7 +25,7 @@ $(document).ready(function(){
                     var manegeNum="";
                     var htmlAdministrator="";
                     var htmlMember="";
-                    $.each(data.data,function(i,item){
+                    $.each(data.data.Number_data,function(i,item){
                         if(item.role==1||item.role==2){
                             console.log(item);
                             htmlAdministrator+=`
