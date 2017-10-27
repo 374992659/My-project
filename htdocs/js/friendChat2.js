@@ -119,13 +119,13 @@ $(document).ready(function(){
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
-                                arr=[];
-                                arr[sender_code]="132546";
-                                arr[sender_code]=sender_code;
+                                arr=[
+                                    sender_code=[]
+                                ];
+                                arr[sender_code]["content"]="132546";
                                  console.log(arr);
                              }
 
-                                console.log(arr);
                                 //展示好友发送的聊天信息
                                 var  html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
