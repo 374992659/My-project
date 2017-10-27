@@ -1,8 +1,17 @@
 $(document).ready(function(){
     // 先加载历史消息在显示未读消息此出加载历史消息。历史消息存子在localStorage里
     //     获取历史消息
-    var historyNews=localStorage.getItem("history");
-    console.log(historyNews);
+    (function(){
+        var historyNews=localStorage.getItem("history");
+        console.log(historyNews);
+        var html="";
+        $.each(historyNews,function(i,item){
+            html+=`
+              
+            `
+        });
+    })();
+
         // 获取头像
          var header=localStorage.getItem("header"),
         // 获取发送好友的code
@@ -106,7 +115,8 @@ $(document).ready(function(){
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
                                  arr={
-                                     current_code:{}
+                                     current_code:{},
+                                     get_code:{}
                                  };
                                  arr.current_code[data.send_time]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr));
@@ -229,14 +239,15 @@ $(document).ready(function(){
 
             var arr=JSON.parse(localStorage.getItem("history"));
             if(arr){
-                arr.current_code[timestamp]=content;
+                arr.get_code[timestamp]=content;
                 console.log(arr);
                 localStorage.setItem("history",JSON.stringify(arr));
             }else{
                 arr={
-                    current_code:{}
+                    current_code:{},
+                    get_code:{}
                 };
-                arr.current_code[data.send_time]=data.content;
+                arr.get_code[timestamp]=content;
                 localStorage.setItem("history",JSON.stringify(arr));
             }
 
