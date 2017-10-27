@@ -23,8 +23,14 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     console.log(data.data);
-
-                    //$(".flockMember").prepend(html);
+                    $.each(data.data.Number_data,function(i,item){
+                        html+=`
+                         <li class="lf">
+                          <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
+                      </li>
+                        `
+                    });
+                    $(".flockMember").prepend(html);
                 }
             }
         })
