@@ -113,7 +113,7 @@ $(document).ready(function(){
                                // 把好友消息存在本地
                                 console.log(data.content);
                              var arr=JSON.parse(localStorage.getItem("history"));
-                             arr=JSON.parse(arr);
+                            console.log(arr);
                              if(arr){
                                  var hash=[];
                                  hash["content"]=data.content;
