@@ -124,11 +124,11 @@ $(document).ready(function(){
                              }else{
                                  arr=[];
                                  arr[sender_code]=[];
-                                 hash=[];
-                                 hash["content"]=data.content;
-                                 hash["time"]=data.send_time;
+                                 Arry=[];
+                                 Arry["content"]=data.content;
+                                 Arry["time"]=data.send_time;
                                  arr[sender_code].push(hash);
-                                 console.log(arr.toString());
+                                 console.log(arr);
                                  // arr=JSON.parse(arr);
 
                                  localStorage.setItem("history",arr)
