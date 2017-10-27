@@ -193,7 +193,7 @@ $(document).ready(function(){
                                 `
                             }else if(item.getter_code==sender_code){
                                 get_html+=`
-                                 <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString(item.send_time)}</p>
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
                                         <span class="weui-media-box__desc right" >${item.content}</span>
