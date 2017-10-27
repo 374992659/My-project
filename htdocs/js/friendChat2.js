@@ -117,7 +117,7 @@ $(document).ready(function(){
                              if(arr){
                                  arr[sender_code]=[];
                                  arr[sender_code]["content"]=data.content;
-                                 localStorage.setItem("history",JSON.stringify(arr));
+                                 localStorage.setItem("history",JSON.stringify(arr[sender_code]));
                              }else{
                                  arr=[];
                                  arr[sender_code]=[];
