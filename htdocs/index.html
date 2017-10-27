@@ -104,6 +104,52 @@
            <p class="weui-footer__text">Copyright © 2016 jqweui.io</p>
        </div>
    </div>
+    <script>
+    $(function(){
+        var $_GET = (function() {
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            if (typeof(u[1]) == "string") {
+                u = u[1].split("&");
+                var get = {};
+                for (var i in u) {
+                    var j = u[i].split("=");
+                    get[j[0]] = j[1];
+                }
+                return get;
+            } else {
+                return {};
+            }
+        })();
+        var code = $_GET['code'];
+        var url = location.href;
+        api_url =  'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=getCode&debugging=test';
+        var openId =localStorage.getItem('openId');
+        if(!openId){
+            if(!code){
+                $.post({
+                    url:api_url,
+                    type:'POST',
+                    data:{'url':url},
+                    success:function(res){
+                        location.href=res.data;
+                    }
+                })
+            }else{
+                $.post({
+                    url:'http://39.108.237.198/project/index.php?m=Api&c=weChat&a=GetOpenidFromMp&debugging=test',
+                    type:'POST',
+                    data:{'code':code},
+                    success:function(res){
+                        console.log(res.data);
+                        localStorage.setItem('openId',res.data.openid);
+                    }
+                })
+            }
+        }
+
+    })
+</script>
    <script src="js/jquery-1.11.3.js"></script>
    <script src="JQuery_weui/fastclick.js"></script>
    <script>
