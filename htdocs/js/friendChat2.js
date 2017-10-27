@@ -129,7 +129,7 @@ $(document).ready(function(){
                                  hash["time"]=data.send_time;
                                  arr[sender_code].push(hash);
                                  console.log(arr);
-                                 localStorage.setItem("history",arr)
+                                 localStorage.setItem("history",JSON.stringify(arr))
                              }
 
                                 //展示好友发送的聊天信息
