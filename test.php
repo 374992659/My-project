@@ -11,8 +11,9 @@ $collection = $db->test;
 //$collection->update(array('name'=>3444),array('$set'=>array('value'=>666,'seven'=>777)));
 
 $obj = $m->selectCollection('baseinfo','garden_user_2701');
+$obj->createIndex(array('garden_code'=>1));
+$obj->createIndex(array('user_code'=>1));
 
-var_dump($obj);
 
 
 
