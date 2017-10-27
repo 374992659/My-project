@@ -100,7 +100,6 @@ $(document).ready(function(){
                              var current_code1=JSON.parse(localStorage.getItem("history"));
                              if(current_code1){
                                  current_code1[data.send_time]=data.content;
-                                 console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(current_code1));
                              }else{
                                  current_code1=[];
