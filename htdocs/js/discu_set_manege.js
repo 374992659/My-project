@@ -38,7 +38,7 @@ $(document).ready(function(){
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.nickname}</h4>                           
                         </div>
-                        <button class="setBtn" title="${item.user_code}">撤销</button>
+                        <button class="cancelBtn" title="${item.user_code}">撤销</button>
                     </div>
                     `;
                             manegeNum=i+1;
@@ -52,7 +52,7 @@ $(document).ready(function(){
                             <h4 class="weui-media-box__title">${item.nickname}</h4>
                           
                         </div>
-                        <button class="setBtn" title="${item.user_code}">添加</button>
+                        <button class="addBtn" title="${item.user_code}">添加</button>
                     </div>
                         `;
                             ueserNum=i+1;
@@ -68,7 +68,6 @@ $(document).ready(function(){
 
         });
     };getGroupUser();
-
     $(".LinkBtn").click(function(){
         console.log($(this));
         if($(this).next().is(":hidden")){
@@ -80,7 +79,7 @@ $(document).ready(function(){
         }
     });
     //功能三 设置管理员
-    $(".linkman").on("click",".weui-panel__bd .weui-media-box .setBtn",function(){
+    $(".member").on("click",".weui-media-box .addBtn",function(){
         var success=$(".success");
         var hideTop=function(){
             success.empty();
@@ -107,20 +106,63 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
+                    //var html=`
+                    // <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    //`;
+                    //success.html(html);
+                    //setTimeout(hideTop,3000);
                     getGroupUser();
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
                 }else{
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
+                    //var html=`
+                    // <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    //`;
+                    //success.html(html);
+                    //setTimeout(hideTop,3000);
                 }
             }
         })
+    });
+    //取消管理员
+    $(".administrator").on("click",".weui-media-box .cancelBtn",function(){
+        //获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+        //群号码
+            group_num=localStorage.getItem("group_num"),
+        //用户user_code
+            user_code=$(this).attr("title"),
+        //数据格式转换
+            data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
+        //   加密
+            jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"group_unsetGroupManager",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                //解密
+                var data=jsDecodeData(data);
+                console.loga(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
+                }else{
+                    $(document).on('click','#show-success',function(){
+                        $.toptip(data.errmsg, 'success');
+                    });
+                }
+            },
+            error:function(){}
+        })
     })
 });
+
+
+
