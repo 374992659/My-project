@@ -120,9 +120,10 @@ $(document).ready(function(){
                                  localStorage.setItem("history",JSON.stringify(arr[sender_code]));
                              }else{
                                  arr=[];
-                                 arr[sender_code]={"content":data.content};
+                                 arr[sender_code]=[];
+                                 arr[sender_code].push(["content",data.content]);
                                  console.log(arr);
-                                 localStorage.setItem("history",JSON.stringify(arr))
+                                 localStorage.setItem("history",JSON.stringify(arr[sender_code]))
                              }
 
                                 //展示好友发送的聊天信息
