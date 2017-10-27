@@ -130,7 +130,7 @@ $(document).ready(function(){
                                  arr[sender_code].push(hash);
                                  console.log(arr);
                                  // arr=JSON.parse(arr);
-                                 arr=arr.split(",");
+                                 arr.split(",");
                                  localStorage.setItem("history",arr)
                              }
                                 //展示好友发送的聊天信息
