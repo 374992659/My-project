@@ -128,7 +128,7 @@ $(document).ready(function(){
                                      ]
                                  };
                                  console.log(arr);
-                                 localStorage.setItem("history",arr)
+                                 localStorage.setItem("history",JSON.stringify(arr))
                              }
                                 //展示好友发送的聊天信息
                                 var  html=`
