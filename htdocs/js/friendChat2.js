@@ -120,8 +120,8 @@ $(document).ready(function(){
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
                                 arr=[];
-                                arr[sender_code]["content"]=data.content;
-                                 arr[sender_code]["sender_code"]=sender_code;
+                                arr[sender_code]["content"]="132546";
+                                arr[sender_code]["sender_code"]=sender_code;
                                  console.log(arr);
                              }
 
