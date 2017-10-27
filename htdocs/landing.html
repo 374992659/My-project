@@ -210,16 +210,15 @@
             })();
             var code = $_GET['code'];
             var Url = location.href;
-            api_url =  'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=getCode&debugging=test';
+            var APIURL =  'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=getCode&debugging=test';
             var openId =localStorage.getItem('openId');
             if(!openId){
                 if(!code){
                     $.post({
-                        url:api_url,
+                        url:APIURL,
                         type:'POST',
                         data:{'url':Url},
                         success:function(res){
-
                             console.log(res);return;
                             location.href=res.data;
                         }
