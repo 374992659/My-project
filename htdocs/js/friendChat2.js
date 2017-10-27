@@ -124,6 +124,7 @@ $(document).ready(function(){
                                 arr[sender_code]=[];
                                  arr[sender_code]["content"]=data.content;
                                  arr[sender_code]["sederCode"]=sender_code;
+                                 console.log(arr);
                              }
 
                                 //展示好友发送的聊天信息
