@@ -103,10 +103,8 @@ $(document).ready(function(){
                                  console.log(arr);
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }else{
-                                 arr={
-                                     "current_code":{}
-                                 };
-                                 arr.current_code[data.send_time]=data.content;
+                                 current_code1=[];
+                                 arr[data.send_time]=data.content;
                                  localStorage.setItem("history",JSON.stringify(arr));
                              }
 
