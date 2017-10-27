@@ -96,6 +96,12 @@ $(document).ready(function(){
                         if(html ==='friendChat.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                             var current_code = localStorage.getItem("sender_code");   //获取当前聊天好友code
                             if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
+                               // 把好友消息存在本地
+                                arr={
+                                  sender_code:{}
+                                };
+                                arr.sender_code[data.send_time]=data.content;
+                                console.log(arr);
                                 //展示好友发送的聊天信息
                                 var  html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
