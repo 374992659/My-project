@@ -127,7 +127,7 @@ $(document).ready(function(){
                                  Arry=[];
                                  Arry["content"]=data.content;
                                  Arry["time"]=data.send_time;
-                                 arr[sender_code].push(hash);
+                                 arr[sender_code].push(Arry);
                                  console.log(arr);
                                  // arr=JSON.parse(arr);
 
