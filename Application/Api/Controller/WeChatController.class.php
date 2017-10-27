@@ -37,7 +37,7 @@ class WeChatController extends BaseController
     private function __CreateOauthUrlForCode($redirectUrl)
     {
         $urlObj["appid"] = C('APPID');
-        $urlObj["redirect_uri"] = "$redirectUrl";
+        $urlObj["redirect_uri"] = $redirectUrl;
         $urlObj["response_type"] = "code";
         $urlObj["scope"] = "snsapi_userinfo";
         $urlObj["state"] = "STATE"."#wechat_redirect";
