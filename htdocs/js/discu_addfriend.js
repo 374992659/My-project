@@ -21,10 +21,10 @@ $(document).ready(function(){"use strict";
                     var html="";
                     $.each(data.data,function(i,item){
                         html+=`
-            <div class="linkman" title="${item.group_id}">
+            <div class="linkman" title="${item.id}">
                 <!--我的好友-->
                 <div class="weui-cells">
-                    <div class="weui-cell LinkBtn"  title="${item.group_id}">
+                    <div class="weui-cell LinkBtn"  title="${item.id}">
                         <div class="weui-cell__hd">
                             <img class="linkBtn" src="image/right.png">
                         </div>
