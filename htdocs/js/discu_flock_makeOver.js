@@ -154,5 +154,6 @@ $(document).ready(function(){
         if(checkedState == 'checked'){
             $(this).find("input").attr('checked',false); //3.
         }
+        return false;
     })
 });
