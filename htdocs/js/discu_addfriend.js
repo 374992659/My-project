@@ -82,7 +82,7 @@ $(document).ready(function(){"use strict";
                         <div class="weui-cells weui-cells_checkbox">
                             <label class="weui-cell weui-check__label" for="${item.friend_user_code}">
                                 <div class="weui-cell__hd">
-                                    <input type="checkbox" class="weui-check" name="checkbox1" id="${item.friend_user_code}" title="${item.friend_user_code}">
+                                    <input type="checkbox" class="weui-check" name="checkbox1"  src="${item.friend_portrait}" id="${item.friend_user_code}" title="${item.friend_user_code}">
                                     <i class="weui-icon-checked"></i>
                                 </div>
                                 <div class="weui-cell__bd">
@@ -120,6 +120,10 @@ $(document).ready(function(){"use strict";
             $(this).children(".weui-cell__hd").children("img").removeAttr("style")
         }
     });
+//监听被选中的input
+    if($("input").attr("checked") == "checked"){
+        var url=$(this).attr("src")
+    }
     //添加好友
    $("addBtn").click(function(){
        //获取  apptoken
