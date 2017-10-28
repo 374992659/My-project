@@ -187,10 +187,7 @@ $(document).ready(function() {
                 });
           $(".group").append(html);
             }else{
-                if(data.errcode===114){
                     window.location.href ="landing.html";
-                }
-               console.log()
             }
         }
     });
