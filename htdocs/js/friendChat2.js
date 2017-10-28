@@ -127,7 +127,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background: white">
+                            <span class="weui-media-box__desc" style="background: white;font-size: 12px">
                                ${data.content}
                             </span>
                    </div>                   
@@ -176,7 +176,7 @@ $(document).ready(function(){
                             if(item.sender_code==sender_code){
                                 html+=`
                 <div class="sendHtml">
-                     <p style="font-size: 13px;text-align: center">${getLocalTime(item.send_time)}</p>
+                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                         <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                             <img class="weui-media-box__thumb" src="${item.getter_portrait}" alt="">
@@ -192,7 +192,7 @@ $(document).ready(function(){
                             }else if(item.getter_code==sender_code){
                                 html+=`
                             <div class="getHtml">
-                                <p style="font-size: 13px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
                                         <span class="weui-media-box__desc right"  style="background:#A2CD5A">${item.content}</span>
@@ -253,7 +253,7 @@ $(document).ready(function(){
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#A2CD5A">${content}</span>
+                 <span class="weui-media-box__desc right" style="background:#9ACD32;font-size: 12px">${content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
