@@ -111,24 +111,13 @@ $(document).ready(function(){
                             var current_code = localStorage.getItem("sender_code");   //获取当前聊天好友code
                             if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                                // 把好友消息存在本地
-                                console.log(data.content);
+                             console.log(data.content);
                              var arr=JSON.parse(localStorage.getItem("history"));
-                            console.log(arr);
+                             console.log(arr);
                              if(arr){
-                                 hash=[];
-                                 hash["content"]=data.content;
-                                 hash["time"]=data.send_time;
-                                 arr[sender_code].push(hash);
-                                 data=JSON.stringify(arr);
-                                 localStorage.setItem("history",arr);
+
                              }else{
-                                 arr=[];
-                                 hash=[];
-                                 hash["content"]=data.content;
-                                 hash["time"]=data.send_time;
-                                 arr[sender_code].push(hash);
-                                 console.log(arr);
-                                 localStorage.setItem("history",JSON.stringify(arr))
+
                              }
                                 //展示好友发送的聊天信息
                                 var  html=`
@@ -138,7 +127,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc">
+                            <span class="weui-media-box__desc" style="background: white">
                                ${data.content}
                             </span>
                    </div>                   
@@ -186,29 +175,27 @@ $(document).ready(function(){
                         $.each(result.data,function(i,item){
                             if(item.sender_code==sender_code){
                                 html+=`
-                <div calss="sendHtml">
-                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="sendHtml">
+                     <p style="font-size: 13px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                         <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                             <img class="weui-media-box__thumb" src="${item.getter_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc">
+                                <span class="weui-media-box__desc" style="background:white">
                                    ${item.content}
                                 </span>
                        </div>                   
                     </div>                
                 </div>
-                
-                               
                                 `
                             }else if(item.getter_code==sender_code){
                                 html+=`
                             <div class="getHtml">
-                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                <p style="font-size: 13px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right" >${item.content}</span>
+                                        <span class="weui-media-box__desc right"  style="background:#A2CD5A">${item.content}</span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
                                         <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
@@ -220,7 +207,6 @@ $(document).ready(function(){
                             }
                         });
                         $("#chatPage").append(html);
-                        $
 
                     }
                     break
@@ -240,10 +226,9 @@ $(document).ready(function(){
 
         };
 
-        // 聊天记录
+        // 聊天历史记录
         $(".historyNews").click(function(){
             ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
-
         });
         //群聊点击发送
         $(" ").click(function(){
@@ -268,7 +253,7 @@ $(document).ready(function(){
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" >${content}</span>
+                 <span class="weui-media-box__desc right" style="background:#A2CD5A">${content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
