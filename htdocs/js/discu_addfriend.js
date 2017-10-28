@@ -52,32 +52,34 @@ $(document).ready(function(){"use strict";
 
         })
     };getGroup();
-//加载好友分组下的好友
-    var getGroup_friend=function(){
-        //    获取apptoken
-        var apptoken=localStorage.getItem("apptoken"),
-        //    获取分组id
-            group_id=$(this).attr("title"),
-        //数据格式转换
-            data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})],
-        //        加密
-            jsonEncryptData=jsEncryptData(data);
-        console.log(data);
+    $(".friendList").on("click",".linkman .weui-cells .LinkBtn",function(){
+    //加载好友分组下的好友
+        $(".linkList").empty();
+        var getGroup_friend=function(){
+            //    获取apptoken
+            var apptoken=localStorage.getItem("apptoken"),
+            //    获取分组id
+                group_id=$(this).attr("title"),
+            //数据格式转换
+                data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})],
+            //        加密
+                jsonEncryptData=jsEncryptData(data);
+            console.log(data);
 
-        $.ajax({
-            url:url+"friends_getGroupFriends",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                //解密
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    var html="";
-                    $.each(data.data,function(i,item){
-                        if(item.group_id==group_id){
-                            html+=`
+            $.ajax({
+                url:url+"friends_getGroupFriends",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    //解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var html="";
+                        $.each(data.data,function(i,item){
+                            if(item.group_id==group_id){
+                                html+=`
                         <div class="weui-cells weui-cells_checkbox">
                             <label class="weui-cell weui-check__label" for="s1">
                                 <div class="weui-cell__hd">
@@ -100,20 +102,18 @@ $(document).ready(function(){"use strict";
                             </label>
                         </div>
                         `
-                        }
-                    });
-                    $(".linkList").append(html);
-                }else{
-                    console.log(data.errmsg);
-                }
-            },
-            error:function(){}
+                            }
+                        });
+                        $(".linkList").append(html);
+                    }else{
+                        console.log(data.errmsg);
+                    }
+                },
+                error:function(){}
 
-        });
-    };getGroup_friend();
+            });
+        };getGroup_friend();
 //好友列表的显示隐藏
-    $(".friendList").on("click",".linkman .weui-cells .LinkBtn",function(){
-
         console.log($(this));
         if($(this).next().is(":hidden")){
             $(this).next().show();
