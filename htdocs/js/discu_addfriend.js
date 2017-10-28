@@ -80,9 +80,9 @@ $(document).ready(function(){"use strict";
                             if(item.group_id==group_id){
                                 html+=`
                         <div class="weui-cells weui-cells_checkbox">
-                            <label class="weui-cell weui-check__label" for="s1">
+                            <label class="weui-cell weui-check__label" for="${item.friend_user_code}">
                                 <div class="weui-cell__hd">
-                                    <input type="checkbox" class="weui-check" name="checkbox1" id="s1" title="${item.friend_user_code}">
+                                    <input type="checkbox" class="weui-check" name="checkbox1" id="${item.friend_user_code}" title="${item.friend_user_code}">
                                     <i class="weui-icon-checked"></i>
                                 </div>
                                 <div class="weui-cell__bd">
