@@ -148,6 +148,7 @@ $(document).ready(function(){
         var domName = $(this).find("input").attr('name');//获取当前单选框控件name 属性值
         console.log(domName);
         var checkedState = $(this).find("input").attr('checked');//记录当前选中状态
+        console.log(checkedState);
         $("input:radio[name='" + domName + "']").attr('checked',false);//1.
         $(this).find("input").attr('checked',true);//2.
         if(checkedState == 'checked'){
