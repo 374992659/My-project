@@ -112,14 +112,14 @@ $(document).ready(function(){
         //    $(this).find("input").attr('checked',false); //3.
         //}
         //获取当前选中状态
-        var checkedState = $(this).find("input").attr('checked');//记录当前选中状态
-        console.log(checkedState);
-        if(checkedState == 'checked'){
-            $(this).find("input").attr('checked',false);
-        }else{
-            $(this).find("input").attr('checked',true);
-        }
-        return false;
+        //var checkedState = $(this).find("input").attr('checked');//记录当前选中状态
+        //console.log(checkedState);
+        //if(checkedState == 'checked'){
+        //    $(this).find("input").attr('checked',false);
+        //}else{
+        //    $(this).find("input").attr('checked',true);
+        //}
+        //return false;
     });
     //功能2 转让群
     $(".affirmBtn").click(function(){
