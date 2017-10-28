@@ -97,13 +97,16 @@ $(document).ready(function(){
     // 跳转页面之前保存群号码
     $(".groupList").on("click",".saveGroupNum",function(){
         console.log(132);
+        //保存群头像
+        var group_header=$(this).find("img").attr("src"),
         // 获取当前group_num群号码
-        var group_num=$(this).attr("title");
+            group_num=$(this).attr("title"),
         // 获取group_code
-        var group_code=$(this).find("img").attr("title");
+            group_code=$(this).find("img").attr("title");
         // 存在本地
         localStorage.setItem("group_num",group_num);
         localStorage.setItem("group_code",group_code);
+        localStorage.setItem("group_header",group_header);
         window.location.href="flockChat.html";
     });
 });

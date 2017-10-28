@@ -2,12 +2,14 @@ $(document).ready(function(){
     "use strict";
     // 获取群内用户
     var getGroupUser=function(){
+        //获取群头像
+        var group_header=localStorage.getItem("group_header"),
         // 获取apptoken
-        var apptoken=localStorage.getItem("apptoken"),
+            apptoken=localStorage.getItem("apptoken"),
         // 获取群号码
-            group_num=localStorage.getItem("group_num");
+            group_num=localStorage.getItem("group_num"),
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})],
+            data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})],
         // 加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
@@ -31,6 +33,7 @@ $(document).ready(function(){
                         `
                     });
                     $(".flockMember").prepend(html);
+                    $(".headImg").attr("src",group_header)
                 }
             }
         })
