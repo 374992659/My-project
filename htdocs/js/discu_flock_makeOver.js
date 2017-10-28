@@ -143,15 +143,15 @@ $(document).ready(function(){
         })
     });
     //单选框取消功能
-    $(".linkList .weui-cells_checkbox .weui-cell").click(function(){
+    $(".linkList").on("click",".weui-cells_checkbox",function(){
         console.log(123);
-        var domName = $(this).attr('name');//获取当前单选框控件name 属性值
+        var domName = $(this).find("input").attr('name');//获取当前单选框控件name 属性值
         console.log(domName);
-        var checkedState = $(this).attr('checked');//记录当前选中状态
+        var checkedState = $(this).find("input").attr('checked');//记录当前选中状态
         $("input:radio[name='" + domName + "']").attr('checked',false);//1.
-        $(this).attr('checked',true);//2.
+        $(this).find("input").attr('checked',true);//2.
         if(checkedState == 'checked'){
-            $(this).attr('checked',false); //3.
+            $(this).find("input").attr('checked',false); //3.
         }
-    });
+    })
 });
