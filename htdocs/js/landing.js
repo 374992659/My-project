@@ -1,6 +1,10 @@
 $(document).ready(function(){
     // 账号登录发起ajax请求
     $(".accregBtn").click(function(){
+        var success=$(".success");
+        var hideTop=function(){
+            success.empty();
+        };
         var apptoken=localStorage.getItem("apptonken");
         // 获取用户输入的账号
         var account=$(".account").val();
@@ -27,14 +31,13 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
                     window.location.href="index.html";
                 }else{
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                 }
             }
         });
