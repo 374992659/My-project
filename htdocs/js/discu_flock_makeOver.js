@@ -100,19 +100,27 @@ $(document).ready(function(){
         }
     });
     //单选框取消功能
-    //$(".linkList").on("click",".weui-cells_checkbox .weui-check__label",function(){
-    //    console.log(123);
-    //    var domName = $(this).find("input").attr('name');//获取当前单选框控件name 属性值
-    //    console.log(domName);
-    //    var checkedState = $(this).find("input").attr('checked');//记录当前选中状态
-    //    console.log(checkedState);
-    //    $("input:radio[name='" + domName + "']").attr('checked',false);//1.
-    //    $(this).find("input").attr('checked',true);//2.
-    //    if(checkedState == 'checked'){
-    //        $(this).find("input").attr('checked',false); //3.
-    //    }
-    //    return false;
-    //});
+    $(".linkList").on("click",".weui-cells_checkbox .weui-check__label",function(){
+        //console.log(123);
+        //var domName = $(this).find("input").attr('name');//获取当前单选框控件name 属性值
+        //console.log(domName);
+        //var checkedState = $(this).find("input").attr('checked');//记录当前选中状态
+        //console.log(checkedState);
+        //$("input:radio[name='" + domName + "']").attr('checked',false);//1.
+        //$(this).find("input").attr('checked',true);//2.
+        //if(checkedState == 'checked'){
+        //    $(this).find("input").attr('checked',false); //3.
+        //}
+        //获取当前选中状态
+        var checkedState = $(this).find("input").attr('checked');//记录当前选中状态
+        console.log(checkedState);
+        if(checkedState == 'checked'){
+            $(this).find("input").attr('checked',false);
+        }else{
+            $(this).find("input").attr('checked',true);
+        }
+        return false;
+    });
     //功能2 转让群
     $(".affirmBtn").click(function(){
         var success=$(".success");
