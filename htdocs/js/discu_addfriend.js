@@ -1,75 +1,75 @@
 $(document).ready(function(){"use strict";
-    //¼ÓÔØºÃÓÑ·Ö×é
-        var getGroup=function(){
-            //»ñÈ¡apptoken
-            var apptoken=localStorage.getItem("apptoken"),
-                //Êı¾İ×ª»»
-                data=["",JSON.stringify({"apptoken":apptoken})],
-                //¼ÓÃÜ
-                jsonEncryptData=jsEncryptData(data);
-            console.log(data);
-            $.ajax({
-                url:url+"friends_getGroup",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    //½âÃÜ
-                    data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken);
-                        var html="";
-                        $.each(data.data,function(i,item){
-                            html+=`
+    //åŠ è½½å¥½å‹åˆ†ç»„
+    var getGroup=function(){
+        //è·å–apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+        //æ•°æ®è½¬æ¢
+            data=["",JSON.stringify({"apptoken":apptoken})],
+        //åŠ å¯†
+            jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"friends_getGroup",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                //è§£å¯†
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html="";
+                    $.each(data.data,function(i,item){
+                        html+=`
             <div class="linkman" title="${item.group_id}">
-                <!--ÎÒµÄºÃÓÑ-->
+                <!--æˆ‘çš„å¥½å‹-->
                 <div class="weui-cells">
                     <div class="weui-cell LinkBtn"  title="${item.group_id}">
                         <div class="weui-cell__hd">
                             <img class="linkBtn" src="image/right.png">
                         </div>
                         <div class="weui-cell__bd">
-                            <p style="font-size: 12px">${item.group_name}</p>
+                            <p style="font-size: 15px">${item.group_name}</p>
                         </div>
                         <div class="weui-cell__ft">
                             <span>${item.online_num}</span>/<span>${item.total}</span>
                         </div>
                     </div>
-                    <!--ÎÒµÄºÃÓÑ¸öÊı-->
+                    <!--æˆ‘çš„å¥½å‹ä¸ªæ•°-->
                     <div class="weui-panel weui-panel_access linkList" style="display: none">
-                     <!--ºÃÓÑÎ»ÖÃ-->
+                     <!--å¥½å‹ä½ç½®-->
                     </div>
                 </div>
             </div>
                             `;
-                        });
-                        $(".friendList").append(html);
-                    }else{
-                        console.log(data.errmsg);
-                    }
-                },
-                error:function(){}
+                    });
+                    $(".friendList").append(html);
+                }else{
+                    console.log(data.errmsg);
+                }
+            },
+            error:function(){}
 
-            })
-        };getGroup();
+        })
+    };getGroup();
 
     $(".friendList").on("click",".linkman .weui-cells . LinkBtn",function(){
-        //¼ÓÔØºÃÓÑ·Ö×éÏÂµÄºÃÓÑ
-        //    »ñÈ¡apptoken
-            var apptoken=localStorage.getItem("apptoken"),
-        //    »ñÈ¡·Ö×éid
-                group_id=$(this).attr("tilte"),
-        //Êı¾İ¸ñÊ½×ª»»
-                data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})],
-        //        ¼ÓÃÜ
-                jsonEncryptData=jsEncryptData(data);
+        //åŠ è½½å¥½å‹åˆ†ç»„ä¸‹çš„å¥½å‹
+        //    è·å–apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+        //    è·å–åˆ†ç»„id
+            group_id=$(this).attr("tilte"),
+        //æ•°æ®æ ¼å¼è½¬æ¢
+            data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})],
+        //        åŠ å¯†
+            jsonEncryptData=jsEncryptData(data);
         console.log();
         $.ajax({
             url:url+"friends_getGroupFriends",
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
-                //½âÃÜ
+                //è§£å¯†
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
@@ -92,7 +92,7 @@ $(document).ready(function(){"use strict";
                                             </div>
                                             <div class="weui-media-box__bd">
                                                 <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-                                                <!--<p class="weui-media-box__desc">¸öÈËËµÃ÷</p>-->
+                                                <!--<p class="weui-media-box__desc">ä¸ªäººè¯´æ˜</p>-->
                                             </div>
                                         </div>
                                     </div>
@@ -104,14 +104,13 @@ $(document).ready(function(){"use strict";
                     });
                     $(".linkList").append(html);
                 }else{
-                console.log(data.errmsg);
+                    console.log(data.errmsg);
                 }
             },
             error:function(){}
 
-
         });
-        //ºÃÓÑÁĞ±íµÄÏÔÊ¾Òş²Ø
+        //å¥½å‹åˆ—è¡¨çš„æ˜¾ç¤ºéšè—
         console.log($(this));
         if($(this).next().is(":hidden")){
             $(this).next().show();
@@ -122,6 +121,6 @@ $(document).ready(function(){"use strict";
         }
     });
 
-    //Ìí¼ÓºÃÓÑ
+    //æ·»åŠ å¥½å‹
 
 });
