@@ -143,7 +143,7 @@ $(document).ready(function(){
         })
     });
     //单选框取消功能
-    $("input:radio").click(function(){
+    $(".linkList .weui-cells .weui-cell .weui-cell__hd input:radio").click(function(){
         var domName = $(this).attr('name');//获取当前单选框控件name 属性值
         var checkedState = $(this).attr('checked');//记录当前选中状态
         $("input:radio[name='" + domName + "']").attr('checked',false);//1.
