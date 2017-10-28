@@ -195,7 +195,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right"  style="background:#A2CD5A">${item.content}</span>
+                                        <span class="weui-media-box__desc right"  style="background:#66CD00">${item.content}</span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
                                         <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
@@ -253,7 +253,7 @@ $(document).ready(function(){
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#9ACD32;font-size: 12px">${content}</span>
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
