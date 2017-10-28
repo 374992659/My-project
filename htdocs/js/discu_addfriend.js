@@ -58,12 +58,12 @@ $(document).ready(function(){"use strict";
         //    获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         //    获取分组id
-            group_id=$(this).attr("tilte"),
+            group_id=$(this).attr("title"),
         //数据格式转换
             data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})],
         //        加密
             jsonEncryptData=jsEncryptData(data);
-        console.log();
+        console.log(data);
         $.ajax({
             url:url+"friends_getGroupFriends",
             type:"POST",
