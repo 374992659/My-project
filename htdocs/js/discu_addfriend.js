@@ -54,12 +54,11 @@ $(document).ready(function(){"use strict";
     };getGroup();
     $(".friendList").on("click",".linkman .weui-cells .LinkBtn",function(){
     //加载好友分组下的好友
-        $(".linkList").empty();
-        var getGroup_friend=function(e){
+            $(".linkList").empty();
             //    获取apptoken
             var apptoken=localStorage.getItem("apptoken"),
             //    获取分组id
-                group_id=$(e.target).attr("title"),
+                group_id=$(this).attr("title"),
             //数据格式转换
                 data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})],
             //        加密
@@ -110,9 +109,7 @@ $(document).ready(function(){"use strict";
                     }
                 },
                 error:function(){}
-
             });
-        };getGroup_friend();
 //好友列表的显示隐藏
         console.log($(this));
         if($(this).next().is(":hidden")){
