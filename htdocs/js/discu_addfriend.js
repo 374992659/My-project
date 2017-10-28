@@ -1,5 +1,5 @@
 $(document).ready(function(){"use strict";
-    //加载好友分组
+//加载好友分组
     var getGroup=function(){
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
@@ -52,9 +52,8 @@ $(document).ready(function(){"use strict";
 
         })
     };getGroup();
-
-    $(".friendList").on("click",".linkman .weui-cells .LinkBtn",function(){
-        //加载好友分组下的好友
+//加载好友分组下的好友
+    var getGroup_friend=function(){
         //    获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         //    获取分组id
@@ -64,6 +63,7 @@ $(document).ready(function(){"use strict";
         //        加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
+
         $.ajax({
             url:url+"friends_getGroupFriends",
             type:"POST",
@@ -110,7 +110,10 @@ $(document).ready(function(){"use strict";
             error:function(){}
 
         });
-        //好友列表的显示隐藏
+    };getGroup_friend();
+//好友列表的显示隐藏
+    $(".friendList").on("click",".linkman .weui-cells .LinkBtn",function(){
+
         console.log($(this));
         if($(this).next().is(":hidden")){
             $(this).next().show();
