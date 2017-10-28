@@ -19,18 +19,17 @@ $(document).ready(function() {"use strict";
                         // 在线好友
                         var online_friends=data.online_friends;
                         if(online_friends){
+                            // 获取所有好友的code
+                            var userCode= $(".group").find(".skipChat").attr("title");
+                            console.log($(".skipChat").attr("title"));
                             //获取在线好友code
                            var arr=[];
                             $.each(online_friends,function(i,item){
                                arr.push(item);
                             });
                             console.log(arr);
-                            // 获取所有好友的code
-                            var userCode= $(".group").find(".skipChat").attr("title");
-                            console.log($(".skipChat").attr("title"));
-
+                            localStorage.setItem("online_friends",JSON.stringify(arr));
                         }
-
                         // 好友未读新消息
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
@@ -154,10 +153,10 @@ $(document).ready(function() {"use strict";
         }
     })();
     //功能1 请求好友分组
-    var apptoken=localStorage.getItem("apptoken");
-    data=["", JSON.stringify({"apptoken":apptoken})];
-    console.log(data);
+    var apptoken=localStorage.getItem("apptoken"),
+    data=["", JSON.stringify({"apptoken":apptoken})],
     encreptdata = jsEncryptData(data);
+    console.log(data);
     $.ajax({
         url:url+"friends_getGroup",
         type:"POST",
@@ -257,10 +256,10 @@ $(document).ready(function() {"use strict";
             $(".group").show();
         }
         //数据格式转换
-        data=["",JSON.stringify({"key":key,"apptoken":apptoken})];
-        console.log(data);
+      var  data=["",JSON.stringify({"key":key,"apptoken":apptoken})],
         //数据加密
         jsonEncryptDate=jsEncryptData(data);
+        console.log(data);
         //发起ajax请求
         $.ajax({
             url:url+"friends_searchFriends",
