@@ -106,31 +106,30 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    //var html=`
-                    // <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    //`;
-                    //success.html(html);
-                    //setTimeout(hideTop,3000);
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                setTimeout(hideTop,3000);
                     getGroupUser();
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                        console.log(456);
-                    });
+
                 }else{
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
-                    //var html=`
-                    // <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    //`;
-                    //success.html(html);
-                    //setTimeout(hideTop,3000);
+
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                 }
             }
         })
     });
     //取消管理员
     $(".administrator").on("click",".weui-media-box .cancelBtn",function(){
+        var success=$(".success");
+        var hideTop=function(){
+            success.empty();
+        };
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         //群号码
@@ -151,13 +150,18 @@ $(document).ready(function(){
                 console.loga(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
+                    getGroupUser();
                 }else{
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                 }
             },
             error:function(){}
