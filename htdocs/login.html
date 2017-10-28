@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>用户登录</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/userLanding.css">
+    <style>
+    </style>
+</head>
+<body>
+<!--注册页面-->
+   <div id="userLand">
+      <div class="weui-cells">
+           <div class="weui-cell">
+               <div class="weui-cell__bd" style="text-align: center">
+                   <h3>用户注册</h3>
+               </div>
+           </div>
+       </div>
+       <!--信息输入-->
+       <div class="weui-cells weui-cells_form">
+
+           <div class="weui-cell weui-cell_vcode">
+               <div class="weui-cell__hd">
+                   <label class="weui-label">账号</label>
+               </div>
+               <div class="weui-cell__bd">
+                   <input class="weui-input account" type="tel" placeholder="6-12位数字或字母(必填)"  minlength="6" maxlength="12"   onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+               </div>
+
+           </div>
+            <!--图片验证码-->
+
+            <!--密码-->
+           <div class="weui-cell weui-cell_vcode">
+               <div class="weui-cell__hd">
+                   <label class="weui-label">密码</label>
+               </div>
+               <div class="weui-cell__bd">
+                   <input class="weui-input password" type="password" placeholder="数字或字母(必填)"  onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+               </div>
+           </div>
+            <!--确认密码-->
+           <div class="weui-cell weui-cell_vcode">
+               <div class="weui-cell__hd">
+                   <label class="weui-label">确认密码</label>
+               </div>
+               <div class="weui-cell__bd">
+                   <input class="weui-input repassword" type="password" placeholder="请确认密码(必填)" >
+               </div>
+           </div>
+           <div class="weui-cell weui-cell_vcode">
+               <div class="weui-cell__hd"><label class="weui-label">楼盘区域</label></div>
+               <div class="weui-cell__bd" id="sanji" >
+                   <select name="province" id="province">
+                       <option value="">请选择</option>
+                   </select>
+                   <select name="city" id="city">
+                       <option value="">请选择</option>
+                   </select>
+               </div>
+           </div>
+           <!--图片验证码-->
+           <div class="weui-cell weui-cell_vcode">
+               <div class="weui-cell__hd"><label class="weui-label">验证码</label></div>
+               <div class="weui-cell__bd">
+                   <input class="weui-input code" type="text" placeholder="请输入验证码">
+               </div>
+               <div class="weui-cell__ft ">
+                   <img class="weui-vcode-img refreshImg" style="width: 100px;position: relative;z-index: 100" src="http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=getPicCode">
+               </div>
+           </div>
+       </div>
+       <!--注册按钮-->
+       <div class='demos-content-padded'>
+           <button href="friend.html" id='show-success' class="weui-btn weui-btn_primary regBtn">注册</button>
+       </div>
+       <div class="demos-content-padded" style="padding-top: 0">
+           <a href="landing.html" class="weui-btn weui-btn_primary" style="width: 70px;background: 	#BEBEBE;font-size: 12px">去登录</a>
+       </div>
+       <!--底部说明-->
+       <div class="weui-panel__bd">
+           <div class="weui-media-box weui-media-box_text" style="text-align: center">
+               <p class="weui-media-box__desc">只在第一次登陆的时候需要输入信息，以后用此设备
+                   登陆不需要重复登陆，感谢对’“美e家园”的支持</p>
+               <p  class="weui-media-box__desc" style="color:#FF77FF;margin-top: 20px">更多精彩陆续上线敬请期待</p>
+           </div>
+       </div>
+       <!--底部链接-->
+       <div class="weui-footer" style="margin-top: 20px">
+           <p class="weui-footer__links">
+               <a href="http://www.baidu.com" class="weui-footer__link">美e家园 首页</a>
+           </p>
+           <p class="weui-footer__text">Copyright © 2016 jqweui.io</p>
+       </div>
+   </div>
+    <script src="js/jquery-3.2.1.min.js"></script>
+   <!--<script src="js/jquery-1.11.3.js"></script>-->
+    <script>
+    $(function(){
+        var $_GET = (function() {
+            var url = window.document.location.href.toString();
+            var u = url.split("?");
+            if (typeof(u[1]) == "string") {
+                u = u[1].split("&");
+                var get = {};
+                for (var i in u) {
+                    var j = u[i].split("=");
+                    get[j[0]] = j[1];
+                }
+                return get;
+            } else {
+                return {};
+            }
+        })();
+        var code = $_GET['code'];
+        var url = location.href;
+        api_url =  'http://39.108.237.198/project/index.php?m=Api&c=WeChat&a=getCode&debugging=test';
+        var openId =localStorage.getItem('openId');
+        if(!openId){
+            if(!code){
+                $.post({
+                    url:api_url,
+                    type:'POST',
+                    data:{'url':url},
+                    success:function(res){
+                        location.href=res.data;
+                    }
+                })
+            }else{
+                $.post({
+                    url:'http://39.108.237.198/project/index.php?m=Api&c=weChat&a=GetOpenidFromMp&debugging=test',
+                    type:'POST',
+                    data:{'code':code},
+                    success:function(res){
+                        console.log(res.data);
+                        localStorage.setItem('openId',res.data.openid);
+                    }
+                })
+            }
+
+        }
+        alert(openId);
+    })
+</script>
+   <script src="JQuery_weui/fastclick.js"></script>
+   <script>
+       $(function () {
+           FastClick.attach(document.body);
+       });
+   </script>
+   <script src="JQuery_weui/jquery-weui.js"></script>
+   <script src="js/url.js"></script>
+   <script src="js/aes.js"></script>
+   <script src="js/pad-zeropadding.js"></script>
+   <script src="js/encrypt-decode.js"></script>
+   <script src="js/register.js"></script>
+   <script src="js/addRess.js"></script>
+   <script >
+       addRess();
+   </script>
+
+</body>
+</html>
