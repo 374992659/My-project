@@ -127,13 +127,13 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background: white;font-size: 12px">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                                ${data.content}
                             </span>
                    </div>                   
                 </div>                  `;
                                 var chatPage=$("#chatPage");
-                                chatPage.append(html);
+                                chatPage.prepend(html);
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
@@ -182,7 +182,7 @@ $(document).ready(function(){
                             <img class="weui-media-box__thumb" src="${item.getter_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc" style="background:white">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
                                    ${item.content}
                                 </span>
                        </div>                   
@@ -195,7 +195,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right"  style="background:#66CD00">${item.content}</span>
+                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
                                         <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
