@@ -33,7 +33,7 @@ $(document).ready(function(){
                         `
                     });
                     $(".flockMember").prepend(html);
-                    $(".headImg").attr("src",group_header)
+                    //$(".headImg").attr("src",group_header)
                 }
             }
         })
