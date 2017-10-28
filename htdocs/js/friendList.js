@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function() {"use strict";
     // 及时通讯
     (function(){
         var apptoken = localStorage.getItem('apptoken');
@@ -9,8 +9,7 @@ $(document).ready(function() {
             var result = JSON.parse(e.data);                   //服务器返回结果
             var friends_new_messageNum=0,
                 group_new_messageNum=0,
-                friends_new_applyNum=0,
-                online_friends=[];
+                friends_new_applyNum=0;
             console.log(result);
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
@@ -18,23 +17,28 @@ $(document).ready(function() {
 
                         var data = (result.data);
                         // 在线好友
-                       $.each(data.online_friends,function(i,item){
-                           // online_friends.push(item);
-                           // localStorage.setItem("online_friends",JSON.stringify(online_friends));
-                        // 获取所有好友的code
-                          var userCode= $(".group").find(".skipChat").attr("title");
-                             console.log($(".skipChat").attr("title"));
-                             console.log(item)
-                       });
+                        var online_friends=data.online_friends;
+                        if(online_friends){
+                            //获取在线好友code
+                           var arr=[];
+                            $.each(online_friends,function(i,item){
+                               arr.push(item);
+                            });
+                            console.log(arr);
+                            // 获取所有好友的code
+                            var userCode= $(".group").find(".skipChat").attr("title");
+                            console.log($(".skipChat").attr("title"));
 
-                        // 好友新消息
+                        }
+
+                        // 好友未读新消息
                         var friends_new_message=data.friends_new_message;
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message_num;
                             })
                         }
-                        // 群新消息
+                        // 群未读新消息
                         var group_new_message=data.group_new_message;
                         if(group_new_message){
                             //群组新消息  已按群分组 时间倒序排列
@@ -42,6 +46,7 @@ $(document).ready(function() {
                                 group_new_messageNum+=item.count;
                             })
                         }
+                        //好友未读申请通知
                         var friends_new_apply=data.friends_new_apply;
                         if(friends_new_apply){                      //用户添加好友的申请
                             friends_new_applyNum=friends_new_apply.length
@@ -219,7 +224,7 @@ $(document).ready(function() {
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-                            <p class="weui-media-box__desc">${item.friend_signature}</p>
+                            <!--<p class="weui-media-box__desc">${item.friend_signature}</p>-->
                         </div>
                     </div>
                             `
