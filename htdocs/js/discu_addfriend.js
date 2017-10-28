@@ -55,11 +55,11 @@ $(document).ready(function(){"use strict";
     $(".friendList").on("click",".linkman .weui-cells .LinkBtn",function(){
     //加载好友分组下的好友
         $(".linkList").empty();
-        var getGroup_friend=function(){
+        var getGroup_friend=function(e){
             //    获取apptoken
             var apptoken=localStorage.getItem("apptoken"),
             //    获取分组id
-                group_id=$(this).attr("title"),
+                group_id=$(e.target).attr("title"),
             //数据格式转换
                 data=["",JSON.stringify({"apptoken":apptoken,"group_id":group_id})],
             //        加密
