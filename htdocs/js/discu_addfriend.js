@@ -53,7 +53,7 @@ $(document).ready(function(){"use strict";
         })
     };getGroup();
 
-    $(".friendList").on("click",".linkman .weui-cells . LinkBtn",function(){
+    $(".friendList").on("click",".linkman .weui-cells .LinkBtn",function(){
         //加载好友分组下的好友
         //    获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
