@@ -25,7 +25,7 @@ $(document).ready(function(){
                      manegeNum="",
                      manege="",
                      user="";
-                    $.each(data.data,function(i,item){
+                    $.each(data.data.Number_data,function(i,item){
                         if(item.role==1||item.role==2){
                             console.log(item);
                             manege+=`
