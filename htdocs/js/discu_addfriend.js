@@ -122,7 +122,15 @@ $(document).ready(function(){"use strict";
     });
 //监听被选中的input
     if($("input").attr("checked") == "checked"){
-        var url=$(this).attr("src")
+        var url=$(this).attr("src");
+        var html=`
+            <span class="flock_member_head">
+                  <img src="${url}" alt="">
+             </span>
+        `;
+        $(".group_friendPIC").append(html);
+    }else{
+        url=null;
     }
     //添加好友
    $("addBtn").click(function(){
