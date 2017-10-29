@@ -330,7 +330,7 @@ $(document).ready(function(){
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black">
                     <img style="width: 100px" src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
                  </span>
             </div>
