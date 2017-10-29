@@ -238,7 +238,7 @@ $(document).ready(function() {"use strict";
                         var remark=$(".remark");
                         console.log(remark.html());
                         if(!remark.html()){
-                            remark.html("主人很懒哦什么都没有说")
+                            remark.html("此人很懒哦什么都没有留下")
                         }
                     }
                 }
@@ -259,7 +259,7 @@ $(document).ready(function() {"use strict";
         var key=$("#searchInput").val();
         console.log(key);
         var apptoken=localStorage.getItem("apptoken");
-        if(key!==""){
+        if(!key.html()){
             $(".group").hide();
             $(".keyFriend").show();
         }else{
