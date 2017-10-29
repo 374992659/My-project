@@ -324,11 +324,24 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    console.log(data.data.file_path);
-                    localStorage.setItem("createCrowdPic",data.data.file_path);
-                    $(".flockHead img").attr("src",Url);
-                    $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
-                    $(".flockHead").attr("style","display:block");
+                    localStorage.setItem("apptoken",data.apptoken);
+                    console.log(data.data[0]);
+                    var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">
+                    <img src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+             </div>
+         </div>
+            `;
+                    var chatPage=$("#chatPage");
+                    chatPage.append(html);
+                    $(".chatContent").val("");
                 }
             },
             error:function (data) {
