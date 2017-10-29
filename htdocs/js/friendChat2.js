@@ -117,7 +117,16 @@ $(document).ready(function(){
                              if(arr){
 
                              }else{
-
+                                 var   arr={};
+                                 arr[sender_code]=[];
+                                 var hash=[];
+                                 hash["content"]=data.content;
+                                 hash["time"]=data.send_time;
+                                 arr.sender_code.push(hash);
+                                 console.log(arr);
+                                 var string=JSON.stringify(arr);
+                                 console.log(typeof string);
+                                 localStorage.setItem("history",arr);
                              }
                                 //展示好友发送的聊天信息
                                 var  html=`

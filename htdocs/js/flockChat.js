@@ -105,7 +105,21 @@ $(document).ready(function(){
                             var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                             if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                                 //展示好友发送的聊天信息
-
+                                var  html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${data.content}
+                            </span>
+                   </div>
+                </div>                  `;
+                                var chatPage=$("#chatPage");
+                                chatPage.prepend(html);
+                                document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
                                 ws.send(sendMessage);
@@ -122,6 +136,12 @@ $(document).ready(function(){
         ws.onopen=function(e){
             ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
         };
+        //加载历史记录
+        $("").click(function(){
+            "use strict";
+
+
+        });
         //群聊点击发送
         $(".pushBtn").click(function(){
             var content=$(".chatContent").val();                 //获取页面发送内容
