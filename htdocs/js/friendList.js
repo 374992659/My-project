@@ -199,7 +199,7 @@ $(document).ready(function() {"use strict";
         // 功能2 请求好友分组下的好友信息
         (function(){
             //获取好友分组id
-            var id=$(this).attr("title");
+            var id=$(e.target).attr("title");
             consoe.log(id);
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
