@@ -227,7 +227,7 @@ $(document).ready(function() {"use strict";
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+                            <p class="weui-media-box__desc remark">asd </p>
                         </div>
                     </div>
                             `
@@ -237,7 +237,7 @@ $(document).ready(function() {"use strict";
                         //获取个人介绍的内容
                         var remark=$(".remark");
                         console.log(remark.html());
-                        if(remark.html()==null){
+                        if(remark.html()===null){
                             remark.html("主人很懒哦什么都没有说")
                         }
                     }
