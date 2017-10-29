@@ -200,7 +200,7 @@ $(document).ready(function() {"use strict";
         (function(){
             //获取好友分组id
             var id=$(e.target).attr("title");
-            consoe.log(id);
+            console.log(id);
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
