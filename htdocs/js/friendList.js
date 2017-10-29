@@ -253,6 +253,13 @@ $(document).ready(function() {"use strict";
             $(this).children().children("img").css("transform","rotate(0deg)");
         }
     });
+    //搜索框内容的清楚
+    $("#searchClear").click(function(){
+        $(".keyFriend").empty();
+    });
+    $("#searchCancel").click(function(){
+        $(".keyFriend").empty();
+    });
     // 按关键词搜索好友
     $("#searchInput").on("input",function(){
         $(".keyFriend").empty();
