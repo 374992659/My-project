@@ -259,7 +259,7 @@ $(document).ready(function() {"use strict";
         var key=$("#searchInput").val();
         console.log(key);
         var apptoken=localStorage.getItem("apptoken");
-        if(!$("#searchInput").val()){
+        if(key){
             $(".group").hide();
             $(".keyFriend").show();
         }else{
