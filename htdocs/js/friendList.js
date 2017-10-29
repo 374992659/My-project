@@ -219,7 +219,7 @@ $(document).ready(function() {"use strict";
                         var html="";
                         $.each(data.data,function(i,item){
                             "use strict";
-                            if(data.group_id==id){
+                            if(item.group_id==id){
                                 html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
