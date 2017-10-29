@@ -300,14 +300,14 @@ $(document).ready(function() {"use strict";
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
-                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+                            <p class="weui-media-box__desc searchRemark">${item.friend_signature}</p>
                         </div>                      
                     </div>
                     `
                     });
                     $(".keyFriend").append(html);
                     //获取个人介绍的内容
-                    var remark=$(".remark");
+                    var remark=$(".searchRemark");
                     console.log(remark.html());
                     if(!remark.html()){
                         remark.html("此人很懒哦什么都没有留下")
