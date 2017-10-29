@@ -256,9 +256,11 @@ $(document).ready(function() {"use strict";
     //搜索框内容的清楚
     $("#searchClear").click(function(){
         $(".keyFriend").empty();
+        $(".group").show();
     });
     $("#searchCancel").click(function(){
         $(".keyFriend").empty();
+        $(".group").show();
     });
     // 按关键词搜索好友
     $("#searchInput").on("input",function(){
