@@ -294,8 +294,7 @@ $(document).ready(function() {"use strict";
                     var html="";
                     $.each(data.data,function(i,item){
                         html+=`
-                    <a href="friendChat.html" class="weui-media-box weui-media-box_appmsg skipChat"
-                    title="${item.friend_user_code}">
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
                         </div>
@@ -303,7 +302,7 @@ $(document).ready(function() {"use strict";
                             <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
                             <p class="weui-media-box__desc remark">${item.friend_signature}</p>
                         </div>                      
-                    </a>
+                    </div>
                     `
                     });
                     $(".keyFriend").append(html);
@@ -337,5 +336,17 @@ $(document).ready(function() {"use strict";
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
         window.location.href="friendChat.html";
-    })
+    });
+    //搜索好友跳转到聊天页面
+    $(".keyFriend").on("click",".skipChat",function(){
+        console.log(123);
+        // 获取好友code
+        var sender_code=$(this).attr("title"),
+        // 头像
+            header=$(this).find("img").attr("src");
+        // 存本地
+        localStorage.setItem("sender_code",sender_code);
+        localStorage.setItem("header",header);
+        window.location.href="friendChat.html";
+    });
 });
