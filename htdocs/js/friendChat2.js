@@ -313,7 +313,7 @@ $(document).ready(function(){
         console.log(formData);
         $.ajax({
             type:"POST",
-            url:url+"group_uploadGroupP",
+            url:url+"ChatMessage_uploadFriendsFile",
             fileElementId:'uploaderInput',
             data:formData,
             processData : false,
@@ -349,7 +349,7 @@ $(document).ready(function(){
         console.log(formData);
         $.ajax({
             type:"POST",
-            url:url+"group_uploadGroupP",
+            url:url+"ChatMessage_uploadFriendsFile",
             fileElementId:'uploaderInput',
             data:formData,
             processData : false,
