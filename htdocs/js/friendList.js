@@ -236,6 +236,7 @@ $(document).ready(function() {"use strict";
                         $(".friend").html(html);
                         //获取个人介绍的内容
                         var remark=$(".remark");
+                        console.log(remark.innerHTML);
                         if(remark.html()){
                             remark.html("主人很懒哦什么都没有说")
                         }
