@@ -13,7 +13,7 @@ $(document).ready(function() {"use strict";
             console.log(result);
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
-                    if(parseInt(result.errcode)=== 0){
+                    if(parseInt(result.errcode)===0){
 
                         var data = (result.data);
                         // 在线好友
@@ -198,6 +198,9 @@ $(document).ready(function() {"use strict";
     $(".group").on("click", ".weui-cells .LinkBtn", function (e) {
         // 功能2 请求好友分组下的好友信息
         (function(){
+            //获取好友分组id
+            var id=$(this).attr("title");
+            consoe.log(id);
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
