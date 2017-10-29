@@ -219,19 +219,26 @@ $(document).ready(function() {"use strict";
                         var html="";
                         $.each(data.data,function(i,item){
                             "use strict";
-                            html+=`
+                            if(data.group_id==id){
+                                html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-                            <!--<p class="weui-media-box__desc">${item.friend_signature}</p>-->
+                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
                         </div>
                     </div>
                             `
+                            }
                         });
                         $(".friend").html(html);
+                        //获取个人介绍的内容
+                        var remark=$(".remark");
+                        if(remark.html()){
+                            remark.html("主人很懒哦什么都没有说")
+                        }
                     }
                 }
             });
