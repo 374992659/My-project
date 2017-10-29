@@ -330,7 +330,7 @@ $(document).ready(function(){
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
                     <img style="width: 100px" src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
                  </span>
             </div>
@@ -352,7 +352,6 @@ $(document).ready(function(){
     //上传文件
     $('#uploaderInput').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
-
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
@@ -373,8 +372,24 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
+                    localStorage.setItem("apptoekn",data.apptoekn);
                     console.log(data.data[0]);
-
+                    var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
+                    <img style="width: 100px" src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+             </div>
+         </div>
+            `;
+                    var chatPage=$("#chatPage");
+                    chatPage.append(html);
+                    $(".chatContent").val("");
                 }
             },
             error:function (data) {
