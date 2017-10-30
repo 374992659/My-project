@@ -261,11 +261,11 @@ $(document).ready(function(){
 
         };
          //获取本地聊天记录
-        history_chat = localStorage.getItem('history_'+sender_code);
+       var history_chat = localStorage.getItem('history_'+sender_code);
         if(history){
             // history= JSON.parse(history);
             history_chat=  console.log( history_chat);
-            history_chat=JSON.parse(history_chat);
+            history_chat=$.parseJSON(history_chat);
             console.log(history_chat);
             console.log(typeof history_chat);
             var html="";
