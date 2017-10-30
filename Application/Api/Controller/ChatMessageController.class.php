@@ -20,12 +20,12 @@ class ChatMessageController extends VersionController
         $path=APP_PATH.'Common/Upload/File/Friends/'.date(m).date(d).'/';
         $res = $upload->upload($path);
         if(!$res){
-            $this->echoEncrypData(1,'文件上传失败');
+            $this->echoEncrypData(1,$upload->getErrorMsg());
         }
         foreach($res as $k=>$v){
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];
         }
-        $this->echoEncrypData(0,'',$upload->getErrorMsg());
+        $this->echoEncrypData(0,'',$data);
     }
     /*
      * 群语音文件上传
