@@ -102,10 +102,10 @@ $(document).ready(function(){
                              console.log(typeof http);
                              var json_str = "['"+data.sender_code+"':{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.send_portrait+"','nickanme':'"+data.sender_nickname+"'}]";
                              var sender_code = data.sender_code;
-                                history_chat = localStorage.getItem('history_'+data.sender_code);
-                                var length = history_chat.length;
-                                history_chat[length]= json_str;
-                             localStorage.setItem('history_'+data.sender_code,history_chat);
+                                history_chats = localStorage.getItem('history_'+data.sender_code);
+                                var length = history_chats.length;
+                                history_chats[length]= json_str;
+                             localStorage.setItem('history_'+data.sender_code,history_chats);
 
                                  // var   arr={};
                                  //  arr[sender_code]=[];
