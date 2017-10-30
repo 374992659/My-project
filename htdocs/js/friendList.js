@@ -30,7 +30,7 @@ $(document).ready(function() {"use strict";
                             });
                             console.log(arr.length);
                             console.log(arr);
-                            $(".online").html(arr.length);
+                            $(".online").html(arr.length+1);
                             localStorage.setItem("online_friends",JSON.stringify(arr));
                         }
                         // 好友未读新消息
