@@ -101,11 +101,10 @@ $(document).ready(function(){
                              var chatPage=$("#chatPage");
                              console.log(typeof http);
                              var json_str = "['"+data.sender_code+"':{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.send_portrait+"','nickanme':'"+data.sender_nickname+"'}]";
-                             var string = "'"+localStorage.getItem('history_'+data.sender_code)+"'";
-                             history_chat = JSON.parse(string);
-                                var key = new Date().getTime()+(Math.random()*100000000);
-                                history_chat[key] = json_str;
-                                history_chat = JSON.stringify(history_chat);
+                             var sender_code = data.sender_code;
+                                history_chat = localStorage.getItem('history_'+data.sender_code);
+                                var length = history_chat.length;
+                                history_chat[length]= json_str;
                              localStorage.setItem('history_'+data.sender_code,history_chat);
 
                                  // var   arr={};
@@ -360,6 +359,13 @@ $(document).ready(function(){
                 }
             }
             return false;
+        }
+        /*
+        * 生成随机唯一字符
+        * */
+        function getRandCode(){
+            var key = new Date().getTime()+(Math.random()*100000000);
+            return key;
         }
     })();
     $(".imgBtn").click(function(){
