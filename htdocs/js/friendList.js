@@ -95,8 +95,9 @@ $(document).ready(function() {"use strict";
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
                         var html = patharr[parseInt(patharr.length-1)];
-                        if(html ==='friend.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
+                        if(html ==='index.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                            var num=$("#newsNum").html();
+                           console.log(num);
                             num++;
                             $("#newsNum").html(num);
                         }
