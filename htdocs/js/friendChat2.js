@@ -100,10 +100,12 @@ $(document).ready(function(){
                              var http=img[0];
                              var chatPage=$("#chatPage");
                              console.log(typeof http);
-                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.portrait+"','nickanme':'"+data.nickname+"'}";
-                             // history = localStorage.getItem('history_'+data.sender_code);
-
-                             localStorage.setItem('history_'+data.sender_code,json_str);
+                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.send_portrait+"','nickanme':'"+data.sender_nickname+"'}";
+                             history_chat = JSON.parse(localStorage.getItem('history_'+data.sender_code));
+                                var key = new Date().getTime()+(Math.random()*100000000);
+                                history_chat[key] = json_str;
+                                history_chat = JSON.stringify(history_chat);
+                             localStorage.setItem('history_'+data.sender_code,history_chat);
 
                                  // var   arr={};
                                  //  arr[sender_code]=[];
