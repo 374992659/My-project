@@ -266,7 +266,7 @@ $(document).ready(function(){
         if(history_chat){
            var history= $.parseJSON(history_chat);
             console.log(history);
-            var historyNews=eval( history);
+            var historyNews=eval( history_chat);
             for(var i=0;i< historyNews.length;i++){
                 console.log(historyNews[i].content);
 
