@@ -353,7 +353,7 @@ $(document).ready(function() {"use strict";
     });
     // 退出登录
     $(".logOut").click(function(){
-        localStorage.clear();
+        localStorage.removeItem("apptoken");
         window.location.href="landing.html";
     });
 });
