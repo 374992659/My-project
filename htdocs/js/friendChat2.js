@@ -98,6 +98,7 @@ $(document).ready(function(){
                              console.log(data.content);
                              var img=data.content.split("/");
                              var http=img[0];
+                             var chatPage=$("#chatPage");
                              console.log(http);
                              var arr=JSON.parse(localStorage.getItem("history"));
                              // console.log(arr);
@@ -116,8 +117,8 @@ $(document).ready(function(){
                                  // localStorage.setItem("history",arr);
                              }
                                 //展示好友发送的聊天信息
-                                if(http==="http"){}
-                                var  html=`
+                                if(http==="http:"){
+                                    var  html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -130,8 +131,23 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
-                                var chatPage=$("#chatPage");
-                                chatPage.append(html);
+                                    chatPage.append(html);
+                                }else{
+                                    var  html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               <img src="${data.content}" alt="">
+                             
+                            </span>
+                   </div>                   
+                </div>                  `;
+                                    chatPage.append(html);
+                                }
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
