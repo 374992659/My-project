@@ -332,6 +332,7 @@ $(document).ready(function(){
                 }
             });
              var content=localStorage.getItem("friendPic");
+             console.log(content);
              var message_type = 2;
              var account_code =sender_code;
              ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
