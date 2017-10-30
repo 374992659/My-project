@@ -142,7 +142,7 @@ $(document).ready(function(){
                    </div>                   
                 </div>                  `;
                                 var chatPage=$("#chatPage");
-                                chatPage.prepend(html);
+                                chatPage.append(html);
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
