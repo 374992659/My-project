@@ -106,7 +106,7 @@ $(document).ready(function(){
                                 if(history_chats){
                                     var length = history_chats.length;
                                     history_chats[length]= json_str;
-                                    localStorage.setItem('history_'+data.sender_code,history_chats);
+                                    localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
                                 }
 
 
