@@ -265,6 +265,7 @@ $(document).ready(function(){
         console.log(typeof history_chat);
         if(history_chat){
            var history= $.parseJSON(history_chat);
+            var jsonObj = eval('(' + history + ')');
             console.log(jsonObj);
             var html="";
                 $.each(history,function(i,item){
