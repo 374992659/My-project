@@ -262,14 +262,14 @@ $(document).ready(function(){
             timestamp = timestamp / 1000;
 
         });
-        // $("#uploaderInputPic").change(function(){
-        //     var apptoken=localStorage.getItem("apptoken");
-        //     var content=localStorage.getItem("friendPic");
-        //     var message_type = 2;
-        //     var account_code =sender_code;
-        //     ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
-        //     }
-        // );
+        $("#uploaderInputPic").change(function(){
+             var apptoken=localStorage.getItem("apptoken");
+            var content=localStorage.getItem("friendPic");
+             var message_type = 2;
+             var account_code =sender_code;
+             ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+             }
+         );
         /*
         * 判断是否存在元素
         * */
