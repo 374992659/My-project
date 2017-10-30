@@ -100,16 +100,19 @@ $(document).ready(function(){
                              var http=img[0];
                              var chatPage=$("#chatPage");
                              console.log(typeof http);
-                                 var   arr={};
-                                  arr[sender_code]=[];
-                                  var hash=[];
-                                  hash["content"]=data.content;
-                                  hash["time"]=data.send_time;
-                                  arr.sender_code.push(hash);
-                                  console.log(arr);
-                                  var string=JSON.stringify(arr);
-                                  console.log(typeof string);
-                                  localStorage.setItem("history",string);
+                             var josn_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.portrait+"','nickanme':'"+data.nickname+"'}";
+                             localStorage.setItem('history_'+data.sender_code,json_str);
+
+                                 // var   arr={};
+                                 //  arr[sender_code]=[];
+                                 //  var hash=[];
+                                 //  hash["content"]=data.content;
+                                 //  hash["time"]=data.send_time;
+                                 //  arr.sender_code.push(hash);
+                                 //  console.log(arr);
+                                 //  var string=JSON.stringify(arr);
+                                 //  console.log(typeof string);
+                                 //  localStorage.setItem("history",string);
                                 //展示好友发送的聊天信息
                                 if(http==="http:"){
                                     var  html=`
@@ -233,6 +236,9 @@ $(document).ready(function(){
             })();
 
         };
+        history = localStorage.getItem('history_'+sender_code);
+        history= JSON.parse(history);
+        console.log(history);
 
         // 聊天历史记录
         $(".historyNews").click(function(){
