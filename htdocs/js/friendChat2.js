@@ -96,6 +96,9 @@ $(document).ready(function(){
                             if(current_code === data.sender_code){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                                // 把好友消息存在本地
                              console.log(data.content);
+                             var img=data.content.split("/");
+                             var http=img[0];
+                             console.log(http);
                              var arr=JSON.parse(localStorage.getItem("history"));
                              // console.log(arr);
                              if(arr){
@@ -113,6 +116,7 @@ $(document).ready(function(){
                                  // localStorage.setItem("history",arr);
                              }
                                 //展示好友发送的聊天信息
+                                if(http==="http"){}
                                 var  html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -122,6 +126,7 @@ $(document).ready(function(){
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                                ${data.content}
+                             
                             </span>
                    </div>                   
                 </div>                  `;
