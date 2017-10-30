@@ -261,23 +261,40 @@ $(document).ready(function(){
 
         };
          //获取本地聊天记录
-       var history_chat = localStorage.getItem('history_'+sender_code);
-        console.log(typeof history_chat);
-        if(history_chat){
-           var history= $.parseJSON(history_chat);
-            var jsonObj = eval('(' + history + ')');
-            console.log(jsonObj);
-            var html="";
-            data=[];
+        (function(){
+            var history_chat = localStorage.getItem('history_'+sender_code);
+            console.log(typeof history_chat);
+            if(history_chat){
+                var history= $.parseJSON(history_chat);
+                var jsonObj = eval('(' + history + ')');
+                console.log(jsonObj);
+                var html="";
+                data=[];
                 $.each(history,function(i,item){
                     var jsonObj = eval('(' + item + ')');
                     data[i]=jsonObj;
-                    console.log(jsonObj);
                 });
-            console.log(data);
+                console.log(data);
+            }
+            $.each(data,function(i,item){
+                html+=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}
+                            </span>
+                   </div>
+                </div>
 
-            $("#chatPage").append(html);
-        }
+                `
+            });
+            $("#chatPage").append(html)
+
+        })();
 
         // 聊天历史记录
         $(".historyNews").click(function(){
