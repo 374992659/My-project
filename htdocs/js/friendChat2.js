@@ -103,9 +103,12 @@ $(document).ready(function(){
                              var json_str = "['"+data.sender_code+"':{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.send_portrait+"','nickanme':'"+data.sender_nickname+"'}]";
                              var sender_code = data.sender_code;
                                 history_chats = localStorage.getItem('history_'+data.sender_code);
-                                var length = history_chats.length;
-                                history_chats[length]= json_str;
-                             localStorage.setItem('history_'+data.sender_code,history_chats);
+                                if(history_chats){
+                                    var length = history_chats.length;
+                                    history_chats[length]= json_str;
+                                    localStorage.setItem('history_'+data.sender_code,history_chats);
+                                }
+
 
                                  // var   arr={};
                                  //  arr[sender_code]=[];
