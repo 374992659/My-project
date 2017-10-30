@@ -270,7 +270,7 @@ $(document).ready(function(){
             var html="";
                 $.each(history,function(i,item){
                     data=[];
-
+                    console.log(i);
                     var jsonObj = eval('(' + item + ')');
                     data[i]=jsonObj;
                     console.log(jsonObj);
