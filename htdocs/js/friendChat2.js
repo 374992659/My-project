@@ -100,6 +100,7 @@ $(document).ready(function(){
                              var http=img[0];
                              var chatPage=$("#chatPage");
                              var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.send_portrait+"','nickanme':'"+data.sender_nickname+"'}";
+                               console.log(json_str);
                                 var history_chats = localStorage.getItem('history_'+data.sender_code);
                                 if(!history_chats){
                                     history_chat = new Array();
@@ -264,8 +265,8 @@ $(document).ready(function(){
         if(history){
             // history= JSON.parse(history);
             history_chat=  console.log( history_chat);
-            var history_chat=JSON.parse(history_chat);
-            //console.log(history_chat);
+            history_chat=JSON.parse(history_chat);
+            console.log(history_chat);
             console.log(typeof history_chat);
             var html="";
             $.each(history_chat,function(i,item){
