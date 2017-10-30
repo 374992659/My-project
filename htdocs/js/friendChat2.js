@@ -104,6 +104,7 @@ $(document).ready(function(){
                              var sender_code = data.sender_code;
                                 history_chats = localStorage.getItem('history_'+data.sender_code);
                                 if(history_chats){
+                                    alert(typeof (history_chats));
                                     var length = history_chats.length;
                                     history_chats[length]= json_str;
                                     console.log(JSON.stringify(history_chats));
