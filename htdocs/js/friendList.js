@@ -183,7 +183,7 @@ $(document).ready(function() {"use strict";
                 <p style=""  title="${item.id}">${item.group_name}</p>
             </div>
             <div class="weui-cell__ft" style="">
-                <span class="online"></span>/${item.total}
+                <span class="online" style="font-size: 15px"></span>/${item.total}
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
