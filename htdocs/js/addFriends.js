@@ -30,7 +30,7 @@ $(document).ready(function(){
                 var html="";
                 $.each(data.data,function(i,item){
                     html+=`
-                    <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg"
+                    <div class="weui-media-box weui-media-box_appmsg"
                     title="${item.friend_user_code}" value="1">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
@@ -40,10 +40,11 @@ $(document).ready(function(){
                             <p class="weui-media-box__desc">${item.friend_signature}</p>
                         </div>
                         <button class="addFriend">加为好友</button>
-                    </a>
+                    </div>
                     `
                 });
                 var keyFriend=$(".keyFriend");
+                console.log(html);
                 keyFriend.append(html);
                 keyFriend.show();
             }else if(data.errcode===301){
