@@ -268,7 +268,7 @@ $(document).ready(function(){
             console.log(typeof history);
             var html="";
             $.each(history,function(i,item){
-                console.log(item);
+                console.log(item.sender_code);
                   html+=`
                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -281,14 +281,10 @@ $(document).ready(function(){
                             </span>
                    </div>
                 </div>
-
                   `
             });
-            console.log(html);
             $("#chatPage").append(html);
         }
-
-
 
         // 聊天历史记录
         $(".historyNews").click(function(){
