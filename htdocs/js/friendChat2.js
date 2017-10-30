@@ -265,9 +265,9 @@ $(document).ready(function(){
         console.log(typeof history_chat);
         if(history_chat){
            var history= JSON.parse(history_chat);
-            console.log(history);
+            console.log(typeof history);
             var html="";
-            $.each(history_chat,function(i,item){
+            $.each(history,function(i,item){
                 console.log(item);
               if(item.type===1){
                   html+=`
