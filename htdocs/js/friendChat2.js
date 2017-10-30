@@ -127,7 +127,7 @@ $(document).ready(function(){
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                               
-                              <img src="${data.content}" alt="">
+                              <img src="${data.content}" alt="" style="width: 100px">
                             </span>
                    </div>                   
                 </div>                  `;
