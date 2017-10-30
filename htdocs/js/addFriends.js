@@ -43,7 +43,9 @@ $(document).ready(function(){
                     </a>
                     `
                 });
-                $(".keyFriend").append(html);
+                var keyFriend=$(".keyFriend");
+                keyFriend.append(html);
+                keyFriend.show();
             }else if(data.errcode===301){
                 // var html=`
                 //      <p style="text-align: center">${data.errmsg}</p>
