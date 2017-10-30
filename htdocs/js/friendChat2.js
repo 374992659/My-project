@@ -350,7 +350,7 @@ $(document).ready(function(){
         });
     });
     //上传文件
-    $('#uploaderInput').change(function(e) {
+    $('#uploaderInputFile').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
