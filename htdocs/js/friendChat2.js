@@ -268,7 +268,7 @@ $(document).ready(function(){
             var jsonObj = eval('(' + history + ')');
             console.log(jsonObj);
             var html="";
-                $.each(history,function(i,item){
+                $.each(jsonObj,function(i,item){
                     console.log(item);
                     html+=`
                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
