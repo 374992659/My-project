@@ -225,14 +225,14 @@ $(document).ready(function(){
         pushHistory();
         window.addEventListener("popstate", function(e) {
             // alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能
-            localStorage.setItem("a",1)
+           window.location.href="index.html";
         }, true);
         function pushHistory() {
             var state = {
                 title: "title",
-                url: "#"
+                url: "newsPage.html"
             };
-            window.history.pushState(state, "title", "#");
+            window.history.pushState(state, "title", "newsPage.html");
         }
     });
 });
