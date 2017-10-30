@@ -182,7 +182,7 @@ $(document).ready(function() {"use strict";
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList" style="display: none">
-            <div class="weui-panel__bd friend${item.id}">
+            <div class="weui-panel__bd friend">
                     
             </div>
         </div> 
