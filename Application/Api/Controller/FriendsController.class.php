@@ -24,9 +24,9 @@ class FriendsController extends VersionController
         $data2 = $model->getFriendsNum();
         if($data1){
             foreach ($data1 as $k=>$v){
+                $v['total']=0;
+                $v['friend_user']=array();
                 if($data2){
-                    $v['total']=0;
-                    $v['friend_user']=array();
                     foreach ($data2 as $key =>$val){
                         if(intval($v['id'])===intval($val['group_id'])){
                             $v['total']=$val['total'];
