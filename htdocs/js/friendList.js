@@ -100,7 +100,7 @@ $(document).ready(function() {"use strict";
                            $("#newsNum").attr("style","padding:0 4px");
                            console.log(num);
                             num++;
-                            $("#newsNum").html(num);
+                            $("#newsNum").innerHTML=num;
                         }
                     }
                     break;
@@ -138,7 +138,7 @@ $(document).ready(function() {"use strict";
         });
         //发送消息给好友
         $(".elements").click(function(){
-            var content=$(".elements").val('content');                        //获取页面发送内容
+            var content=$(".elements").val('content');                  //获取页面发送内容
             var account_code =$(".elements").val('user_code');          //获取发送好友的code
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
             ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
@@ -172,7 +172,7 @@ $(document).ready(function() {"use strict";
                 $.each(data.data,function(i, item){
                     html += `
      <div class="weui-cells">
-        <div class="weui-cell LinkBtn"  title="${item.id}">
+        <div class="weui-cell LinkBtn"  title="${item.group_id}">
             <div class="weui-cell__hd ">
                <img class="linkBtn" style="" src="image/right.png"  title="${item.id}">
             </div>
@@ -220,7 +220,6 @@ $(document).ready(function() {"use strict";
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
-                            console.log(item);
                             "use strict";
                             if(item.group_id==id){
                                 html+=`

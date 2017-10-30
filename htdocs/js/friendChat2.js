@@ -1,20 +1,4 @@
 $(document).ready(function(){
-    // 先加载历史消息在显示未读消息此出加载历史消息。历史消息存子在localStorage里
-    //     获取历史消息
-    // (function(){
-    //     var historyNews=localStorage.getItem("history");
-    //     historyNews=JSON.parse(historyNews);
-    //     console.log(historyNews);
-    //     var html="";
-    //     $.each(historyNews,function(i,item){
-    //         html+=`
-    //
-    //         `
-    //
-    //     })
-    //
-    // })();
-
         // 获取头像
          var header=localStorage.getItem("header"),
         // 获取发送好友的code
@@ -53,7 +37,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd content">
-                        <span class="weui-media-box__desc">${item.content}</span>
+                        <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">${item.content}</span>
                     </div>
                 </div>
                                        `
