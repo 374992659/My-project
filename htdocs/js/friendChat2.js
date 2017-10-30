@@ -266,6 +266,27 @@ $(document).ready(function(){
             history_chat=  console.log( history_chat);
             JSON.parse(history_chat);
             console.log(history_chat);
+            var html="";
+            $.each(history_chat,function(i,item){
+                console.log(item);
+              if(item.type===1){
+                  html+=`
+                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="padding: 0">
+                              ${item.content}
+                            </span>
+                   </div>
+                </div>
+
+                  `
+              }
+            });
+            $("#chatPage").append(html);
         }
 
 
