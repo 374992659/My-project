@@ -266,13 +266,8 @@ $(document).ready(function(){
         if(history_chat){
            var history= $.parseJSON(history_chat);
             console.log(history);
-            var historyNews=eval( history_chat);
-            for(var i=0;i< historyNews.length;i++){
-                console.log(historyNews[i].content);
-
-            }
             var html="";
-                $.each(history,function(i,item){
+                $.each(JSON.parse(history),function(i,item){
                     console.log(item.sender_code);
                     html+=`
                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
