@@ -264,7 +264,7 @@ $(document).ready(function(){
         if(history){
             // history= JSON.parse(history);
             history_chat=  console.log( history_chat);
-            JSON.parse(history_chat);
+            var history_chat=JSON.parse(history_chat);
             //console.log(history_chat);
             console.log(typeof history_chat);
             var html="";
