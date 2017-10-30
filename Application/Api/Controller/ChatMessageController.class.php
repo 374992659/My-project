@@ -25,7 +25,7 @@ class ChatMessageController extends VersionController
         foreach($res as $k=>$v){
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];
         }
-        $this->echoEncrypData(0,'',$data);
+        $this->echoEncrypData(0,'',$upload->getErrorMsg());
     }
     /*
      * 群语音文件上传
