@@ -100,11 +100,6 @@ $(document).ready(function(){
                              var http=img[0];
                              var chatPage=$("#chatPage");
                              console.log(typeof http);
-                             var arr=JSON.parse(localStorage.getItem("history"));
-                             // console.log(arr);
-                             if(arr){
-                        
-                             }else{
                                  var   arr={};
                                   arr[sender_code]=[];
                                   var hash=[];
@@ -115,7 +110,6 @@ $(document).ready(function(){
                                   var string=JSON.stringify(arr);
                                   console.log(typeof string);
                                   localStorage.setItem("history",string);
-                             }
                                 //展示好友发送的聊天信息
                                 if(http==="http:"){
                                     var  html=`
