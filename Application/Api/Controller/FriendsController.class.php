@@ -98,8 +98,8 @@ class FriendsController extends VersionController
         $account_code = $this->account_code;
         $model =new Model\UserFriendsModel($account_code);
         $data=$model->getGroupFriends($group_id);
-        if(!$data){
-            $this->echoEncrypData(300);
+        if(is_numeric($data)){
+            $this->echoEncrypData($data);
         }else{
             $this->echoEncrypData(0,'',$data);
         }
