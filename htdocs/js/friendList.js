@@ -26,8 +26,11 @@ $(document).ready(function() {"use strict";
                            var arr=[];
                             $.each(online_friends,function(i,item){
                                arr.push(item);
+
                             });
+                            console.log(arr.length);
                             console.log(arr);
+                            $(".online").html(arr.length);
                             localStorage.setItem("online_friends",JSON.stringify(arr));
                         }
                         // 好友未读新消息
@@ -180,7 +183,7 @@ $(document).ready(function() {"use strict";
                 <p style=""  title="${item.id}">${item.group_name}</p>
             </div>
             <div class="weui-cell__ft" style="">
-                ${item.online_num}/${item.total}
+                <span class="online"></span>/${item.total}
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
