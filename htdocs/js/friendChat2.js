@@ -305,6 +305,7 @@ $(document).ready(function(){
     $('#uploaderInputPic').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         var formData= new FormData();
+        console.log($("#uploaderInputPic")[0]);
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken})];
@@ -353,6 +354,7 @@ $(document).ready(function(){
     $('#uploaderInput').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         var formData= new FormData();
+        console.log($("#uploaderInput")[0]);
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken})];
