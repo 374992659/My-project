@@ -177,7 +177,7 @@ $(document).ready(function() {"use strict";
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id}">
             <div class="weui-cell__hd ">
-               <img class="linkBtn" style=" opacity: .6" src="image/right.png "  title="${item.id}">
+               <img class="linkBtn" src="image/right.png "  title="${item.id}">
             </div>
             <div class="weui-cell__bd">
                 <p style=""  title="${item.id}">${item.group_name}</p>
@@ -228,7 +228,7 @@ $(document).ready(function() {"use strict";
                                 html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="${item.friend_portrait}">
+                            <img class="weui-media-box__thumb" src="${item.friend_portrait}" style="opacity: .6">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
