@@ -241,6 +241,17 @@ class FriendsController extends VersionController
         }
 
     }
-
+    /*
+     * 获取所有好友
+     * */
+    protected function getAllFriends_v1_0_0(){
+        $account_code = $this->account_code;
+        $model = new Model\UserFriendsModel($this->account_code);
+        $data = $model->select();
+        if($data){
+            $this->echoEncrypData(0,'',$data);
+        }
+        $this->echoEncrypData(5);
+    }
 
 }
