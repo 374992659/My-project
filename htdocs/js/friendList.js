@@ -184,7 +184,7 @@ $(document).ready(function() {"use strict";
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
-            <div class="weui-panel__bd " title="${item.id}">
+            <div class="weui-panel__bd " id="${item.id}">
                     
             </div>
         </div> 
@@ -235,7 +235,6 @@ $(document).ready(function() {"use strict";
                             `
                             }
                         });
-
                         $(".friend").find(title=id).html(html);
                         //获取个人介绍的内容
                         var remark=$(".remark");
