@@ -101,6 +101,7 @@ $(document).ready(function(){
                              var chatPage=$("#chatPage");
                              console.log(typeof http);
                              var json_str = "['"+data.sender_code+"':{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.send_portrait+"','nickanme':'"+data.sender_nickname+"'}]";
+                             console.log(json_str);
                              var sender_code = data.sender_code;
                                 history_chats = localStorage.getItem('history_'+data.sender_code);
                                 if(history_chats){
