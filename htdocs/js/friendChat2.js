@@ -269,8 +269,9 @@ $(document).ready(function(){
             console.log(jsonObj);
             var html="";
                 $.each(history,function(i,item){
+                    data={};
                     var jsonObj = eval('(' + item + ')');
-                    console.log(jsonObj);
+                    console.log(jsonObj.length);
                 });
 
 
