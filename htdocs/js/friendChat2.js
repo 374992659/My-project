@@ -303,7 +303,7 @@ $(document).ready(function(){
     });
     //上传图片
     $('#uploaderInputPic').change(function(e) {
-        var Url=window.URL.createObjectURL(this.files[0]) ;
+        var Url=window.URL.createObjectURL(this.files) ;
         console.log(Url);
         var formData= new FormData();
         console.log($("#uploaderInputPic")[0].file);
