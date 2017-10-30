@@ -27,7 +27,7 @@ $(document).ready(function() {"use strict";
                             $.each(online_friends,function(i,item){
                                arr.push(item);
                             });
-                            $(".online").html(arr.length+1);
+                            $(".online").html(arr.length);
                             localStorage.setItem("online_friends",JSON.stringify(arr));
                         }
                         // 好友未读新消息
