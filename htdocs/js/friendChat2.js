@@ -267,9 +267,10 @@ $(document).ready(function(){
            var history= JSON.parse(history_chat);
             console.log(typeof history);
             var html="";
-            $.each(history,function(i,item){
-                console.log(item.sender_code);
-                  html+=`
+            $.getJSON(history,function(data){
+                $.each(data,function(i,item){
+                    console.log(item.sender_code);
+                    html+=`
                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -282,7 +283,9 @@ $(document).ready(function(){
                    </div>
                 </div>
                   `
+                });
             });
+
             $("#chatPage").append(html);
         }
 
