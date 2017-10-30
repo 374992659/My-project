@@ -269,7 +269,6 @@ $(document).ready(function(){
             var html="";
             $.each(history,function(i,item){
                 console.log(item);
-              if(parseInt(item.type)===1){
                   html+=`
                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -284,7 +283,6 @@ $(document).ready(function(){
                 </div>
 
                   `
-              }
             });
             console.log(html);
             $("#chatPage").append(html);
