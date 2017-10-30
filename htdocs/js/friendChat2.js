@@ -266,6 +266,11 @@ $(document).ready(function(){
         if(history_chat){
            var history= $.parseJSON(history_chat);
             console.log(history);
+            var historyNews=eval( history);
+            for(var i=0;i< historyNews.length;i++){
+                console.log(historyNews[i].content);
+
+            }
             var html="";
                 $.each(history,function(i,item){
                     console.log(item.sender_code);
