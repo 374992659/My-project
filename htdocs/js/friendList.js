@@ -177,7 +177,7 @@ $(document).ready(function() {"use strict";
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id}">
             <div class="weui-cell__hd ">
-               <img class="linkBtn" style="" src="image/right.png"  title="${item.id}">
+               <img class="linkBtn" style=" opacity: .6" src="image/right.png "  title="${item.id}">
             </div>
             <div class="weui-cell__bd">
                 <p style=""  title="${item.id}">${item.group_name}</p>
