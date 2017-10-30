@@ -352,12 +352,12 @@ $(document).ready(function(){
         });
     });
     //上传文件
-    $('#uploaderInputF').change(function(e) {
+    $('#uploaderInputFile').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         var formData= new FormData();
-        console.log($("#uploaderInput")[0]);
+        console.log($("#uploaderInputFile")[0]);
         var apptoken=localStorage.getItem("apptoken");
-        formData.append("file",$("#uploaderInput")[0].files[0]);
+        formData.append("file",$("#uploaderInputFile")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         formData.append("data",json);
