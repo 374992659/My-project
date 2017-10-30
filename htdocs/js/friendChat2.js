@@ -305,7 +305,7 @@ $(document).ready(function(){
     $('#uploaderInputPic').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         var formData= new FormData();
-        console.log($("#uploaderInputPic")[0]);
+        console.log($("#uploaderInputPic")[0].file);
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken})];
