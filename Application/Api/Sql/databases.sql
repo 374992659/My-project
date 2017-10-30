@@ -320,6 +320,20 @@ CREATE TABLE if NOT EXISTS `garden_opinion_$city_id` (
   KEY `dealer_code` (`dealer_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='小区意见箱';
 
+CREATE TABLE if NOT EXISTS `garden_room_$city_id` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `city_id` char(4) NOT NULL COMMENT '城市id',
+  `garden_code` varchar(20) NOT NULL COMMENT '小区code',
+  `room_num` varchar(10) NOT NULL COMMENT '房间号码',
+  `role` tinyint(4) NOT NULL COMMENT '角色 1：业主或业主相关  2：租户或租户相关',
+  `create_time` int(11) unsigned NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `city_id` (`city_id`),
+  KEY `room_num` (`room_num`),
+  KEY `role` (`role`),
+  KEY `create_time` (`create_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='小区房间';
+
 CREATE TABLE if not EXISTS `subject_$city_id` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '话题标题',
