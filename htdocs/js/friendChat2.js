@@ -244,7 +244,7 @@ $(document).ready(function(){
         history_chat = localStorage.getItem('history_'+sender_code);
         if(history){
             // history= JSON.parse(history);
-            console.log(typeof history_chat);
+            console.log( history_chat);
         }
 
 
