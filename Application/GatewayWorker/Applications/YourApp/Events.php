@@ -79,7 +79,7 @@ class Events
                        }
                 };
                 //获取用户在线的好友
-                $user_friends = $db->query('select user_code from user_friends');
+                $user_friends = $db->query('select friend_user_code from user_friends');
                 $online_user = Gateway::getAllClientSessions();
 //                        var_dump($online_user);
                 $online_friends = array();
