@@ -142,7 +142,7 @@ $(document).ready(function() {"use strict";
             ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
         });
         /**判断是否存在元素**/
-        function contains(arr, obj) {
+        function contains(arr, obj){
             var i = arr.length;
             while (i--){
                 if (arr[i] === obj){
@@ -164,10 +164,10 @@ $(document).ready(function() {"use strict";
         success: function (data){
             data = jsDecodeData(data);
             console.log(data);
-            if(data.errcode === 0) {
+            if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
                 var html = "";
-                $.each(data.data, function (i, item) {
+                $.each(data.data,function(i, item){
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id}">
@@ -182,7 +182,7 @@ $(document).ready(function() {"use strict";
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList" style="display: none">
-            <div class="weui-panel__bd friend">
+            <div class="weui-panel__bd friend${item.id}">
                     
             </div>
         </div> 

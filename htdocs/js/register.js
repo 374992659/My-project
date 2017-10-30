@@ -43,7 +43,7 @@ $(document).ready(function(){
                     $(document).on('click','#show-success',function(){
                         $.toptip(data.errmsg, 'success');
                     });
-                   window.location.href="friend.html";
+                   window.location.href="index.html";
                 }else{
                     $(document).on('click','#show-success',function(){
                         $.toptip(data.errmsg, 'success');
