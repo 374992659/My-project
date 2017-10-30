@@ -262,12 +262,13 @@ $(document).ready(function(){
         };
          //获取本地聊天记录
        var history_chat = localStorage.getItem('history_'+sender_code);
+        console.log(typeof history_chat);
         if(history_chat){
             // history= JSON.parse(history);
             history_chat=  console.log( history_chat);
             history_chat=JSON.stringify(history_chat);
-            console.log(history_chat);
-            console.log(typeof history_chat);
+           coson.log(JSON.stringify(history_chat));
+
             var html="";
             $.each(history_chat,function(i,item){
                 console.log(item);
