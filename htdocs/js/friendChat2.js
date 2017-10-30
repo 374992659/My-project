@@ -302,8 +302,8 @@ $(document).ready(function(){
         }
     });
     //上传图片
-    $('#uploaderInputPic').change(function(e) {
-        var Url=window.URL.createObjectURL(this.files) ;
+    $('#uploaderInput').change(function(e) {
+        var Url=window.URL.createObjectURL(this.files[0]) ;
         console.log(Url);
         var formData= new FormData();
         console.log($("#uploaderInputPic")[0].file);
@@ -352,7 +352,7 @@ $(document).ready(function(){
         });
     });
     //上传文件
-    $('#uploaderInput').change(function(e) {
+    $('#uploaderInputF').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         var formData= new FormData();
         console.log($("#uploaderInput")[0]);
