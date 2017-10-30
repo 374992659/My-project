@@ -28,19 +28,19 @@ class UserFriendsModel extends Model
         if($data){
             foreach($data as $k=>$v){
                 $v['friend_user'] = $this->query('select friend_user_code from user_friends where group_id='. $v['group_id']);
-                if($v['friend_user']){
-                    $online=0;
-                    foreach($v['friend_user'] as $key => $val){
-                        $table_id = substr($val['friend_user_code'],0,4);
-                        $val['is_online'] = M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$val['friend_user_code']])->getField('is_online');
-                        if( $val['is_online'] == 1){
-                            $online = $online+1;
-                        }
-                        $v['online_num']=$online;
-                        $v['friend_user'][$key] =$val;
-                    }
-                }
-                unset($v['friend_user']);
+//                if($v['friend_user']){
+//                    $online=0;
+//                    foreach($v['friend_user'] as $key => $val){
+//                        $table_id = substr($val['friend_user_code'],0,4);
+//                        $val['is_online'] = M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$val['friend_user_code']])->getField('is_online');
+//                        if( $val['is_online'] == 1){
+//                            $online = $online+1;
+//                        }
+//                        $v['online_num']=$online;
+//                        $v['friend_user'][$key] =$val;
+//                    }
+//                }
+//                unset($v['friend_user']);
                 $data[$k]=$v;
             }
         }
