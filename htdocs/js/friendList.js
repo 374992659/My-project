@@ -235,7 +235,7 @@ $(document).ready(function() {"use strict";
                             `
                             }
                         });
-                        $("#id").html(html);
+                        $("#"+id).html(html);
                         //获取个人介绍的内容
                         var remark=$(".remark");
                         console.log(remark.html());
