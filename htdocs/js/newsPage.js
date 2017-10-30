@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    window.location.reload();
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定

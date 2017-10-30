@@ -183,8 +183,8 @@ $(document).ready(function() {"use strict";
                 ${item.online_num}/${item.total}
             </div>
         </div>
-        <div class="weui-panel weui-panel_access friendList" style="display: none">
-            <div class="weui-panel__bd friend">
+        <div class="weui-panel weui-panel_access friendList friend" style="display: none">
+            <div class="weui-panel__bd " title="${item.id}">
                     
             </div>
         </div> 
@@ -235,7 +235,8 @@ $(document).ready(function() {"use strict";
                             `
                             }
                         });
-                        $(".friend").html(html);
+
+                        $(".friend").find(title=id).html(html);
                         //获取个人介绍的内容
                         var remark=$(".remark");
                         console.log(remark.html());
