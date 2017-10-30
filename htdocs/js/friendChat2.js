@@ -236,9 +236,13 @@ $(document).ready(function(){
             })();
 
         };
+
         history = localStorage.getItem('history_'+sender_code);
-        history= JSON.parse(history);
-        console.log(history);
+        if(history){
+            history= JSON.parse(history);
+            console.log(history);
+        }
+
 
         // 聊天历史记录
         $(".historyNews").click(function(){
