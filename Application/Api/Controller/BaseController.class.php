@@ -166,12 +166,12 @@ class BaseController extends Controller
         if($param){
             foreach($param as $k=>$v){
                 if(!$this->pdata[$v]){
-                    return false;
+                    $this->echoEncrypData(21);
                 }
             }
             return true;
         }
-        return false;
+        $this->echoEncrypData(21);
     }
 
 }
