@@ -99,7 +99,7 @@ $(document).ready(function(){
                              var img=data.content.split("/");
                              var http=img[0];
                              var chatPage=$("#chatPage");
-                             console.log(http);
+                             console.log(typeof http);
                              var arr=JSON.parse(localStorage.getItem("history"));
                              // console.log(arr);
                              if(arr){
