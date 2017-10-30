@@ -218,6 +218,7 @@ $(document).ready(function() {"use strict";
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
+                            console.log(item);
                             "use strict";
                             if(item.group_id==id){
                                 html+=`
