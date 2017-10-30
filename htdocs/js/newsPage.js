@@ -220,5 +220,18 @@ $(document).ready(function(){
         localStorage.setItem("group_code",group_code);
         localStorage.setItem("group_num",group_num);
         window.location.href="flockChat.html";
-    })
+    });
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能
+        }, false);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+    });
 });
