@@ -267,8 +267,8 @@ $(document).ready(function(){
            var history= $.parseJSON(history_chat);
             console.log(history);
             var html="";
-                $.each(JSON.parse(history),function(i,item){
-                    console.log(item.sender_code);
+                $.each(history,function(i,item){
+                    console.log(item);
                     html+=`
                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
