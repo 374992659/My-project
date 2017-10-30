@@ -26,10 +26,7 @@ $(document).ready(function() {"use strict";
                            var arr=[];
                             $.each(online_friends,function(i,item){
                                arr.push(item);
-
                             });
-                            console.log(arr.length);
-                            console.log(arr);
                             $(".online").html(arr.length+1);
                             localStorage.setItem("online_friends",JSON.stringify(arr));
                         }

@@ -236,12 +236,9 @@ $(document).ready(function(){
             var content=$(".chatContent").val();
             //获取页面发送内容
             var account_code =sender_code;          //获取发送好友的code
-            var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
-            if(content==null||content.length==0){
-               $(".pushBtn").attr("disabled",true);
-            }else{
 
-            } ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
+            var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
+            ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -265,6 +262,13 @@ $(document).ready(function(){
             timestamp = timestamp / 1000;
 
         });
+        $("#uploaderInputPic").change(function(){
+            var apptoken=localStorage.getItem("apptoken");
+            var content=localStorage.getItem("friendPic");
+            var message_type = 2;
+            ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
+            }
+        );
         /*
         * 判断是否存在元素
         * */
@@ -312,6 +316,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     console.log(data.data[0]);
+                    localStorage.setItem("friendPic","http://wx.junxiang.ren/project/"+data.data[0]);
                     var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
