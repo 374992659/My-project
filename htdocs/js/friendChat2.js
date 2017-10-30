@@ -100,7 +100,7 @@ $(document).ready(function(){
                              var http=img[0];
                              var chatPage=$("#chatPage");
                              console.log(typeof http);
-                             var josn_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.portrait+"','nickanme':'"+data.nickname+"'}";
+                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.portrait+"','nickanme':'"+data.nickname+"'}";
                              // history = localStorage.getItem('history_'+data.sender_code);
 
                              localStorage.setItem('history_'+data.sender_code,json_str);
@@ -244,7 +244,7 @@ $(document).ready(function(){
             // history= JSON.parse(history);
             console.log(history);
         }
-        
+
 
 
         // 聊天历史记录
