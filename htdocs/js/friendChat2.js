@@ -101,6 +101,8 @@ $(document).ready(function(){
                              var chatPage=$("#chatPage");
                              console.log(typeof http);
                              var josn_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.portrait+"','nickanme':'"+data.nickname+"'}";
+                             // history = localStorage.getItem('history_'+data.sender_code);
+
                              localStorage.setItem('history_'+data.sender_code,json_str);
 
                                  // var   arr={};
@@ -236,12 +238,13 @@ $(document).ready(function(){
             })();
 
         };
-
+         //获取本地聊天记录
         history = localStorage.getItem('history_'+sender_code);
         if(history){
-            history= JSON.parse(history);
+            // history= JSON.parse(history);
             console.log(history);
         }
+        
 
 
         // 聊天历史记录
