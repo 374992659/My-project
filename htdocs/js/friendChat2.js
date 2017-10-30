@@ -271,7 +271,7 @@ $(document).ready(function(){
             data=[];
                 $.each(history,function(i,item){
                     var jsonObj = eval('(' + item + ')');
-                    data[key]=jsonObj;
+                    data[i]=jsonObj;
                     console.log(jsonObj);
                 });
             console.log(data);
