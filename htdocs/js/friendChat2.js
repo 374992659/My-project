@@ -262,7 +262,7 @@ $(document).ready(function(){
         };
          //获取本地聊天记录
        var history_chat = localStorage.getItem('history_'+sender_code);
-        if(history){
+        if(history_chat){
             // history= JSON.parse(history);
             history_chat=  console.log( history_chat);
             history_chat=$.parseJSON(history_chat);
