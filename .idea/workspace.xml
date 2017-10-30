@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="friendChat.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="friendChat.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htdocs/friendChat.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.967741">
-              <caret line="164" column="25" selection-start-line="164" selection-start-column="25" selection-end-line="164" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.7274775">
+              <caret line="149" column="18" selection-start-line="149" selection-start-column="18" selection-end-line="149" selection-end-column="18" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -36,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="friendChat2.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="friendChat2.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/htdocs/js/friendChat2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22943221">
+            <state vertical-scroll-proportion="-3.5357144">
               <caret line="264" column="29" selection-start-line="264" selection-start-column="29" selection-end-line="264" selection-end-column="29" />
               <folding>
                 <marker date="1509372941582" expanded="false" signature="1502:1536" placeholder="..." />
@@ -176,10 +176,10 @@
         <option value="$PROJECT_DIR$/htdocs/js/newsPage.js" />
         <option value="$PROJECT_DIR$/htdocs/js/flockChat.js" />
         <option value="$PROJECT_DIR$/htdocs/flockChat.html" />
-        <option value="$PROJECT_DIR$/htdocs/friendChat.html" />
         <option value="$PROJECT_DIR$/htdocs/js/friendList.js" />
         <option value="$PROJECT_DIR$/htdocs/js/flockPhpto.js" />
         <option value="$PROJECT_DIR$/htdocs/js/friendChat2.js" />
+        <option value="$PROJECT_DIR$/htdocs/friendChat.html" />
       </list>
     </option>
   </component>
@@ -247,6 +247,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="htdocs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiejia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiejia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="htdocs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -736,19 +754,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/friendChat.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.967741">
-          <caret line="164" column="25" selection-start-line="164" selection-start-column="25" selection-end-line="164" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/friendChat2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22943221">
+        <state vertical-scroll-proportion="-3.5357144">
           <caret line="264" column="29" selection-start-line="264" selection-start-column="29" selection-end-line="264" selection-end-column="29" />
           <folding>
             <marker date="1509372941582" expanded="false" signature="1502:1536" placeholder="..." />
@@ -821,6 +829,16 @@
             <marker date="1509372941582" expanded="false" signature="24852:24864" placeholder="..." />
             <marker date="1509372941582" expanded="false" signature="25024:25041" placeholder="..." />
             <marker date="1509372941582" expanded="true" signature="25042:25146" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/friendChat.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7274775">
+          <caret line="149" column="18" selection-start-line="149" selection-start-column="18" selection-end-line="149" selection-end-column="18" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
