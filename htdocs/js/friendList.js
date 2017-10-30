@@ -100,7 +100,7 @@ $(document).ready(function() {"use strict";
                            $("#newsNum").attr("style","padding:0 4px");
                            console.log(num);
                             num++;
-                            $("#newsNum").innerHTML=num;
+                            $("#newsNum").text(num);
                         }
                     }
                     break;
