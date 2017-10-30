@@ -101,13 +101,15 @@ $(document).ready(function(){
                              var chatPage=$("#chatPage");
                              console.log(typeof http);
                              var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','portrait':'"+data.send_portrait+"','nickanme':'"+data.sender_nickname+"'}";
-                             console.log(json_str);
                              var sender_code = data.sender_code;
                                 history_chats = localStorage.getItem('history_'+data.sender_code);
                                 if(history_chats){
                                     var length = history_chats.length;
                                     history_chats[length]= json_str;
                                     console.log(JSON.stringify(history_chats));
+                                    localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
+                                }else{
+                                    history_chats[0]= json_str;
                                     localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
                                 }
 
