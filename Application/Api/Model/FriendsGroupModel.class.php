@@ -24,7 +24,7 @@ class FriendsGroupModel extends Model
      * 获取用户好友分组
      * */
     public function getGroup(){
-        $data = $this->select();
+        $data = $this->where(['status'=>1])->order('id asc')->select();
         return $data;
     }
     /*
