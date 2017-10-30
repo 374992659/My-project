@@ -103,18 +103,18 @@ $(document).ready(function(){
                              var arr=JSON.parse(localStorage.getItem("history"));
                              // console.log(arr);
                              if(arr){
-
+                        
                              }else{
-                                 // var   arr={};
-                                 // arr[sender_code]=[];
-                                 // var hash=[];
-                                 // hash["content"]=data.content;
-                                 // hash["time"]=data.send_time;
-                                 // arr.sender_code.push(hash);
-                                 // console.log(arr);
-                                 // var string=JSON.stringify(arr);
-                                 // console.log(typeof string);
-                                 // localStorage.setItem("history",arr);
+                                 var   arr={};
+                                  arr[sender_code]=[];
+                                  var hash=[];
+                                  hash["content"]=data.content;
+                                  hash["time"]=data.send_time;
+                                  arr.sender_code.push(hash);
+                                  console.log(arr);
+                                  var string=JSON.stringify(arr);
+                                  console.log(typeof string);
+                                  localStorage.setItem("history",string);
                              }
                                 //展示好友发送的聊天信息
                                 if(http==="http:"){
