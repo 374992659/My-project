@@ -14,7 +14,6 @@ $(document).ready(function() {"use strict";
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode)===0){
-
                         var data = (result.data);
                         // 在线好友
                         var online_friends=data.online_friends;
@@ -35,6 +34,7 @@ $(document).ready(function() {"use strict";
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message_num;
+
                             })
                         }
                         // 群未读新消息
@@ -101,6 +101,10 @@ $(document).ready(function() {"use strict";
                            console.log(num);
                             num++;
                             $("#newsNum").text(num);
+                            // 把接收到的好友信息存在本地
+                            var arr={}
+
+
                         }
                     }
                     break;
@@ -110,17 +114,12 @@ $(document).ready(function() {"use strict";
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
                         var html = patharr[parseInt(patharr.length-1)];
-                        if(html ==='***.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
-                            var current_code = $(".elements").val('group_code');   //获取当前聊天群的群code
-                            if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
-                                //展示好友发送的聊天信息
-
-                                //发送通知给服务器
-                                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
-                                ws.send(sendMessage);
-                            }
-                        }else{    //其他页面 暂不处理
-
+                        if(html ==='index.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
+                            var num=$("#newsNum").html();
+                            $("#newsNum").attr("style","padding:0 4px");
+                            console.log(num);
+                            num++;
+                            $("#newsNum").text(num);
                         }
                     }
                     break;
@@ -356,4 +355,7 @@ $(document).ready(function() {"use strict";
         localStorage.removeItem("apptoken");
         window.location.href="landing.html";
     });
+    window.addEventListener("popstate", function(e) {
+        alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能
+    }, false);
 });
