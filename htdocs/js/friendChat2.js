@@ -267,7 +267,7 @@ $(document).ready(function(){
             // history= JSON.parse(history);
             history_chat=  console.log( history_chat);
             history_chat=JSON.stringify(history_chat);
-           coson.log(JSON.stringify(history_chat));
+           console.log(JSON.stringify(history_chat));
 
             var html="";
             $.each(history_chat,function(i,item){
