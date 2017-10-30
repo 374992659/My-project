@@ -269,9 +269,12 @@ $(document).ready(function(){
             console.log(jsonObj);
             var html="";
                 $.each(history,function(i,item){
-                    data={};
+                    data=[];
+
                     var jsonObj = eval('(' + item + ')');
-                    console.log(jsonObj.length);
+                    data[i]=jsonObj;
+                    console.log(jsonObj);
+                    console.log(data);
                 });
 
 
