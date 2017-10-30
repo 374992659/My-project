@@ -268,15 +268,13 @@ $(document).ready(function(){
             var jsonObj = eval('(' + history + ')');
             console.log(jsonObj);
             var html="";
+            data=[];
                 $.each(history,function(i,item){
-                    data=[];
-                    console.log(i);
                     var jsonObj = eval('(' + item + ')');
-                    data[i]=jsonObj;
+                    data[key]=jsonObj;
                     console.log(jsonObj);
-                    console.log(data);
                 });
-
+            console.log(data);
 
             $("#chatPage").append(html);
         }
