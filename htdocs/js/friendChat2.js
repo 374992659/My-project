@@ -117,7 +117,7 @@ $(document).ready(function(){
                                  // localStorage.setItem("history",arr);
                              }
                                 //展示好友发送的聊天信息
-                                if(http=="http:"){
+                                if(http==="http:"){
                                     var  html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -126,8 +126,8 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               ${data.content}
-                             
+                              
+                              <img src="${data.content}" alt="">
                             </span>
                    </div>                   
                 </div>                  `;
@@ -141,7 +141,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               <img src="${data.content}" alt="">
+                               ${data.content}
                              
                             </span>
                    </div>                   
