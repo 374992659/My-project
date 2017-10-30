@@ -97,7 +97,7 @@ $(document).ready(function() {"use strict";
                         var html = patharr[parseInt(patharr.length-1)];
                         if(html ==='index.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                            var num=$("#newsNum").html();
-                           $("#newsNum").attr("style","padding:2px");
+                           $("#newsNum").attr("style","padding:0 4px");
                            console.log(num);
                             num++;
                             $("#newsNum").html(num);
