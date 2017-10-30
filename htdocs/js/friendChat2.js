@@ -239,10 +239,10 @@ $(document).ready(function(){
 
         };
          //获取本地聊天记录
-        history = localStorage.getItem('history_'+sender_code);
+        history_chat = localStorage.getItem('history_'+sender_code);
         if(history){
             // history= JSON.parse(history);
-            console.log(history);
+            console.log(history_chat);
         }
 
 
