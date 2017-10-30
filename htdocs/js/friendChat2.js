@@ -268,7 +268,7 @@ $(document).ready(function(){
             console.log(typeof history);
             var html="";
             $.each(history,function(i,item){
-                console.log(item.content);
+                console.log(item);
                   html+=`
                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
