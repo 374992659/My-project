@@ -353,5 +353,6 @@ $(document).ready(function() {"use strict";
     // 退出登录
     $(".logOut").click(function(){
         localStorage.clear();
+        window.localtion.href="landing.html";
     });
 });
