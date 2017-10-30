@@ -125,9 +125,9 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                            <span class="weui-media-box__desc" style="padding: 0">
                               
-                              <img src="${data.content}" alt="" style="width: 100px">
+                              <img src="${data.content}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `;
@@ -283,9 +283,11 @@ $(document).ready(function(){
             timestamp = timestamp / 1000;
 
         });
+        // 上传图片
         $("#uploaderInputPic").change(function(){
+
              var apptoken=localStorage.getItem("apptoken");
-            var content=localStorage.getItem("friendPic");
+             var content=localStorage.getItem("friendPic");
              var message_type = 2;
              var account_code =sender_code;
              ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
