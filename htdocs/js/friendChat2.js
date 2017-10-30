@@ -335,8 +335,7 @@ $(document).ready(function(){
             // 自己发送的消息存本地
             // 把好友消息存在本地
             // 获取发送的时间戳
-            var timestamp = Date.parse(new Date());
-            timestamp = timestamp / 1000;
+           var time= (new Date()).toLocaleDateString();
 
         });
         // 发送图片
