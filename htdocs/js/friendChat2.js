@@ -266,7 +266,8 @@ $(document).ready(function(){
             var apptoken=localStorage.getItem("apptoken");
             var content=localStorage.getItem("friendPic");
             var message_type = 2;
-            ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
+            var account_code =sender_code;
+            ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':sender_code,'message_type':message_type}));
             }
         );
         /*
