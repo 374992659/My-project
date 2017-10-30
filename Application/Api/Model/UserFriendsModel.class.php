@@ -69,13 +69,19 @@ class UserFriendsModel extends Model
         $account = $this->account_code;
         $FriendsGroup=new FriendsGroupModel($account);
         if(!$FriendsGroup->groupExists($group_id)){
-            return false;
+            return 300;
         }
         $res = $this->field('friend_user_code,friend_nickname,friend_portrait,friend_signature,group_id')->where(['group_id' =>$group_id])->select();
-        foreach($res as $k =>$v){
-            $res[$k]['is_online'] = $this->is_online($v['friend_user_code']);
+        if($res){
+            foreach($res as $k =>$v){
+                $res[$k]['is_online'] = $this->is_online($v['friend_user_code']);
+            }
+            return $res;
+        }else{
+            return 309;
         }
-        return $res;
+
+
     }
 
     /*
