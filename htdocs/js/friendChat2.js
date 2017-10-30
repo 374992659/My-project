@@ -109,7 +109,7 @@ $(document).ready(function(){
                                     console.log(JSON.stringify(history_chats));
                                     localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
                                 }else{
-                                    history_chats[0]= json_str;
+                                    history_chats= [json_str];
                                     localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
                                 }
 
