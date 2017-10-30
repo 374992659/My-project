@@ -350,4 +350,8 @@ $(document).ready(function() {"use strict";
         localStorage.setItem("header",header);
         window.location.href="friendChat.html";
     });
+    // 退出登录
+    $(".logOut").click(function(){
+        localStorage.clear();
+    });
 });
