@@ -22,27 +22,22 @@ class FriendsController extends VersionController
         $data1 = $model->getGroup();
         $model = new Model\UserFriendsModel($account_code);
         $data2 = $model->getFriendsNum();
-        if($data2){
-            foreach($data2 as $k=>$v){
-                if($data1){
-                    foreach($data1 as $key =>$val){
-                        if($v['group_id'] == $val['id']){
-                            $v['group_name'] = $val['group_name'];
+        if($data1){
+            foreach ($data1 as $k=>$v){
+                if($data2){
+                    $v['total']=0;
+                    $v['friend_user']=array();
+                    foreach ($data2 as $key =>$val){
+                        if(intval($v['id'])===intval($val['group_id'])){
+                            $v['total']=$val['total'];
+                            $v['friend_user']=$val['friend_user'];
                         }
                     }
-                }else{
-                    $this->echoEncrypData(5,'');
                 }
-                $data2[$k]=$v;
+                $data1[$k]=$v;
             }
-            $this->echoEncrypData(0,'',$data2);
-        }else{
-            foreach ($data1  as $k=>$v){
-                $data1[$k]['total']=0;
-                $data1[$k]['online_num']=0;
-            }
-            $this->echoEncrypData(0,'',$data1);
         }
+        $this->echoEncrypData(0,'',$data1);
 
     }
     /*
