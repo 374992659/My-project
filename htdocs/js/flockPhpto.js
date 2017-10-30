@@ -36,7 +36,7 @@ $(document).ready(function(){
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
                             </div>
-                            <ul class="LiImg">
+                            <ul class="${item_id}">
                                   
                             </ul>
                         </div>
@@ -53,7 +53,7 @@ $(document).ready(function(){
                             `
                         });
                         console.log(Li);
-                        $(".LiImg").append(Li);
+                        $("#"+item.id).append(Li);
                     });
 
                 }
