@@ -264,11 +264,10 @@ $(document).ready(function(){
        var history_chat = localStorage.getItem('history_'+sender_code);
         console.log(typeof history_chat);
         if(history_chat){
-           var history= JSON.parse(history_chat);
+           var history= $.parseJSON(history_chat);
             console.log(typeof history);
             var html="";
-            $.getJSON(history,function(data){
-                $.each(data,function(i,item){
+                $.each(history,function(i,item){
                     console.log(item.sender_code);
                     html+=`
                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -284,7 +283,7 @@ $(document).ready(function(){
                 </div>
                   `
                 });
-            });
+
 
             $("#chatPage").append(html);
         }
