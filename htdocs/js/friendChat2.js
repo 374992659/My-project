@@ -302,13 +302,13 @@ $(document).ready(function(){
         }
     });
     //上传图片
-    $('#uploaderInput').change(function(e) {
+    $('#uploaderInputPic').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         console.log(Url);
         var formData= new FormData();
-        console.log($("#uploaderInput")[0].files[0]);
+        console.log($("#uploaderInputPic")[0].files[0]);
         var apptoken=localStorage.getItem("apptoken");
-        formData.append("file",$("#uploaderInput")[0].files[0]);
+        formData.append("file",$("#uploaderInputPic")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         formData.append("data",json);
