@@ -26,13 +26,13 @@ $(document).ready(function(){
                 <div class="weui-cells">
                     <div class="weui-cell LinkBtn"  title="${item.id}">
                         <div class="weui-cell__hd">
-                            <img class="linkBtn" src="image/right.png" style="width: 10px">
+                            <img class="linkBtn" src="image/right.png" style="width: 35px">
                         </div>
                         <div class="weui-cell__bd">
-                            <p style="font-size: 15px">${item.group_name}</p>
+                            <p style="font-size: 18px">${item.group_name}</p>
                         </div>
                         <div class="weui-cell__ft">
-                            <span>${item.online_num}</span>/<span>${item.total}</span>
+                            <span style="font-size: 15px">0</span>/<span>${item.total}</span>
                         </div>
                     </div>
                     <!--我的好友个数-->
