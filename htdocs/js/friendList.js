@@ -298,7 +298,7 @@ $(document).ready(function() {
                             for(var j=0,le=online.length;j<le;j++){
                                 if(allfriend[i]==online[j]){
                                    $("#"+online[j]).attr("style","opacity: 1");
-                                    $("#"+id).append($("#"+online[j]).parent().parent().clone(true));
+                                    $("#"+id).prepend($("#"+online[j]).parent().parent().clone(true));
                                     $("#"+online[j]).parent().parent().remove();
                                 }
                             }
