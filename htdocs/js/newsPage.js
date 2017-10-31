@@ -38,8 +38,6 @@ $(document).ready(function(){
 
     })();
     // 获取所有有聊天记录的code
-    var friend_code=$(".newsNum").attr("id");
-    console.log(friend_code);
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
@@ -54,6 +52,8 @@ $(document).ready(function(){
                     // 好友未读消息
                     var friends_new_message = data.friends_new_message;
                     if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
+                        var friend_code=$(".newsNum").attr("id");
+                        console.log(friend_code);
                         console.log(friends_new_message);
                         var html="";
                         $.each(friends_new_message,function(i,item){
