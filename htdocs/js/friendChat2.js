@@ -362,15 +362,15 @@ $(document).ready(function(){
            var time= (new Date()).toLocaleDateString();
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
             console.log(json_str);
-            var history_chats = localStorage.getItem('history_'+sender);
+            var history_chats = localStorage.getItem('history_'+sender_code);
             if(!history_chats){
                 history_chat = new Array();
                 history_chats=[json_str];
-                localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
+                localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
             }else{
                 history_chats = JSON.parse(history_chats);
                 history_chats[history_chats.length] = json_str;
-                localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
+                localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
             }
 
 
