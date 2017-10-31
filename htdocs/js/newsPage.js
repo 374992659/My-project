@@ -201,7 +201,7 @@ $(document).ready(function(){
                    `
                }
             });
-            $("#newsPage").prepend(html);
+            $(".newsList").append(html);
         }
 
     })();
