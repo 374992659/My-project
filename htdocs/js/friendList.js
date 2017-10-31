@@ -52,32 +52,14 @@ $(document).ready(function() {
                         var online_friends=data.online_friends;
                         console.log(data);
                         if(online_friends){
-                            // 获取所有好友的code
                             // 获取在线好友code
                            var onlineFried=[];
                             $.each(online_friends,function(i,item){
                                 onlineFried.push(item);
                             });
+                            // 把在线好友压入数组
                             $(".online").html(onlineFried.length);
-                            // 获取所有好友
-                            var allFriend=localStorage.getItem("allFriend_code");
-                              console.log(typeof allFriend);
-                             var all=JSON.parse(allFriend);
-                             console.log(typeof all);
-                            console.log(all);
-                            console.log(onlineFried);
-                            for(var i=0 ,len=all.length;i<len;i++){
-                                console.log(all[i]);
-                                for(var j=0,le=onlineFried.length;j<le;j++){
-                                    if(all[i]==onlineFried[j]){
-                                        console.log(onlineFried[j]);
-                                        console.log($("#"+onlineFried[j]).attr("src"));
-                                        console.log(123);
-                                    }
-                                }
-                            }
-                            console.log(onlineFried.length);
-
+                            // 把在线好友存在本地
                             localStorage.setItem("online_friends",JSON.stringify(onlineFried));
                         }
                         // 好友未读新消息
@@ -107,6 +89,7 @@ $(document).ready(function() {
                             $("#newsNum").html();
                         }else{
                             $("#newsNum").html(parseInt(friends_new_messageNum)+parseInt(group_new_messageNum)+parseInt(friends_new_applyNum));
+                            $("#newsNum").attr("style","padding:0 4px");
                         }
                     }
                     break;
@@ -118,7 +101,9 @@ $(document).ready(function() {
                         var online_friends = localStorage.getItem('online_friends');
                         console.log(online_friends);
                         if(!contains(online_friends,friend_code)){
-                            // var newOnline = JSON.parse(online_friends);
+                            console.log("好友上线");
+                           var newOnline = JSON.parse(online_friends);
+                           console.log(newOnline);
                             // newOnline.push(friend_code);
                         }
                         // localStorage.setItem('online_friends',newOnline);
@@ -301,7 +286,6 @@ $(document).ready(function() {
                             for(var j=0,le=online.length;j<le;j++){
                                 if(allfriend[i]==online[j]){
                                    $("#"+online[j]).attr("style","opacity: 1");
-                                    // $("#"+id).prepend($("#"+online[j]).parent().parent().clone(true));
                                     var clone=$("#"+online[j]).parent().parent().clone(true);
                                     $("#"+online[j]).parent().parent().remove();
                                     $("#"+id).prepend(clone);
