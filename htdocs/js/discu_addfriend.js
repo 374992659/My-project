@@ -147,7 +147,7 @@ $(document).ready(function(){
                     console.log(user_code);
                 });
             //数据格式转换
-               var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
+               var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":"2701123456"})],
             // 加密
                jsonEncryptData=jsEncryptData(data);
             console.log(data);
