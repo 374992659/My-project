@@ -50,68 +50,68 @@ $(document).ready(function(){
                     localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                     // 好友未读消息
                     var friends_new_message = data.friends_new_message;
-                    // if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
-                    //     var friend_code=$(".newsNum").attr("id");
-                    //     console.log(friend_code);
-                    //     console.log(friends_new_message);
-                    //     var html="";
-                    //     $.each(friends_new_message,function(i,item){
-                    //         if(item.sender_code=friend_code){
-                    //             console.log(13);
-                    //             $("#"+friend_code).html(item.message_num);
-                    //         }else{
-                    //             // 发送消息的好友code
-                    //             html+=`
-                    //             <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
-                    //                 <div class="weui-media-box__hd">
-                    //                     <span class="newsNum">${item.message_num}</span>
-                    //                     <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
-                    //                 </div>
-                    //                 <div class="weui-media-box__bd">
-                    //                     <h4 class="weui-media-box__title">${item.sender_nickname}</h4><!--昵称-->
-                    //                     <p class="weui-media-box__desc"></p><!--最新的消息-->
-                    //                 </div>
-                    //             </div>
-                    //         `;
-                    //         }
-                    //     });
-                    //     $(".newsList").append(html);
-                    // }
+                    if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
+                        var friend_code=$(".newsNum").attr("id");
+                        console.log(friend_code);
+                        console.log(friends_new_message);
+                        var html="";
+                        $.each(friends_new_message,function(i,item){
+                            if(item.sender_code=friend_code){
+                                console.log(13);
+                                $("#"+friend_code).html(item.message_num);
+                            }else{
+                                // 发送消息的好友code
+                                html+=`
+                                <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
+                                    <div class="weui-media-box__hd">
+                                        <span class="newsNum">${item.message_num}</span>
+                                        <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">${item.sender_nickname}</h4><!--昵称-->
+                                        <p class="weui-media-box__desc"></p><!--最新的消息-->
+                                    </div>
+                                </div>                           
+                            `;
+                            }
+                        });
+                        $(".newsList").append(html);
+                    }
                     // 群未读消息
                     var group_new_message = data.group_new_message;
-                //     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
-                //                 var html="";
-                //                 $.each(group_new_message,function(i,item){
-                //                     if(item.count==0){
-                //                         html+=`
-                // <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
-                //     <div class="weui-media-box__hd">
-                //         <span class="newsNum" title="${item.group_num}"></span>
-                //         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //         <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
-                //         <p class="weui-media-box__desc">已读消息</p><!--最新的消息-->
-                //     </div>
-                // </div>
-                //   `
-                //    }else{
-                //     html+=`
-                // <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
-                //     <div class="weui-media-box__hd">
-                //         <span class="newsNum" title="${item.group_num}">${item.count}</span>
-                //         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //         <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
-                //         <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
-                //     </div>
-                // </div>
-                //   `
-                //          }
-                //                 });
-                //      $(".newsList").append(html);
-                //     }
+                    if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
+                                var html="";
+                                $.each(group_new_message,function(i,item){
+                                    if(item.count==0){
+                                        html+=`
+                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
+                    <div class="weui-media-box__hd">
+                        <span class="newsNum" title="${item.group_num}"></span>
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
+                        <p class="weui-media-box__desc">已读消息</p><!--最新的消息-->
+                    </div>
+                </div>
+                  `
+                   }else{
+                    html+=`
+                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
+                    <div class="weui-media-box__hd">
+                        <span class="newsNum" title="${item.group_num}">${item.count}</span>
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
+                        <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
+                    </div>
+                </div>
+                  `
+                         }
+                                });
+                     $(".newsList").append(html);
+                    }
                     //好友申请未读消息
                     var friends_new_apply = data.friends_new_apply;
                     if(friends_new_apply){                      //用户添加好友的申请
