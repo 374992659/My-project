@@ -9,7 +9,7 @@ $(document).ready(function(){
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
-           url:url+"friends_getGroup",
+            url:url+"friends_getGroup",
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
