@@ -72,6 +72,7 @@ $(document).ready(function() {
                                     if(all[i]==onlineFried[j]){
                                         console.log(onlineFried[j]);
                                         $("."+onlineFried[j]).attr("style","height:100px");
+                                        console.log($("."+onlineFried[j]));
                                         console.log(123);
                                     }
                                 }
