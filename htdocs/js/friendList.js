@@ -299,7 +299,7 @@ $(document).ready(function() {
                                 if(allfriend[i]==online[j]){
                                    $("#"+online[j]).attr("style","opacity: 1");
                                     $("#"+id).prepend($("#"+online[j]).parent().parent().clone(true));
-                                    $("#"+online[j]).parent().parent().remove();
+                                    // $("#"+online[j]).parent().parent().remove();
                                 }
                             }
                         }
