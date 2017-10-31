@@ -70,8 +70,9 @@ $(document).ready(function() {
                                 console.log(all[i]);
                                 for(var j=0,le=onlineFried.length;j<le;j++){
                                     if(all[i]==onlineFried[j]){
-                                        console.log(onlineFried[0]);
+                                        console.log(onlineFried[j]);
                                         $("."+onlineFried[j]).attr("style","opacity:1");
+                                        console.log(123);
                                     }
                                 }
                             }
