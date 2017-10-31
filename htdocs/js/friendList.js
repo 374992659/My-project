@@ -56,12 +56,22 @@ $(document).ready(function() {
                             var userCode= $(".group").find(".skipChat").attr("title");
                             console.log($(".skipChat").attr("title"));
                             //获取在线好友code
-                           var arr=[];
+                           var onlineFried=[];
                             $.each(online_friends,function(i,item){
-                               arr.push(item);
+                                onlineFried.push(item);
                             });
-                            $(".online").html(arr.length);
+                            $(".online").html(onlineFried.length);
+                            // 获取所有好友
+                            var allFriend=localStorage.getItem("allFriend_code");
+                            $.each(allFriend,function(i,item){
+                                $.each(onlineFried,function(i,online){
+                                    if(item===online){
+                                        $("."+online).attr("style","opacity:1");
+                                    }
+                                })
+                            });
                             console.log(arr.length);
+
                             localStorage.setItem("online_friends",JSON.stringify(arr));
                         }
                         // 好友未读新消息
@@ -263,9 +273,9 @@ $(document).ready(function() {
                             "use strict";
                             if(item.group_id==id){
                                 html+=`
-                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}"">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="${item.friend_portrait}" style="opacity: .6">
+                            <img class="weui-media-box__thumb ${item.friend_user_code}" src="${item.friend_portrait}" style="opacity: .6"  id="">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
