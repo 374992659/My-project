@@ -212,7 +212,7 @@ $(document).ready(function(){
     $(".newsList").on("click",".friendChat",function(e){
         // 获取发送方的个人信息
         //code号
-       var sender_code=$(e.target).attr("title"),
+       var sender_code=$(this).attr("title"),
            //头像
             header=$(this).find("img").attr("src");
             console.log(header);
