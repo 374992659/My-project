@@ -287,7 +287,7 @@ $(document).ready(function(){
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                         <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                            <img class="weui-media-box__thumb" src="${item.getter_portrait}" alt="">
+                            <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
                                 <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
@@ -316,7 +316,7 @@ $(document).ready(function(){
                 });
                 $("#chatPage").prepend(html)
             }
-            
+
         })();
 
         // 聊天历史记录
@@ -358,10 +358,11 @@ $(document).ready(function(){
             // 自己发送的消息存本地
             // 把好友消息存在本地
             // 获取发送的时间戳
+            var sender=localStorage.getItem("sender_code");
            var time= (new Date()).toLocaleDateString();
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
             console.log(json_str);
-            var history_chats = localStorage.getItem('history_'+sender_code);
+            var history_chats = localStorage.getItem('history_'+sender);
             if(!history_chats){
                 history_chat = new Array();
                 history_chats=[json_str];
