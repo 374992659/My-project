@@ -1,4 +1,30 @@
-$(document).ready(function() {"use strict";
+$(document).ready(function() {
+    "use strict";
+    // 获取所有好友
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+        // 数据格式转换
+            data=['',JSON.stringify({"apptoken":apptoken})],
+        // 加密
+            json=jsEncryptData(data);
+        $.ajax({
+            url:url+"Friends_getAllFriends",
+            type:"POST",
+            data:{"data":json},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $.each(data.data,function(i,item){
+                        console.log(item.user_code);
+                    })
+                }
+            },
+            error:function(){}
+        })
+    })();
     // 及时通讯
     (function(){
         var apptoken = localStorage.getItem('apptoken');
@@ -125,23 +151,6 @@ $(document).ready(function() {"use strict";
                     break;
             }
         };
-        ws.onopen=function(e){
-            ws.send(JSON.stringify({'type' : 1,'apptoken':apptoken}));
-        };
-        //群聊点击发送
-        $(".elements").click(function(){
-            var content=$(".elements").val('content');                //获取页面发送内容
-            var group =$(".elements").val('group_code');           //获取发送好友的code
-            var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
-            ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
-        });
-        //发送消息给好友
-        $(".elements").click(function(){
-            var content=$(".elements").val('content');                  //获取页面发送内容
-            var account_code =$(".elements").val('user_code');          //获取发送好友的code
-            var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
-            ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
-        });
         /**判断是否存在元素**/
         function contains(arr, obj){
             var i = arr.length;
