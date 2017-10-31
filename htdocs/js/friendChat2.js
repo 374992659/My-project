@@ -241,7 +241,7 @@ $(document).ready(function(){
                                 `
                             }
                         });
-                        $("#chatPage").append(html);
+                        $("#chatPage").prepend(html);
 
                     }
                     break
@@ -336,6 +336,19 @@ $(document).ready(function(){
             // 把好友消息存在本地
             // 获取发送的时间戳
            var time= (new Date()).toLocaleDateString();
+            var json_str = "{'sender_code':'"+123+"','type':'"+data.type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+data.sender_nickname+"','portrait':'"+data.send_portrait+"'}";
+            console.log(json_str);
+            var history_chats = localStorage.getItem('history_'+data.sender_code);
+            if(!history_chats){
+                history_chat = new Array();
+                history_chats=[json_str];
+                localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
+            }else{
+                history_chats = JSON.parse(history_chats);
+                history_chats[history_chats.length] = json_str;
+                localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
+            }
+
 
         });
         // 发送图片
