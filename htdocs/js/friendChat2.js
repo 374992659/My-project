@@ -317,7 +317,7 @@ $(document).ready(function(){
                     }
                 });
                 var chatPage=$("#chatPage");
-                chatPage.prepend(html);
+                chatPage.html(html);
                 document.body.scrollTop=chatPage.height();
             }
 
