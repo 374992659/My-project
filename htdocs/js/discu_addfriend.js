@@ -80,7 +80,7 @@ $(document).ready(function(){
                         <div class="weui-cells weui-cells_checkbox">
                             <label class="weui-cell weui-check__label" for="${item.friend_user_code}">
                                 <div class="weui-cell__hd">
-                                    <input type="checkbox" class="weui-check" name="checkbox1"  src="${item.friend_portrait}" id="${item.friend_user_code}" title="${item.friend_user_code}">
+                                    <input type="checkbox" class="weui-check" value="${item.friend_user_code}" name="checkbox1"  src="${item.friend_portrait}" id="${item.friend_user_code}" title="${item.friend_user_code}">
                                     <i class="weui-icon-checked"></i>
                                 </div>
                                 <div class="weui-cell__bd">
