@@ -98,7 +98,7 @@ $(document).ready(function() {
                     if(parseInt(result.errcode)===0){
                         var data = (result.data);
                         var friend_code = data.user_code;
-                        var online_friends = localStorage.getItem('online_friends');
+                        var online_friends =localStorage.getItem('online_friends');
                         console.log(online_friends);
                         if(!contains(online_friends,friend_code)){
                             console.log("好友上线");
