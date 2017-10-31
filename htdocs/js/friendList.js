@@ -62,7 +62,7 @@ $(document).ready(function() {
                             // 获取所有好友
                             var allFriend=localStorage.getItem("allFriend_code");
                               console.log(typeof allFriend);
-                             var all=JSON.stringify(allFriend);
+                             var all=JSON.parse(allFriend);
                              console.log(typeof all);
                             console.log(data);
                             for(var i=0 ,len=allFriend.length;i<len;i++){
