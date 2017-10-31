@@ -53,9 +53,7 @@ $(document).ready(function() {
                         console.log(data);
                         if(online_friends){
                             // 获取所有好友的code
-                            var userCode= $(".group").find(".skipChat").attr("title");
-                            console.log($(".skipChat").attr("title"));
-                            //获取在线好友code
+                            // 获取在线好友code
                            var onlineFried=[];
                             $.each(online_friends,function(i,item){
                                 onlineFried.push(item);
@@ -63,6 +61,8 @@ $(document).ready(function() {
                             $(".online").html(onlineFried.length);
                             // 获取所有好友
                             var allFriend=localStorage.getItem("allFriend_code");
+                                allFriend=JSON.stringify(allFriend);
+                                console.log(allFriend);
                             for(var i=0 ,len=allFriend.length;i<len;i++){
                                 console.log(allFriend[i]);
                                 for(var j=0,len=onlineFried.length;j<len;j++){
