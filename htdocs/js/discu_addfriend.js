@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    "use strict";
 //加载好友分组
     var getGroup=function(){
         //获取apptoken
