@@ -147,7 +147,7 @@ $(document).ready(function(){
             $.ajax({
                 url:url+"group_addGroupUser",
                 type:"POST",
-                data:{"data":jsonEncryptDate},
+                data:{"data":jsonEncryptData},
                 success:function(data){
                     //解密
                     var data=jsDecodeData(data);
