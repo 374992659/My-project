@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    // 获取所有的友聊天记录的好友code
-    var friend_code=$("")
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
@@ -54,7 +52,7 @@ $(document).ready(function(){
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
                                 $.each(group_new_message,function(i,item){
-                                    if(item.sende_code==){
+                                    if(item.count==0){
                                         html+=`
                 <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
