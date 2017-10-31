@@ -63,13 +63,20 @@ $(document).ready(function() {
                             $(".online").html(onlineFried.length);
                             // 获取所有好友
                             var allFriend=localStorage.getItem("allFriend_code");
-                            $.each(allFriend,function(i,item){
-                                $.each(onlineFried,function(i,online){
-                                    if(item===online){
-                                        $("."+online).attr("style","opacity:1");
+                            for(var i=0 ,len=allFriend.length;i<len;i++){
+                                for(var j=0,len=onlineFried.length;j<len;j++){
+                                    if(allFriend[i]===onlineFried[j]){
+                                        $("."+onlineFried[j]).attr("style","opacity:1");
                                     }
-                                })
-                            });
+                                }
+                            }
+                            // $.each(allFriend,function(i,item){
+                            //     $.each(onlineFried,function(i,online){
+                            //         if(item===online){
+                            //             $("."+online).attr("style","opacity:1");
+                            //         }
+                            //     })
+                            // });
                             console.log(arr.length);
 
                             localStorage.setItem("online_friends",JSON.stringify(arr));
