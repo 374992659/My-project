@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/htdocs/js/discu_addfriend.js" line="111" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="72e252eb-f917-45dd-a2cb-1e5258fc0a04" name="Default" comment="" />
     <ignored path="meiejia.iws" />
@@ -23,46 +20,25 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.449598">
+    <splitter split-orientation="horizontal" split-proportion="0.6474954">
       <split-first>
         <leaf>
-          <file leaf-file-name="discu_addfriend.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="discu_addfriend.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/htdocs/discu_addfriend.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.37712345">
+                <state vertical-scroll-proportion="-10.741936">
                   <caret line="209" column="14" selection-start-line="209" selection-start-column="14" selection-end-line="209" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="discu_addfriend.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="discu_addfriend.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/discu_addfriend.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-2.75">
-                  <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-                  <folding>
-                    <marker date="1509460370806" expanded="true" signature="844:1728" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="913:1709" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="985:1498" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="1037:1140" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="1192:1301" placeholder="..." />
-                    <marker date="1509460370806" expanded="false" signature="1232:1247" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="1353:1471" placeholder="..." />
-                    <marker date="1509460370806" expanded="false" signature="1612:1625" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="1626:1686" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="3179:4632" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="3282:4601" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="3342:3641" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="3701:4564" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="3766:4525" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="3858:4482" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="3935:4100" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="4177:4435" placeholder="..." />
-                    <marker date="1509460370806" expanded="true" signature="5469:5534" placeholder="..." />
-                    <marker date="1509460370806" expanded="false" signature="6572:6624" placeholder="..." />
-                    <marker date="1509460370806" expanded="false" signature="6835:6887" placeholder="..." />
-                  </folding>
+                <state vertical-scroll-proportion="0.41025642">
+                  <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -71,20 +47,20 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/htdocs/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4020385">
+                <state vertical-scroll-proportion="-11.451612">
                   <caret line="73" column="10" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="friendList.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="friendList.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/friendList.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-5.107143">
+                <state vertical-scroll-proportion="0.33333334">
                   <caret line="194" column="9" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
                   <folding>
                     <marker date="1509458304556" expanded="true" signature="9421:10146" placeholder="..." />
@@ -171,8 +147,8 @@
         <option value="$PROJECT_DIR$/htdocs/js/friendChat2.js" />
         <option value="$PROJECT_DIR$/htdocs/js/friendList.js" />
         <option value="$PROJECT_DIR$/htdocs/js/createCrowd.js" />
-        <option value="$PROJECT_DIR$/htdocs/js/discu_addfriend.js" />
         <option value="$PROJECT_DIR$/htdocs/discu_addfriend.html" />
+        <option value="$PROJECT_DIR$/htdocs/js/discu_addfriend.js" />
       </list>
     </option>
   </component>
@@ -346,10 +322,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -802,9 +778,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.451612">
+          <caret line="73" column="10" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/discu_addfriend.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.741936">
+          <caret line="209" column="14" selection-start-line="209" selection-start-column="14" selection-end-line="209" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/friendList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.107143">
+        <state vertical-scroll-proportion="0.33333334">
           <caret line="194" column="9" selection-start-line="194" selection-start-column="9" selection-end-line="194" selection-end-column="9" />
           <folding>
             <marker date="1509458304556" expanded="true" signature="9421:10146" placeholder="..." />
@@ -829,45 +821,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/discu_addfriend.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.75">
-          <caret line="7" column="12" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-          <folding>
-            <marker date="1509460370806" expanded="true" signature="844:1728" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="913:1709" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="985:1498" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="1037:1140" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="1192:1301" placeholder="..." />
-            <marker date="1509460370806" expanded="false" signature="1232:1247" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="1353:1471" placeholder="..." />
-            <marker date="1509460370806" expanded="false" signature="1612:1625" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="1626:1686" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="3179:4632" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="3282:4601" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="3342:3641" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="3701:4564" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="3766:4525" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="3858:4482" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="3935:4100" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="4177:4435" placeholder="..." />
-            <marker date="1509460370806" expanded="true" signature="5469:5534" placeholder="..." />
-            <marker date="1509460370806" expanded="false" signature="6572:6624" placeholder="..." />
-            <marker date="1509460370806" expanded="false" signature="6835:6887" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4020385">
-          <caret line="73" column="10" selection-start-line="73" selection-start-column="10" selection-end-line="73" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/discu_addfriend.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37712345">
-          <caret line="209" column="14" selection-start-line="209" selection-start-column="14" selection-end-line="209" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.41025642">
+          <caret line="16" column="32" selection-start-line="16" selection-start-column="32" selection-end-line="16" selection-end-column="32" />
           <folding />
         </state>
       </provider>
