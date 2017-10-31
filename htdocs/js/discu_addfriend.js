@@ -141,9 +141,9 @@ $(document).ready(function(){
             // 获取群号码
                 group_num=localStorage.getItem("group_num"),
             // 用户code
-                user_code="";
+                user_code=[];
                $(".linkList input[type=checkbox]").each(function(){
-                   user_code=$(this).val();
+                   user_code.push($(this).val());
                     console.log(user_code);
                 });
             //数据格式转换
