@@ -66,10 +66,10 @@ $(document).ready(function() {
                              console.log(typeof all);
                             console.log(all);
 
-                            for(var i=0 ,len=allFriend.length;i<len;i++){
+                            for(var i=0 ,len=all.length;i<len;i++){
                                 console.log(allFriend[i]);
                                 for(var j=0,len=onlineFried.length;j<len;j++){
-                                    if(allFriend[i]===onlineFried[j]){
+                                    if(all[i]===onlineFried[j]){
                                         console.log(onlineFried[j]);
                                         $("."+onlineFried[j]).attr("style","opacity:1");
                                     }
