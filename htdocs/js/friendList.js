@@ -247,7 +247,10 @@ $(document).ready(function() {
      </div>                  
         `
                 });
-          $(".group").append(html);
+                $(".group").append(html);
+                var online=JSON.parse(localStorage.getItem("online_friends"));
+                console.log("在线好友数量");
+                console.log(online.length)
             }else{
                     window.location.href ="landing.html";
             }
@@ -298,7 +301,6 @@ $(document).ready(function() {
                             for(var j=0,le=online.length;j<le;j++){
                                 if(allfriend[i]==online[j]){
                                    $("#"+online[j]).attr("style","opacity: 1");
-                                    
                                     $("#"+id).prepend($("#"+online[j]).parent().parent().clone(true));
                                     $("#"+online[j]).parent().parent().remove();
                                 }
