@@ -71,8 +71,7 @@ $(document).ready(function() {
                                 for(var j=0,le=onlineFried.length;j<le;j++){
                                     if(all[i]==onlineFried[j]){
                                         console.log(onlineFried[j]);
-                                        $("#"+onlineFried[j]).attr("style","opacity: .6");
-                                        console.log($("#"+onlineFried[j]));
+                                        $("#"+onlineFried[j]).attr("src");
                                         console.log(123);
                                     }
                                 }
@@ -293,7 +292,6 @@ $(document).ready(function() {
                             }
                         });
                         $("#"+id).html(html);
-                        console.log( $("#"+id));
                         //获取个人介绍的内容
                         var remark=$(".remark");
                         console.log(remark.html());
