@@ -228,7 +228,7 @@ $(document).ready(function() {
                 $.each(data.data,function(i, item){
                     html += `
      <div class="weui-cells">
-        <div class="weui-cell LinkBtn"  title="${item.id}">
+        <div class="weui-cell LinkBtn"  title="${item.id} ">
             <div class="weui-cell__hd ">
                <img class="linkBtn" src="image/right.png "  title="${item.id}">
             </div>
@@ -236,7 +236,7 @@ $(document).ready(function() {
                 <p style=""  title="${item.id}">${item.group_name}</p>
             </div>
             <div class="weui-cell__ft" style="">
-                <span class="online" style="font-size: 15px"></span>/${item.total}
+                <span class="online ${item.id}" style="font-size: 15px"></span>/${item.total}
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
@@ -302,7 +302,7 @@ $(document).ready(function() {
                                 if(allfriend[i]==online[j]){
                                    $("#"+online[j]).attr("style","opacity: 1");
                                     $("#"+id).prepend($("#"+online[j]).parent().parent().clone(true));
-                                    $("#"+online[j]).parent().parent().remove();
+                                    // $("#"+online[j]).parent().parent().remove();
                                 }
                             }
                         }
