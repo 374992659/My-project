@@ -131,47 +131,47 @@ $(document).ready(function(){
         //    url=null;
         //}
         //添加好友
-        //$("addBtn").click(function(){
-        //    //获取  apptoken
-        //    var apptoken=localStorage.getItem("apptoken"),
-        //    // 获取群号码
-        //        group_num=localStorage.getItem("group_num"),
-        //    // 用户code
-        //        user_code=$(".linkList input[type=checkbox]").each(function(){
-        //            var code=$(this).attr("title");
-        //        }),
-        //    //数据格式转换
-        //        data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
-        //    // 加密
-        //        jsonEncryptData=jsEncryptData(data);
-        //    $.ajax({
-        //        url:url+"group_addGroupUser",
-        //        type:"POST",
-        //        data:{"data":jsonEncryptData},
-        //        success:function(data){
-        //            //解密
-        //            var data=jsDecodeData(data);
-        //            console.log(data);
-        //            if(data.errcode===0){
-        //                localStorage.setItem("apptoken",data.apptoken);
-        //                var html=`
-        //             <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-        //            `;
-        //                success.html(html);
-        //                setTimeout(hideTop,3000);
-        //            }else{
-        //                var html=`
-        //             <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-        //            `;
-        //                success.html(html);
-        //                setTimeout(hideTop,3000);
-        //
-        //            }
-        //        },
-        //        error:function(){}
-        //
-        //    })
-        //})
+        $("addBtn").click(function(){
+            //获取  apptoken
+            var apptoken=localStorage.getItem("apptoken"),
+            // 获取群号码
+                group_num=localStorage.getItem("group_num"),
+            // 用户code
+                user_code=$(".linkList input[type=checkbox]").each(function(){
+                    var code=$(this).attr("title");
+                }),
+            //数据格式转换
+                data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
+            // 加密
+                jsonEncryptData=jsEncryptData(data);
+            $.ajax({
+                url:url+"group_addGroupUser",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    //解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                        success.html(html);
+                        setTimeout(hideTop,3000);
+                    }else{
+                        var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                        success.html(html);
+                        setTimeout(hideTop,3000);
+
+                    }
+                },
+                error:function(){}
+
+            })
+        })
 
     }
 );
