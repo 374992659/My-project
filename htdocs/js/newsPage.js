@@ -63,35 +63,20 @@ $(document).ready(function(){
                             }else{
                                 // 发送消息的好友code
                                 html+=`
-                <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
-                    <div class="weui-media-box__hd">
-                        <span class="newsNum">${item.message_num}</span>
-                        <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">${item.sender_nickname}</h4><!--昵称-->
-                        <p class="weui-media-box__desc"></p><!--最新的消息-->
-                    </div>
-                </div>                           
+                                <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
+                                    <div class="weui-media-box__hd">
+                                        <span class="newsNum">${item.message_num}</span>
+                                        <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">${item.sender_nickname}</h4><!--昵称-->
+                                        <p class="weui-media-box__desc"></p><!--最新的消息-->
+                                    </div>
+                                </div>                           
                             `;
                             }
                         });
                         $(".newsList").append(html);
-                    }
-                    else{
-                        html+=`
-                <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
-                    <div class="weui-media-box__hd">
-                        <span class="newsNum">${item.message_num}</span>
-                        <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">${item.sender_nickname}</h4><!--昵称-->
-                        <p class="weui-media-box__desc"></p><!--最新的消息-->
-                    </div>
-                </div>
-                  `;
-                  $(".newsList").append(html);
                     }
                     // 群未读消息
                     var group_new_message = data.group_new_message;

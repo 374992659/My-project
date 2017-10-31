@@ -104,6 +104,7 @@ $(document).ready(function(){
                              var img=data.content.split("/");
                              var http=img[0];
                              var chatPage=$("#chatPage");
+                             // 存在本地的聊天记录
                              var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.sender_nickname+"','portrait':'"+data.send_portrait+"'}";
                                console.log(json_str);
                                 var history_chats = localStorage.getItem('history_'+data.sender_code);

@@ -34,7 +34,19 @@ $(document).ready(function() {"use strict";
                         if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message_num;
-
+                                // 存在本地的聊天记录
+                                var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.sender_nickname+"','portrait':'"+data.send_portrait+"'}";
+                                console.log(json_str);
+                                var history_chats = localStorage.getItem('history_'+item.sender_code);
+                                if(!history_chats){
+                                    var  history_chat = new Array();
+                                    history_chats=[json_str];
+                                    localStorage.setItem('history_'+item.sender_code,JSON.stringify(history_chats));
+                                }else{
+                                    history_chats = JSON.parse(history_chats);
+                                    history_chats[history_chats.length] = json_str;
+                                    localStorage.setItem('history_'+item.sender_code,JSON.stringify(history_chats));
+                                }
                             })
                         }
                         // 群未读新消息
