@@ -67,21 +67,14 @@ $(document).ready(function() {
                             console.log(all);
                             console.log(onlineFried);
                             for(var i=0 ,len=all.length;i<len;i++){
-                                console.log(all[i]);
+                                console.log(all[0]);
                                 for(var j=0,len=onlineFried.length;j<len;j++){
                                     if(all[i]==onlineFried[j]){
-                                        console.log(onlineFried[j]);
+                                        console.log(onlineFried[0]);
                                         $("."+onlineFried[j]).attr("style","opacity:1");
                                     }
                                 }
                             }
-                            // $.each(allFriend,function(i,item){
-                            //     $.each(onlineFried,function(i,online){
-                            //         if(item===online){
-                            //             $("."+online).attr("style","opacity:1");
-                            //         }
-                            //     })
-                            // });
                             console.log(onlineFried.length);
 
                             localStorage.setItem("online_friends",JSON.stringify(onlineFried));
