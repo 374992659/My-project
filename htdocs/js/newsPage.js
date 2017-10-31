@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    // 获取所有的聊天好友的code
+
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
@@ -16,6 +18,8 @@ $(document).ready(function(){
                         console.log(friends_new_message);
                         var html="";
                         $.each(friends_new_message,function(i,item){
+                            // 发送消息的好友code
+                            if(item.)
                             html+=`
                 <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
                     <div class="weui-media-box__hd">
@@ -51,7 +55,7 @@ $(document).ready(function(){
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
                                 $.each(group_new_message,function(i,item){
-                                    if(item.count==0){
+                                    if(item.sende_code==){
                                         html+=`
                 <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
@@ -190,7 +194,7 @@ $(document).ready(function(){
                    html=`
                    <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
                     <div class="weui-media-box__hd">
-                        <span class="newsNum"></span>
+                        <span class="newsNum" id="${item.sender_code}"></span>
                         <img class="weui-media-box__thumb" src="${item.portrait}"><!--头像-->
                     </div>
                     <div class="weui-media-box__bd">

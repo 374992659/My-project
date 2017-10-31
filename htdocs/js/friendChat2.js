@@ -338,9 +338,10 @@ $(document).ready(function(){
             var content=$(".chatContent").val();
             //获取页面发送内容
             var account_code =sender_code;          //获取发送好友的code
-
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
+            console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
+            // 添加本地页面
             var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
