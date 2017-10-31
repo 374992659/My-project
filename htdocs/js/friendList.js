@@ -16,12 +16,13 @@ $(document).ready(function() {
                 // 解密
                 var data=jsDecodeData(data);
                 if(data.errcode===0){
-                    console.log(data);
                     localStorage.setItem("apptoken",data.apptoken);
-                    console.log(data.user_code);
+                   var arr=[];
                     $.each(data.data,function(i,item){
                         console.log(item.friend_user_code);
-                    })
+                        arr[i]=item.friend_user_code;
+                    });
+                    console.log(arr);
 
                 }
             },
