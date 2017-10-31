@@ -143,7 +143,7 @@ $(document).ready(function(){
             // 用户code
                 user_code="";
                $(".linkList input[type=checkbox]").each(function(){
-                   user_code=$(this).attr("title");
+                   user_code=$(this).val();
                     console.log(user_code);
                 });
             //数据格式转换
