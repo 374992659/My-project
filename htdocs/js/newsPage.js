@@ -1,6 +1,6 @@
 $(document).ready(function(){
     // 获取所有有聊天记录的code
-    var friend_code=$(".newsNum").attr("title");
+    var friend_code=$(".newsNum").attr("id");
     console.log(friend_code);
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
