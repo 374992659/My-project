@@ -1,9 +1,14 @@
 $(document).ready(function(){
-        // 获取头像
+             // 获取好友头像
          var header=localStorage.getItem("header"),
-        // 获取发送好友的code
-        sender_code=localStorage.getItem("sender_code");
-
+            // 获取送好友的code
+            sender_code=localStorage.getItem("sender_code"),
+            // 我自己的code
+            my_code=localStorage.getItem("my_code"),
+            // 我自己的头像
+            my_portrait=localStorage.getItem("my_portrait"),
+            // 我自己名字
+            my_nickname=localStorage.getItem("my_nickname");
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
@@ -206,7 +211,6 @@ $(document).ready(function(){
                         console.log(1);
                         console.log(result.data);
                         var html="";
-                       html="";
                         $.each(result.data,function(i,item){
                             if(item.sender_code==sender_code){
                                 html+=`
@@ -268,32 +272,51 @@ $(document).ready(function(){
                 var history= $.parseJSON(history_chat);
                 var jsonObj = eval('(' + history + ')');
                 console.log(jsonObj);
-                var html="";
+
                 data=[];
                 $.each(history,function(i,item){
                     var jsonObj = eval('(' + item + ')');
                     data[i]=jsonObj;
                 });
                 console.log(data);
-            }
-            $.each(data,function(i,item){
-                html+=`
-                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               ${item.content}
-                            </span>
-                   </div>
+                var html="";
+                $.each(data,function(i,item){
+                    if(item.sender_code===sender_code){
+                        html+=`
+                <div class="sendHtml">
+                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                     <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                            <img class="weui-media-box__thumb" src="${item.getter_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
+                                   ${item.content}
+                                </span>
+                       </div>                   
+                    </div>                
                 </div>
-
-                `
-            });
-            $("#chatPage").append(html)
-
+                                `
+                    }else{
+                        html+=`
+                            <div class="getHtml">
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                 <div class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__bd">
+                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
+                                    </div>
+                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
+                                        <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                                    </div>
+                                 </div>   
+                            </div>
+                                 
+                                `
+                    }
+                });
+                $("#chatPage").prepend(html)
+            }
+            
         })();
 
         // 聊天历史记录
@@ -336,9 +359,9 @@ $(document).ready(function(){
             // 把好友消息存在本地
             // 获取发送的时间戳
            var time= (new Date()).toLocaleDateString();
-            var json_str = "{'sender_code':'"+123+"','type':'"+data.type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+data.sender_nickname+"','portrait':'"+data.send_portrait+"'}";
+            var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
             console.log(json_str);
-            var history_chats = localStorage.getItem('history_'+data.sender_code);
+            var history_chats = localStorage.getItem('history_'+sender_code);
             if(!history_chats){
                 history_chat = new Array();
                 history_chats=[json_str];
