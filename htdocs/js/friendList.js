@@ -8,6 +8,7 @@ $(document).ready(function() {
             data=['',JSON.stringify({"apptoken":apptoken})],
         // 加密
             json=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"Friends_getAllFriends",
             type:"POST",
@@ -53,6 +54,7 @@ $(document).ready(function() {
                                arr.push(item);
                             });
                             $(".online").html(arr.length);
+                            console.log(arr.length);
                             localStorage.setItem("online_friends",JSON.stringify(arr));
                         }
                         // 好友未读新消息
