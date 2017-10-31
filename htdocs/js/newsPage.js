@@ -1,5 +1,7 @@
 $(document).ready(function(){
     // 获取所有有聊天记录的code
+    var friend_code=$(".newsNum").attr("title");
+    console.log(friend_code);
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
@@ -17,8 +19,11 @@ $(document).ready(function(){
                         console.log(friends_new_message);
                         var html="";
                         $.each(friends_new_message,function(i,item){
-                            // 发送消息的好友code
-                            html+=`
+                            if(item.item.sender_code===friend_code){
+                                $("#"+friend_code).html(item.message_num);
+                            }else{
+                                // 发送消息的好友code
+                                html+=`
                 <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum">${item.message_num}</span>
@@ -30,6 +35,7 @@ $(document).ready(function(){
                     </div>
                 </div>                           
                             `;
+                            }
                         });
                         $(".newsList").append(html);
                     }
