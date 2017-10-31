@@ -292,6 +292,18 @@ $(document).ready(function() {
                             }
                         });
                         $("#"+id).html(html);
+                        var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
+                        var online=JSON.parse(localStorage.getItem("online_friends"));
+                        for(var i=0 ,len=allfriend.length;i<len;i++){
+                            console.log(all[i]);
+                            for(var j=0,le=online.length;j<le;j++){
+                                if(allfriend[i]===online[j]){
+                                    console.log(onlineFried[j]);
+                                    console.log($("#"+online[j]).attr("src"));
+                                    console.log(123);
+                                }
+                            }
+                        }
                         //获取个人介绍的内容
                         var remark=$(".remark");
                         console.log(remark.html());
