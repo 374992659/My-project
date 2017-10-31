@@ -228,10 +228,10 @@ $(document).ready(function(){
         return false;
     }
     // 点击跳转到好友聊天页面
-    $(".newsList").on("click",".friendChat",function(){
+    $(".newsList").on("click",".friendChat",function(e){
         // 获取发送方的个人信息
         //code号
-       var sender_code=$(this).attr("title"),
+       var sender_code=$(e.target).attr("title"),
            //头像
             header=$(this).find("img").attr("src");
        console.log(header);
@@ -241,9 +241,9 @@ $(document).ready(function(){
         window.location.href="friendChat.html";
     });
 // 点击跳转到群聊天页面
-    $(".newsList").on("click",".groupChat",function(){
+    $(".newsList").on("click",".groupChat",function(e){
         // 获取群num
-        var group_num=$(this).find("span").attr("title");
+        var group_num=$(e.target).find("span").attr("title");
         // 获取群code
         var group_code=$(this).attr("title"),
             // 群头像
