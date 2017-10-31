@@ -152,24 +152,6 @@ $(document).ready(function(){
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
                     if(html ==='newsPage.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
-                //        html=`
-                //<div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
-                //    <div class="weui-media-box__hd">
-                //        <span class="newsNum">${item.message_num}</span>
-                //        <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
-                //    </div>
-                //    <div class="weui-media-box__bd">
-                //        <h4 class="weui-media-box__title">${item.sender_nickname}</h4><!--昵称-->
-                //        <p class="weui-media-box__desc">${data.content}</p><!--最新的消息-->
-                //    </div>
-                //</div>
-                //        `;
-                //        $(".newsList").prepend(html);
-                //        console.log(123);
-                //        var num=$(".newsNum").html();
-                //        console.log(num);
-                //        num++;
-                //        $(".newsNum").html(num);
                     }
                 }
                 break;
