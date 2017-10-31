@@ -19,6 +19,7 @@ $(document).ready(function() {
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $.each(data.data,function(i,item){
+                        localStorage.setItem("my_code",item.user_code);
                         console.log(item.user_code);
                     })
                 }
@@ -44,6 +45,7 @@ $(document).ready(function() {
                         var data = (result.data);
                         // 在线好友
                         var online_friends=data.online_friends;
+                        console.log(data);
                         if(online_friends){
                             // 获取所有好友的code
                             var userCode= $(".group").find(".skipChat").attr("title");
