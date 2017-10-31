@@ -10,7 +10,7 @@ $(document).ready(function(){
         $.ajax({
             url:url+"friends_getGroup",
             type:"POST",
-            data:{"data",jsonEncryptData},
+            data:{"data":jsonEncryptData},
             success:function(data){
                //解密
                 var data=jsDecodeData(data);
