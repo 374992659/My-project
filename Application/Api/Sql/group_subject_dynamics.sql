@@ -15,4 +15,4 @@ CREATE TABLE if NOT EXISTS `group_subject_dynamics_$subject_id` (
   KEY `type` (`type`),
   KEY `common_id` (`commont_id`),
   KEY `user_code` (`user_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群话题动态表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='群话题动态表';

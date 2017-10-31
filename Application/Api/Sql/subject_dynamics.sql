@@ -17,5 +17,5 @@ CREATE TABLE if NOT EXISTS `subject_dynamics_$city_id_$subject_id` (
   KEY `common_id` (`commont_id`),
   KEY `user_code` (`user_code`),
   KEY `status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='话题动态表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='话题动态表';
 
