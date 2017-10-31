@@ -35,25 +35,6 @@ $(document).ready(function() {"use strict";
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message_num;
                                 // 存在本地的聊天记录
-                               var sender_code=item.sender_code,
-                                   sender_nickname=item.sender_nickname,
-                                   sender_portrait=item.sender_portrait;
-                                    console.log(sender_code);
-                                $.each(item.content,function(i,item){
-                                    var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
-                                    console.log(json_str);
-                                    var history_chats = localStorage.getItem('history_'+item.sender_code);
-                                    if(!history_chats){
-                                        var  history_chat = new Array();
-                                        history_chats=[json_str];
-                                        localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
-                                    }else{
-                                        history_chats = JSON.parse(history_chats);
-                                        history_chats[history_chats.length] = json_str;
-                                        localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
-                                    }
-                                });
-
                             })
                         }
                         // 群未读新消息
