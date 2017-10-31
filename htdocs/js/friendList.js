@@ -19,7 +19,9 @@ $(document).ready(function() {
                     console.log(data);
                     localStorage.setItem("apptoken",data.apptoken);
                     console.log(data.user_code);
-                    localStorage.setItem("my_code",data.user_code);
+                    $.each(data.data,function(i,item){
+                        console.log(item.friend_user_code);
+                    })
 
                 }
             },
