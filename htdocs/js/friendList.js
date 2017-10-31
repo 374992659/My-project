@@ -46,11 +46,11 @@ $(document).ready(function() {"use strict";
                                     if(!history_chats){
                                         var  history_chat = new Array();
                                         history_chats=[json_str];
-                                        localStorage.setItem('history_'+item.sender_code,JSON.stringify(history_chats));
+                                        localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
                                     }else{
                                         history_chats = JSON.parse(history_chats);
                                         history_chats[history_chats.length] = json_str;
-                                        localStorage.setItem('history_'+item.sender_code,JSON.stringify(history_chats));
+                                        localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
                                     }
                                 });
 
