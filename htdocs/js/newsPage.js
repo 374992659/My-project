@@ -201,8 +201,7 @@ $(document).ready(function(){
                    `
                }
             });
-            $("#chatPage").prepend(html);
-            document.body.scrollTop=chatPage.height();
+            $("#newsPage").prepend(html);
         }
 
     })();
