@@ -234,11 +234,12 @@ $(document).ready(function(){
        var sender_code=$(e.target).attr("title"),
            //头像
             header=$(this).find("img").attr("src");
-       console.log(header);
+            console.log(header);
+            console.log(sender_code);
        // 存在本地
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
-        window.location.href="friendChat.html";
+        // window.location.href="friendChat.html";
     });
 // 点击跳转到群聊天页面
     $(".newsList").on("click",".groupChat",function(e){
