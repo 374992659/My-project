@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    获取所有有聊天记录
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定

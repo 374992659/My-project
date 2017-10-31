@@ -176,6 +176,7 @@ $(document).ready(function(){
                                 }
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
+                                console.log(JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code}));
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
                                 ws.send(sendMessage);
                             }
