@@ -77,9 +77,9 @@ $(document).ready(function() {
                             //         }
                             //     })
                             // });
-                            console.log(arr.length);
+                            console.log(onlineFried.length);
 
-                            localStorage.setItem("online_friends",JSON.stringify(arr));
+                            localStorage.setItem("online_friends",JSON.stringify(onlineFried));
                         }
                         // 好友未读新消息
                         var friends_new_message=data.friends_new_message;
