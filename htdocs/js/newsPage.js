@@ -1,51 +1,50 @@
 $(document).ready(function(){
     // 获取本地聊天记录
-    (function(){
-        // 获取好友code
-        var sender_code=localStorage.getItem("sender_code");
-        var history_chat = localStorage.getItem('history_'+sender_code);
-        console.log(typeof history_chat);
-        if(history_chat){
-            var history= $.parseJSON(history_chat);
-            var jsonObj = eval('(' + history + ')');
-            console.log(jsonObj);
-
-            data=[];
-            $.each(history,function(i,item){
-                var jsonObj = eval('(' + item + ')');
-                data[i]=jsonObj;
-            });
-            console.log(data);
-            var html="";
-            $.each(data,function(i,item){
-                if(item.sender_code===sender_code){
-                    html=`
-                   <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
-                    <div class="weui-media-box__hd">
-                        <span class="newsNum" id="${item.sender_code}"></span>
-                        <img class="weui-media-box__thumb" src="${item.portrait}"><!--头像-->
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
-                        <p class="weui-media-box__desc"></p><!--最新的消息-->
-                    </div>
-                </div>         
-                   `
-                }
-            });
-            $(".newsList").append(html);
-        }
-
-    })();
+    // (function(){
+    //     // 获取好友code
+    //     var sender_code=localStorage.getItem("sender_code");
+    //     var history_chat = localStorage.getItem('history_'+sender_code);
+    //     console.log(typeof history_chat);
+    //     if(history_chat){
+    //         var history= $.parseJSON(history_chat);
+    //         var jsonObj = eval('(' + history + ')');
+    //         console.log(jsonObj);
+    //         data=[];
+    //         $.each(history,function(i,item){
+    //             var jsonObj = eval('(' + item + ')');
+    //             data[i]=jsonObj;
+    //         });
+    //         console.log(data);
+    //         var html="";
+    //         $.each(data,function(i,item){
+    //             if(item.sender_code===sender_code){
+    //                 html=`
+    //                <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
+    //                 <div class="weui-media-box__hd">
+    //                     <span class="newsNum" id="${item.sender_code}"></span>
+    //                     <img class="weui-media-box__thumb" src="${item.portrait}"><!--头像-->
+    //                 </div>
+    //                 <div class="weui-media-box__bd">
+    //                     <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
+    //                     <p class="weui-media-box__desc"></p><!--最新的消息-->
+    //                 </div>
+    //             </div>
+    //                `
+    //             }
+    //         });
+    //         $(".newsList").append(html);
+    //     }
+    //
+    // })();
     // 获取所有有聊天记录的code
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
     ws.onmessage = function (e) {
-        var result = JSON.parse(e.data);                   //服务器返回结果
+        var result = JSON.parse(e.data);                //服务器返回结果
         console.log(result);
         switch(parseInt(result.type)){
-            case 1:            //1 .在线好友、好友未读消息、群未读消息
+            case 1:                                     //1 .在线好友、好友未读消息、群未读消息
                 if(parseInt(result.errcode) === 0){
                     var data = (result.data);
                     localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
