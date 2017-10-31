@@ -297,9 +297,9 @@ $(document).ready(function() {
                         for(var i=0 ,len=allfriend.length;i<len;i++){
                             for(var j=0,le=online.length;j<le;j++){
                                 if(allfriend[i]==online[j]){
-                                    console.log(online[j]);
-                                    console.log($("#"+online[j]).attr("style","opacity: 1"));
-                                    console.log(123);
+                                   $("#"+online[j]).attr("style","opacity: 1");
+                                    $("#"+id).append( $("#"+online[j]).clone(true));
+                                 
                                 }
                             }
                         }
