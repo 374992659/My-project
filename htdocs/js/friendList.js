@@ -71,7 +71,7 @@ $(document).ready(function() {
                                 for(var j=0,le=onlineFried.length;j<le;j++){
                                     if(all[i]==onlineFried[j]){
                                         console.log(onlineFried[j]);
-                                        $("#"+onlineFried[j]).attr("style","height:100px");
+                                        $("#"+onlineFried[j]).attr("style","opacity: .6");
                                         console.log($("#"+onlineFried[j]));
                                         console.log(123);
                                     }
