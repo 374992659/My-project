@@ -131,7 +131,7 @@ $(document).ready(function(){
         //    url=null;
         //}
         //添加好友
-        $("addBtn").click(function(){
+        $(".addBtn").click(function(){
             //获取  apptoken
             var apptoken=localStorage.getItem("apptoken"),
             // 获取群号码
