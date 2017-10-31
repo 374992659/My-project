@@ -18,8 +18,9 @@ $(document).ready(function() {
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     console.log(data.user_code);
-                    $.each(data.data,function(i,item){
-                        localStorage.setItem("my_code",item.user_code);
+                    localStorage.setItem("my_code",data.user_code);
+                    $.each(data.data.friend_user,function(i,item){
+                        console.log(item.friend_user_code);
 
                     })
                 }
@@ -33,7 +34,6 @@ $(document).ready(function() {
         var apptoken = localStorage.getItem('apptoken');
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
-        console.log(132);
         ws.onmessage = function (e) {
             var result = JSON.parse(e.data);                   //服务器返回结果
             var friends_new_messageNum=0,
