@@ -95,6 +95,7 @@ class Events
                 }
                 //获取好友未读消息
                 $result = $db->select()->from('offline_user_message')->query();
+                var_dump($result);
                 $friends_new_message = array();
                 if($result){
                     $friend_db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
