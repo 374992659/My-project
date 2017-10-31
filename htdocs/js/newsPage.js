@@ -1,6 +1,6 @@
 $(document).ready(function(){
-    // 获取所有的聊天好友的code
-
+    // 获取所有的友聊天记录的好友code
+    var friend_code=$("")
     var apptoken = localStorage.getItem('apptoken');
     if(!apptoken)alert('请重新登录');
     var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
@@ -19,7 +19,6 @@ $(document).ready(function(){
                         var html="";
                         $.each(friends_new_message,function(i,item){
                             // 发送消息的好友code
-                            if(item.)
                             html+=`
                 <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
                     <div class="weui-media-box__hd">
