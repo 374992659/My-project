@@ -26,7 +26,7 @@ $(document).ready(function(){
                 <div class="weui-cells">
                     <div class="weui-cell LinkBtn"  title="${item.id}">
                         <div class="weui-cell__hd">
-                            <img class="linkBtn" src="image/right.png">
+                            <img class="linkBtn" src="image/right.png" style="width: 10px">
                         </div>
                         <div class="weui-cell__bd">
                             <p style="font-size: 15px">${item.group_name}</p>
