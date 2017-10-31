@@ -32,7 +32,7 @@ $(document).ready(function(){
                             <p style="font-size: 18px">${item.group_name}</p>
                         </div>
                         <div class="weui-cell__ft">
-                            <span style="font-size: 15px">0</span>/<span>${item.total}</span>
+                            <span style="font-size: 15px">0</span>/<span style="font-size: 15px">${item.total}</span>
                         </div>
                     </div>
                     <!--我的好友个数-->
