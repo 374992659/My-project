@@ -58,6 +58,7 @@ $(document).ready(function(){
                         var html="";
                         $.each(friends_new_message,function(i,item){
                             if(item.sender_code=friend_code){
+                                console.log(13);
                                 $("#"+friend_code).html(item.message_num);
                             }else{
                                 // 发送消息的好友code
