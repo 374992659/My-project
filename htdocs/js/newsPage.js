@@ -1,4 +1,42 @@
 $(document).ready(function(){
+    // 获取本地聊天记录
+    (function(){
+        // 获取好友code
+        var sender_code=localStorage.getItem("sender_code");
+        var history_chat = localStorage.getItem('history_'+sender_code);
+        console.log(typeof history_chat);
+        if(history_chat){
+            var history= $.parseJSON(history_chat);
+            var jsonObj = eval('(' + history + ')');
+            console.log(jsonObj);
+
+            data=[];
+            $.each(history,function(i,item){
+                var jsonObj = eval('(' + item + ')');
+                data[i]=jsonObj;
+            });
+            console.log(data);
+            var html="";
+            $.each(data,function(i,item){
+                if(item.sender_code===sender_code){
+                    html=`
+                   <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
+                    <div class="weui-media-box__hd">
+                        <span class="newsNum" id="${item.sender_code}"></span>
+                        <img class="weui-media-box__thumb" src="${item.portrait}"><!--头像-->
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
+                        <p class="weui-media-box__desc"></p><!--最新的消息-->
+                    </div>
+                </div>         
+                   `
+                }
+            });
+            $(".newsList").append(html);
+        }
+
+    })();
     // 获取所有有聊天记录的code
     var friend_code=$(".newsNum").attr("id");
     console.log(friend_code);
@@ -175,44 +213,7 @@ $(document).ready(function(){
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
     };
-    // 获取本地聊天记录
-    (function(){
-        // 获取好友code
-        var sender_code=localStorage.getItem("sender_code");
-        var history_chat = localStorage.getItem('history_'+sender_code);
-        console.log(typeof history_chat);
-        if(history_chat){
-            var history= $.parseJSON(history_chat);
-            var jsonObj = eval('(' + history + ')');
-            console.log(jsonObj);
 
-            data=[];
-            $.each(history,function(i,item){
-                var jsonObj = eval('(' + item + ')');
-                data[i]=jsonObj;
-            });
-            console.log(data);
-            var html="";
-            $.each(data,function(i,item){
-               if(item.sender_code===sender_code){
-                   html=`
-                   <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
-                    <div class="weui-media-box__hd">
-                        <span class="newsNum" id="${item.sender_code}"></span>
-                        <img class="weui-media-box__thumb" src="${item.portrait}"><!--头像-->
-                    </div>
-                    <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
-                        <p class="weui-media-box__desc"></p><!--最新的消息-->
-                    </div>
-                </div>         
-                   `
-               }
-            });
-            $(".newsList").append(html);
-        }
-
-    })();
     //群聊点击发送
     $(".elements").click(function(){
         var content=$(".elements").val('content');                //获取页面发送内容
