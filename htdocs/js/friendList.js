@@ -37,8 +37,7 @@ $(document).ready(function() {"use strict";
                                 // 存在本地的聊天记录
                                 var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.sende_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+item.sender_portrait+"'}";
                                 $.each(item.content,function(i,item){
-                                    json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.sende_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+item.sender_portrait+"'}";
-
+                                    json_str = "{'type':'"+item.type+"','send_time':'"+item.sende_time+"','content':'"+item.content+"'}";
                                 });
                                 console.log(json_str);
                                 var history_chats = localStorage.getItem('history_'+item.sender_code);
