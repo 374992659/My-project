@@ -282,7 +282,7 @@ $(document).ready(function() {
                                 html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}"">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb " src="${item.friend_portrait}" style="opacity: .6"  id="${item.friend_user_code}">
+                            <img class="weui-media-box__thumb " src="${item.friend_portrait}"   id="${item.friend_user_code}">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
