@@ -167,6 +167,30 @@ $(document).ready(function(){
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
     };
+    // 获取本地聊天记录
+    (function(){
+        var history_chat = localStorage.getItem('history_'+sender_code);
+        console.log(typeof history_chat);
+        if(history_chat){
+            var history= $.parseJSON(history_chat);
+            var jsonObj = eval('(' + history + ')');
+            console.log(jsonObj);
+
+            data=[];
+            $.each(history,function(i,item){
+                var jsonObj = eval('(' + item + ')');
+                data[i]=jsonObj;
+            });
+            console.log(data);
+            var html="";
+            $.each(data,function(i,item){
+               if(){}
+            });
+            $("#chatPage").prepend(html);
+            document.body.scrollTop=chatPage.height();
+        }
+
+    })();
     //群聊点击发送
     $(".elements").click(function(){
         var content=$(".elements").val('content');                //获取页面发送内容
