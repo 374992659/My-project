@@ -1,8 +1,9 @@
 $(document).ready(function() {
     "use strict";
-    var allFriend_code=[];
+
     // 获取所有好友
     (function(){
+        var allFriend_code=[];
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 数据格式转换
@@ -25,8 +26,9 @@ $(document).ready(function() {
                 }
             },
             error:function(){}
-        })
-    })(); console.log(allFriend_code);
+        });
+        console.log(allFriend_code)
+    })();
     // 及时通讯
 
     (function(){
