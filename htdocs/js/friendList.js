@@ -65,9 +65,9 @@ $(document).ready(function() {
                              var all=JSON.parse(allFriend);
                              console.log(typeof all);
                             console.log(all);
-
+                            console.log(onlineFried);
                             for(var i=0 ,len=all.length;i<len;i++){
-                                console.log(allFriend[i]);
+                                console.log(all[i]);
                                 for(var j=0,len=onlineFried.length;j<len;j++){
                                     if(all[i]===onlineFried[j]){
                                         console.log(onlineFried[j]);
