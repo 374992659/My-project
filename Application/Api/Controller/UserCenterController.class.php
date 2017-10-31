@@ -103,7 +103,24 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(1);
         }
     }
-
+    /*
+     * 判断指定小区指定房间是否已有认证
+     * @param city_id 城市id
+     * @param garden_code 小区code
+     * @param room_num 房间号
+     * @param role 角色 1：业主 2：租户
+     * */
+    protected function roomRoleExists_v1_0_0(){
+        $this->checkParam(array('city_id','garden_code','room_num','role'));
+        $province_id = M('baseinfo.swf_area')->where('id ='.$this->pdata['city_id'])->getField('parent_id');//省份id
+        $garden_num= new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+        $count = $garden_num->getRoomRoleNum($this->pdata['garden_code'],$this->pdata['room_num'],$this->pdata['role']);
+        !$count?$status=1:$status=0;
+        if($count){
+            $this->echoEncrypData(1,'该房间已被其他人认证了');
+        }
+        $this->echoEncrypData(0,'',array('status'=>$status)); //1：还未被认证 2：已有认证
+    }
 
     /*
      *  业主认证   表中照片均以json字符串形式传递路劲
@@ -111,7 +128,7 @@ class UserCenterController extends VersionController
      * @param phone 手机号码
      * @param room_num 房号
      * @param id_card_num 身份证号码
-     * @param id_card_pictures 身份证照片 正反面路劲组成json字符串一起上传
+     * @param id_card_pictures 身份证照片 正反面路劲组成json字符串一起上传 后面同理
      * @param garden_name 小区名称
      * @param garden_code 小区code 可填 用户若选择检索出的小区则传递其code至后台 否则不传递
      * @param city_id   小区所属城市
@@ -121,8 +138,7 @@ class UserCenterController extends VersionController
      * @param yourself_picture 个人照片 可填
      * */
     protected function ownerApplication_v1_0_0(){
-        $res = $this->checkParam(array('real_name','phone','room_num','id_card_num','id_card_pictures','garden_name','city_id','garden_addr','garden_picture'));
-        if(!$res)$this->echoEncrypData(21);
+        $this->checkParam(array('real_name','phone','room_num','id_card_num','id_card_pictures','garden_name','city_id','garden_addr','garden_picture'));
         if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$this->pdata['phone'])){
             $this->echoEncrypData(1,'请输入正确的手机号码');
         }
@@ -149,7 +165,13 @@ class UserCenterController extends VersionController
         }
         $city_id = substr($this->account_code,0,4);
         $model = new Model\OwnerApplicationController($city_id); //该记录根据用户所属地区分表
-        $res = $model->addApplication(array(
+        $model->startTrans();
+        $real_name = $model->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'role'=>1])->getField('real_name');
+        if($real_name){
+            $name = substr_replace($real_name,'**',1);
+            $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
+        }
+        $res1 = $model->addApplication(array(
             'user_code'=>$this->account_code,
             'real_name'=>$this->pdata['real_name'],
             'phone'=>$this->pdata['phone'],
@@ -163,16 +185,129 @@ class UserCenterController extends VersionController
             'city_id'=>$this->pdata['city_id'],
             'garden_addr'=>$this->pdata['garden_addr'],
             'yourself_picture'=>$this->pdata['yourself_picture'],
-            'role'=>$this->pdata['relation_name']?2:1,
-            'relation_name'=>$this->pdata['relation_name'],
-            'status'=>0,
+            'role'=>1,
+//            'status'=>0,
+            'status'=>1,//目前默认通过审核
         ));
-        if(!$res)$this->echoEncrypData(1);
-        $this->echoEncrypData(0);
+        $province_id = M('swf_area')->where('id ='.$this->pdata['city_id'])->getField('parent_id');//省份id
+        $class = new RegiestController();
+        $class->executeSql('databases.sql',array('city_id'=>$this->pdata['city_id'],'province_id'=>$province_id,'account_code'=>$this->account_code));//用户可能会选择非注册地进行验证，数据库并未创建而连接失败
+        $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+        $garden_num->startTrans();
+        //添加成员
+        $res2 = $garden_num->add(array(
+            'city_id'=>$this->pdata['city_id'],
+            'garden_code'=>$garden_code,
+            'room_num'=>$this->pdata['room_num'],
+            'user_code'=>$this->pdata['user_code'],
+            'role'=>1,
+            'create_time'=>time(),
+        ));
+        if($res1 and $res2){
+            $model->commit();
+            $garden_num->commit();
+            $this->echoEncrypData(0);
+        }else{
+            $model->rollback();
+            $garden_num->rollback();
+            $this->echoEncrypData(1);
+        }
     }
 
     /*
-     * 业主认证上传图片
+     * 业主添加成员
+     * @param real_name 真实姓名
+     * @param phone 手机号码
+     * @param room_num 房间号码
+     * @param id_card_num 身份证号码
+     * @param garden_code 小区code
+     * @param garden_name 小区名称
+     * @param city_id 城市id
+     * @param relation_name 关系
+     * @param id_card_pictures 身份证照片  可填
+     * @param yourself_picture 个人照片  可填
+     * @param account 添加用户的账户 可填
+     * */
+    protected function ownerAddNum_v1_0_0(){
+        $this->checkParam(array('real_name','phone','room_num','id_card_num','garden_code','garden_name','city_id','relation_name'));
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$this->pdata['phone'])){
+            $this->echoEncrypData(1,'请输入正确的手机号码');
+        }
+        if(!preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['id_card_num'])){
+            $this->echoEncrypData(1,'请输入正确的身份证号码');
+        }
+        $user_code = '';
+        if($this->pdata['account']){
+            $mongo = new \MongoClient();
+            $user_code = $mongo->baseinfo->user_area->findOne(array('account'=>$this->pdata['account']),array('account_code'));
+            if(!$user_code){
+                $this->echoEncrypData(1,'请检查输入的用户账号是否正确');
+            }
+            $user_code = $user_code['account_code'];
+        }
+        //1.验证操作人的身份
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $model = new Model\OwnerApplicationController($city_id);
+        $model->startTrans();
+        $role = $model->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num']])->getField('role');
+        if(!$role){
+            $this->echoEncrypData(1,'只有房主才有此操作权利哦');
+        }else{
+            if(intval($role)===1){
+                $res1 = $model->addApplication(array(
+                    'user_code'=>$user_code,
+                    'real_name'=>$this->pdata['real_name'],
+                    'phone'=>$this->pdata['phone'],
+                    'room_num'=>$this->pdata['room_num'],
+                    'id_card_num'=>$this->pdata['id_card_num'],
+                    'garden_code'=>$this->pdata['garden_code'],
+                    'garden_name'=>$this->pdata['garden_name'],
+                    'city_id'=>$this->pdata['city_id'],
+                    'relation_name'=>$this->pdata['relation_name'],
+                    'id_card_pictures'=>$this->pdata['id_card_pictures'],
+                    'yourself_picture'=>$this->pdata['yourself_picture'],
+                    'role'=>2,
+                    'status'=>1,
+                ));
+                if($user_code){
+                    //garden_room 分表添加用户数据
+                    $province_id = M('swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
+                    $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+                    $garden_num->startTrans();
+                    $res2 = $garden_num->add(array(
+                        'city_id'=>$this->pdata['city_id'],
+                        'garden_code'=>$this->pdata['garden_code'],
+                        'room_num'=>$this->pdata['room_num'],
+                        'user_code'=>$user_code,
+                        'role'=>1,
+                        'create_time'=>time(),
+                    ));
+                    if(!$res2){
+                        $garden_num->rollback();
+                        $model->rollback();
+                        $this->echoEncrypData(1);
+                    }else{
+                        $model->commit();
+                        $garden_num->commit();
+                        $this->echoEncrypData(0);
+                    }
+                }
+                if($res1){
+                    $model->commit();
+                    $this->echoEncrypData(0);
+                }else{
+                    $model->rollback();
+                    $this->echoEncrypData(1);
+                }
+            }else{
+                $this->echoEncrypData(1,'只有房主才有此操作权利哦');
+            }
+        }
+    }
+
+    /*
+     * 业主认证/业主添加成员 上传图片
      * */
     protected function uploadOwnerApplicationPic_v1_0_0(){
         import('Vendor.UploadFile');
@@ -187,8 +322,307 @@ class UserCenterController extends VersionController
         }
         $this->echoEncrypData(0,'',$data);
     }
+    /*
+     * 获取我的业主认证信息
+     * */
+    protected function getMyOwnerApplicationInfo_v1_0_0(){
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $model = new Model\OwnerApplicationController($city_id);
+        $data = $model->where(['user_code'=>$account_code])->order('order by status asc')->select();
+        if(!$data){
+            $this->echoEncrypData(5);
+        }else{
+            $this->echoEncrypData(0,'',$data);
+        }
+    }
+    /*
+     * 业主获取成员列表
+     * */
+    protected function getMyOwnRoomNum_v1_0_0(){
+        $account_code = $this->account_code;
+        //获取通过认证的业主认证
+        $city_id = substr($account_code,0,4);
+        $model = new Model\OwnerApplicationController($city_id);
+        $data = $model->where(['user_code'=>$account_code,'status'=>1])->select();
+        $num_list = array();
+        if(!$data){
+            $this->echoEncrypData(5);
+        }else{
+            foreach ($data as $k=>$v){
+                $num_list[] = $model->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name')->where(['garden_code'=>$v['garden_code'],'city_id'=>$v['city_id'],'room_num'=>$v['room_num'],'status'=>1])->select();
+            }
+            $this->echoEncrypData(0,'',$num_list);
+        }
+    }
+    /*
+     * 获取成员业主认证详情
+     * @param application_id 认证id
+     * */
+    protected function getMyOwnNumInfo_v1_0_0(){
+        $this->checkParam(array('application_id'));
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $model = new Model\OwnerApplicationController($city_id);
+        $data = $model->where(['id'=>$this->pdata['application_id']])->find();
+        if(!$data){
+            $this->echoEncrypData(1);
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
 
-
+    /*
+     * 租户认证
+     * @param real_name 真实姓名
+     * @param phone 手机号码
+     * @param room_num 房号
+     * @param id_card_num 身份证号码
+     * @param id_card_pictures 身份证照片
+     * @param owner_id_card_num 房东身份证号码 可填
+     * @param owner_id_card_picture 房东身份证照片 可填
+     * @param city_id 小区所在城市
+     * @param garden_name 小区名
+     * @param garden_code 小区code 可填 用户若选择检索出的小区则传递其code至后台 否则不传递
+     * @param garden_addr 楼盘地址
+     * @param contract_period 合同期限
+     * @param pictures 合同照
+     * @param yourself_picture 个人照片 可填
+     * */
+    protected function tenantApplication_v1_0_0(){
+        $this->checkParam(array('real_name','phone','room_num','id_card_num','id_card_pictures','city_id','garden_name','garden_addr','contract_period','pictures'));
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$this->pdata['phone'])){
+            $this->echoEncrypData(1,'请输入正确的手机号码');
+        }
+        if(!preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['id_card_num'])){
+            $this->echoEncrypData(1,'请输入正确的身份证号码');
+        }
+        if($this->pdata['owner_id_card_num']){
+            if(!preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['owner_id_card_num'])){
+                $this->echoEncrypData(1,'请输入正确的身份证号码');
+            }
+        }
+        $mongo =new \MongoClient();
+        if(!$this->pdata['garden_code']){
+            $garden = $mongo->baseinfo->garden_area->findOne(array('garden_name'=>$this->pdata['garden_name'],'city_id'=>$this->pdata['city_id']));
+            //检索小区表是否存在该小区 不存在则添加到小区表
+            if($garden){
+                $garden_code = $garden['garden_code'];
+            }else{
+                $garden_code =$this->createGardenCode($this->pdata['city_id']);
+                $mongo->baseinfo->garden_area->insert(array(
+                    '_id'=>getNextId($mongo,'baseinfo','garden_code'),
+                    'garden_name'=>$this->pdata['garden_name'],
+                    'garden_code'=>$garden_code,
+                    'city_id'=>$this->pdata['city_id'],
+                ));
+            }
+        }else{
+            $garden_code = $this->pdata['garden_code'];
+        }
+        $city_id = substr($this->account_code,0,4);
+        $tenant_application = new Model\TenantApplicationModel($city_id);
+        $tenant_application->startTrans();
+        $real_name = $tenant_application->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'role'=>1])->getField('real_name');
+        if($real_name){
+            $name = substr_replace($real_name,'**',1);
+            $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
+        }
+        $res1 = $tenant_application->addApplication(array(
+            'user_code'=>$this->account_code,
+            'real_name'=>$this->pdata['real_name'],
+            'phone'=>$this->pdata['phone'],
+            'room_num'=>$this->pdata['room_num'],
+            'id_card_num'=>$this->pdata['id_card_num'],
+            'id_card_pictures'=>$this->pdata['id_card_pictures'],
+            'pictures'=>$this->pdata['pictures'],
+            'yourself_picture'=>$this->pdata['yourself_picture'],
+            'owner_id_card_num'=>$this->pdata['owner_id_card_num'],
+            'owner_id_card_picture'=>$this->pdata['owner_id_card_picture'],
+            'garden_name'=>$this->pdata['garden_name'],
+            'city_id'=>$this->pdata['city_id'],
+            'garden_addr'=>$this->pdata['garden_addr'],
+            'role'=>1,
+            'contract_period'=>$this->pdata['contract_period'],
+            'status'=>1,
+            'garden_code'=>$garden_code,
+        ));
+        $province_id = M('baseinfo.swf_area')->where('id ='.$this->pdata['city_id'])->getField('parent_id');//省份id
+        $garden_num= new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+        $garden_num->startTrans();
+        //添加成员
+        $res2 = $garden_num->add(array(
+            'city_id'=>$this->pdata['city_id'],
+            'garden_code'=>$garden_code,
+            'room_num'=>$this->pdata['room_num'],
+            'user_code'=>$this->pdata['user_code'],
+            'role'=>2,
+            'create_time'=>time(),
+        ));
+        if($res1 and $res2){
+            $tenant_application->commit();
+            $garden_num->commit();
+            $this->echoEncrypData(0);
+        }else{
+            $tenant_application->rollback();
+            $garden_num->rollback();
+            $this->echoEncrypData(1);
+        }
+    }
+    /*
+     * 主租户添加成员
+     * @param real_name 真实姓名
+     * @param phone 手机号码
+     * @param room_num 房间号码
+     * @param id_card_num 身份证号码
+     * @param garden_code 小区code
+     * @param garden_name 小区名称
+     * @param city_id 城市id
+     * @param relation_name 关系
+     * @param contract_period 合同期限
+     * @param id_card_pictures 身份证照片  可填
+     * @param yourself_picture 个人照片  可填
+     * @param account 添加用户的账户 可填
+     * */
+    protected function tenantAddNum_v1_0_0(){
+        $this->checkParam(array('real_name','phone','room_num','id_card_num','garden_code','garden_name','city_id','relation_name','contract_period'));
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$this->pdata['phone'])){
+            $this->echoEncrypData(1,'请输入正确的手机号码');
+        }
+        if(!preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['id_card_num'])){
+            $this->echoEncrypData(1,'请输入正确的身份证号码');
+        }
+        $user_code = '';
+        if($this->pdata['account']){
+            $mongo = new \MongoClient();
+            $user_code = $mongo->baseinfo->user_area->findOne(array('account'=>$this->pdata['account']),array('account_code'));
+            if($user_code){
+                $user_code = $user_code['account_code'];
+            }
+        }
+        //验证操作用户权限
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $model = new Model\TenantApplicationModel($city_id);
+        $model->startTrans();
+        $role = $model->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num']])->getField('role');
+        if(!$role){
+            $this->echoEncrypData(1,'只有主租户才有此操作权限哦');
+        }else{
+            if(intval($role) ===1){
+                $res1 = $model->addApplication(array(
+                    'user_code'=>$user_code,
+                    'real_name'=>$this->pdata['real_name'],
+                    'phone'=>$this->pdata['phone'],
+                    'room_num'=>$this->pdata['room_num'],
+                    'id_card_num'=>$this->pdata['id_card_num'],
+                    'id_card_pictures'=>$this->pdata['id_card_pictures'],
+                    'yourself_picture'=>$this->pdata['yourself_picture'],
+                    'garden_code'=>$this->pdata['garden_code'],
+                    'garden_name'=>$this->pdata['garden_name'],
+                    'city_id'=>$this->pdata['city_id'],
+                    'relation_name'=>$this->pdata['relation_name'],
+                    'contract_period'=>$this->pdata['contract_period'],
+                    'role'=>2,
+                    'status'=>1,
+                ));
+                if($user_code){
+                    $province_id = M('swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
+                    $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+                    $garden_num->startTrans();
+                    $res2 = $garden_num->add(array(
+                        'city_id'=>$this->pdata['city_id'],
+                        'garden_code'=>$this->pdata['garden_code'],
+                        'room_num'=>$this->pdata['room_num'],
+                        'user_code'=>$user_code,
+                        'role'=>2,
+                        'create_time'=>time(),
+                    ));
+                    if(!$res2){
+                        $garden_num->rollback();
+                        $model->rollback();
+                        $this->echoEncrypData(1);
+                    }else{
+                        $model->commit();
+                        $garden_num->commit();
+                        $this->echoEncrypData(0);
+                    }
+                }
+                if($res1){
+                    $model->commit();
+                    $this->echoEncrypData(0);
+                }else{
+                    $model->rollback();
+                    $this->echoEncrypData(1);
+                }
+            }else{
+                $this->echoEncrypData(1,'只有主租户才有此操作权限哦');
+            }
+        }
+    }
+    /*
+     *  租户认证/主租户添加成员 上传图片
+     * */
+    protected function uploadTenantApplicationPic_v1_0_0(){
+        import('Vendor.UploadFile');
+        $upload =new \UploadFile();
+        $path=APP_PATH.'Common/Upload/TenantApplication/'.date(m).date(d).'/';
+        $res = $upload->upload($path);
+        if(!$res){
+            $this->echoEncrypData(1,'图片上传失败');
+        }
+        foreach($res as $k=>$v){
+            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 获取我的租户认证信息
+     * */
+    protected function getMyTenantApplicationInfo_v1_0_0(){
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $model = new Model\TenantApplicationModel($city_id);
+        $data = $model->where(['user_code'=>$account_code])->order('order by status asc')->select();
+        if(!$data){
+            $this->echoEncrypData(5);
+        }else{
+            $this->echoEncrypData(0,'',$data);
+        }
+    }
+    /*
+     * 主租户获取成员列表
+     * */
+    protected function getMyTenantRoomNum_v1_0_0(){
+        $account_code = $this->account_code;
+        //获取通过认证的业主认证
+        $city_id = substr($account_code,0,4);
+        $model = new Model\TenantApplicationModel($city_id);
+        $data = $model->where(['user_code'=>$account_code,'status'=>1])->select();
+        $num_list = array();
+        if(!$data){
+            $this->echoEncrypData(5);
+        }else{
+            foreach ($data as $k=>$v){
+                $num_list[] = $model->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name')->where(['garden_code'=>$v['garden_code'],'city_id'=>$v['city_id'],'room_num'=>$v['room_num'],'status'=>1])->select();
+            }
+            $this->echoEncrypData(0,'',$num_list);
+        }
+    }
+    /*
+     * 获取租户认证详情
+     * @param application_id 认证id
+     * */
+    protected function getTenantNumInfo_v1_0_0(){
+        $this->checkParam(array('application_id'));
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $model = new Model\OwnerApplicationController($city_id);
+        $data = $model->where(['id'=>$this->pdata['application_id']])->find();
+        if(!$data){
+            $this->echoEncrypData(1);
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
 
     /*
      * 生成小区code

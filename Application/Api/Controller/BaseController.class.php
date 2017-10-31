@@ -101,10 +101,10 @@ class BaseController extends Controller
             exit;
         }
     }
-    /**
+    /*
      * 获取错误信息
      * @param $code
-     */
+     **/
     public function getErrorMsg($code)
     {
         $error = array(

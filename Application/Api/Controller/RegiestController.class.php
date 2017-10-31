@@ -195,7 +195,7 @@ class RegiestController extends BaseController
             'account'=> $account,
             'table_id'=>$area_id,
             'status'=>1,
-            'account_coe'=>$area_id.$account,
+            'account_code'=>$area_id.$account,
             'openId'=>$openId,
             'portrait'=>'http://39.108.237.198/project/Application/Common/Source/Img/default_portrait.jpg',
             'nickname'=>$account,
