@@ -67,8 +67,8 @@ $(document).ready(function() {
                             console.log(all);
                             console.log(onlineFried);
                             for(var i=0 ,len=all.length;i<len;i++){
-                                console.log(all[1]);
-                                for(var j=0,len=onlineFried.length;j<len;j++){
+                                console.log(all[i]);
+                                for(var j=0,le=onlineFried.length;j<le;j++){
                                     if(all[i]==onlineFried[j]){
                                         console.log(onlineFried[0]);
                                         $("."+onlineFried[j]).attr("style","opacity:1");
