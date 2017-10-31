@@ -108,6 +108,7 @@ class Events
                             $friends_new_message[$v['sender_code']]['message_num']=1;
                             $friends_new_message[$v['sender_code']]['recent_time']=$v['send_time'];
                         }else{
+                            $friends_new_message[$v['sender_code']]['sender_code'] = $v['sender_code'];  //用户code
                             $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
                             $friends_new_message[$v['sender_code']]['message_num']++;
                             if($friends_new_message[$v['sender_code']]['recent_time']<$v['send_time']){
@@ -120,12 +121,6 @@ class Events
                 //获取群未读消息
                 $group_new_message = array();
                 if($group_arr){
-//                            $group_arr_str = implode(',',$group_arr);             //用户群字符串
-//                            $group_arr_str = substr($group_arr_str,0,(strlen($group_arr_str)));
-//                            var_dump($group_arr_str);
-//                            $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-//                            $group_data = $baseinfo->select('group_num,group_code,user_code')->from('group_area')->where("group_code in (".$group_arr_str.")")->query();//群创建人
-//                            var_dump($group_data);
                     $mongo = new MongoClient();
                     $group_data = $mongo->baseinfo->group_area->find(array('group_code'=>array('$in'=>$group_arr)));
                     if($group_data){
