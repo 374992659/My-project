@@ -61,11 +61,9 @@ $(document).ready(function() {
                             $(".online").html(onlineFried.length);
                             // 获取所有好友
                             var allFriend=localStorage.getItem("allFriend_code");
-                            data=[];
-                            $.each(allFriend,function(i,item){
-                                var jsonObj = eval('(' + item + ')');
-                                data[i]=jsonObj;
-                            });
+                              console.log(typeof allFriend);
+                             var all=JSON.stringify(allFriend);
+                             console.log(typeof all);
                             console.log(data);
                             for(var i=0 ,len=allFriend.length;i<len;i++){
                                 console.log(allFriend[i]);
