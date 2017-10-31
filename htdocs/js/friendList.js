@@ -23,7 +23,9 @@ $(document).ready(function() {
                     $.each(data.data,function(i,item){
                         console.log(item.friend_user_code);
                         allFriend_code[i]=item.friend_user_code;
-                    }); console.log(allFriend_code)
+                    });
+                    console.log(allFriend_code);
+                    localStorage.setItem("allFriend_code",JSON.stringify(allFriend_code))
                 }
             },
             error:function(){}
