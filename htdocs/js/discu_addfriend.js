@@ -132,6 +132,10 @@ $(document).ready(function(){
         //}
         //添加好友
         $(".addBtn").click(function(){
+            var success=$(".success");
+            var hideTop=function(){
+                success.empty();
+            };
             //获取  apptoken
             var apptoken=localStorage.getItem("apptoken"),
             // 获取群号码
@@ -154,7 +158,6 @@ $(document).ready(function(){
                 success:function(data){
                     //解密
                     var data=jsDecodeData(data);
-                   var success=$(".success");
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
