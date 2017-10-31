@@ -139,6 +139,7 @@ $(document).ready(function(){
             // 用户code
                 user_code=$(".linkList input[type=checkbox]").each(function(){
                     var code=$(this).attr("title");
+                    console.log(code);
                 }),
             //数据格式转换
                 data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
