@@ -64,7 +64,8 @@ $(document).ready(function() {
                               console.log(typeof allFriend);
                              var all=JSON.parse(allFriend);
                              console.log(typeof all);
-                            console.log(data);
+                            console.log(all);
+
                             for(var i=0 ,len=allFriend.length;i<len;i++){
                                 console.log(allFriend[i]);
                                 for(var j=0,len=onlineFried.length;j<len;j++){
