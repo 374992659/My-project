@@ -55,26 +55,26 @@ $(document).ready(function(){
                         // console.log(friend_code);
                         // console.log(friends_new_message);
                         var html="";
-                        $.each(friends_new_message,function(i,item){
-                            if(item.sender_code=friend_code){
-                                console.log(13);
-                                $("#"+friend_code).html(item.message_num);
-                            }else{
-                                // 发送消息的好友code
-                                html+=`
-                                <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
-                                    <div class="weui-media-box__hd">
-                                        <span class="newsNum">${item.message_num}</span>
-                                        <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
-                                    </div>
-                                    <div class="weui-media-box__bd">
-                                        <h4 class="weui-media-box__title">${item.sender_nickname}</h4><!--昵称-->
-                                        <p class="weui-media-box__desc"></p><!--最新的消息-->
-                                    </div>
-                                </div>                           
-                            `;
-                            }
-                        });
+                        // $.each(friends_new_message,function(i,item){
+                        //     if(item.sender_code=friend_code){
+                        //         console.log(13);
+                        //         $("#"+friend_code).html(item.message_num);
+                        //     }else{
+                        //         // 发送消息的好友code
+                        //         html+=`
+                        //         <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
+                        //             <div class="weui-media-box__hd">
+                        //                 <span class="newsNum">${item.message_num}</span>
+                        //                 <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
+                        //             </div>
+                        //             <div class="weui-media-box__bd">
+                        //                 <h4 class="weui-media-box__title">${item.sender_nickname}</h4><!--昵称-->
+                        //                 <p class="weui-media-box__desc"></p><!--最新的消息-->
+                        //             </div>
+                        //         </div>
+                        //     `;
+                        //     }
+                        // });
                         $(".newsList").append(html);
                     }
                     // 群未读消息
