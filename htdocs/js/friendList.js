@@ -67,7 +67,7 @@ $(document).ready(function() {
                             console.log(all);
                             console.log(onlineFried);
                             for(var i=0 ,len=all.length;i<len;i++){
-                                console.log(all[0]);
+                                console.log(all[1]);
                                 for(var j=0,len=onlineFried.length;j<len;j++){
                                     if(all[i]==onlineFried[j]){
                                         console.log(onlineFried[0]);
