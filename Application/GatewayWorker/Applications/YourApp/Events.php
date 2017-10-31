@@ -211,9 +211,9 @@ class Events
                 $database1=$mongo->$userdatastr;
                 $collection1 = $database1->friends_chat;
                 $friends_user_info = $mongo->baseinfo->user_area->findOne(array('account_code'=>$message->account_code),array('nickname','portrait'));
-                var_dump($friends_user_info);
-                var_dump($message->account_code);
-                var_dump($account_code);
+//                var_dump($friends_user_info);
+//                var_dump($message->account_code);
+//                var_dump($account_code);
                 $data1 = array(
                     '_id'=>self::getNextId($mongo,'user_info_'.$account_code['account_code'],'friends_chat'),
                     'sender_code'=>$account_code['account_code'],
@@ -327,10 +327,10 @@ class Events
                 $user_info =$mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code['account_code']),array('nickname','portrait'));
                 $data2 = array();
                 $id=array();
-                var_dump($message->account_code);
-                var_dump($friend_info);
-                var_dump($user_info);
-                var_dump($account_code);
+//                var_dump($message->account_code);
+//                var_dump($friend_info);
+//                var_dump($user_info);
+//                var_dump($account_code);
                 if($data){
                     foreach ($data as $k=>$v){
                         $data2[$k]['_id']=self::getNextId($mongo,'user_info_'.$account_code['account_code'],'friends_chat');
