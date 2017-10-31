@@ -21,7 +21,7 @@ CREATE TABLE  if not exists `user_info_$city_id` (
   `sex` tinyint(1) DEFAULT '0' COMMENT '性别 0：保密 1：男 2：女',
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_code` (`account_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息库，由区域分表';
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息库，由区域分表';
 
 CREATE DATABASE if not exists friends_and_group_$account_code;
 
@@ -40,9 +40,9 @@ CREATE TABLE  if not exists `friends_chat_log` (
   `content` varchar(255) NOT NULL COMMENT '消息内容',
   `send_time` int(11) NOT NULL COMMENT '发送时间',
   `status` tinyint(2) unsigned NOT NULL COMMENT '查看状态 0：未查看 1：已查看'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='好友聊天记录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='好友聊天记录';
 
-CREATE TABLE `friends_apply` (
+CREATE TABLE if NOT EXISTS `friends_apply` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_code` varchar(50) NOT NULL COMMENT '用户code',
   `user_nickname` varchar(100) NOT NULL COMMENT '用户昵称',
@@ -53,14 +53,14 @@ CREATE TABLE `friends_apply` (
   PRIMARY KEY (`id`),
   KEY `user_code` (`user_code`),
   KEY `status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='好友申请消息';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='好友申请消息';
 
 CREATE TABLE  if not exists `friends_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `user_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户唯一标识。区域id+手机号的形式',
   `group_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '分组名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0:禁用或删除 1：启用'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户好友分组表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户好友分组表';
 INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,$account_code, '我的好友');
 
 CREATE TABLE  if not exists `group_chat_log` (
@@ -72,7 +72,7 @@ CREATE TABLE  if not exists `group_chat_log` (
   `send_time` int(11) NOT NULL COMMENT '发送时间',
   `status` tinyint(2) unsigned NOT NULL COMMENT '查看状态 0：未查看 1：已查看',
   `group_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '消息所属群的code'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE if NOT EXISTS `offline_user_message` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -84,7 +84,7 @@ CREATE TABLE if NOT EXISTS `offline_user_message` (
   KEY `sender_code` (`sender_code`),
   KEY `type` (`type`),
   KEY `send_time` (`send_time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='离线消息表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='离线消息表';
 
 CREATE TABLE if not exists `vote_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -100,7 +100,7 @@ CREATE TABLE if not exists `vote_user` (
   KEY `vote_id` (`vote_id`),
   KEY `user_code` (`user_code`),
   KEY `choised` (`choised`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='投票记录';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='投票记录';
 
 CREATE TABLE  if not exists `group_user` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
@@ -113,7 +113,7 @@ CREATE TABLE  if not exists `group_user` (
   `portrait` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '群用户头像',
   `role` tinyint(1) unsigned NOT NULL COMMENT '角色 1：创建人 2：管理员 3：普通成员',
   `status` int(11) unsigned COMMENT '用户状态 此处保存禁言期限时间戳'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='群用户列表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='群用户列表';
 
 CREATE TABLE  if not exists `group_vote` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
@@ -133,7 +133,7 @@ CREATE TABLE  if not exists `group_vote` (
   `total_user` int(10) NOT NULL DEFAULT '1' COMMENT '参与人数',
   KEY `group_num` (`group_num`),
   KEY `garden_code` (`garden_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='群投票';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='群投票';
 
 CREATE TABLE  if not exists `user_friends` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
@@ -146,7 +146,7 @@ CREATE TABLE  if not exists `user_friends` (
   `group_id` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '该好友分组id',
   `friend_signature` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '好友个性签名',
   KEY `group_id` (`group_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户个人好友表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户个人好友表';
 
 CREATE TABLE  if not exists `group_notice` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
@@ -159,7 +159,7 @@ CREATE TABLE  if not exists `group_notice` (
   `group_num` varchar(20) NOT NULL COMMENT '所属群号码',
   PRIMARY KEY (`id`),
   KEY `group_num` (`group_num`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群公告';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='群公告';
 
 CREATE TABLE  if not exists `group_picture` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -173,7 +173,7 @@ CREATE TABLE  if not exists `group_picture` (
   PRIMARY KEY (`id`),
   KEY `group_num` (`group_num`) USING BTREE,
   KEY `user_code` (`user_code`) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群相册';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='群相册';
 
 
 CREATE TABLE if NOT EXISTS `user_group` (
@@ -195,7 +195,7 @@ CREATE TABLE if NOT EXISTS `user_group` (
   KEY `group_type` (`group_type`),
   KEY `status` (`status`),
   KEY `garden_code` (`garden_code`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户的所有群';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户的所有群';
 
 CREATE TABLE  if not exists `group_subject` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -214,7 +214,7 @@ CREATE TABLE  if not exists `group_subject` (
   KEY `user_code` (`user_code`) USING BTREE,
   KEY `group_num` (`group_num`) USING BTREE,
   KEY `create_time` (`create_time`) USING BTREE
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COMMENT='群话题表';
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='群话题表';
 
 CREATE TABLE  if not exists `group_activity` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -248,7 +248,7 @@ CREATE TABLE  if not exists `group_activity` (
   KEY `group_num` (`group_num`),
   KEY `user_code` (`user_code`),
   KEY `garden_code` (`garden_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群活动';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='群活动';
 
 CREATE TABLE  if not exists `group_activity_registration` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -261,7 +261,7 @@ CREATE TABLE  if not exists `group_activity_registration` (
   PRIMARY KEY (`id`),
   KEY `activity_id` (`activity_id`),
   KEY `user_code` (`user_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='群活动报名';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='群活动报名';
 
 CREATE TABLE if NOT EXISTS `my_subject` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -269,7 +269,7 @@ CREATE TABLE if NOT EXISTS `my_subject` (
   `subject_id` int(11) NOT NULL COMMENT '话题id',
   PRIMARY KEY (`id`),
   KEY `garden_code` (`garden_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='我的话题关联表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='我的话题关联表';
 
 use garden_$province_id;
 
@@ -282,7 +282,7 @@ CREATE TABLE  if not exists `garden_$city_id` (
   `latitude` decimal(10,6) NOT NULL COMMENT '纬度',
   `garden_code` varchar(255) NOT NULL COMMENT '小区识别码   采用创建地区的编号+随机字符串的方式',
   `garden_user` text NOT NULL COMMENT '小区用户列表  序列化后的数组 array（''user_code''=>role,） role 为用户在小区的角色 0： 没有任何身份 1：业主 2：租户 3：业委会 4：业委会主任 '
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小区表 在省份内按市区分表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='小区表 在省份内按市区分表';
 
 CREATE TABLE if NOT EXISTS `garden_message_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -294,7 +294,7 @@ CREATE TABLE if NOT EXISTS `garden_message_$city_id` (
   PRIMARY KEY (`id`),
   KEY `garden_code` (`garden_code`),
   KEY `create_time` (`create_time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小区通知表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='小区通知表';
 
 CREATE TABLE if NOT EXISTS `garden_opinion_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -318,7 +318,7 @@ CREATE TABLE if NOT EXISTS `garden_opinion_$city_id` (
   KEY `create_time` (`create_time`),
   KEY `status` (`status`),
   KEY `dealer_code` (`dealer_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小区意见箱';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='小区意见箱';
 
 CREATE TABLE if NOT EXISTS `garden_room_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -334,7 +334,7 @@ CREATE TABLE if NOT EXISTS `garden_room_$city_id` (
   KEY `role` (`role`),
   KEY `create_time` (`create_time`),
   KEY `user_code` (`user_code`)
-)ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='小区房间';
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='小区房间';
 
 CREATE TABLE if not EXISTS `subject_$city_id` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
@@ -364,7 +364,7 @@ CREATE TABLE if not EXISTS `subject_$city_id` (
   KEY `user_code` (`user_code`),
   KEY `create_time` (`create_time`),
   KEY `status` (`status`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='小区话题表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='小区话题表';
 
 CREATE TABLE if NOT EXISTS `adverse_$city_id` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -381,7 +381,7 @@ CREATE TABLE if NOT EXISTS `adverse_$city_id` (
   KEY `is_public` (`is_public`),
   KEY `garden_code` (`garden_code`),
   KEY `create_time` (`create_time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='广告表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='广告表';
 
 CREATE TABLE if NOT EXISTS `activity_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -413,7 +413,7 @@ CREATE TABLE if NOT EXISTS `activity_$city_id` (
   KEY `end_time` (`end_time`),
   KEY `user_code` (`user_code`),
   KEY `garden_code` (`garden_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='约玩表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='约玩表';
 
 CREATE TABLE if NOT EXISTS `activity_registration_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -425,7 +425,7 @@ CREATE TABLE if NOT EXISTS `activity_registration_$city_id` (
   PRIMARY KEY (`id`),
   KEY `activity_id` (`activity_id`),
   KEY `user_code` (`user_code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='活动报名';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='活动报名';
 
 use certification_application;
 
@@ -435,14 +435,14 @@ CREATE TABLE  if not exists `owner_application_$city_id` (
   `real_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '真实姓名',
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '手机号码',
   `room_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '房号',
-  `pictures` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '帮助认证的照片(如：房产证或者购房合同)',
+  `pictures` varchar(500) COLLATE utf8_unicode_ci  COMMENT '帮助认证的照片(如：房产证或者购房合同)',
   `id_card_num` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证号码',
-  `id_card_pictures` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证照片（正反面）',
+  `id_card_pictures` varchar(500) COLLATE utf8_unicode_ci  COMMENT '身份证照片（正反面）',
   `garden_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区code',
   `garden_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区名字',
-  `garden_picture` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区照片',
+  `garden_picture` varchar(500) COLLATE utf8_unicode_ci  COMMENT '小区照片',
   `city_id` int(4) NOT NULL COMMENT '小区所属城市',
-  `garden_addr` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区地址',
+  `garden_addr` varchar(255) COLLATE utf8_unicode_ci  COMMENT '小区地址',
   `yourself_picture` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个人照片',
   `role` tinyint(2) NOT NULL COMMENT '身份 1：房主 2:其他   默认第一位认证的人为房主',
   `relation_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '不是房主则填入关系名称',
@@ -453,7 +453,7 @@ CREATE TABLE  if not exists `owner_application_$city_id` (
   KEY `garden_id` (`garden_code`),
   KEY `status` (`status`),
   KEY `role` (`role`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='业主认证申请';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='业主认证申请';
 
 
 CREATE TABLE  if not exists `tenant_application_$city_id` (
@@ -463,15 +463,15 @@ CREATE TABLE  if not exists `tenant_application_$city_id` (
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '手机号码',
   `room_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '房号',
   `id_card_num` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证号码',
-  `id_card_pictures` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证照片（正反面）',
-  `pictures` varchar(500) COLLATE utf8_unicode_ci NOT NULL COMMENT '帮助认证的照片(如：租房合同照片)',
+  `id_card_pictures` varchar(500) COLLATE utf8_unicode_ci  COMMENT '身份证照片（正反面）',
+  `pictures` varchar(500) COLLATE utf8_unicode_ci  COMMENT '帮助认证的照片(如：租房合同照片)',
   `yourself_picture` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个人照片',
   `owner_id_card_num` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '业主身份证号',
   `owner_id_card_picture` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '业主身份证照片（正反面）',
   `garden_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区code',
   `garden_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区名字',
   `city_id` int(4) NOT NULL COMMENT '小区所属城市',
-  `garden_addr` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区详细地址',
+  `garden_addr` varchar(255) COLLATE utf8_unicode_ci COMMENT '小区详细地址',
   `role` tinyint(2) NOT NULL COMMENT '身份 1：主租户  2：其他   默认第一位认证的人为主租户',
   `relation_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '和主租户的关系  ',
   `contract_period` int(11) NOT NULL COMMENT '合同期限',
@@ -482,7 +482,7 @@ CREATE TABLE  if not exists `tenant_application_$city_id` (
   KEY `status` (`status`),
   KEY `room_num` (`room_num`),
   KEY `role` (`role`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='租户认证申请';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='租户认证申请';
 
 
 use baseinfo;
