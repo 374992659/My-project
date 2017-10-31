@@ -56,7 +56,6 @@ $(document).ready(function(){
                          console.log(friends_new_message);
                         var html="";
                         $.each(friends_new_message,function(i,item){
-
                             if(item.sender_code===friend_code){
                                 console.log(13);
                                 $("#"+friend_code).html(item.message_num);
@@ -221,7 +220,7 @@ $(document).ready(function(){
        // 存在本地
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
-        // window.location.href="friendChat.html";
+        window.location.href="friendChat.html";
     });
 // 点击跳转到群聊天页面
     $(".newsList").on("click",".groupChat",function(e){
