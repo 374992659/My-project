@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     // 获取所有好友
     (function(){
-        var allFriend_code=[];
+
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 数据格式转换
@@ -19,15 +19,16 @@ $(document).ready(function() {
                 var data=jsDecodeData(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    var allFriend_code=[];
                     $.each(data.data,function(i,item){
                         console.log(item.friend_user_code);
                         allFriend_code[i]=item.friend_user_code;
-                    });
+                    }); console.log(allFriend_code)
                 }
             },
             error:function(){}
         });
-        console.log(allFriend_code)
+
     })();
     // 及时通讯
 
