@@ -137,14 +137,15 @@ $(document).ready(function(){
             // 获取群号码
                 group_num=localStorage.getItem("group_num"),
             // 用户code
-                user_code=$(".linkList input[type=checkbox]").each(function(){
-                    var code=$(this).attr("title");
-                    console.log(code);
-                }),
+                user_code="";
+               $(".linkList input[type=checkbox]").each(function(){
+                   user_code=$(this).attr("title");
+                    console.log(user_code);
+                });
             //数据格式转换
-                data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
+               var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
             // 加密
-                jsonEncryptData=jsEncryptData(data);
+               jsonEncryptData=jsEncryptData(data);
             console.log(data);
             $.ajax({
                 url:url+"group_addGroupUser",
