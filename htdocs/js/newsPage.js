@@ -81,35 +81,35 @@ $(document).ready(function(){
                     var group_new_message = data.group_new_message;
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
-                //                 $.each(group_new_message,function(i,item){
-                //                     if(item.count==0){
-                //                         html+=`
-                // <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
-                //     <div class="weui-media-box__hd">
-                //         <span class="newsNum" title="${item.group_num}"></span>
-                //         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //         <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
-                //         <p class="weui-media-box__desc">已读消息</p><!--最新的消息-->
-                //     </div>
-                // </div>
-                //   `
-                //    }else{
-                //     html+=`
-                // <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
-                //     <div class="weui-media-box__hd">
-                //         <span class="newsNum" title="${item.group_num}">${item.count}</span>
-                //         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //         <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
-                //         <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
-                //     </div>
-                // </div>
-                //   `
-                //          }
-                //                 });
+                                $.each(group_new_message,function(i,item){
+                                    if(item.count==0){
+                                        html+=`
+                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
+                    <div class="weui-media-box__hd">
+                        <span class="newsNum" title="${item.group_num}"></span>
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
+                        <p class="weui-media-box__desc">已读消息</p><!--最新的消息-->
+                    </div>
+                </div>
+                  `
+                   }else{
+                    html+=`
+                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
+                    <div class="weui-media-box__hd">
+                        <span class="newsNum" title="${item.group_num}">${item.count}</span>
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">${item.nickname}</h4><!--昵称-->
+                        <p class="weui-media-box__desc">最新消息</p><!--最新的消息-->
+                    </div>
+                </div>
+                  `
+                         }
+                                });
                                 $(".newsList").append(html);
                     }
                     //好友申请未读消息
