@@ -296,7 +296,7 @@ $(document).ready(function() {
                         var online=JSON.parse(localStorage.getItem("online_friends"));
                         for(var i=0 ,len=allfriend.length;i<len;i++){
                             for(var j=0,le=online.length;j<le;j++){
-                                if(allfriend[i]===online[j]){
+                                if(allfriend[i]==online[j]){
                                     console.log(online[j]);
                                     console.log($("#"+online[j]).attr("src"));
                                     console.log(123);
