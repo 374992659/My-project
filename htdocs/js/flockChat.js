@@ -86,7 +86,6 @@ $(document).ready(function(){
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                             //展示好友发送的聊天信息
                             //展示好友发送的聊天信息
-                            var html="";
                                 html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
