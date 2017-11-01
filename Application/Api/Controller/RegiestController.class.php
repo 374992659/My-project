@@ -114,8 +114,7 @@ class RegiestController extends BaseController
      * 获取全国区域数组
      * */
     public function getAreaArr(){
-        $model=new Model\UserAreaModel();
-        $res=$model->getArea();
+        $res=M('swf_area')->select();
         $this->echoEncrypData(0,'',$res);
     }
 
