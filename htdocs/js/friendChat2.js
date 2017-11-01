@@ -251,7 +251,6 @@ $(document).ready(function(){
                 var history= $.parseJSON(history_chat);
                 var jsonObj = eval('(' + history + ')');
                 console.log(jsonObj);
-
                 data=[];
                 $.each(history,function(i,item){
                     var jsonObj = eval('(' + item + ')');

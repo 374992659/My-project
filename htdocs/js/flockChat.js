@@ -87,7 +87,7 @@ $(document).ready(function(){
                         var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                            // 本地存储聊天记录
-                            var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.sender_nickname+"','portrait':'"+data.send_portrait+"'}";
+                            var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.send_nickname+"','portrait':'"+data.send_portrait+"'}";
                             console.log(json_str);
                             var history_chats = localStorage.getItem('history_'+data.group);
                             if(!history_chats){
@@ -187,6 +187,97 @@ $(document).ready(function(){
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
     };
+    //获取本地聊天记录
+    (function(){
+        var history_chat = localStorage.getItem('history_'+sender_code);
+        var my_code=localStorage.getItem("my_code");
+        console.log(typeof history_chat);
+        if(history_chat){
+            var history= $.parseJSON(history_chat);
+            var jsonObj = eval('(' + history + ')');
+            console.log(jsonObj);
+            data=[];
+            $.each(history,function(i,item){
+                var jsonObj = eval('(' + item + ')');
+                data[i]=jsonObj;
+            });
+            console.log(data);
+            var html="";
+            $.each(data,function(i,item){
+                if(item.sender_code===my_code){
+                    if(item.type===2){
+                        html=`
+                                    <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
+                    <img style="width: 80px" src="${data.content}" alt=""/>
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+             </div>
+         </div>
+                                    `
+                    }else{
+                        html=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${data.content}</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+             </div>
+         </div>                                                              
+                `
+                    }
+
+                }else{
+                    if(item.type===2){
+                        html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="padding: 0">                            
+                              <img src="${data.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div> `
+                    }else{
+                        html=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${data.content}
+                             
+                            </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                    }
+
+                }
+            });
+            var chatPage=$("#chatPage");
+            chatPage.html(html);
+            document.body.scrollTop=chatPage.height();
+        }
+
+    })();
+
+    // 聊天历史记录
+    $(".historyNews").click(function(){
+        ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
+    });
     //群聊点击发送
     $(".pushBtn").click(function(){
         var content=$(".chatContent").val();                //获取页面发送内容
