@@ -209,7 +209,7 @@ $(document).ready(function(){
                 if(item.sender_code===my_code){
                     console.log("聊天记录");
                     if(parseInt(item.type)===2){
-                        html=`
+                        html+=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
@@ -223,11 +223,11 @@ $(document).ready(function(){
          </div>
                                     `
                     }else{
-                        html=`
+                        html+=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${data.content}</span>
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
@@ -238,7 +238,7 @@ $(document).ready(function(){
 
                 }else{
                     if(item.type===2){
-                        html=`
+                        html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -251,7 +251,7 @@ $(document).ready(function(){
                    </div>                   
                 </div> `
                     }else{
-                        html=`
+                        html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
