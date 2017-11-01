@@ -155,7 +155,6 @@ $(document).ready(function() {
                     if(parseInt(result.errcode)===0){
                         var data = (result.data);
                         var friend_code = data.user_code;
-                        console.log(data);
                         var online_friends =localStorage.getItem('online_friends');
                         console.log(online_friends);
                         if(!contains(online_friends,friend_code)){
@@ -163,7 +162,7 @@ $(document).ready(function() {
                            var newOnline = parseInt(JSON.parse(online_friends));
                            console.log(newOnline);
                             // newOnline.push(friend_code);
-                            var online=$("#"+newOnline);
+                            var online=$("#"+parseInt(friend_code));
                             var id=online.attr("title");
                             newOnline.attr("style","opacity: 1");
                             var clone=newOnline.parent().parent().clone(true);
