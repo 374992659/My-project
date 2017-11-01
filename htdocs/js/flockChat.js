@@ -87,8 +87,7 @@ $(document).ready(function(){
                         var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                             //展示好友发送的聊天信息
-                               
-                            $("#chatPage").append(html);
+
                             document.body.scrollTop=$("#chatPage").height();
                             //发送通知给服务器
                             var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});

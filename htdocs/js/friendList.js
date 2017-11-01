@@ -425,7 +425,7 @@ $(document).ready(function() {
     });
     // 退出登录
     $(".logOut").click(function(){
-        localStorage.removeItem("apptoken");
+        localStorage.clear();
         window.location.href="landing.html";
     });
     window.addEventListener("popstate", function(e) {
