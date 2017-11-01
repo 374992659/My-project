@@ -176,15 +176,21 @@ $(document).ready(function(){
             var  html=`
         <div class="weui-media-box weui-media-box_appmsg">
             <div class="weui-media-box__bd">
-                <span class="weui-media-box__desc right" >${content}</span>
+                <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">${content}</span>
             </div>
             <div class="weui-media-box__hd" style="margin-left:.8em;">
                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
             </div>
         </div>                     
            `;
-            $("#chatPage").append(html);
+            var chatPage=$("#chatPage");
+            chatPage.append(html);
             $(".chatContent").val("");
+            //保持滚动条一直在最底部
+            document.body.scrollTop=chatPage.height();
+            // 自己发送的消息存本地
+            // 把好友消息存在本地
+            // 获取发送的时间戳
         });
         //发送消息给好友
         $(".elements").click(function(){

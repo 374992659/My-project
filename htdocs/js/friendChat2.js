@@ -144,8 +144,9 @@ $(document).ready(function(){
                                  //  console.log(typeof string);
                                  //  localStorage.setItem("history",string);
                                 //展示好友发送的聊天信息
+                                var html="";
                                 if(http==="http:"){
-                                    var  html=`
+                                      html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -160,7 +161,7 @@ $(document).ready(function(){
                 </div>                  `;
                                     chatPage.append(html);
                                 }else{
-                                    var  html=`
+                                   html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -173,8 +174,9 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
-                                    chatPage.append(html);
+
                                 }
+                                chatPage.append(html);
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 console.log(JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code}));
@@ -208,6 +210,7 @@ $(document).ready(function(){
                 case 8:
                     console.log(result);
                     break;
+                    // 历史消息
                 case 9:
                     if(parseInt(result.errcode)===0){
                         console.log(1);
@@ -362,6 +365,7 @@ $(document).ready(function(){
             // 自己发送的消息存本地
             // 把好友消息存在本地
             // 获取发送的时间戳
+
             var sender=localStorage.getItem("sender_code");
            var time= (new Date()).toLocaleDateString();
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
