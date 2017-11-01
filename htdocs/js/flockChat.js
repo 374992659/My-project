@@ -357,9 +357,7 @@ $(document).ready(function(){
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
             console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
-            /
-
-
+            
         });
         // 发送图片
         $("#uploaderInputPic").change(function(){
