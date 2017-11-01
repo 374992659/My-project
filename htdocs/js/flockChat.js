@@ -222,10 +222,10 @@ $(document).ready(function(){
                         localStorage.setItem("friendPic","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".chatContent").val("");
                         var content=localStorage.getItem("friendPic");
+                        var group =localStorage.getItem("group_code");           //获取发送好友的群code
                         console.log(content);
                         var message_type = 2;
-                        var account_code =sender_code;
-                        ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+                        ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
                     }
                 },
                 error:function (data) {
