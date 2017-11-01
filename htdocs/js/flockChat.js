@@ -175,7 +175,7 @@ $(document).ready(function(){
                 </div>                  `;
 
                                 }
-                                // chatPage.append(html);
+                                 chatPage.append(html);
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
@@ -190,46 +190,46 @@ $(document).ready(function(){
                     break;
                 // 历史消息
                 case 9:
-                    if(parseInt(result.errcode)===0){
-                        console.log(1);
-                        console.log(result.data);
-                        var html="";
-                        $.each(result.data,function(i,item){
-                            if(item.sender_code==sender_code){
-                                html+=`
-                <div class="sendHtml">
-                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                     <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                            <img class="weui-media-box__thumb" src="${item.getter_portrait}" alt="">
-                        </div>
-                        <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
-                                   ${item.content}
-                                </span>
-                       </div>                   
-                    </div>                
-                </div>
-                                `
-                            }else if(item.getter_code==sender_code){
-                                html+=`
-                            <div class="getHtml">
-                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                                 <div class="weui-media-box weui-media-box_appmsg">
-                                    <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
-                                    </div>
-                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
-                                        <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-                                    </div>
-                                 </div>   
-                            </div>
-                                 
-                                `
-                            }
-                        });
-                        $("#chatPage").prepend(html);
-                    }
+                //     if(parseInt(result.errcode)===0){
+                //         console.log(1);
+                //         console.log(result.data);
+                //         var html="";
+                //         $.each(result.data,function(i,item){
+                //             if(item.sender_code==sender_code){
+                //                 html+=`
+                // <div class="sendHtml">
+                //      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                //      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                //         <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                //             <img class="weui-media-box__thumb" src="${item.getter_portrait}" alt="">
+                //         </div>
+                //         <div class="weui-media-box__bd">
+                //                 <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
+                //                    ${item.content}
+                //                 </span>
+                //        </div>
+                //     </div>
+                // </div>
+                //                 `
+                //             }else if(item.getter_code==sender_code){
+                //                 html+=`
+                //             <div class="getHtml">
+                //                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                //                  <div class="weui-media-box weui-media-box_appmsg">
+                //                     <div class="weui-media-box__bd">
+                //                         <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
+                //                     </div>
+                //                     <div class="weui-media-box__hd" style="margin-left:.8em;">
+                //                         <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                //                     </div>
+                //                  </div>
+                //             </div>
+                //
+                //                 `
+                //             }
+                //         });
+                //         $("#chatPage").prepend(html);
+                //     }
                     break
             }
         };
@@ -239,8 +239,8 @@ $(document).ready(function(){
                 var pathname = window.location.pathname;
                 var patharr  = pathname.split('/');
                 var html = patharr[parseInt(patharr.length-1)];
-                if(html==="friendChat.html"){
-                    var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':sender_code});
+                if(html==="flockChat.html"){
+                    var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':group_code});
                     ws.send(sendMessage);
                 }
             })();
