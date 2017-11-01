@@ -162,6 +162,11 @@ $(document).ready(function() {
                            var newOnline = JSON.parse(online_friends);
                            console.log(newOnline);
                             // newOnline.push(friend_code);
+                            var online=$("#"+newOnline);
+                            newOnline.attr("style","opacity: 1");
+                            var clone=newOnline.parent().parent().clone(true);
+                            newOnline.parent().parent().remove();
+                            //$("#"+id).prepend(clone);
                         }
                         // localStorage.setItem('online_friends',newOnline);
                     }
@@ -254,12 +259,12 @@ $(document).ready(function() {
     //功能1 请求好友分组
     var apptoken=localStorage.getItem("apptoken"),
     data=["", JSON.stringify({"apptoken":apptoken})],
-    encreptdata = jsEncryptData(data);
+    jsonEncryptData = jsEncryptData(data);
     console.log(data);
     $.ajax({
         url:url+"friends_getGroup",
         type:"POST",
-        data:{"data":encreptdata},
+        data:{"data":jsonEncryptData},
         success: function (data){
             data = jsDecodeData(data);
             console.log(data);
@@ -319,6 +324,7 @@ $(document).ready(function() {
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
+                        console.log(data);
                         $.each(data.data,function(i,item){
                             "use strict";
                             if(item.group_id==id){

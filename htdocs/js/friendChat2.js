@@ -190,12 +190,7 @@ $(document).ready(function(){
                         console.log(1);
                         console.log(result.data);
                         var html="";
-                        var arr=[];
-                       for(var i=0,len=result.data.length;i<len-20;i++){
-                           arr.push(result.data[i])
-                       }
-                        console.log(arr);
-                        $.each(arr,function(i,item){
+                        $.each(result.data,function(i,item){
                             if(item.sender_code==sender_code){
                                 if(parseInt(item.type)===2){
                                     html+=`
