@@ -79,6 +79,10 @@ $(document).ready(function() {
                             history_chats[history_chats.length] = json_str;
                             console.log("输出数组长度");
                             console.log(history_chats.length);
+                            if(history_chats.length>3){
+                                history_chats.shift();
+                            }
+                            console.log(history_chats);
                             localStorage.setItem('history_' + result.data.group, JSON.stringify(history_chats));
                         }
                 }else if(result.errmsg==="好友消息"){
