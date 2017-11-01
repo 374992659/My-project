@@ -86,6 +86,19 @@ $(document).ready(function(){
                     if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
                         var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
+                           // 本地存储聊天记录
+                            var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.sender_nickname+"','portrait':'"+data.send_portrait+"'}";
+                            console.log(json_str);
+                            var history_chats = localStorage.getItem('history_'+data.group);
+                            if(!history_chats){
+                                history_chats = new Array();
+                                history_chats=[json_str];
+                                localStorage.setItem('history_'+data.group,JSON.stringify(history_chats));
+                            }else{
+                                history_chats = JSON.parse(history_chats);
+                                history_chats[history_chats.length] = json_str;
+                                localStorage.setItem('history_'+data.group,JSON.stringify(history_chats));
+                            }
                             //展示好友发送的聊天信息
                             var html="";
                             if(my_code===data.sender_code){

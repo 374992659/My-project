@@ -441,57 +441,6 @@ $(document).ready(function(){
             $(".weui-grids").hide();
         }
     });
-    //上传图片
-    // $('#uploaderInputPic').change(function(e) {
-    //     // var Url=window.URL.createObjectURL(this.files[0]) ;
-    //     // console.log(Url);
-    //     var formData= new FormData();
-    //     console.log($("#uploaderInputPic")[0].files[0]);
-    //     var apptoken=localStorage.getItem("apptoken");
-    //     formData.append("file",$("#uploaderInputPic")[0].files[0]);
-    //     var data=["",JSON.stringify({"apptoken":apptoken})];
-    //     var json=jsEncryptData(data);
-    //     formData.append("data",json);
-    //     console.log(formData);
-    //     $.ajax({
-    //         type:"POST",
-    //         url:url+"ChatMessage_uploadGroupFile",
-    //         fileElementId:'uploaderInput',
-    //         data:formData,
-    //         processData : false,
-    //         contentType : false,
-    //         secureuri:false,
-    //         success : function(data){
-    //             // 解密
-    //             data=jsDecodeData(data);
-    //             console.log(data);
-    //             if(data.errcode===0){
-    //                 localStorage.setItem("apptoken",data.apptoken);
-    //                 console.log(data.data[0]);
-    //                 localStorage.setItem("friendPic","http://wx.junxiang.ren/project/"+data.data[0]);
-    //                 var  html=`
-    //      <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-    //     <div class="weui-media-box weui-media-box_appmsg">
-    //          <div class="weui-media-box__bd">
-    //              <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-    //                 <img style="width: 100px" src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
-    //              </span>
-    //         </div>
-    //          <div class="weui-media-box__hd" style="margin-left:.8em;">
-    //              <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-    //          </div>
-    //      </div>
-    //         `;
-    //                 var chatPage=$("#chatPage");
-    //                 chatPage.append(html);
-    //                 $(".chatContent").val("");
-    //             }
-    //         },
-    //         error:function (data) {
-    //             console.log(data);
-    //         }
-    //     });
-    // });
     //上传文件
     $('#uploaderInputFile').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
