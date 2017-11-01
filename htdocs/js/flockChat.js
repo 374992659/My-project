@@ -247,4 +247,11 @@ $(document).ready(function(){
         }
         return false;
     }
+    $(".imgBtn").click(function(){
+        if($(".weui-grids").is(":hidden")){
+            $(".weui-grids").show();
+        }else{
+            $(".weui-grids").hide();
+        }
+    });
 });
