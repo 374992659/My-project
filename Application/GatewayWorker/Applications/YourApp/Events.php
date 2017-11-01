@@ -261,7 +261,7 @@ class Events
                     '_id'=>self::getNextId($mongo,'user_info_'.$create_code,'group_chat'),
                     'sender_code'=>$account_code['account_code'],
                     'send_nickname'=>$user_info['nickname'],
-                    'send_portrait'=>$user_info['send_portrait'],
+                    'send_portrait'=>$user_info['portrait'],
                     'content'=>$message->content,
                     'send_time'=>time(),
                     'group'=>$message->group,
