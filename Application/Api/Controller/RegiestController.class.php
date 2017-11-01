@@ -315,7 +315,7 @@ class RegiestController extends BaseController
             if(!$openId)$this->echoEncrypData(21);
         }
         if(!$account || !$password){
-            $this->echoEncrypData(1,'登陆参数不完整',$openId);
+            $this->echoEncrypData(1,'登陆参数不完整',$account);
         }
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){
             $this->echoEncrypData(106);
