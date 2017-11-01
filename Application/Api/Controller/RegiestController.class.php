@@ -333,12 +333,12 @@ class RegiestController extends BaseController
         if(!$res){
             $this->echoEncrypData(1,'账号或密码错误');
         }else{
-            $account['table_id'] =$table_id['table_id'];
+            $account['table_id'] = $table_id['table_id'];
             $this->account_code = $table_id['table_id'].$table_id['account'];
             $this->appToken=true;   //返回apptoken
-            $mongo->baseinfo->user_area->update(array('account'=>$account),array('$set'=>array('openId'=>$openId)));
+            $res = $mongo->baseinfo->user_area->update(array('account'=>$account),array('$set'=>array('openId'=>$openId)));
             session('account'.$this->account_code,$account);
-            $this->echoEncrypData(0);
+            $this->echoEncrypData(0,$res);
         }
     }
 
