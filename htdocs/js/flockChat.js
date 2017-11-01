@@ -109,8 +109,8 @@ $(document).ready(function(){
         var content=$(".chatContent").val('content');                //获取页面发送内容
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
         var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
-        console.log(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
-        ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
+        console.log(JSON.stringify({'type':3,'content':content,'apptoken':apptoken,'account_code':group,'message_type':message_type}));
+        ws.send(JSON.stringify({'type' : 3,'content':content,'apptoken':apptoken,'account_code':group,'message_type':message_type}));
         // 添加本地页面
         var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
