@@ -62,6 +62,41 @@ $(document).ready(function() {
                 group_new_messageNum=0,
                 friends_new_applyNum=0;
             console.log(result);
+            // 对接收到的消息存本地进行处理
+            (function(){
+                console.log(result.errmsg);
+                if(result.errmsg==="群消息"){
+                    $.each(result.data,function(i,item){
+                        // 本地未读聊天记录
+                        var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.send_nickname+"','portrait':'"+item.send_portrait+"'}";
+                        console.log(json_str);
+                        var history_chats = localStorage.getItem('history_'+item.group);
+                        if(!history_chats){
+                            var history_chats = new Array();
+                            history_chats=[json_str];
+                            localStorage.setItem('history_'+item.group,JSON.stringify(history_chats));
+                        }else {
+                            history_chats = JSON.parse(history_chats);
+                            history_chats[history_chats.length] = json_str;
+                            localStorage.setItem('history_' + item.group, JSON.stringify(history_chats));
+                        }
+                    })
+                }else if(result.errmsg==="好友消息"){
+                    // 本地未读聊天记录
+                    var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+item.send_portrait+"'}";
+                    console.log(json_str);
+                    var history_chats = localStorage.getItem('history_'+item.group);
+                    if(!history_chats){
+                        var history_chats = new Array();
+                        history_chats=[json_str];
+                        localStorage.setItem('history_'+item.sender_code,JSON.stringify(history_chats));
+                    }else {
+                        history_chats = JSON.parse(history_chats);
+                        history_chats[history_chats.length] = json_str;
+                        localStorage.setItem('history_' + item.sender_code, JSON.stringify(history_chats));
+                    }
+                }
+            })();
             switch(parseInt(result.type)){
                 case 1:            //1 .在线好友、好友未读消息、群未读消息
                     if(parseInt(result.errcode)===0){
