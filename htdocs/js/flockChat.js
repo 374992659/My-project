@@ -76,8 +76,8 @@ $(document).ready(function(){
                     var pathname = window.location.pathname;
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
-                    if(html ==='***.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
-                        var current_code = $(".elements").val('group_code');   //获取当前聊天群的群code
+                    if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
+                        var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                             //展示好友发送的聊天信息
 
@@ -89,6 +89,9 @@ $(document).ready(function(){
 
                     }
                 }
+                break;
+            case 8:
+                console.log(result);
                 break;
             case 9:
 
@@ -106,9 +109,9 @@ $(document).ready(function(){
         var content=$(".elements").val('content');                //获取页面发送内容
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
         var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
-        ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+        ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
     });
-
+        
 
     //发送消息给好友
     $(".elements").click(function(){

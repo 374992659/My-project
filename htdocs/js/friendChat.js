@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
         // 获取发送好友的code
         sender_code=localStorage.getItem("sender_code");
