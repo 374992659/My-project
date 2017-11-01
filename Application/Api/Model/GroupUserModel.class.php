@@ -46,7 +46,7 @@ class GroupUserModel extends Model
         );
         $res = $this->add($data);
         if(!$res){
-            return false;
+            return $this->getError();
         }
         return true;
     }
