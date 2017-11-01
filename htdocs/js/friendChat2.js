@@ -118,31 +118,6 @@ $(document).ready(function(){
                                     localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
                                 }
 
-
-                             // var sender_code = data.sender_code;
-                             //    history_chats = localStorage.getItem('history_'+data.sender_code);
-                             //    if(history_chats){
-                             //        alert(typeof (history_chats));
-                             //        var length = history_chats.length;
-                             //        history_chats[length]= json_str;
-                             //        console.log(JSON.stringify(history_chats));
-                             //        localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
-                             //    }else{
-                             //        history_chats= [json_str];
-                             //        localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
-                             //    }
-
-
-                                 // var   arr={};
-                                 //  arr[sender_code]=[];
-                                 //  var hash=[];
-                                 //  hash["content"]=data.content;
-                                 //  hash["time"]=data.send_time;
-                                 //  arr.sender_code.push(hash);
-                                 //  console.log(arr);
-                                 //  var string=JSON.stringify(arr);
-                                 //  console.log(typeof string);
-                                 //  localStorage.setItem("history",string);
                                 //展示好友发送的聊天信息
                                 var html="";
                                 if(http==="http:"){
