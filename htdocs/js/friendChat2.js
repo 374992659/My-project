@@ -258,7 +258,7 @@ $(document).ready(function(){
                 var html="";
                 $.each(data,function(i,item){
                     console.log(item);
-                    if(item.sender_code===sender_code){
+                    if(item.sender_code===my_code){
                         console.log("聊天记录");
                         if(parseInt(item.type)===2){
                             html+=`
