@@ -188,7 +188,6 @@ $(document).ready(function(){
                 break;
         }
     };
-
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
         (function(){
@@ -198,11 +197,10 @@ $(document).ready(function(){
             var patharr  = pathname.split('/');
             var html = patharr[parseInt(patharr.length-1)];
             if(html==="flockChat.html"){
-                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'group_code':group});
+                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'group':group});
                 ws.send(sendMessage);
             }
         })();
-
     };
 
     //获取本地聊天记录
