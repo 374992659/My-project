@@ -342,7 +342,7 @@ $(document).ready(function(){
             if(!history_chats){
                 history_chats = new Array();
                 history_chats=[json_str];
-                localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+                localStorage.setItem('historyGroup_'+group,JSON.stringify(history_chats));
             }else{
                 history_chats = JSON.parse(history_chats);
                 history_chats[history_chats.length] = json_str;
