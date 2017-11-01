@@ -115,7 +115,7 @@ $(document).ready(function() {
                                 onlineFried.push(item);
                             });
                             // 把在线好友压入数组
-                            $(".online").html(onlineFried.length);
+                            //$(".online").html(onlineFried.length);
                             // 把在线好友存在本地
                             localStorage.setItem("online_friends",JSON.stringify(onlineFried));
                         }
@@ -168,6 +168,9 @@ $(document).ready(function() {
                             var clone=online.parent().parent().clone(true);
                             online.parent().parent().remove();
                             $("#"+id).prepend(clone);
+                            var num= $("#"+id).find("span").html();
+                                num=num+1;
+                            $("#"+id).find("span").html(num)
                         }
                         // localStorage.setItem('online_friends',newOnline);
                     }
@@ -283,7 +286,7 @@ $(document).ready(function() {
                 <p style=""  title="${item.id}">${item.group_name}</p>
             </div>
             <div class="weui-cell__ft" style="">
-                <span class="online ${item.id}" style="font-size: 15px"></span>/${item.total}
+                <span class="online ${item.id}" style="font-size: 15px">0</span>/${item.total}
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
