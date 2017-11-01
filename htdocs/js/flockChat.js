@@ -115,7 +115,7 @@ $(document).ready(function(){
                                 console.log(typeof http);
                                 var html="";
                                 if(http==="http:"){
-                                    var  html=`
+                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -129,7 +129,7 @@ $(document).ready(function(){
                 </div>                  `;
                                     chatPage.append(html);
                                 }else{
-                                    var  html=`
+                                    html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
