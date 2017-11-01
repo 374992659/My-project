@@ -149,7 +149,7 @@ $(document).ready(function(){
             var  user_code=$("input[type=checkbox]:checked").val();
             console.log(user_code);
             //数据格式转换
-               var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":"2701123456"})],
+               var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
             // 加密
                jsonEncryptData=jsEncryptData(data);
             console.log(data);
