@@ -146,7 +146,7 @@ $(document).ready(function(){
             //        user_code.push($(this).val());
             //         console.log(user_code);
             //     });
-            var  user_code=$("input[check=checked]").val();
+            var  user_code=$("input[type=checkbox]:checked").val();
             console.log(user_code);
             //数据格式转换
                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":"2701123456"})],
