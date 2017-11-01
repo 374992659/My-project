@@ -278,7 +278,8 @@ $(document).ready(function(){
 
     // 聊天历史记录
     $(".historyNews").click(function(){
-        ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'user_code':sender_code}));
+        var group=localStorage.getItem("group_code");
+        ws.send(JSON.stringify({'type':9,'apptoken' : apptoken,'group':group}));
     });
     //群聊点击发送
     $(".pushBtn").click(function(){
