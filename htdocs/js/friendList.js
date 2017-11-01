@@ -16,7 +16,7 @@ $(document).ready(function() {
                 // 解密
                 var data=jsDecodeData(data);
                 console.log(data);
-                if(data.erccode===0){
+                if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     console.log(data.data);
                     localStorage.setItem("my_code",data.data.account_code)
