@@ -190,7 +190,19 @@ $(document).ready(function(){
     };
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
+        (function(){
+            var my_code=localStorage.getItem("my_code");
+            var pathname = window.location.pathname;
+            var patharr  = pathname.split('/');
+            var html = patharr[parseInt(patharr.length-1)];
+            if(html==="flockChat.html"){
+                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':my_code});
+                ws.send(sendMessage);
+            }
+        })();
+
     };
+
     //获取本地聊天记录
     (function(){
         var group=localStorage.getItem("group_code");
@@ -209,7 +221,6 @@ $(document).ready(function(){
             console.log(data);
             var html="";
             $.each(data,function(i,item){
-                console.log(item);
                 if(item.sender_code===my_code){
                     console.log("聊天记录");
                     if(parseInt(item.type)===2){
