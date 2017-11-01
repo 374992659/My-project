@@ -315,7 +315,7 @@ class RegiestController extends BaseController
             if(!$openId)$this->echoEncrypData(21);
         }
         if(!$account || !$password){
-            $this->echoEncrypData(1,'登陆参数不完整',$account);
+            $this->echoEncrypData(1,'登陆参数不完整');
         }
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){
             $this->echoEncrypData(106);
@@ -336,10 +336,9 @@ class RegiestController extends BaseController
             $account['table_id'] = $table_id['table_id'];
             $this->account_code = $table_id['table_id'].$table_id['account'];
             $this->appToken=true;   //返回apptoken
-            $res =$mongo->baseinfo->user_area->findOne(array('account'=>$account));
-            $mongo->baseinfo->user_area->update(array('account'=>$account),array('$set'=>array('openId'=>$openId)));
+            $mongo->baseinfo->user_area->update(array('account_code'=>$this->account_code),array('$set'=>array('openId'=>$openId)));
             session('account'.$this->account_code,$account);
-            $this->echoEncrypData(0,$account);
+            $this->echoEncrypData(0);
         }
     }
 
