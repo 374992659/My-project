@@ -339,7 +339,7 @@ class RegiestController extends BaseController
             $res =$mongo->baseinfo->user_area->findOne(array('account'=>$account));
             $mongo->baseinfo->user_area->update(array('account'=>$account),array('$set'=>array('openId'=>$openId)));
             session('account'.$this->account_code,$account);
-            $this->echoEncrypData(0,$res);
+            $this->echoEncrypData(0,$account);
         }
     }
 
