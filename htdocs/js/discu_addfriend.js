@@ -139,13 +139,15 @@ $(document).ready(function(){
             //获取  apptoken
             var apptoken=localStorage.getItem("apptoken"),
             // 获取群号码
-                group_num=localStorage.getItem("group_num"),
+                group_num=localStorage.getItem("group_num");
             // 用户code
-                user_code=[];
-               $(".linkList input[type=checkbox]").each(function(){
-                   user_code.push($(this).val());
-                    console.log(user_code);
-                });
+            //     user_code=[];
+            //    $(".linkList input[type=checkbox]").each(function(){
+            //        user_code.push($(this).val());
+            //         console.log(user_code);
+            //     });
+            var  user_code=$("input[check=checked]").attr("tilte");
+            console.log(user_code);
             //数据格式转换
                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":"2701123456"})],
             // 加密
