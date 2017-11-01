@@ -20,7 +20,7 @@ $(document).ready(function() {
                     localStorage.setItem("apptoken",data.apptoken);
                     $.each(data.data,function(i,item){
                         console.log(item);
-                        localStorage.setItem("my_code".item)
+                        localStorage.setItem("my_code",item)
                     });
                 }
             }
