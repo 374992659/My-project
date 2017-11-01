@@ -112,7 +112,7 @@ $(document).ready(function(){
                     <img style="width: 80px" src="${data.content}" alt=""/>
                  </span>
             </div>
-            <h4>${data.send_nickname}</h4>
+            <h4>123</h4>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
              </div>
