@@ -96,6 +96,7 @@ $(document).ready(function(){
                             }
                         });
                         $(".newsList").append(html);
+                        $(".newsPage").attr("style","padding:0 4px")
                     }
                     // 群未读消息
                     var group_new_message = data.group_new_message;

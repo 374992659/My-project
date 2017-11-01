@@ -259,44 +259,74 @@ $(document).ready(function(){
                 console.log(data);
                 var html="";
                 $.each(data,function(i,item){
+                    console.log(item);
                     if(item.sender_code===sender_code){
-                        html+=`
-                <div class="sendHtml">
-                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                     <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                            <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
-                        </div>
-                        <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
-                                   ${item.content}
-                                </span>
-                       </div>                   
-                    </div>                
-                </div>
-                                `
+                        console.log("聊天记录");
+                        if(parseInt(item.type)===2){
+                            html+=`
+                                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
+                    <img style="width: 80px" src="${item.content}" alt=""/>
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+             </div>
+         </div>
+                                    `
+                        }else{
+                            html+=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+             </div>
+         </div>                                                              
+                `
+                        }
+
                     }else{
-                        html+=`
-                            <div class="getHtml">
+                        if(parseInt(item.type)===2){
+                            html+=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="padding: 0">                            
+                              <img src="${item.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div> `
+                        }else{
+                            html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                                 <div class="weui-media-box weui-media-box_appmsg">
-                                    <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
-                                    </div>
-                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
-                                        <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-                                    </div>
-                                 </div>   
-                            </div>
-                                 
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}                            
+                            </span>
+                   </div>                   
+                </div> 
+                                
                                 `
+                        }
+
                     }
                 });
                 var chatPage=$("#chatPage");
                 chatPage.html(html);
                 document.body.scrollTop=chatPage.height();
             }
-
         })();
 
         // 聊天历史记录
