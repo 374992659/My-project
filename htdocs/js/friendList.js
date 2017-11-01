@@ -17,13 +17,7 @@ $(document).ready(function() {
                 var data=jsDecodeData(data);
                 console.log(data);
                 localStorage.setItem("my_code",data.data.account_code);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    $.each(data.data,function(i,item){
-                        console.log(item);
-                        localStorage.setItem("my_code",item)
-                    });
-                }
+                console.log(data.data.account_code);
             }
         })
     })();
