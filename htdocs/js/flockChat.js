@@ -76,6 +76,7 @@ $(document).ready(function(){
                     var pathname = window.location.pathname;
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
+                    console.log(result);
                     if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
                         var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
@@ -93,7 +94,7 @@ $(document).ready(function(){
             case 8:
                 console.log(result);
                 break;
-            case 9:
+            case 9://历史消息
 
 
 
@@ -110,7 +111,7 @@ $(document).ready(function(){
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
         var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
         console.log(JSON.stringify({'type':3,'content':content,'apptoken':apptoken,'account_code':group,'message_type':message_type}));
-        ws.send(JSON.stringify({'type' : 3,'content':content,'apptoken':apptoken,'account_code':group,'message_type':message_type}));
+        ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
         var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
