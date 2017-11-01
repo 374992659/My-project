@@ -1,5 +1,27 @@
 $(document).ready(function() {
     "use strict";
+    // 获取自己的信息
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+            // 数据格式转换
+            data=['',JSON.stringify({"apptoken":apptoken})],
+            // 加密
+            json=jsEncryptData(data);
+        $.ajax({
+            url:url+"UserCenter_getMyAcoountCode",
+            type:"POST",
+            data:{"data":json},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.erccode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                }
+            }
+        })
+    })();
     // 获取所有好友
     (function(){
         // 获取apptoken

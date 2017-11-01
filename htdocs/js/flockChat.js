@@ -80,25 +80,12 @@ $(document).ready(function(){
                     var pathname = window.location.pathname;
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
-                    console.log(result);
+                    console.log(data);
                     if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
                         var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                             //展示好友发送的聊天信息
-                            //展示好友发送的聊天信息
-                                html=`
-                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
-                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               ${data.content}
-                             
-                            </span>
-                   </div>                   
-                </div>                  `;
+                                if(){}
                             $("#chatPage").append(html);
                             document.body.scrollTop=$("#chatPage").height();
                             //发送通知给服务器
@@ -106,7 +93,6 @@ $(document).ready(function(){
                             ws.send(sendMessage);
                         }
                     }else{    //其他页面 暂不处理
-
                     }
                 }
                 break;
@@ -132,19 +118,6 @@ $(document).ready(function(){
         console.log(JSON.stringify({'type':3,'content':content,'apptoken':apptoken,'account_code':group,'message_type':message_type}));
         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
-        var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${content}</span>
-            </div>
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-             </div>
-         </div>
-            `;
-        var chatPage=$("#chatPage");
-        chatPage.append(html);
         $(".chatContent").val("");
 
     });
