@@ -163,11 +163,10 @@ $(document).ready(function() {
                            console.log(newOnline);
                             // newOnline.push(friend_code);
                             var online=$("#"+parseInt(friend_code));
-                            console.log(typeof parseInt(friend_code));
                             var id=online.attr("title");
-                            newOnline.attr("style","opacity: 1");
-                            var clone=newOnline.parent().parent().clone(true);
-                            newOnline.parent().parent().remove();
+                            online.attr("style","opacity: 1");
+                            var clone=online.parent().parent().clone(true);
+                            online.parent().parent().remove();
                             $("#"+id).prepend(clone);
                         }
                         // localStorage.setItem('online_friends',newOnline);
