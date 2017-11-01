@@ -369,7 +369,7 @@ $(document).ready(function(){
             // 获取发送的时间戳
 
             var sender=localStorage.getItem("sender_code");
-           var time= (new Date()).toLocaleDateString();
+            var time= (new Date()).toLocaleDateString();
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
             console.log(json_str);
             var history_chats = localStorage.getItem('history_'+sender_code);
@@ -432,6 +432,21 @@ $(document).ready(function(){
                         var message_type = 2;
                         var account_code =sender_code;
                         ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+                        // 本地存聊天记录
+                        var sender=localStorage.getItem("sender_code");
+                        var time= (new Date()).toLocaleDateString();
+                        var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
+                        console.log(json_str);
+                        var history_chats = localStorage.getItem('history_'+sender_code);
+                        if(!history_chats){
+                            history_chat = new Array();
+                            history_chats=[json_str];
+                            localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+                        }else{
+                            history_chats = JSON.parse(history_chats);
+                            history_chats[history_chats.length] = json_str;
+                            localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+                        }
                     }
                 },
                 error:function (data) {
