@@ -90,13 +90,13 @@ $(document).ready(function(){
                             var html="";
                             if(my_code===data.sender_code){
                                 html=`
-                                 <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${content}</span>
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${data.content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                 <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
              </div>
          </div>
                                                               
