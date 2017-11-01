@@ -194,6 +194,47 @@ $(document).ready(function(){
         var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
         ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
     });
+    // 发送图片
+    $("#uploaderInputPic").change(function(){
+            var formData= new FormData();
+            console.log($("#uploaderInputPic")[0].files[0]);
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderInputPic")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"ChatMessage_uploadGroupFile",
+                fileElementId:'uploaderInput',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        console.log(data.data[0]);
+                        localStorage.setItem("friendPic","http://wx.junxiang.ren/project/"+data.data[0]);
+                        $(".chatContent").val("");
+                        var content=localStorage.getItem("friendPic");
+                        console.log(content);
+                        var message_type = 2;
+                        var account_code =sender_code;
+                        ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+
+        }
+    );
     /*
     * 判断是否存在元素
     * */
