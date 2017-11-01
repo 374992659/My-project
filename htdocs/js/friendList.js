@@ -225,7 +225,6 @@ $(document).ready(function() {
             console.log(data);
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
-                localStorage.setItem("my_code",data.data.user_code);
                 var html = "";
                 $.each(data.data,function(i, item){
                     html += `
