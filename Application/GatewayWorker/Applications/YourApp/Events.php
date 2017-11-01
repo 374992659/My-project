@@ -241,7 +241,7 @@ class Events
                 $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                 $table_id =substr($account_code['account_code'],0,4);
                $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
-               var_dump($user_info);
+//               var_dump($user_info);
 //                       $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
                $mongo =new MongoClient();
                $create_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$message->group),array('user_code'));
