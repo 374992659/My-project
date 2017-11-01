@@ -30,8 +30,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     // 把apptoken存在本地
-                    localStorage.setItem("apptoken",data.apptoken);
-                    window.location.href="index.html";
+                    // localStorage.setItem("apptoken",data.apptoken);
+                    // window.location.href="index.html";
+                    console.log(data);
                 }else{
                     var html=`
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
