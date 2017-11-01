@@ -113,6 +113,7 @@ $(document).ready(function(){
                                 var http=img[0];
                                 var chatPage=$("#chatPage");
                                 console.log(typeof http);
+                                var html="";
                                 if(http==="http:"){
                                     var  html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
@@ -121,8 +122,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="padding: 0">
-                              
+                            <span class="weui-media-box__desc" style="padding: 0">                              
                               <img src="${data.content}" alt="" style="width: 80px">
                             </span>
                    </div>                   
@@ -141,8 +141,9 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
-                                    chatPage.append(html);
+
                                 }
+                                chatPage.append(html);
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
