@@ -192,12 +192,12 @@ $(document).ready(function(){
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
         (function(){
-            var group_code=localStorage.getItem("group_code");
+            var group=localStorage.getItem("group_code");
             var pathname = window.location.pathname;
             var patharr  = pathname.split('/');
             var html = patharr[parseInt(patharr.length-1)];
             if(html==="flockChat.html"){
-                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6});
+                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'group_code':group});
                 ws.send(sendMessage);
             }
         })();
