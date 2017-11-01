@@ -208,27 +208,27 @@ $(document).ready(function(){
                 if(item.sender_code===my_code){
                     if(item.type===2){
                         html=`
-                                    <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+                                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 80px" src="${data.content}" alt=""/>
+                    <img style="width: 80px" src="${item.content}" alt=""/>
                  </span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
              </div>
          </div>
                                     `
                     }else{
                         html=`
-                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${data.content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
              </div>
          </div>                                                              
                 `
@@ -237,27 +237,27 @@ $(document).ready(function(){
                 }else{
                     if(item.type===2){
                         html=`
-                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                            
-                              <img src="${data.content}" alt="" style="width: 80px">
+                              <img src="${item.content}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div> `
                     }else{
                         html=`
-                                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               ${data.content}
+                               ${item.content}
                              
                             </span>
                    </div>                   
