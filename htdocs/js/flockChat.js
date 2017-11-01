@@ -237,7 +237,7 @@ $(document).ready(function(){
                     }
 
                 }else{
-                    if(item.type===2){
+                    if(parseInt(item.type)===2){
                         html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -259,8 +259,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               ${item.content}
-                             
+                               ${item.content}                            
                             </span>
                    </div>                   
                 </div> 
