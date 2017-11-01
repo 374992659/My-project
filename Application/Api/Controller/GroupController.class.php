@@ -145,8 +145,8 @@ class GroupController extends VersionController
         $user_data = $mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code),array('nickname,portrait'));
         $group_user = new Model\GroupUserModel($create_data['user_code']);
         $group_user->startTrans();
-        $res1 = $group_user->addUser($create_data['group_code'],$group_num,$create_data['group_name'],$create_data['group_portrait'],$account_code,$user_data['nickname'],$user_data['portrait'],3);  //1.将用户添加至创建人群用户表
-        $user_group = new Model\UserGroupModel($account_code);
+        $res1 = $group_user->addUser($create_data['group_code'],$group_num,$create_data['group_name'],$create_data['group_portrait'],$user_code,$user_data['nickname'],$user_data['portrait'],3);  //1.将用户添加至创建人群用户表
+        $user_group = new Model\UserGroupModel($user_code);
         $user_group->startTrans();
         $res2 = $user_group->addGroup($create_data['group_name'],$create_data['group_portrait'],$create_data['group_code'],$group_num,3,$create_data['group_type'],$create_data['garden_code']);
         if($res1 and $res2){
