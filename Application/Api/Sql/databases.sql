@@ -57,10 +57,10 @@ CREATE TABLE if NOT EXISTS `friends_apply` (
 
 CREATE TABLE  if not exists `friends_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
-  `user_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户唯一标识。区域id+手机号的形式',
-  `group_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '' COMMENT '分组名',
+  `user_code` varchar(255)  NOT NULL COMMENT '用户唯一标识。区域id+手机号的形式',
+  `group_name` varchar(255) NOT NULL DEFAULT '' COMMENT '分组名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0:禁用或删除 1：启用'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户好友分组表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='用户好友分组表';
 INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,$account_code, '我的好友');
 
 CREATE TABLE  if not exists `group_chat_log` (
