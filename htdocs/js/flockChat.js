@@ -5,6 +5,10 @@ $(document).ready(function(){
         sender_code=localStorage.getItem("sender_code");
     (function(){
         var apptoken = localStorage.getItem('apptoken');
+        // 时间戳的转换
+        function getLocalTime(nS) {
+            return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
+        }
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
         ws.onmessage=function(e){
@@ -166,7 +170,6 @@ $(document).ready(function(){
         $(".pushBtn").click(function(){
             var content=$(".chatContent").val();                 //获取页面发送内容
             var group =localStorage.getItem("group_code");       //获取发送好友的code
-            console.log(JSON.stringify({'type':3,'content':content,'apptoken' : apptoken,'group':group,'message_type':message_type}));
             var message_type = 1;                      //消息类型 1:文字消息 2:语音消息 3：文件消息
             ws.send(JSON.stringify({'type':3,'content':content,'apptoken' : apptoken,'group':group,'message_type':message_type}));
             var  html=`

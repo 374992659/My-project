@@ -1,9 +1,7 @@
 $(document).ready(function() {
     "use strict";
-
     // 获取所有好友
     (function(){
-
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 数据格式转换
@@ -30,7 +28,6 @@ $(document).ready(function() {
             },
             error:function(){}
         });
-
     })();
     // 及时通讯
 
@@ -73,6 +70,8 @@ $(document).ready(function() {
                         // 群未读新消息
                         var group_new_message=data.group_new_message;
                         if(group_new_message){
+                            console.log("群消息");
+                            console.log(group_new_message);
                             //群组新消息  已按群分组 时间倒序排列
                             $.each(group_new_message,function(i,item){
                                 group_new_messageNum+=item.count;
@@ -83,7 +82,6 @@ $(document).ready(function() {
                         if(friends_new_apply){                      //用户添加好友的申请
                             friends_new_applyNum=friends_new_apply.length
                         }
-
                         // 把消息数量添加到页面
                         if(friends_new_messageNum+group_new_messageNum+friends_new_applyNum==0){
                             $("#newsNum").html();
@@ -93,8 +91,7 @@ $(document).ready(function() {
                         }
                     }
                     break;
-
-                case 2:           //2.好友上线通知 更新本地在线好友列表
+                case 2:    //2.好友上线通知 更新本地在线好友列表
                     if(parseInt(result.errcode)===0){
                         var data = (result.data);
                         var friend_code = data.user_code;
