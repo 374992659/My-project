@@ -61,7 +61,7 @@ CREATE TABLE  if not exists `friends_group` (
   `group_name` varchar(255) NOT NULL DEFAULT '' COMMENT '分组名',
   `status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '0:禁用或删除 1：启用'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8  COMMENT='用户好友分组表';
-INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,$account_code, '我的好友');
+INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,'$account_code', '我的好友');
 
 CREATE TABLE  if not exists `group_chat_log` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
