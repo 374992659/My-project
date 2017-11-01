@@ -52,6 +52,7 @@ $(document).ready(function(){
                 for(var i=localStorage.length - 1 ; i >=0; i--){
                     if(localStorage.key(i)==="history_"+result.data.sender_code){
                         var num=$("#"+result.data.sender_code).html();
+                        console.log(num);
                         $("#"+result.data.sender_code).html(num++)
                     }else{
 
