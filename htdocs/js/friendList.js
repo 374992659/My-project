@@ -66,34 +66,32 @@ $(document).ready(function() {
             (function(){
                 console.log(result.errmsg);
                 if(result.errmsg==="群消息"){
-                    $.each(result.data,function(i,item){
                         // 本地未读聊天记录
-                        var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.send_nickname+"','portrait':'"+item.send_portrait+"'}";
+                        var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.send_nickname+"','portrait':'"+result.data.send_portrait+"'}";
                         console.log(json_str);
-                        var history_chats = localStorage.getItem('history_'+item.group);
+                        var history_chats = localStorage.getItem('history_'+result.data.group);
                         if(!history_chats){
                             var history_chats = new Array();
                             history_chats=[json_str];
-                            localStorage.setItem('history_'+item.group,JSON.stringify(history_chats));
+                            localStorage.setItem('history_'+result.data.group,JSON.stringify(history_chats));
                         }else {
                             history_chats = JSON.parse(history_chats);
                             history_chats[history_chats.length] = json_str;
-                            localStorage.setItem('history_' + item.group, JSON.stringify(history_chats));
+                            localStorage.setItem('history_' + result.data.group, JSON.stringify(history_chats));
                         }
-                    })
                 }else if(result.errmsg==="好友消息"){
                     // 本地未读聊天记录
-                    var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+item.send_portrait+"'}";
+                    var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+result.data.send_portrait+"'}";
                     console.log(json_str);
-                    var history_chats = localStorage.getItem('history_'+item.group);
+                    var history_chats = localStorage.getItem('history_'+result.data.group);
                     if(!history_chats){
                         var history_chats = new Array();
                         history_chats=[json_str];
-                        localStorage.setItem('history_'+item.sender_code,JSON.stringify(history_chats));
+                        localStorage.setItem('history_'+result.data.sender_code,JSON.stringify(history_chats));
                     }else {
                         history_chats = JSON.parse(history_chats);
                         history_chats[history_chats.length] = json_str;
-                        localStorage.setItem('history_' + item.sender_code, JSON.stringify(history_chats));
+                        localStorage.setItem('history_' + result.data.sender_code, JSON.stringify(history_chats));
                     }
                 }
             })();
