@@ -205,8 +205,10 @@ $(document).ready(function(){
             console.log(data);
             var html="";
             $.each(data,function(i,item){
+                console.log(item);
                 if(item.sender_code===my_code){
-                    if(item.type===2){
+                    console.log("聊天记录");
+                    if(parseInt(item.type)===2){
                         html=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
