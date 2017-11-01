@@ -9,6 +9,8 @@ $(document).ready(function(){
         my_portrait=localStorage.getItem("my_portrait"),
         // 我自己名字
         my_nickname=localStorage.getItem("my_nickname");
+        // 获取群code
+    var group_code=localStorage.getItem("group_code");
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
@@ -310,8 +312,8 @@ $(document).ready(function(){
             var content=$(".chatContent").val();                 //获取页面发送内容
             var group =localStorage.getItem("group_code");       //获取发送好友的code
             var message_type = 1;                      //消息类型 1:文字消息 2:语音消息 3：文件消息
-            ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
-                // 发送消息显示在本地页面
+            ws.send(JSON.stringify({'type':3,'content':content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
+                // 发送消息显示在本地页
             var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -335,7 +337,7 @@ $(document).ready(function(){
             var time= (new Date()).toLocaleDateString();
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
             console.log(json_str);
-            var history_chats = localStorage.getItem('history_'+sender_code);
+            var history_chats = localStorage.getItem('history_'+group_code);
             if(!history_chats){
                 history_chat = new Array();
                 history_chats=[json_str];
@@ -343,10 +345,8 @@ $(document).ready(function(){
             }else{
                 history_chats = JSON.parse(history_chats);
                 history_chats[history_chats.length] = json_str;
-                localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+                localStorage.setItem('history_'+group_code,JSON.stringify(history_chats));
             }
-
-
         });
         //发送消息给好友
         $(".pushBtn").click(function(){
@@ -357,7 +357,6 @@ $(document).ready(function(){
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
             console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
-
         });
         // 发送图片
         $("#uploaderInputPic").change(function(){
