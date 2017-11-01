@@ -190,7 +190,8 @@ $(document).ready(function(){
                         console.log(1);
                         console.log(result.data);
                         var html="";
-                        result=result.data.slice(21);
+                        result.data.slice(-21);
+                        console.log(result.data.slice(-21));
                         $.each(result,function(i,item){
                             if(item.sender_code==sender_code){
                                 if(parseInt(item.type)===2){
