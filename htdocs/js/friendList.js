@@ -18,6 +18,7 @@ $(document).ready(function() {
                 console.log(data);
                 if(data.erccode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    console.log(data.data.account_code);
                     localStorage.setItem("my_code",data.data.account_code)
                 }
             }
