@@ -43,7 +43,6 @@ $(document).ready(function(){
     ws.onmessage = function (e) {
         var result = JSON.parse(e.data);                //服务器返回结果
         console.log(result);
-        console.log(result);
         // 对newsPage页面处理
         // (function(){
         //     // 好友记录
@@ -65,11 +64,11 @@ $(document).ready(function(){
         // })();
         switch(parseInt(result.type)){
             case 1:                                     //1 .在线好友、好友未读消息、群未读消息
-                if(parseInt(result.errcode) === 0){
+                if(parseInt(result.errcode)===0){
                     var data = (result.data);
                     localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                     // 好友未读消息
-                    var friends_new_message = data.friends_new_message;
+                    var friends_new_message=data.friends_new_message;
                     if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                          var friend_code=$(".newsNum").attr("id");
                          console.log(friend_code);
@@ -103,7 +102,7 @@ $(document).ready(function(){
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
                                 $.each(group_new_message,function(i,item){
-                                    if(item.count==0){
+                                    if(item.count===0){
                                         html+=`
                 <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
