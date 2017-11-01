@@ -111,8 +111,7 @@ $(document).ready(function(){
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
                     <img style="width: 80px" src="${data.content}" alt=""/>
                  </span>
-            </div>
-            <h4>123</h4>
+            </div>          
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
              </div>
@@ -125,7 +124,7 @@ $(document).ready(function(){
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${data.content}</span>
             </div>
-            <h4>123</h4>
+           
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
              </div>
@@ -143,6 +142,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
+                     <h6>${data.send_nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
                               <img src="${data.content}" alt="" style="width: 80px">
                             </span>
@@ -156,6 +156,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
+                             <h6>${data.send_nickname}</h6>
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                                ${data.content}
                              
@@ -247,8 +248,9 @@ $(document).ready(function(){
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                         <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
                     </div>
-                    <h4>${item.nickname}</h4>
+                    
                     <div class="weui-media-box__bd">
+                    <h6>${item.nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
                               <img src="${item.content}" alt="" style="width: 80px">
                             </span>
@@ -261,8 +263,10 @@ $(document).ready(function(){
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                         <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
                     </div>
-                    <h4>${item.nickname}</h4>
+                   
+                   
                     <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
                         <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                                ${item.content}                            
                         </span>
