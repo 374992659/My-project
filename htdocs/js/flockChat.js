@@ -113,37 +113,39 @@ $(document).ready(function(){
                                 var http=img[0];
                                 var chatPage=$("#chatPage");
                                 console.log(typeof http);
-                                var html="";
-                //                 if(http==="http:"){
-                //                      html=`
-                // <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //             <span class="weui-media-box__desc" style="padding: 0">
-                //               <img src="${data.content}" alt="" style="width: 80px">
-                //             </span>
-                //    </div>
-                // </div>                  `;
-                //                     chatPage.append(html);
-                //                 }else{
-                //                     html=`
-                // <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                //                ${data.content}
-                //             </span>
-                //    </div>
-                // </div>                  `;
-                //
-                //                 // }
-                //                 chatPage.append(html);
+                                vvar html="";
+                                if(http==="http:"){
+                                    html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="padding: 0">
+                              
+                              <img src="${data.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div>                  `;
+                                    chatPage.append(html);
+                                }else{
+                                    html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${data.content}
+                             
+                            </span>
+                   </div>                   
+                </div>                  `;
+
+                                }
+                                chatPage.append(html);
                                 document.body.scrollTop=chatPage.height();
                                 //发送通知给服务器
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
