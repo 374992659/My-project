@@ -112,6 +112,7 @@ $(document).ready(function(){
                     <img style="width: 80px" src="${data.content}" alt=""/>
                  </span>
             </div>
+            <h4>${data.}</h4>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
              </div>
@@ -217,7 +218,7 @@ $(document).ready(function(){
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
                     <img style="width: 80px" src="${item.content}" alt=""/>
                  </span>
-            </div>
+            </div>           
              <div class="weui-media-box__hd" style="margin-left:.8em;">
                  <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
              </div>
@@ -245,6 +246,7 @@ $(document).ready(function(){
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                         <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
                     </div>
+                    <h4>${item.nickname}</h4>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                            
                               <img src="${item.content}" alt="" style="width: 80px">
@@ -258,10 +260,11 @@ $(document).ready(function(){
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                         <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
                     </div>
+                    <h4>${item.nickname}</h4>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                        <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                                ${item.content}                            
-                            </span>
+                        </span>
                    </div>                   
                 </div> 
                                 
@@ -287,7 +290,7 @@ $(document).ready(function(){
     $(".pushBtn").click(function(){
         var content=$(".chatContent").val();                //获取页面发送内容
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
-        var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
+        var message_type=1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
         console.log(JSON.stringify({'type':3,'content':content,'apptoken':apptoken,'account_code':group,'message_type':message_type}));
         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
