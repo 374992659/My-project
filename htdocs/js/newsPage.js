@@ -83,7 +83,7 @@ $(document).ready(function(){
                                 html+=`
                                 <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
                                     <div class="weui-media-box__hd">
-                                        <span class="newsNum">${item.message_num}</span>
+                                        <span class="newsNum" style="padding: 0 4px">${item.message_num}</span>
                                         <img class="weui-media-box__thumb" src="${item.sender_portrait}"><!--头像-->
                                     </div>
                                     <div class="weui-media-box__bd">
@@ -119,7 +119,7 @@ $(document).ready(function(){
                     html+=`
                 <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
                     <div class="weui-media-box__hd">
-                        <span class="newsNum" title="${item.group_num}">${item.count}</span>
+                        <span class="newsNum" title="${item.group_num}" style="padding: 0 4px">${item.count}</span>
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
                     </div>
                     <div class="weui-media-box__bd">
