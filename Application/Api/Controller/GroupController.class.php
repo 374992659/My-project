@@ -156,7 +156,7 @@ class GroupController extends VersionController
         }else{
             $group_user->rollback();
             $user_group->rollback();
-            $this->echoEncrypData(1,'',array($group_num));
+            $this->echoEncrypData(1);
         }
     }
     /*
