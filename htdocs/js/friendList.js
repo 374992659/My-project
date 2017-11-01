@@ -228,6 +228,7 @@ $(document).ready(function() {
                 localStorage.setItem("my_code",data.data.user_code);
                 var html = "";
                 $.each(data.data,function(i, item){
+                    localStorage.setItem("my_code".item.user_code);
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id} ">
