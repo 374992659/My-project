@@ -113,7 +113,7 @@ $(document).ready(function(){
                                 var http=img[0];
                                 var chatPage=$("#chatPage");
                                 console.log(typeof http);
-                                vvar html="";
+                                var html="";
                                 if(http==="http:"){
                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
