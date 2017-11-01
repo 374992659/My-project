@@ -118,7 +118,7 @@ $(document).ready(function(){
                                 
                                 `
                             }
-                            $("#chatPage").prepend(html);
+                            $("#chatPage").append(html);
                             document.body.scrollTop=$("#chatPage").height();
                             //发送通知给服务器
                             var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
