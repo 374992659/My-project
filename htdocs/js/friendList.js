@@ -168,7 +168,7 @@ $(document).ready(function() {
                             var clone=online.parent().parent().clone(true);
                             online.parent().parent().remove();
                             $("#"+id).prepend(clone);
-                            var num= $("#"+id).find("span").html();
+                            var num= $("#"+id).find("span").text();
                                 console.log(num);
                                 num=num+1;
                             console.log("在线好友数量");
