@@ -93,6 +93,7 @@ $(document).ready(function(){
                 case 4:          //4.接收到好友消息
                     if(parseInt(result.errcode)===0){
                         var data =(result.data);
+                        console.log(data);
                         var pathname = window.location.pathname;
                         var patharr  = pathname.split('/');
                         var html = patharr[parseInt(patharr.length-1)];
@@ -120,7 +121,7 @@ $(document).ready(function(){
 
                                 //展示好友发送的聊天信息
                                 var html="";
-                                if(http==="http:"){
+                                if(parseInt(data.type)===2){
                                       html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -134,7 +135,6 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
-                                    chatPage.append(html);
                                 }else{
                                    html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
@@ -144,12 +144,10 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               ${data.content}
-                             
+                               ${data.content}                             
                             </span>
                    </div>                   
                 </div>                  `;
-
                                 }
                                 chatPage.append(html);
                                 document.body.scrollTop=chatPage.height();
