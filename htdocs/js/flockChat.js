@@ -188,15 +188,16 @@ $(document).ready(function(){
                 break;
         }
     };
+
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
         (function(){
-            var my_code=localStorage.getItem("my_code");
+            var group_code=localStorage.getItem("group_code");
             var pathname = window.location.pathname;
             var patharr  = pathname.split('/');
             var html = patharr[parseInt(patharr.length-1)];
             if(html==="flockChat.html"){
-                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':my_code});
+                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':group_code});
                 ws.send(sendMessage);
             }
         })();
