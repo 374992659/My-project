@@ -163,6 +163,7 @@ $(document).ready(function() {
                            console.log(newOnline);
                             // newOnline.push(friend_code);
                             var online=$("#"+parseInt(friend_code));
+                            console.log(typeof parseInt(friend_code));
                             var id=online.attr("title");
                             newOnline.attr("style","opacity: 1");
                             var clone=newOnline.parent().parent().clone(true);
