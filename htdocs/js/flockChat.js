@@ -197,7 +197,7 @@ $(document).ready(function(){
             var patharr  = pathname.split('/');
             var html = patharr[parseInt(patharr.length-1)];
             if(html==="flockChat.html"){
-                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'group':group});
+                var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'group_code':group});
                 ws.send(sendMessage);
             }
         })();
