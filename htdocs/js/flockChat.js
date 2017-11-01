@@ -111,6 +111,22 @@ $(document).ready(function(){
         var message_type = 1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
         console.log(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
         ws.send(JSON.stringify({'type' : 3, 'content' : content,'apptoken' : apptoken,'account_code':group,'message_type':message_type}));
+        // 添加本地页面
+        var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${content}</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+             </div>
+         </div>
+            `;
+        var chatPage=$("#chatPage");
+        chatPage.append(html);
+        $(".chatContent").val("");
+
     });
 
 
