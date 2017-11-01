@@ -43,6 +43,20 @@ $(document).ready(function(){
     ws.onmessage = function (e) {
         var result = JSON.parse(e.data);                //服务器返回结果
         console.log(result);
+        console.log(result);
+        // 对newsPage页面处理
+        (function(){
+            // 好友记录
+            if(result.errmsg==="好友消息"){
+              // 遍历localStorage的key值
+              for(var i=0,len=localStorage.length;i<len;i++){
+                  console.log(localStorage.key[i]);
+              }
+            }else if(result.errmsg==="群消息"){
+
+            }
+
+        })();
         switch(parseInt(result.type)){
             case 1:                                     //1 .在线好友、好友未读消息、群未读消息
                 if(parseInt(result.errcode) === 0){

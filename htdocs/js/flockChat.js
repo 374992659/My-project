@@ -5,13 +5,10 @@ $(document).ready(function(){
         return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
     }
     if(!apptoken)alert('请重新登录');
-    var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
-    ws.onmessage = function (e) {
+    var ws = new WebSocket('ws://39.108.237.198:8282');//发起绑定
+    ws.onmessage = function (e){
         var result = JSON.parse(e.data);                   //服务器返回结果
         console.log(result);
-        // 对接收到的消息存本地进行处理
-
-
         switch(parseInt(result.type)){
             case 1:            //1 .在线好友、好友未读消息、群未读消息
                 if(parseInt(result.errcode) === 0){
