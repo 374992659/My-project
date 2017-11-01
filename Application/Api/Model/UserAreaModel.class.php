@@ -29,7 +29,6 @@ class UserAreaModel extends Model
     public function addUserArea($openId,$phone,$table_id, & $errmsg){
         $mongo = new \MongoClient();
         $data = $mongo->baseinfo->user_area->findOne(array('openId'=>$openId),array('openId','status'));
-//        $data=M('user_area')->field('openId,status')->where(array('openId'=>$openId))->find();
         if($data){
             $errmsg='该账号已绑定手机号，请勿重复操作';
             return false;
@@ -38,13 +37,6 @@ class UserAreaModel extends Model
             $errmsg='该账号已被暂停使用';
             return false;
         }
-//        $data = array(
-//            'openId'=>$openId,
-//            'table_id'=>$table_id,
-//            'phone'=>$phone,
-//            'status'=>1
-//        );
-//        $res = M('User_area')->add($data);
         $res  = $mongo->baseinfo->user_area->insert(array(
             'openId'=>$openId,
             'table_id'=>$table_id,
