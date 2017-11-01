@@ -170,6 +170,8 @@ $(document).ready(function() {
                             $("#"+id).prepend(clone);
                             var num= $("#"+id).find("span").html();
                                 num=num+1;
+                            console.log("在线好友数量");
+                            console.log(num);
                             $("#"+id).find("span").html(num)
                         }
                         // localStorage.setItem('online_friends',newOnline);
