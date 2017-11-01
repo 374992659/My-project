@@ -189,7 +189,8 @@ $(document).ready(function(){
     };
     //获取本地聊天记录
     (function(){
-        var history_chat = localStorage.getItem('history_'+sender_code);
+        var group=localStorage.getItem("group_code");
+        var history_chat = localStorage.getItem('history_'+group);
         var my_code=localStorage.getItem("my_code");
         console.log(typeof history_chat);
         if(history_chat){
