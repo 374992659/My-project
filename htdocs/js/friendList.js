@@ -1,7 +1,6 @@
 $(document).ready(function() {
     "use strict";
     // 获取自己的信息
-    var my_code="";
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
@@ -17,13 +16,12 @@ $(document).ready(function() {
                 // 解密
                 var data=jsDecodeData(data);
                 console.log(data);
-                my_code=data.data.account_code;
+                localStorage.setItem("apptoken",data.apptoken);
                 localStorage.setItem("my_code",data.data.account_code);
                 console.log(data.data.account_code);
             }
         })
     })();
-    console.log(my_code);
     // 获取所有好友
     (function(){
         // 获取apptoken
