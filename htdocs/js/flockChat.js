@@ -98,6 +98,9 @@ $(document).ready(function(){
                             }else{
                                 history_chats = JSON.parse(history_chats);
                                 history_chats[history_chats.length] = json_str;
+                                if(history_chats.length>20){
+                                    history_chats.shift();
+                                }
                                 localStorage.setItem('history_'+data.group,JSON.stringify(history_chats));
                             }
                             //展示好友发送的聊天信息

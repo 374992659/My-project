@@ -114,6 +114,9 @@ $(document).ready(function(){
                                 }else{
                                     history_chats = JSON.parse(history_chats);
                                     history_chats[history_chats.length] = json_str;
+                                    if(history_chats.length>20){
+                                        history_chats.shift();
+                                    }
                                     localStorage.setItem('history_'+data.sender_code,JSON.stringify(history_chats));
                                 }
 
@@ -181,15 +184,34 @@ $(document).ready(function(){
                 case 8:
                     console.log(result);
                     break;
-                    // 历史消息
+                    // f服务器保存的历史消息
                 case 9:
                     if(parseInt(result.errcode)===0){
                         console.log(1);
                         console.log(result.data);
                         var html="";
-                        $.each(result.data,function(i,item){
+                        result=result.data.slice(21);
+                        $.each(result,function(i,item){
                             if(item.sender_code==sender_code){
-                                html+=`
+                                if(parseInt(item.type)===2){
+                                    html+=`
+                <div class="sendHtml">
+                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                     <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                            <img class="weui-media-box__thumb" src="${item.getter_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
+                                   <img src="${item.content}" alt=""/>
+
+                                </span>
+                       </div>
+                    </div>
+                </div>
+                                `
+                                }else{
+                                    html+=`
                 <div class="sendHtml">
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -200,12 +222,15 @@ $(document).ready(function(){
                                 <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
                                    ${item.content}
                                 </span>
-                       </div>                   
-                    </div>                
+                       </div>
+                    </div>
                 </div>
                                 `
+                                }
+
                             }else if(item.getter_code==sender_code){
-                                html+=`
+                                if(parseInt(item.type)===2){
+                                    html+=`
                             <div class="getHtml">
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
@@ -215,10 +240,29 @@ $(document).ready(function(){
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
                                         <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
                                     </div>
-                                 </div>   
+                                 </div>
                             </div>
-                                 
+
                                 `
+                                }else{
+                                    html+=`
+                            <div class="getHtml">
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                 <div class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__bd">
+                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">
+                                            <img src="${item.content}" alt=""/>
+                                        </span>
+                                    </div>
+                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
+                                        <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                                    </div>
+                                 </div>
+                            </div>
+
+                                `
+                                }
+
                             }
                         });
                         $("#chatPage").prepend(html);
@@ -378,6 +422,9 @@ $(document).ready(function(){
             }else{
                 history_chats = JSON.parse(history_chats);
                 history_chats[history_chats.length] = json_str;
+                if(history_chats.length>20){
+                    history_chats.shift();
+                }
                 localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
             }
 
@@ -443,7 +490,11 @@ $(document).ready(function(){
                         }else{
                             history_chats = JSON.parse(history_chats);
                             history_chats[history_chats.length] = json_str;
+                            if(history_chats.length>20){
+                                history_chats.shift();
+                            }
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+
                         }
                     }
                 },
