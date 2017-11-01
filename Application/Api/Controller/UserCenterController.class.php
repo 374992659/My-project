@@ -45,10 +45,10 @@ class UserCenterController extends VersionController
         ));
         if($res !== false){
             $mongo = new \MongoClient();
-            $mongo->baseinfo->user_area->update(array('account_code'=>$account_code),array(
+            $mongo->baseinfo->user_area->update(array('account_code'=>$account_code),array('$set'=>array(
                 'portrait'=>$portrait,
                 'nickname'=>$nickname,
-            ));
+            )));
             $this->echoEncrypData(0);
         }
         $this->echoEncrypData(1);

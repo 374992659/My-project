@@ -303,8 +303,9 @@ class RegiestController extends BaseController
 
     /*
      * 用户账号登陆
-     *@param  account    账号
+     * @param  account    账号
      * @param password  密码
+     * @param openId 微信openid 微信端必填
      * */
     public function accountLogin(){
         $account=$this->pdata['account'];
@@ -314,7 +315,7 @@ class RegiestController extends BaseController
             if(!$openId)$this->echoEncrypData(21);
         }
         if(!$account || !$password){
-            $this->echoEncrypData(1,'登陆参数不完整');
+            $this->echoEncrypData(1,'登陆参数不完整',$openId);
         }
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){
             $this->echoEncrypData(106);
@@ -362,7 +363,7 @@ class RegiestController extends BaseController
         if ($this->account_code > 0) {
             $this->echoEncrypData(112, '已登录，无需重复登录');
         }
-        $SMS=new \Api\Controller\SendSmsController();
+        $SMS=new SendSmsController();
         $SMS->SendMassage($phone,'login_', '美e家园', 'SMS_94280318', $code);
         if($code !== 0){
             $this->echoEncrypData($code);
