@@ -49,9 +49,9 @@ $(document).ready(function(){
             // 好友记录
             if(result.errmsg==="好友消息"){
               // 遍历localStorage的key值
-              for(var i=0,len=localStorage.length;i<len;i++){
-                  console.log(localStorage.key[i]);
-              }
+                for(var i=localStorage.length - 1 ; i >=0; i--){
+                    console.log(localStorage.key(i));
+                }
             }else if(result.errmsg==="群消息"){
 
             }
