@@ -163,10 +163,11 @@ $(document).ready(function() {
                            console.log(newOnline);
                             // newOnline.push(friend_code);
                             var online=$("#"+newOnline);
+                            var id=online.attr("title");
                             newOnline.attr("style","opacity: 1");
                             var clone=newOnline.parent().parent().clone(true);
                             newOnline.parent().parent().remove();
-                            //$("#"+id).prepend(clone);
+                            $("#"+id).prepend(clone);
                         }
                         // localStorage.setItem('online_friends',newOnline);
                     }
@@ -331,7 +332,7 @@ $(document).ready(function() {
                                 html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}"">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb " style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
