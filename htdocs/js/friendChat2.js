@@ -6,7 +6,7 @@ $(document).ready(function(){
             // 我自己的code
             my_code=localStorage.getItem("my_code"),
             // 我自己的头像
-            my_portrait=localStorage.getItem("my_portrait"),
+            my_portrait=localStorage.getItem("my_head"),
             // 我自己名字
             my_nickname=localStorage.getItem("my_nickname");
     (function(){
@@ -393,12 +393,12 @@ $(document).ready(function(){
             // 添加本地页面
             var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
+         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
              </div>
          </div>
             `;
