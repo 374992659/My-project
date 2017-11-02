@@ -461,7 +461,7 @@ $(document).ready(function() {
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
+                            <h5 class="weui-media-box__title name">${item.friend_nickname}</h5>
                             <p class="weui-media-box__desc searchRemark">${item.friend_signature}</p>
                         </div>                      
                     </div>
