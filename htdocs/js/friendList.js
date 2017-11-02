@@ -395,13 +395,13 @@ $(document).ready(function() {
                         }
                         // 功能显示隐藏分组下的好友信息
                         console.log("分组内容显示");
-                        if($(this).next().is(":hidden")){
+                        if($(e.target).next().is(":hidden")){
                             console.log(123);
-                            $(this).next().show();
-                            $(this).children().children("img").css("transform","rotate(90deg)");
+                            $((e.target).next().show();
+                            $((e.target).children().children("img").css("transform","rotate(90deg)");
                         }else{
-                            $(this).next().hide();
-                            $(this).children().children("img").css("transform","rotate(0deg)");
+                            $((e.target).next().hide();
+                            $((e.target).children().children("img").css("transform","rotate(0deg)");
                         }
                     }
                 }
