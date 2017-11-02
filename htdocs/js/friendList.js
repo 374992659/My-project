@@ -172,8 +172,8 @@ $(document).ready(function() {
                             $("#"+id).prepend(clone);
                             // 在线好友数量加1
                             var num=$("."+id).html();
-                               num++;
-                            $("."+id).html(num);
+                            var   onlineNum=num+1;
+                            $("."+id).html(onlineNum);
                         }
                         // localStorage.setItem('online_friends',newOnline);
                     }
