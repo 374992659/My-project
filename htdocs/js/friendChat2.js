@@ -31,25 +31,25 @@ $(document).ready(function(){
                         if(friends_new_message){//好友新消息  已按用户分组 时间倒序排列
                             var html="";
                             $.each(friends_new_message,function(i,item){
-                                if(item.sender_code===sender_code){
-                                    $.each(item.content,function(i,item){
-                                        html+=`
-                <p style="font-size: 10px;text-align: center">${getLocalTime(item.send_time)}</p>
-                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
-                    </div>
-                    <div class="weui-media-box__bd content">
-                        <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">${item.content}</span>
-                    </div>
-                </div>
-                                       `
-                                    });
-                                var chatPage=$("#chatPage");
-                                    chatPage.append(html);
-                                    $(".header_img").attr("src",header);
-                                    document.body.scrollTop=chatPage.height()
-                                }
+                //                 if(item.sender_code===sender_code){
+                //                     $.each(item.content,function(i,item){
+                //                         html+=`
+                // <p style="font-size: 10px;text-align: center">${getLocalTime(item.send_time)}</p>
+                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                //         <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
+                //     </div>
+                //     <div class="weui-media-box__bd content">
+                //         <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">${item.content}</span>
+                //     </div>
+                // </div>
+                //                        `
+                //                     });
+                //                 var chatPage=$("#chatPage");
+                //                     chatPage.append(html);
+                //                     $(".header_img").attr("src",header);
+                //                     document.body.scrollTop=chatPage.height()
+                //                 }
                             });
                         }
                         var group_new_message=data.group_new_message;
