@@ -293,12 +293,12 @@ $(document).ready(function() {
                 $.each(data.data,function(i, item){
                     var onlineNum=0;
                     $.each(data.data.friend_user,function(i,item){
-                            $.each(onlineFriend,function(i,online){
-                                if(parseInt(item)===parseInt(online)){
+                            for(var i=0 ,len=onlineFriend;i<len;i++){
+                                if(parseInt(item)===parseInt(onlineFriend)){
                                     onlineNum++;
                                     console.log(onlineNum);
                                 }
-                            })
+                            }
                     });
                     html += `
      <div class="weui-cells">
