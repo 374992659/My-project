@@ -397,11 +397,11 @@ $(document).ready(function() {
                         console.log("分组内容显示");
                         if($(e.target).next().is(":hidden")){
                             console.log(123);
-                            $((e.target).next().show();
-                            $((e.target).children().children("img").css("transform","rotate(90deg)");
+                            $(e.target).next().show();
+                            $(e.target).children().children("img").css("transform","rotate(90deg)");
                         }else{
-                            $((e.target).next().hide();
-                            $((e.target).children().children("img").css("transform","rotate(0deg)");
+                            $(e.target).next().hide();
+                            $(e.target).children().children("img").css("transform","rotate(0deg)");
                         }
                     }
                 }
