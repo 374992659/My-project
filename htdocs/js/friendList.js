@@ -291,7 +291,15 @@ $(document).ready(function() {
                 var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
                 var html = "";
                 $.each(data.data,function(i, item){
-                    console.log(item.friend_user);
+                    var onlineNum=0;
+                    $.each(item,function(i,item){
+                        $.each(onlineFriend,function(i,online){
+                            if(item==online){
+                                onlineNum++;
+                                console.log(onlineNum);
+                            }
+                        })
+                    });
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id} ">
@@ -302,7 +310,7 @@ $(document).ready(function() {
                 <p style=""  title="${item.id}">${item.group_name}</p>
             </div>
             <div class="weui-cell__ft" style="">
-                <span class="online ${item.id}" style="font-size: 15px">0</span>/${item.total}
+                <span class="online ${item.id}" style="font-size: 15px">${onlineNum}</span>/${item.total}
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
