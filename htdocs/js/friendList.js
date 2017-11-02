@@ -316,7 +316,7 @@ $(document).ready(function() {
                 <p style=""  title="${item.id}">${item.group_name}</p>
             </div>
             <div class="weui-cell__ft" style="">
-                <span class="online ${item.id}" style="font-size: 15px">${online}</span>/${item.total}
+                <span class="online ${item.id}" style="font-size: 18px">${online}</span>/${item.total}
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
