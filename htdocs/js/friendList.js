@@ -393,27 +393,27 @@ $(document).ready(function() {
                             remark.html("此人很懒哦什么都没有留下")
                         }
                         // 功能显示隐藏分组下的好友信息
-                        console.log("分组内容显示");
-                        if($(e.target).next().is(":hidden")){
-                            console.log(123);
-                            $(e.target).next().show();
-                            $(e.target).children().children("img").css("transform","rotate(90deg)");
-                        }else{
-                            $(e.target).next().hide();
-                            $(e.target).children().children("img").css("transform","rotate(0deg)");
-                        }
+                        // console.log("分组内容显示");
+                        // if($(e.target).next().is(":hidden")){
+                        //     console.log(123);
+                        //     $(e.target).next().show();
+                        //     $(e.target).children().children("img").css("transform","rotate(90deg)");
+                        // }else{
+                        //     $(e.target).next().hide();
+                        //     $(e.target).children().children("img").css("transform","rotate(0deg)");
+                        // }
                     }
                 }
             });
         })();
-        // // 功能显示隐藏分组下的好友信息
-        // if($(this).next().is(":hidden")){
-        //     $(this).next().show();
-        //     $(this).children().children("img").css("transform","rotate(90deg)");
-        // }else{
-        //     $(this).next().hide();
-        //     $(this).children().children("img").css("transform","rotate(0deg)");
-        // }
+        // 功能显示隐藏分组下的好友信息
+        if($(this).next().is(":hidden")){
+            $(this).next().show();
+            $(this).children().children("img").css("transform","rotate(90deg)");
+        }else{
+            $(this).next().hide();
+            $(this).children().children("img").css("transform","rotate(0deg)");
+        }
     });
     //搜索框内容的清楚
     $("#searchClear").click(function(){
