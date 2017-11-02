@@ -293,10 +293,12 @@ $(document).ready(function() {
                 $.each(data.data,function(i, item){
                     var onlineNum=0;
                     $.each(item,function(i,item){
+                        console.log(item);
                         $.each(onlineFriend,function(i,online){
-                            if(item==online){
+                            console.log(online);
+                            if(parseInt(item)===parseInt(online)){
                                 onlineNum++;
-
+console.log("zaixian");
                             }
                         })
                     });
