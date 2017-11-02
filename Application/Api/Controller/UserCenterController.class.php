@@ -57,7 +57,9 @@ class UserCenterController extends VersionController
      * 获取我的account_code
      * */
     protected function getMyAcoountCode_v1_0_0(){
-        $this->echoEncrypData(0,'',array('account_code'=>$this->account_code));
+        $mongo = new \MongoClient();
+        $portrait = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['portrait'];
+        $this->echoEncrypData(0,'',array('account_code'=>$this->account_code,'portrait'=>$portrait));
     }
     /*
      * 获取我的个人资料
@@ -171,6 +173,7 @@ class UserCenterController extends VersionController
             $name = substr_replace($real_name,'**',1);
             $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
         }
+        //1.认证申请库添加数据
         $res1 = $model->addApplication(array(
             'user_code'=>$this->account_code,
             'real_name'=>$this->pdata['real_name'],
@@ -194,7 +197,7 @@ class UserCenterController extends VersionController
         $class->executeSql('databases.sql',array('city_id'=>$this->pdata['city_id'],'province_id'=>$province_id,'account_code'=>$this->account_code));//用户可能会选择非注册地进行验证，数据库并未创建而连接失败
         $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
         $garden_num->startTrans();
-        //添加成员
+        //2.小区分库garden_room分表添加成员
         $res2 = $garden_num->add(array(
             'city_id'=>$this->pdata['city_id'],
             'garden_code'=>$garden_code,
@@ -203,13 +206,25 @@ class UserCenterController extends VersionController
             'role'=>1,
             'create_time'=>time(),
         ));
-        if($res1 and $res2){
+        //3.用户信息分表内添加小区记录
+        $user_garden = M('user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('user_garden');
+        if($user_garden){
+            $user_garden = $user_garden+';'+$garden_code+','+'1';
+        }else{
+            $user_garden = $garden_code+','+'1';
+        }
+        $user_info = M('user_info_'.$city_id);
+        $user_info->startTrans();
+        $res3 = $user_info->where(['account_code'=>$this->account_code])->save(['user_garden'=>$user_garden]);
+        if($res1 and $res2 and $res3){
             $model->commit();
             $garden_num->commit();
+            $user_info->commit();
             $this->echoEncrypData(0);
         }else{
             $model->rollback();
             $garden_num->rollback();
+            $user_info->rollback();
             $this->echoEncrypData(1);
         }
     }
@@ -271,7 +286,7 @@ class UserCenterController extends VersionController
                     'status'=>1,
                 ));
                 if($user_code){
-                    //garden_room 分表添加用户数据
+                    //2.garden_room 分表添加用户数据
                     $province_id = M('swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
                     $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
                     $garden_num->startTrans();
@@ -283,13 +298,26 @@ class UserCenterController extends VersionController
                         'role'=>1,
                         'create_time'=>time(),
                     ));
-                    if(!$res2){
+                    //3.用户信息分表内添加小区记录
+                    $user_city_id = substr($user_code,0,4);
+                    $user_garden = M('user_info_'.$user_city_id)->where(['account_code'=>$user_code])->getField('user_garden');
+                    if($user_garden){
+                        $user_garden = $user_garden+';'+$this->pdata['garden_code']+','+'1';
+                    }else{
+                        $user_garden = $this->pdata['garden_code']+','+'1';
+                    }
+                    $user_info = M('user_info_'.$user_city_id);
+                    $user_info->startTrans();
+                    $res3 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
+                    if(!$res2 or !$res3){
                         $garden_num->rollback();
                         $model->rollback();
+                        $user_info->rollback();
                         $this->echoEncrypData(1);
                     }else{
                         $model->commit();
                         $garden_num->commit();
+                        $user_info->commit();
                         $this->echoEncrypData(0);
                     }
                 }
@@ -427,6 +455,7 @@ class UserCenterController extends VersionController
             $name = substr_replace($real_name,'**',1);
             $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
         }
+        //1.认证申请库添加记录
         $res1 = $tenant_application->addApplication(array(
             'user_code'=>$this->account_code,
             'real_name'=>$this->pdata['real_name'],
@@ -449,7 +478,7 @@ class UserCenterController extends VersionController
         $province_id = M('baseinfo.swf_area')->where('id ='.$this->pdata['city_id'])->getField('parent_id');//省份id
         $garden_num= new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
         $garden_num->startTrans();
-        //添加成员
+        //2.小区分库garden_room分表添加成员
         $res2 = $garden_num->add(array(
             'city_id'=>$this->pdata['city_id'],
             'garden_code'=>$garden_code,
@@ -458,13 +487,25 @@ class UserCenterController extends VersionController
             'role'=>2,
             'create_time'=>time(),
         ));
-        if($res1 and $res2){
+         //3.用户user_info分表添加小区记录
+        $user_garden = M('user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('user_garden');
+        if($user_garden){
+            $user_garden = $user_garden+';'+$garden_code+','+'1';
+        }else{
+            $user_garden = $garden_code+','+'1';
+        }
+        $user_info = M('user_info_'.$city_id);
+        $user_info->startTrans();
+        $res3 = $user_info->where(['account_code'=>$this->account_code])->save(['user_garden'=>$user_garden]);
+        if($res1 and $res2 and $res3){
             $tenant_application->commit();
             $garden_num->commit();
+            $user_info->commit();
             $this->echoEncrypData(0);
         }else{
             $tenant_application->rollback();
             $garden_num->rollback();
+            $user_info->rollback();
             $this->echoEncrypData(1);
         }
     }
@@ -509,6 +550,7 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(1,'只有主租户才有此操作权限哦');
         }else{
             if(intval($role) ===1){
+                //1.添加认证记录
                 $res1 = $model->addApplication(array(
                     'user_code'=>$user_code,
                     'real_name'=>$this->pdata['real_name'],
@@ -529,6 +571,7 @@ class UserCenterController extends VersionController
                     $province_id = M('swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
                     $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
                     $garden_num->startTrans();
+                    //2.小区分库garden_room分表添加用户
                     $res2 = $garden_num->add(array(
                         'city_id'=>$this->pdata['city_id'],
                         'garden_code'=>$this->pdata['garden_code'],
@@ -537,13 +580,26 @@ class UserCenterController extends VersionController
                         'role'=>2,
                         'create_time'=>time(),
                     ));
-                    if(!$res2){
+                    //3.用户信息分表内添加小区记录
+                    $user_city_id = substr($user_code,0,4);
+                    $user_garden = M('user_info_'.$user_city_id)->where(['account_code'=>$user_code])->getField('user_garden');
+                    if($user_garden){
+                        $user_garden = $user_garden+';'+$this->pdata['garden_code']+','+'1';
+                    }else{
+                        $user_garden = $this->pdata['garden_code']+','+'1';
+                    }
+                    $user_info = M('user_info_'.$user_city_id);
+                    $user_info->startTrans();
+                    $res3 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
+                    if(!$res2 || !$res3){
                         $garden_num->rollback();
                         $model->rollback();
+                        $user_info->rollback();
                         $this->echoEncrypData(1);
                     }else{
                         $model->commit();
                         $garden_num->commit();
+                        $user_info->commit();
                         $this->echoEncrypData(0);
                     }
                 }
@@ -625,6 +681,157 @@ class UserCenterController extends VersionController
     }
 
     /*
+     * 获取小区通知
+     * */
+    protected function getMyGardenMessage_v1_0_0(){
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $user_garden = M('user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('user_garden');
+        if(!$user_garden){
+            $this->echoEncrypData(5);
+        }else{
+            $garden_arr=explode(';',$user_garden);
+            if(!$garden_arr){
+                $garden_arr[]=$user_garden;
+            }
+            $result = array();
+            foreach ($garden_arr as $k=>$v){
+                $arr=explode(',',$v);
+                $result[]=$arr[0];
+            }
+            if($result){
+                $message = array();
+                $mongo = new \MongoClient();
+                foreach ($result as $key=>$val){
+                    $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
+                    $garden_province_id = M('swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
+                    $model = new Model\GardenMessageModel($garden_province_id,$garden_city_id);
+                    $message[$val] = $model->where(['garden_code'=>$val])->select();
+                }
+                $this->echoEncrypData(0,'',$message);
+            }else{
+                $this->echoEncrypData(5);
+            }
+        }
+    }
+    /*
+     * 发表小区意见
+     *@param garden_code 小区code
+     *@param garden_name 小区名
+     *@param title 名称
+     *@param content 意见内容
+     *@param picture 意见图片 可填
+     * */
+    protected function addGardenMessage_v1_0_0(){
+        $this->checkParam(array('garden_code','garden_name','title','content'));
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $user_info = M('user_info_'.$city_id)->field('user_garden,nickname,portrait')->where(['account_code'=>$account_code])->getField('user_garden');
+        if(!$user_info['user_garden']){
+            $this->echoEncrypData(1,'您还没有认证通过的小区');
+        }else{
+            $garden_arr = explode(';',$user_info['user_garden']);
+            if(!$garden_arr){
+                $garden_arr[] = $user_info['user_garden'];
+            }
+            $result = array();
+            foreach ($garden_arr  as $k=>$v){
+                $arr = explode(',',$v);
+                $result[] = $arr[0];
+            }
+            if(!in_array($this->pdata['garden_code'],$result)){
+                $this->echoEncrypData(1,'您没有通过该小区的认证哦');
+            }
+            $mongo  = new \MongoClient();
+            $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
+            $garden_province_id = M('swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
+            $garden_message = new Model\GardenMessageModel($garden_province_id,$garden_city_id);
+            $res = $garden_message->add(array(
+                'title'=>$this->pdata['title'],
+                'content'=>$this->pdata['content'],
+                'picture'=>$this->pdata['picture'],
+                'garden_code'=>$this->pdata['garden_code'],
+                'garden_name'=>$this->pdata['garden_name'],
+                'user_code'=>$this->account_code,
+                'nickname'=>$user_info['nickname'],
+                'portrait'=>$user_info['portrait'],
+                'create_time'=>time(),
+                'status'=>1,
+            ));
+            if(!$res)$this->echoEncrypData(1);
+            $this->echoEncrypData(0);
+        }
+    }
+
+    /*
+     * 获取小区意见列表
+     * */
+    protected function getGardenMessageList_v1_0_0(){
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $user_garden = M('user_info_'.$city_id)->where(['account_code'=>$account_code])->getField('user_garden');
+        if(!$user_garden){
+            $this->echoEncrypData(1,'暂无认证通过的小区');
+        }else{
+            $garden_arr = explode(';',$user_garden);
+            if(!$garden_arr){
+                $garden_arr = $user_garden;
+            }
+            $result = array();
+            foreach ($garden_arr as $k=>$v){
+                $arr = explode(',',$v);
+                $result[] = $arr[0];
+            }
+        }
+        $list = array();
+        $mongo =new \MongoClient();
+        foreach ($result as $key=>$val){
+            $garden_city_id =$mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
+            $garden_province_id = M('swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
+            $garden_message = new Model\GardenMessageModel($garden_province_id,$garden_city_id);
+            $garden_message = $garden_message->where(['garden_code'=>$val,'user_code'=>$this->account_code])->select();
+            if($garden_message){
+                $list[] = $garden_message;
+            }
+        }
+        $new_arr = array();
+        if($list){
+            foreach ($list as $kk=>$vv){
+                foreach ($v as $kkk=>$vvv){
+                    $new_arr[]= $vvv;
+                }
+            }
+        }
+        if($new_arr){
+            $list = self::multi_array_sort($list,'create_time',SORT_DESC);
+            $this->echoEncrypData(0,$list);
+        }else{
+            $this->echoEncrypData(5);
+        }
+    }
+    /*
+     * 获取小区意见详情
+     * @param id 意见id
+     * @param garden_code 小区code
+     * */
+    protected function getGardenMessageInfo_v1_0_0(){
+        $this->checkParam(array('id','garden_code'));
+        $mongo = new \MongoClient();
+        $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
+        $garden_province_id = M('swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
+        $model = new Model\GardenMessageModel($garden_province_id,$garden_city_id);
+        $data = $model->where(['id'=>$this->pdata['id']])->find();
+        if(!$data){
+            $this->echoEncrypData(1);
+        }else{
+            $this->echoEncrypData(0,'',$data);
+        }
+    }
+
+
+
+
+    /*
      * 生成小区code
      * */
     public function createGardenCode($city_id){
@@ -643,6 +850,25 @@ class UserCenterController extends VersionController
             }
         }
         return false;
+    }
+
+    /*
+     * 二维数组排序
+     * */
+    public static function multi_array_sort($multi_array,$sort_key,$sort=SORT_ASC){
+        if(is_array($multi_array)){
+            foreach ($multi_array as $row_array){
+                if(is_array($row_array)){
+                    $key_array[] = $row_array[$sort_key];
+                }else{
+                    return false;
+                }
+            }
+        }else{
+            return false;
+        }
+        array_multisort($key_array,$sort,$multi_array);
+        return $multi_array;
     }
 
 }

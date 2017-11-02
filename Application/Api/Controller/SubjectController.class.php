@@ -115,6 +115,7 @@ class SubjectController extends VersionController
                 if(!$garden_arr){
                     $garden_arr[]=$res;
                 }
+
                 $result = array();
                 foreach ($garden_arr as $k=>$v){
                     $arr=explode(',',$v);

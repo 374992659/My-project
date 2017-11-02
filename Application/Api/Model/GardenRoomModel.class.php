@@ -27,9 +27,5 @@ class GardenRoomModel extends Model
         $count = $this->where(['garden_code'=>$garden_code,'room_num'=>$room_num,'role'=>$role])->count();
         return $count;
     }
-    /*
-     * 添加小区房间成员
-     * @param garden_code 小区code
-     * @param room_num 房间号码
-     * */
+
 }
