@@ -291,7 +291,7 @@ $(document).ready(function() {
                 var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
                 var html = "";
                 $.each(data.data,function(i, item){
-                    console.log(data.data.friend_user);
+                    console.log(item.friend_user);
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id} ">
