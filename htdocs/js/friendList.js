@@ -330,9 +330,7 @@ $(document).ready(function() {
         `
                 });
                 $(".group").append(html);
-                var online=JSON.parse(localStorage.getItem("online_friends"));
-                console.log("在线好友数量");
-                console.log(online.length)
+               
             }else{
                     window.location.href ="landing.html";
             }
