@@ -165,12 +165,14 @@ $(document).ready(function() {
                             // 上线好友的头像变亮
                             var online=$("#"+parseInt(friend_code));
                             var id=online.attr("title");
+                            console.log(id);
                             online.attr("style","opacity: 1");
                             var clone=online.parent().parent().clone(true);
                             online.parent().parent().remove();
                             $("#"+id).prepend(clone);
                             // 在线好友数量加1
                             var num= $("#"+id).find("span").text();
+                            console.log($("#"+id).find("span"));
                                 console.log(num);
                                 num=num+1;
                             console.log("在线好友数量");
