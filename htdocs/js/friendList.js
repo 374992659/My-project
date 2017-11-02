@@ -296,10 +296,11 @@ $(document).ready(function() {
                         $.each(onlineFriend,function(i,online){
                             if(item==online){
                                 onlineNum++;
-                                console.log(onlineNum);
+
                             }
                         })
                     });
+                    console.log(onlineNum);
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id} ">
