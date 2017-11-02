@@ -292,11 +292,11 @@ $(document).ready(function() {
                 var html = "";
                 $.each(data.data,function(i, item){
                     var onlineNum=0;
-                    $.each(item.friend_user_code,function(i,tem){
-                        console.log(tem);
+                    $.each(item.friend_user,function(i,tem){
+                        console.log(tem.friend_user_code);
                         $.each(onlineFriend,function(i,online){
                             console.log(online);
-                            if(parseInt(tem)===parseInt(online)){
+                            if(parseInt(tem.friend_user_code)===parseInt(online)){
                                 onlineNum++;
 console.log("zaixian");
                             }
