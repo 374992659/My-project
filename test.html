@@ -55,9 +55,8 @@
             wx.ready(function () {
                 wx.stopRecord({
                     success: function (res) {
-                        var localId = res.localId;
+                       localId = res.localId;
                         console.log(localId);
-                        return localId;
                     }
                 });
             })
@@ -84,7 +83,7 @@
             startRecord(signature);
        })
         $('#cancelRecord').click(function(){
-            localId = stopRecord(signature);
+            stopRecord(signature);
         })
         $('#playRecord').click(function(){
             alert(localId);
