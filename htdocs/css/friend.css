@@ -48,13 +48,13 @@ body {
     width:25px;
 }
 .weui-cell__bd>p{
-    font-size: 18px;
+    font-size: 20px;
 }
 .weui-cell__ft{
-    font-size: 16px;
+    font-size: 18px;
 }
 .weui-navbar__item{
-    font-size: 16px;
+    font-size: 18px;
 }
 /*滚动水平导航栏 start*/
 .lr_nb{border-bottom:1px solid #E8E8E8;border-top:1px solid #E8E8E8;height:40px;line-height:40px;width:100%;background:#fff;padding: 0px 10px;box-sizing:border-box;z-index:1;max-width:1080px;opacity:1;top:0;-webkit-transition:.3s all;transition:.3s all}
