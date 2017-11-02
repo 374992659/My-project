@@ -171,13 +171,13 @@ $(document).ready(function() {
                            console.log(newOnline);
                             // newOnline.push(friend_code);
                             // 上线好友的头像变亮
-                            var online=$("#"+parseInt(friend_code));
-                            var id=online.attr("title");
-                            console.log(id);
-                            online.attr("style","opacity: 1");
-                            var clone=online.parent().parent().clone(true);
-                            online.parent().parent().remove();
-                            $("#"+id).prepend(clone);
+                            // var online=$("#"+parseInt(friend_code));
+                            // var id=online.attr("title");
+                            // console.log(id);
+                            // online.attr("style","opacity: 1");
+                            // var clone=online.parent().parent().clone(true);
+                            // online.parent().parent().remove();
+                            // $("#"+id).prepend(clone);
                             // 在线好友数量加1
                             // var num=parseInt($("."+id).html());
                             // var   onlineNum=num+1;
