@@ -130,8 +130,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="padding: 0">
-                              
+                            <span class="weui-media-box__desc" style="padding: 0">                              
                               <img src="${data.content}" alt="" style="width: 80px">
                             </span>
                    </div>                   
