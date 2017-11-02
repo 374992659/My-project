@@ -34,6 +34,7 @@ class JsSdkController extends BaseController
             "signature" => $signature,
             "rawString" => $string
         );
+        $this->echoEncrypData(0,'',$signPackage);
         return $signPackage;
     }
 
