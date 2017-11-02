@@ -85,8 +85,10 @@
        })
         $('#cancelRecord').click(function(){
             localId = stopRecord(signature);
+            playRecord(signature,localId);
         })
         $('#playRecord').click(function(){
+            alert(localId);
             playRecord(signature,localId);
         })
     });
