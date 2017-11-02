@@ -294,13 +294,16 @@ $(document).ready(function() {
                     var onlineNum=0;
                     $.each(item.friend_user,function(i,tem){
                         console.log(tem.friend_user_code);
-                        $.each(onlineFriend,function(i,online){
-                            console.log(online);
-                            if(parseInt(tem.friend_user_code)===parseInt(online)){
-                                onlineNum++;
-console.log("zaixian");
-                            }
-                        })
+                        if(onlineFriend){
+                            $.each(onlineFriend,function(i,online){
+                                console.log(online);
+                                if(parseInt(tem.friend_user_code)===parseInt(online)){
+                                    onlineNum++;
+                                    console.log("zaixian");
+                                }
+                            })
+                        }
+
                     });
                     console.log(onlineNum);
                     html += `
