@@ -288,7 +288,9 @@ $(document).ready(function() {
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
                 // 获取所有在线好友
-                var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
+                if(localStorage.getItem("online_friends")){
+                    var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
+                }
                 var html = "";
                 $.each(data.data,function(i, item){
                     var arr=[];
