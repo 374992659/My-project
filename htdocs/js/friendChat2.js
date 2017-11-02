@@ -184,7 +184,7 @@ $(document).ready(function(){
                 case 8:
                     console.log(result);
                     break;
-                    // f服务器保存的历史消息
+                    // 服务器保存的历史消息
                 case 9:
                     if(parseInt(result.errcode)===0){
                         console.log(1);
@@ -202,7 +202,7 @@ $(document).ready(function(){
                         </div>
                         <div class="weui-media-box__bd">
                                 <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
-                                   <img src="${item.content}" alt=""/>
+                                   <img src="${item.content}" style="width: 80px" alt=""/>
 
                                 </span>
                        </div>
@@ -234,7 +234,10 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
+                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">
+                                               
+                                         <img src="${item.content}" style="width: 80px"  alt=""/>
+                                        </span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
                                         <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
@@ -250,7 +253,7 @@ $(document).ready(function(){
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
                                         <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">
-                                            <img src="${item.content}" alt=""/>
+                                            ${item.content}
                                         </span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">

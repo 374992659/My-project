@@ -162,12 +162,14 @@ $(document).ready(function() {
                            var newOnline = parseInt(JSON.parse(online_friends));
                            console.log(newOnline);
                             // newOnline.push(friend_code);
+                            // 上线好友的头像变亮
                             var online=$("#"+parseInt(friend_code));
                             var id=online.attr("title");
                             online.attr("style","opacity: 1");
                             var clone=online.parent().parent().clone(true);
                             online.parent().parent().remove();
                             $("#"+id).prepend(clone);
+                            // 在线好友数量加1
                             var num= $("#"+id).find("span").text();
                                 console.log(num);
                                 num=num+1;
@@ -185,6 +187,8 @@ $(document).ready(function() {
                         var online_friends = localStorage.getItem('online_friends');
                         console.log(data);
                         if(contains(online_friends,friend_code)){
+                            console.log("好友下线");
+                            console.log(friend_code);
                             var i = online_friends.length;
                             while (i--){
                                 if (arr[i] === obj){
