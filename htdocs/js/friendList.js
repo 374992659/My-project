@@ -292,7 +292,7 @@ $(document).ready(function() {
                 var html = "";
                 $.each(data.data,function(i, item){
                     var onlineNum=0;
-                    $.each(item.friend_user,function(i,tem){
+                    $.each(item.friend_user_code,function(i,tem){
                         console.log(tem);
                         $.each(onlineFriend,function(i,online){
                             console.log(online);
