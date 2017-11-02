@@ -288,25 +288,25 @@ $(document).ready(function() {
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
                 // 获取所有在线好友
-                if(localStorage.getItem("online_friends")){
-                    var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
-                }
+                var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
                 var html = "";
                 $.each(data.data,function(i, item){
                     var arr=[];
-                    $.each(item.friend_user,function(i,tem){
-                        console.log(tem.friend_user_code);
-                        if(onlineFriend){
-                            $.each(onlineFriend,function(i,online){
-                                console.log(online);
-                                if(parseInt(tem.friend_user_code)===parseInt(online)){
-                                    arr.push(tem.friend_user_code);
-                                    console.log("zaixian");
-                                }
-                            })
-                        }
+                    if(onlineFriend){
+                        $.each(item.friend_user,function(i,tem){
+                            console.log(tem.friend_user_code);
+                            if(onlineFriend){
+                                $.each(onlineFriend,function(i,online){
+                                    console.log(online);
+                                    if(parseInt(tem.friend_user_code)===parseInt(online)){
+                                        arr.push(tem.friend_user_code);
+                                        console.log("zaixian");
+                                    }
+                                })
+                            }
 
-                    });
+                        });
+                    }
                    var online=arr.length;
                     html += `
      <div class="weui-cells">
@@ -330,7 +330,7 @@ $(document).ready(function() {
         `
                 });
                 $(".group").append(html);
-               
+
             }else{
                     window.location.href ="landing.html";
             }
