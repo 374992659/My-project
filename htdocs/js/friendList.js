@@ -290,8 +290,7 @@ $(document).ready(function() {
 
                 var html = "";
                 $.each(data.data,function(i, item){
-                    var arr=[];
-                    if(onlineFriend){
+                        var arr=[];
                         $.each(item.friend_user,function(i,tem){
                             console.log(tem.friend_user_code);
                             // 获取所有在线好友
@@ -306,7 +305,7 @@ $(document).ready(function() {
                                 })
                             }
                         });
-                    }
+
                    var online=arr.length;
                     html += `
      <div class="weui-cells">
