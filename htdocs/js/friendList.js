@@ -393,18 +393,26 @@ $(document).ready(function() {
                         if(remark.html()){
                             remark.html("此人很懒哦什么都没有留下")
                         }
+                        // 功能显示隐藏分组下的好友信息
+                        if($(this).next().is(":hidden")){
+                            $(this).next().show();
+                            $(this).children().children("img").css("transform","rotate(90deg)");
+                        }else{
+                            $(this).next().hide();
+                            $(this).children().children("img").css("transform","rotate(0deg)");
+                        }
                     }
                 }
             });
         })();
-        // 功能显示隐藏分组下的好友信息
-        if($(this).next().is(":hidden")){
-            $(this).next().show();
-            $(this).children().children("img").css("transform","rotate(90deg)");
-        }else{
-            $(this).next().hide();
-            $(this).children().children("img").css("transform","rotate(0deg)");
-        }
+        // // 功能显示隐藏分组下的好友信息
+        // if($(this).next().is(":hidden")){
+        //     $(this).next().show();
+        //     $(this).children().children("img").css("transform","rotate(90deg)");
+        // }else{
+        //     $(this).next().hide();
+        //     $(this).children().children("img").css("transform","rotate(0deg)");
+        // }
     });
     //搜索框内容的清楚
     $("#searchClear").click(function(){

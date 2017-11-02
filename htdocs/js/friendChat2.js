@@ -428,8 +428,6 @@ $(document).ready(function(){
                 }
                 localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
             }
-
-
         });
         // 发送图片
         $("#uploaderInputPic").change(function(){
@@ -506,6 +504,86 @@ $(document).ready(function(){
 
              }
          );
+        //上传文件
+        $('#uploaderInputFile').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            console.log($("#uploaderInputFile")[0]);
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderInputFile")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"ChatMessage_uploadGroupFile",
+                fileElementId:'uploaderInput',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoekn",data.apptoekn);
+                        console.log(data.data[0]);
+                        var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
+                    <img style="width: 100px" src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+             </div>
+         </div>
+            `;
+                        var chatPage=$("#chatPage");
+                        chatPage.append(html);
+                        $(".chatContent").val("");
+                        var content=localStorage.getItem("friendPic");
+                        console.log(content);
+                        // 发送给服务器
+                        var message_type = 2;
+                        var account_code =sender_code;
+                        ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
+                        // 保存聊天记录
+                        var sender=localStorage.getItem("sender_code");
+                        var time= (new Date()).toLocaleDateString();
+                        var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
+                        console.log(json_str);
+                        var history_chats = localStorage.getItem('history_'+sender_code);
+                        if(!history_chats){
+                            history_chat = new Array();
+                            history_chats=[json_str];
+                            localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+                        }else{
+                            history_chats = JSON.parse(history_chats);
+                            history_chats[history_chats.length] = json_str;
+                            if(history_chats.length>20){
+                                history_chats.shift();
+                            }
+                            localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+
+                        }
+
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+        //上传语音
+
+
+
+
         /*
         * 判断是否存在元素
         * */
@@ -534,53 +612,53 @@ $(document).ready(function(){
         }
     });
     //上传文件
-    $('#uploaderInputFile').change(function(e) {
-        var Url=window.URL.createObjectURL(this.files[0]) ;
-        var formData= new FormData();
-        console.log($("#uploaderInputFile")[0]);
-        var apptoken=localStorage.getItem("apptoken");
-        formData.append("file",$("#uploaderInputFile")[0].files[0]);
-        var data=["",JSON.stringify({"apptoken":apptoken})];
-        var json=jsEncryptData(data);
-        formData.append("data",json);
-        console.log(formData);
-        $.ajax({
-            type:"POST",
-            url:url+"ChatMessage_uploadGroupFile",
-            fileElementId:'uploaderInput',
-            data:formData,
-            processData : false,
-            contentType : false,
-            secureuri:false,
-            success : function(data){
-                // 解密
-                data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoekn",data.apptoekn);
-                    console.log(data.data[0]);
-                    var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 100px" src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
-                 </span>
-            </div>
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-             </div>
-         </div>
-            `;
-                    var chatPage=$("#chatPage");
-                    chatPage.append(html);
-                    $(".chatContent").val("");
-                }
-            },
-            error:function (data) {
-                console.log(data);
-            }
-        });
-    });
-    //上传语音
+    // $('#uploaderInputFile').change(function(e) {
+    //     var Url=window.URL.createObjectURL(this.files[0]) ;
+    //     var formData= new FormData();
+    //     console.log($("#uploaderInputFile")[0]);
+    //     var apptoken=localStorage.getItem("apptoken");
+    //     formData.append("file",$("#uploaderInputFile")[0].files[0]);
+    //     var data=["",JSON.stringify({"apptoken":apptoken})];
+    //     var json=jsEncryptData(data);
+    //     formData.append("data",json);
+    //     console.log(formData);
+    //     $.ajax({
+    //         type:"POST",
+    //         url:url+"ChatMessage_uploadGroupFile",
+    //         fileElementId:'uploaderInput',
+    //         data:formData,
+    //         processData : false,
+    //         contentType : false,
+    //         secureuri:false,
+    //         success : function(data){
+    //             // 解密
+    //             data=jsDecodeData(data);
+    //             console.log(data);
+    //             if(data.errcode===0){
+    //                 localStorage.setItem("apptoekn",data.apptoekn);
+    //                 console.log(data.data[0]);
+    //                 var  html=`
+    //      <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+    //     <div class="weui-media-box weui-media-box_appmsg">
+    //          <div class="weui-media-box__bd">
+    //              <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
+    //                 <img style="width: 100px" src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
+    //              </span>
+    //         </div>
+    //          <div class="weui-media-box__hd" style="margin-left:.8em;">
+    //              <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+    //          </div>
+    //      </div>
+    //         `;
+    //                 var chatPage=$("#chatPage");
+    //                 chatPage.append(html);
+    //                 $(".chatContent").val("");
+    //             }
+    //         },
+    //         error:function (data) {
+    //             console.log(data);
+    //         }
+    //     });
+    // });
+
 });

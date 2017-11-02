@@ -48,7 +48,7 @@ $(document).ready(function(){
                     var online_friends = localStorage.getItem('online_friends');
                     if(contains(online_friends,friend_code)){
                         var i = online_friends.length;
-                        while (i--) {
+                        while (i--){
                             if (arr[i] === obj) {
                                 online_friends.splice(i,1);
                             }
@@ -137,7 +137,6 @@ $(document).ready(function(){
                                                               
                                 `
                                 }
-
                             }else{
                                 if(data.type===2){
                                     html=`
@@ -318,8 +317,6 @@ $(document).ready(function(){
         $(".chatContent").val("");
 
     });
-
-
     //发送消息给好友
     $(".elements").click(function(){
         var content=$(".elements").val('content');                        //获取页面发送内容
@@ -368,6 +365,53 @@ $(document).ready(function(){
 
         }
     );
+    // 上传文件
+    $("#uploaderInputFile").change(function(){
+            var formData= new FormData();
+            console.log($("#uploaderInputFile")[0].files[0]);
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderInputFile")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"ChatMessage_uploadGroupFile",
+                fileElementId:'uploaderInput',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        console.log(data.data[0]);
+                        localStorage.setItem("friendPic","http://wx.junxiang.ren/project/"+data.data[0]);
+                        $(".chatContent").val("");
+                        var content=localStorage.getItem("friendPic");
+                        var group =localStorage.getItem("group_code");           //获取发送好友的群code
+                        console.log(content);
+                        var message_type = 2;
+                        ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
+                    }
+                },
+                error:function (data){
+                    console.log(data);
+                }
+            });
+
+        }
+    );
+    // 发送语音
+
+
+
+
+
     /*
     * 判断是否存在元素
     * */
