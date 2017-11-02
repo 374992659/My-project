@@ -118,7 +118,10 @@ $(document).ready(function() {
                             console.log("在线好友");
                             console.log(onlineFried);
                             $.each(onlineFried,function(i,item){
-                                console.log(item)
+                                console.log(item);
+                               var title= $("#"+parseInt(item)).attr("title");
+                                console.log(title);
+
                             });
                             //$(".online").html(onlineFried.length);
                             // 把在线好友存在本地
@@ -284,8 +287,19 @@ $(document).ready(function() {
             console.log(data);
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
+                // 获取所有在线好友
+                var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
                 var html = "";
                 $.each(data.data,function(i, item){
+                    var onlineNum=0;
+                    $.each(data.data.friend_user,function(i,item){
+                            $.each(onlineFriend,function(i,online){
+                                if(parseInt(item)===parseInt(online)){
+                                    onlineNum++;
+                                    console.log(onlineNum);
+                                }
+                            })
+                    });
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id} ">
