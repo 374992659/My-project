@@ -287,17 +287,16 @@ $(document).ready(function() {
             console.log(data);
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
-                // 获取所有在线好友
-                if(localStorage.getItem("online_friends")){
-                    var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
-                }
+
                 var html = "";
                 $.each(data.data,function(i, item){
                     var arr=[];
                     if(onlineFriend){
                         $.each(item.friend_user,function(i,tem){
                             console.log(tem.friend_user_code);
-                            if(onlineFriend){
+                            // 获取所有在线好友
+                            if(localStorage.getItem("online_friends")){
+                                var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
                                 $.each(onlineFriend,function(i,online){
                                     console.log(online);
                                     if(parseInt(tem.friend_user_code)===parseInt(online)){
@@ -306,7 +305,6 @@ $(document).ready(function() {
                                     }
                                 })
                             }
-
                         });
                     }
                    var online=arr.length;
