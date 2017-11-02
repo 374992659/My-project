@@ -293,21 +293,21 @@ $(document).ready(function() {
                 }
                 var html = "";
                 $.each(data.data,function(i, item){
-                    var onlineNum=0;
+                    var arr=[];
                     $.each(item.friend_user,function(i,tem){
                         console.log(tem.friend_user_code);
                         if(onlineFriend){
                             $.each(onlineFriend,function(i,online){
                                 console.log(online);
                                 if(parseInt(tem.friend_user_code)===parseInt(online)){
-                                    onlineNum++;
+                                    arr.push(tem.friend_user_code);
                                     console.log("zaixian");
                                 }
                             })
                         }
 
                     });
-                    console.log(onlineNum);
+                   var online=arr.length;
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id} ">
@@ -318,7 +318,7 @@ $(document).ready(function() {
                 <p style=""  title="${item.id}">${item.group_name}</p>
             </div>
             <div class="weui-cell__ft" style="">
-                <span class="online ${item.id}" style="font-size: 15px">${onlineNum}</span>/${item.total}
+                <span class="online ${item.id}" style="font-size: 15px">${online}</span>/${item.total}
             </div>
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
