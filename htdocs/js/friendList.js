@@ -115,6 +115,11 @@ $(document).ready(function() {
                                 onlineFried.push(item);
                             });
                             // 把在线好友压入数组
+                            console.log("在线好友");
+                            console.log(onlineFried);
+                            $.each(onlineFried,function(i,item){
+                                console.log(item)
+                            });
                             //$(".online").html(onlineFried.length);
                             // 把在线好友存在本地
                             localStorage.setItem("online_friends",JSON.stringify(onlineFried));
