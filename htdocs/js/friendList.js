@@ -394,7 +394,9 @@ $(document).ready(function() {
                             remark.html("此人很懒哦什么都没有留下")
                         }
                         // 功能显示隐藏分组下的好友信息
+                        console.log("分组内容显示");
                         if($(this).next().is(":hidden")){
+                            console.log(123);
                             $(this).next().show();
                             $(this).children().children("img").css("transform","rotate(90deg)");
                         }else{
