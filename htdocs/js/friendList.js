@@ -291,16 +291,7 @@ $(document).ready(function() {
                 var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
                 var html = "";
                 $.each(data.data,function(i, item){
-                    // var onlineNum=0;
-                    // $.each(data.data.friend_user,function(i,item){
-                    //         for(var i=0 ,len=onlineFriend;i<len;i++){
-                    //             if(parseInt(item)===parseInt(onlineFriend)){
-                    //                 onlineNum++;
-                    //                 console.log(onlineNum);
-                    //             }
-                    //         }
-                    //     console.log(item);
-                    // });
+                    console.log(data.data.friend_user);
                     html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id} ">
