@@ -34,7 +34,7 @@
                 nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
                 signature:  signature.signature,// 必填，签名，见附录1
                 jsApiList: [
-                    'startRecord',
+                    'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
             wx.ready(function () {
@@ -55,7 +55,7 @@
                 nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
                 signature:  signature.signature,// 必填，签名，见附录1
                 jsApiList: [
-                    'stopRecord',
+                    'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
             wx.ready(function () {
@@ -77,7 +77,7 @@
                 nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
                 signature:  signature.signature,// 必填，签名，见附录1
                 jsApiList: [
-                    'onVoiceRecordEnd'
+                    'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
             wx.onVoiceRecordEnd({
@@ -97,7 +97,7 @@
                 nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
                 signature:  signature.signature,// 必填，签名，见附录1
                 jsApiList: [
-                    'playVoice','stopVoice','downloadVoice'
+                    'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
             wx.ready(function () {
@@ -130,7 +130,7 @@
                 nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
                 signature:  signature.signature,// 必填，签名，见附录1
                 jsApiList: [
-                    'pauseVoice',
+                    'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
             wx.pauseVoice({
@@ -187,7 +187,7 @@
                 nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
                 signature:  signature.signature,// 必填，签名，见附录1
                 jsApiList: [
-                    'downloadVoice'
+                    'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
             wx.ready(function () {
