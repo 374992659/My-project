@@ -247,7 +247,24 @@ class UserCenterController extends VersionController
             $model->rollback();
             $garden_num->rollback();
             $user_info->rollback();
-            $this->echoEncrypData(1,array($res1,$res2,$res3,$garden_code));
+            $this->echoEncrypData(1,array($res1,$res2,$res3,array(
+                'user_code'=>$this->account_code,
+                'real_name'=>$this->pdata['real_name'],
+                'phone'=>$this->pdata['phone'],
+                'room_num'=>$this->pdata['room_num'],
+                'pictures'=>$this->pdata['pictures'],
+                'id_card_num'=>$this->pdata['id_card_num'],
+                'id_card_pictures'=>$this->pdata['id_card_pictures'],
+                'garden_code'=>$garden_code,
+                'garden_name'=>$this->pdata['garden_name'],
+                'garden_picture'=>$this->pdata['garden_picture'],
+                'city_id'=>$this->pdata['city_id'],
+                'garden_addr'=>$this->pdata['garden_addr'],
+                'yourself_picture'=>$this->pdata['yourself_picture'],
+                'role'=>1,
+//            'status'=>0,
+                'status'=>1,//目前默认通过审核
+            )));
         }
     }
 
