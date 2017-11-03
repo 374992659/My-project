@@ -207,15 +207,16 @@
 
 
         localId = '';
+        serverId= '';
        $('#record').on('click',function(){
             startRecord(signature);
        })
         $('#cancelRecord').click(function(){
-            stopRecord(signature);
+            localId = stopRecord(signature);
+            serverId = uploadRecord(signature,localId);
         })
         $('#playRecord').click(function(){
-            alert(localId);
-            playRecord(signature);
+            playRecord(signature,localId,serverId);
         })
     });
 </script>
