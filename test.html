@@ -61,9 +61,7 @@
             wx.ready(function () {
                 wx.stopRecord({
                     success: function (res) {
-                       var localId = res.localId;
-                        console.log(localId);
-                        return localId;
+                      localId = res.localId;
                     }
                 });
             })
@@ -83,13 +81,12 @@
             wx.onVoiceRecordEnd({
                 // 录音时间超过一分钟没有停止的时候会执行 complete 回调
                 complete: function (res) {
-                    var localId = res.localId;
-                    return localId;
+                    localId = res.localId;
                 }
             });
         }
         //播放语音文件
-        function playRecord(signature,localId,serverId) {
+        function playRecord(signature,local_id,serverId) {
             wx.config({
                 debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: signature.appId, // 必填，公众号的唯一标识
@@ -102,12 +99,12 @@
             });
             wx.ready(function () {
                 wx.playVoice({
-                    localId:localId,  // 需要播放的音频的本地ID，由stopRecord接口获得
-//                    success: function () {
-//                        wx.stopVoice({
-//                            localId: localId,
-//                        });
-//                    },
+                    localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
+                    success: function () {
+                        wx.stopVoice({
+                            localId: local_id,
+                        });
+                    },
                     fail: function () {
                         wx.downloadVoice({
                             serverId:serverId,
@@ -122,7 +119,7 @@
             })
         }
         //暂停播放语音文件
-        function pauseRecord(signature,localId) {
+        function pauseRecord(signature) {
             wx.config({
                 debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: signature.appId, // 必填，公众号的唯一标识
@@ -138,7 +135,7 @@
             });
         }
         //停止播放语音文件
-        function stopPlayRecord(signature,localId) {
+        function stopPlayRecord(signature) {
             wx.config({
                 debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: signature.appId, // 必填，公众号的唯一标识
@@ -156,7 +153,7 @@
             })
         }
         //上传录音文件
-        function uploadRecord(signature,localId) {
+        function uploadRecord(signature) {
             wx.config({
                 debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: signature.appId, // 必填，公众号的唯一标识
@@ -179,7 +176,7 @@
             })
         }
         //下载录音文件
-        function downloadRecord(signature,serverId) {
+        function downloadRecord(signature) {
             wx.config({
                 debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                 appId: signature.appId, // 必填，公众号的唯一标识
@@ -212,12 +209,8 @@
             startRecord(signature);
        })
         $('#cancelRecord').click(function(){
-            localId= stopRecord(signature);
-            setTimeout(function(){
-                console.log(localId);
-            },2000)
-
-//            serverId = uploadRecord(signature,localId);
+            stopRecord(signature);
+            uploadRecord(signature,localId);
         })
         $('#playRecord').click(function(){
             console.log(localId);
