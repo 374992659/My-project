@@ -216,6 +216,8 @@
             serverId = uploadRecord(signature,localId);
         })
         $('#playRecord').click(function(){
+            alert(localId);
+            alert(serverId);
             playRecord(signature,localId,serverId);
         })
     });
