@@ -83,6 +83,7 @@ class UserCenterController extends VersionController
             }
             $mongo = new \MongoClient();
             $userGarden = $mongo->baseinfo->group_area->find(array('garden_code'=>array('$in'=>$user_garden)));
+            $userGarden = iterator_to_array($userGarden);
             $Array= array();
             foreach ($userGarden as $key=>$val){
                 $Array[$key]['garden_name']=$val['garden_name'];
@@ -91,7 +92,7 @@ class UserCenterController extends VersionController
             }
             $data['user_garden'] =$Array;
         }
-        $this->echoEncrypData(0,'',$user_garden);
+        $this->echoEncrypData(0,'',$userGarden);
     }
     /*
      * 上传用户头像 成功后图片路劲已直接写入数据库 返回状态不返回路径
