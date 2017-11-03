@@ -212,8 +212,11 @@
             startRecord(signature);
        })
         $('#cancelRecord').click(function(){
-            localId = stopRecord(signature);
-            console.log(localId);
+            localId= stopRecord(signature);
+            setTimeout(function(){
+                console.log(localId);
+            },2000)
+
 //            serverId = uploadRecord(signature,localId);
         })
         $('#playRecord').click(function(){
