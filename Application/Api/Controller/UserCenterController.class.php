@@ -71,6 +71,26 @@ class UserCenterController extends VersionController
         $data = $user_info->getUserinfo($account_code);
         if(!$data)$this->echoEncrypData(1);
         unset($data['password'],$data['is_online']);
+        if($data['user_garden']){
+            $garden_arr = explode(';',$data['user_garden']);
+            if(!$garden_arr){
+                $garden_arr[]=$data['user_garden'];
+            }
+            $user_garden = array();
+            foreach($garden_arr as $k=>$v){
+                $arr = explode(',',$v);
+                $user_garden[]=$arr[0];
+            }
+            $mongo = new \MongoClient();
+            $userGarden = $mongo->baseinfo->group_area->find(array('$in'=>$user_garden));
+            $Array= array();
+            foreach ($userGarden as $key=>$val){
+                $Array[$key]['garden_name']=$val['garden_name'];
+                $Array[$key]['garden_code']=$val['garden_code'];
+                $Array[$key]['city_id']=$val['city_id'];
+            }
+            $data['user_garden'] =$Array;
+        }
         $this->echoEncrypData(0,'',$data);
     }
     /*
