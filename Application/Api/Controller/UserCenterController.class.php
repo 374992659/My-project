@@ -242,12 +242,12 @@ class UserCenterController extends VersionController
             $model->commit();
             $garden_num->commit();
             $user_info->commit();
-            $this->echoEncrypData(0,array($res1,$res2,$res3));
+            $this->echoEncrypData(0);
         }else{
             $model->rollback();
             $garden_num->rollback();
             $user_info->rollback();
-            $this->echoEncrypData(1);
+            $this->echoEncrypData(1,array($res1,$res2,$res3));
         }
     }
 
