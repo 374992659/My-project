@@ -91,7 +91,7 @@ class UserCenterController extends VersionController
             }
             $data['user_garden'] =$Array;
         }
-        $this->echoEncrypData(0,'',$data);
+        $this->echoEncrypData(0,'',$user_garden);
     }
     /*
      * 上传用户头像 成功后图片路劲已直接写入数据库 返回状态不返回路径
