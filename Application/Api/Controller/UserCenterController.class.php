@@ -82,7 +82,7 @@ class UserCenterController extends VersionController
                 $user_garden[]=$arr[0];
             }
             $mongo = new \MongoClient();
-            $userGarden = $mongo->baseinfo->group_area->find(array('$in'=>$user_garden));
+            $userGarden = $mongo->baseinfo->group_area->find(array('garden_code'=>array('$in'=>$user_garden)));
             $Array= array();
             foreach ($userGarden as $key=>$val){
                 $Array[$key]['garden_name']=$val['garden_name'];
