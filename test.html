@@ -102,15 +102,15 @@
             });
             wx.ready(function () {
                 wx.playVoice({
-                    localId:localId.toString(),  // 需要播放的音频的本地ID，由stopRecord接口获得
+                    localId:localId,  // 需要播放的音频的本地ID，由stopRecord接口获得
 //                    success: function () {
 //                        wx.stopVoice({
-//                            localId: localId.toString(),
+//                            localId: localId,
 //                        });
 //                    },
                     fail: function () {
                         wx.downloadVoice({
-                            serverId:serverId.toString(),
+                            serverId:serverId,
                             isShowProgressTips: 1,
                             success: function (res) {
                                 localId = res.localId;
@@ -134,7 +134,7 @@
                 ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
             });
             wx.pauseVoice({
-                localId: localId.toString(), // 需要暂停的音频的本地ID，由stopRecord接口获得
+                localId: localId, // 需要暂停的音频的本地ID，由stopRecord接口获得
             });
         }
         //停止播放语音文件
@@ -151,7 +151,7 @@
             });
             wx.ready(function () {
                 wx.stopVoice({
-                    localId: localId.toString(), // 需要停止的音频的本地ID，由stopRecord接口获得
+                    localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
                 });
             })
         }
@@ -169,7 +169,7 @@
             });
             wx.ready(function () {
                 wx.uploadVoice({
-                    localId: localId.toString(), // 需要上传的音频的本地ID，由stopRecord接口获得
+                    localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
                     isShowProgressTips: 1, // 默认为1，显示进度提示
                     success: function (res) {
                         var serverId = res.serverId; // 返回音频的服务器端ID
@@ -192,7 +192,7 @@
             });
             wx.ready(function () {
                 wx.downloadVoice({
-                    serverId: serverId.toString(), // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                    serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
                     isShowProgressTips: 1, // 默认为1，显示进度提示
                     success: function (res) {
                         var localId = res.localId; // 返回音频的本地ID
