@@ -103,11 +103,11 @@
             wx.ready(function () {
                 wx.playVoice({
                     localId:localId.toString(),  // 需要播放的音频的本地ID，由stopRecord接口获得
-                    success: function () {
-                        wx.stopVoice({
-                            localId: localId.toString(),
-                        });
-                    },
+//                    success: function () {
+//                        wx.stopVoice({
+//                            localId: localId.toString(),
+//                        });
+//                    },
                     fail: function () {
                         wx.downloadVoice({
                             serverId:serverId.toString(),
