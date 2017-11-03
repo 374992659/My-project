@@ -431,7 +431,7 @@ use certification_application;
 
 CREATE TABLE  if not exists `owner_application_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
-  `user_code` int(11) NOT NULL COMMENT '用户code',
+  `user_code` varchar(50) NOT NULL COMMENT '用户code',
   `real_name` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '真实姓名',
   `phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '手机号码',
   `room_num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '房号',
