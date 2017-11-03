@@ -43,6 +43,7 @@
                         alert('用户拒绝授权录音');
                     }
                 });
+
             })
         }
         //停止录音
@@ -206,12 +207,9 @@
 
 
         localId = '';
-       $('#record').on('touchstart',function(){
+       $('#record').on('click',function(){
             startRecord(signature);
        })
-        $('#record').on('touchend',function(){
-            startRecord(signature);
-        })
         $('#cancelRecord').click(function(){
             stopRecord(signature);
         })
