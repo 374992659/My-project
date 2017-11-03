@@ -70,6 +70,7 @@ class UserCenterController extends VersionController
         $user_info =new Model\UserInfoModel($city_id);
         $data = $user_info->getUserinfo($account_code);
         if(!$data)$this->echoEncrypData(1);
+        unset($data['password'],$data['is_online']);
         $this->echoEncrypData(0,'',$data);
     }
     /*
