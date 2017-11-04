@@ -85,7 +85,7 @@ $(document).ready(function(){
                $("input").click(function(e){
                    console.log($(this));
                    console.log($(e.target).attr("checked"));
-                   if($(e.target).attr("checked")) {
+                   if($(this).prop('checked')) {
                        alert("选中了");
                        var a=  $(this).siblings(".voteNum").html();
                        console.log(a);
