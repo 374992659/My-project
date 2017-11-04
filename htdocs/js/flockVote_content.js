@@ -86,9 +86,10 @@ $(document).ready(function(){
                    console.log($(this));
                    console.log($(e.target).attr("checked"));
                    if($(this).prop('checked')) {
-                       alert("选中了");
-                       var a=  $(this).siblings(".voteNum").html();
+                       var a=$(this).siblings(".voteNum").html();
                        console.log(a);
+                       a=a+1;
+                       $(this).siblings(".voteNum").html(a)
                    }
                });
 
