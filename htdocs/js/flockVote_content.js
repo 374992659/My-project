@@ -83,12 +83,15 @@ $(document).ready(function(){
                 $(".optionList").append(voteList);
                 console.log("票数");
                $("input").click(function(e){
-                   console.log($(this));
-                   console.log($(e.target).attr("checked"));
-                   if($(this).prop('checked')) {
-                       var a=$(this).siblings(".voteNum").html();
+                   if($(this).prop('checked')){
+                       var a=parseInt($(this).siblings(".voteNum").html());
                        console.log(a);
                        a=a+1;
+                       $(this).siblings(".voteNum").html(a)
+                   }else if(parseInt($(this).siblings(".voteNum").html())===0){
+                       var a=parseInt($(this).siblings(".voteNum").html());
+                       console.log(a);
+                       a=a-1;
                        $(this).siblings(".voteNum").html(a)
                    }
                });
