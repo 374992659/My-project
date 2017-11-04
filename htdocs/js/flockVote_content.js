@@ -83,7 +83,6 @@ $(document).ready(function(){
                 $(".optionList").append(voteList);
                 console.log("票数");
                $("input").click(function(){
-                   console.log("input");
                    if ($(this).attr("checked")) {
                        alert("选中了");
                        var a=  $("input[type=radio]:checked").siblings(".voteNum").html();
