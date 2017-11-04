@@ -36,7 +36,7 @@ $(document).ready(function(){
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
                             </div>
-                            <ul class="${item_id}">
+                            <ul class="${item.id}">
                                   
                             </ul>
                         </div>
@@ -132,10 +132,5 @@ $(document).ready(function(){
 
             })
         }
-
-
-
-
-
     })
 });
