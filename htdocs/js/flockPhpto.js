@@ -19,8 +19,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html="";
                     $.each(data.data,function(i,item){
+                        var html="";
+                        var Li="";
                         console.log(item);
                         html+=`
                         <div class="weui-panel weui-panel_access">
@@ -42,9 +43,7 @@ $(document).ready(function(){
                             </ul>
                         </div>
                         `;
-
                         // 对图片进行循环
-                        var Li="";
                         $.each(item.picture_path,function(i,item){
                             console.log(item);
                             Li+=`
