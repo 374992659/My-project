@@ -42,7 +42,7 @@ $(document).ready(function(){
                             </ul>
                         </div>
                         `;
-                        $(".picPlace").append(html);
+
                         // 对图片进行循环
                         var Li="";
                         $.each(item.picture_path,function(i,item){
@@ -54,6 +54,7 @@ $(document).ready(function(){
                             `
                         });
                         console.log(Li);
+                        $(".picPlace").append(html);
                         $("."+item.id).append(Li);
                     });
 
