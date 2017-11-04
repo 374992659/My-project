@@ -82,7 +82,6 @@ $(document).ready(function(){
                 $(".voteContent").append(html);
                 $(".optionList").append(voteList);
                 console.log("票数");
-                console.log($("input[type=radio]:checked"));
                 if($("input[type=radio]:checked")){
 
                     //获取票数内容
