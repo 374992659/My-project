@@ -84,7 +84,7 @@ $(document).ready(function(){
                 console.log("票数");
                $("input").click(function(e){
                    console.log($(this));
-                   console.log($(this).attr("checked"));
+                   console.log($(e.target).attr("checked"));
                    if($(this).attr("checked")==="checked") {
                        alert("选中了");
                        var a=  $(this).siblings(".voteNum").html();
