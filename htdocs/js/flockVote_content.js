@@ -82,12 +82,14 @@ $(document).ready(function(){
                 $(".voteContent").append(html);
                 $(".optionList").append(voteList);
                 console.log("票数");
-                if($("input[type=radio]:checked")){
+               $("input").click(function(){
+                   if ($(this).attr("checked")) {
+                       alert("选中了");
+                       var a=  $("input[type=radio]:checked").siblings(".voteNum").html();
+                       console.log(a);
+                   }
+               });
 
-                    //获取票数内容
-                  var a=  $("input[type=radio]:checked").siblings(".voteNum").html();
-                    console.log(a);
-                }
             }else{
                 console.log(data.errmsg);
             }
