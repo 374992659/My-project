@@ -94,7 +94,6 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    photo();
                 }
             },
             error:function (data) {
