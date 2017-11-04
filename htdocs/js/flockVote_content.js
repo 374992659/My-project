@@ -33,7 +33,7 @@ $(document).ready(function(){
                         <div class="weui-cell__ft">
                             <input type="radio" class="weui-check" name="radio1" id="${i}">
                             <span class="weui-icon-checked"></span>
-                             <span >${item.num}</span>
+                            <span class="voteNum">${item.num}</span>
                         </div>
                     </label>
                     `
@@ -81,6 +81,11 @@ $(document).ready(function(){
                 `;
                 $(".voteContent").append(html);
                 $(".optionList").append(voteList);
+                if($("input[type=radio] checked")){
+                    //获取票数内容
+                  var a=  $("input[type=radio] checked").siblings(".voteNum").html();
+                    console.log(a);
+                }
             }else{
                 console.log(data.errmsg);
             }

@@ -37,14 +37,14 @@ $.ajax({
                         </div>
                     </div>
                     <div class="weui-media-box__bd">
-                        <h4 class="weui-media-box__title" style="font-size: 15px">${item.title}</h4>
+                        <h4 class="weui-media-box__title" style="font-size: 15px">主题：${item.title}</h4>
                         <ul>
                             <li class="lf">
                                 <img src="http://wx.junxiang.ren/project/${item.picture}" alt="" class="topic">
                             </li>                          
                         </ul>
                         <div style="text-align: right">
-                            <span style="font-size: 15px;">票数：</span>
+                            <span style="font-size: 15px;">总票数：</span>
                             <span style="font-size: 15px;">${item.total_user}</span>
                         </div>
                     </div>
