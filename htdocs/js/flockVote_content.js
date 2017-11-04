@@ -88,7 +88,7 @@ $(document).ready(function(){
                        console.log(a);
                        a=a+1;
                        $(this).siblings(".voteNum").html(a)
-                   }else if(parseInt($(this).siblings(".voteNum").html())===0){
+                   }else {
                        var a=parseInt($(this).siblings(".voteNum").html());
                        console.log(a);
                        a=a-1;
