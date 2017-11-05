@@ -21,6 +21,18 @@ ul{
 body {
     font-family : Arial, Helvetica, Sans-Serif;
 }
+a:hover {
+    color: #C97200;
+    text-decoration: none;
+}
+
+.lf {
+    float: left;
+}
+
+.right {
+    float: right
+}
 /*滚动水平导航栏 start*/
 .lr_nb{border-bottom:1px solid #E8E8E8;border-top:1px solid #E8E8E8;width:100%;background:#fff;padding: 0 ;box-sizing:border-box;z-index:1;max-width:1080px;opacity:1;top:0;-webkit-transition:.3s all;transition:.3s all}
 .lr_nb .slider_wrap.line{overflow:hidden;overflow-x:scroll;width:100%;-webkit-overflow-scrolling:touch;}
@@ -56,6 +68,7 @@ body {
 }
 /*二维码*/
 .qrCode{
+    margin-top: 10px;
     position: relative;
     text-align: center;
 }
@@ -79,7 +92,7 @@ body {
 }
 .left{
     display: inline-block;
-    width:30%;
+    width:32%;
     text-align: right;
 }
 .weui-cell {
@@ -87,9 +100,54 @@ body {
 }
 .likes{
     display: inline-block;
-    width: 65%;
+    width: 63%;
 }
 .likes li{
     display: inline-block;
 }
 /*个人资料 end*/
+/*业主认证star*/
+.owner label{
+    text-align: right;
+    display: inline-block;
+    width: 35%;
+}
+.owner input{
+    outline: none;
+    padding: 4px;
+    width: 50%;
+}
+.weui-uploader__input-box {
+    margin: 0 auto;
+    float: none;
+}
+.flockHead{
+    width: 77px;
+    height: 77px;
+    border: 1px solid #d9d9d9;
+    margin: 0 auto;
+    display: none;
+}
+.weui-cells:after, .weui-cells:before {
+    content: none;
+
+}
+/*租户认证*/
+.renter label{
+    text-align: right;
+    display: inline-block;
+    width: 35%;
+}
+.renter input{
+    outline: none;
+    padding: 4px;
+    width: 50%;
+}
+.weui-flex{
+    margin-top: 20px;
+}
+.weui-flex__item{
+    border-radius: 5px;
+    background: lightblue;
+    text-align: center;
+}
