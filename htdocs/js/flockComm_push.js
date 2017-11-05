@@ -42,7 +42,7 @@ $(document).ready(function(){
     $(".noticeBtn").click(function(){
         var success=$(".success");
         var hideTop=function(){
-            success.empty();};
+            success.empty()};
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         //获取群号

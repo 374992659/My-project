@@ -66,6 +66,9 @@ $(document).ready(function(){ "use strict";
     })();
     // 发送数据
     $(".subBtn").click(function(){
+        var success=$(".success");
+        var hideTop=function(){
+            success.empty()};
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 参数：title 标题
@@ -113,26 +116,18 @@ $(document).ready(function(){ "use strict";
                 var success=$(".success");
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    success.show();
-                    // 定时器
-                    $(function(){
-                        function hidden(){
-                            success.hide();
-                        }
-                        setTimeout(hidden,3000);
-                    });
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
+                    window.localtion.href="hotTopic2.html"
                 }else{
-                    console.log(data.errmsg);
-                    success.html("失败请重新操作");
-                    success.attr("color",'red');
-                    success.show();
-                    // 定时器
-                    $(function(){
-                        function hidden(){
-                            success.hide();
-                        }
-                        setTimeout(hidden,3000);
-                    });
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                 }
             }
         })
