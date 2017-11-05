@@ -25,7 +25,6 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     console.log(data.data);
-                    console.log(data.data.Number_data.length);
                     $.each(data.data.Number_data,function(i,item){
                         html+=`
                          <li class="lf">
@@ -34,7 +33,8 @@ $(document).ready(function(){
                         `
                     });
                     $(".flockMember").prepend(html);
-                   $(".headImg").attr("src",group_header)
+                    $("userMember").html(data.data.Number_data.length);
+                    $(".headImg").attr("src",group_header)
                 }
             }
         })
