@@ -119,14 +119,14 @@ $(document).ready(function(){ "use strict";
                     var html=`
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
-                    success.html(html);
+                    success.append(html);
                     setTimeout(hideTop,3000);
                     window.localtion.href="hotTopic2.html"
                 }else{
                     var html=`
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
-                    success.html(html);
+                    success.append(html);
                     setTimeout(hideTop,3000);
                 }
             }
