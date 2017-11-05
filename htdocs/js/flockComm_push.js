@@ -77,7 +77,7 @@ $(document).ready(function(){
                     window.location.href="floclComm.html";
                 }else{
                     var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                     <p style="text-align: center;background: green;font-size: 15px;color: red">${data.errmsg}</p>
                     `;
                     success.html(html);
                     setTimeout(hideTop,3000);
