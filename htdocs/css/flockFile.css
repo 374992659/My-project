@@ -11,12 +11,10 @@ body, div, ul, a {
     padding: 0;
     margin: 0;
 }
-
 a {
     color: #666;
     text-decoration: none;
 }
-
 a:hover {
     color: #C97200;
     text-decoration: none;
@@ -54,7 +52,7 @@ a:hover {
 }
 .weui-navbar>a{
     font-weight: bold;
-    font-size: 17px;
+    font-size: 18px;
     padding:10px 5px;
 }
 .weui-navbar + .weui-tab__bd {
