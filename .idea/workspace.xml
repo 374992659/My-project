@@ -24,20 +24,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="hotTopic_spit.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hotTopic_spit.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_spit.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.645162">
-              <caret line="15" column="49" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
-              <folding />
+            <state vertical-scroll-proportion="0.3716216">
+              <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
+              <folding>
+                <element signature="n#style#0;n#P#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hotTopic_spit.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hotTopic_spit.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/htdocs/css/hotTopic_spit.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.28726876">
+            <state vertical-scroll-proportion="0.0">
               <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
               <folding />
             </state>
@@ -58,7 +60,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/htdocs/flockChat.html" />
         <option value="$PROJECT_DIR$/htdocs/friendChat.html" />
         <option value="$PROJECT_DIR$/htdocs/js/createCrowd.js" />
         <option value="$PROJECT_DIR$/htdocs/discu_addfriend.html" />
@@ -109,6 +110,7 @@
         <option value="$PROJECT_DIR$/htdocs/flockPlay_push.html" />
         <option value="$PROJECT_DIR$/htdocs/css/flockFile.css" />
         <option value="$PROJECT_DIR$/htdocs/css/hotTopic_spit.css" />
+        <option value="$PROJECT_DIR$/htdocs/hotTopic_spit.html" />
       </list>
     </option>
   </component>
@@ -920,19 +922,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_spit.html">
+    <entry file="file://$PROJECT_DIR$/htdocs/css/hotTopic_spit.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.645162">
-          <caret line="15" column="49" selection-start-line="15" selection-start-column="49" selection-end-line="15" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/css/hotTopic_spit.css">
+    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_spit.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.28726876">
-          <caret line="57" column="17" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
-          <folding />
+        <state vertical-scroll-proportion="0.3716216">
+          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
+          <folding>
+            <element signature="n#style#0;n#P#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
