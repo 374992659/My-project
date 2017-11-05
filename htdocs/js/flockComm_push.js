@@ -40,6 +40,9 @@ $(document).ready(function(){
     });
     //功能2 点击上传图片
     $(".noticeBtn").click(function(){
+        var success=$(".success");
+        var hideTop=function(){
+            success.empty();};
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         //获取群号
@@ -66,9 +69,18 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    // window.location.href="floclComm.html";
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
+                    window.location.href="floclComm.html";
                 }else{
-                    console.log(data.errmsg);
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    $(".success").html(html);
+                    setTimeout(hideTop,3000);
                 }
             }
         })
