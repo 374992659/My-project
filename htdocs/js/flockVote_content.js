@@ -51,8 +51,8 @@ $(document).ready(function(){
                             </div>
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title" style="font-size: 15px">${result.title}</h4>
-                            <p>${result.content}</p>
+                            <h4 class="weui-media-box__title" style="font-size: 15px">主题：${result.title}</h4>
+                            <p>内容：${result.content}</p>
                             <ul>
                                 <li class="lf">
                                     <img src="http://wx.junxiang.ren/project/${result.picture}" alt="" class="topic">
