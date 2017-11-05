@@ -2841,27 +2841,21 @@ var FORCED_STOP = 2;
  */
 function Manager(element, options) {
     this.options = assign({}, Hammer.defaults, options || {});
-
     this.options.inputTarget = this.options.inputTarget || element;
-
     this.handlers = {};
     this.session = {};
     this.recognizers = [];
     this.oldCssProps = {};
-
     this.element = element;
     this.input = createInputInstance(this);
     this.touchAction = new TouchAction(this, this.options.touchAction);
-
     toggleCssProps(this, true);
-
     each(this.options.recognizers, function(item) {
         var recognizer = this.add(new (item[0])(item[1]));
         item[2] && recognizer.recognizeWith(item[2]);
         item[3] && recognizer.requireFailure(item[3]);
     }, this);
 }
-
 Manager.prototype = {
     /**
      * set options
@@ -2870,7 +2864,6 @@ Manager.prototype = {
      */
     set: function(options) {
         assign(this.options, options);
-
         // Options that need a little more setup
         if (options.touchAction) {
             this.touchAction.update();
@@ -2883,7 +2876,6 @@ Manager.prototype = {
         }
         return this;
     },
-
     /**
      * stop recognizing for this session.
      * This session will be discarded, when a new [input]start event is fired.
@@ -2893,7 +2885,6 @@ Manager.prototype = {
     stop: function(force) {
         this.session.stopped = force ? FORCED_STOP : STOP;
     },
-
     /**
      * run the recognizers!
      * called by the inputHandler function on every movement of the pointers (touches)
@@ -2905,28 +2896,22 @@ Manager.prototype = {
         if (session.stopped) {
             return;
         }
-
         // run the touch-action polyfill
         this.touchAction.preventDefaults(inputData);
-
         var recognizer;
         var recognizers = this.recognizers;
-
         // this holds the recognizer that is being recognized.
         // so the recognizer's state needs to be BEGAN, CHANGED, ENDED or RECOGNIZED
         // if no recognizer is detecting a thing, it is set to `null`
         var curRecognizer = session.curRecognizer;
-
         // reset when the last recognizer is recognized
         // or when we're in a new session
         if (!curRecognizer || (curRecognizer && curRecognizer.state & STATE_RECOGNIZED)) {
             curRecognizer = session.curRecognizer = null;
         }
-
         var i = 0;
         while (i < recognizers.length) {
             recognizer = recognizers[i];
-
             // find out if we are allowed try to recognize the input for this one.
             // 1.   allow if the session is NOT forced stopped (see the .stop() method)
             // 2.   allow if we still haven't recognized a gesture in this session, or the this recognizer is the one
@@ -2940,7 +2925,6 @@ Manager.prototype = {
             } else {
                 recognizer.reset();
             }
-
             // if the recognizer has been recognizing the input as a valid gesture, we want to store this one as the
             // current active recognizer. but only if we don't already have an active recognizer
             if (!curRecognizer && recognizer.state & (STATE_BEGAN | STATE_CHANGED | STATE_ENDED)) {
@@ -2949,7 +2933,6 @@ Manager.prototype = {
             i++;
         }
     },
-
     /**
      * get a recognizer by its event name.
      * @param {Recognizer|String} recognizer
@@ -2959,7 +2942,6 @@ Manager.prototype = {
         if (recognizer instanceof Recognizer) {
             return recognizer;
         }
-
         var recognizers = this.recognizers;
         for (var i = 0; i < recognizers.length; i++) {
             if (recognizers[i].options.event == recognizer) {
@@ -2968,7 +2950,6 @@ Manager.prototype = {
         }
         return null;
     },
-
     /**
      * add a recognizer to the manager
      * existing recognizers with the same event name will be removed
@@ -2979,20 +2960,16 @@ Manager.prototype = {
         if (invokeArrayArg(recognizer, 'add', this)) {
             return this;
         }
-
         // remove existing
         var existing = this.get(recognizer.options.event);
         if (existing) {
             this.remove(existing);
         }
-
         this.recognizers.push(recognizer);
         recognizer.manager = this;
-
         this.touchAction.update();
         return recognizer;
     },
-
     /**
      * remove a recognizer by name or instance
      * @param {Recognizer|String} recognizer
