@@ -55,7 +55,7 @@ label{
     display: inline-block;
     width: 25%;
     text-align: right;
-    font-size: 12px;
+    font-size: 15px;
 }
 input{
     width: 60%;
@@ -65,13 +65,13 @@ input{
 
 #spitTopic{
     padding:10px 10px;
-    background: 	#F0F0F0;
+    background:#F0F0F0;
 }
 .area select{
     width: 80px;
 }
 .weui-input {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .weui-uploader__file {
