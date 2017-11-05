@@ -79,7 +79,7 @@ $(document).ready(function(){
                     var html=`
                      <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
                     `;
-                    $(".success").html(html);
+                    success.html(html);
                     setTimeout(hideTop,3000);
                 }
             }

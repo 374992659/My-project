@@ -99,37 +99,53 @@ $(document).ready(function(){
     });
     // 功能2 删除投票
     $(".voteContent").on("click",".weui-panel__bd .weui-media-box .weui-media-box__bd .delBtn",function(){
-        // 获取群号
-        var code=localStorage.getItem("group_num");
-        // 获取投票id
-        var vote_id=$(this).attr("title");
-        // 获取apptoken
-        var apptoken=localStorage.getItem("apptoken");
-        // 数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoken,"group_num":code,"vote_id":vote_id})];
-        // 加密
-        jsonEncryptData=jsEncryptData(data);
-        console.log(data);
-        $.ajax({
-            url:url+"group_delVote",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function (data) {
-                // 解密
-                data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    console.log("删除成功")
-                }else{
-                    console.log(data.errmsg);
+        var success=$(".success");
+        var hideTop=function(){
+            success.empty()};
+        if(confirm("删除投票")){
+            // 获取群号
+            var code=localStorage.getItem("group_num");
+            // 获取投票id
+            var vote_id=$(this).attr("title");
+            // 获取apptoken
+            var apptoken=localStorage.getItem("apptoken");
+            // 数据格式转换
+            data=["",JSON.stringify({"apptoken":apptoken,"group_num":code,"vote_id":vote_id})];
+            // 加密
+            jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"group_delVote",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function (data) {
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                        success.html(html);
+                        setTimeout(hideTop,3000);
+                        window.locacation.href="flockVote.html";
+                    }else{
+                        var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                        success.html(html);
+                        setTimeout(hideTop,3000);
+                    }
                 }
-            }
-        })
-
+            })
+        }
     });
     //功能3 我要投票
     $(".voteContent").on("click",".demos-content-padded .voteBtn",function(){
+        var success=$(".success");
+        var hideTop=function(){
+            success.empty();};
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 群号
@@ -152,7 +168,18 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
+                }else{
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">投票失败</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                 }
             }
         })

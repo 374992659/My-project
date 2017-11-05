@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>添加成员</title>
+    <link rel="stylesheet" href="../JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="../JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="../JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/addMember.css">
+</head>
+<body>
+    <div style="padding: 5px 10px">
+        <!--姓名-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="name">姓名：<span style="color:red">*</span></label>
+                    <input type="text" id="name">
+                </div>
+            </div>
+        </div>
+        <!--电话-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="phone">电话：<span style="color:red">*</span></label>
+                    <input type="text" id="phone">
+                </div>
+            </div>
+        </div>
+        <!--房号-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
+                    <select name="" id="houseNum">
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                        <option value="">5</option>
+                    </select>栋/座
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                        <option value="">4</option>
+                    </select>楼
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                    </select>号
+                </div>
+            </div>
+        </div>
+        <!--关系-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="rela">关系：<span style="color:red">*</span></label>
+                    <select name="" id="rela">
+                        <option value="">房主</option>
+                        <option value="">儿子</option>
+                        <option value="">妻子</option>
+                        <option value="">父母</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--小区名-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="plotName">小区名：<span style="color:red">*</span></label>
+                    <input type="text" id="plotName">
+                </div>
+            </div>
+        </div>
+        <!--身份证-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="identityCard">身份证：<span style="color:red">*</span></label>
+                    <input type="text" id="identityCard">
+                </div>
+            </div>
+        </div>
+        <!--证件照-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="identityPic">证件照：<span style="color:red">*</span></label>
+
+                </div>
+            </div>
+        </div>
+        <!--个人照片-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="ownerPic">个人照片：<span style="color:red">*</span></label>
+
+                </div>
+            </div>
+        </div>
+        <!--提交按钮-->
+        <button class="weui-btn weui-btn_primary">按钮</button>
+    </div>
+
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="../JQuery_weui/jquery-weui.js"></script>
+</body>
+</html>

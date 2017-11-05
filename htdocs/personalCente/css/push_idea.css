@@ -1,0 +1,44 @@
+html{
+    touch-action:manipulation;
+}
+ul,p{
+    padding:0;
+    margin:0;
+}
+a,a:hover{ text-decoration:none; color:#333}
+ul{
+    list-style: none;
+}
+body {
+    font-family : Arial, Helvetica, Sans-Serif;
+}
+/*ÑùÊ½ÄÚÈÝ*/
+.push_idea{
+    padding:5px 10px;
+}
+.weui-input,.weui-textarea,.weui-uploader__title{
+    font-size: 12px;
+}
+.weui-cells__title{
+    color:black;
+}
+.sumBtn{
+    margin-top: 100px;
+}
+.weui-cells__tips{
+    background: 	#F0F0F0;
+    text-align: center;
+}
+.weui-uploader__file{
+    position: relative;
+}
+.delImg{
+    position: absolute;
+    top:0;
+    right: 0;
+}
+.weui-gallery__img {
+    overflow: hidden;
+    height: 50%;
+    top: 30%;
+}

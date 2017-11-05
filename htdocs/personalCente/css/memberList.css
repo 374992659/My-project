@@ -1,0 +1,28 @@
+html{
+    touch-action:manipulation;
+}
+ul,p{
+    padding:0;
+    margin:0;
+}
+a,a:hover{ text-decoration:none; color:#333}
+ul{
+    list-style: none;
+}
+body {
+    font-family: Arial, Helvetica, Sans-Serif;
+}
+table{
+    padding: 5px;
+    width: 100%;
+}
+table td{
+    display: inline-block;
+    width: 25%;
+    border-bottom:1px solid #b1b3b5 ;
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+}
+
+

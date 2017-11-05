@@ -379,6 +379,9 @@ $(document).ready(function(){
             });
         })();
         $(".subBtn").click(function(){
+            var success=$(".success");
+            var hideTop=function(){
+                success.empty()};
             // 获取apptoken
             var apptoken=localStorage.getItem("apptoken");
             // 获取title 标题
@@ -449,9 +452,18 @@ $(document).ready(function(){
                     var data=jsDecodeData(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",apptoken);
-                        alert("发布成功");
+                        var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                        success.html(html);
+                        setTimeout(hideTop,3000);
+                        window.locacation.href="flockPlay.html";
                     }else{
-                        console.log(data.errmsg);
+                        var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                        success.html(html);
+                        setTimeout(hideTop,3000);
                     }
                 }
 

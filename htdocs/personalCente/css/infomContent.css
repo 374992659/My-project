@@ -1,0 +1,17 @@
+html{
+    touch-action:manipulation;
+}
+ul,p{
+    padding:0;
+    margin:0;
+}
+a,a:hover{ text-decoration:none; color:#333}
+ul{
+    list-style: none;
+}
+body {
+    font-family: Arial, Helvetica, Sans-Serif;
+}
+.weui-media-box__desc {
+    -webkit-line-clamp: 2000000;
+}

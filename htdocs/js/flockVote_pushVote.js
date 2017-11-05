@@ -196,6 +196,9 @@ $(".weui-gallery").click(function(){
     });
 // 发布投票
     $(".submitBtn").click(function(){
+        var success=$(".success");
+        var hideTop=function(){
+            success.empty();};
         // 获取图片
         var picture=localStorage.getItem("flockVotePic");
         // 获取apptoken
@@ -245,10 +248,18 @@ $(".weui-gallery").click(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    alert("发布成功");
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                     window.location.href="flockVote.html";
                 }else{
-                    console.log(data.errmsg);
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    $(".success").html(html);
+                    setTimeout(hideTop,3000);
                 }
             }
         })

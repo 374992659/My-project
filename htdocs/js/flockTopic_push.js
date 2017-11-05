@@ -68,6 +68,9 @@ $(document).ready(function(){
     })();
     // 发布话题
     $(".sumBtn").click(function(){
+        var success=$(".sccuss");
+        var hideTop=function(){
+            success.empty()};
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 获取群号码
@@ -99,9 +102,18 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    console.log("发布成功");
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
+                    window.localcation.href="flocktTopic.html";
                 }else{
-                    console.log(data.errmsg);
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                 }
             }
 

@@ -2,27 +2,6 @@ $(document).ready(function(){
     "use strict";
     // 功能1 上传图片
     $('#uploaderInput').change(function(e) {
-        // var fileId = $(this).attr("id");
-        // var t_files = this.files;
-        //         var imglength =  $("#view_" + fileId).parent().parent().find(".upload-img").length;
-        //         if (imglength==1) {
-        //                 if (t_files.length > 5) {
-        //                         new Message().showMsg("最多选择五张图片");
-        //                         return false;
-        //                     } else if (t_files.length < 1) {
-        //                         new Message().showMsg("至少选择一张图片");
-        //                     return false;
-        //                     }
-        //              }else if(t_files.length+imglength>6) {
-        //                  new Message().showMsg('最多再选择'+ (6-parseInt(imglength)) +'张图片');
-        //                  return false;
-        //              }
-        //          var formData = new FormData();
-        //          for (var i=0;i<t_files.length;i++){
-        //              formData.append('file',t_files[i]);
-        //              formData.append('randomCode',fileId+i);
-        //              formData.append('upDir','comment')
-        //              }
         var Url=window.URL.createObjectURL(this.files[0]);
         console.log(Url);
         var formData= new FormData();
@@ -57,24 +36,6 @@ $(document).ready(function(){
             }
         });
     });
-    // 获取上一个页面的图片路径
-    // $("").change(function(e){
-    //     var targetElement = e.target,
-    //         file = targetElement.files[0],
-    //         url=window.URL.createObjectURL(this.files[0]);
-    //     var photoAlbum = new FormData();
-    //     photoAlbum.append('fileToUpload', file);
-    //     if(url){
-    //        var LiImg=`
-    //        <li class="weui-uploader__file img1" ><img style="width: 79px;height: 79px" src="${url}" alt=""/></li>
-    //        `;
-    //         $("#uploaderFiles").append(LiImg);
-    //     }
-    //
-    //
-    //
-    // });
-
 });
 
 

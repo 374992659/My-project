@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>查看积分</title>
+    <link rel="stylesheet" href="../JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="../JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="../JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/checkIntegral.css">
+</head>
+<body>
+    <!--对积分获取作用的相关说明-->
+    <p></p>
+    <!--表格-->
+    <table>
+        <!--第一行-->
+        <tr>
+            <td>积分类型</td>
+            <td>时间</td>
+            <td>积分数量</td>
+            <td>总积分</td>
+        </tr>
+        <!--第二行-->
+        <tr>
+            <td>签到</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <!--第三行-->
+        <tr>
+            <td>分享</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+        <!--第四行-->
+        <tr>
+            <td>完善资料</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+        </tr>
+    </table>
+    <!--积分相关说明的显示-->
+    <img  src="image/u355.png" alt=""/>
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+//        $(".wx_items .item_cell").click(function(){
+//            $(this).addClass('current').siblings().removeClass('current');
+//        });
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="../JQuery_weui/jquery-weui.js"></script>
+</body>
+</html>

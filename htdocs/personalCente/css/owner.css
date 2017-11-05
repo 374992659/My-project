@@ -1,0 +1,25 @@
+html{
+    touch-action:manipulation;
+}
+ul,p{
+    padding:0;
+    margin:0;
+}
+a,a:hover{ text-decoration:none; color:#333}
+ul{
+    list-style: none;
+}
+body {
+    font-family : Arial, Helvetica, Sans-Serif;
+}
+.owner label{
+    text-align: right;
+    display: inline-block;
+    width: 35%;
+}
+.owner input{
+    outline: none;
+    padding: 4px;
+    width: 50%;
+}
+
