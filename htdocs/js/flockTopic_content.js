@@ -61,7 +61,7 @@ $(document).ready(function(){
                         <div class="weui-flex" style="margin-top: 10px">
                             <div class="weui-flex__item" style="color: black">
                                 点赞：
-                                <img class="CommonPraiseImg" src="image/praise.png" style="width: 20px;margin-right: 5px" alt="">
+                                <img class="CommonPraiseImg" title="${data.data.is_like}" src="image/praise.png" style="width: 20px;margin-right: 5px" alt="">
                                 <span class="praiseNum">
                                 ${data.data.likes_num}
                                 </span>
@@ -132,7 +132,7 @@ $(document).ready(function(){
                         <div class="weui-flex" style="margin-top: 10px">
                             <div class="weui-flex__item" style="color: black">
                                 点赞：
-                                <img class="CommonPraiseImg" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">
+                                <img class="CommonPraiseImg"  title="${data.data.is_like}" src="image/no_praise.png" style="width: 20px;margin-right: 5px" alt="">
                                 <span class="praiseNum">
                                 ${data.data.likes_num}
                                 </span>
@@ -275,31 +275,61 @@ $(document).ready(function(){
         var group_num=localStorage.getItem("group_num");
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
-        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
-        console.log(data);
-        // 加密
-        var jsonEncryptData=jsEncryptData(data);
-        console.log(data);
-        $.ajax({
-            url:url+"group_addGroupSubjectLikes",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function (data) {
-                // 解密
-                data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    $(".CommonPraiseImg").attr("src","image/praise.png");
-                   var a=$(e.target).siblings().html();
-                    a=parseInt(a);
-                    $(e.target).siblings().html(a+1)
-                }else{
-                    console.log(data.errmsg);
+        if($(this).attr("title")===1){//取消点赞
+            var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"is_cancle":1})];
+            // 加密
+            var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"group_addGroupSubjectLikes",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function (data) {
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(".CommonPraiseImg").attr("src","image/no_praise.png");
+                        var a=$(e.target).siblings().html();
+                        a=parseInt(a);
+                        $(e.target).siblings().html(a-1)
+                    }else{
+                        console.log(data.errmsg);
 
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id})];
+            // 加密
+            var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"group_addGroupSubjectLikes",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function (data) {
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(".CommonPraiseImg").attr("src","image/praise.png");
+                        var a=$(e.target).siblings().html();
+                        a=parseInt(a);
+                        $(e.target).siblings().html(a+1)
+                    }else{
+                        console.log(data.errmsg);
+
+                    }
+                }
+            });
+        }
+
+
+
+
 
     });
     //   评论点赞
