@@ -366,7 +366,7 @@ $(document).ready(function(){
         }
     });
     // 功能5 删除评论
-    $(".myDiscuss").on("click",".weui-media-box .praise .delImg",function(){
+    $(".myDiscuss").on("click",".weui-media-box .praise .delImg",function(e){
         //获取评论id
         var discu_id=$(this).attr("title"),
         //数据格式转换
@@ -383,8 +383,9 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
+                    console.log("删除评论");
                     localStorage.setItem("apptoken",data.apptoken);
-                   $(this).parent().parent().empty();
+                   $(e.target).parent().parent().empty();
                 }else{
                     console.log(data.errmsg);
                 }
