@@ -54,7 +54,7 @@ $(document).ready(function(){
                             </div>
                         </div>
                             `;
-                            manageGroupNum=i+1;
+                            manageGroupNum++;
                         }else{
                             console.log(i);
                             joinGroup+=`
