@@ -268,6 +268,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(e.target).attr("src","image/no_praise.png");
+                        $(e.target).attr("title","0");
                         //获取当前元素的下一个兄弟元素的内容+1
                         var disNum= $(e.target).next().html();
                         $(e.target).next().html(parseInt(disNum)-1);
@@ -296,6 +297,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(e.target).attr("src","image/praise.png");
+                        $(e.target).attr("title","1");
                         //获取当前元素的下一个兄弟元素的内容+1
                         var disNum= $(e.target).next().html();
                         $(e.target).next().html(parseInt(disNum)+1);
