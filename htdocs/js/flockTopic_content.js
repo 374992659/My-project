@@ -3,7 +3,7 @@ $(document).ready(function(){
     function getLocalTime(nS){
         return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17)}
     "use strict";
-    // 加载页面
+    // 功能1加载页面
     var getPage=function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -266,7 +266,7 @@ $(document).ready(function(){
             }
         });
     };getPage();
-    // 发表评论
+    // 功能2发表评论
     (function(){
         // 弹出评论窗口
         $("#topicText").on("click",".weui-panel .weui-panel__bd .weui-media-box__desc .commentBtn",function(){
@@ -306,7 +306,7 @@ $(document).ready(function(){
             });
         });
     })();
-    // 群话题点赞、取消点赞
+    // 功能3群话题点赞、取消点赞
     $("#topicText").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__desc .weui-flex .weui-flex__item .CommonPraiseImg",function(e){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -370,7 +370,7 @@ $(document).ready(function(){
             });
         }
     });
-    //   评论点赞
+    //功能4评论点赞
     $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd .weui-tab__bd-item .discuss .weui-media-box .delPraise .disPraiseImg",function(e){
         var commont_id=$(this).attr("title");
         // 获取apptoken
@@ -450,7 +450,7 @@ $(document).ready(function(){
         $(".publishDis").hide();
         getPage();
     });
-    // 删除群话题评论
+    //功能5 删除群话题评论
     $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd #tab1 .myDiscuss .weui-media-box .delPraise .delImg",function(){
         console.log("删除评论");
         if(confirm("删除评论")){
@@ -479,7 +479,6 @@ $(document).ready(function(){
                        localStorage.setItem("apptoken",data.apptoken);
                         getPage();
                     }else{
-
                     }
                 },
                 error:function(){}

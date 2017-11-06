@@ -52,7 +52,7 @@ a:hover {
 }
 .weui-navbar>a{
     font-weight: bold;
-    font-size: 18px;
+    font-size: 16px;
     padding:10px 5px;
 }
 .weui-navbar + .weui-tab__bd {
