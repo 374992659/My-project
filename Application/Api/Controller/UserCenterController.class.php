@@ -825,7 +825,7 @@ class UserCenterController extends VersionController
         }
         if($new_arr){
             $list = self::multi_array_sort($list,'create_time',SORT_DESC);
-            $this->echoEncrypData(0,$list);
+            $this->echoEncrypData(0,$new_arr);
         }else{
             $this->echoEncrypData(5);
         }
