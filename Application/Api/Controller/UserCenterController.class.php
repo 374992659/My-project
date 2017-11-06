@@ -433,7 +433,7 @@ class UserCenterController extends VersionController
      * @param garden_name 小区名
      * @param garden_code 小区code 可填 用户若选择检索出的小区则传递其code至后台 否则不传递
      * @param garden_addr 楼盘地址
-     * @param contract_period 合同期限
+     * @param contract_period 合同期限 10位时间戳
      * @param pictures 合同照
      * @param yourself_picture 个人照片 可填
      * */
@@ -527,7 +527,7 @@ class UserCenterController extends VersionController
             $tenant_application->rollback();
             $garden_num->rollback();
             $user_info->rollback();
-            $this->echoEncrypData(1);
+            $this->echoEncrypData(1,array($res1,$res2,$res3));
         }
     }
     /*
