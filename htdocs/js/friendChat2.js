@@ -660,5 +660,19 @@ $(document).ready(function(){
     //         }
     //     });
     // });
-
+// 图片放大预览
+    (function(){
+        $("#chatPage").on("click",".weui-media-box .weui-media-box__bd .weui-media-box__desc img",function(){
+            var url=$(this).attr("src");
+            console.log("图片放大");
+            console.log(url);
+            if($(".weui-gallery").is(":hidden")){
+                $(".weui-gallery").show();
+                $(".weui-gallery__img img").attr("src",url)
+            }
+        });
+        $(".weui-gallery").click(function(){
+            $(".weui-gallery").hide();
+        });
+    })();
 });

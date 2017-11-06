@@ -48,7 +48,7 @@ $(document).ready(function(){ "use strict";
                 console.log(132);
                 $(this).parent().remove();
             });
-// 图片放大预览
+            // 图片放大预览
             (function(){
                 $(".picPlace").on("click","li .pushPlayImg",function(){
                     var url=localStorage.getItem("pic");
