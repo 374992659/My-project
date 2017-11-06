@@ -260,7 +260,7 @@ $(document).ready(function(){
             $.ajax({
                 url:url+"Subject_editSubjectLikes",
                 type:"POST",
-                data:{"data":jsonEncryptData,
+                data:{"data":jsonEncryptData},
                 success:function(data){
                     //解密
                     var data=jsDecodeData(data);
