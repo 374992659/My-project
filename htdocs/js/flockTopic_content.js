@@ -446,5 +446,6 @@ $(document).ready(function(){
     });
     $(".publishBtn").click(function(){
         $(".publishDis").hide();
+        getPage();
     });
 });
