@@ -308,7 +308,7 @@ $(document).ready(function(){
     });
     // 功能4 点赞/取消点赞话题评论
     $(".discuss").on("click",".weui-media-box .praise .disPraiseImg",function(e){
-        if(parseInt($(this).attr("title"))===1){//取消点赞
+        if(parseInt($(this).attr("value"))===1){//取消点赞
             console.log("取消点赞");
             //获取评论id
                 var  discu_id=$(this).attr("title"),
