@@ -275,7 +275,8 @@ $(document).ready(function(){
         var group_num=localStorage.getItem("group_num");
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
-        if($(this).attr("title")===1){//取消点赞
+        if(parseInt($(this).attr("title"))===1){//取消点赞
+            console.log("取消点赞");
             var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"is_cancle":1})];
             // 加密
             var jsonEncryptData=jsEncryptData(data);
