@@ -765,7 +765,7 @@ class UserCenterController extends VersionController
             $mongo  = new \MongoClient();
             $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
             $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
-            $garden_message = new Model\GardenMessageModel($garden_province_id,$garden_city_id);
+            $garden_message = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
             $res = $garden_message->add(array(
                 'title'=>$this->pdata['title'],
                 'content'=>$this->pdata['content'],
