@@ -400,7 +400,7 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(5);
         }else{
             foreach ($data as $k=>$v){
-                $num_list[] = $model->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name')->where(['garden_code'=>$v['garden_code'],'city_id'=>$v['city_id'],'room_num'=>$v['room_num'],'status'=>1])->select();
+                $num_list[] = $model->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name,city_id')->where(['garden_code'=>$v['garden_code'],'city_id'=>$v['city_id'],'room_num'=>$v['room_num'],'status'=>1])->select();
             }
             $this->echoEncrypData(0,'',$num_list);
         }
