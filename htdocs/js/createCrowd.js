@@ -68,7 +68,7 @@ $(document).ready(function(){
                             </div>
                         </div>
                             `;
-                            joinGroupNum=i+1;
+                            joinGroupNum++;
                         }
                     });
                     $(".myCreate").append(myGroup);
