@@ -428,7 +428,7 @@ $(document).ready(function(){
                         $(e.target).attr("value","1");
                         var a=$(e.target).siblings().text();
                         var  num=parseInt(a)+1;
-                        console.log(typeof num);
+                        console.log(num);
                         $(e.target).siblings().text(num)
                     }else{
                         console.log(data.errmsg);
