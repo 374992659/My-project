@@ -399,9 +399,9 @@ $(document).ready(function(){
                         $(e.target).attr("src","image/no_praise.png");
                         $(e.target).attr("value","0");
                         var a=$(e.target).siblings().text();
-                        a=parseInt(a);
-                        console.log(a);
-                        $(e.target).siblings().html(a-1)
+                        var num=parseInt(a);
+                        console.log(num);
+                        $(e.target).siblings().html(num-1)
                     }else{
                         console.log(data.errmsg);
                     }
@@ -427,9 +427,9 @@ $(document).ready(function(){
                         $(e.target).attr("src","image/praise.png");
                         $(e.target).attr("value","1");
                         var a=$(e.target).siblings().text();
-                        a=parseInt(a);
-                        console.log(a);
-                        $(e.target).siblings().html(a+1)
+                       var  num=parseInt(a);
+                        console.log(num);
+                        $(e.target).siblings().html(num+1)
                     }else{
                         console.log(data.errmsg);
                     }
