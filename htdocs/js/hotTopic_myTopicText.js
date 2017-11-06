@@ -206,7 +206,6 @@ $(document).ready(function(){
                 }
             }
         })
-
     };pageSuccess();
     // 功能2 话题评论
     (function(){
@@ -385,7 +384,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                   $(".optionList").empty();
+                   $(this).parent().parent().empty();
                     pageSuccess();
                 }else{
                     console.log(data.errmsg);
