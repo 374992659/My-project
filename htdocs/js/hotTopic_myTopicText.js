@@ -255,12 +255,12 @@ $(document).ready(function(){
             //取消点赞
             console.log("取消点赞");
             var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"is_cancel":1})],
-                sonEncryptData=jsEncryptData(data);
+                jsonEncryptData=jsEncryptData(data);
                 console.log(data);
             $.ajax({
                 url:url+"Subject_editSubjectLikes",
                 type:"POST",
-                data:{"data":jsonEncryptData},
+                data:{"data":jsonEncryptData,
                 success:function(data){
                     //解密
                     var data=jsDecodeData(data);
