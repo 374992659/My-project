@@ -385,7 +385,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log("删除评论");
                     localStorage.setItem("apptoken",data.apptoken);
-                   $(e.target).parent().parent().empty();
+                   $(e.target).parent().parent().remove();
                 }else{
                     console.log(data.errmsg);
                 }
