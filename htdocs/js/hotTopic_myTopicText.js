@@ -308,9 +308,10 @@ $(document).ready(function(){
     });
     // 功能4 点赞/取消点赞话题评论
     $(".discuss").on("click",".weui-media-box .praise .disPraiseImg",function(e){
-        if(parseInt($(this).attr("title"))===1){
+        if(parseInt($(this).attr("title"))===1){//取消点赞
+            console.log("取消点赞");
             //获取评论id
-            var  discu_id=$(this).attr("title"),
+                var  discu_id=$(this).attr("title"),
                 //数据格式转换
                 data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"commont_id": discu_id,"is_cancel":1})],
                 //加密
@@ -335,7 +336,8 @@ $(document).ready(function(){
                     }
                 }
             })
-        }else{
+        }else{//点赞
+            console.log("点赞");
             //获取评论id
             var  discu_id=$(this).attr("title"),
                 //数据格式转换
