@@ -659,7 +659,7 @@ class UserCenterController extends VersionController
         $account_code = $this->account_code;
         $city_id = substr($account_code,0,4);
         $model = new Model\TenantApplicationModel($city_id);
-        $data = $model->where(['user_code'=>$account_code])->order('order by status asc')->select();
+        $data = $model->where(['user_code'=>$account_code])->order('status asc')->select();
         if(!$data){
             $this->echoEncrypData(5);
         }else{
