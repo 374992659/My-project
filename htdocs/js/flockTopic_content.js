@@ -409,7 +409,7 @@ $(document).ready(function(){
         }else{//点赞
             console.log("评论点赞");
             // 数据格式转换
-            var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id,"is_cancel":1})];
+            var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id})];
             // 数据加密
             var jsonEncryptData=jsEncryptData(data);
             console.log(data);
