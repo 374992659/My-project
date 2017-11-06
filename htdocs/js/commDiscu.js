@@ -45,6 +45,7 @@ $(document).ready(function(){
     });
     //设置禁言
     $(".setSpeak").click(function(){
+
         if(confirm("确认禁言")){
             $(this).attr("checked","checked");
             console.log($(this).attr("checked"));
@@ -89,7 +90,6 @@ $(document).ready(function(){
     //解散群
     $(".dissolveFlock").click(function(){
         if(confirm("确认解散")){
-
             //获取群号码
             var group_num=localStorage.getItem("group_num"),
             //获取apptoken
