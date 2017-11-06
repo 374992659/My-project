@@ -57,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/htdocs/flockComm_push.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.3716216">
-              <caret line="21" column="80" selection-start-line="21" selection-start-column="80" selection-end-line="21" selection-end-column="80" />
+              <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -946,7 +946,7 @@
     <entry file="file://$PROJECT_DIR$/htdocs/flockComm_push.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3716216">
-          <caret line="21" column="80" selection-start-line="21" selection-start-column="80" selection-end-line="21" selection-end-column="80" />
+          <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
           <folding>
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
