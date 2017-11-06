@@ -233,7 +233,7 @@ $(document).ready(function(){
                                  ${item.content}
                               </p>
                               <div style="text-align: right;font-size: 12px"  class="praise">
-                               <img title="${item.id}" title="${item.is_likes}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
+                               <img title="${item.id}" title="${item.is_like}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
                           </div>                   
@@ -251,7 +251,7 @@ $(document).ready(function(){
                                  ${item.content}
                               </p>
                               <div style="text-align: right;font-size: 12px"  class="praise">
-                               <img title="${item.id}" title="${item.is_likes}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
+                               <img title="${item.id}" title="${item.is_like}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
                           </div>                   
@@ -266,7 +266,6 @@ $(document).ready(function(){
             }
         });
     };getPage();
-
     // 发表评论
     (function(){
         // 弹出评论窗口
@@ -372,8 +371,6 @@ $(document).ready(function(){
     });
     //   评论点赞
     $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd .weui-tab__bd-item .discuss .weui-media-box .delPraise .disPraiseImg",function(e){
-        console.log(123);
-        // 获取评论id
         var commont_id=$(this).attr("title");
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -381,27 +378,55 @@ $(document).ready(function(){
         var group_num=localStorage.getItem("group_num");
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
-// 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id})];
-// 数据加密
+        if(parseInt($(this).attr("title"))===1){
+        // 数据格式转换
+        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id,"is_cancel":1})];
+        // 数据加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
-        $.ajax({
-            url:url+'group_addGroupSubjectCommontLikes',
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                // 解密
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    $(this).attr("src","image/praise.png")
-                }else{
-                    console.log(data.errmsg);
+            $.ajax({
+                url:url+'group_addGroupSubjectCommontLikes',
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(this).attr("src","image/no_praise.png")
+                    }else{
+                        console.log(data.errmsg);
+                    }
                 }
-            }
-        })
+            })
+        }else{
+// 数据格式转换
+            var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id,"is_cancel":1})];
+            // 数据加密
+            var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+'group_addGroupSubjectCommontLikes',
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(this).attr("src","image/no_praise.png")
+                    }else{
+                        console.log(data.errmsg);
+                    }
+                }
+            })
+        }
+
+
+
+
     });
     $(".commentBtn").click(function(){
         if($(".publishDis").is(":hidden")){
