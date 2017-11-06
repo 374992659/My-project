@@ -398,7 +398,7 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(e.target).attr("src","image/no_praise.png");
                         $(e.target).attr("value","0");
-                        var a=$(e.target).siblings().text();
+                        var a=$(e.target).next().text();
                         console.log(a);
                         var num=parseInt(a)-1;
                         console.log(num);
@@ -427,7 +427,7 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(e.target).attr("src","image/praise.png");
                         $(e.target).attr("value","1");
-                        var a=$(e.target).siblings().text();
+                        var a=$(e.target).next().text();
                         console.log(a);
                         var  num=parseInt(a)+1;
                         console.log(num);
