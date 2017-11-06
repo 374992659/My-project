@@ -805,6 +805,7 @@ class UserCenterController extends VersionController
         }
         $list = array();
         $mongo =new \MongoClient();
+        $result = array_unique($result);
         foreach ($result as $key=>$val){
             $garden_city_id =$mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
             $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
@@ -817,7 +818,7 @@ class UserCenterController extends VersionController
         $new_arr = array();
         if($list){
             foreach ($list as $kk=>$vv){
-                foreach ($v as $kkk=>$vvv){
+                foreach ($vv as $kkk=>$vvv){
                     $new_arr[]= $vvv;
                 }
             }
@@ -826,7 +827,7 @@ class UserCenterController extends VersionController
             $list = self::multi_array_sort($list,'create_time',SORT_DESC);
             $this->echoEncrypData(0,$list);
         }else{
-            $this->echoEncrypData(5,$garden_opinion);
+            $this->echoEncrypData(5);
         }
     }
     /*
