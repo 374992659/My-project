@@ -38,6 +38,26 @@ $(document).ready(function(){
             }
         });
     });
+    // 取消删除图片
+    $(".delImg").click(function(){
+        console.log(132);
+        $(this).attr("src","");
+    });
+    // 图片放大预览
+    (function(){
+        $(".img").click(function(){
+            var url=$(this).attr("src");
+            console.log("图片放大");
+            console.log(url);
+            if($(".weui-gallery").is(":hidden")){
+                $(".weui-gallery").show();
+                $(".weui-gallery__img img").attr("src",url)
+            }
+        });
+        $(".weui-gallery").click(function(){
+            $(".weui-gallery").hide();
+        });
+    })();
     //功能2 点击上传图片
     $(".noticeBtn").click(function(){
         var success=$(".success");

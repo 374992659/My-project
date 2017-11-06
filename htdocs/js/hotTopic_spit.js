@@ -62,7 +62,6 @@ $(document).ready(function(){ "use strict";
                 });
             })();
         });
-
     })();
     // 发送数据
     $(".subBtn").click(function(){

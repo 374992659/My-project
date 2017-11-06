@@ -44,7 +44,8 @@ a:hover {
 .delImg{
     position: absolute;
     top:0;
-    right: -1px;
+    right:-1px;
+    height: 20px;
 }
 .weui-gallery__img {
     overflow: hidden;
