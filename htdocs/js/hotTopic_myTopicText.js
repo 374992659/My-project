@@ -53,7 +53,7 @@ $(document).ready(function(){
                                  </p>
                                  <div style="text-align: right;font-size: 12px" class="praise">
                                      <img src=" image/del.png"  title="${item.commont_id}" class="delImg" alt="" style="width: 15px;margin-right: 10px"/>
-                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <img class="disPraiseImg" title="${item.commont_id}" value="${item.is_likes}" src="image/praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                      <span>${item.commont_likes_num}</span>
                                  </div>
                              </div>
@@ -72,14 +72,12 @@ $(document).ready(function(){
                                  </p>
                                  <div style="text-align: right;font-size: 12px" class="praise">
                                      <img src=" image/del.png"  title="${item.commont_id}" class="delImg" alt="" style="width: 15px;margin-right: 10px"/>
-                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <img class="disPraiseImg" title="${item.commont_id}" value="${item.is_likes}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                      <span>${item.commont_likes_num}</span>
                                  </div>
                              </div>
                                 `
-
                                 }
-
                             }
                             //所有的评轮
                             if(parseInt(item.is_likes)===1){
@@ -96,7 +94,7 @@ $(document).ready(function(){
                                      ${item.content}
                                  </p>
                                  <div style="text-align: right;font-size: 12px"  class="praise">
-                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <img class="disPraiseImg" title="${item.commont_id}" value="${item.is_likes}"  src="image/praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                      <span>${item.commont_likes_num}</span>
                                  </div>
                              </div>
@@ -116,7 +114,7 @@ $(document).ready(function(){
                                      ${item.content}
                                  </p>
                                  <div style="text-align: right;font-size: 12px"  class="praise">
-                                     <img class="disPraiseImg" title="${item.commont_id}" src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
+                                     <img class="disPraiseImg" title="${item.commont_id}" value="${item.is_likes}"  src="image/no_praise.png" alt="" style="display: inline-block;width: 20px;margin-top: 10px">
                                      <span>${item.commont_likes_num}</span>
                                  </div>
                              </div>
@@ -310,31 +308,61 @@ $(document).ready(function(){
     });
     // 功能4 点赞/取消点赞话题评论
     $(".discuss").on("click",".weui-media-box .praise .disPraiseImg",function(e){
-        //获取评论id
-      var  discu_id=$(this).attr("title"),
-        //数据格式转换
-          data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"commont_id": discu_id})],
-        //加密
-          jsonEncryptData=jsEncryptData(data);
-        console.log(data);
-        $.ajax({
-            url:url+"Subject_editSubjectCommontLikes",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                //解密数据
-                var data=jsDecodeData(data);
+        if(parseInt($(this).attr("title"))===1){
+            //获取评论id
+            var  discu_id=$(this).attr("title"),
+                //数据格式转换
+                data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"commont_id": discu_id,"is_cancel":1})],
+                //加密
+                jsonEncryptData=jsEncryptData(data);
                 console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    $(e.target).attr("src","image/praise.png");
-                    //获取当前元素的下一个兄弟元素的内容+1
-                   var disNum= $(e.target).next().html();
-                    $(e.target).next().html(parseInt(disNum)+1);
-                    console.log(data.errmsg);
+            $.ajax({
+                url:url+"Subject_editSubjectCommontLikes",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    //解密数据
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(e.target).attr("src","image/no_praise.png");
+                        $(e.target).attr("value","0");
+                        //获取当前元素的下一个兄弟元素的内容+1
+                        var disNum= $(e.target).next().html();
+                        $(e.target).next().html(parseInt(disNum)-1);
+                        console.log(data.errmsg);
+                    }
                 }
-            }
-        })
+            })
+        }else{
+            //获取评论id
+            var  discu_id=$(this).attr("title"),
+                //数据格式转换
+                data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"commont_id": discu_id})],
+                //加密
+                jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"Subject_editSubjectCommontLikes",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    //解密数据
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(e.target).attr("src","image/praise.png");
+                        (e.target).attr("value","1");
+                        //获取当前元素的下一个兄弟元素的内容+1
+                        var disNum= $(e.target).next().html();
+                        $(e.target).next().html(parseInt(disNum)+1);
+                        console.log(data.errmsg);
+                    }
+                }
+            })
+        }
     });
     // 功能5 删除评论
     $(".myDiscuss").on("click",".weui-media-box .praise .delImg",function(){
