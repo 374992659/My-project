@@ -49,7 +49,7 @@ a:hover {
 }
 .weui-gallery__img {
     overflow: hidden;
-    height: 50%;
+    width: 100%;
     top: 30%;
 }
 label{
@@ -63,7 +63,6 @@ input{
     outline: none;
     padding: 4px;
 }
-
 #spitTopic{
     padding:10px 10px;
     background:#F0F0F0;
@@ -74,13 +73,11 @@ input{
 .weui-input {
     font-size: 15px;
 }
-
 .weui-uploader__file {
     border: 1px solid #d0d0d0;
     box-sizing: border-box;
     width: 70px;
     height: 70px;
-
 }
 
 
