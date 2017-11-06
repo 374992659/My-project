@@ -398,10 +398,10 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(e.target).attr("src","image/no_praise.png");
                         $(e.target).attr("value","0");
-                        var a=$(e.target).siblings().html();
+                        var a=$(e.target).siblings().text();
                         var num=parseInt(a)-1;
                         console.log(num);
-                        $(e.target).siblings().html(num)
+                        $(e.target).siblings().text(num)
                     }else{
                         console.log(data.errmsg);
                     }
@@ -426,10 +426,10 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(e.target).attr("src","image/praise.png");
                         $(e.target).attr("value","1");
-                        var a=$(e.target).siblings().html();
+                        var a=$(e.target).siblings().text();
                         var  num=parseInt(a)+1;
                         console.log(typeof num);
-                        $(e.target).siblings().html(num)
+                        $(e.target).siblings().text(num)
                     }else{
                         console.log(data.errmsg);
                     }
