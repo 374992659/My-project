@@ -427,6 +427,7 @@ $(document).ready(function(){
                         $(e.target).attr("src","image/praise.png");
                         $(e.target).attr("value","1");
                         var a=$(e.target).siblings().text();
+                        console.log(a);
                         var  num=parseInt(a)+1;
                         console.log(num);
                         $(e.target).siblings().text(num)
