@@ -178,15 +178,14 @@ $(document).ready(function(){
     });
     // 图片预览功能
 $(".voteImg").click(function(){
-    var url=localStorage.getItem("voteImg");
+    var url=$(this).attr("src");
     if($(".weui-gallery").is(":hidden")){
         $(".weui-gallery").show();
-        $(".weui-gallery__img img").attr("src",url)
+        $(".weui-gallery__img").attr("style","background-image: url("+ url+")")
     }
 });
 $(".weui-gallery").click(function(){
     $(".weui-gallery").hide();
-
 });
 // 删除功能
     $(".weui-icon-delete").click(function(){
