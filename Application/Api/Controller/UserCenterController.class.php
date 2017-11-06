@@ -826,7 +826,7 @@ class UserCenterController extends VersionController
             $list = self::multi_array_sort($list,'create_time',SORT_DESC);
             $this->echoEncrypData(0,$list);
         }else{
-            $this->echoEncrypData(5);
+            $this->echoEncrypData(5,$garden_opinion);
         }
     }
     /*
