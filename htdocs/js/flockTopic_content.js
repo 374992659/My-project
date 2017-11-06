@@ -451,17 +451,40 @@ $(document).ready(function(){
         getPage();
     });
     // 删除群话题评论
-    $(".myDiscuss").on("click",".weui-media-box .delPraise .delImg",function(){
+    $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd #tab1 .myDiscuss .weui-media-box .delPraise .delImg",function(){
         console.log("删除评论");
         if(confirm("删除评论")){
-            // // 获取apptoken
-            // var apptoken=localStorage.getItem("apptoken"),
-            // // 获取群号码
-            //     group_num=localStorage.getItem("group_num"),
-            // // 话题id
-            //     subject_id=
-            // // 评论id
-            //     commont_id=
+            // 获取apptoken
+            var apptoken=localStorage.getItem("apptoken"),
+            // 获取群号码
+                group_num=localStorage.getItem("group_num"),
+            // 话题id
+                subject_id=$(this).attr("value"),
+            // 评论id
+                commont_id=$(this).attr("title"),
+            // 数据个转换
+            data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id})],
+            // 加密
+               jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"group_delGroupSubjectCommon",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                       localStorage.setItem("apptoken",data.apptoken);
+                        getPage();
+                    }else{
+
+                    }
+                },
+                error:function(){}
+
+            })
         }
 
     })
