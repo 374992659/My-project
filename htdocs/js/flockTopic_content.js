@@ -194,7 +194,7 @@ $(document).ready(function(){
                              </p>
                              <div style="text-align: right;font-size: 12px" class="delPraise">
                                  <img src=" image/del.png" class="delImg" alt="" style="width: 16px;margin-right: 10px"/>
-                                  <img title="${item.id}" title="${item.is_likes}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
+                                  <img title="${item.id}" value="${item.is_likes}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
                         </div>
@@ -213,7 +213,7 @@ $(document).ready(function(){
                              </p>
                              <div style="text-align: right;font-size: 12px" class="delPraise">
                                  <img src=" image/del.png" class="delImg" alt="" style="width: 16px;margin-right: 10px"/>
-                                  <img title="${item.id}" title="${item.is_likes}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
+                                  <img title="${item.id}" value="${item.is_likes}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
                         </div>
@@ -233,7 +233,7 @@ $(document).ready(function(){
                                  ${item.content}
                               </p>
                               <div style="text-align: right;font-size: 12px"  class="praise">
-                               <img title="${item.id}" title="${item.is_like}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
+                               <img title="${item.id}" value="${item.is_likes}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
                           </div>                   
@@ -251,7 +251,7 @@ $(document).ready(function(){
                                  ${item.content}
                               </p>
                               <div style="text-align: right;font-size: 12px"  class="praise">
-                               <img title="${item.id}" title="${item.is_like}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
+                               <img title="${item.id}" value="${item.is_like}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
                           </div>                   
