@@ -410,8 +410,6 @@ $(document).ready(function(){
 
 
 
-
-
     /*
     * 判断是否存在元素
     * */
@@ -431,4 +429,7 @@ $(document).ready(function(){
             $(".weui-grids").hide();
         }
     });
+    // 获取群名字
+    var group_name =localStorage.getItem("group_name");
+    $(".group_name").html(group_name);
 });
