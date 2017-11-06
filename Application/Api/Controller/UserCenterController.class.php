@@ -810,7 +810,7 @@ class UserCenterController extends VersionController
             $garden_city_id =$mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
             $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
             $garden_opinion = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
-            $garden_opinion = $garden_opinion->getField('title,content,garden_code,garden_name,status,create_time,id')->where(['garden_code'=>$val,'user_code'=>$this->account_code])->select();
+            $garden_opinion = $garden_opinion->field('title,content,garden_code,garden_name,status,create_time,id')->where(['garden_code'=>$val,'user_code'=>$this->account_code])->select();
             if($garden_opinion){
                 $list[] = $garden_opinion;
             }
