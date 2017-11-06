@@ -380,6 +380,7 @@ $(document).ready(function(){
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
         if(parseInt($(this).attr("value"))===1){//取消点赞
+            console.log("评论取消点赞");
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id,"is_cancel":1})];
         // 数据加密
@@ -406,6 +407,7 @@ $(document).ready(function(){
                 }
             })
         }else{//点赞
+            console.log("评论点赞");
             // 数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id,"is_cancel":1})];
             // 数据加密
