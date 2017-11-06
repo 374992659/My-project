@@ -47,6 +47,7 @@ $(document).ready(function(){
     $(".setSpeak").click(function(){
         if(confirm("确认禁言")){
             $(this).attr("checked",checked);
+            console.log($(this).attr("checked"));
             //获取apptoken
             var apptoken=localStorage.getItem("apptoken"),
             //获取群号
@@ -81,6 +82,7 @@ $(document).ready(function(){
                 }
             })
         }else{
+            console.log($(this).attr("checked"));
             $(this).attr("checked",null);
         }
     });
