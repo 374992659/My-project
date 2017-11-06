@@ -746,7 +746,7 @@ class UserCenterController extends VersionController
         $this->checkParam(array('garden_code','garden_name','title','content'));
         $account_code = $this->account_code;
         $city_id = substr($account_code,0,4);
-        $user_info = M('baseinfo.user_info_'.$city_id)->field('user_garden,nickname,portrait')->where(['account_code'=>$account_code])->getField('user_garden');
+        $user_info = M('baseinfo.user_info_'.$city_id)->field('user_garden,nickname,portrait')->where(['account_code'=>$account_code])->find();
         if(!$user_info['user_garden']){
             $this->echoEncrypData(1,'您还没有认证通过的小区');
         }else{
