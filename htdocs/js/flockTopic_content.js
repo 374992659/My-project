@@ -193,7 +193,7 @@ $(document).ready(function(){
                                ${item.content}
                              </p>
                              <div style="text-align: right;font-size: 12px" class="delPraise">
-                                 <img src=" image/del.png" class="delImg" alt="" style="width: 16px;margin-right: 10px"/>
+                                 <img src=" image/del.png" class="delImg" value="${data.data.id}" title="${item.id}" alt="" style="width: 16px;margin-right: 10px"/>
                                   <img title="${item.id}" value="${item.is_likes}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
@@ -212,7 +212,7 @@ $(document).ready(function(){
                                ${item.content}
                              </p>
                              <div style="text-align: right;font-size: 12px" class="delPraise">
-                                 <img src=" image/del.png" class="delImg" alt="" style="width: 16px;margin-right: 10px"/>
+                                 <img src=" image/del.png" class="delImg" value="${data.data.id}" title="${item.id}" alt="" style="width: 16px;margin-right: 10px"/>
                                   <img title="${item.id}" value="${item.is_likes}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
@@ -450,4 +450,19 @@ $(document).ready(function(){
         $(".publishDis").hide();
         getPage();
     });
+    // 删除群话题评论
+    $(".myDiscuss").on("click",".weui-media-box .delPraise .delImg",function(){
+        console.log("删除评论");
+        if(confirm("删除评论")){
+            // 获取apptoken
+            var apptoken=localStorage.getItem("apptoken"),
+            // 获取群号码
+                group_num=localStorage.getItem("group_num"),
+            // 话题id
+                subject_id=
+            // 评论id
+                commont_id=
+        }
+
+    })
 });
