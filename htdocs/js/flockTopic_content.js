@@ -426,8 +426,9 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(e.target).attr("src","image/no_praise.png");
                         $(e.target).attr("value","1");
-                        var a=$(e.target).siblings().html();
+                        var a=$(e.target).siblings().text();
                         a=parseInt(a);
+                        console.log(a);
                         $(e.target).siblings().html(a+1)
                     }else{
                         console.log(data.errmsg);
