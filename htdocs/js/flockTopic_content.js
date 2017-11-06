@@ -400,6 +400,7 @@ $(document).ready(function(){
                         $(e.target).attr("value","0");
                         var a=$(e.target).siblings().html();
                         a=parseInt(a);
+                        console.log(a);
                         $(e.target).siblings().html(a-1)
                     }else{
                         console.log(data.errmsg);
