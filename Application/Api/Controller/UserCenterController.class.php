@@ -504,7 +504,7 @@ class UserCenterController extends VersionController
             'city_id'=>$this->pdata['city_id'],
             'garden_code'=>$garden_code,
             'room_num'=>$this->pdata['room_num'],
-            'user_code'=>$this->pdata['user_code'],
+            'user_code'=>$this->account_code,
             'role'=>2,
             'create_time'=>time(),
         ));
@@ -527,7 +527,7 @@ class UserCenterController extends VersionController
             $tenant_application->rollback();
             $garden_num->rollback();
             $user_info->rollback();
-            $this->echoEncrypData(1,array($res1,$res2,$res3));
+            $this->echoEncrypData(1);
         }
     }
     /*
