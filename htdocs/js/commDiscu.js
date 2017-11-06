@@ -46,6 +46,7 @@ $(document).ready(function(){
     //设置禁言
     $(".setSpeak").click(function(){
         if(confirm("确认禁言")){
+            $(this).attr("checked",checked);
             //获取apptoken
             var apptoken=localStorage.getItem("apptoken"),
             //获取群号
@@ -74,17 +75,19 @@ $(document).ready(function(){
                         $(document).on('click','#show-success',function(){
                             $.toptip(data.errmsg, 'success');
                         });
-                       ggs
                     }
                 },
                 error:function(){
                 }
             })
+        }else{
+            $(this).attr("checked",null);
         }
     });
     //解散群
     $(".dissolveFlock").click(function(){
         if(confirm("确认解散")){
+
             //获取群号码
             var group_num=localStorage.getItem("group_num"),
             //获取apptoken
