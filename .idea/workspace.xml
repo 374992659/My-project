@@ -53,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flockComm_push.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="flockComm_push.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htdocs/flockComm_push.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.935484">
-              <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.2972973">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -77,10 +77,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="flockComm_push.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="flockComm_push.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/htdocs/js/flockComm_push.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3105446">
+            <state vertical-scroll-proportion="-4.785714">
               <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="24" selection-end-column="37" />
               <folding>
                 <marker date="1509979760606" expanded="false" signature="3128:3180" placeholder="..." />
@@ -168,8 +168,8 @@
         <option value="$PROJECT_DIR$/htdocs/css/hotTopic_spit.css" />
         <option value="$PROJECT_DIR$/htdocs/css/flockComm_push.css" />
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic_spit.js" />
-        <option value="$PROJECT_DIR$/htdocs/flockComm_push.html" />
         <option value="$PROJECT_DIR$/htdocs/js/flockComm_push.js" />
+        <option value="$PROJECT_DIR$/htdocs/flockComm_push.html" />
       </list>
     </option>
   </component>
@@ -924,18 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/flockComm_push.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.935484">
-          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/css/flockComm_push.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -946,11 +934,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/flockComm_push.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3105446">
+        <state vertical-scroll-proportion="-4.785714">
           <caret line="23" column="34" selection-start-line="23" selection-start-column="34" selection-end-line="24" selection-end-column="37" />
           <folding>
             <marker date="1509979760606" expanded="false" signature="3128:3180" placeholder="..." />
             <marker date="1509979760606" expanded="false" signature="3454:3517" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/flockComm_push.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2972973">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#span#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
