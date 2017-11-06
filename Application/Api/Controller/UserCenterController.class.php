@@ -231,9 +231,9 @@ class UserCenterController extends VersionController
         //3.用户信息分表内添加小区记录
         $user_garden = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('user_garden');
         if($user_garden){
-            $user_garden = $user_garden+';'+$garden_code+','+'1';
+            $user_garden = $user_garden.';'.$garden_code.',1';
         }else{
-            $user_garden = $garden_code+','+'1';
+            $user_garden = $garden_code.',1';
         }
         $user_info = M('baseinfo.user_info_'.$city_id);
         $user_info->startTrans();
@@ -324,9 +324,9 @@ class UserCenterController extends VersionController
                     $user_city_id = substr($user_code,0,4);
                     $user_garden = M('baseinfo.user_info_'.$user_city_id)->where(['account_code'=>$user_code])->getField('user_garden');
                     if($user_garden){
-                        $user_garden = $user_garden+';'+$this->pdata['garden_code']+','+'1';
+                        $user_garden = $user_garden.';'.$this->pdata['garden_code'].',1';
                     }else{
-                        $user_garden = $this->pdata['garden_code']+','+'1';
+                        $user_garden = $this->pdata['garden_code'].',1';
                     }
                     $user_info = M('baseinfo.user_info_'.$user_city_id);
                     $user_info->startTrans();
@@ -512,9 +512,9 @@ class UserCenterController extends VersionController
          //3.用户user_info分表添加小区记录
         $user_garden = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('user_garden');
         if($user_garden){
-            $user_garden = $user_garden+';'+$garden_code+','+'1';
+            $user_garden = $user_garden.';'.$garden_code.',1';
         }else{
-            $user_garden = $garden_code+','+'1';
+            $user_garden = $garden_code.',1';
         }
         $user_info = M('baseinfo.user_info_'.$city_id);
         $user_info->startTrans();
@@ -606,9 +606,9 @@ class UserCenterController extends VersionController
                     $user_city_id = substr($user_code,0,4);
                     $user_garden = M('baseinfo.user_info_'.$user_city_id)->where(['account_code'=>$user_code])->getField('user_garden');
                     if($user_garden){
-                        $user_garden = $user_garden+';'+$this->pdata['garden_code']+','+'1';
+                        $user_garden = $user_garden.';'.$this->pdata['garden_code'].',1';
                     }else{
-                        $user_garden = $this->pdata['garden_code']+','+'1';
+                        $user_garden = $this->pdata['garden_code'].',1';
                     }
                     $user_info = M('baseinfo.user_info_'.$user_city_id);
                     $user_info->startTrans();
