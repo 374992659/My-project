@@ -46,7 +46,7 @@ $(document).ready(function(){
     //设置禁言
     $(".setSpeak").click(function(){
         if(confirm("确认禁言")){
-            $(this).attr("checked",checked);
+            $(this).attr("checked","checked");
             console.log($(this).attr("checked"));
             //获取apptoken
             var apptoken=localStorage.getItem("apptoken"),
