@@ -314,7 +314,7 @@ $(document).ready(function(){
         var group_num=localStorage.getItem("group_num");
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
-        if(parseInt($(this).attr("title"))===1){//取消点赞
+        if(parseInt($(this).attr("value"))===1){//取消点赞
             console.log("取消点赞");
             var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"is_cancle":1})];
             // 加密
@@ -378,7 +378,7 @@ $(document).ready(function(){
         var group_num=localStorage.getItem("group_num");
         // 获取话题id
         var subject_id=localStorage.getItem("subject_id");
-        if(parseInt($(this).attr("title"))===1){
+        if(parseInt($(this).attr("value"))===1){//取消点赞
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id,"is_cancel":1})];
         // 数据加密
@@ -394,14 +394,18 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        $(this).attr("src","image/no_praise.png")
+                        $(this).attr("src","image/no_praise.png");
+                        $(this).attr("value","0");
+                        var a=$(e.target).siblings().html();
+                        a=parseInt(a);
+                        $(e.target).siblings().html(a-1)
                     }else{
                         console.log(data.errmsg);
                     }
                 }
             })
-        }else{
-// 数据格式转换
+        }else{//点赞
+            // 数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"subject_id":subject_id,"commont_id":commont_id,"is_cancel":1})];
             // 数据加密
             var jsonEncryptData=jsEncryptData(data);
@@ -416,17 +420,17 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        $(this).attr("src","image/no_praise.png")
+                        $(this).attr("src","image/no_praise.png");
+                        $(this).attr("value","1");
+                        var a=$(e.target).siblings().html();
+                        a=parseInt(a);
+                        $(e.target).siblings().html(a+1)
                     }else{
                         console.log(data.errmsg);
                     }
                 }
             })
         }
-
-
-
-
     });
     $(".commentBtn").click(function(){
         if($(".publishDis").is(":hidden")){
@@ -434,11 +438,8 @@ $(document).ready(function(){
         }else{
             $(".publishDis").hide();
         }
-
     });
     $(".publishBtn").click(function(){
         $(".publishDis").hide();
-
     });
-
 });
