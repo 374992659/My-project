@@ -688,12 +688,11 @@ class UserCenterController extends VersionController
     /*
      * 获取租户认证详情
      * @param application_id 认证id
+     * @param city_id 城市id
      * */
     protected function getTenantNumInfo_v1_0_0(){
-        $this->checkParam(array('application_id'));
-        $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
-        $model = new Model\OwnerApplicationController($city_id);
+        $this->checkParam(array('application_id','city_id'));
+        $model = new Model\OwnerApplicationController($this->pdata['city_id']);
         $data = $model->where(['id'=>$this->pdata['application_id']])->find();
         if(!$data){
             $this->echoEncrypData(1);
