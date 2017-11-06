@@ -393,11 +393,11 @@ $(document).ready(function(){
                 success:function(data){
                     // 解密
                     var data=jsDecodeData(data);
-                    console.log(data);
                     if(data.errcode===0){
+                        console.log(data);
                         localStorage.setItem("apptoken",data.apptoken);
-                        $(this).attr("src","image/no_praise.png");
-                        $(this).attr("value","0");
+                        $(e.target).attr("src","image/no_praise.png");
+                        $(e.target).attr("value","0");
                         var a=$(e.target).siblings().html();
                         a=parseInt(a);
                         $(e.target).siblings().html(a-1)
@@ -423,8 +423,8 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        $(this).attr("src","image/no_praise.png");
-                        $(this).attr("value","1");
+                        $(e.target).attr("src","image/no_praise.png");
+                        $(e.target).attr("value","1");
                         var a=$(e.target).siblings().html();
                         a=parseInt(a);
                         $(e.target).siblings().html(a+1)
