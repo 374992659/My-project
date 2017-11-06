@@ -214,7 +214,7 @@
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
                             <label class="left" for="name">姓名：<span style="color:red">*</span></label>
-                            <input type="text" id="name">
+                            <input type="text" id="name" autofocus="autofocus">
                         </div>
                     </div>
                 </div>
@@ -271,7 +271,7 @@
                 <div class="weui-cells">
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
-                            <label class="left" for="identityCard">身份证：<span style="color:red">*</span></label>
+                            <label class="left" for="identityCard">身份证号：<span style="color:red">*</span></label>
                             <input type="text" id="identityCard">
                         </div>
                     </div>
@@ -299,7 +299,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -325,8 +324,25 @@
                 <div class="weui-cells">
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
-                            <label class="left" for="plotPic">小区照片：<span style="color:red">*</span></label>
-
+                            <label class="left" for="plotPic" style="vertical-align: top">小区照片：<span style="color:red">*</span></label>
+                            <!--上传小区照片-->
+                            <div style="display: inline-block">
+                                <ul>
+                                    <li class="lf" style="margin-right: 10px">
+                                        <img  src="" style="height: 79px;width: 79px" alt="" >
+                                    </li>
+                                    <li class="lf"  style="margin-right: 10px">
+                                        <img src=""  style="height: 79px;width: 79px" alt="">
+                                    </li>
+                                </ul>
+                                <div class="weui-uploader__bd lf">
+                                    <div class="weui-uploader__input-box">
+                                        <form action="" id="formPlot" enctype="multipart/form-data">
+                                            <input id="uploaderInputPlot" name="uploaderInput" class="weui-uploader__input" type="file">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -334,8 +350,25 @@
                 <div class="weui-cells">
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
-                            <label class="left" for="ownershipPic">房产证：<span style="color:red">*</span></label>
-
+                            <label class="left" for="ownershipPic" style="vertical-align: top">房产证：<span style="color:red">*</span></label>
+                            <!--上传房产证照片-->
+                            <div style="display: inline-block">
+                                <ul>
+                                    <li class="lf" style="margin-right: 10px">
+                                        <img  src="" style="height: 79px;width: 79px" alt="" >
+                                    </li>
+                                    <li class="lf"  style="margin-right: 10px">
+                                        <img src=""  style="height: 79px;width: 79px" alt="">
+                                    </li>
+                                </ul>
+                                <div class="weui-uploader__bd lf">
+                                    <div class="weui-uploader__input-box">
+                                        <form action="" id="formShip" enctype="multipart/form-data">
+                                            <input id="uploaderInputShip" name="uploaderInput" class="weui-uploader__input" type="file">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -343,8 +376,25 @@
                 <div class="weui-cells">
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
-                            <label class="left" for="ownerPic">个人照片：<span style="color:red">*</span></label>
-
+                            <label class="left" for="ownerPic" style="vertical-align: top">个人照片：<span style="color:red">*</span></label>
+                            <!--上传个人照片-->
+                            <div style="display: inline-block">
+                                <ul>
+                                    <li class="lf" style="margin-right: 10px">
+                                        <img  src="" style="height: 79px;width: 79px" alt="" >
+                                    </li>
+                                    <li class="lf"  style="margin-right: 10px">
+                                        <img src=""  style="height: 79px;width: 79px" alt="">
+                                    </li>
+                                </ul>
+                                <div class="weui-uploader__bd lf">
+                                    <div class="weui-uploader__input-box">
+                                        <form action="" id="formMy" enctype="multipart/form-data">
+                                            <input id="uploaderInputMy" name="uploaderInput" class="weui-uploader__input" type="file">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -363,7 +413,7 @@
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
                             <label class="left" for="renterName">姓名：<span style="color:red">*</span></label>
-                            <input type="text" id="renterName">
+                            <input type="text" id="renterName" autofocus="autofocus">
                         </div>
                     </div>
                 </div>
@@ -381,7 +431,24 @@
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
                             <label class="left" for="renterCard">房号：<span style="color:red">*</span></label>
-                            <input type="text" id="renterCard">
+                            <select name="" id="houseNum">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                                <option value="">5</option>
+                            </select>栋/座
+                            <select name="" id="">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                                <option value="">4</option>
+                            </select>楼
+                            <select name="" id="">
+                                <option value="">1</option>
+                                <option value="">2</option>
+                                <option value="">3</option>
+                            </select>号
                         </div>
                     </div>
                 </div>
@@ -390,7 +457,7 @@
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
                             <label class="left" for="renter_owner_Identity">身份证：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_owner_Identity">
+                            <input type="text" id="renter_owner_Identity" class="Identity">
                         </div>
                     </div>
                 </div>
@@ -398,8 +465,25 @@
                 <div class="weui-cells">
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
-                            <label class="left" for="renter_OwnerPic">证件照：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_OwnerPic">
+                            <label class="left" for="renter_OwnerPic" style="vertical-align: top">证件照：<span style="color:red">*</span></label>
+                           <!--上传证件照-->
+                            <div style="display: inline-block">
+                                <ul>
+                                    <li class="lf" style="margin-right: 10px">
+                                        <img  src="" style="height: 79px;width: 79px" alt="" >
+                                    </li>
+                                    <li class="lf"  style="margin-right: 10px">
+                                        <img src=""  style="height: 79px;width: 79px" alt="">
+                                    </li>
+                                </ul>
+                                <div class="weui-uploader__bd lf">
+                                    <div class="weui-uploader__input-box">
+                                        <form action="" id="renter_OwnerPicForm" enctype="multipart/form-data">
+                                            <input id="uploaderRenter_OwnerPic" name="uploaderInput" class="weui-uploader__input" type="file">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -416,8 +500,25 @@
                 <div class="weui-cells">
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
-                            <label class="left" for="renter_IdentityPic">证件照：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_IdentityPic">
+                            <label class="left" for="renter_IdentityPic" style="vertical-align: top">证件照：<span style="color:red">*</span></label>
+                           <!--租客身份证-->
+                            <div style="display: inline-block">
+                                <ul>
+                                    <li class="lf" style="margin-right: 10px">
+                                        <img  src="" style="height: 79px;width: 79px" alt="" >
+                                    </li>
+                                    <li class="lf"  style="margin-right: 10px">
+                                        <img src=""  style="height: 79px;width: 79px" alt="">
+                                    </li>
+                                </ul>
+                                <div class="weui-uploader__bd lf">
+                                    <div class="weui-uploader__input-box">
+                                        <form action="" id="FormIdentityPic" enctype="multipart/form-data">
+                                            <input id="uploaderIdentityPic" name="uploaderInput" class="weui-uploader__input" type="file">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -452,8 +553,25 @@
                 <div class="weui-cells">
                     <div class="weui-cell">
                         <div class="weui-cell__bd">
-                            <label class="left" for="renter_contractPic">合同照：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_contractPic">
+                            <label class="left" for="renter_contractPic" style="vertical-align: top">合同照：<span style="color:red">*</span></label>
+                           <!--上传合同照-->
+                            <div style="display: inline-block">
+                                <ul>
+                                    <li class="lf" style="margin-right: 10px">
+                                        <img  src="" style="height: 79px;width: 79px" alt="" >
+                                    </li>
+                                    <li class="lf"  style="margin-right: 10px">
+                                        <img src=""  style="height: 79px;width: 79px" alt="">
+                                    </li>
+                                </ul>
+                                <div class="weui-uploader__bd lf">
+                                    <div class="weui-uploader__input-box">
+                                        <form action="" id="FormContractPic" enctype="multipart/form-data">
+                                            <input id="uploaderContractPic" name="uploaderInput" class="weui-uploader__input" type="file">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -469,27 +587,27 @@
                 <div class="weui-panel__bd hotTopicList" >
                      <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                         <div class="headline">
-                            <h4 class="weui-media-box__title lf" style="font-size: 15px;">标题一</h4>
+                            <h4 class="weui-media-box__title" style="font-size: 16px;">标题一</h4>
                         </div>
-                        <p class="weui-media-box__desc" style="font-size: 12px">
+                        <p class="weui-media-box__desc" style="font-size: 14px">
                             由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                             由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                             由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                             由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                         </p>
-                        <div style="font-size: 12px;text-align: right;color: #c2c0be">时间 <span>2017.12.3</span></div>
+                        <div style="font-size: 14px;text-align: right;color:green;margin-top: 5px">时间 <span>2017.12.3</span></div>
                      </div>
                      <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                         <div class="headline">
-                            <h4 class="weui-media-box__title lf" style="font-size: 15px;">标题一</h4>
+                            <h4 class="weui-media-box__title" style="font-size: 16px;">标题一</h4>
                         </div>
-                        <p class="weui-media-box__desc" style="font-size: 12px">
+                        <p class="weui-media-box__desc" style="font-size: 14px">
                             由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                             由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                             由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                             由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
                         </p>
-                        <div style="font-size: 12px;text-align: right;color: #c2c0be">时间 <span>2017.12.3</span></div>
+                        <div style="font-size: 14px;text-align: right;color: green;margin-top: 5px">时间 <span>2017.12.3</span></div>
                      </div>
                 </div>
             </div>
@@ -515,10 +633,12 @@
                             <!--意见一-->
                             <div  class="weui-media-box weui-media-box_appmsg">
                                 <div class="weui-media-box__bd">
-                                    <span style="float: right">时间：2017.12.3</span>
+                                    <span style="float: right;color: green;font-size: 14px">时间：2017.12.3</span>
                                     <h4 class="weui-media-box__title">标题一</h4>
-
-                                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                    <p style="font-size: 14px;" class="weui-media-box__desc">
+                                        由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+                                        由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
+                                    </p>
                                 </div>
                             </div>
                             <!--意见二-->
@@ -527,9 +647,9 @@
                                     <img class="weui-media-box__thumb" src="">
                                 </div>
                                 <div class="weui-media-box__bd">
-                                    <span style="float: right">时间：2017.12.3</span>
+                                    <span style="float: right;font-size: 14px;color: green">时间：2017.12.3</span>
                                     <h4 class="weui-media-box__title">标题二</h4>
-                                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                    <p style="font-size: 14px" class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
                                 </div>
                             </div>
                             <!--意见三-->
@@ -538,9 +658,9 @@
                                     <img class="weui-media-box__thumb" src="">
                                 </div>
                                 <div class="weui-media-box__bd">
-                                    <span style="float: right">时间：2017.12.3</span>
+                                    <span style="float: right;font-size: 14px;color: green">时间：2017.12.3</span>
                                     <h4 class="weui-media-box__title">标题二</h4>
-                                    <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                                    <p style="font-size: 14px" class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
                                 </div>
                             </div>
                         </div>
@@ -553,17 +673,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
 <script src="../js/jquery-1.11.3.js"></script>
 <script src="../JQuery_weui/fastclick.js"></script>
 <script>
@@ -572,5 +681,6 @@
     });
 </script>
 <script src="../JQuery_weui/jquery-weui.js"></script>
+<script src="js/index.js"></script>
 </body>
 </html>

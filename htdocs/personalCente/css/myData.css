@@ -33,10 +33,20 @@ body {
 label{
     text-align: right;
     display: inline-block;
-    width: 35%;
+    width: 27%;
+    font-size: 15px;
 }
 input{
     outline: none;
     padding: 4px;
-    width: 50%;
+    width: 65%;
+    font-size: 15px;
+}
+/*获取验证码*/
+.weui-input {
+    width: 35%;
+    font-size: 15px;
+}
+.weui-vcode-btn {
+    padding: 0 ;
 }

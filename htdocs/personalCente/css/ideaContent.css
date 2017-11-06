@@ -10,18 +10,26 @@ ul{
     list-style: none;
 }
 body {
-    font-family: Arial, Helvetica, Sans-Serif;
+    font-family : Arial, Helvetica, Sans-Serif;
+}
+a:hover {
+    color: #C97200;
+    text-decoration: none;
+}
+
+.lf {
+    float: left;
+}
+
+.right {
+    float: right
 }
 .weui-media-box__desc {
     text-indent:2em;
-    -webkit-line-clamp: 2000000;
-    font-size: 15px;
     color: black;
-}
-.weui-media-box__info__meta {
-   color: green;
-}
-.weui-media-box__info {
     font-size: 15px;
-   float: right;
+    -webkit-line-clamp: 200000;
+}
+.ideaContent li{
+    color: green;
 }

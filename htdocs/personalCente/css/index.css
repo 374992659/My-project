@@ -73,6 +73,9 @@ a:hover {
     text-align: center;
 }
 /*个人资料 star*/
+.weui-cell {
+    padding: 10px 0;
+}
 .weui-media-box__title {
     text-align: left;
     font-size: 17px;
@@ -110,12 +113,14 @@ a:hover {
 .owner label{
     text-align: right;
     display: inline-block;
-    width: 35%;
+    width: 28%;
+    font-size: 15px;
 }
 .owner input{
     outline: none;
     padding: 4px;
-    width: 50%;
+    width:60%;
+    font-size: 15px;
 }
 .weui-uploader__input-box {
     margin: 0 auto;
@@ -151,3 +156,8 @@ a:hover {
     background: lightblue;
     text-align: center;
 }
+/*通知*/
+.weui-media-box {
+    padding: 16px;
+}
+/*意见*/

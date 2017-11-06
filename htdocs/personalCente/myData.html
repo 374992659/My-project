@@ -30,7 +30,7 @@
                         <img class="weui-media-box__thumb" src="image/firenda.jpg">
                     </div>
                     <div class="weui-media-box__bd">
-                        <button  style="float: right">完成</button>
+                        <button  class="finishBtn" style="float: right;background: white;border: none;font-size: 18px;color: green">完成</button>
                         <h4 class="weui-media-box__title">昵称：<span>阿卡记得阿萨德啊</span> </h4>
                         <h4 class="weui-media-box__title">账号：<span>131465464</span></h4>
                     </div>
@@ -42,7 +42,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="name">姓名：</label>
-                    <input type="text" id="name">
+                    <input type="text" id="name" placeholder="请输入真实姓名" autofocus="autofocus">
                 </div>
             </div>
         </div>
@@ -51,7 +51,10 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="phone">电话：</label>
-                    <input type="text" id="phone">
+                    <input class="weui-input" style="" id="phone" type="number" placeholder="请输入手机号">
+                    <div class="weui-cell__ft" style="display: inline-block">
+                        <button class="weui-vcode-btn" style="font-size: 15px">获取验证码</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -60,7 +63,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="password">密码：</label>
-                    <input type="text" id="password">
+                    <input type="password" id="password" placeholder="6-12位数字或字母">
                 </div>
             </div>
         </div>
@@ -69,7 +72,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="rePassword">确认密码：</label>
-                    <input type="text" id="rePassword">
+                    <input type="password" id="rePassword" placeholder="请重复密码">
                 </div>
             </div>
         </div>
@@ -78,7 +81,10 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="verCode">验证码：</label>
-                    <input type="text" id="verCode">
+                        <input class="weui-input code" id="verCode" type="text" placeholder="请输入验证码">
+                    <div class="weui-cell__ft " style="display: inline-block">
+                        <img class="weui-vcode-img refreshImg" style="width: 80px;position: relative;z-index: 100" src="http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=getPicCode">
+                    </div>
                 </div>
             </div>
         </div>
@@ -87,7 +93,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="weiXin">微信：</label>
-                    <input type="text" id="weiXin">
+                    <input type="text" id="weiXin" placeholder="">
                 </div>
             </div>
         </div>
@@ -96,7 +102,7 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="QQ">QQ：</label>
-                    <input type="text" id="QQ">
+                    <input type="number" id="QQ" >
                 </div>
             </div>
         </div>
@@ -114,7 +120,19 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="dataBirth">出生年月：</label>
-                    <input type="text" id="dataBirth">
+                    <select name="" id="dataBirth">
+                        <option value="">1980</option>
+                        <option value="">1981</option>
+                        <option value="">1982</option>
+                        <option value="">1983</option>
+                        <option value="">1984</option>
+                    </select>年
+                    <select name="" id="">
+                        <option value="">1</option>
+                        <option value="">2</option>
+                        <option value="">3</option>
+                    </select>月
+
                 </div>
             </div>
         </div>
@@ -122,7 +140,7 @@
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <label class="left" for="likes">喜好：</label>
+                    <label class="left" for="likes">爱好：</label>
 
                 </div>
             </div>
@@ -141,7 +159,8 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="lawyerHelp">律师援助：</label>
-                    <input type="text" id="lawyerHelp">
+                    <a href="">了解费用</a>
+                    <a href="">律师团队</a>
                 </div>
             </div>
         </div>
@@ -167,5 +186,6 @@
     });
 </script>
 <script src="../JQuery_weui/jquery-weui.js"></script>
+    <script src="js/myData.js"></script>
 </body>
 </html>
