@@ -236,13 +236,14 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(".publishDis").hide();
-                        $(".optionList").empty();
+                        // $(".optionList").empty();
+                        window.localcation.reload();
+                        // pageSuccess();
                     }else{
                         console.log(data.errmsg);
                     }
                 }
             })
-
         })
     })();
     // 功能3 点赞/取消点赞话题
