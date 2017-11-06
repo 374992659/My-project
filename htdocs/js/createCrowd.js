@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
     "use strict";
     (function(){
@@ -30,6 +29,7 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         console.log(item.role);
                         if(item.role==1){
+                            console.log(i);
                             myGroup+=`
                         <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
@@ -56,6 +56,7 @@ $(document).ready(function(){
                             `;
                             manageGroupNum=i+1;
                         }else{
+                            console.log(i);
                             joinGroup+=`
                         <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
                             <div class="weui-media-box__hd" style="width:50px;height: 50px;border-radius: 50px;overflow: hidden">
@@ -102,11 +103,14 @@ $(document).ready(function(){
         // 获取当前group_num群号码
             group_num=$(this).attr("title"),
         // 获取group_code
-            group_code=$(this).find("img").attr("title");
+            group_code=$(this).find("img").attr("title"),
+        // 获取群名字
+            group_name=$(this).find("h4").html();
         // 存在本地
         localStorage.setItem("group_num",group_num);
         localStorage.setItem("group_code",group_code);
         localStorage.setItem("group_header",group_header);
+        localStorage.setItem("group_name",group_name);
         window.location.href="flockChat.html";
     });
 });
