@@ -39,7 +39,7 @@ $(document).ready(function(){
                         $.each(result.commont_list,function(i,item){
                             if(item.user_code===user_code){
                             //自己的评论
-                                if(item.is_likes==1){
+                                if(parseInt(item.is_likes)===1){
                                     myDiscuss+=`
                                 <div class="weui-media-box weui-media-box_text">
                                  <div class="topic">
@@ -82,7 +82,7 @@ $(document).ready(function(){
 
                             }
                             //所有的评轮
-                            if(item.is_likes==1){
+                            if(parseInt(item.is_likes)===1){
                                 allDiscuss+=`
                             <div class="weui-media-box weui-media-box_text">
                                  <div class="topic">
@@ -155,7 +155,7 @@ $(document).ready(function(){
                         `
                           });
                     }
-                    if(result.is_likes==1){
+                    if(parseInt(result.is_likes)===1){
                         html=`
                     <div class="weui-media-box weui-media-box_text">
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
@@ -169,7 +169,7 @@ $(document).ready(function(){
                         </p>
                         <div style="text-align: right;font-size: 12px" class="readNum">
                             阅读量 <span>${result.read_num}</span>
-                            <img class="CommonPraiseImg" src="image/praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${result.likes_num}</span>
+                            <img class="CommonPraiseImg" title="${result.is_likes}" src="image/praise.png" style="width: 20px;margin-right: 5px" alt=""><span>${result.likes_num}</span>
                             <span class="topicDiscu">评论 ${result.commont_num}</span>
                             <span>分享</span>
                         </div>
@@ -251,31 +251,60 @@ $(document).ready(function(){
     })();
     // 功能3 点赞/取消点赞话题
     $(".hotTopicContent").on("click",".weui-media-box_text .readNum .CommonPraiseImg",function(e){
-        //数据格式转换
-      var img=$(this);
-        var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id})],
-        //加密
-        jsonEncryptData=jsEncryptData(data);
-        console.log(data);
-        $.ajax({
-            url:url+"Subject_editSubjectLikes",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                //解密
-            var data=jsDecodeData(data);
+        if(parseInt($(this).attr("title"))===1){
+            //取消点赞
+            console.log("取消点赞");
+            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"is_cancel":1})],
+                sonEncryptData=jsEncryptData(data);
                 console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    $(e.target).attr("src","image/praise.png");
-                    //获取当前元素的下一个兄弟元素的内容+1
-                    var disNum= $(e.target).next().html();
-                    $(e.target).next().html(parseInt(disNum)+1);
-                }else{
-                    console.log(data.errmsg);
+            $.ajax({
+                url:url+"Subject_editSubjectLikes",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    //解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(e.target).attr("src","image/no_praise.png");
+                        //获取当前元素的下一个兄弟元素的内容+1
+                        var disNum= $(e.target).next().html();
+                        $(e.target).next().html(parseInt(disNum)-1);
+                    }else{
+                        console.log(data.errmsg);
+                    }
                 }
-            }
-        })
+            })
+        }else{
+            //点赞
+            console.log("点赞");
+            //数据格式转换
+            var img=$(this);
+            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id})],
+                //加密
+                jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"Subject_editSubjectLikes",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    //解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(e.target).attr("src","image/praise.png");
+                        //获取当前元素的下一个兄弟元素的内容+1
+                        var disNum= $(e.target).next().html();
+                        $(e.target).next().html(parseInt(disNum)+1);
+                    }else{
+                        console.log(data.errmsg);
+                    }
+                }
+            })
+        }
     });
     // 功能4 点赞/取消点赞话题评论
     $(".discuss").on("click",".weui-media-box .praise .disPraiseImg",function(e){
