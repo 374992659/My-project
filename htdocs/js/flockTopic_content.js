@@ -180,7 +180,8 @@ $(document).ready(function(){
                     if(data.data.commont_list){
                         $.each(data.data.commont_list,function(i,item){
                             if(item.user_code=userCode){
-                                mydiscuss+=`
+                                if(parseInt(item.is_likes)===1){
+                                    mydiscuss+=`
                         <div class="weui-media-box weui-media-box_text">
                              <div class="topic">
                                <a href="">
@@ -193,13 +194,34 @@ $(document).ready(function(){
                              </p>
                              <div style="text-align: right;font-size: 12px" class="delPraise">
                                  <img src=" image/del.png" class="delImg" alt="" style="width: 16px;margin-right: 10px"/>
-                                  <img title="${item.id}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
+                                  <img title="${item.id}" title="${item.is_likes}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
                         </div>
-                              `;
+                              `
+                                }else{
+                                    mydiscuss+=`
+                        <div class="weui-media-box weui-media-box_text">
+                             <div class="topic">
+                               <a href="">
+                                     <p class="weui-media-box__title lf">${item.nickname}</p>
+                                 </a>
+                                <span class="right" style="font-size: 12px">${item.create_time}</span>
+                             </div>
+                             <p class="weui-media-box__desc">
+                               ${item.content}
+                             </p>
+                             <div style="text-align: right;font-size: 12px" class="delPraise">
+                                 <img src=" image/del.png" class="delImg" alt="" style="width: 16px;margin-right: 10px"/>
+                                  <img title="${item.id}" title="${item.is_likes}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">
+                                 <span class="praiseNum">${item.commont_likes}</span>
+                             </div>
+                        </div>
+                              `
+                                }
                             }
-                            alldiscuss+=`
+                            if(parseInt(item.is_likes)===1){
+                                alldiscuss+=`
                           <div class="weui-media-box weui-media-box_text">
                               <div class="topic">
                                   <a href="">
@@ -211,14 +233,32 @@ $(document).ready(function(){
                                  ${item.content}
                               </p>
                               <div style="text-align: right;font-size: 12px"  class="praise">
-                               <img title="${item.id}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
+                               <img title="${item.id}" title="${item.is_likes}" class="disPraiseImg" src="image/praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
                                  <span class="praiseNum">${item.commont_likes}</span>
                              </div>
                           </div>                   
-                         `;
+                         `
+                            }else{
+                                alldiscuss+=`
+                          <div class="weui-media-box weui-media-box_text">
+                              <div class="topic">
+                                  <a href="">
+                                      <p class="weui-media-box__title lf">${item.nickname}</p>
+                                  </a>
+                                  <span class="right" style="font-size: 12px">${item.create_time}</span>
+                              </div>
+                              <p class="weui-media-box__desc">
+                                 ${item.content}
+                              </p>
+                              <div style="text-align: right;font-size: 12px"  class="praise">
+                               <img title="${item.id}" title="${item.is_likes}" class="disPraiseImg" src="image/no_praise.png" alt="" style="display: inline-block;width: 16px;margin-top: 10px;position: relative;z-index: 10000">                               
+                                 <span class="praiseNum">${item.commont_likes}</span>
+                             </div>
+                          </div>                   
+                         `
+                            }
                         });
                     }
-
                     $("#topicText").html(html);
                     $(".myDiscuss").append(mydiscuss);
                     $(".allDiscuss").append(alldiscuss);
@@ -329,11 +369,6 @@ $(document).ready(function(){
                 }
             });
         }
-
-
-
-
-
     });
     //   评论点赞
     $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd .weui-tab__bd-item .discuss .weui-media-box .delPraise .disPraiseImg",function(e){
