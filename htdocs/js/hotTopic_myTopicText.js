@@ -237,7 +237,6 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(".publishDis").hide();
                         $(".optionList").empty();
-                        pageSuccess()
                     }else{
                         console.log(data.errmsg);
                     }

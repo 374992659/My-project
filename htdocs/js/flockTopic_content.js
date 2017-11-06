@@ -297,7 +297,6 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-
                         $(".publishDis").hide();
                     }else{
                         console.log(data.errmsg);
@@ -370,7 +369,7 @@ $(document).ready(function(){
             });
         }
     });
-    //功能4评论点赞
+    //功能4评论点赞、取消点赞
     $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd .weui-tab__bd-item .discuss .weui-media-box .delPraise .disPraiseImg",function(e){
         var commont_id=$(this).attr("title");
         // 获取apptoken
