@@ -454,14 +454,14 @@ $(document).ready(function(){
     $(".myDiscuss").on("click",".weui-media-box .delPraise .delImg",function(){
         console.log("删除评论");
         if(confirm("删除评论")){
-            // 获取apptoken
-            var apptoken=localStorage.getItem("apptoken"),
-            // 获取群号码
-                group_num=localStorage.getItem("group_num"),
-            // 话题id
-                subject_id=
-            // 评论id
-                commont_id=
+            // // 获取apptoken
+            // var apptoken=localStorage.getItem("apptoken"),
+            // // 获取群号码
+            //     group_num=localStorage.getItem("group_num"),
+            // // 话题id
+            //     subject_id=
+            // // 评论id
+            //     commont_id=
         }
 
     })
