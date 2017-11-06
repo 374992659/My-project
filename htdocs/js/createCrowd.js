@@ -41,7 +41,7 @@ $(document).ready(function(){
                             </div>
                         </div>
                             `;
-                            myGroupNum=i+1;
+                            myGroupNum++;
                         }else if(item.role==2){
                             manageGroup+=`
                         <div class="weui-media-box weui-media-box_appmsg saveGroupNum" title="${item.group_num}">
