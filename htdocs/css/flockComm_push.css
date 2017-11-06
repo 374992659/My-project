@@ -42,11 +42,8 @@ a:hover {
     -webkit-transform: scaleY(.5);
     transform: scaleY(.5);
 }
-.delImg{
-    position: absolute;
-    top:0;
-    right:-1px;
-    height: 20px;
+.weui-gallery__img {
+    bottom: 60px;
 }
 
 

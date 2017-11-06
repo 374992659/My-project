@@ -71,7 +71,7 @@
         <entry file="file://$PROJECT_DIR$/htdocs/css/flockComm_push.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
+              <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -166,9 +166,9 @@
         <option value="$PROJECT_DIR$/htdocs/flockChat.html" />
         <option value="$PROJECT_DIR$/htdocs/js/flockChat.js" />
         <option value="$PROJECT_DIR$/htdocs/css/hotTopic_spit.css" />
-        <option value="$PROJECT_DIR$/htdocs/css/flockComm_push.css" />
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic_spit.js" />
         <option value="$PROJECT_DIR$/htdocs/js/flockComm_push.js" />
+        <option value="$PROJECT_DIR$/htdocs/css/flockComm_push.css" />
         <option value="$PROJECT_DIR$/htdocs/flockComm_push.html" />
       </list>
     </option>
@@ -924,14 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/css/flockComm_push.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="35" column="1" selection-start-line="35" selection-start-column="1" selection-end-line="35" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/flockComm_push.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.785714">
@@ -940,6 +932,14 @@
             <marker date="1509979760606" expanded="false" signature="3128:3180" placeholder="..." />
             <marker date="1509979760606" expanded="false" signature="3454:3517" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/css/flockComm_push.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="45" column="17" selection-start-line="45" selection-start-column="17" selection-end-line="45" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
