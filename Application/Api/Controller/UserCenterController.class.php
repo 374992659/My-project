@@ -765,8 +765,8 @@ class UserCenterController extends VersionController
             $mongo  = new \MongoClient();
             $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
             $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
-            $garden_message = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
-            $res = $garden_message->add(array(
+            $garden_opinion = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
+            $res = $garden_opinion->add(array(
                 'title'=>$this->pdata['title'],
                 'content'=>$this->pdata['content'],
                 'picture'=>$this->pdata['picture'],
@@ -808,10 +808,10 @@ class UserCenterController extends VersionController
         foreach ($result as $key=>$val){
             $garden_city_id =$mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
             $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
-            $garden_message = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
-            $garden_message = $garden_message->where(['garden_code'=>$val,'user_code'=>$this->account_code])->select();
-            if($garden_message){
-                $list[] = $garden_message;
+            $garden_opinion = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
+            $garden_opinion = $garden_opinion->where(['garden_code'=>$val,'user_code'=>$this->account_code])->select();
+            if($garden_opinion){
+                $list[] = $garden_opinion;
             }
         }
         $new_arr = array();
@@ -826,7 +826,7 @@ class UserCenterController extends VersionController
             $list = self::multi_array_sort($list,'create_time',SORT_DESC);
             $this->echoEncrypData(0,$list);
         }else{
-            $this->echoEncrypData(5,$result);
+            $this->echoEncrypData(5);
         }
     }
     /*
