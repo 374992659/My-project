@@ -318,6 +318,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(".CommonPraiseImg").attr("src","image/praise.png");
+                        $(".CommonPraiseImg").attr("title","1");
                         var a=$(e.target).siblings().html();
                         a=parseInt(a);
                         $(e.target).siblings().html(a+1)
