@@ -808,7 +808,7 @@ class UserCenterController extends VersionController
         foreach ($result as $key=>$val){
             $garden_city_id =$mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
             $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
-            $garden_message = new Model\GardenMessageModel($garden_province_id,$garden_city_id);
+            $garden_message = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
             $garden_message = $garden_message->where(['garden_code'=>$val,'user_code'=>$this->account_code])->select();
             if($garden_message){
                 $list[] = $garden_message;
@@ -839,7 +839,7 @@ class UserCenterController extends VersionController
         $mongo = new \MongoClient();
         $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
         $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
-        $model = new Model\GardenMessageModel($garden_province_id,$garden_city_id);
+        $model = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
         $data = $model->where(['id'=>$this->pdata['id']])->find();
         if(!$data){
             $this->echoEncrypData(1);
