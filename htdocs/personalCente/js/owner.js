@@ -95,8 +95,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     console.log(data.data.file_path);
+                    var html="";
                     if(Url){
-                   var html=`
+                   html+=`
                <li class="lf" style="margin-right: 10px">
                             <img  src="${Url}" style="height: 79px;width: 79px" alt="" >
                         </li>             
