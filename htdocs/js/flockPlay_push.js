@@ -373,9 +373,9 @@ $(document).ready(function(){
         });
         // 图片放大预览
         (function(){
-            $(".picPlace").on("click",".weui-uploader__file .pushTopic_Img",function(){
+            $(".picPlace").on("click",".weui-uploader__file .pushTopic_Img",function(e){
                 console.log("图片放大");
-                var url=$(this).attr("scr");
+                var url=$(e.target).attr("scr");
                 console.log(url);
                 console.log($(this));
                 if($(".weui-gallery").is(":hidden")){
