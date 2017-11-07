@@ -20,7 +20,7 @@ $(document).ready(function(){
                 if(data.ercode===0){
                     var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
-                    html=`                  
+                  var  html=`                  
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
                                 <div class="weui-media-box weui-media-box_appmsg">
