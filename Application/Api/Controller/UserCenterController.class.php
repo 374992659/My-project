@@ -169,6 +169,38 @@ class UserCenterController extends VersionController
         }
     }
     /*
+     * 获取用户已认证通过的小区
+     * */
+    protected function getApplicationGarden_v1_0_0(){
+        $account_code=$this->account_code;
+        $city_id=substr($account_code,0,4);
+        $user_info =new Model\UserInfoModel($city_id);
+        $user_garden = $user_info->where(['account_codes'=>$account_code])->getField('user_garden');
+        if($user_garden){
+            $garden_arr = explode(';',$user_garden);
+            if(!$garden_arr){
+                $garden_arr[]=$user_garden;
+            }
+            $uGarden = array();
+            foreach($garden_arr as $k=>$v){
+                $arr = explode(',',$v);
+                $uGarden[]=$arr[0];
+            }
+            $mongo = new \MongoClient();
+            $userGarden = $mongo->baseinfo->garden_area->find(array('garden_code'=>array('$in'=>$uGarden)));
+            $userGarden = iterator_to_array($userGarden);
+            $Array= array();
+            foreach ($userGarden as $key=>$val){
+                $Array[$key]['garden_name']=$val['garden_name'];
+                $Array[$key]['garden_code']=$val['garden_code'];
+                $Array[$key]['city_id']=$val['city_id'];
+            }
+            $this->echoEncrypData(0,'',$Array);
+        }else{
+            $this->echoEncrypData(5);
+        }
+    }
+    /*
      * 判断指定小区指定房间是否已有认证
      * @param city_id 城市id
      * @param garden_code 小区code
