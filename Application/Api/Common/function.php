@@ -105,7 +105,7 @@ function getNextId($mongo,$dbName,$collectionName,$param=array()){
     if (isset($id['value']['id'])) {
         return $id['value']['id'];
     }else{
-        $mongo->$dbName->insert(array(
+        $mongo->$dbName->$collectionName->insert(array(
             'name' => $collectionName,
             'id' => $param['init'],     //设置ID起始数值
         ));
