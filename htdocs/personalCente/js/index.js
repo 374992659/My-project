@@ -17,7 +17,7 @@ $(document).ready(function(){
                 // 解密
                 var data=jsDecodeData(data);
                 console.log(data);
-                if(data.ercode===0){
+                if(data.errcode===0){
                     var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
                   var  html=`        
