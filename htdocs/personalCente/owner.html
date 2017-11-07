@@ -155,17 +155,34 @@
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left" for="housePlace">楼盘地址：<span style="color:red">*</span></label>
-                <input type="text" id="housePlace">
+                <div class="weui-cell__bd" id="sanji" style="display: inline-block">
+                    <select name="province" id="province">
+                        <option value="">请选择</option>
+                    </select>
+                    <select name="city" id="city">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <input type="text" id="housePlace" placeholder="小区名字" style="width: 20%">
             </div>
         </div>
     </div>
+     <!--小区详细地址   -->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="plotPlace">小区详细地址：<span style="color:red">*</span></label>
+                    <input type="text" id="plotPlace">
+                </div>
+            </div>
+        </div>
     <!--小区大门照-->
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left" for="plotPic" style="vertical-align: top">小区照片：<span style="color:red">*</span></label>
                 <!--上传小区照片-->
-                <div style="display: inline-block">
+                <div style="">
                     <ul>
                         <li class="lf" style="margin-right: 10px">
                             <img  src="" style="height: 79px;width: 79px" alt="" >
@@ -259,5 +276,9 @@
     <script src="../js/pad-zeropadding.js"></script>
     <script src="../js/encrypt-decode.js"></script>
     <script src="js/owner.js"></script>
+    <script src="../js/addRess.js"></script>
+    <script >
+        addRess();
+    </script>
 </body>
 </html>
