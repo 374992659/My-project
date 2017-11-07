@@ -4,7 +4,7 @@ $(document).ready(function(){
     // 进入页面请求接口加载页面如果没人有登录跳转到登录页面
     (function(){
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoekn":apptoken})],
+        var data=["",JSON.stringify({"apptoken":apptoken})],
             // 加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
