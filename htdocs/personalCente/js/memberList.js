@@ -18,7 +18,8 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 $.each(data.data,function(i,item){
-                    html+=`                   
+                    $.each(item,function(i,item){
+                        html+=`                   
         <tr title="${item.application_id}" value="${item.city_id}">
             <td>${item.real_name}</td>
             <td>${item.relation_name}</td>
@@ -27,6 +28,7 @@ $(document).ready(function(){
         </tr>
                     
                     `
+                    });
                 });
                 $(".memberList").append(html)
             }
