@@ -21,7 +21,7 @@ $(document).ready(function(){
                     var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
                   var  html=`        
-                  <div class="weui-panel weui-panel_access">
+                        <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
                                 <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
@@ -40,8 +40,7 @@ $(document).ready(function(){
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                      
+                        </div>                      
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -50,8 +49,7 @@ $(document).ready(function(){
                                     <a href="myTeam.html" style="float: right;color: green">我的团队</a>
                                 </div>
                             </div>
-                        </div>
-                       
+                        </div>                       
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -59,8 +57,7 @@ $(document).ready(function(){
                                     <span>${result.phone}</span>
                                 </div>
                             </div>
-                        </div>
-                      
+                        </div>                      
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -68,8 +65,7 @@ $(document).ready(function(){
                                     <span>${result.wechat_num}</span>
                                 </div>
                             </div>
-                        </div>
-                        <!--qq-->
+                        </div>                     
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -77,8 +73,7 @@ $(document).ready(function(){
                                     <span>${result.qq_num}</span>
                                 </div>
                             </div>
-                        </div>
-                    
+                        </div>                    
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -88,8 +83,7 @@ $(document).ready(function(){
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                     
+                        </div>                     
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -97,8 +91,7 @@ $(document).ready(function(){
                                     <span>${result.default_garden}</span>
                                 </div>
                             </div>
-                        </div>
-                     
+                        </div>                     
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -106,8 +99,7 @@ $(document).ready(function(){
                                     <span>${result.birth_year}${result.birth_month}</span>
                                 </div>
                             </div>
-                        </div>
-                   
+                        </div>                   
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -118,8 +110,7 @@ $(document).ready(function(){
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                     
+                        </div>                     
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -128,8 +119,7 @@ $(document).ready(function(){
                                     <a>律师团队</a>
                                 </div>
                             </div>
-                        </div>
-                    
+                        </div>                    
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -137,8 +127,9 @@ $(document).ready(function(){
                                     <span>${result.creat_time}</span>
                                 </div>
                             </div>
-                        </div>                                      
+                        </div>                            
                     `;
+                  console.log(html);
                   $(".personal").html(html)
                 }else{
                     // window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
