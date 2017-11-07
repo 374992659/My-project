@@ -118,7 +118,7 @@ $(document).ready(function(){
                  </span>
             </div>          
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
              </div>
          </div>
                                     `
@@ -131,7 +131,7 @@ $(document).ready(function(){
             </div>
            
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
              </div>
          </div>
                                                               
@@ -143,7 +143,7 @@ $(document).ready(function(){
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                      <h6>${data.send_nickname}</h6>
@@ -157,7 +157,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                              <h6>${data.send_nickname}</h6>
@@ -237,7 +237,7 @@ $(document).ready(function(){
                  </span>
             </div>           
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
              </div>
          </div>
                                     `
@@ -249,7 +249,7 @@ $(document).ready(function(){
                  <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
              </div>
          </div>                                                              
                 `
@@ -261,7 +261,7 @@ $(document).ready(function(){
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
                     </div>
                     
                     <div class="weui-media-box__bd">
@@ -276,7 +276,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
                     </div>
                    
                    
