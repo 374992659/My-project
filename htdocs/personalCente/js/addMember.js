@@ -31,6 +31,7 @@ $(document).ready(function(){
         var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"garden_code":garden_code,"garden_name":garden_name,"city_id":city_id,"relation_name":relation_name,"id_card_pictures":id_card_pictures,"yourself_picture":yourself_picture,"account":account})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"UserCenter_ownerAddNum",
             type:"POST",
