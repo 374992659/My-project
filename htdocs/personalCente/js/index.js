@@ -7,6 +7,7 @@ $(document).ready(function(){
         var data=["",JSON.stringify({"apptoekn":apptoken})],
             // 加密
             jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"UserCenter_getMyInfo",
             type:"POST",
