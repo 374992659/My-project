@@ -75,6 +75,9 @@ $(document).ready(function(){
     });
     // 功能6 提交用户资料
     $(".finishBtn").click(function(){
+        var success=$(".success");
+        var hideTop=function(){
+            success.empty()};
             // 获取apptoken
                var apptoken= localStorage.getItem("apptoken"),
             // 获取头像
@@ -111,7 +114,19 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
+                    window.location.href="index.html";
+                }else{
+                    var html=`
+                     <p style="text-align: center;background: green;font-size: 15px;color: red">${data.errmsg}</p>
+                    `;
+                    success.html(html);
+                    setTimeout(hideTop,3000);
                 }
 
             },

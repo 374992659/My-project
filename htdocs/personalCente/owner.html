@@ -91,21 +91,43 @@
                 <label class="left" for="" style="vertical-align: top">证件照：<span style="color:red">*</span></label>
                 <!--上传照片-->
                 <div style="display: inline-block">
-                    <ul>
-                        <li class="lf" style="margin-right: 10px">
-                            <img  src="" style="height: 79px;width: 79px" alt="" >
-                        </li>
-                        <li class="lf"  style="margin-right: 10px">
-                            <img src=""  style="height: 79px;width: 79px" alt="">
-                        </li>
-                    </ul>
-                    <div class="weui-uploader__bd lf">
-                        <div class="weui-uploader__input-box">
-                            <form action="" id="form" enctype="multipart/form-data">
-                                <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">
+                    <!--正面-->
+                    <div class="weui-cells weui-cells_form" style="display: inline-block">
+                        <div class="weui-uploader__input-box loaderA">
+                            <form action="" id="formA" enctype="multipart/form-data">
+                                <input id="uploaderInputA" name="uploaderInputA" class="weui-uploader__input" type="file">
                             </form>
                         </div>
+                        <div class="flockHeadA" >
+                            <img src="" alt="" style="width: 68px;height: 68px" >
+                        </div>
                     </div>
+                    <!--反面-->
+                    <div class="weui-cells weui-cells_form" style="display: inline-block">
+                        <div class="weui-uploader__input-box loaderB">
+                            <form action="" id="formB" enctype="multipart/form-data">
+                                <input id="uploaderInputB" name="uploaderInputB" class="weui-uploader__input" type="file">
+                            </form>
+                        </div>
+                        <div class="flockHeadB" >
+                            <img src="" alt="" style="width: 68px;height: 68px" >
+                        </div>
+                    </div>
+                    <!--<ul>-->
+                        <!--<li class="lf" style="margin-right: 10px">-->
+                            <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                        <!--</li>-->
+                        <!--<li class="lf"  style="margin-right: 10px">-->
+                            <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                    <!--<div class="weui-uploader__bd lf">-->
+                        <!--<div class="weui-uploader__input-box">-->
+                            <!--<form action="" id="form" enctype="multipart/form-data">-->
+                                <!--<input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                            <!--</form>-->
+                        <!--</div>-->
+                    <!--</div>-->
                 </div>
             </div>
         </div>
@@ -223,5 +245,10 @@
         });
     </script>
     <script src="../JQuery_weui/jquery-weui.js"></script>
+    <script src="../js/url.js"></script>
+    <script src="../js/aes.js"></script>
+    <script src="../js/pad-zeropadding.js"></script>
+    <script src="../js/encrypt-decode.js"></script>
+    <script src="js/owner.js"></script>
 </body>
 </html>
