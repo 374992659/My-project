@@ -31,6 +31,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
+                    history.back();
                     window.location.href="index.html";
                 }else{
                     var html=`
