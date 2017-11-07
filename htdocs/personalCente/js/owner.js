@@ -132,7 +132,7 @@ $(document).ready(function(){
         var myPicB=localStorage.getItem("myPicB");
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}",
         // 小区名字
-            gardern_name=$("#plotName").val(),
+            garden_name=$("#plotName").val(),
         // 小区code（没有可不填）
         //     garden_code=
         // 小区所属城市
@@ -148,7 +148,7 @@ $(document).ready(function(){
         // 个人照片（可填）
         // yourself_picture=
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_picture":id_card_picture,"gardern_name":gardern_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":garden_picture})],
+        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_picture":id_card_picture,"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":garden_picture})],
         //    数据加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
