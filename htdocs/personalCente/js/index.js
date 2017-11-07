@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    history.pushState("http://wx.junxiang.ren/project/htdocs/personalCente/");
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
     // 进入页面请求接口加载页面如果没人有登录跳转到登录页面
