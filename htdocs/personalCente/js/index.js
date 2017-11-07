@@ -18,12 +18,131 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.ercode===0){
+                    var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
-                    html=`                                      
+                    html=`                  
+                        <div class="weui-panel weui-panel_access">
+                            <div class="weui-panel__bd">
+                                <div class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="${result.potrait}">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <a href="myData.html" style="float: right;color:green">编辑个人资料</a>
+                                        <div style="clear: both"></div>
+                                        <h4 class="weui-media-box__title">昵称：<span>${result.nickname}</span> </h4>
+                                        <h4 class="weui-media-box__title">账号：<span>${result.account}</span></h4>
+                                        <h4 class="weui-media-box__title">积分：
+                                            <span>30000</span>
+                                            <a href="checkIntegral.html" style="color: green">查看</a>
+                                            <a>兑换</a>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--名字-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left">名字：</label>
+                                    <span>${result.realname}</span>
+                                    <a href="myTeam.html" style="float: right;color: green">我的团队</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--电话-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left">电话：</label>
+                                    <span>${result.phone}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--微信-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left">微信：</label>
+                                    <span>${result.wechat_num}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--qq-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left">QQ：</label>
+                                    <span>${result.qq_num}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--喜好-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left" style="vertical-align: top">喜好：</label>
+                                    <ul class="likes">
+                                      
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--常住小区-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left">常住小区：</label>
+                                    <span>${result.default_garden}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--出生年月-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left">出生年月：</label>
+                                    <span>${result.birth_year}${result.birth_month}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--拥有楼盘-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left" style="vertical-align: top">拥有楼盘：</label>
+                                    <ul class="likes">
+                                        <li>${result.user_garden}</li>
+                                        
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!--律师援助-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left">律师援助：</label>
+                                    <a>了解费用</a>
+                                    <a>律师团队</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--注册时间-->
+                        <div class="weui-cells">
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <label class="left">注册时间：</label>
+                                    <span>${result.creat_time}</span>
+                                </div>
+                            </div>
+                        </div>                                      
                     `
                 }else{
                     // window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
                 }
+                $(".personal").html(html)
             },
             error:function(){}
         })
