@@ -138,9 +138,10 @@ $(document).ready(function(){
         // 小区所属城市
             city_id=$("#city option:selected").val(),
         // 小区详细地址
-            garden_addr=$("#plotPlace").val(),
+            garden_addr=$("#plotPlace").val();
         // 小区照片
-            garden_picture=$(".placePlot img").attr("src");
+           var a=$(".placePlot img").attr("src");
+            var garden_picture="{'a':'"+a+"'}";
         // 合同房产证照片（可填）
         // picture=
         // 个人照片（可填）
