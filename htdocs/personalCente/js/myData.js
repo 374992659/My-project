@@ -75,9 +75,53 @@ $(document).ready(function(){
     });
     // 功能6 提交用户资料
     $(".finishBtn").click(function(){
-        // 获取头像
-        var portrait=localStorage.getItem("myportrait"),
-       // 获取昵称
-          nickname=$("#nickname").val();
+            // 获取apptoken
+               var apptoken= localStorage.getItem("apptoken"),
+            // 获取头像
+                   portrait=localStorage.getItem("myportrait"),
+            // 获取昵称
+                    nickname=$("#nickname").val(),
+            // 获取真实姓名（可填）
+                    realname=$("#name").val(),
+            // 手机号（可填）
+                    phone=$("#phone").val(),
+            // 微信（可填）
+                    wechat_num=$("#weixin").val(),
+            // QQ（可填）
+                    qq_num=$("#QQ").val(),
+            // 常住小区（可填）
+                    default_garden=$("#house").val(),
+            // 出生年份（可填）
+                    birth_year=$("#dataBirth option:selected").val(),
+            // 出生月份（可填）
+                    birth_month=$("#mouthBirth option:selected").val(),
+            // 爱好（可填）
+                    hobby=$("#likes").val(),
+            // 数据格式转换
+                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby})],
+            // 加密
+                    jsonEncryptData=jsEncryptData(data);
+                console.log(data);
+        $.ajax({
+            url:url+"UserCenter_updateUserInfo",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken)
+                }
+
+            },
+            error:function(){}
+        })
+
+
+
+
+
+
+
     });
 });
