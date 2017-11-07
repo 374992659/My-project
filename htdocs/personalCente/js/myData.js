@@ -78,6 +78,6 @@ $(document).ready(function(){
         // 获取头像
         var portrait=localStorage.getItem("myportrait"),
        // 获取昵称
-          nickname=$("#nickname").val(),
+          nickname=$("#nickname").val();
     });
 });
