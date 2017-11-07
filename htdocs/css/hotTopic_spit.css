@@ -50,7 +50,7 @@ a:hover {
 .weui-gallery__img {
     overflow: hidden;
     width: 100%;
-    top: 30%;
+    top: 0;
 }
 label{
     display: inline-block;
