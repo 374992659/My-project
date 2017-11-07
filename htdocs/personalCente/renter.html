@@ -22,7 +22,7 @@
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left" for="renterName">姓名：<span style="color:red">*</span></label>
-                <input type="text" id="renterName">
+                <input type="text" id="renterName" autofocus="autofocus">
             </div>
         </div>
     </div>
@@ -40,7 +40,24 @@
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left" for="renterCard">房号：<span style="color:red">*</span></label>
-                <input type="text" id="renterCard">
+                <select name="" id="houseNum">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                    <option value="">5</option>
+                </select>栋/座
+                <select name="" id="">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                    <option value="">4</option>
+                </select>楼
+                <select name="" id="">
+                    <option value="">1</option>
+                    <option value="">2</option>
+                    <option value="">3</option>
+                </select>号
             </div>
         </div>
     </div>
@@ -49,7 +66,7 @@
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left" for="renter_owner_Identity">身份证：<span style="color:red">*</span></label>
-                <input type="text" id="renter_owner_Identity">
+                <input type="text" id="renter_owner_Identity" class="Identity">
             </div>
         </div>
     </div>
@@ -57,8 +74,25 @@
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <label class="left" for="renter_OwnerPic">证件照：<span style="color:red">*</span></label>
-                <input type="text" id="renter_OwnerPic">
+                <label class="left" for="renter_OwnerPic" style="vertical-align: top">证件照：<span style="color:red">*</span></label>
+                <!--上传证件照-->
+                <div style="display: inline-block">
+                    <ul>
+                        <li class="lf" style="margin-right: 10px">
+                            <img  src="" style="height: 79px;width: 79px" alt="" >
+                        </li>
+                        <li class="lf"  style="margin-right: 10px">
+                            <img src=""  style="height: 79px;width: 79px" alt="">
+                        </li>
+                    </ul>
+                    <div class="weui-uploader__bd lf">
+                        <div class="weui-uploader__input-box">
+                            <form action="" id="renter_OwnerPicForm" enctype="multipart/form-data">
+                                <input id="uploaderRenter_OwnerPic" name="uploaderInput" class="weui-uploader__input" type="file">
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -75,8 +109,25 @@
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <label class="left" for="renter_IdentityPic">证件照：<span style="color:red">*</span></label>
-                <input type="text" id="renter_IdentityPic">
+                <label class="left" for="renter_IdentityPic" style="vertical-align: top">证件照：<span style="color:red">*</span></label>
+                <!--租客身份证-->
+                <div style="display: inline-block">
+                    <ul>
+                        <li class="lf" style="margin-right: 10px">
+                            <img  src="" style="height: 79px;width: 79px" alt="" >
+                        </li>
+                        <li class="lf"  style="margin-right: 10px">
+                            <img src=""  style="height: 79px;width: 79px" alt="">
+                        </li>
+                    </ul>
+                    <div class="weui-uploader__bd lf">
+                        <div class="weui-uploader__input-box">
+                            <form action="" id="FormIdentityPic" enctype="multipart/form-data">
+                                <input id="uploaderIdentityPic" name="uploaderInput" class="weui-uploader__input" type="file">
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -111,10 +162,33 @@
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <label class="left" for="renter_contractPic">合同照：<span style="color:red">*</span></label>
-                <input type="text" id="renter_contractPic">
+                <label class="left" for="renter_contractPic" style="vertical-align: top">合同照：<span style="color:red">*</span></label>
+                <!--上传合同照-->
+                <div style="display: inline-block">
+                    <ul>
+                        <li class="lf" style="margin-right: 10px">
+                            <img  src="" style="height: 79px;width: 79px" alt="" >
+                        </li>
+                        <li class="lf"  style="margin-right: 10px">
+                            <img src=""  style="height: 79px;width: 79px" alt="">
+                        </li>
+                    </ul>
+                    <div class="weui-uploader__bd lf">
+                        <div class="weui-uploader__input-box">
+                            <form action="" id="FormContractPic" enctype="multipart/form-data">
+                                <input id="uploaderContractPic" name="uploaderInput" class="weui-uploader__input" type="file">
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
+    <button class="weui-btn weui-btn_primary">按钮</button>
+    <div class="weui-flex">
+        <a class="weui-flex__item" href="memberList.html">成员列表</a>
+        <a class="weui-flex__item" href="addMember.html" style="margin: 0 10px">添加成员</a>
+        <a class="weui-flex__item" href="myRenZ.html">我的认证</a>
     </div>
 </div>
     <script src="../js/jquery-1.11.3.js"></script>

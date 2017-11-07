@@ -18,7 +18,11 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.ercode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    html=`
+                    
+                    
+                    `
                 }else{
                     // window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
                 }

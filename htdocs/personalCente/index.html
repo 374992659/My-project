@@ -43,32 +43,30 @@
     </style>
 </head>
 <body>
-    <div class="weui-tab">
-        <!--导航栏-->
-        <div class="weui-navbar lr_nb">
-            <div class="wx_items slider_wrap line">
-                <a class="item_cell weui-navbar__item weui-bar__item--on" href="#tab1">
-                    <span class="tab">个人资料</span>
-                </a>
-                <a class="item_cell weui-navbar__item" href="#tab2">
-                    <span>业主认证</span>
-                </a>
-                <a class="item_cell weui-navbar__item" href="#tab3">
-                    <span>租户认证</span>
-                </a>
-                <a class="item_cell weui-navbar__item" href="#tab4">
-                    <span>通知</span>
-                </a>
-                <a class="item_cell weui-navbar__item" href="#tab5">
-                    <span>意见箱</span>
-                </a>
-                <a class="item_cell weui-navbar__item" href="#tab6">
-                    <span>租售管理</span>
-                </a>
+    <div style="padding:0 5px">
+        <div class="lr_nb">
+            <div class="slider_wrap line">
+                <div class="wx_items">
+                    <div class="item_cell current">
+                        <span>个人资料</span>
+                    </div>
+                    <div class="item_cell">
+                        <a href="owner.html"><span>业主认证</span></a>
+                    </div>
+                    <div class="item_cell">
+                        <a href="renter.html"><span>租户认证</span></a>
+                    </div>
+                    <div class="item_cell">
+                        <a href="inform.html"><span>通知</span></a>
+                    </div>
+                    <div class="item_cell">
+                        <a href="ideaBox.html"><span>意见箱</span></a>
+                    </div>
+                    <div class="item_cell">
+                        <span class="logOut">租售管理</span>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="weui-tab__bd">
-            <!--个人资料页面-->
             <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
                 <!--推广二维码-->
                 <div class="qrCode">
@@ -207,472 +205,639 @@
                     </div>
                 </div>
             </div>
-            <!--业主认证页面-->
-            <div id="tab2" class="weui-tab__bd-item owner" style="padding: 0 10px">
-               <!--姓名-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="name">姓名：<span style="color:red">*</span></label>
-                            <input type="text" id="name" autofocus="autofocus">
-                        </div>
-                    </div>
-                </div>
-                <!--电话-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="phone">电话：<span style="color:red">*</span></label>
-                            <input type="text" id="phone">
-                        </div>
-                    </div>
-                </div>
-                <!--房号-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
-                            <select name="" id="houseNum">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
-                            </select>栋/座
-                            <select name="" id="">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                            </select>楼
-                            <select name="" id="">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>号
-                        </div>
-                    </div>
-                </div>
-                <!--关系-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="rela">关系：<span style="color:red">*</span></label>
-                            <select name="" id="rela">
-                                <option value="">房主</option>
-                                <option value="">儿子</option>
-                                <option value="">妻子</option>
-                                <option value="">父母</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <!--身份证-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="identityCard">身份证号：<span style="color:red">*</span></label>
-                            <input type="text" id="identityCard">
-                        </div>
-                    </div>
-                </div>
-                <!--证件照-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="" style="vertical-align: top">证件照：<span style="color:red">*</span></label>
-                            <!--上传照片-->
-                            <div style="display: inline-block">
-                                <ul>
-                                    <li class="lf" style="margin-right: 10px">
-                                        <img  src="" style="height: 79px;width: 79px" alt="" >
-                                    </li>
-                                    <li class="lf"  style="margin-right: 10px">
-                                        <img src=""  style="height: 79px;width: 79px" alt="">
-                                    </li>
-                                </ul>
-                                <div class="weui-uploader__bd lf">
-                                    <div class="weui-uploader__input-box">
-                                        <form action="" id="form" enctype="multipart/form-data">
-                                            <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--小区名-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="plotName">小区名：<span style="color:red">*</span></label>
-                            <input type="text" id="plotName">
-                        </div>
-                    </div>
-                </div>
-                <!--楼盘地址-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="housePlace">楼盘地址：<span style="color:red">*</span></label>
-                            <input type="text" id="housePlace">
-                        </div>
-                    </div>
-                </div>
-                <!--小区大门照-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="plotPic" style="vertical-align: top">小区照片：<span style="color:red">*</span></label>
-                            <!--上传小区照片-->
-                            <div style="display: inline-block">
-                                <ul>
-                                    <li class="lf" style="margin-right: 10px">
-                                        <img  src="" style="height: 79px;width: 79px" alt="" >
-                                    </li>
-                                    <li class="lf"  style="margin-right: 10px">
-                                        <img src=""  style="height: 79px;width: 79px" alt="">
-                                    </li>
-                                </ul>
-                                <div class="weui-uploader__bd lf">
-                                    <div class="weui-uploader__input-box">
-                                        <form action="" id="formPlot" enctype="multipart/form-data">
-                                            <input id="uploaderInputPlot" name="uploaderInput" class="weui-uploader__input" type="file">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--合同/房产证-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="ownershipPic" style="vertical-align: top">房产证：<span style="color:red">*</span></label>
-                            <!--上传房产证照片-->
-                            <div style="display: inline-block">
-                                <ul>
-                                    <li class="lf" style="margin-right: 10px">
-                                        <img  src="" style="height: 79px;width: 79px" alt="" >
-                                    </li>
-                                    <li class="lf"  style="margin-right: 10px">
-                                        <img src=""  style="height: 79px;width: 79px" alt="">
-                                    </li>
-                                </ul>
-                                <div class="weui-uploader__bd lf">
-                                    <div class="weui-uploader__input-box">
-                                        <form action="" id="formShip" enctype="multipart/form-data">
-                                            <input id="uploaderInputShip" name="uploaderInput" class="weui-uploader__input" type="file">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--个人照片-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="ownerPic" style="vertical-align: top">个人照片：<span style="color:red">*</span></label>
-                            <!--上传个人照片-->
-                            <div style="display: inline-block">
-                                <ul>
-                                    <li class="lf" style="margin-right: 10px">
-                                        <img  src="" style="height: 79px;width: 79px" alt="" >
-                                    </li>
-                                    <li class="lf"  style="margin-right: 10px">
-                                        <img src=""  style="height: 79px;width: 79px" alt="">
-                                    </li>
-                                </ul>
-                                <div class="weui-uploader__bd lf">
-                                    <div class="weui-uploader__input-box">
-                                        <form action="" id="formMy" enctype="multipart/form-data">
-                                            <input id="uploaderInputMy" name="uploaderInput" class="weui-uploader__input" type="file">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--提交按钮-->
-                <button class="weui-btn weui-btn_primary">按钮</button>
-                <div class="weui-flex">
-                    <a class="weui-flex__item" href="memberList.html">成员列表</a>
-                    <a class="weui-flex__item" href="addMember.html" style="margin: 0 10px">添加成员</a>
-                    <a class="weui-flex__item" href="myRenZ.html">我的认证</a>
-                </div>
-            </div>
-            <!--租户认证页面-->
-            <div id="tab3" class="weui-tab__bd-item renter">
-                <!--姓名-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renterName">姓名：<span style="color:red">*</span></label>
-                            <input type="text" id="renterName" autofocus="autofocus">
-                        </div>
-                    </div>
-                </div>
-                <!--电话-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renterPhone">电话：<span style="color:red">*</span></label>
-                            <input type="text" id="renterPhone">
-                        </div>
-                    </div>
-                </div>
-                <!--房号-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renterCard">房号：<span style="color:red">*</span></label>
-                            <select name="" id="houseNum">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                                <option value="">5</option>
-                            </select>栋/座
-                            <select name="" id="">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                                <option value="">4</option>
-                            </select>楼
-                            <select name="" id="">
-                                <option value="">1</option>
-                                <option value="">2</option>
-                                <option value="">3</option>
-                            </select>号
-                        </div>
-                    </div>
-                </div>
-                <!--房东身份证号-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renter_owner_Identity">身份证：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_owner_Identity" class="Identity">
-                        </div>
-                    </div>
-                </div>
-                <!--房东证件照-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renter_OwnerPic" style="vertical-align: top">证件照：<span style="color:red">*</span></label>
-                           <!--上传证件照-->
-                            <div style="display: inline-block">
-                                <ul>
-                                    <li class="lf" style="margin-right: 10px">
-                                        <img  src="" style="height: 79px;width: 79px" alt="" >
-                                    </li>
-                                    <li class="lf"  style="margin-right: 10px">
-                                        <img src=""  style="height: 79px;width: 79px" alt="">
-                                    </li>
-                                </ul>
-                                <div class="weui-uploader__bd lf">
-                                    <div class="weui-uploader__input-box">
-                                        <form action="" id="renter_OwnerPicForm" enctype="multipart/form-data">
-                                            <input id="uploaderRenter_OwnerPic" name="uploaderInput" class="weui-uploader__input" type="file">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--租客身份证-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renter_IdentityCard">身份证：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_IdentityCard">
-                        </div>
-                    </div>
-                </div>
-                <!--租客身份证照-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renter_IdentityPic" style="vertical-align: top">证件照：<span style="color:red">*</span></label>
-                           <!--租客身份证-->
-                            <div style="display: inline-block">
-                                <ul>
-                                    <li class="lf" style="margin-right: 10px">
-                                        <img  src="" style="height: 79px;width: 79px" alt="" >
-                                    </li>
-                                    <li class="lf"  style="margin-right: 10px">
-                                        <img src=""  style="height: 79px;width: 79px" alt="">
-                                    </li>
-                                </ul>
-                                <div class="weui-uploader__bd lf">
-                                    <div class="weui-uploader__input-box">
-                                        <form action="" id="FormIdentityPic" enctype="multipart/form-data">
-                                            <input id="uploaderIdentityPic" name="uploaderInput" class="weui-uploader__input" type="file">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--小区名-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renter_plotName">小区名：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_plotName">
-                        </div>
-                    </div>
-                </div>
-                <!--楼盘地址-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renter_housePlace">楼盘地址：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_housePlace">
-                        </div>
-                    </div>
-                </div>
-                <!--合同有效期-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renter_contractLife">合同有效期：<span style="color:red">*</span></label>
-                            <input type="text" id="renter_contractLife">
-                        </div>
-                    </div>
-                </div>
-                <!--合同照-->
-                <div class="weui-cells">
-                    <div class="weui-cell">
-                        <div class="weui-cell__bd">
-                            <label class="left" for="renter_contractPic" style="vertical-align: top">合同照：<span style="color:red">*</span></label>
-                           <!--上传合同照-->
-                            <div style="display: inline-block">
-                                <ul>
-                                    <li class="lf" style="margin-right: 10px">
-                                        <img  src="" style="height: 79px;width: 79px" alt="" >
-                                    </li>
-                                    <li class="lf"  style="margin-right: 10px">
-                                        <img src=""  style="height: 79px;width: 79px" alt="">
-                                    </li>
-                                </ul>
-                                <div class="weui-uploader__bd lf">
-                                    <div class="weui-uploader__input-box">
-                                        <form action="" id="FormContractPic" enctype="multipart/form-data">
-                                            <input id="uploaderContractPic" name="uploaderInput" class="weui-uploader__input" type="file">
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <button class="weui-btn weui-btn_primary">按钮</button>
-                <div class="weui-flex">
-                    <a class="weui-flex__item" href="memberList.html">成员列表</a>
-                    <a class="weui-flex__item" href="addMember.html" style="margin: 0 10px">添加成员</a>
-                    <a class="weui-flex__item" href="myRenZ.html">我的认证</a>
-                </div>
-            </div>
-            <!--通知页面-->
-            <div id="tab4" class="weui-tab__bd-item inform">
-                <div class="weui-panel__bd hotTopicList" >
-                     <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
-                        <div class="headline">
-                            <h4 class="weui-media-box__title" style="font-size: 16px;">标题一</h4>
-                        </div>
-                        <p class="weui-media-box__desc" style="font-size: 14px">
-                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                        </p>
-                        <div style="font-size: 14px;text-align: right;color:green;margin-top: 5px">时间 <span>2017.12.3</span></div>
-                     </div>
-                     <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
-                        <div class="headline">
-                            <h4 class="weui-media-box__title" style="font-size: 16px;">标题一</h4>
-                        </div>
-                        <p class="weui-media-box__desc" style="font-size: 14px">
-                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                            由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                        </p>
-                        <div style="font-size: 14px;text-align: right;color: green;margin-top: 5px">时间 <span>2017.12.3</span></div>
-                     </div>
-                </div>
-            </div>
-            <!--意见箱页面-->
-            <div id="tab5" class="weui-tab__bd-item ideaBox">
-                <div class="weui-cells" style="background: #F0F0F0">
-                    <a class="weui-cell weui-cell_access" href="push_idea.html">
-                        <div class="weui-cell__bd">
-                            <p style="font-size: 15px">发布意见</p>
-                        </div>
-                        <div class="weui-cell__ft">
-                            <span class="" style="font-size: 10px; color: black">
-                                你想对物业说点什么呢呢？
-                            </span>
-                        </div>
-                    </a>
-                </div>
-                <!--意见内容列表-->
-                <div class="ideaList">
-                    <div class="weui-panel weui-panel_access">
-
-                        <div class="weui-panel__bd">
-                            <!--意见一-->
-                            <div  class="weui-media-box weui-media-box_appmsg">
-                                <div class="weui-media-box__bd">
-                                    <span style="float: right;color: green;font-size: 14px">时间：2017.12.3</span>
-                                    <h4 class="weui-media-box__title">标题一</h4>
-                                    <p style="font-size: 14px;" class="weui-media-box__desc">
-                                        由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                                        由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。
-                                    </p>
-                                </div>
-                            </div>
-                            <!--意见二-->
-                            <div class="weui-media-box weui-media-box_appmsg">
-                                <div class="weui-media-box__hd">
-                                    <img class="weui-media-box__thumb" src="">
-                                </div>
-                                <div class="weui-media-box__bd">
-                                    <span style="float: right;font-size: 14px;color: green">时间：2017.12.3</span>
-                                    <h4 class="weui-media-box__title">标题二</h4>
-                                    <p style="font-size: 14px" class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                                </div>
-                            </div>
-                            <!--意见三-->
-                            <div class="weui-media-box weui-media-box_appmsg">
-                                <div class="weui-media-box__hd">
-                                    <img class="weui-media-box__thumb" src="">
-                                </div>
-                                <div class="weui-media-box__bd">
-                                    <span style="float: right;font-size: 14px;color: green">时间：2017.12.3</span>
-                                    <h4 class="weui-media-box__title">标题二</h4>
-                                    <p style="font-size: 14px" class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--租售页面-->
-            <div id="tab6" class="weui-tab__bd-item">
-                <h4>租售管理</h4>
-            </div>
         </div>
     </div>
+    <!--<div class="weui-tab">-->
+
+        <!--导航栏-->
+        <!--<div class="weui-navbar lr_nb">-->
+            <!--<div class="wx_items slider_wrap line">-->
+                <!--<a class="item_cell weui-navbar__item weui-bar__item&#45;&#45;on" href="#tab1">-->
+                    <!--<span class="tab">个人资料</span>-->
+                <!--</a>-->
+                <!--<a class="item_cell weui-navbar__item" href="#tab2">-->
+                    <!--<span>业主认证</span>-->
+                <!--</a>-->
+                <!--<a class="item_cell weui-navbar__item" href="#tab3">-->
+                    <!--<span>租户认证</span>-->
+                <!--</a>-->
+                <!--<a class="item_cell weui-navbar__item" href="#tab4">-->
+                    <!--<span>通知</span>-->
+                <!--</a>-->
+                <!--<a class="item_cell weui-navbar__item" href="#tab5">-->
+                    <!--<span>意见箱</span>-->
+                <!--</a>-->
+                <!--<a class="item_cell weui-navbar__item" href="#tab6">-->
+                    <!--<span>租售管理</span>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="weui-tab__bd">-->
+            <!--个人资料页面-->
+            <!--<div id="tab1" class="weui-tab__bd-item weui-tab__bd-item&#45;&#45;active">-->
+                <!--&lt;!&ndash;推广二维码&ndash;&gt;-->
+                <!--<div class="qrCode">-->
+                    <!--<img src="image/u1313.png" alt="">-->
+                    <!--<p>推广二维码</p>-->
+                    <!--&lt;!&ndash;个人信息&ndash;&gt;-->
+                    <!--<div style="padding: 5px">-->
+                        <!--&lt;!&ndash;图像相关&ndash;&gt;-->
+                        <!--<div class="weui-panel weui-panel_access">-->
+                            <!--<div class="weui-panel__bd">-->
+                                <!--<div class="weui-media-box weui-media-box_appmsg">-->
+                                    <!--<div class="weui-media-box__hd">-->
+                                        <!--<img class="weui-media-box__thumb" src="image/firenda.jpg">-->
+                                    <!--</div>-->
+                                    <!--<div class="weui-media-box__bd">-->
+                                        <!--<a href="myData.html" style="float: right;color:green">编辑个人资料</a>-->
+                                        <!--<div style="clear: both"></div>-->
+                                        <!--<h4 class="weui-media-box__title">昵称：<span>阿卡记得阿萨德啊</span> </h4>-->
+                                        <!--<h4 class="weui-media-box__title">账号：<span></span></h4>-->
+                                        <!--<h4 class="weui-media-box__title">积分：-->
+                                            <!--<span>30000</span>-->
+                                            <!--<a href="checkIntegral.html" style="color: green">查看</a>-->
+                                            <!--<a>兑换</a>-->
+                                        <!--</h4>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;名字&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left">名字：</label>-->
+                                    <!--<span>家风好的</span>-->
+                                    <!--<a href="myTeam.html" style="float: right;color: green">我的团队</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;电话&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left">电话：</label>-->
+                                    <!--<span>13234878798</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;微信&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left">微信：</label>-->
+                                    <!--<span></span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;qq&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left">QQ：</label>-->
+                                    <!--<span>家风好的</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;喜好&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left" style="vertical-align: top">喜好：</label>-->
+                                    <!--<ul class="likes">-->
+                                        <!--<li>篮球</li>-->
+                                        <!--<li>足球</li>-->
+                                        <!--<li>羽毛球</li>-->
+                                        <!--<li>篮球</li>-->
+                                        <!--<li>足球</li>-->
+                                        <!--<li>羽毛球</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;常住小区&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left">常住小区：</label>-->
+                                    <!--<span>卡时间段按时</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;出生年月&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left">出生年月：</label>-->
+                                    <!--<span>家风好的</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+
+                        <!--&lt;!&ndash;拥有楼盘&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left" style="vertical-align: top">拥有楼盘：</label>-->
+                                    <!--<ul class="likes">-->
+                                        <!--<li>爱神的箭</li>-->
+                                        <!--<li>爱神的箭</li>-->
+                                        <!--<li>爱神的箭</li>-->
+                                        <!--<li>爱神的箭</li>-->
+                                        <!--<li>爱神的箭</li>-->
+                                        <!--<li>爱神的箭</li>-->
+                                    <!--</ul>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;律师援助&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left">律师援助：</label>-->
+                                    <!--<a>了解费用</a>-->
+                                    <!--<a>律师团队</a>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--&lt;!&ndash;注册时间&ndash;&gt;-->
+                        <!--<div class="weui-cells">-->
+                            <!--<div class="weui-cell">-->
+                                <!--<div class="weui-cell__bd">-->
+                                    <!--<label class="left">注册时间：</label>-->
+                                    <!--<span>2018.12.03</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;业主认证页面&ndash;&gt;-->
+            <!--<div id="tab2" class="weui-tab__bd-item owner" style="padding: 0 10px">-->
+               <!--&lt;!&ndash;姓名&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="name">姓名：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="name" autofocus="autofocus">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;电话&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="phone">电话：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="phone">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;房号&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="houseNum">房号：<span style="color:red">*</span></label>-->
+                            <!--<select name="" id="houseNum">-->
+                                <!--<option value="">1</option>-->
+                                <!--<option value="">2</option>-->
+                                <!--<option value="">3</option>-->
+                                <!--<option value="">4</option>-->
+                                <!--<option value="">5</option>-->
+                            <!--</select>栋/座-->
+                            <!--<select name="" id="">-->
+                                <!--<option value="">1</option>-->
+                                <!--<option value="">2</option>-->
+                                <!--<option value="">3</option>-->
+                                <!--<option value="">4</option>-->
+                            <!--</select>楼-->
+                            <!--<select name="" id="">-->
+                                <!--<option value="">1</option>-->
+                                <!--<option value="">2</option>-->
+                                <!--<option value="">3</option>-->
+                            <!--</select>号-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;关系&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="rela">关系：<span style="color:red">*</span></label>-->
+                            <!--<select name="" id="rela">-->
+                                <!--<option value="">房主</option>-->
+                                <!--<option value="">儿子</option>-->
+                                <!--<option value="">妻子</option>-->
+                                <!--<option value="">父母</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;身份证&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="identityCard">身份证号：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="identityCard">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;证件照&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="" style="vertical-align: top">证件照：<span style="color:red">*</span></label>-->
+                            <!--&lt;!&ndash;上传照片&ndash;&gt;-->
+                            <!--<div style="display: inline-block">-->
+                                <!--<ul>-->
+                                    <!--<li class="lf" style="margin-right: 10px">-->
+                                        <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                                    <!--</li>-->
+                                    <!--<li class="lf"  style="margin-right: 10px">-->
+                                        <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                                <!--<div class="weui-uploader__bd lf">-->
+                                    <!--<div class="weui-uploader__input-box">-->
+                                        <!--<form action="" id="form" enctype="multipart/form-data">-->
+                                            <!--<input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;小区名&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="plotName">小区名：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="plotName">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;楼盘地址&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="housePlace">楼盘地址：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="housePlace">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;小区大门照&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="plotPic" style="vertical-align: top">小区照片：<span style="color:red">*</span></label>-->
+                            <!--&lt;!&ndash;上传小区照片&ndash;&gt;-->
+                            <!--<div style="display: inline-block">-->
+                                <!--<ul>-->
+                                    <!--<li class="lf" style="margin-right: 10px">-->
+                                        <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                                    <!--</li>-->
+                                    <!--<li class="lf"  style="margin-right: 10px">-->
+                                        <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                                <!--<div class="weui-uploader__bd lf">-->
+                                    <!--<div class="weui-uploader__input-box">-->
+                                        <!--<form action="" id="formPlot" enctype="multipart/form-data">-->
+                                            <!--<input id="uploaderInputPlot" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;合同/房产证&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="ownershipPic" style="vertical-align: top">房产证：<span style="color:red">*</span></label>-->
+                            <!--&lt;!&ndash;上传房产证照片&ndash;&gt;-->
+                            <!--<div style="display: inline-block">-->
+                                <!--<ul>-->
+                                    <!--<li class="lf" style="margin-right: 10px">-->
+                                        <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                                    <!--</li>-->
+                                    <!--<li class="lf"  style="margin-right: 10px">-->
+                                        <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                                <!--<div class="weui-uploader__bd lf">-->
+                                    <!--<div class="weui-uploader__input-box">-->
+                                        <!--<form action="" id="formShip" enctype="multipart/form-data">-->
+                                            <!--<input id="uploaderInputShip" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;个人照片&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="ownerPic" style="vertical-align: top">个人照片：<span style="color:red">*</span></label>-->
+                            <!--&lt;!&ndash;上传个人照片&ndash;&gt;-->
+                            <!--<div style="display: inline-block">-->
+                                <!--<ul>-->
+                                    <!--<li class="lf" style="margin-right: 10px">-->
+                                        <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                                    <!--</li>-->
+                                    <!--<li class="lf"  style="margin-right: 10px">-->
+                                        <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                                <!--<div class="weui-uploader__bd lf">-->
+                                    <!--<div class="weui-uploader__input-box">-->
+                                        <!--<form action="" id="formMy" enctype="multipart/form-data">-->
+                                            <!--<input id="uploaderInputMy" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;提交按钮&ndash;&gt;-->
+                <!--<button class="weui-btn weui-btn_primary">按钮</button>-->
+                <!--<div class="weui-flex">-->
+                    <!--<a class="weui-flex__item" href="memberList.html">成员列表</a>-->
+                    <!--<a class="weui-flex__item" href="addMember.html" style="margin: 0 10px">添加成员</a>-->
+                    <!--<a class="weui-flex__item" href="myRenZ.html">我的认证</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;租户认证页面&ndash;&gt;-->
+            <!--<div id="tab3" class="weui-tab__bd-item renter">-->
+                <!--&lt;!&ndash;姓名&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renterName">姓名：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="renterName" autofocus="autofocus">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;电话&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renterPhone">电话：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="renterPhone">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;房号&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renterCard">房号：<span style="color:red">*</span></label>-->
+                            <!--<select name="" id="houseNum">-->
+                                <!--<option value="">1</option>-->
+                                <!--<option value="">2</option>-->
+                                <!--<option value="">3</option>-->
+                                <!--<option value="">4</option>-->
+                                <!--<option value="">5</option>-->
+                            <!--</select>栋/座-->
+                            <!--<select name="" id="">-->
+                                <!--<option value="">1</option>-->
+                                <!--<option value="">2</option>-->
+                                <!--<option value="">3</option>-->
+                                <!--<option value="">4</option>-->
+                            <!--</select>楼-->
+                            <!--<select name="" id="">-->
+                                <!--<option value="">1</option>-->
+                                <!--<option value="">2</option>-->
+                                <!--<option value="">3</option>-->
+                            <!--</select>号-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;房东身份证号&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renter_owner_Identity">身份证：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="renter_owner_Identity" class="Identity">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;房东证件照&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renter_OwnerPic" style="vertical-align: top">证件照：<span style="color:red">*</span></label>-->
+                           <!--&lt;!&ndash;上传证件照&ndash;&gt;-->
+                            <!--<div style="display: inline-block">-->
+                                <!--<ul>-->
+                                    <!--<li class="lf" style="margin-right: 10px">-->
+                                        <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                                    <!--</li>-->
+                                    <!--<li class="lf"  style="margin-right: 10px">-->
+                                        <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                                <!--<div class="weui-uploader__bd lf">-->
+                                    <!--<div class="weui-uploader__input-box">-->
+                                        <!--<form action="" id="renter_OwnerPicForm" enctype="multipart/form-data">-->
+                                            <!--<input id="uploaderRenter_OwnerPic" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;租客身份证&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renter_IdentityCard">身份证：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="renter_IdentityCard">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;租客身份证照&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renter_IdentityPic" style="vertical-align: top">证件照：<span style="color:red">*</span></label>-->
+                           <!--&lt;!&ndash;租客身份证&ndash;&gt;-->
+                            <!--<div style="display: inline-block">-->
+                                <!--<ul>-->
+                                    <!--<li class="lf" style="margin-right: 10px">-->
+                                        <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                                    <!--</li>-->
+                                    <!--<li class="lf"  style="margin-right: 10px">-->
+                                        <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                                <!--<div class="weui-uploader__bd lf">-->
+                                    <!--<div class="weui-uploader__input-box">-->
+                                        <!--<form action="" id="FormIdentityPic" enctype="multipart/form-data">-->
+                                            <!--<input id="uploaderIdentityPic" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;小区名&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renter_plotName">小区名：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="renter_plotName">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;楼盘地址&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renter_housePlace">楼盘地址：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="renter_housePlace">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;合同有效期&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renter_contractLife">合同有效期：<span style="color:red">*</span></label>-->
+                            <!--<input type="text" id="renter_contractLife">-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;合同照&ndash;&gt;-->
+                <!--<div class="weui-cells">-->
+                    <!--<div class="weui-cell">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<label class="left" for="renter_contractPic" style="vertical-align: top">合同照：<span style="color:red">*</span></label>-->
+                           <!--&lt;!&ndash;上传合同照&ndash;&gt;-->
+                            <!--<div style="display: inline-block">-->
+                                <!--<ul>-->
+                                    <!--<li class="lf" style="margin-right: 10px">-->
+                                        <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                                    <!--</li>-->
+                                    <!--<li class="lf"  style="margin-right: 10px">-->
+                                        <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                                <!--<div class="weui-uploader__bd lf">-->
+                                    <!--<div class="weui-uploader__input-box">-->
+                                        <!--<form action="" id="FormContractPic" enctype="multipart/form-data">-->
+                                            <!--<input id="uploaderContractPic" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                                        <!--</form>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<button class="weui-btn weui-btn_primary">按钮</button>-->
+                <!--<div class="weui-flex">-->
+                    <!--<a class="weui-flex__item" href="memberList.html">成员列表</a>-->
+                    <!--<a class="weui-flex__item" href="addMember.html" style="margin: 0 10px">添加成员</a>-->
+                    <!--<a class="weui-flex__item" href="myRenZ.html">我的认证</a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;通知页面&ndash;&gt;-->
+            <!--<div id="tab4" class="weui-tab__bd-item inform">-->
+                <!--<div class="weui-panel__bd hotTopicList" >-->
+                     <!--<div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">-->
+                        <!--<div class="headline">-->
+                            <!--<h4 class="weui-media-box__title" style="font-size: 16px;">标题一</h4>-->
+                        <!--</div>-->
+                        <!--<p class="weui-media-box__desc" style="font-size: 14px">-->
+                            <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                            <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                            <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                            <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                        <!--</p>-->
+                        <!--<div style="font-size: 14px;text-align: right;color:green;margin-top: 5px">时间 <span>2017.12.3</span></div>-->
+                     <!--</div>-->
+                     <!--<div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">-->
+                        <!--<div class="headline">-->
+                            <!--<h4 class="weui-media-box__title" style="font-size: 16px;">标题一</h4>-->
+                        <!--</div>-->
+                        <!--<p class="weui-media-box__desc" style="font-size: 14px">-->
+                            <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                            <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                            <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                            <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                        <!--</p>-->
+                        <!--<div style="font-size: 14px;text-align: right;color: green;margin-top: 5px">时间 <span>2017.12.3</span></div>-->
+                     <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;意见箱页面&ndash;&gt;-->
+            <!--<div id="tab5" class="weui-tab__bd-item ideaBox">-->
+                <!--<div class="weui-cells" style="background: #F0F0F0">-->
+                    <!--<a class="weui-cell weui-cell_access" href="push_idea.html">-->
+                        <!--<div class="weui-cell__bd">-->
+                            <!--<p style="font-size: 15px">发布意见</p>-->
+                        <!--</div>-->
+                        <!--<div class="weui-cell__ft">-->
+                            <!--<span class="" style="font-size: 10px; color: black">-->
+                                <!--你想对物业说点什么呢呢？-->
+                            <!--</span>-->
+                        <!--</div>-->
+                    <!--</a>-->
+                <!--</div>-->
+                <!--&lt;!&ndash;意见内容列表&ndash;&gt;-->
+                <!--<div class="ideaList">-->
+                    <!--<div class="weui-panel weui-panel_access">-->
+
+                        <!--<div class="weui-panel__bd">-->
+                            <!--&lt;!&ndash;意见一&ndash;&gt;-->
+                            <!--<div  class="weui-media-box weui-media-box_appmsg">-->
+                                <!--<div class="weui-media-box__bd">-->
+                                    <!--<span style="float: right;color: green;font-size: 14px">时间：2017.12.3</span>-->
+                                    <!--<h4 class="weui-media-box__title">标题一</h4>-->
+                                    <!--<p style="font-size: 14px;" class="weui-media-box__desc">-->
+                                        <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                                        <!--由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。-->
+                                    <!--</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;意见二&ndash;&gt;-->
+                            <!--<div class="weui-media-box weui-media-box_appmsg">-->
+                                <!--<div class="weui-media-box__hd">-->
+                                    <!--<img class="weui-media-box__thumb" src="">-->
+                                <!--</div>-->
+                                <!--<div class="weui-media-box__bd">-->
+                                    <!--<span style="float: right;font-size: 14px;color: green">时间：2017.12.3</span>-->
+                                    <!--<h4 class="weui-media-box__title">标题二</h4>-->
+                                    <!--<p style="font-size: 14px" class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                            <!--&lt;!&ndash;意见三&ndash;&gt;-->
+                            <!--<div class="weui-media-box weui-media-box_appmsg">-->
+                                <!--<div class="weui-media-box__hd">-->
+                                    <!--<img class="weui-media-box__thumb" src="">-->
+                                <!--</div>-->
+                                <!--<div class="weui-media-box__bd">-->
+                                    <!--<span style="float: right;font-size: 14px;color: green">时间：2017.12.3</span>-->
+                                    <!--<h4 class="weui-media-box__title">标题二</h4>-->
+                                    <!--<p style="font-size: 14px" class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;租售页面&ndash;&gt;-->
+            <!--<div id="tab6" class="weui-tab__bd-item">-->
+                <!--<h4>租售管理</h4>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 <script src="../js/jquery-1.11.3.js"></script>
 <script src="../JQuery_weui/fastclick.js"></script>
 <script>
