@@ -80,6 +80,28 @@ class UserCenterController extends VersionController
         $portrait = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['portrait'];
         $this->echoEncrypData(0,'',array('account_code'=>$this->account_code,'portrait'=>$portrait));
     }
+
+    /*
+     * 根据城市id以及关键词获取小区信息
+     * @param city_id城市id
+     * @param key 可为空
+     * */
+    protected function getGardenInfo_v1_0_0(){
+        $this->checkParam(array('city_id'));
+        $mongo = new \MongoClient();
+        if(!$this->pdata['key']){
+            $data =$mongo->baseinfo->garden_area->find(array('city_id'=>$this->pdata['city_id']),array('garden_code','garden_name','city_id'));
+            $data = iterator_to_array($data);
+        }else{
+            $data =$mongo->baseinfo->garden_area->find(array('garden_name'=>array('$regex'=>'/'.$this->pdata['key'].'.*/i')));
+            $data = iterator_to_array($data);
+        }
+        if(!$data){
+            $this->echoEncrypData(5);
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
+
     /*
      * 获取我的个人资料
      * */
