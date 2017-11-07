@@ -93,7 +93,7 @@ class UserCenterController extends VersionController
             $data =$mongo->baseinfo->garden_area->find(array('city_id'=>$this->pdata['city_id']),array('garden_code','garden_name','city_id'));
             $data = iterator_to_array($data);
         }else{
-            $data =$mongo->baseinfo->garden_area->find(array('garden_name'=>array('$regex'=>'/'.$this->pdata['key'].'.*/i')));
+            $data =$mongo->baseinfo->garden_area->find(array('garden_name'=>array('$regex'=>'/'.$this->pdata['key'].'*/i'),'city_id'=>$this->pdata['city_id']));
             $data = iterator_to_array($data);
         }
         if(!$data){
