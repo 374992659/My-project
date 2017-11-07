@@ -23,8 +23,8 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    console.log(data.data.file_path);
-                    localStorage.setItem("myPicA",data.data.file_path);
+                    console.log(data.data);
+                    localStorage.setItem("myPicA",data.data[0]);
                     $(".flockHeadA img").attr("src",Url);
                     $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                     $(".flockHeadA").attr("style","display:block");
@@ -59,8 +59,8 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    console.log(data.data.file_path);
-                    localStorage.setItem("myPicB",data.data.file_path);
+                    console.log(data.data);
+                    localStorage.setItem("myPicB",data.data[0]);
                     $(".flockHeadB img").attr("src",Url);
                     $(".loaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                     $(".flockHeadB").attr("style","display:block");
