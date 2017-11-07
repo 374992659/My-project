@@ -25,7 +25,7 @@ $(document).ready(function(){
                             <div class="weui-panel__bd">
                                 <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
-                                        <img class="weui-media-box__thumb" src="${result.potrait}">
+                                        <img class="weui-media-box__thumb" src="${result.portrait}">
                                     </div>
                                     <div class="weui-media-box__bd">
                                         <a href="myData.html" style="float: right;color:green">编辑个人资料</a>
