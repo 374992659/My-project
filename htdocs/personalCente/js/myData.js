@@ -78,7 +78,7 @@ $(document).ready(function(){
             // 获取apptoken
                var apptoken= localStorage.getItem("apptoken"),
             // 获取头像
-                   portrait=localStorage.getItem("myportrait"),
+                   portrait=localStorage.getItem("myPortrait"),
             // 获取昵称
                     nickname=$("#nickname").val(),
             // 获取真实姓名（可填）
