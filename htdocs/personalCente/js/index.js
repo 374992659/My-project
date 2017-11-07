@@ -19,7 +19,7 @@ $(document).ready(function(){
                 if(data.ercode===0){
                     localStorage.setItem("apptoken",data.apptoken)
                 }else{
-                    // window.location.href="landing.html"
+                    window.location.href="htdocs/landing.html"
                 }
             },
             error:function(){}
