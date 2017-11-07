@@ -14,6 +14,7 @@ $(document).ready(function(){
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
+                console.log(data);
                 if(data.ercode===0){
                     localStorage.setItem("apptoken",data.apptoken)
                 }else{
