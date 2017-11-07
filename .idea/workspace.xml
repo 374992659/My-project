@@ -23,7 +23,7 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.20218931">
+    <splitter split-orientation="horizontal" split-proportion="0.25627816">
       <split-first>
         <leaf>
           <file leaf-file-name="flockTopic_push.html" pinned="false" current-in-tab="false">
@@ -52,8 +52,8 @@
           <file leaf-file-name="flockTopic_push.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/flockTopic_push.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.410197">
-                  <caret line="52" column="75" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="75" />
+                <state vertical-scroll-proportion="0.53765935">
+                  <caret line="57" column="86" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="86" />
                   <folding>
                     <marker date="1510066053905" expanded="true" signature="1224:1512" placeholder="..." />
                     <marker date="1510066053905" expanded="false" signature="1328:1352" placeholder="..." />
@@ -84,13 +84,13 @@
           <file leaf-file-name="flockPlay_push.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/flockPlay_push.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.4275782">
-                  <caret line="373" column="17" selection-start-line="373" selection-start-column="17" selection-end-line="373" selection-end-column="17" />
+                <state vertical-scroll-proportion="0.580533">
+                  <caret line="379" column="37" selection-start-line="379" selection-start-column="37" selection-end-line="379" selection-end-column="37" />
                   <folding>
-                    <marker date="1510066452487" expanded="true" signature="18278:18566" placeholder="..." />
-                    <marker date="1510066452487" expanded="true" signature="18382:18406" placeholder="..." />
-                    <marker date="1510066452487" expanded="false" signature="23211:23263" placeholder="..." />
-                    <marker date="1510066452487" expanded="false" signature="23559:23611" placeholder="..." />
+                    <marker date="1510066608993" expanded="true" signature="18278:18566" placeholder="..." />
+                    <marker date="1510066608993" expanded="true" signature="18382:18406" placeholder="..." />
+                    <marker date="1510066608993" expanded="false" signature="23214:23266" placeholder="..." />
+                    <marker date="1510066608993" expanded="false" signature="23562:23614" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -175,7 +175,6 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -313,7 +312,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="0" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -818,8 +817,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/flockTopic_push.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.410197">
-          <caret line="52" column="75" selection-start-line="52" selection-start-column="61" selection-end-line="52" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.53765935">
+          <caret line="57" column="86" selection-start-line="57" selection-start-column="15" selection-end-line="57" selection-end-column="86" />
           <folding>
             <marker date="1510066053905" expanded="true" signature="1224:1512" placeholder="..." />
             <marker date="1510066053905" expanded="false" signature="1328:1352" placeholder="..." />
@@ -831,13 +830,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/flockPlay_push.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4275782">
-          <caret line="373" column="17" selection-start-line="373" selection-start-column="17" selection-end-line="373" selection-end-column="17" />
+        <state vertical-scroll-proportion="0.580533">
+          <caret line="379" column="37" selection-start-line="379" selection-start-column="37" selection-end-line="379" selection-end-column="37" />
           <folding>
-            <marker date="1510066452487" expanded="true" signature="18278:18566" placeholder="..." />
-            <marker date="1510066452487" expanded="true" signature="18382:18406" placeholder="..." />
-            <marker date="1510066452487" expanded="false" signature="23211:23263" placeholder="..." />
-            <marker date="1510066452487" expanded="false" signature="23559:23611" placeholder="..." />
+            <marker date="1510066608993" expanded="true" signature="18278:18566" placeholder="..." />
+            <marker date="1510066608993" expanded="true" signature="18382:18406" placeholder="..." />
+            <marker date="1510066608993" expanded="false" signature="23214:23266" placeholder="..." />
+            <marker date="1510066608993" expanded="false" signature="23562:23614" placeholder="..." />
           </folding>
         </state>
       </provider>

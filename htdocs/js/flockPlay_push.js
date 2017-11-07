@@ -380,7 +380,7 @@ $(document).ready(function(){
                 console.log($(this));
                 if($(".weui-gallery").is(":hidden")){
                     $(".weui-gallery").show();
-                    $(".weui-gallery__img").attr("style","background-img:url("+url+")")
+                    $(".weui-gallery__img").attr("style","background-image: url("+url+")")
                 }
             });
             $(".weui-gallery").click(function(){
