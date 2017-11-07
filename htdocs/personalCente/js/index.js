@@ -19,9 +19,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.ercode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    html=`
-                    
-                    
+                    html=`                                      
                     `
                 }else{
                     // window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
