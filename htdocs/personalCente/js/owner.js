@@ -129,7 +129,7 @@ $(document).ready(function(){
         // 身份证照片json字符串格式
         var myPicA=localStorage.getItem("myPicA");
         var myPicB=localStorage.getItem("myPicB");
-         var   id_card_picture={"a":myPicA,"b":myPicB},
+         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}",
         // 小区名字
             gardern_name=$("#plotName").val(),
         // 小区code（没有可不填）
