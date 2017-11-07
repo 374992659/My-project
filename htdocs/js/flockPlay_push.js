@@ -373,7 +373,7 @@ $(document).ready(function(){
         });
         // 图片放大预览
         (function(){
-            $(".picPlace").on("click","li img",function(){
+            $(".picPlace").on("click","li .pushTopic_Img",function(){
                 console.log("图片放大");
                 var url=$(this).attr("scr");
                 console.log(url);
