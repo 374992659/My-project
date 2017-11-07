@@ -11,6 +11,25 @@ use Api\Model;
 
 class UserCenterController extends VersionController
 {
+
+    /*
+     * 获取我的积分记录
+     * */
+    protected function getMyPointRecord_v1_0_0(){
+        $account_code = $this->account_code;
+        $point_record = new Model\PointRecordModel($account_code);
+        $data = $point_record->field('name_id,name,type,value,create_time')->order(['create_time'=>'desc'])->select();
+        if(!$data)$this->echoEncrypData(1);
+        $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 积分提示语
+     * */
+    protected function pointNoticeWords_v1_0_0(){
+
+    }
+
+
     /*
      * 修改个人资料
      * @param portrait 用户头像
@@ -30,7 +49,7 @@ class UserCenterController extends VersionController
         $portrait = $this->pdata['portrait'];
         $nickname = $this->pdata['nickname'];
         if(!$portrait || !$nickname)$this->echoEncrypData(21);
-        $user_info = new \Api\Model\UserInfoModel($city_id);
+        $user_info = new Model\UserInfoModel($city_id);
         $res = $user_info->where(array('account_code'=>$account_code))->save(array(
             'portrait'=>$portrait,
             'nickname'=>$nickname,
@@ -178,7 +197,7 @@ class UserCenterController extends VersionController
             }else{
                 $garden_code =$this->createGardenCode($this->pdata['city_id']);
                 $mongo->baseinfo->garden_area->insert(array(
-                    '_id'=>getNextId($mongo,'baseinfo','garden_code'),
+                    '_id'=>getNextId($mongo,'baseinfo','garden_area'),
                     'garden_name'=>$this->pdata['garden_name'],
                     'garden_code'=>$garden_code,
                     'city_id'=>$this->pdata['city_id'],
@@ -459,7 +478,7 @@ class UserCenterController extends VersionController
             }else{
                 $garden_code =$this->createGardenCode($this->pdata['city_id']);
                 $mongo->baseinfo->garden_area->insert(array(
-                    '_id'=>getNextId($mongo,'baseinfo','garden_code'),
+                    '_id'=>getNextId($mongo,'baseinfo','garden_area'),
                     'garden_name'=>$this->pdata['garden_name'],
                     'garden_code'=>$garden_code,
                     'city_id'=>$this->pdata['city_id'],
