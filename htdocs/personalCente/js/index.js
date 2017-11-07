@@ -20,6 +20,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
+                    localStorage.setItem("account",result.account);
                   var  html=`        
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
@@ -129,7 +130,6 @@ $(document).ready(function(){
                             </div>
                         </div>                            
                     `;
-                  console.log(html);
                   $(".personal").html(html)
                 }else{
                     // window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"

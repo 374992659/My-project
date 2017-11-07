@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    // 获取个人账号
+    var account=localStorage.getItem("account");
+    $(".account").text(account);
     // 刷新验证码
     $(".refreshImg").click(function(){
         // 获取时间戳
