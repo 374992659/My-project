@@ -373,10 +373,11 @@ $(document).ready(function(){
         });
         // 图片放大预览
         (function(){
-            $(".picPlace").on("click","li .pushTopic_Img",function(){
+            $(".picPlace").on("click",".weui-uploader__file .pushTopic_Img",function(){
                 console.log("图片放大");
                 var url=$(this).attr("scr");
                 console.log(url);
+                console.log($(this));
                 if($(".weui-gallery").is(":hidden")){
                     $(".weui-gallery").show();
                     $(".weui-gallery__img").attr("style","background-img:url("+url+")")
