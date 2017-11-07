@@ -124,6 +124,7 @@ $(document).ready(function(){
             var roomNum=$("#roomNum option:selected").val();
         room_num=dongNum+"-"+floorNum+"-"+roomNum;
         console.log(room_num);
+        console.log(typeof room_num);
         // 身份证号
          var   id_card_num=$("#identityCard").val();
         // 身份证照片json字符串格式
