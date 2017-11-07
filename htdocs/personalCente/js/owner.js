@@ -148,7 +148,7 @@ $(document).ready(function(){
         // 个人照片（可填）
         // yourself_picture=
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_picture":id_card_picture,"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":garden_picture})],
+        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_picture,"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":garden_picture})],
         //    数据加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
