@@ -41,8 +41,5 @@ $(document).ready(function(){
         // 密码
         // 重复密码
 
-
-
-
     })
 });
