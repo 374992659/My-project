@@ -249,11 +249,14 @@ $(document).ready(function(){
         // 获取群code
         var group_code=$(this).attr("title"),
             // 群头像
-            group_head=$(this).find("img").attr("src");
+            group_head=$(this).find("img").attr("src"),
+            //群名字
+            group_name=$(this).find("h4").text();
        // 存本地
         localStorage.setItem("group_head",group_head);
         localStorage.setItem("group_code",group_code);
         localStorage.setItem("group_num",group_num);
+        localStorage.setItem("group_name",group_name);
         window.location.href="flockChat.html";
     });
     $(function(){

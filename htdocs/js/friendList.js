@@ -18,8 +18,7 @@ $(document).ready(function() {
                 console.log(data);
                 localStorage.setItem("apptoken",data.apptoken);
                 localStorage.setItem("my_code",data.data.account_code);
-                localStorage.setItem("my_head",data.data.portrait);
-                console.log(data.data.account_code);
+                localStorage.setItem("my_head","http://wx.junxiang.ren/project/"+data.data.portrait);
             }
         })
     })();

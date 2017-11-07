@@ -398,7 +398,7 @@ $(document).ready(function(){
                  <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${content}</span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="http://${my_portrait}" alt="">
              </div>
          </div>
             `;
