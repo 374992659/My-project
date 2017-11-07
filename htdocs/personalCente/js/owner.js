@@ -71,4 +71,43 @@ $(document).ready(function(){
             }
         });
     });
+    // 上传小区照片
+    $('#uploaderInputPlot').change(function(e) {
+        var Url=window.URL.createObjectURL(this.files[0]) ;
+        var formData= new FormData();
+        var apptoken=localStorage.getItem("apptoken");
+        formData.append("file",$("#uploaderInputPlot")[0].files[0]);
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        formData.append("data",json);
+        console.log(formData);
+        $.ajax({
+            type:"POST",
+            url:url+"UserCenter_uploadOwnerApplicationPic",
+            fileElementId:'uploaderInputPlot',
+            data:formData,
+            processData : false,
+            contentType : false,
+            secureuri:false,
+            success : function(data){
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    console.log(data.data.file_path);
+                    if(Url){
+                   var html=`
+               <li class="lf" style="margin-right: 10px">
+                            <img  src="${Url}" style="height: 79px;width: 79px" alt="" >
+                        </li>             
+               `
+                    }
+                    $(".placePlot").html(html);
+                }
+            },
+            error:function (data) {
+                console.log(data);
+            }
+        });
+    });
 });
