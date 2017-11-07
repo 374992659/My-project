@@ -138,11 +138,12 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>                                      
-                    `
+                    `;
+                  $(".personal").html(html)
                 }else{
                     // window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
                 }
-                $(".personal").html(html)
+
             },
             error:function(){}
         })
