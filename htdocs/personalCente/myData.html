@@ -15,6 +15,12 @@
     <link rel="stylesheet" href="../JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/myData.css">
 </head>
+<style>
+    .weui-uploader__input-box {
+        width: 68px;
+        height: 68px;
+    }
+</style>
 <body>
     <div style="padding: 5px">
         <!--推广二维码-->
@@ -27,11 +33,22 @@
             <div class="weui-panel__bd">
                 <div class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb" src="image/firenda.jpg">
+                        <div class="weui-cells weui-cells_form">
+                            <div class="weui-uploader__input-box loader">
+                                <form action="" id="form" enctype="multipart/form-data">
+                                    <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">
+                                </form>
+                            </div>
+                            <div class="flockHead" >
+                                <img src="" alt="" style="width: 68px;height: 68px" >
+                            </div>
+                        </div>
                     </div>
                     <div class="weui-media-box__bd">
                         <button  class="finishBtn" style="float: right;background: white;border: none;font-size: 18px;color: green">完成</button>
-                        <h4 class="weui-media-box__title">昵称：<span>阿卡记得阿萨德啊</span> </h4>
+                        <h4 class="weui-media-box__title">昵称：
+                            <input type="text" id="nickname" placeholder="请输入昵称" autofocus="autofocus" style="border: none">
+                        </h4>
                         <h4 class="weui-media-box__title ">账号：<span class="account"></span></h4>
                     </div>
                 </div>

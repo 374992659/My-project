@@ -37,12 +37,47 @@ $(document).ready(function(){
             return false;
         }
     });
-    // 功能3 提交用户资料
-    $(".finishBtn").click(function(){
-        // 获取姓名
-        // 电话
-        // 密码
-        // 重复密码
+    // 功能5 上传用户头像
+    $('#uploaderInput').change(function(e) {
+        var Url=window.URL.createObjectURL(this.files[0]) ;
 
-    })
+        var formData= new FormData();
+        var apptoken=localStorage.getItem("apptoken");
+        formData.append("file",$("#uploaderInput")[0].files[0]);
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        formData.append("data",json);
+        console.log(formData);
+        $.ajax({
+            type:"POST",
+            url:url+"group_uploadGroupP",
+            fileElementId:'uploaderInput',
+            data:formData,
+            processData : false,
+            contentType : false,
+            secureuri:false,
+            success : function(data){
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    console.log(data.data.file_path);
+                    localStorage.setItem("myPortrait",data.data.file_path);
+                    $(".flockHead img").attr("src",Url);
+                    $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
+                    $(".flockHead").attr("style","display:block");
+                }
+            },
+            error:function (data) {
+                console.log(data);
+            }
+        });
+    });
+    // 功能6 提交用户资料
+    $(".finishBtn").click(function(){
+        // 获取头像
+        var portrait=localStorage.getItem("myportrait"),
+       // 获取昵称
+          nickname=$("#nickname").val(),
+    });
 });
