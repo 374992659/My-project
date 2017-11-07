@@ -28,7 +28,7 @@ $(document).ready(function(){
                                         <img class="weui-media-box__thumb" src="${result.portrait}">
                                     </div>
                                     <div class="weui-media-box__bd">
-                                        <a href="myData.html" style="float: right;color:green">编辑个人资料</a>
+                                        <a href="myData.html" style="float: right;color:green">完善个人资料</a>
                                         <div style="clear: both"></div>
                                         <h4 class="weui-media-box__title">昵称：<span>${result.nickname}</span> </h4>
                                         <h4 class="weui-media-box__title">账号：<span>${result.account}</span></h4>
@@ -79,7 +79,7 @@ $(document).ready(function(){
                                 <div class="weui-cell__bd">
                                     <label class="left" style="vertical-align: top">喜好：</label>
                                     <ul class="likes">
-                                      
+                                      <li>${result.hobby}</li>
                                     </ul>
                                 </div>
                             </div>

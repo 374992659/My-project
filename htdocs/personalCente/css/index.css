@@ -76,6 +76,9 @@ a:hover {
 .weui-cell {
     padding: 10px 0;
 }
+.weui-media-box {
+    padding:0;
+}
 .weui-media-box__title {
     text-align: left;
     font-size: 17px;
