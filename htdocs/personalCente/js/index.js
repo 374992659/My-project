@@ -20,8 +20,8 @@ $(document).ready(function(){
                 if(data.ercode===0){
                     var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
-                  var  html=`                  
-                        <div class="weui-panel weui-panel_access">
+                  var  html=`        
+                  <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
                                 <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
@@ -41,7 +41,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--名字-->
+                      
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -51,7 +51,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--电话-->
+                       
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -60,7 +60,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--微信-->
+                      
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -78,7 +78,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--喜好-->
+                    
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -89,7 +89,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--常住小区-->
+                     
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -98,7 +98,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--出生年月-->
+                     
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -107,7 +107,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--拥有楼盘-->
+                   
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -119,7 +119,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--律师援助-->
+                     
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
@@ -129,7 +129,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                         </div>
-                        <!--注册时间-->
+                    
                         <div class="weui-cells">
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
