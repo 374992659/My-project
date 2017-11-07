@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="../JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="../JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/addMember.css">
+    <style>
+        .flockHeadA,.flockHeadB {
+            width: 77px;
+            height: 77px;
+            border: 1px solid #d9d9d9;
+            margin: 0 auto;
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div style="padding: 5px 10px">
@@ -40,23 +49,23 @@
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
-                    <select name="" id="houseNum">
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
-                        <option value="">5</option>
+                    <select name="" id="dongNum">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
                     </select>栋/座
-                    <select name="" id="">
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
-                        <option value="">4</option>
+                    <select name="" id="floorNum">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
                     </select>楼
-                    <select name="" id="">
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
+                    <select name="" id="roomNum">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>号
                 </div>
             </div>
@@ -67,10 +76,10 @@
                 <div class="weui-cell__bd">
                     <label class="left" for="rela">关系：<span style="color:red">*</span></label>
                     <select name="" id="rela">
-                        <option value="">房主</option>
-                        <option value="">儿子</option>
-                        <option value="">妻子</option>
-                        <option value="">父母</option>
+                        <option value="房主">房主</option>
+                        <option value="儿子">儿子</option>
+                        <option value="妻子">妻子</option>
+                        <option value="父母">父母</option>
                     </select>
                 </div>
             </div>
@@ -81,6 +90,24 @@
                 <div class="weui-cell__bd">
                     <label class="left" for="plotName">小区名：<span style="color:red">*</span></label>
                     <input type="text" id="plotName">
+                </div>
+            </div>
+        </div>
+        <!--小区地址-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="">小区地址：<span style="color:red">*</span></label>
+                    <div class="weui-cell__bd" id="sanji" style="display: inline-block">
+                        <select name="province" id="province">
+                            <option value="">请选择</option>
+                        </select>
+                        <select name="city" id="city">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <input type="text" id="housePlace" placeholder="街道" style="width: 20%">
+                </div>
                 </div>
             </div>
         </div>
@@ -97,8 +124,47 @@
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <label class="left" for="identityPic">证件照：<span style="color:red">*</span></label>
-
+                    <label class="left" for="" style="vertical-align: top">证件照：<span style="color:green">*</span></label>
+                    <!--上传照片-->
+                    <div style="display: inline-block">
+                        <!--正面-->
+                        <div class="weui-cells weui-cells_form" style="display: inline-block">
+                            <div class="weui-uploader__input-box loaderA">
+                                <form action="" id="formA" enctype="multipart/form-data">
+                                    <input id="uploaderInputA" name="uploaderInputA" class="weui-uploader__input" type="file">
+                                </form>
+                            </div>
+                            <div class="flockHeadA">
+                                <img src="" alt="" style="width: 80px;height: 80px" >
+                            </div>
+                        </div>
+                        <!--反面-->
+                        <div class="weui-cells weui-cells_form" style="display: inline-block">
+                            <div class="weui-uploader__input-box loaderB">
+                                <form action="" id="formB" enctype="multipart/form-data">
+                                    <input id="uploaderInputB" name="uploaderInputB" class="weui-uploader__input" type="file">
+                                </form>
+                            </div>
+                            <div class="flockHeadB" >
+                                <img src="" alt="" style="width: 80px;height: 80px" >
+                            </div>
+                        </div>
+                        <!--<ul>-->
+                        <!--<li class="lf" style="margin-right: 10px">-->
+                        <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
+                        <!--</li>-->
+                        <!--<li class="lf"  style="margin-right: 10px">-->
+                        <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
+                        <!--</li>-->
+                        <!--</ul>-->
+                        <!--<div class="weui-uploader__bd lf">-->
+                        <!--<div class="weui-uploader__input-box">-->
+                        <!--<form action="" id="form" enctype="multipart/form-data">-->
+                        <!--<input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">-->
+                        <!--</form>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                    </div>
                 </div>
             </div>
         </div>
@@ -106,7 +172,7 @@
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <label class="left" for="ownerPic">个人照片：<span style="color:red">*</span></label>
+                    <label class="left" for="">个人照片：<span style="color:green">*</span></label>
 
                 </div>
             </div>
@@ -123,5 +189,14 @@
     });
 </script>
 <script src="../JQuery_weui/jquery-weui.js"></script>
+    <script src="../js/url.js"></script>
+    <script src="../js/aes.js"></script>
+    <script src="../js/pad-zeropadding.js"></script>
+    <script src="../js/encrypt-decode.js"></script>
+    <script src="js/addMember.js"></script>
+    <script src="../js/addRess.js"></script>
+    <script >
+        addRess();
+    </script>
 </body>
 </html>
