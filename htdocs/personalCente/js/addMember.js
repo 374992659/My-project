@@ -14,7 +14,7 @@ $(document).ready(function(){
         // id_card_num 身份证号码
         var id_card_num=$("#identityCard option:selected").val();
         // garden_code 小区code
-        var garden_code="";
+        var garden_code=1354;
         // garden_name 小区名称
         var garden_name=$("#plotName").val();
         // city_id 城市id
