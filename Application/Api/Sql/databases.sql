@@ -19,6 +19,7 @@ CREATE TABLE  if not exists `user_info_$city_id` (
   `create_time` int(10) unsigned NOT NULL COMMENT '注册时间',
   `create_addr_code` int(10) unsigned NOT NULL COMMENT '注册地的区域id',
   `sex` tinyint(1) DEFAULT '0' COMMENT '性别 0：保密 1：男 2：女',
+  `total_point` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '总积分',
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_code` (`account_code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息库，由区域分表';
@@ -270,6 +271,18 @@ CREATE TABLE if NOT EXISTS `my_subject` (
   PRIMARY KEY (`id`),
   KEY `garden_code` (`garden_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='我的话题关联表';
+
+CREATE TABLE if NOT EXISTS `point_record` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name_id` int(11) unsigned NOT NULL COMMENT '积分类型id',
+  `name` varchar(255)  NOT NULL COMMENT '积分类型名称',
+  `type` tinyint(2) unsigned NOT NULL COMMENT '加分/减分 1：加分 2：减分',
+  `value` int(11) unsigned NOT NULL COMMENT '分值',
+  `create_time` int(11) unsigned NOT NULL COMMENT '操作时间',
+  PRIMARY KEY (`id`),
+  KEY `create_time` (`create_time`),
+  KEY `type` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='积分操作表';
 
 use garden_$province_id;
 
