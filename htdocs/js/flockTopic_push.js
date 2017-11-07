@@ -2,11 +2,8 @@ $(document).ready(function(){
     "use strict";
     // 上传图片及预览
     $("#uploaderInput").change(function(e){
-        // let targetElement = e.target,
         // 图片信息组成的数组
         var file =$("#uploaderInput")[0].files;
-        // url=window.URL.createObjectURL(this.files[0]);
-        // 输出地址
         console.log(file[0].name);
         var formData = new FormData();
         for(var i=0,len=file.length;i<len;i++){
@@ -58,7 +55,7 @@ $(document).ready(function(){
            var URL=$(this).attr("src");
             if($(".weui-gallery").is(":hidden")){
                 $(".weui-gallery").show();
-                $(".weui-gallery__img img").attr("src",URL)
+                $(".weui-gallery__img").attr("style","background-image: url("+URL+")")
             }
         });
         $(".weui-gallery").click(function(){

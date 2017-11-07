@@ -324,9 +324,13 @@ $(document).ready(function(){
         // 图片上传
         $("#uploaderInput").change(function(e){
             var Url=window.URL.createObjectURL(this.files[0]) ;
+            var file =$("#uploaderInput")[0].files;
             var formData= new FormData();
             var apptoken=localStorage.getItem("apptoken");
-            formData.append("file",$("#uploaderInput")[0].files[0]);
+            for(var i=0,len=file.length;i<len;i++){
+                formData.append("flockPlay"+i,file[i]);
+            }
+            //formData.append("file",$("#uploaderInput")[0].files[0]);
             var data=["",JSON.stringify({"apptoken":apptoken})];
             var json=jsEncryptData(data);
             formData.append("data",json);
@@ -344,14 +348,18 @@ $(document).ready(function(){
                     data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
-                        console.log(data.data[0]);
-                        localStorage.setItem("flockVotePic",data.data[0]);
-                        console.log(data.data[0]);
-                        $(".img").attr({
-                            "src":Url,
-                            "style":"width:77px;height:77px"
+                        console.log(data.data);
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var LiImg="";
+                        $.each(data.data,function(i,item){
+                            LiImg+=`
+                             <li class="weui-uploader__file" >
+                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
+                                     <img src="image/del.png" alt="" width="20px" class="delImg">
+                                 </li>
+                            `
                         });
-
+                        $(".picPlace").append(LiImg)
                     }
                 },
                 error:function (data) {
@@ -365,12 +373,13 @@ $(document).ready(function(){
         });
         // 图片放大预览
         (function(){
-            $(".picPlace").on("click","li .pushPlayImg",function(){
-                console.log(123);
-                var url=localStorage.getItem("pushPlay_Img");
+            $(".picPlace").on("click","li img",function(){
+                console.log("图片放大");
+                var url=$(this).attr("scr");
+                console.log(url);
                 if($(".weui-gallery").is(":hidden")){
                     $(".weui-gallery").show();
-                    $(".weui-gallery__img img").attr("src",url)
+                    $(".weui-gallery__img").attr("style","background-img:url("+url+")")
                 }
             });
             $(".weui-gallery").click(function(){
