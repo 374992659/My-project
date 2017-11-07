@@ -111,4 +111,58 @@ $(document).ready(function(){
             }
         });
     });
+    $(".weui-btn").click(function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+        // 姓名
+           real_name=$("#name").val(),
+        // 手机号
+            phone=$("#phone").val();
+        // 房号“1-2-3”字符串格式
+            var dongNum=$("#dongNum option:selected").val();
+            var floorNum=$("#floorNum option:selected").val();
+            var roomNum=$("#roomNum option:selected").val();
+        room_num=dongNum+"-"+floorNum+"-"+roomNum;
+        console.log();
+        // 身份证号
+         var   id_card_num=$("#identityCard").val();
+        // 身份证照片json字符串格式
+        var myPicA=localStorage.getItem("myPicA");
+        var myPicB=localStorage.getItem("myPicB");
+         var   id_card_picture={"a":myPicA,"b":myPicB},
+        // 小区名字
+            gardern_name=$("#plotName").val(),
+        // 小区code（没有可不填）
+        //     garden_code=
+        // 小区所属城市
+            city_id=$("#city option:selected").val(),
+        // 小区详细地址
+            garden_addr=$("#plotPlace").val(),
+        // 小区照片
+            garden_picture=$(".placePlot img").attr("src");
+        // 合同房产证照片（可填）
+        // picture=
+        // 个人照片（可填）
+        // yourself_picture=
+        // 数据格式转换
+        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"id_card_num":id_card_num,"id_card_picture":id_card_picture,"gardern_name":gardern_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":garden_picture})],
+        //    数据加密
+            jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"UserCenter_ownerApplication",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken)
+                }
+
+            },
+            error:function(){}
+        })
+    })
 });
