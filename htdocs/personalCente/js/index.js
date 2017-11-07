@@ -8,6 +8,7 @@ $(document).ready(function(){
             // 加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
+        console.log(jsonEncryptData);
         $.ajax({
             url:url+"UserCenter_getMyInfo",
             type:"POST",
