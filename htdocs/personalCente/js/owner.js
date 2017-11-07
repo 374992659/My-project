@@ -130,7 +130,7 @@ $(document).ready(function(){
         // 身份证照片json字符串格式
         var myPicA=localStorage.getItem("myPicA");
         var myPicB=localStorage.getItem("myPicB");
-         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}",
+        var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}",
         // 小区名字
             gardern_name=$("#plotName").val(),
         // 小区code（没有可不填）
@@ -142,6 +142,7 @@ $(document).ready(function(){
         // 小区照片
            var a=$(".placePlot img").attr("src");
             var garden_picture="{'a':'"+a+"'}";
+            console.log(typeof id_card_picture );
         // 合同房产证照片（可填）
         // picture=
         // 个人照片（可填）
