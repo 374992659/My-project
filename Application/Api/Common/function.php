@@ -98,7 +98,6 @@ function getNextId($mongo,$dbName,$collectionName,$param=array()){
         'findandmodify' => 'counters',
         'update' => $update,
         'query' => $query,
-        'new' => true
     );
 
     $id = $mongo->$dbName->command($command);
