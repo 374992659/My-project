@@ -375,7 +375,7 @@ $(document).ready(function(){
         (function(){
             $(".picPlace").on("click",".weui-uploader__file .pushTopic_Img",function(e){
                 console.log("图片放大");
-                var url=$(e.target).attr("scr");
+                var url=$(this).attr("src");
                 console.log(url);
                 console.log($(this));
                 if($(".weui-gallery").is(":hidden")){
