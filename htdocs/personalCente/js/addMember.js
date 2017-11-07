@@ -12,7 +12,7 @@ $(document).ready(function(){
         var roomNum=$("#roomNum option:selected").val();
         var room_num=dongNum+"-"+floorNum+"-"+roomNum;
         // id_card_num 身份证号码
-        var id_card_num=$("#identityCard option:selected").val();
+        var id_card_num=$("#identityCard").val();
         // garden_code 小区code
         var garden_code=1354;
         // garden_name 小区名称
