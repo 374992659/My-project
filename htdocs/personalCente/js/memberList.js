@@ -34,5 +34,16 @@ $(document).ready(function(){
             }
         },
         error:function(){}
+    });
+    // 页面跳转保存数据
+    $(".memberList").on("click","tr",function(){
+        // 获取当前的city_id
+        var city_id=$(this).attr("value");
+        // 获取application_id
+        var application_id=$(this).attr("title");
+        // 存在本地下一个跳转页面用
+        localStorage.setItem("personalCity_id",city_id);
+        localStorage.setItem("application_id",application_id);
+        window.location.href="";//跳转到成员业主认证详情页面
     })
 });
