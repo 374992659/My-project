@@ -111,7 +111,41 @@ $(document).ready(function(){
 
     })();
     // 获取小区code
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        $("#plotName").on("input",function(){
+            var city_id=$("#city option:selected").val();  // 获取城市id
+            var key=$("#houseName").val();
+            if(key){
 
+            }else{
+
+            }
+            // 数据格式转换
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"key":key})],
+                // 加密
+                jsonEncryptData=jsEncryptData(data);
+            console.log("通过关键词搜索小区");
+            console.log(data);
+            $.ajax({
+                url:url+"UserCenter_getGardenInfo",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        console.log(data.data);
+                        $("#plotName").attr("title",data.data.garden_code)
+                    }
+                },
+                error:function(){}
+            })
+        })
+    })();
     $(".weui-btn").click(function(){
         var success=$(".success");
         var hideTop=function(){
@@ -126,9 +160,7 @@ $(document).ready(function(){
         var dongNum=$("#dongNum option:selected").val();
         var floorNum=$("#floorNum option:selected").val();
         var roomNum=$("#roomNum option:selected").val();
-        room_num=dongNum+"-"+floorNum+"-"+roomNum;
-        console.log(room_num);
-        console.log(typeof room_num);
+        var room_num=dongNum+"-"+floorNum+"-"+roomNum;
         // 5 参数：id_card_num 身份证号码
         var id_card_num=$("#identityCard").val();
         // 6 参数：garden_code 小区code

@@ -61,12 +61,33 @@
             <div class="weui-cells__tips">标题2-200个字</div>
         </div>
         <!--是否推送物管-->
-        <div>
-            <label for="isPush">推送物管：</label>
-            <select name="" id="isPush">
-                <option value="1">是</option>
-                <option value="2">否</option>
-            </select>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="is_push">推送物管：<span style="color:red">*</span></label>
+                    <select name="" id="is_push">
+                        <option value="1">是</option>
+                        <option value="2">否</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!--楼盘地址-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="housePlace">楼盘地址：<span style="color:red">*</span></label>
+                    <div class="weui-cell__bd" id="sanji" style="display: inline-block">
+                        <select name="province" id="province">
+                            <option value="">请选择</option>
+                        </select>
+                        <select name="city" id="city">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <input type="text" id="houseName" placeholder="小区名字" style="width: 20%">
+                </div>
+            </div>
         </div>
         <!--提交按钮-->
         <button class="weui-btn weui-btn_primary sumBtn">按钮</button>
@@ -91,5 +112,14 @@
     });
 </script>
 <script src="../JQuery_weui/jquery-weui.js"></script>
+    <script src="../js/url.js"></script>
+    <script src="../js/aes.js"></script>
+    <script src="../js/pad-zeropadding.js"></script>
+    <script src="../js/encrypt-decode.js"></script>
+    <script src="js/informContent.js"></script>
+    <script src="../js/addRess.js"></script>
+    <script >
+        addRess();
+    </script>
 </body>
 </html>
