@@ -777,6 +777,34 @@ class GroupController extends VersionController
             $model->rollback();
             $this->echoEncrypData(1);
         }
+        //评论积分
+        M()->startTrans();
+        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('COMMENT')])->find();
+        $point_record = new Model\PointRecordModel($this->account_code);
+        $point_record->startTrans();
+        $res3 = $point_record->add(array(
+            'name_id'=>$point['id'],
+            'name'=>$point['name'],
+            'type'=>$point['type'],
+            'value'=>$point['value'],
+            'create_time'=>time(),
+        ));
+        $res4 = true;
+        if($limit_point = $this->getPointLimitStatus($this->account_code)){
+            $add = $point['value'];
+            if($limit_point < $point['value']){
+                $add = $limit_point;
+            }
+            $res4 = M()->quer('update set baseinfo.user_info_'.$table_id.' set total_point =total_point+'.$add.' where account_code ='.$this->account_code);
+        }
+        if(!$res3 || !$res4){
+            $model->rollback();
+            $point_record->rollback();
+            M()->rollback();
+            $this->echoEncrypData(1);
+        }
+        $point_record->commit();
+        M()->commit();
         $model->commit();
         $this->echoEncrypData(0);
     }
@@ -802,6 +830,7 @@ class GroupController extends VersionController
         if(!$res){
             $this->echoEncrypData(1);
         }
+        $point = new Model\PointRecordModel($this->account_code);
         $this->echoEncrypData(0);
 
     }
@@ -1172,6 +1201,24 @@ class GroupController extends VersionController
                     return $code;
                 }
             }
+        }
+        return false;
+    }
+    /*
+    * 判断用户今日是否已达分数上限
+    * 没超过上限则返回与上线分的差值
+    * */
+    public function getPointLimitStatus($account){
+        $point_limit = M('baseinfo.point_config')->where(['id'=>C('DAY_LIMIT')])->getField('value');
+        $today = strtotime('today');
+        $point_record = new Model\PointRecordModel($account);
+        $today_point = $point_record->where([
+            'create_time'=>['egt',$today],
+            'type'=>1,
+            'id'=>['neq',C('INVITE_REGISTER')],
+        ])->count('value'); //邀请他人注册得分不计入得分上限
+        if(intval($today_point) < intval($point_limit)){
+            return (intval($point_limit) - intval($today_point));
         }
         return false;
     }

@@ -22,6 +22,20 @@ return array(
         'IOS'                   => '1.0.0',  //ios最新版本号
         'ANDROID'           => '1.0.0',//android最新版本号
         ),
+    'POINT_CONFIG'=>array(
+        'REGISTER'=>1,                   //注册id
+        'INVITE_REGISTER'=>2,        //邀请注册id
+        'SING_IN'=>3,                   //签到id
+        'COMMENT'=>4,               //评论id
+        'LIKES'=>5,                         //点赞id
+        'CERTIFICATION'=>6,         //实名认证id
+        'ADD_NUM'=>7,               //添加成员id
+        'IMPROVE_DATA'=>8,      //完善资料id
+        'DAY_LIMIT'=>9,                 //每日得分上限id
+        'DELETE_COMMENT'=>10,//删除评论id
+        'CANCEL_LIKES'=>11,         //取消点赞id
+        'DEL_NUM'=>12,                  //删除成员id
+    ),
     'SQL_PATH'      => './Application/Api/Sql/',
     //微信公众号
     'APPID'             =>'wx3a8d29551364f089',

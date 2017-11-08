@@ -921,9 +921,75 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(0,'',$data);
         }
     }
+    /*
+     * 签到
+     * */
+    protected function signIn_v1_0_0(){
+        $account_code = $this->account_code;
+        $point_record = new Model\PointRecordModel($account_code);
+        $today = strtotime('today');
+        $count = $point_record->where(['name_id'=>C('SING_IN'),'create_time'=>['egt',$today]])->count();
+        if($count){
+            $this->echoEncrypData(1,'您今天已经签到了,无需重复操作哦');
+        }else{
+            $city = substr($account_code,0,4);
+            $point=  M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('SING_IN')])->find();
+            $point_record = new Model\PointRecordModel($account_code);
+            $point_record->startTrans();
+            $res1 = $point_record->add(array(
+                'name_id'=>$point['id'],
+                'name'=>$point['name'],
+                'type'=>$point['type'],
+                'value'=>$point['value'],
+                'create_time'=>time()
+            ));
+            $limit_status = $this->getPointLimitStatus($account_code);
+            if($limit_status){
+                $add = $point['value'];
+                if($limit_status < $point['value']){
+                    $add = $limit_status;
+                }
+                M()->startTrans();
+                $res2  = M()->query('update baseinfo.user_info_'.$city.' set total_point =total_point+'.$add.' where account_code='.$account_code);
+                if($res1 and $res2){
+                    M()->commit();
+                    $point_record->commit();
+                    $this->echoEncrypData(0);
+                }else{
+                    M()->rollback();
+                    $point_record->rollback();
+                    $this->echoEncrypData(1);
+                }
+            }else{
+                if($res1){
+                    $point_record->commit();
+                    $this->echoEncrypData(0,'签到成功');
+                }else{
+                    $point_record->rollback();
+                    $this->echoEncrypData(1,'签到失败');
+                }
+            }
+        }
+    }
 
-
-
+    /*
+     * 判断用户今日是否已达分数上限
+     * 没超过上限则返回与上线分的差值
+     * */
+    public function getPointLimitStatus($account){
+        $point_limit = M('baseinfo.point_config')->where(['id'=>C('DAY_LIMIT')])->getField('value');
+        $today = strtotime('today');
+        $point_record = new Model\PointRecordModel($account);
+        $today_point = $point_record->where([
+            'create_time'=>['egt',$today],
+            'type'=>1,
+            'id'=>['neq',C('INVITE_REGISTER')],
+        ])->count('value'); //邀请他人注册得分不计入得分上限
+        if(intval($today_point) < intval($point_limit)){
+            return (intval($point_limit) - intval($today_point));
+        }
+        return false;
+    }
 
     /*
      * 生成小区code
