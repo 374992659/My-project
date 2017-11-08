@@ -19,7 +19,8 @@ $(document).ready(function(){
                 var html="";
                 $.each(data.data,function(i,item){
                     console.log(item);
-                    if(parseInt(item.status===1)){
+                    if(parseInt(item.status)===1){
+                        console.log(1);
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
