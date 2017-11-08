@@ -20,7 +20,7 @@ $(document).ready(function(){
                 var html="";
                 $.each(data.data,function(i,item){
                     console.log(2);
-                    if(item.status===0){
+                    if(parseInt(item.status)===0){
                         console.log(3);
                         html+=`
                 <td tilte="${item.id}">${item.garden_name}</td>
@@ -29,7 +29,7 @@ $(document).ready(function(){
                     <td><button>删除</button></td>
                 </tr>
                             `
-                    }else if(item.status===1){
+                    }else if(parseInt(item.status)===1){
                         html+=`
                 <td tilte="${item.id}">${item.garden_name}</td>
                     <td>${item.room_num}</td>
