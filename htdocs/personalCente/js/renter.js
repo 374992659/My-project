@@ -31,7 +31,7 @@ $(documnet).ready(function(){
     // 参数：garden_addr 楼盘地址
     var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
     // 参数：contract_period 合同期限 10位时间戳 整型
-    var contract_period=
+    var contract_period=""
     // 参数：pictures 合同照
     // 参数：yourself_picture 个人照片 可填
 
