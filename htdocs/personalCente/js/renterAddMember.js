@@ -124,9 +124,11 @@ $(document).ready(function(){
         var phone=$("#phone").val();
         // 4 参数：room_num 房间号码
         var dongNum=$("#dongNum option:selected").val();
-        var floorNum=$("floorNum option:selected").val();
-        var roomNum=$("roomNum option:selected").val();
-        var room_num=dongNum+"-"+floorNum+"-"+roomNum;
+        var floorNum=$("#floorNum option:selected").val();
+        var roomNum=$("#roomNum option:selected").val();
+        room_num=dongNum+"-"+floorNum+"-"+roomNum;
+        console.log(room_num);
+        console.log(typeof room_num);
         // 5 参数：id_card_num 身份证号码
         var id_card_num=$("#identityCard").val();
         // 6 参数：garden_code 小区code
