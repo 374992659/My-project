@@ -74,8 +74,76 @@ $(document).ready(function(){
     })();
     // 上传房主身份证照片
     (function(){
-
-
+        // 正面
+        $('#ownerUploaderInputA').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#ownerUploaderInputA")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'uploaderInputA',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        localStorage.setItem("myPicA",data.data[0]);
+                        $(".ownerFlockHeadA img").attr("src",data.data[0]);
+                        $(".ownerLoaderA").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".ownerFlockHeadA").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+        // 发面
+        $('#ownerUploaderInputB').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#ownerUploaderInputB")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'uploaderInputA',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        localStorage.setItem("myPicA",data.data[0]);
+                        $(".ownerFlockHeadB img").attr("src",Url);
+                        $(".ownerLoaderB").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".ownerFlockHeadB").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
     })();
     // 上传合同照片
     (function(){
