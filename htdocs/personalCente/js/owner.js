@@ -118,6 +118,7 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken"),
             // 获取城市id
             city_id=$("#city option:selected").val();
+        console.log(city_id);
         $("#houseName").on("input",function(){
             var key=$("#houseName").val();
             if(key){
