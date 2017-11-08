@@ -80,10 +80,10 @@ $(document).ready(function(){
                                 $.toptip(data.errmsg, 'success');
                             });
                             $(".setSpeak").attr("value",0);
-                            $(this).prop("checked",true);
                             success.html(data.errmsg);
                             show();
-                            setTimeout(hide,3000)
+                            setTimeout(hide,3000);
+                            $(this).prop("checked",true)
                         }else{
                             success.html(data.errmsg);
                             show();

@@ -23,16 +23,16 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7402113">
+    <splitter split-orientation="horizontal" split-proportion="0.81044126">
       <split-first>
         <leaf>
           <file leaf-file-name="commDiscu.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.44594595">
-                  <caret line="18" column="142" selection-start-line="18" selection-start-column="142" selection-end-line="18" selection-end-column="142" />
+                <state vertical-scroll-proportion="0.3716216">
+                  <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
                   <folding>
-                    <element signature="n#style#0;n#span#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -55,11 +55,11 @@
           <file leaf-file-name="commDiscu.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.101969875">
-                  <caret line="143" column="41" selection-start-line="143" selection-start-column="41" selection-end-line="143" selection-end-column="41" />
+                <state vertical-scroll-proportion="0.48435688">
+                  <caret line="85" column="56" selection-start-line="85" selection-start-column="56" selection-end-line="85" selection-end-column="56" />
                   <folding>
-                    <marker date="1510153905552" expanded="true" signature="1348:1471" placeholder="..." />
-                    <marker date="1510153905552" expanded="false" signature="1388:1412" placeholder="..." />
+                    <marker date="1510154189434" expanded="true" signature="1348:1471" placeholder="..." />
+                    <marker date="1510154189434" expanded="false" signature="1388:1412" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -706,21 +706,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.101969875">
-          <caret line="143" column="41" selection-start-line="143" selection-start-column="41" selection-end-line="143" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.48435688">
+          <caret line="85" column="56" selection-start-line="85" selection-start-column="56" selection-end-line="85" selection-end-column="56" />
           <folding>
-            <marker date="1510153905552" expanded="true" signature="1348:1471" placeholder="..." />
-            <marker date="1510153905552" expanded="false" signature="1388:1412" placeholder="..." />
+            <marker date="1510154189434" expanded="true" signature="1348:1471" placeholder="..." />
+            <marker date="1510154189434" expanded="false" signature="1388:1412" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44594595">
-          <caret line="18" column="142" selection-start-line="18" selection-start-column="142" selection-end-line="18" selection-end-column="142" />
+        <state vertical-scroll-proportion="0.3716216">
+          <caret line="15" column="52" selection-start-line="15" selection-start-column="52" selection-end-line="15" selection-end-column="52" />
           <folding>
-            <element signature="n#style#0;n#span#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
