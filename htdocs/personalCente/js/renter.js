@@ -1,4 +1,4 @@
-$(documnet).ready(function(){
+$(document).ready(function(){
     // 参数：apptoken
     var apptoken=localStorage.getItem("apptoken");
     // 参数：real_name 真实姓名
