@@ -98,6 +98,9 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         console.log(data.data);
                         localStorage.setItem("apptoken",data.apptoken);
+                        $.each(data.data,function(i,item){
+                            console.log(item);
+                        });
                         $("#plotName").attr("title",data.data.garden_code)
                     }
                 },
