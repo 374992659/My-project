@@ -71,6 +71,8 @@ $(document).ready(function(){
         });
     })();
     // 上传个人照片
+
+    // 获取小区code
     (function(){
         var apptoken=localStorage.getItem("apptoken");
         $("#plotName").on("input",function(){
@@ -110,42 +112,7 @@ $(document).ready(function(){
         });
 
     })();
-    // 获取小区code
-    (function(){
-        // 获取apptoken
-        var apptoken=localStorage.getItem("apptoken");
-        $("#plotName").on("input",function(){
-            var city_id=$("#city option:selected").val();  // 获取城市id
-            var key=$("#houseName").val();
-            if(key){
-
-            }else{
-
-            }
-            // 数据格式转换
-            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"key":key})],
-                // 加密
-                jsonEncryptData=jsEncryptData(data);
-            console.log("通过关键词搜索小区");
-            console.log(data);
-            $.ajax({
-                url:url+"UserCenter_getGardenInfo",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    // 解密
-                    var data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken);
-                        console.log(data.data);
-                        $("#plotName").attr("title",data.data.garden_code)
-                    }
-                },
-                error:function(){}
-            })
-        })
-    })();
+    // 提交
     $(".weui-btn").click(function(){
         var success=$(".success");
         var hideTop=function(){
