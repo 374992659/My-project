@@ -127,7 +127,7 @@ $(document).ready(function(){
         // 参数：id_card_num 身份证号码
         var id_card_num=$("#identityCard").val();
         // 参数：garden_code 小区code
-        var garden_code="";
+        var garden_code=$("#plotName").attr("title");
         // 参数：garden_name 小区名称
         var garden_name=$("#plotName").val();
         // 参数：city_id 城市id
