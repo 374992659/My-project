@@ -24,7 +24,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
-                    console.log(data.data);
+                    console.log(data.data.community_status);
                     $.each(data.data.Number_data,function(i,item){
                         html+=`
                          <li class="lf">
@@ -96,7 +96,7 @@ $(document).ready(function(){
                     group_num=localStorage.getItem("group_num"),
                     is_cancel=$(this).val(),
                 //数据格转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"is_cancel":is_cancel})],
+                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})],
                     jsonEncryptData=jsEncryptData(data);
                 console.log(data);
                 $.ajax({

@@ -78,7 +78,10 @@ a:hover {
 .weui-grid{
     padding: 10px;
 }
-
+.weui-switch:checked {
+    border-color: #04be02;
+    background-color: #04be02;
+}
 
 
 
