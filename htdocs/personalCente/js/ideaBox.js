@@ -13,7 +13,7 @@ $(document).ready(function(){
         success:function(data){
             // 解密
             var data=jsDecodeData(data);
-            console.log();
+            console.log(data);
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
