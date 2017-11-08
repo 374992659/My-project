@@ -100,8 +100,9 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         $.each(data.data,function(i,item){
                             console.log(item);
+                            $("#plotName").attr("title",item.garden_code)
                         });
-                        $("#plotName").attr("title",data.data.garden_code)
+
                     }
                 },
                 error:function(){}
