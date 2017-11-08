@@ -133,7 +133,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicA",data.data[0]);
+                        localStorage.setItem("myPicA","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".ownerFlockHeadB img").attr("src",Url);
                         $(".ownerLoaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".ownerFlockHeadB").attr("style","display:block");
