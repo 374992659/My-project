@@ -199,7 +199,7 @@
             <div class="weui-cell__bd">
                 <label class="left" for="renter_contractLife">合同有效期：<span style="color:red">*</span></label>
                 <!--<input type="text" id="renter_contractLife" placeholder="例如">-->
-                <input class="weui-input" id="date" type="text" readonly="" data-toggle='date'>
+                <input class="weui-input" id="date" type="text">
             </div>
         </div>
     </div>
@@ -262,6 +262,13 @@
     <script src="../js/addRess.js"></script>
     <script >
         addRess();
+    </script>
+    <script>
+        $("#date").calendar({
+            onChange: function (p, values, displayValues) {
+                console.log(values, displayValues);
+            }
+        });
     </script>
 </body>
 </html>
