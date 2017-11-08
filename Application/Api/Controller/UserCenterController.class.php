@@ -51,6 +51,32 @@ class UserCenterController extends VersionController
         $nickname = $this->pdata['nickname'];
         if(!$portrait || !$nickname)$this->echoEncrypData(21);
         $user_info = new Model\UserInfoModel($city_id);
+        if($this->pdata['id_card_num']){
+            if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['id_card_num'])){
+                $this->echoEncrypData(1,'身份证号码格式错误');
+            }
+            //实名认证
+            if($this->pdata['realname']){
+                //检测身份证姓名是否匹配
+                //完成实名认证积分
+                $point_record = new Model\PointRecordModel($account_code);
+                $exists = $point_record->where(['name_id'=>C('CERTIFICATION')])->count();
+                if(!$exists){
+                    $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CERTIFICATION')])->find();
+                    $point_record->add(array(
+                        'name_id'=>$point['id'],
+                        'name'=>$point['name'],
+                        'type'=>$point['type'],
+                        'value'=>$point['value'],
+                        'create_time'=>time(),
+                    ));
+                    if($point_limit = $this->getPointLimitStatus($account_code)){
+                        $point_limit > $point['value']?$add=$point['value']:$add=$point_limit;
+                        M()->execute('update baseinfo.user_info_'.$city_id.' set total_point =total_point+'.$add.' where account_code='.$account_code);
+                    }
+                }
+            }
+        }
         $res = $user_info->where(array('account_code'=>$account_code))->save(array(
             'portrait'=>$portrait,
             'nickname'=>$nickname,
@@ -382,6 +408,22 @@ class UserCenterController extends VersionController
                     'role'=>2,
                     'status'=>1,
                 ));
+                $point_record = new Model\PointRecordModel($account_code);
+                $point_record->startTrans();
+                $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('ADD_NUM')])->find();
+                $res4 = $point_record->add(array(
+                    'name_id'=>$point['id'],
+                    'name'=>$point['name'],
+                    'type'=>$point['type'],
+                    'value'=>$point['value'],
+                    'create_time'=>time(),
+                ));
+                M()->startTrans();
+                $res5 = true;
+                if($point_limit = $this->getPointLimitStatus($account_code)){
+                    $point_limit>$point['value']?$add=$point['value']:$add=$point_limit;
+                }
+                $res5 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='.$account_code);
                 if($user_code){
                     //2.garden_room 分表添加用户数据
                     $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
@@ -406,22 +448,30 @@ class UserCenterController extends VersionController
                     $user_info = M('baseinfo.user_info_'.$user_city_id);
                     $user_info->startTrans();
                     $res3 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
-                    if(!$res2 or !$res3){
+                    if(!$res1 or !$res2 or !$res3 or !$res4 or !$res5){
                         $garden_num->rollback();
                         $model->rollback();
                         $user_info->rollback();
+                        $point_record->rollback();
+                        M()->rollback();
                         $this->echoEncrypData(1);
                     }else{
+                        $point_record->commit();
+                        M()->commit();
                         $model->commit();
                         $garden_num->commit();
                         $user_info->commit();
                         $this->echoEncrypData(0);
                     }
                 }
-                if($res1){
+                if($res1 and $res4 and $res5){
+                    $point_record->commit();
+                    M()->commit();
                     $model->commit();
                     $this->echoEncrypData(0);
                 }else{
+                    $point_record->rollback();
+                    M()->rollback();
                     $model->rollback();
                     $this->echoEncrypData(1);
                 }
@@ -429,6 +479,16 @@ class UserCenterController extends VersionController
                 $this->echoEncrypData(1,'只有房主才有此操作权利哦');
             }
         }
+    }
+    /*
+     * 业主删除成员
+     * @param city_id 城市id
+     * @param application_id 认证id
+     * */
+    protected function ownerDelNum_v1_0_0(){
+        $this->checkParam(array('city_id','application_id'));
+        $account_code = $this->account_code;
+        
     }
 
     /*
@@ -663,6 +723,22 @@ class UserCenterController extends VersionController
                     'role'=>2,
                     'status'=>1,
                 ));
+                $point_record = new Model\PointRecordModel($account_code);
+                $point_record->startTrans();
+                $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('ADD_NUM')])->find();
+                $res4 = $point_record->add(array(
+                    'name_id'=>$point['id'],
+                    'name'=>$point['name'],
+                    'type'=>$point['type'],
+                    'value'=>$point['value'],
+                    'create_time'=>time(),
+                ));
+                M()->startTrans();
+                $res5 = true;
+                if($point_limit = $this->getPointLimitStatus($account_code)){
+                    $point_limit>$point['value']?$add=$point['value']:$add=$point_limit;
+                }
+                $res5 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='.$account_code);
                 if($user_code){
                     $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
                     $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
@@ -687,23 +763,31 @@ class UserCenterController extends VersionController
                     $user_info = M('baseinfo.user_info_'.$user_city_id);
                     $user_info->startTrans();
                     $res3 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
-                    if(!$res2 || !$res3){
+                    if(!$res1 || !$res2 || !$res3 || !$res4 || $res5){
+                        M()->rollback();
+                        $point_record->rollback();
                         $garden_num->rollback();
                         $model->rollback();
                         $user_info->rollback();
                         $this->echoEncrypData(1);
                     }else{
+                        M()->commit();
+                        $point_record->commit();
                         $model->commit();
                         $garden_num->commit();
                         $user_info->commit();
                         $this->echoEncrypData(0);
                     }
                 }
-                if($res1){
+                if($res1 && $res4 && $res5){
                     $model->commit();
+                    $point_record->commit();
+                    M()->commit();
                     $this->echoEncrypData(0);
                 }else{
                     $model->rollback();
+                    $point_record->rollback();
+                    M()->rollback();
                     $this->echoEncrypData(1);
                 }
             }else{
