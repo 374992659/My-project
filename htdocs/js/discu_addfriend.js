@@ -102,7 +102,7 @@ $(document).ready(function(){
                             }
                         });
                         $(".linkList").append(html);
-                        showHide();
+                        showHide(data.errmsg);
                     }else{
                         console.log(data.errmsg);
                         showHide();

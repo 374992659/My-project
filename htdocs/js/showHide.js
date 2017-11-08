@@ -1,4 +1,4 @@
-var showHide=function(){
+var showHide=function(a){
     "use strict";
     var success=$(".success");
     var show=function(){
@@ -7,7 +7,7 @@ var showHide=function(){
     var hide=function(){
         success.hide()
     };
-    success.html(data.errmsg);
+    success.html(a);
     setTimeout(hide,3000)
 
 };
