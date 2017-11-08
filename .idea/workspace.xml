@@ -54,10 +54,10 @@
             <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.6118192">
-                  <caret line="126" column="45" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
+                  <caret line="114" column="59" selection-start-line="114" selection-start-column="59" selection-end-line="114" selection-end-column="59" />
                   <folding>
-                    <marker date="1510152913502" expanded="true" signature="1207:1330" placeholder="..." />
-                    <marker date="1510152913502" expanded="false" signature="1247:1271" placeholder="..." />
+                    <marker date="1510153042036" expanded="true" signature="1207:1330" placeholder="..." />
+                    <marker date="1510153042036" expanded="false" signature="1247:1271" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -692,10 +692,10 @@
     <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6118192">
-          <caret line="126" column="45" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
+          <caret line="114" column="59" selection-start-line="114" selection-start-column="59" selection-end-line="114" selection-end-column="59" />
           <folding>
-            <marker date="1510152913502" expanded="true" signature="1207:1330" placeholder="..." />
-            <marker date="1510152913502" expanded="false" signature="1247:1271" placeholder="..." />
+            <marker date="1510153042036" expanded="true" signature="1207:1330" placeholder="..." />
+            <marker date="1510153042036" expanded="false" signature="1247:1271" placeholder="..." />
           </folding>
         </state>
       </provider>

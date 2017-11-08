@@ -89,7 +89,7 @@ $(document).ready(function(){
             }
         }else if(parseInt(val)===0){//取消禁言判断
             if(confirm("取消禁言")){
-                $(this).prop("checked",false);
+
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
                 //获取群号
@@ -113,6 +113,7 @@ $(document).ready(function(){
                                 $.toptip(data.errmsg, 'success');
                             });
                             $(".setSpeak").attr("value",1);
+                            $(this).prop("checked",false);
 
                         }else{
                             $(document).on('click','#show-success',function(){
