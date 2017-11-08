@@ -26,20 +26,20 @@
     <splitter split-orientation="horizontal" split-proportion="0.29889297">
       <split-first>
         <leaf>
-          <file leaf-file-name="commDiscu.html" pinned="false" current-in-tab="false">
+          <file leaf-file-name="commDiscu.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-10.645162">
+                <state vertical-scroll-proportion="0.3716216">
                   <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="commDiscu.css" pinned="false" current-in-tab="true">
+          <file leaf-file-name="commDiscu.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/htdocs/css/commDiscu.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.7606093">
+                <state vertical-scroll-proportion="0.0">
                   <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
                   <folding />
                 </state>
@@ -53,11 +53,11 @@
           <file leaf-file-name="commDiscu.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.20625724">
-                  <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="21" selection-end-column="44" />
+                <state vertical-scroll-proportion="0.025492469">
+                  <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
                   <folding>
-                    <marker date="1510152478815" expanded="true" signature="1268:1391" placeholder="..." />
-                    <marker date="1510152478815" expanded="false" signature="1308:1332" placeholder="..." />
+                    <marker date="1510152793743" expanded="true" signature="1207:1330" placeholder="..." />
+                    <marker date="1510152793743" expanded="false" signature="1247:1271" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -673,29 +673,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
+    <entry file="file://$PROJECT_DIR$/htdocs/css/commDiscu.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.645162">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/css/commDiscu.css">
+    <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7606093">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3716216">
+          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20625724">
-          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="21" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.025492469">
+          <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
           <folding>
-            <marker date="1510152478815" expanded="true" signature="1268:1391" placeholder="..." />
-            <marker date="1510152478815" expanded="false" signature="1308:1332" placeholder="..." />
+            <marker date="1510152793743" expanded="true" signature="1207:1330" placeholder="..." />
+            <marker date="1510152793743" expanded="false" signature="1247:1271" placeholder="..." />
           </folding>
         </state>
       </provider>

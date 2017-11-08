@@ -24,7 +24,6 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
-                    console.log(data.data.community_status);
                     if(parseInt(data.data.community_status)===2){
                         $(".setSpeak").prop("checked",true)
                     }
@@ -51,8 +50,6 @@ $(document).ready(function(){
         var val=$(this).val();
         if(parseInt(val)===1){//设置禁言判断
             if(confirm("确认禁言")){
-                $(this).attr("checked","checked");
-                console.log($(this).attr("checked"));
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
                 //获取群号
@@ -76,6 +73,7 @@ $(document).ready(function(){
                                 $.toptip(data.errmsg, 'success');
                             });
                             $(".setSpeak").attr("value",0);
+                            $(this).prop("checked",true);
 
                         }else{
                             $(document).on('click','#show-success',function(){
@@ -91,8 +89,7 @@ $(document).ready(function(){
             }
         }else if(parseInt(val)===0){//取消禁言判断
             if(confirm("取消禁言")){
-                $(this).attr("checked","checked");
-                console.log($(this).attr("checked"));
+                $(this).prop("checked",false);
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
                 //获取群号
