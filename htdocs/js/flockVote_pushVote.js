@@ -198,7 +198,7 @@ $(".weui-gallery").click(function(){
     $(".submitBtn").click(function(){
         var success=$(".success");
         var hideTop=function(){
-            success.empty();};
+            success.empty()};
         // 获取图片
         var picture=localStorage.getItem("flockVotePic");
         // 获取apptoken
