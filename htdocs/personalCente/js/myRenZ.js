@@ -33,8 +33,8 @@ $(document).ready(function(){
                     }else if(parseInt(item.status)===1){
                         console.log(4);
                         html+=`
-                <tr tilte="${item.id}>
-                     <td ">${item.garden_name}</td>
+                <tr tilte="${item.id}">
+                    <td >${item.garden_name}</td>
                     <td>${item.room_num}</td>
                     <td>已通过</td>
                     <td><button>删除</button></td>
