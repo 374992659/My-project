@@ -40,7 +40,7 @@ $(document).ready(function(){
 
     })();
     // 提交
-    $("#sumBtn").click(function(){
+    $(".sumBtn").click(function(){
         var success=$(".success");
         var hideTop=function(){
             success.empty()};
