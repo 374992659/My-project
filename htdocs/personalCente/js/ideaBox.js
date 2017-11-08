@@ -34,7 +34,7 @@ $(document).ready(function(){
                 </div>
                         
                         `
-                    }else if(item.status===2){
+                    }else if(parseInt(item.status)===2){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
@@ -48,7 +48,7 @@ $(document).ready(function(){
                 </div>
                         
                         `
-                    }else if(item.status===3){
+                    }else if(parseInt(item.status)===3){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
@@ -62,7 +62,7 @@ $(document).ready(function(){
                 </div>
                         
                         `
-                    }else if(item.status===4){
+                    }else if(parseInt(item.status)===4){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
@@ -76,7 +76,7 @@ $(document).ready(function(){
                 </div>
                         
                         `
-                    }else if(item.status===5){
+                    }else if(parseInt(item.status)===5){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
