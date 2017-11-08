@@ -45,7 +45,6 @@ $(document).ready(function(){
     });
     //设置禁言
     $(".setSpeak").click(function(){
-
         if(confirm("确认禁言")){
             $(this).attr("checked","checked");
             console.log($(this).attr("checked"));
@@ -71,7 +70,7 @@ $(document).ready(function(){
                         $(document).on('click','#show-success',function(){
                             $.toptip(data.errmsg, 'success');
                         });
-                        $(".setSpeak").val(0);
+                        $(".setSpeak").attr("value",0);
 
                     }else{
                         $(document).on('click','#show-success',function(){
