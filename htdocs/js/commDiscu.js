@@ -25,6 +25,9 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     console.log(data.data.community_status);
+                    if(parseInt(data.data.community_status)===2){
+                        $(".setSpeak").pop("checked",true)
+                    }
                     $.each(data.data.Number_data,function(i,item){
                         html+=`
                          <li class="lf">
