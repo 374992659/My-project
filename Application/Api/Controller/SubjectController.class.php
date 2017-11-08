@@ -213,6 +213,23 @@ class SubjectController extends VersionController
         $res = $model->addSubjectCommont($content,$userinfo);
         if(!$res)$this->echoEncrypData(1);
         $model->execute('update subject_'.$city_id.' set commont_num = commont_num+1 where id='.$subject_id);
+        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('COMMENT')])->find();
+        $point_record = new Model\PointRecordModel($this->account_code);
+        $point_record->add(array(
+            'name_id'=>$point['id'],
+            'name'=>$point['name'],
+            'type'=>$point['type'],
+            'value'=>$point['value'],
+            'create_time'=>time(),
+        ));
+        $city = substr($this->account_code,0,4);
+        if($point_limit = $this->getPointLimitStatus($this->account_code)){
+            $add = $point['value'];
+            if($point_limit < $point['value']){
+                $add = $point_limit;
+            }
+            M()->execute('update baseinfo.user_info_'.$city.' set total_point =total_point+'.$add.' where account_code='.$this->account_code);
+        }
         $this->echoEncrypData(0);
     }
 
@@ -238,12 +255,36 @@ class SubjectController extends VersionController
             $res = $model->addSubjectLikes($res);
             if(!$res)$this->echoEncrypData(1);
             $model->execute('update subject_'.$city_id.' set likes_num = likes_num +1 where id = '.$subject_id);
+            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('LIKES')])->find();
+            $point_record = new Model\PointRecordModel($this->account_code);
+            $point_record->add(array(
+                'name_id'=>$point['id'],
+                'name'=>$point['name'],
+                'type'=>$point['type'],
+                'value'=>$point['value'],
+                'create_time'=>time(),
+            ));
+            if($point_limit = $this->getPointLimitStatus($this->account_code)){
+                $point_limit > $point['value']?$add = $point['value']:$add =$point_limit;
+                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='.$this->account_code);
+            }
             $this->echoEncrypData(0);
         }else{
             if(!$model->where(['type'=>2,'user_code'=>$res['user_code'],'status'=>1])->find())$this->echoEncrypData(1,'您还没有点赞哦');
             $res = $model->cancelSubjectLikes($this->account_code);
             if(!$res)$this->echoEncrypData(1);
-            $model->execute('update subject_'.$city_id.' set likes_num = likes_num -1 where id = '.$subject_id);
+            $model->execute('update subject_'.$city_id.' set likes_num = likes_num -1 where id = '.$subject_id);//减去点赞数
+            //扣除积分以及相应记录
+            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CANCEL_LIKES')])->find();
+            $point_record =new Model\PointRecordModel($this->account_code);
+            $point_record->add(array(
+                'name_id'=>$point['id'],
+                'type'=>$point['type'],
+                'name'=>$point['name'],
+                'value'=>$point['value'],
+                'create_time'=>time(),
+            ));
+            M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='.$this->account_code);
             $this->echoEncrypData(0);
         }
     }
@@ -272,12 +313,35 @@ class SubjectController extends VersionController
             $res = $model->addSubjectCommontLikes($commont_id,$res);
             if(!$res)$this->echoEncrypData(1);
             $model->execute('update subject_dynamics_'.$city_id.'_'.$subject_id.' set commont_likes_num =commont_likes_num+1 where id='.$commont_id);
+            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('LIKES')])->find();
+            $point_record = new Model\PointRecordModel($this->account_code);
+            $point_record->add(array(
+                'name_id'=>$point['id'],
+                'name'=>$point['name'],
+                'type'=>$point['type'],
+                'value'=>$point['value'],
+                'create_time'=>time(),
+            ));
+            if($point_limit = $this->getPointLimitStatus($this->account_code)){
+                $point_limit > $point['value']?$add = $point['value']:$add =$point_limit;
+                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='.$this->account_code);
+            }
             $this->echoEncrypData(0);
         }else{
             if(!$model->where(['type'=>3,'user_code'=>$res['user_code'],'status'=>1,'commont_id'=>$commont_id])->find())$this->echoEncrypData(1,'您还没有点赞哦');
             $res = $model->cancelSubjectCommontLikes($commont_id,$this->account_code);
             if(!$res)$this->echoEncrypData(1);
             $model->execute('update subject_dynamics_'.$city_id.'_'.$subject_id.' set commont_likes_num =commont_likes_num-1 where id='.$commont_id);
+            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CANCEL_LIKES')])->find();
+            $point_record =new Model\PointRecordModel($this->account_code);
+            $point_record->add(array(
+                'name_id'=>$point['id'],
+                'type'=>$point['type'],
+                'name'=>$point['name'],
+                'value'=>$point['value'],
+                'create_time'=>time(),
+            ));
+            M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='.$this->account_code);
             $this->echoEncrypData(0);
         }
     }
@@ -304,6 +368,17 @@ class SubjectController extends VersionController
         $res = $new_model->where(['id ='.$subject_id])->getField('commont_num');
         $new_model->where(['id ='.$subject_id])->save(['commont_id'=>$res-1]);
         if(!$res)$this->echoEncrypData(1);
+        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('DEL_COMMENT')])->find();
+        $point_record = new Model\PointRecordModel($this->account_code);
+        $point_record->add(array(
+            'name_id'=>$point['id'],
+            'name'=>$point['name'],
+            'type'=>$point['type'],
+            'value'=>$point['value'],
+            'create_time'=>time(),
+        ));
+        $user_city = substr($this->account,0,4);
+        M()->execute('update baseinfo.user_info_'.$user_city.' set total_point =total_point-'.$point['value'].' where account_code='.$this->account_code);
         $this->echoEncrypData(0);
     }
     /*
@@ -438,5 +513,23 @@ class SubjectController extends VersionController
         $data = $adverse->getMyAdverseList($city_id,$this->account_code,$garden_code);
         if(!$data)$this->echoEncrypData(5);
         $this->echoEncrypData(0,'',$data);
+    }
+    /*
+* 判断用户今日是否已达分数上限
+* 没超过上限则返回与上线分的差值
+* */
+    public function getPointLimitStatus($account_code){
+        $point_limit = M('baseinfo.point_config')->where(['id'=>C('DAY_LIMIT')])->getField('value');
+        $today = strtotime('today');
+        $point_record = new Model\PointRecordModel($account_code);
+        $today_point = $point_record->where([
+            'create_time'=>['egt',$today],
+            'type'=>1,
+            'id'=>['neq',C('INVITE_REGISTER')],
+        ])->count('value'); //邀请他人注册得分不计入得分上限
+        if(intval($today_point) < intval($point_limit)){
+            return (intval($point_limit) - intval($today_point));
+        }
+        return false;
     }
 }

@@ -32,7 +32,7 @@ return array(
         'ADD_NUM'=>7,               //添加成员id
         'IMPROVE_DATA'=>8,      //完善资料id
         'DAY_LIMIT'=>9,                 //每日得分上限id
-        'DELETE_COMMENT'=>10,//删除评论id
+        'DEL_COMMENT'=>10,//删除评论id
         'CANCEL_LIKES'=>11,         //取消点赞id
         'DEL_NUM'=>12,                  //删除成员id
     ),

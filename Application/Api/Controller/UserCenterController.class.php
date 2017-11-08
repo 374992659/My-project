@@ -42,6 +42,7 @@ class UserCenterController extends VersionController
      * @param birth_year 出生年份 可填
      * @param birth_month 出生月份 可填
      * @param hobby 爱好  字符串 用英文逗号间隔 可填
+     * @param id_card_num 身份证编号 可填
      * */
     protected function updateUserInfo_v1_0_0(){
         $account_code = $this->account_code;
@@ -239,9 +240,9 @@ class UserCenterController extends VersionController
         if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$this->pdata['phone'])){
             $this->echoEncrypData(1,'请输入正确的手机号码');
         }
-//        if(!preg_match('/(^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['id_card_num'])){
-//            $this->echoEncrypData(1,'请输入正确的身份证号码');
-//        }
+        if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['id_card_num'])){
+            $this->echoEncrypData(1,'请输入正确的身份证号码');
+        }
         $mongo =new \MongoClient();
         if(!$this->pdata['garden_code']){
             $garden = $mongo->baseinfo->garden_area->findOne(array('garden_name'=>$this->pdata['garden_name'],'city_id'=>$this->pdata['city_id']));
@@ -343,9 +344,9 @@ class UserCenterController extends VersionController
         if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$this->pdata['phone'])){
             $this->echoEncrypData(1,'请输入正确的手机号码');
         }
-//        if(!preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['id_card_num'])){
-//            $this->echoEncrypData(1,'请输入正确的身份证号码');
-//        }
+        if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['id_card_num'])){
+            $this->echoEncrypData(1,'请输入正确的身份证号码');
+        }
         $user_code = '';
         if($this->pdata['account']){
             $mongo = new \MongoClient();
@@ -515,14 +516,14 @@ class UserCenterController extends VersionController
         if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$this->pdata['phone'])){
             $this->echoEncrypData(1,'请输入正确的手机号码');
         }
-//        if(!preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['id_card_num'])){
-//            $this->echoEncrypData(1,'请输入正确的身份证号码');
-//        }
-//        if($this->pdata['owner_id_card_num']){
-//            if(!preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['owner_id_card_num'])){
-//                $this->echoEncrypData(1,'请输入正确的身份证号码');
-//            }
-//        }
+        if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['id_card_num'])){
+            $this->echoEncrypData(1,'请输入正确的身份证号码');
+        }
+        if($this->pdata['owner_id_card_num']){
+            if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['owner_id_card_num'])){
+                $this->echoEncrypData(1,'请输入正确的身份证号码');
+            }
+        }
         $mongo =new \MongoClient();
         if(!$this->pdata['garden_code']){
             $garden = $mongo->baseinfo->garden_area->findOne(array('garden_name'=>$this->pdata['garden_name'],'city_id'=>$this->pdata['city_id']));
@@ -623,9 +624,9 @@ class UserCenterController extends VersionController
         if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$this->pdata['phone'])){
             $this->echoEncrypData(1,'请输入正确的手机号码');
         }
-//        if(!preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/',$this->pdata['id_card_num'])){
-//            $this->echoEncrypData(1,'请输入正确的身份证号码');
-//        }
+        if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['id_card_num'])){
+            $this->echoEncrypData(1,'请输入正确的身份证号码');
+        }
         $user_code = '';
         if($this->pdata['account']){
             $mongo = new \MongoClient();
@@ -950,7 +951,7 @@ class UserCenterController extends VersionController
                     $add = $limit_status;
                 }
                 M()->startTrans();
-                $res2  = M()->query('update baseinfo.user_info_'.$city.' set total_point =total_point+'.$add.' where account_code='.$account_code);
+                $res2  = M()->execute('update baseinfo.user_info_'.$city.' set total_point =total_point+'.$add.' where account_code='.$account_code);
                 if($res1 and $res2){
                     M()->commit();
                     $point_record->commit();
@@ -976,10 +977,10 @@ class UserCenterController extends VersionController
      * 判断用户今日是否已达分数上限
      * 没超过上限则返回与上线分的差值
      * */
-    public function getPointLimitStatus($account){
+    public function getPointLimitStatus($account_code){
         $point_limit = M('baseinfo.point_config')->where(['id'=>C('DAY_LIMIT')])->getField('value');
         $today = strtotime('today');
-        $point_record = new Model\PointRecordModel($account);
+        $point_record = new Model\PointRecordModel($account_code);
         $today_point = $point_record->where([
             'create_time'=>['egt',$today],
             'type'=>1,

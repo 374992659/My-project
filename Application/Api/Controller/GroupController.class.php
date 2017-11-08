@@ -830,9 +830,18 @@ class GroupController extends VersionController
         if(!$res){
             $this->echoEncrypData(1);
         }
-        $point = new Model\PointRecordModel($this->account_code);
+        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('DEL_COMMENT')])->find();
+        $point_record = new Model\PointRecordModel($this->account_code);
+        $point_record->add(array(
+            'name_id'=>$point['id'],
+            'name'=>$point['name'],
+            'type'=>$point['type'],
+            'value'=>$point['value'],
+            'create_time'=>time(),
+        ));
+        $city_id = substr($this->account_code,0,4);
+        M()->execute('update baseinfo.user_info_'.$city_id.' set total_point =total_point-'.$point['value'].' where account_code ='.$this->account_code);
         $this->echoEncrypData(0);
-
     }
     /*
      * 群话题点赞
@@ -868,21 +877,51 @@ class GroupController extends VersionController
                 if(!$res){
                     $this->echoEncrypData(1);
                 }
+                $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CANCEL_LIKES')])->find();
+                $point_record =new Model\PointRecordModel($this->account_code);
+                $point_record->add(array(
+                    'name_id'=>$point['id'],
+                    'type'=>$point['type'],
+                    'name'=>$point['name'],
+                    'value'=>$point['value'],
+                    'create_time'=>time(),
+                ));
+                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='.$this->account_code);
                 $this->echoEncrypData(0);
             }
         }
         $model->startTrans();
         $res1=$model->addGroupSubjectDynamics($data);
         $res2=$model->execute('update group_subject set likes_num = likes_num+1 where id ='.$subject_id);
-        if(!$res1 || !$res2){
+        $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('LIKES')])->find();
+        $point_record = new Model\PointRecordModel($this->account_code);
+        $point_record->startTrans();
+        M()->startTrans();
+        $res3 = $point_record->add(array(
+            'name_id'=>$point['id'],
+            'name'=>$point['name'],
+            'type'=>$point['type'],
+            'value'=>$point['value'],
+            'create_time'=>time(),
+        ));
+        $res4 = true;
+        if($point_limit = $this->getPointLimitStatus($this->account_code)){
+            $point_limit > $point['value']?$add = $point['value']:$add =$point_limit;
+            $res4 = M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='.$this->account_code);
+        }
+        if(!$res1 || !$res2 || !$res3 || !$res4){
             $model->rollback();
+            $point_record->rollback();
+            M()->rollback();
             $this->echoEncrypData(1);
         }
+        $point_record->commit();
+        M()->commit();
         $model->commit();
         $this->echoEncrypData(0);
     }
     /*
-     * 群话题评论点赞
+     * 群话题评论点赞/取消点赞
      * @param group_num 群号码
      * @param commont_id 群话题评论id
      * @param subject_id 话题id
@@ -918,16 +957,46 @@ class GroupController extends VersionController
                 if(!$res){
                     $this->echoEncrypData(1);
                 }
+                $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CANCEL_LIKES')])->find();
+                $point_record =new Model\PointRecordModel($this->account_code);
+                $point_record->add(array(
+                    'name_id'=>$point['id'],
+                    'type'=>$point['type'],
+                    'name'=>$point['name'],
+                    'value'=>$point['value'],
+                    'create_time'=>time(),
+                ));
+                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='.$this->account_code);
                 $this->echoEncrypData(0);
             }
         }
         $model->startTrans();
         $res1=$model->addGroupSubjectDynamics($data);
         $res2=$model->execute('update group_subject_dynamics_'.intval($subject_id).' set commont_likes=commont_likes+1 where id='.$commont_id);
-        if(!$res1 || !$res2){
+        $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('LIKES')])->find();
+        $point_record = new Model\PointRecordModel($this->account_code);
+        $point_record->startTrans();
+        M()->startTrans();
+        $res3 = $point_record->add(array(
+            'name_id'=>$point['id'],
+            'name'=>$point['name'],
+            'type'=>$point['type'],
+            'value'=>$point['value'],
+            'create_time'=>time(),
+        ));
+        $res4 = true;
+        if($point_limit = $this->getPointLimitStatus($this->account_code)){
+            $point_limit > $point['value']?$add = $point['value']:$add =$point_limit;
+            $res4 = M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='.$this->account_code);
+        }
+        if(!$res1 || !$res2 || !$res3 || !$res4){
             $model->rollback();
+            $point_record->rollback();
+            M()->rollback();
             $this->echoEncrypData(1);
         }
+        $point_record->commit();
+        M()->commit();
         $model->commit();
         $this->echoEncrypData(0);
     }
@@ -1208,10 +1277,10 @@ class GroupController extends VersionController
     * 判断用户今日是否已达分数上限
     * 没超过上限则返回与上线分的差值
     * */
-    public function getPointLimitStatus($account){
+    public function getPointLimitStatus($account_code){
         $point_limit = M('baseinfo.point_config')->where(['id'=>C('DAY_LIMIT')])->getField('value');
         $today = strtotime('today');
-        $point_record = new Model\PointRecordModel($account);
+        $point_record = new Model\PointRecordModel($account_code);
         $today_point = $point_record->where([
             'create_time'=>['egt',$today],
             'type'=>1,

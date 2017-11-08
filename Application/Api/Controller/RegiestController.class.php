@@ -246,7 +246,7 @@ class RegiestController extends BaseController
 //                    if( (intval($limit_point) - intval($today_point)) < intval($inviter_point['value']) ){
 //                        $add = intval($limit_point) - intval($today_point);
 //                    }
-                    $res3 = M()->query('update baseinfo.user_info_'.$invitet_city.' set total_point=total_point+'.intval($point['value']).' where account_code ='.$inviter_code);
+                    $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point=total_point+'.intval($point['value']).' where account_code ='.$inviter_code);
                     $point_record2->startTrans();
                     $res4 = $point_record2->add(array(
                         'name_id'=>$inviter_point['id'],
