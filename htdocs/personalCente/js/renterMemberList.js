@@ -18,8 +18,9 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 $.each(data.data,function(i,item){
+                    console.log(item);
                     html+=`
-                    <tr title="${item.application}">
+                    <tr title="${item.application_id}">
                         <td>${item.real_name}</td>
                         <td>${item.relation_name}</td>
                         <td>2017.03.3</td>
