@@ -191,7 +191,7 @@ $(document).ready(function(){
         var contract_period=$("#date2").val();
     //14 参数：pictures 合同照
         var  ContractPic=$(".ContractPic img").attr("src");
-        var  pictures="{'a':'"+yourselfPic+"'}";
+        var  pictures="{'a':'"+ContractPic+"'}";
     //15 参数：yourself_picture 个人照片 可填
         var yourself_picture="";
         // 数据格式转换
