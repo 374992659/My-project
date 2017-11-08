@@ -36,7 +36,7 @@ $(document).ready(function(){
                 <tr tilte="${item.id}">
                     <td >${item.garden_name}</td>
                     <td>${item.room_num}</td>
-                    <td>已通过</td>
+                    <td style="color: green">已通过</td>
                     <td><button>删除</button></td>
                 </tr>
                             `
@@ -45,7 +45,7 @@ $(document).ready(function(){
                 <tr tilte="${item.id}">
                     <td>${item.garden_name}</td>
                     <td>${item.room_num}</td>
-                    <td>已拒绝</td>
+                    <td style="color: red">已拒绝</td>
                     <td><button>删除</button></td>
                 </tr>
                             `
