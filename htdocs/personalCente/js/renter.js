@@ -147,7 +147,39 @@ $(document).ready(function(){
     })();
     // 上传合同照片
     (function(){
-
+        $('#uploaderContractPic').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderContractPic")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'uploaderInputA',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        $(".ContractPic img").attr("src",Url);
+                        $(".contractLoader").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".ContractPic").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
 
     })();
     // 上传个人照片
