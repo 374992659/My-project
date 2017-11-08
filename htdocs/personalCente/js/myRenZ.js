@@ -29,7 +29,7 @@ $(document).ready(function(){
                     <td><button>删除</button></td>
                 </tr>
                             `
-                    }else if(item.status===0){
+                    }else if(item.status===1){
                         html+=`
                 <td tilte="${item.id}">${item.garden_name}</td>
                     <td>${item.room_num}</td>
