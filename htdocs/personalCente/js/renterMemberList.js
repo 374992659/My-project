@@ -19,6 +19,9 @@ $(document).ready(function(){
                 var html="";
                 $.each(data.data,function(i,item){
                     console.log(item);
+                    $.each(item,function(i,item){
+                        console.log(item)
+                    });
                     html+=`
                     <tr title="${item.application_id}">
                         <td>${item.real_name}</td>
