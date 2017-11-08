@@ -20,9 +20,8 @@ $(document).ready(function(){
                 $.each(data.data,function(i,item){
                     console.log(item);
                     $.each(item,function(i,item){
-                        console.log(item)
-                    });
-                    html+=`
+                        console.log(item);
+                        html+=`
                     <tr title="${item.application_id}">
                         <td>${item.real_name}</td>
                         <td>${item.relation_name}</td>
@@ -30,6 +29,8 @@ $(document).ready(function(){
                         <td><button>删除</button></td>
                     </tr>
                     `
+                    });
+
                 });
                 $(".renterMemberList").append(html);
             }
