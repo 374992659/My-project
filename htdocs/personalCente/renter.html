@@ -250,7 +250,10 @@
     <script src="../JQuery_weui/fastclick.js"></script>
     <script>
         $(function () {
-            $("#datetime-picker").datetimePicker();
+            $("#date").calendar("close");  //关闭弹窗
+            $("#date").calendar("open");  //打开弹窗
+            $("#date").calendar("setValue", ["2012-12-12"]);  //设置日期
+            $("#date").calendar("destroy");  //销毁
             FastClick.attach(document.body);
         });
     </script>
