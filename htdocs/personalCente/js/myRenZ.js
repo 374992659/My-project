@@ -33,7 +33,7 @@ $(document).ready(function(){
                     }else if(parseInt(item.status)===1){
                         console.log(4);
                         html+=`
-                <tr tilte="${item.id}">
+                <tr tilte="${item.id}" class="renZdetails">
                     <td >${item.garden_name}</td>
                     <td>${item.room_num}</td>
                     <td style="color: green">已通过</td>
@@ -55,5 +55,12 @@ $(document).ready(function(){
             }
         },
         error:function(){}
+    });
+    $(".RZlist").on("click",".renZdetails",function(){
+        // 获取认证id
+      var  renZ_ID=$(this).atrr("title");
+      // 保存在本地在认证详情页面提取
+    localStorage.setItem("personalRenZID",renZ_ID);
+    window.location.href="";
     })
 });
