@@ -22,7 +22,7 @@ $(document).ready(function(){
                     $.each(item,function(i,item){
                         console.log(item);
                         html+=`
-                    <tr title="${item.application_id}">
+                    <tr title="${item.application_id}" value="${item.city_id}" class="renterList">
                         <td>${item.real_name}</td>
                         <td>${item.relation_name}</td>
                         <td>2017.03.3</td>
@@ -35,5 +35,18 @@ $(document).ready(function(){
             }
         },
         error:function(){}
+    });
+    // 帮顶点击事件获取去下一个页面需要的参数
+    $(".renterMemberList").on("click",".renterList",function(){
+        // 获取application_id
+        var application_id=$(this).attr("title");
+        // 获取城市id
+        var city_id=$(this).attr("value");
+        // 存在本地
+        localStorage.setItem("application_id",application_id);
+        localStorage.setItem("renterCity_id",city_id);
+        if(application_id&&city_id){
+            window.localtion.href="";//跳转到租户成员详情页面
+        }
     })
 });
