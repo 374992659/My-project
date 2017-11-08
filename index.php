@@ -28,5 +28,5 @@ define('RUNTIME_PATH','./Application/Runtime/');
 
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
-
+date_default_timezone_set('PRC');	//设置时区
 // 亲^_^ 后面不需要任何代码了 就是如此简单
