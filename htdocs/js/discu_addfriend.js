@@ -102,8 +102,10 @@ $(document).ready(function(){
                             }
                         });
                         $(".linkList").append(html);
+                        showHide();
                     }else{
                         console.log(data.errmsg);
+                        showHide();
                     }
                 },
                 error:function(){}
