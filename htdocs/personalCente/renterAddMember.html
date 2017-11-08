@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>添加成员</title>
+    <link rel="stylesheet" href="../JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="../JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="../JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/addMember.css">
+    <style>
+        .flockHeadA,.flockHeadB {
+            width: 77px;
+            height: 77px;
+            border: 1px solid #d9d9d9;
+            margin: 0 auto;
+            display: none;
+        }
+        .weui-input {
+            width: 50%;
+            border: 1px solid #b3b3b3;
+            outline: 0;
+            -webkit-appearance: none;
+            background-color: transparent;
+            font-size: inherit;
+            color: inherit;
+            height: 1.41176471em;
+            line-height: 0;
+        }
+    </style>
+</head>
+<body>
+<div style="padding: 5px 10px">
+    <!--姓名-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="name">姓名：<span style="color:red">*</span></label>
+                <input type="text" id="name">
+            </div>
+        </div>
+    </div>
+    <!--电话-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="phone">电话：<span style="color:red">*</span></label>
+                <input type="text" id="phone">
+            </div>
+        </div>
+    </div>
+    <!--房号-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
+                <select name="" id="dongNum">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>栋/座
+                <select name="" id="floorNum">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>楼
+                <select name="" id="roomNum">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>号
+            </div>
+        </div>
+    </div>
+    <!--关系-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="rela">关系：<span style="color:red">*</span></label>
+                <select name="" id="rela">
+                    <option value="房主">房主</option>
+                    <option value="儿子">儿子</option>
+                    <option value="妻子">妻子</option>
+                    <option value="父母">父母</option>
+                    <option value="朋友">朋友</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <!--合同有效期-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="date2">合同有效期：<span style="color:red">*</span></label>
+                <input class="weui-input" id="date2" type="text" value="">
+            </div>
+        </div>
+    </div>
+    <!--小区地址-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="">小区地址：<span style="color:red">*</span></label>
+                <div class="weui-cell__bd" id="sanji" style="display: inline-block">
+                    <select name="province" id="province">
+                        <option value="">请选择</option>
+                    </select>
+                    <select name="city" id="city">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+                <input type="text" id="housePlace" placeholder="街道" style="width: 20%">
+            </div>
+        </div>
+    </div>
+    <!--小区名-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="plotName">小区名：<span style="color:red">*</span></label>
+                <input type="text" id="plotName" >
+            </div>
+        </div>
+    </div>
+</div>
+<!--身份证-->
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <label class="left" for="identityCard">身份证：<span style="color:red">*</span></label>
+            <input type="text" id="identityCard">
+        </div>
+    </div>
+</div>
+<!--证件照-->
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <label class="left" for="" style="vertical-align: top">证件照：<span style="color:green">*</span></label>
+            <!--上传照片-->
+            <div style="display: inline-block">
+                <!--正面-->
+                <div class="weui-cells weui-cells_form" style="display: inline-block">
+                    <div class="weui-uploader__input-box loaderA">
+                        <form action="" id="formA" enctype="multipart/form-data">
+                            <input id="uploaderInputA" name="uploaderInputA" class="weui-uploader__input" type="file">
+                        </form>
+                    </div>
+                    <div class="flockHeadA">
+                        <img src="" alt="" style="width: 80px;height: 80px" >
+                    </div>
+                </div>
+                <!--反面-->
+                <div class="weui-cells weui-cells_form" style="display: inline-block">
+                    <div class="weui-uploader__input-box loaderB">
+                        <form action="" id="formB" enctype="multipart/form-data">
+                            <input id="uploaderInputB" name="uploaderInputB" class="weui-uploader__input" type="file">
+                        </form>
+                    </div>
+                    <div class="flockHeadB" >
+                        <img src="" alt="" style="width: 80px;height: 80px" >
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--个人照片-->
+<div class="weui-cells">
+    <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <label class="left" for="">个人照片：<span style="color:green">*</span></label>
+
+        </div>
+    </div>
+</div>
+<!--提交按钮-->
+<button class="weui-btn weui-btn_primary">确认</button>
+<script src="../js/jquery-1.11.3.js"></script>
+<script src="../JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="../JQuery_weui/jquery-weui.js"></script>
+<script src="../js/url.js"></script>
+<script src="../js/aes.js"></script>
+<script src="../js/pad-zeropadding.js"></script>
+<script src="../js/encrypt-decode.js"></script>
+<script src="js/renterAddMember.js"></script>
+<script src="../js/addRess.js"></script>
+<script >
+    addRess();
+</script>
+<script>
+    $("#date2").calendar({
+        value: ['2016-12-12'],
+        dateFormat: 'yyyy年mm月dd日'  // 自定义格式的时候，不能通过 input 的value属性赋值 '2016年12月12日' 来定义初始值，这样会导致无法解析初始值而报错。只能通过js中设置 value 的形式来赋值，并且需要按标准形式赋值（yyyy-mm-dd 或者时间戳)
+    });
+</script>
+</body>
+</html>
