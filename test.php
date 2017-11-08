@@ -13,8 +13,8 @@ $collection = $db->test;
 //$obj = $m->selectCollection('garden','garden_user_2701');
 //$obj->createIndex(array('garden_code'=>1));
 //$obj->createIndex(array('user_code'=>1));
-date_default_timezone_set('PRC');
-echo strtotime('today');
+$str = '123456'
+var_dump(preg_match('/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$)|(^[1-9]\d{5}\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{2}$/i'),$str);
 
 
 
