@@ -153,6 +153,7 @@ a:hover {
 }
 .weui-flex{
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 .weui-flex__item{
     border-radius: 5px;

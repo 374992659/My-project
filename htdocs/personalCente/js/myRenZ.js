@@ -7,7 +7,7 @@ $(document).ready(function(){
      jsonEncryptData=jsEncryptData(data);
     console.log(data);
     $.ajax({
-        url:url+"UserCenter_getApplicationGarden",
+        url:url+"UserCenter_getMyOwnerApplicationInfo",
         type:"POST",
         data:{"data":jsonEncryptData},
         success:function(data){
@@ -15,9 +15,37 @@ $(document).ready(function(){
             var data=jsDecodeData(data);
             console.log(data);
             if(data.errcode===0){
-                localStorage.setItem("apptoken",data.apptoken)
+                localStorage.setItem("apptoken",data.apptoken);
+                var html="";
+                $.each(data.data,function(i,item){
+                    if(item.status===0){
+                        html+=`
+                <td tilte="${item.id}">${item.garden_name}</td>
+                    <td>${item.room_num}</td>
+                    <td>待审核</td>
+                    <td><button>删除</button></td>
+                </tr>
+                            `
+                    }else if(item.status===0){
+                        html+=`
+                <td tilte="${item.id}">${item.garden_name}</td>
+                    <td>${item.room_num}</td>
+                    <td>已通过</td>
+                    <td><button>删除</button></td>
+                </tr>
+                            `
+                    }else{
+                        html+=`
+                <td tilte="${item.id}">${item.garden_name}</td>
+                    <td>${item.room_num}</td>
+                    <td>已拒绝</td>
+                    <td><button>删除</button></td>
+                </tr>
+                            `
+                    }
+                });
+                $(".RZlist").append(html);
             }
-
         },
         error:function(){}
     })
