@@ -15,10 +15,13 @@ $(document).ready(function(){
             var data=jsDecodeData(data);
             console.log(data);
             if(data.errcode===0){
+                console.log(1);
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 $.each(data.data,function(i,item){
+                    console.log(2);
                     if(item.status===0){
+                        console.log(3);
                         html+=`
                 <td tilte="${item.id}">${item.garden_name}</td>
                     <td>${item.room_num}</td>
