@@ -1,5 +1,12 @@
 $(document).ready(function(){
     "use strict";
+    var success=$(".success");
+    var show=function(){
+        success.show()
+    };
+    var hide=function(){
+        success.hide()
+    };
     // 获取群内用户
     var getGroupUser=function(){
         //获取群头像
@@ -74,11 +81,13 @@ $(document).ready(function(){
                             });
                             $(".setSpeak").attr("value",0);
                             $(this).prop("checked",true);
-
+                            success.html(data.errmsg);
+                            show();
+                            setTimeout(hide,3000)
                         }else{
-                            $(document).on('click','#show-success',function(){
-                                $.toptip(data.errmsg, 'success');
-                            });
+                            success.html(data.errmsg);
+                            show();
+                            setTimeout(hide,3000)
                         }
                     },
                     error:function(){
@@ -89,7 +98,6 @@ $(document).ready(function(){
             }
         }else if(parseInt(val)===0){//取消禁言判断
             if(confirm("取消禁言")){
-
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
                 //获取群号
@@ -114,11 +122,13 @@ $(document).ready(function(){
                             });
                             $(".setSpeak").attr("value",1);
                             $(this).prop("checked",false);
-
+                            success.html(data.errmsg);
+                            show();
+                            setTimeout(hide,3000)
                         }else{
-                            $(document).on('click','#show-success',function(){
-                                $.toptip(data.errmsg, 'success');
-                            });
+                            success.html(data.errmsg);
+                            show();
+                            setTimeout(hide,3000)
                         }
                     },
                     error:function(){
@@ -151,17 +161,20 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        $(document).on('click','#show-success',function(){
-                            $.toptip(data.errmsg, 'success');
-                        });
+                        $(this).prop("checked",true);
+                        success.html(data.errmsg);
+                        show();
+                        setTimeout(hide,3000);
                     }else{
-                        $(document).on('click','#show-success',function(){
-                            $.toptip(data.errmsg, 'success');
-                        });
+                        success.html(data.errmsg);
+                        show();
+                        setTimeout(hide,3000);
                     }
                 },
                 error:function(){}
             })
+        }else{
+            $(this).prop("checked",false);
         }
 
     })
