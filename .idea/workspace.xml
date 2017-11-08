@@ -53,11 +53,11 @@
           <file leaf-file-name="commDiscu.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.025492469">
-                  <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
+                <state vertical-scroll-proportion="0.6118192">
+                  <caret line="126" column="45" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
                   <folding>
-                    <marker date="1510152793743" expanded="true" signature="1207:1330" placeholder="..." />
-                    <marker date="1510152793743" expanded="false" signature="1247:1271" placeholder="..." />
+                    <marker date="1510152913502" expanded="true" signature="1207:1330" placeholder="..." />
+                    <marker date="1510152913502" expanded="false" signature="1247:1271" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -691,11 +691,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.025492469">
-          <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.6118192">
+          <caret line="126" column="45" selection-start-line="126" selection-start-column="45" selection-end-line="126" selection-end-column="45" />
           <folding>
-            <marker date="1510152793743" expanded="true" signature="1207:1330" placeholder="..." />
-            <marker date="1510152793743" expanded="false" signature="1247:1271" placeholder="..." />
+            <marker date="1510152913502" expanded="true" signature="1207:1330" placeholder="..." />
+            <marker date="1510152913502" expanded="false" signature="1247:1271" placeholder="..." />
           </folding>
         </state>
       </provider>

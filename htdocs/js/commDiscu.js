@@ -85,7 +85,7 @@ $(document).ready(function(){
                     }
                 })
             }else{
-
+                $(this).prop("checked",false);
             }
         }else if(parseInt(val)===0){//取消禁言判断
             if(confirm("取消禁言")){
@@ -124,8 +124,7 @@ $(document).ready(function(){
                     }
                 })
             }else{
-
-
+                $(this).prop("checked",true);
             }
         }
 
