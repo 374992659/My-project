@@ -23,13 +23,13 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.20049201">
+    <splitter split-orientation="horizontal" split-proportion="0.300123">
       <split-first>
         <leaf>
           <file leaf-file-name="commDiscu.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.8018018">
+                <state vertical-scroll-proportion="1.099099">
                   <caret line="154" column="25" selection-start-line="154" selection-start-column="25" selection-end-line="154" selection-end-column="25" />
                   <folding />
                 </state>
@@ -43,11 +43,12 @@
           <file leaf-file-name="commDiscu.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.764774">
-                  <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
+                <state vertical-scroll-proportion="0.59327924">
+                  <caret line="114" column="57" selection-start-line="114" selection-start-column="57" selection-end-line="114" selection-end-column="57" />
                   <folding>
-                    <marker date="1510150787808" expanded="true" signature="1103:1226" placeholder="..." />
-                    <marker date="1510150787808" expanded="false" signature="1143:1167" placeholder="..." />
+                    <element signature="e#2383#3387#0" expanded="false" />
+                    <marker date="1510151019227" expanded="true" signature="1103:1226" placeholder="..." />
+                    <marker date="1510151019227" expanded="false" signature="1143:1167" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -667,7 +668,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8018018">
+        <state vertical-scroll-proportion="1.099099">
           <caret line="154" column="25" selection-start-line="154" selection-start-column="25" selection-end-line="154" selection-end-column="25" />
           <folding />
         </state>
@@ -675,11 +676,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.764774">
-          <caret line="48" column="38" selection-start-line="48" selection-start-column="38" selection-end-line="48" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.59327924">
+          <caret line="114" column="57" selection-start-line="114" selection-start-column="57" selection-end-line="114" selection-end-column="57" />
           <folding>
-            <marker date="1510150787808" expanded="true" signature="1103:1226" placeholder="..." />
-            <marker date="1510150787808" expanded="false" signature="1143:1167" placeholder="..." />
+            <element signature="e#2383#3387#0" expanded="false" />
+            <marker date="1510151019227" expanded="true" signature="1103:1226" placeholder="..." />
+            <marker date="1510151019227" expanded="false" signature="1143:1167" placeholder="..." />
           </folding>
         </state>
       </provider>

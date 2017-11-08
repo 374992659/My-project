@@ -88,6 +88,43 @@ $(document).ready(function(){
             }
         }else if(parseInt(val)===0){//取消禁言判断
             if(confirm("取消禁言")){
+                $(this).attr("checked","checked");
+                console.log($(this).attr("checked"));
+                //获取apptoken
+                var apptoken=localStorage.getItem("apptoken"),
+                //获取群号
+                    group_num=localStorage.getItem("group_num"),
+                    is_cancel=$(this).val(),
+                //数据格转换
+                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"is_cancel":is_cancel})],
+                    jsonEncryptData=jsEncryptData(data);
+                console.log(data);
+                $.ajax({
+                    url:url+"group_setGroupCommunity",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function(data){
+                        //解密
+                        var data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            localStorage.setItem("apptoken",data.apptoken);
+                            $(document).on('click','#show-success',function(){
+                                $.toptip(data.errmsg, 'success');
+                            });
+                            $(".setSpeak").attr("value",1);
+
+                        }else{
+                            $(document).on('click','#show-success',function(){
+                                $.toptip(data.errmsg, 'success');
+                            });
+                        }
+                    },
+                    error:function(){
+                    }
+                })
+            }else{
+
 
             }
         }
