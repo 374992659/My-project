@@ -99,7 +99,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         console.log(data.data);
                         localStorage.setItem("myPicA","http://wx.junxiang.ren/project/"+data.data[0]);
-                        $(".ownerFlockHeadA img").attr("src",data.data[0]);
+                        $(".ownerFlockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".ownerLoaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".ownerFlockHeadA").attr("style","display:block");
                     }
