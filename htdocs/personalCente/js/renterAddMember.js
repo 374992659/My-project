@@ -97,7 +97,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        $("#plotName").attr("title",data.data.arden_code)
+                        $("#plotName").attr("title",data.data.garden_code)
                     }
                 },
                 error:function(){}
