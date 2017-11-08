@@ -20,19 +20,21 @@ $(document).ready(function(){
                 var html="";
                 $.each(data.data,function(i,item){
                     console.log(item.status);
-
                     if(parseInt(item.status)==0){
                         console.log(3);
                         html+=`
-                <td tilte="${item.id}">${item.garden_name}</td>
+                <tr tilte="${item.id}">
+                    <td>${item.garden_name}</td>
                     <td>${item.room_num}</td>
                     <td>待审核</td>
                     <td><button>删除</button></td>
                 </tr>
                             `
-                    }else if(parseInt(item.status)==1){
+                    }else if(parseInt(item.status)===1){
+                        console.log(4);
                         html+=`
-                <td tilte="${item.id}">${item.garden_name}</td>
+                <tr tilte="${item.id}>
+                     <td ">${item.garden_name}</td>
                     <td>${item.room_num}</td>
                     <td>已通过</td>
                     <td><button>删除</button></td>
@@ -40,7 +42,8 @@ $(document).ready(function(){
                             `
                     }else{
                         html+=`
-                <td tilte="${item.id}">${item.garden_name}</td>
+                <tr tilte="${item.id}">
+                    <td>${item.garden_name}</td>
                     <td>${item.room_num}</td>
                     <td>已拒绝</td>
                     <td><button>删除</button></td>
