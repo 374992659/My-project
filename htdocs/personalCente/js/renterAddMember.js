@@ -96,6 +96,7 @@ $(document).ready(function(){
                     var data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
+                        console.log(data.data.garden_code);
                         localStorage.setItem("apptoken",data.apptoken);
                         $("#plotName").attr("title",data.data.garden_code)
                     }
