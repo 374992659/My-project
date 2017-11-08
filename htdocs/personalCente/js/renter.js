@@ -98,7 +98,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicA",data.data[0]);
+                        localStorage.setItem("myPicA","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".ownerFlockHeadA img").attr("src",data.data[0]);
                         $(".ownerLoaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".ownerFlockHeadA").attr("style","display:block");
@@ -109,7 +109,7 @@ $(document).ready(function(){
                 }
             });
         });
-        // 发面
+        // 反面
         $('#ownerUploaderInputB').change(function(e) {
             var Url=window.URL.createObjectURL(this.files[0]) ;
             var formData= new FormData();
