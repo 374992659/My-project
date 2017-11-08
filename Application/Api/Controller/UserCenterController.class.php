@@ -62,6 +62,7 @@ class UserCenterController extends VersionController
             'birth_year'=>$this->pdata['birth_year'],
             'birth_month'=>$this->pdata['birth_month'],
             'hobby'=>$this->pdata['hobby'],
+            'id_card_num'=>$this->pdata['id_card_num']
         ));
         if($res !== false){
             $mongo = new \MongoClient();
