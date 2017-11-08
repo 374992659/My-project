@@ -19,7 +19,8 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 $.each(data.data,function(i,item){
-                    console.log(2);
+                    console.log(item.status);
+
                     if(parseInt(item.status)==0){
                         console.log(3);
                         html+=`
