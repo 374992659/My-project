@@ -7,7 +7,7 @@ $(document).ready(function(){
     var jsonEncryptData=jsEncryptData(data);
     console.log(data);
     $.ajax({
-        url:url+"UserCenter_ getGardenMessageInfo",
+        url:url+"UserCenter_getGardenMessageList",
         type:"POST",
         data:{"data":jsonEncryptData},
         success:function(data){
