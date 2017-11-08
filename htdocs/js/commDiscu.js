@@ -37,7 +37,7 @@ $(document).ready(function(){
                     $.each(data.data.Number_data,function(i,item){
                         html+=`
                          <li class="lf">
-                          <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
+                          <img style="width: 35px;height: 35px" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
                       </li>
                         `
                     });

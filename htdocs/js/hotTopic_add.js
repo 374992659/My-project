@@ -104,9 +104,9 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         window.location.reload();
-                        $(document).on('click','#show-success',function(){
-                            $.toptip('操作成功', 'success');
-                        });
+                       showHide(data.errmsg)
+                    }else{
+                        showHide(data.errmsg)
                     }
                 }
             })

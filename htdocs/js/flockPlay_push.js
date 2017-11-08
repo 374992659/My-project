@@ -462,18 +462,10 @@ $(document).ready(function(){
                     var data=jsDecodeData(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",apptoken);
-                        var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                        success.html(html);
-                        setTimeout(hideTop,3000);
-                        window.locacation.href="flockPlay.html";
+                       showHide(data.errmsg);
+                        window.location.href="flockPlay.html";
                     }else{
-                        var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                        success.html(html);
-                        setTimeout(hideTop,3000);
+                        showHide(data.errmsg);
                     }
                 }
 

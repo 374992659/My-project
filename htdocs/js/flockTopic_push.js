@@ -99,17 +99,10 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
-                    window.localcation.href="flocktTopic.html";
+                    showHide(data.errmsg);
+                    window.location.href="flocktTopic.html";
                 }else{
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
+                    showHide(data.errmsg);
                     setTimeout(hideTop,3000);
                 }
             }

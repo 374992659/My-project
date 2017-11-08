@@ -64,7 +64,7 @@ $(document).ready(function(){
                             <div class="weui-panel__bd">
                                 <div  class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
-                                        <img class="weui-media-box__thumb" src="${item.portrait}">
+                                        <img class="weui-media-box__thumb" src="http://39.108.237.198/project/"${item.portrait}">
                                     </div>
                                     <div class="weui-media-box__bd">
                                         <h4 class="weui-media-box__title">${item.nickname}</h4>                                                        <p class="weui-media-box__desc"></p>
@@ -123,10 +123,6 @@ $(document).ready(function(){
     });
     //功能2 转让群
     $(".affirmBtn").click(function(){
-        var success=$(".success");
-        var hideTop=function(){
-            success.empty();
-        };
         // 获取群号
         var group_num=localStorage.getItem("group_num"),
         // 获取用户code
@@ -148,18 +144,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
+                   showHide(data.errmsg)
                 }else{
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    $(".success").html(html);
-                    setTimeout(hideTop,3000);
-
+                    showHide(data.errmsg)
                 }
             }
         })

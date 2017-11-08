@@ -1,7 +1,6 @@
 $(document).ready(function(){
     "use strict";
     var getGroupUser=function(){
-
         //获取群号码
         var group_num=localStorage.getItem("group_num"),
         //获取apptoken
@@ -62,7 +61,6 @@ $(document).ready(function(){
                     $(".member").html(htmlMember);
                     $(".manegeNum span").append(manegeNum);
                     $(".userNum span").append(ueserNum);
-                    console.log(2);
                 }
             }
 
@@ -106,30 +104,15 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                setTimeout(hideTop,3000);
-                    getGroupUser();
-
+                    showHide(data.errmsg)
                 }else{
-
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
+                    showHide(data.errmsg)
                 }
             }
         })
     });
     //取消管理员
     $(".administrator").on("click",".weui-media-box .cancelBtn",function(){
-        var success=$(".success");
-        var hideTop=function(){
-            success.empty();
-        };
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         //群号码
@@ -150,18 +133,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
-                    getGroupUser();
+                    showHide(data.errmsg)
                 }else{
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
+                    showHide(data.errmsg)
                 }
             },
             error:function(){}
