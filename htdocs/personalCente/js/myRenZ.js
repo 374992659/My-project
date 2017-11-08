@@ -9,7 +9,7 @@ $(document).ready(function(){
     $.ajax({
         url:url+"UserCenter_getApplicationGarden",
         type:"POST",
-        data:{"data":jsonEncryptDate},
+        data:{"data":jsonEncryptData},
         success:function(data){
             // var 解密
             var data=jsDecodeData(data);
