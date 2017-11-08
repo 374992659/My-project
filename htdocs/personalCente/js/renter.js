@@ -25,8 +25,8 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicA",data.data[0]);
-                        $(".flockHeadA img").attr("src",Url);
+                        // localStorage.setItem("myPicA",data.data[0]);
+                        $(".flockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".flockHeadA").attr("style","display:block");
                     }
@@ -60,8 +60,8 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicA",data.data[0]);
-                        $(".flockHeadB img").attr("src",Url);
+                        // localStorage.setItem("myPicA",data.data[0]);
+                        $(".flockHeadB img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".loaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".flockHeadB").attr("style","display:block");
                     }
@@ -98,7 +98,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicA","http://wx.junxiang.ren/project/"+data.data[0]);
+                        // localStorage.setItem("myPicA","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".ownerFlockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".ownerLoaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".ownerFlockHeadA").attr("style","display:block");
@@ -133,7 +133,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicA","http://wx.junxiang.ren/project/"+data.data[0]);
+                        // localStorage.setItem("myPicA","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".ownerFlockHeadB img").attr("src",Url);
                         $(".ownerLoaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".ownerFlockHeadB").attr("style","display:block");
