@@ -13,6 +13,7 @@ $collection = $db->test;
 //$obj = $m->selectCollection('garden','garden_user_2701');
 //$obj->createIndex(array('garden_code'=>1));
 //$obj->createIndex(array('user_code'=>1));
+date_default_timezone_set('UTF+8');
 echo strtotime('today');
 
 
