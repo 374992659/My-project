@@ -2,7 +2,6 @@ $(document).ready(function(){
     // 上传身份证正面A
     $('#uploaderInputA').change(function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
-
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInputA")[0].files[0]);
