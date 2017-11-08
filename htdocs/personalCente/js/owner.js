@@ -111,6 +111,42 @@ $(document).ready(function(){
             }
         });
     });
+    //根据城市id以及关键词获取小区信息
+
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken"),
+            // 获取城市id
+            city_id=$("#city option;selected").val();
+        $("#houseName").on("input",function(){
+            var key=$("#houseName").val();
+            if(key){
+
+            }else{
+
+            }
+            // 数据格式转换
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"key":key})],
+            // 加密
+                jsonEncryptData=jsEncryptData(data);
+            console.log("通过关键词搜索小区");
+            console.log(data);
+            $.ajax({
+                url:url+"UserCenter_getGardenInfo",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                    }
+                },
+                error:function(){}
+            })
+        })
+    })();
     $(".weui-btn").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
@@ -132,13 +168,14 @@ $(document).ready(function(){
         var myPicB=localStorage.getItem("myPicB");
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}",
         // 小区名字
-            garden_name=$("#plotName").val(),
+            garden_name=$("#houseName").val(),
         // 小区code（没有可不填）
         //     garden_code=
         // 小区所属城市
             city_id=$("#city option:selected").val(),
         // 小区详细地址
-            garden_addr=$("#plotPlace").val();
+        //     garden_addr=$("#plotPlace").val();
+            garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
         // 小区照片
            var a=$(".placePlot img").attr("src");
             var garden_picture="{'a':'"+a+"'}";
