@@ -8,6 +8,7 @@ var showHide=function(a){
         success.hide()
     };
     success.html(a);
+    show();
     setTimeout(hide,3000)
 
 };
