@@ -127,7 +127,7 @@ $(document).ready(function(){
                       }
                       $(".RenZdetails").html(html);
                       var relation=$(".relation");
-                      if(relation.html()===null){
+                      if(relation.text()===null){
                           relation.html("本人")
                       }
                   });
