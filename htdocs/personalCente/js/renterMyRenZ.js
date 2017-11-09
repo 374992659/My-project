@@ -60,7 +60,7 @@ $(document).ready(function(){
             var renterID=$(this).attr("title");
             localStorage.setItem("renterID",renterID);
             if(renterID){
-                window.localtion.href="";//跳转到认证详情页面
+                window.location.href="renterMyRenZdetails.html";//跳转到认证详情页面
             }
         })
 });
