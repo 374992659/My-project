@@ -72,7 +72,7 @@ $(document).ready(function(){
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
                                 <label class="left">小区地址：</label>
-                                <span>${result.garden_addr}</span>
+                                <span class="garden_addr">${result.garden_addr}</span>
                             </div>
                         </div>
                     </div>
