@@ -140,37 +140,38 @@ $(document).ready(function(){
                 var id_cardPic="";
                 if(result.id_card_pictures){
                     var id_cardPicObj=eval('('+result.id_card_pictures+')');
-                    if(id_cardPicObj){
                         $.each(id_cardPicObj,function(i,item){
                             id_cardPic+=`
                          <img src="http://wx.junxiang.ren/project/${item}" alt="" >
                         `
                         });
-                    }$(".papersPic").append(id_cardPic);
+                    $(".papersPic").append(id_cardPic);
                 }
 
                 // 个人照片
                 var myPic="";
-                var myPicObj=eval('('+result.yourself_picture+')');
-                if(myPicObj){
-                    $.each(myPicObj,function(i,item){
-                        myPic+=`
+                if(result.yourself_picture){
+                    var myPicObj=eval('('+result.yourself_picture+')');
+                        $.each(myPicObj,function(i,item){
+                            myPic+=`
                      <img src="${item}" alt="" >
                     `
-                    });
-                }$(".myPic").append(myPic);
+                        });
+                    $(".myPic").append(myPic);
+                }
+
                 //   小区照片
                 var gardenPic="";
-                var gardenPicObj=eval('('+ result.garden_picture+')');
-                if(gardenPicObj){
-                    $.each(gardenPicObj,function(i,item){
-                        gardenPic+=`
+                if(result.garden_picture){
+                    var gardenPicObj=eval('('+ result.garden_picture+')');
+                        $.each(gardenPicObj,function(i,item){
+                            gardenPic+=`
                      <img src="${item}" alt="" >
                     
                     `
-                    })
-                }$(".gardenPic").append(gardenPic);
-
+                        });
+                    $(".gardenPic").append(gardenPic);
+                }
             }
         },
         error:function(){}
