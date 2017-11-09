@@ -20,7 +20,8 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 $.each(data.data,function(i,item){
                     console.log(item);
-                   var html=`
+                    if(item.id===id){
+                        var html=`
                     <!--姓名-->
     <div class="weui-cells">
         <div class="weui-cell">
@@ -132,7 +133,9 @@ $(document).ready(function(){
         </div>
     </div>                                                       
                    `;
-                    $(".RenZdetails").html(html);
+                        $(".RenZdetails").html(html);
+                    }
+
                 });
             }
         },
