@@ -15,11 +15,9 @@ $(document).ready(function(){
             var data=jsDecodeData(data);
             console.log(data);
             if(data.errcode===0){
-                console.log(1);
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 $.each(data.data,function(i,item){
-                    console.log(item.status);
                     if(parseInt(item.status)==0){
                         console.log(3);
                         html+=`
@@ -62,6 +60,6 @@ $(document).ready(function(){
       console.log(renZ_ID);
       // 保存在本地在认证详情页面提取
     localStorage.setItem("personalRenZID",renZ_ID);
-    window.location.href="myRenZdetails.html";
+    // window.location.href="myRenZdetails.html";
     })
 });
