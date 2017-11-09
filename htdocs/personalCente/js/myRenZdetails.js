@@ -125,10 +125,7 @@ $(document).ready(function(){
     </div>                                   
                   `;
                           // 循环证件照
-                      $.each(item.id_card_pictures,function(i,item){
-                          console.log(item);
-
-                      })
+                     console.log(item.id_card_pictures);
                       }
                       $(".RenZdetails").html(html);
                       if(item.relation_name===null){
