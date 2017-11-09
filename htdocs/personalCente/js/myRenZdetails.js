@@ -172,7 +172,7 @@ $(document).ready(function(){
                       $(".plotPic").append(plotPic);
                       $(".myPic").append(myPic);
                   });
-                  console.log($(".relation").html())
+                  console.log($(".relation"))
               }
           },
           error:function(){}
