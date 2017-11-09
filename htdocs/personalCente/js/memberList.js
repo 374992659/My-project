@@ -33,10 +33,12 @@ $(document).ready(function(){
                 $(".memberList").append(html);
                var relation=$(".relation");
                console.log(relation.text());
-                if(relation.text()==null){
-                    console.log(13);
-                    relation.html("本人")
-                }
+               $.each(relation.text(),function(i,item){
+                   if(item===null){
+                       relation.html("本人")
+                   }
+               });
+               
             }
         },
         error:function(){}
