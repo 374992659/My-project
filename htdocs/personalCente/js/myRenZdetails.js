@@ -173,6 +173,7 @@ $(document).ready(function(){
                       $(".myPic").append(myPic);
                   });
                   var relation=$(".relation");
+                  console.log(relation.text());
                   if(relation.html()===null){
                       relation.html("本人");
                   }
