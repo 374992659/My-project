@@ -168,6 +168,7 @@ $(document).ready(function(){
               if(result.garden_addr===null){
                   $(".garden_addr").html("主人太懒什么都没有留下");
               }
+
             }
         },
         error:function(){}
