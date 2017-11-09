@@ -253,7 +253,7 @@ $(document).ready(function(){
             //群名字
             group_name=$(this).find("h4").text();
        // 存本地
-        localStorage.setItem("group_head",group_head);
+        localStorage.setItem("group_header",group_head);
         localStorage.setItem("group_code",group_code);
         localStorage.setItem("group_num",group_num);
         localStorage.setItem("group_name",group_name);
