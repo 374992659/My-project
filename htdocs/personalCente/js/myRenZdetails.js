@@ -112,9 +112,9 @@ $(document).ready(function(){
     <!--小区照片-->
     <div class="weui-cells">
         <div class="weui-cell">
-            <div class="weui-cell__bd plotPic">
+            <div class="weui-cell__bd">
                 <label class="left" style="vertical-align: top">小区照片：</label>
-                <div class="likes">
+                <div class="likes plotPic">
                     <!--<img src="image/firenda.jpg" alt="" >-->
                     <!--<img src="image/firenda.jpg" alt="" >-->
                     <!--<img src="image/firenda.jpg" alt="" >-->
