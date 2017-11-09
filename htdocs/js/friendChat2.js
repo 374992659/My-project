@@ -127,7 +127,7 @@ $(document).ready(function(){
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                              
@@ -405,6 +405,7 @@ $(document).ready(function(){
             var chatPage=$("#chatPage");
             chatPage.append(html);
             $(".chatContent").val("");
+
             //保持滚动条一直在最底部
             document.body.scrollTop=chatPage.height();
             // 自己发送的消息存本地
@@ -464,7 +465,7 @@ $(document).ready(function(){
                  </span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
              </div>
          </div>
             `;
@@ -539,7 +540,7 @@ $(document).ready(function(){
                  </span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
              </div>
          </div>
             `;
