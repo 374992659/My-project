@@ -35,7 +35,7 @@ $(document).ready(function(){
                                 <td>${item.real_name}</td>
                                 <td>${item.relation_name}</td>
                                 <td>2017.03.3</td>
-                                <td><button>删除</button></td>
+                                <td><button style="color: red">删除</button></td>
                             </tr>
                     
                              `
