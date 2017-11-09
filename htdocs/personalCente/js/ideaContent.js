@@ -23,22 +23,36 @@ $(document).ready(function(){
                 var html="";
                 $.each(data.data,function(i,item){
                     console.log(item);
-                    html=`
-                    <h4 class="weui-media-box__title" style="text-align: center"></h4>
+                    if(parseInt(item.status)===1){
+                        html=`
+                    <h4 class="weui-media-box__title" style="text-align: center">${item.title}</h4>
             <p class="weui-media-box__desc">
-                
+                ${item.content}
             </p>
             <ul class="right">
-                <li class=""><span>你的意见正在解决</span></li>
-                <li class="">处理人：<span>张三丰</span></li>
-                <li class="">联系方式：<span>直接上武当</span></li>
+                <li class=""><span style="color:red;;">你的意见正在解决</span></li>
+                <li class="">处理人：<span>${item.dealer_name}</span></li>
+                <li class="">联系方式：<span>${item.dealer_phone}</span></li>
             </ul>
                     
                     `
+                    }else{
+                        html=`
+                    <h4 class="weui-media-box__title" style="text-align: center">${item.title}</h4>
+            <p class="weui-media-box__desc">
+                ${item.content}
+            </p>
+            <ul class="right">
+                <li class=""><span>你的意见正已解决</span></li>
+                <li class="">处理人：<span>${item.dealer_name}</span></li>
+                <li class="">联系方式：<span>${item.dealer_phone}</span></li>
+            </ul>
+                    
+                    `
+                    }
                 });
                 $(".ideaContent").html(html)
             }
-
         },
         error:function () {
 
