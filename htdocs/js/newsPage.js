@@ -104,7 +104,7 @@ $(document).ready(function(){
                                 $.each(group_new_message,function(i,item){
                                     if(item.count===0){
                                         html+=`
-                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
+                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}" value="${item.group_num}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum" title="${item.group_num}"></span>
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
@@ -117,7 +117,7 @@ $(document).ready(function(){
                   `
                    }else{
                     html+=`
-                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}">
+                <div class="weui-media-box weui-media-box_appmsg groupChat" title="${item.group_code}" value="${item.group_num}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum" title="${item.group_num}" style="padding: 0 4px">${item.count}</span>
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.group_portrait}"><!--头像-->
