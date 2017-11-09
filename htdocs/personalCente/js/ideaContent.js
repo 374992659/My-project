@@ -24,7 +24,7 @@ $(document).ready(function(){
                 var result=data.data;
                 if(parseInt(result.status)===1){
                     var   html=`
-            <h4 class="weui-media-box__title" style="text-align: center;font-weight:4000 ">${result.title}</h4>
+            <h3 class="weui-media-box__title" style="text-align: center;font-weight:4000 ">${result.title}</h3>
             <p class="weui-media-box__desc">
                 ${result.content}
             </p>
