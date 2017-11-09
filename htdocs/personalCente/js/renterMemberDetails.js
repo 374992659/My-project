@@ -130,6 +130,12 @@ $(document).ready(function(){
                     </div>                             
                 `;
                 $(".memberDetails").html(html);
+                if(result.relation_name===null){
+                    $(".relation").html("本人")
+                }
+                if(result.garden_addr===null){
+                    $(".garden_addr").html("主人太懒什么都没有留下");
+                }
                 // 身份证照片
                 var id_cardPic="";
                 var id_cardPicObj=eval('('+result.id_card_pictures+')');
@@ -161,12 +167,7 @@ $(document).ready(function(){
                     `
                     })
                 }$(".gardenPic").append(gardenPic);
-                if(result.relation_name===null){
-                    $(".relation").html("本人")
-                }
-                if(result.garden_addr==null){
-                    $(".garden_addr").html("主人太懒什么都没有留下");
-                }
+
             }
         },
         error:function(){}
