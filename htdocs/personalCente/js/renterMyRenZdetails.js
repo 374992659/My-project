@@ -138,7 +138,7 @@ $(document).ready(function(){
                         var obj = eval('(' + item.id_card_pictures + ')');
                         $.each(obj,function(i,item){
                             id_card_pictures+=`
-                              <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                              <img src="${item}" alt="" >
                               `
                         });
 
