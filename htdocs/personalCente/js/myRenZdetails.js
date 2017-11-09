@@ -126,12 +126,12 @@ $(document).ready(function(){
                   `
                       }
                       $(".RenZdetails").html(html);
+                      if(item.relation_name===null){
+                          $(".relation").html("本人")
+                      }
+
                   });
-                  var relation=$(".relation");
-                  console.log(relation);
-                  if(relation.text()===null){
-                      relation.html("本人")
-                  }
+
 
               }
           },
