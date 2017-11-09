@@ -172,7 +172,10 @@ $(document).ready(function(){
                       $(".plotPic").append(plotPic);
                       $(".myPic").append(myPic);
                   });
-                  console.log($(".relation"))
+                  var relation=$(".relation");
+                  if(relation.html()===null){
+                      relation.html("本人");
+                  }
               }
           },
           error:function(){}
