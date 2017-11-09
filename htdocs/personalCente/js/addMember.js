@@ -1,6 +1,30 @@
 $(document).ready(function(){
     // 获取小区code
-    var code=
+    var code="";
+    $(".gardenName").on("input",function(){
+        var apptoken=localStorage.getItem("apptoken");
+        var cityid=$("#city option:selected").val();
+        var key=$(".gardenName").val();
+        // 数据格式转换
+        var data=["",JSON.stringify({"apptoken":apptoken,"city_id":cityid,"key":key})];
+        // 加密
+        var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"UserCenter_getGardenInfo",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var li="";
+                }
+            }
+        })
+    });
     // 提交
     $(".weui-btn").click(function(){
         // 获取apptoken
