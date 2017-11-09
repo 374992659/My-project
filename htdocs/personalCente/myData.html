@@ -22,9 +22,7 @@
     }
 </style>
 <body>
-    <div class="success">
-
-    </div>
+    <div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
     <div style="padding: 5px">
         <!--推广二维码-->
         <div class="compileData">
@@ -109,16 +107,16 @@
                 <div class="weui-cell__bd">
                     <label class="left" for="">出生年月：<span style="color: green">*</span></label>
                     <select name="" id="yearBirth">
-                        <option value="">1980</option>
-                        <option value="">1981</option>
-                        <option value="">1982</option>
-                        <option value="">1983</option>
-                        <option value="">1984</option>
+                        <option value="1980">1980</option>
+                        <option value="1981">1981</option>
+                        <option value="1982">1982</option>
+                        <option value="1983">1983</option>
+                        <option value="1984">1984</option>
                     </select>年
                     <select name="" id="mouthBirth">
-                        <option value="">1</option>
-                        <option value="">2</option>
-                        <option value="">3</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>月
 
                 </div>
@@ -147,5 +145,6 @@
     <script src="../js/pad-zeropadding.js"></script>
     <script src="../js/encrypt-decode.js"></script>
     <script src="js/myData.js"></script>
+    <script src="../js/showHide.js"></script>
 </body>
 </html>
