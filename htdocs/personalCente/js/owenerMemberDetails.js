@@ -109,10 +109,7 @@ $(document).ready(function(){
                 <div class="weui-cell__bd gardenPic">
                     <label class="left" style="vertical-align: top">小区照片：</label>
                     <div class="likes">
-                        <img src="image/firenda.jpg" alt="" >
-                        <img src="image/firenda.jpg" alt="" >
-                        <img src="image/firenda.jpg" alt="" >
-                        <img src="image/firenda.jpg" alt="" >
+                       
                     </div>
                 </div>
             </div>
