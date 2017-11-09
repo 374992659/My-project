@@ -27,7 +27,7 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left">名字：</label>
-                <span>${result.real_name}</span>
+                <span>${item.real_name}</span>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left">电话：</label>
-                <span>${result.phone}</span>
+                <span>${item.phone}</span>
             </div>
         </div>
     </div>
@@ -45,7 +45,7 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left">房号：</label>
-                <span>${result.room_num}</span>
+                <span>${item.room_num}</span>
             </div>
         </div>
     </div>
@@ -54,7 +54,7 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left">关系：</label>
-                <span>${result.relation_name}</span>
+                <span>${item.relation_name}</span>
             </div>
         </div>
     </div>
@@ -63,7 +63,7 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left">小区名：</label>
-                <span>${result.garden_name}</span>
+                <span>${item.garden_name}</span>
             </div>
         </div>
     </div>
@@ -72,7 +72,7 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left">小区地址：</label>
-                <span>${result.garden_addr}</span>
+                <span>${item.garden_addr}</span>
             </div>
         </div>
     </div>
@@ -81,7 +81,7 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <label class="left">身份证：</label>
-                <span>${result.id_card_num}</span>
+                <span>${item.id_card_num}</span>
             </div>
         </div>
     </div>
@@ -120,8 +120,9 @@ $(document).ready(function(){
     </div>                                   
                   `
                       }
+                      $(".RenZdetails").html(html);
                   });
-                  $(".RenZdetails").html(html);
+
               }
           },
           error:function(){}
