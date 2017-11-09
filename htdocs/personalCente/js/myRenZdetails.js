@@ -24,8 +24,7 @@ $(document).ready(function(){
                   localStorage.setItem("apptoken",data.apptoken);
                   $.each(result,function(i,item){
                       console.log(item);
-                      console.log(2);
-                      if(parseInt(item.id)===id){
+                      if(item.id===id){
                           console.log(3);
                           var html=`
                      <!--姓名-->
