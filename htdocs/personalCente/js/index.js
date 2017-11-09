@@ -34,7 +34,7 @@ $(document).ready(function(){
                                         <h4 class="weui-media-box__title">昵称：<span>${result.nickname}</span> </h4>
                                         <h4 class="weui-media-box__title">账号：<span>${result.account}</span></h4>
                                         <h4 class="weui-media-box__title">积分：
-                                            <span>30000</span>
+                                            <span>${result.total_point}</span>
                                             <a href="checkIntegral.html" style="color: green">查看</a>
                                             <a>兑换</a>
                                         </h4>
@@ -140,12 +140,12 @@ $(document).ready(function(){
                         `
                         })
                     }
-                    $(".ownerPlot").append(RenZplot)
+                    $(".ownerPlot").append(RenZplot);
                     // 获取时间戳在转成时间
-                   var time= $(".time").text();
-                    console.log(time);
-                   var  a=getLocalTime(time);
-                    $(".time").html(a);
+                    var times=$(".time"),
+                        time= times.text(),
+                        a=getLocalTime(time);
+                        times.html(a);
 
                 }else{
                      window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
