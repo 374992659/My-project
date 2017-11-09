@@ -125,8 +125,6 @@ $(document).ready(function(){
     </div>                                   
                   `;
                           // 循环证件照
-                          var js=JSON.parse(item.id_card_pictures);
-                     console.log(js);
                       }
                       $(".RenZdetails").html(html);
                       if(item.relation_name===null){
