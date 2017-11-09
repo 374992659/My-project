@@ -164,7 +164,7 @@ $(document).ready(function(){
                 if(result.relation_name===null){
                     $(".relation").html("本人")
                 }
-                if(result.garden_addr===null){
+                if(result.garden_addr==="null"){
                     $(".garden_addr").html("主人太懒什么都没有留下");
                 }
             }
