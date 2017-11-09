@@ -32,9 +32,10 @@ $(document).ready(function(){
                     $(".allGarden").on("click","li",function(){
                         // 获取其值
                         var gardenName=$(this).html();
-                        console.log(gardenName);
+                        var gardenCode=$(this).attr("title");
                         $("#gardenName").val("");
-                        $("#gardenName").val(gardenName)
+                        $("#gardenName").val(gardenName);
+                        $("#gardenName").attr("title",gardenCode)
                     })
                 }
             }
