@@ -28,14 +28,19 @@ $(document).ready(function(){
                         
                         `
                     });
-                    $(".allGarden").append(li);
-                    $(".allGarden").on("click","li",function(){
+                    var allGarden= $(".allGarden");
+                        allGarden.append(li);
+                        allGarden.show();
+                    allGarden.on("click","li",function(){
                         // 获取其值
-                        var gardenName=$(this).html();
+                        var garden_Name=$(this).html();
                         var gardenCode=$(this).attr("title");
-                        $("#gardenName").val("");
-                        $("#gardenName").val(gardenName);
-                        $("#gardenName").attr("title",gardenCode)
+                        var gardenName= $("#gardenName");
+                        gardenName.val("");
+                        gardenName.val(garden_Name);
+                        gardenName.attr("title","");
+                        gardenName.attr("title",gardenCode);
+                        allGarden.hide();
                     })
                 }
             }
@@ -57,7 +62,7 @@ $(document).ready(function(){
         // id_card_num 身份证号码
         var id_card_num=$("#identityCard").val();
         // garden_code 小区code
-        var garden_code=code;
+        var garden_code=$("#gardenName").attr("title");
         // garden_name 小区名称
         var garden_name=$("#gardenName").val();
         // city_id 城市id
