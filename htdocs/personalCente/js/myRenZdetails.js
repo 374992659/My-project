@@ -109,6 +109,20 @@ $(document).ready(function(){
             </div>
         </div>
     </div>
+    <!--小区照片-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd plotPic">
+                <label class="left" style="vertical-align: top">小区照片：</label>
+                <div class="likes">
+                    <!--<img src="image/firenda.jpg" alt="" >-->
+                    <!--<img src="image/firenda.jpg" alt="" >-->
+                    <!--<img src="image/firenda.jpg" alt="" >-->
+                    <!--<img src="image/firenda.jpg" alt="" >-->
+                </div>
+            </div>
+        </div>
+    </div>
     <!--个人照片-->
     <div class="weui-cells">
         <div class="weui-cell">
@@ -124,7 +138,7 @@ $(document).ready(function(){
         </div>
     </div>                                   
                   `;
-                          // 循环证件照
+                  // 循环证件照
                           var id_card_pictures="";
                           var obj = eval('(' + item.id_card_pictures + ')');
                           $.each(obj,function(i,item){
@@ -133,9 +147,19 @@ $(document).ready(function(){
                               <img src="http://wx.junxiang.ren/project/${item}" alt="" >
                               `
                           });
+                  //循环小区照片
+                  var plotPic="";
+                  var garden_picture=eval('(' + item.garden_picture + ')');
+                  $.each(garden_picture,function(i,item){
+                      plotPic+=`
+                      <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                      `
+                  });
+
                       }
                       $(".RenZdetails").html(html);
-                      $(".papersPic").append(id_card_pictures)
+                      $(".papersPic").append(id_card_pictures);
+                      $(".plotPic").append(plotPic);
                   });
 
 
