@@ -125,7 +125,7 @@ $(document).ready(function(){
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
                                     <label class="left">注册时间：</label>
-                                    <span class="time">getLocalTime(${result.create_time})</span>
+                                    <span class="time">${result.create_time}</span>
                                 </div>
                             </div>
                         </div>                            
@@ -141,6 +141,12 @@ $(document).ready(function(){
                         })
                     }
                     $(".ownerPlot").append(RenZplot)
+                    // 获取时间戳在转成时间
+                   var time= $(".time").text();
+                    console.log(time);
+                   var  a=getLocalTime(time);
+                    $(".time").html(a);
+
                 }else{
                      window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
                 }
