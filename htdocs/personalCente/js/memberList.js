@@ -22,7 +22,7 @@ $(document).ready(function(){
                         html+=`                   
         <tr title="${item.application_id}" value="${item.city_id}">
             <td>${item.real_name}</td>
-            <td>${item.relation_name}</td>
+            <td class="relation">${item.relation_name}</td>
             <td>2017.03.3</td>
             <td><button>删除</button></td>
         </tr>
@@ -30,7 +30,11 @@ $(document).ready(function(){
                     `
                     });
                 });
-                $(".memberList").append(html)
+                $(".memberList").append(html);
+               var relation=$(".relation");
+                if(relation.text()===null){
+                    relation.html("本人")
+                }
             }
         },
         error:function(){}
