@@ -488,7 +488,7 @@ class UserCenterController extends VersionController
     protected function ownerDelNum_v1_0_0(){
         $this->checkParam(array('city_id','application_id'));
         $account_code = $this->account_code;
-        
+
     }
 
     /*
@@ -632,6 +632,8 @@ class UserCenterController extends VersionController
             'garden_code'=>$garden_code,
         ));
         $province_id = M('baseinfo.swf_area')->where('id ='.$this->pdata['city_id'])->getField('parent_id');//省份id
+        $class = new RegiestController();
+        $class->executeSql('databases.sql',array('city_id'=>$this->pdata['city_id'],'province_id'=>$province_id,'account_code'=>$this->account_code));//用户可能会选择非注册地进行验证，数据库并未创建而连接失败
         $garden_num= new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
         $garden_num->startTrans();
         //2.小区分库garden_room分表添加成员
@@ -1116,5 +1118,23 @@ class UserCenterController extends VersionController
         array_multisort($key_array,$sort,$multi_array);
         return $multi_array;
     }
-
+    /*
+     * 运行sql文件
+     * */
+    public function executeSql($fileName,$data){
+        $sql=file_get_contents(C('SQL_PATH').$fileName);
+        $sql=str_replace('$city_id',$data['city_id'],$sql);
+        $sql=str_replace('$province_id',$data['province_id'],$sql);
+        $sql=str_replace('$account_code',$data['account_code'],$sql);
+        $sql=str_replace('$subject_id',$data['subject_id'],$sql);
+        $model=M();
+        $model->startTrans();
+        $res=$model->execute($sql);
+        if($res !== false){
+            $model->commit();
+        }else{
+            $model->rollback();
+            $this->echoEncrypData(3);
+        }
+    }
 }
