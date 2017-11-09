@@ -19,8 +19,12 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
                     var li="";
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $.each(data.data,function(i,item){
+                        console.log(item);
+                    });
+
                 }
             }
         })
