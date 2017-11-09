@@ -95,7 +95,7 @@ $(document).ready(function(){
             // 常住小区（可填）
                     default_garden=$("#house").val(),
             // 出生年份（可填）
-                    birth_year=$("#dataBirth option:selected").val(),
+                    birth_year=$("#yearBirth option:selected").val(),
             // 出生月份（可填）
                     birth_month=$("#mouthBirth option:selected").val(),
             // 爱好（可填）

@@ -1,4 +1,7 @@
 $(document).ready(function(){
+    // 获取小区code
+    var code=
+    // 提交
     $(".weui-btn").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -14,9 +17,9 @@ $(document).ready(function(){
         // id_card_num 身份证号码
         var id_card_num=$("#identityCard").val();
         // garden_code 小区code
-        var garden_code=2701942671;
+        var garden_code=code;
         // garden_name 小区名称
-        var garden_name=$("#plotName").val();
+        var garden_name=$("#gardenName").val();
         // city_id 城市id
         var city_id=$("#city option:selected").val();
         // relation_name 关系
