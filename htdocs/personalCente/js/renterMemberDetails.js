@@ -138,14 +138,17 @@ $(document).ready(function(){
                 }
                 // 身份证照片
                 var id_cardPic="";
-                var id_cardPicObj=eval('('+result.id_card_pictures+')');
-                if(id_cardPicObj){
-                    $.each(id_cardPicObj,function(i,item){
-                        id_cardPic+=`
+                if(result.id_card_pictures){
+                    var id_cardPicObj=eval('('+result.id_card_pictures+')');
+                    if(id_cardPicObj){
+                        $.each(id_cardPicObj,function(i,item){
+                            id_cardPic+=`
                          <img src="http://wx.junxiang.ren/project/${item}" alt="" >
                         `
-                    });
-                }$(".papersPic").append(id_cardPic);
+                        });
+                    }$(".papersPic").append(id_cardPic);
+                }
+
                 // 个人照片
                 var myPic="";
                 var myPicObj=eval('('+result.yourself_picture+')');
