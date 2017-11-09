@@ -128,6 +128,7 @@ $(document).ready(function(){
                       $(".RenZdetails").html(html);
                   });
                   var relation=$(".relation");
+                  console.log(relation);
                   if(relation.text()===null){
                       relation.html("本人")
                   }
