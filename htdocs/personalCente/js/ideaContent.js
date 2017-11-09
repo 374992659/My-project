@@ -39,7 +39,7 @@ $(document).ready(function(){
                     var   html=`
                     <h4 class="weui-media-box__title" style="text-align: center">${result.title}</h4>
             <p class="weui-media-box__desc">
-                ${item.content}
+                ${result.content}
             </p>
             <ul class="right">
                 <li class=""><span style="color:green;">你的意见已经解决</span></li>
