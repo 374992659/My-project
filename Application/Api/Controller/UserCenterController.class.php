@@ -560,7 +560,7 @@ class UserCenterController extends VersionController
             $province_id= M('baseinfo.swf_area')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
             $garden_room = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
             $user_info = $garden_room->field('user_code,city_id,garden_code,room_num')->where(['id'=>$this->pdata['application_id']])->find();
-            if(!$user_info)$this->echoEncrypData()
+            if(!$user_info)$this->echoEncrypData();
         }
     }
     /*
