@@ -142,7 +142,6 @@ $(document).ready(function(){
                           var id_card_pictures="";
                           var obj = eval('(' + item.id_card_pictures + ')');
                           $.each(obj,function(i,item){
-                              console.log(item);
                               id_card_pictures+=`
                               <img src="http://wx.junxiang.ren/project/${item}" alt="" >
                               `
@@ -174,6 +173,7 @@ $(document).ready(function(){
                   });
                   var relation=$(".relation");
                   console.log(relation.text());
+                  console.log(typeof relation.text());
                   if(relation.text()==null){
                       relation.html("本人");
                   }
