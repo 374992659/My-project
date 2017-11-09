@@ -171,8 +171,9 @@ $(document).ready(function(){
                                 `
                                 }
                             }
-                            $("#chatPage").append(html);
-                            document.body.scrollTop=$("#chatPage").height();
+                            var chatPage=$("#chatPage");
+                            chatPage.append(html);
+                            document.body.scrollTop=chatPage.height()+100;
                             //发送通知给服务器
                             var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
                             ws.send(sendMessage);
@@ -290,16 +291,13 @@ $(document).ready(function(){
                                 
                                 `
                     }
-
                 }
             });
             var chatPage=$("#chatPage");
             chatPage.html(html);
-            document.body.scrollTop=chatPage.height();
+            document.body.scrollTop=chatPage.height()+100;
         }
-
     })();
-
     // 聊天历史记录
     $(".historyNews").click(function(){
         var group=localStorage.getItem("group_code");
@@ -308,26 +306,27 @@ $(document).ready(function(){
     });
     //群聊点击发送
     $(".pushBtn").click(function(){
-        var content=$(".chatContent").val();                //获取页面发送内容
+        var chatContent=$(".chatContent");
+        var content=chatContent.val();                //获取页面发送内容
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
         var message_type=1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
         console.log(JSON.stringify({'type':3,'content':content,'apptoken':apptoken,'account_code':group,'message_type':message_type}));
         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
-        $(".chatContent").val("");
+        chatContent.val("");
 
     });
     //发送消息给好友
     $(".elements").click(function(){
-        var content=$(".elements").val('content');                        //获取页面发送内容
-        var account_code =$(".elements").val('user_code');          //获取发送好友的code
+        var elements=$(".elements");
+        var content=elements.val('content');                        //获取页面发送内容
+        var account_code =elements.val('user_code');          //获取发送好友的code
         var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
         ws.send(JSON.stringify({'type' : 2, 'content' : content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
     });
     // 发送图片
     $("#uploaderInputPic").change(function(){
             var formData= new FormData();
-            console.log($("#uploaderInputPic")[0].files[0]);
             var apptoken=localStorage.getItem("apptoken");
             formData.append("file",$("#uploaderInputPic")[0].files[0]);
             var data=["",JSON.stringify({"apptoken":apptoken})];
@@ -368,7 +367,6 @@ $(document).ready(function(){
     // 上传文件
     $("#uploaderInputFile").change(function(){
             var formData= new FormData();
-            console.log($("#uploaderInputFile")[0].files[0]);
             var apptoken=localStorage.getItem("apptoken");
             formData.append("file",$("#uploaderInputFile")[0].files[0]);
             var data=["",JSON.stringify({"apptoken":apptoken})];
@@ -423,10 +421,11 @@ $(document).ready(function(){
         return false;
     }
     $(".imgBtn").click(function(){
-        if($(".weui-grids").is(":hidden")){
-            $(".weui-grids").show();
+        var grids=$(".weui-grids");
+        if(grids.is(":hidden")){
+            grids.show();
         }else{
-            $(".weui-grids").hide();
+            grids.hide();
         }
     });
     // 获取群名字
@@ -434,16 +433,15 @@ $(document).ready(function(){
     $(".group_name").html(group_name);
     // 图片放大预览
     (function(){
+        var gallery=$(".weui-gallery");
         $("#chatPage").on("click",".weui-media-box .weui-media-box__bd .weui-media-box__desc img",function(){
             var url=$(this).attr("src");
-            console.log("图片放大");
-            console.log(url);
-            if($(".weui-gallery").is(":hidden")){
-                $(".weui-gallery").show();
+            if(gallery.is(":hidden")){
+                gallery.show();
                 $(".weui-gallery__img").attr("style","background-image: url("+url +")")
             }
         });
-        $(".weui-gallery").click(function(){
+       gallery.click(function(){
             $(".weui-gallery").hide();
         });
     })();

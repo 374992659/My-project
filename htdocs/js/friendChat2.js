@@ -29,28 +29,7 @@ $(document).ready(function(){
                        // localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){//好友新消息  已按用户分组 时间倒序排列
-                            var html="";
-                            $.each(friends_new_message,function(i,item){
-                //                 if(item.sender_code===sender_code){
-                //                     $.each(item.content,function(i,item){
-                //                         html+=`
-                // <p style="font-size: 10px;text-align: center">${getLocalTime(item.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb header_img" src="${item.sender_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd content">
-                //         <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">${item.content}</span>
-                //     </div>
-                // </div>
-                //                        `
-                //                     });
-                //                 var chatPage=$("#chatPage");
-                //                     chatPage.append(html);
-                //                     $(".header_img").attr("src",header);
-                //                     document.body.scrollTop=chatPage.height()
-                //                 }
-                            });
+
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){//群组新消息  已按群分组 时间倒序排列
@@ -150,7 +129,7 @@ $(document).ready(function(){
                 </div>                  `;
                                 }
                                 chatPage.append(html);
-                                document.body.scrollTop=chatPage.height();
+                                document.body.scrollTop=chatPage.height()+100;
                                 //发送通知给服务器
                                 console.log(JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code}));
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
@@ -161,10 +140,10 @@ $(document).ready(function(){
                     break;
                 case 5:         //接收到群消息
                     if(parseInt(result.errcode)===-0){
-                        var data =(result.data);
-                        var pathname = window.location.pathname;
-                        var patharr  = pathname.split('/');
-                        var html = patharr[parseInt(patharr.length-1)];
+                        var data =(result.data),
+                            pathname = window.location.pathname,
+                            patharr  = pathname.split('/'),
+                            html = patharr[parseInt(patharr.length-1)];
                         console.log(data);
                         console.log(apptoken);
                         if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
@@ -239,7 +218,7 @@ $(document).ready(function(){
                                         </span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
-                                        <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                                     </div>
                                  </div>
                             </div>
@@ -256,7 +235,7 @@ $(document).ready(function(){
                                         </span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
-                                        <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
+                                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                                     </div>
                                  </div>
                             </div>
@@ -366,7 +345,7 @@ $(document).ready(function(){
                 });
                 var chatPage=$("#chatPage");
                 chatPage.html(html);
-                document.body.scrollTop=chatPage.height();
+                document.body.scrollTop=chatPage.height()+100;
             }
         })();
 
@@ -384,7 +363,8 @@ $(document).ready(function(){
         //发送消息给好友
         $(".pushBtn").click(function(){
             var apptoken=localStorage.getItem("apptoken");
-            var content=$(".chatContent").val();
+            var chatContent=$(".chatContent");
+            var content=chatContent.val();
             //获取页面发送内容
             var account_code =sender_code;          //获取发送好友的code
             var message_type = 1;                      //消息类型  1:文字消息 2:语音消息 3：文件消息
@@ -404,21 +384,19 @@ $(document).ready(function(){
             `;
             var chatPage=$("#chatPage");
             chatPage.append(html);
-            $(".chatContent").val("");
-
+            chatContent.val("");
             //保持滚动条一直在最底部
-            document.body.scrollTop=chatPage.height();
+            document.body.scrollTop=chatPage.height()+100;
             // 自己发送的消息存本地
             // 把好友消息存在本地
             // 获取发送的时间戳
-
             var sender=localStorage.getItem("sender_code");
             var time= (new Date()).toLocaleDateString();
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
             console.log(json_str);
             var history_chats = localStorage.getItem('history_'+sender_code);
             if(!history_chats){
-                history_chat = new Array();
+               history_chats = new Array();
                 history_chats=[json_str];
                 localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
             }else{
@@ -433,9 +411,10 @@ $(document).ready(function(){
         // 发送图片
         $("#uploaderInputPic").change(function(){
             var formData= new FormData();
-            console.log($("#uploaderInputPic")[0].files[0]);
+             var    uploaderInputPic=$("#uploaderInputPic");
+            console.log(uploaderInputPic[0].files[0]);
             var apptoken=localStorage.getItem("apptoken");
-            formData.append("file",$("#uploaderInputPic")[0].files[0]);
+            formData.append("file",uploaderInputPic[0].files[0]);
             var data=["",JSON.stringify({"apptoken":apptoken})];
             var json=jsEncryptData(data);
             formData.append("data",json);
@@ -471,9 +450,8 @@ $(document).ready(function(){
             `;
                         var chatPage=$("#chatPage");
                         chatPage.append(html);
-                        $(".chatContent").val("");
+                        document.body.scrollTop=chatPage.height()+100;
                         var content=localStorage.getItem("friendPic");
-                        console.log(content);
                         var message_type = 2;
                         var account_code =sender_code;
                         ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
@@ -484,7 +462,7 @@ $(document).ready(function(){
                         console.log(json_str);
                         var history_chats = localStorage.getItem('history_'+sender_code);
                         if(!history_chats){
-                            history_chat = new Array();
+                            history_chats = new Array();
                             history_chats=[json_str];
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
                         }else{
@@ -509,7 +487,6 @@ $(document).ready(function(){
         $('#uploaderInputFile').change(function(e) {
             var Url=window.URL.createObjectURL(this.files[0]) ;
             var formData= new FormData();
-            console.log($("#uploaderInputFile")[0]);
             var apptoken=localStorage.getItem("apptoken");
             formData.append("file",$("#uploaderInputFile")[0].files[0]);
             var data=["",JSON.stringify({"apptoken":apptoken})];
@@ -546,7 +523,7 @@ $(document).ready(function(){
             `;
                         var chatPage=$("#chatPage");
                         chatPage.append(html);
-                        $(".chatContent").val("");
+                        document.body.scrollTop=chatPage.height()+100;
                         var content=localStorage.getItem("friendPic");
                         console.log(content);
                         // 发送给服务器
@@ -560,7 +537,7 @@ $(document).ready(function(){
                         console.log(json_str);
                         var history_chats = localStorage.getItem('history_'+sender_code);
                         if(!history_chats){
-                            history_chat = new Array();
+                            history_chats = new Array();
                             history_chats=[json_str];
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
                         }else{
@@ -606,10 +583,11 @@ $(document).ready(function(){
         }
     })();
     $(".imgBtn").click(function(){
-        if($(".weui-grids").is(":hidden")){
-            $(".weui-grids").show();
+        var weuiGrids=$(".weui-grids");
+        if(weuiGrids.is(":hidden")){
+            weuiGrids.show();
         }else{
-            $(".weui-grids").hide();
+            weuiGrids.hide();
         }
     });
     //上传文件
@@ -663,17 +641,16 @@ $(document).ready(function(){
     // });
 // 图片放大预览
     (function(){
+        var gallery=$(".weui-gallery");
         $("#chatPage").on("click",".weui-media-box .weui-media-box__bd .weui-media-box__desc img",function(){
             var url=$(this).attr("src");
-            console.log("图片放大");
-            console.log(url);
-            if($(".weui-gallery").is(":hidden")){
-                $(".weui-gallery").show();
+            if(gallery.is(":hidden")){
+                gallery.show();
                 $(".weui-gallery__img").attr("style","background-image: url("+url+")")
             }
         });
-        $(".weui-gallery").click(function(){
-            $(".weui-gallery").hide();
+        gallery.click(function(){
+            gallery.hide();
         });
     })();
 });
