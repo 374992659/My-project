@@ -28,7 +28,13 @@ $(document).ready(function(){
                         
                         `
                     });
-                    $(".allGarden").append(li)
+                    $(".allGarden").append(li);
+                    $(".allGarden").on("click","li",function(){
+                        // 获取其值
+                        var gardenName=$(this).html();
+                        console.log(gardenName);
+                        $("#gardenName").attr("value",gardenName)
+                    })
                 }
             }
         })
