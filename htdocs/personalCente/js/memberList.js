@@ -25,7 +25,7 @@ $(document).ready(function(){
                                 <td>${item.real_name}</td>
                                 <td>本人</td>
                                 <td>2017.03.3</td>
-                                <td><button>删除</button></td>
+                                <td style="color: red"><button>删除</button></td>
                             </tr>
                     
                              `
