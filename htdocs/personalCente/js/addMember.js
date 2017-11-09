@@ -23,8 +23,12 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     $.each(data.data,function(i,item){
                         console.log(item);
+                        li+=`
+                        <li title="${item.garden_code}">${item.garden_name}</li>
+                        
+                        `
                     });
-
+                    $(".allGarden").append(li)
                 }
             }
         })
