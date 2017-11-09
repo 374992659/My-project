@@ -125,7 +125,7 @@ $(document).ready(function(){
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
                                     <label class="left">注册时间：</label>
-                                    <span>${result.creat_time}</span>
+                                    <span>${result.create_time}</span>
                                 </div>
                             </div>
                         </div>                            
