@@ -74,7 +74,7 @@ $(document).ready(function() {
                             var history_chats = new Array();
                             history_chats=[json_str];
                             localStorage.setItem('history_'+result.data.group,JSON.stringify(history_chats));
-                        }else {
+                        }else{
                             history_chats = JSON.parse(history_chats);
                             history_chats[history_chats.length] = json_str;
                             console.log("输出数组长度");
@@ -87,7 +87,7 @@ $(document).ready(function() {
                         }
                 }else if(result.errmsg==="好友消息"){
                     // 本地未读聊天记录
-                    var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+result.data.send_portrait+"'}";
+                    var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
                     console.log(json_str);
                     var history_chats = localStorage.getItem('history_'+result.data.group);
                     if(!history_chats){
