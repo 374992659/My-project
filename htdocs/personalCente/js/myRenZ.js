@@ -54,9 +54,10 @@ $(document).ready(function(){
         },
         error:function(){}
     });
-    $(".RZlist").on("click",".renZdetails",function(){
+    $(".RZlist").on("click",".renZdetails",function(e){
+        console.log(123);
         // 获取认证id
-      var  renZ_ID=$(this).attr("title");
+      var  renZ_ID=$(e.target).attr("title");
       console.log(renZ_ID);
       // 保存在本地在认证详情页面提取
     localStorage.setItem("personalRenZID",renZ_ID);
