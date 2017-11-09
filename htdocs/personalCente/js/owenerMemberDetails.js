@@ -54,7 +54,7 @@ $(document).ready(function(){
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left">关系：</label>
-                    <span>${result.relation_name}</span>
+                    <span class="relation">${result.relation_name}</span>
                 </div>
             </div>
         </div>
@@ -121,6 +121,9 @@ $(document).ready(function(){
                 
                 `;
               $(".RenZdetails").html(html);
+              if(result.relation_name===null){
+                  $(".relation").html("本人")
+              }
             }
         },
         error:function(){}
