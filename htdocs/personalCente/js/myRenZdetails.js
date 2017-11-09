@@ -3,6 +3,7 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
     // 获取id
        var id=localStorage.getItem("personalRenZID");
+       console.log(id);
        // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken})];
        //  加密
@@ -22,6 +23,7 @@ $(document).ready(function(){
                   console.log(1);
                   localStorage.setItem("apptoken",data.apptoken);
                   $.each(result,function(i,item){
+                      console.log(item);
                       console.log(2);
                       if(parseInt(item.id)===id){
                           console.log(3);
