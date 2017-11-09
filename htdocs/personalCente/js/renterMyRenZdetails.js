@@ -21,7 +21,6 @@ $(document).ready(function(){
                 $.each(data.data,function(i,item){
                     console.log(item);
                     $.each(item,function(i,item){
-                        console.log(item);
                     })
 
                 });
