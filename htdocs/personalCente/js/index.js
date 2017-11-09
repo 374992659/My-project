@@ -105,8 +105,8 @@ $(document).ready(function(){
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
                                     <label class="left" style="vertical-align: top">拥有楼盘：</label>
-                                    <ul class="likes">
-                                        <li>${result.user_garden}</li>
+                                    <ul class="likes ownerPlot">
+                                       
                                         
                                     </ul>
                                 </div>
@@ -130,17 +130,25 @@ $(document).ready(function(){
                             </div>
                         </div>                            
                     `;
-                  $(".personal").html(html)
+                  $(".personal").html(html);
+                  // 遍历认证楼盘
+                    var RenZplot="";
+                    if(result.user_garden){
+                    $.each(result.user_garden,function(i,item){
+                        RenZplot+=`
+                         <li>${item.garden_name}</li>
+                        `
+                        })
+                    }
+                    $(".ownerPlot").append(RenZplot)
                 }else{
-                    // window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
+                     window.location.href="http://wx.junxiang.ren/project/htdocs/landing.html"
                 }
-
             },
             error:function(){}
         })
     })();
     // 验证手机号
-
     // 验证身份证号
     $(".Identity").blur(function(){
         // 获取身份证号
