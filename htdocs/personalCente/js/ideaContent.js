@@ -24,14 +24,14 @@ $(document).ready(function(){
                 var result=data.data;
                 if(parseInt(result.status)===1){
                     var   html=`
-                    <h4 class="weui-media-box__title" style="text-align: center">${item.title}</h4>
+                    <h4 class="weui-media-box__title" style="text-align: center">${result.title}</h4>
             <p class="weui-media-box__desc">
-                ${item.content}
+                ${result.content}
             </p>
             <ul class="right">
                 <li class=""><span style="color:red;;">你的意见正在解决</span></li>
-                <li class="">处理人：<span>${item.dealer_name}</span></li>
-                <li class="">联系方式：<span>${item.dealer_phone}</span></li>
+                <li class="">处理人：<span>${result.nickname}</span></li>
+                <li class="">联系方式：<span>${result.dealer_phone}</span></li>
             </ul>
                     
                     `;
