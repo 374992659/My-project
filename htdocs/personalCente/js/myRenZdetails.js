@@ -19,7 +19,9 @@ $(document).ready(function(){
               console.log(data);
               if(data.errcode===0){
                   localStorage.setItem("apptoken",data.apptoken);
-                  var html=`
+                  $.each(result,function(i,item){
+                      if(parseInt(item.id)===id){
+                          var html=`
                      <!--姓名-->
     <div class="weui-cells">
         <div class="weui-cell">
@@ -116,7 +118,9 @@ $(document).ready(function(){
             </div>
         </div>
     </div>                                   
-                  `;
+                  `
+                      }
+                  });
                   $(".RenZdetails").html(html);
               }
           },
