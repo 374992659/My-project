@@ -1,10 +1,10 @@
 $(document).ready(function(){
     // 获取小区code
     var code="";
-    $(".gardenName").on("input",function(){
+    $("#gardenName").on("input",function(){
         var apptoken=localStorage.getItem("apptoken");
         var cityid=$("#city option:selected").val();
-        var key=$(".gardenName").val();
+        var key=$("#gardenName").val();
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":cityid,"key":key})];
         // 加密
