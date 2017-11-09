@@ -129,10 +129,10 @@ $(document).ready(function(){
             <div class="weui-cell__bd">
                 <label class="left" style="vertical-align: top">个人照片：</label>
                 <div class="likes myPic">
-                    <img src="image/firenda.jpg" alt="" >
-                    <img src="image/firenda.jpg" alt="" >
-                    <img src="image/firenda.jpg" alt="" >
-                    <img src="image/firenda.jpg" alt="" >
+                    <!--<img src="image/firenda.jpg" alt="" >-->
+                    <!--<img src="image/firenda.jpg" alt="" >-->
+                    <!--<img src="image/firenda.jpg" alt="" >-->
+                    <!--<img src="image/firenda.jpg" alt="" >-->
                 </div>
             </div>
         </div>
