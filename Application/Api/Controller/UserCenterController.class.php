@@ -327,6 +327,9 @@ class UserCenterController extends VersionController
             'room_num'=>$this->pdata['room_num'],
             'user_code'=>$this->account_code,
             'role'=>1,
+            'garden_name'=>$this->pdata['garden_name'],
+            'real_name'=>$this->pdata['real_name'],
+            'relation_name'=>'户主',
             'create_time'=>time(),
         ));
         //3.用户信息分表内添加小区记录
@@ -375,6 +378,7 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(1,'请输入正确的身份证号码');
         }
         $user_code = '';
+        //检测账号是否存在
         if($this->pdata['account']){
             $mongo = new \MongoClient();
             $user_code = $mongo->baseinfo->user_area->findOne(array('account'=>$this->pdata['account']),array('account_code'));
@@ -386,13 +390,20 @@ class UserCenterController extends VersionController
         //1.验证操作人的身份
         $account_code = $this->account_code;
         $city_id = substr($account_code,0,4);
-        $model = new Model\OwnerApplicationController($city_id);
-        $model->startTrans();
-        $role = $model->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num']])->getField('role');
+        $mode = new Model\OwnerApplicationController($city_id);
+        $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
         if(!$role){
             $this->echoEncrypData(1,'只有房主才有此操作权利哦');
         }else{
             if(intval($role)===1){
+                $user_account =$this->pdata['account'];
+                $mongo = new \MongoClient();
+                $user_account?$user_account_code = $mongo->baseinfo->user_area->findOne(array(
+                    'account'=>$user_account
+                ),array('account_code'))['account_code']:$user_account_code='';
+                $user_account_code?$user_city_id=substr($user_account_code,0,4):$user_city_id=$city_id;
+                $model= new Model\OwnerApplicationController($user_city_id);//传递了account的认证保存在其本人认证分表  没有传递则保存在操作人（户主）分表内
+                $model->startTrans();
                 $res1 = $model->addApplication(array(
                     'user_code'=>$user_code,
                     'real_name'=>$this->pdata['real_name'],
@@ -411,7 +422,7 @@ class UserCenterController extends VersionController
                 $point_record = new Model\PointRecordModel($account_code);
                 $point_record->startTrans();
                 $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('ADD_NUM')])->find();
-                $res4 = $point_record->add(array(
+                $res2 = $point_record->add(array(
                     'name_id'=>$point['id'],
                     'name'=>$point['name'],
                     'type'=>$point['type'],
@@ -419,24 +430,26 @@ class UserCenterController extends VersionController
                     'create_time'=>time(),
                 ));
                 M()->startTrans();
-                $res5 = true;
                 if($point_limit = $this->getPointLimitStatus($account_code)){
                     $point_limit>$point['value']?$add=$point['value']:$add=$point_limit;
                 }
-                $res5 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='.$account_code);
+                $res3 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='.$account_code);
+                //2.garden_room 分表添加用户数据
+                $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
+                $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+                $garden_num->startTrans();
+                $res4 = $garden_num->add(array(
+                    'city_id'=>$this->pdata['city_id'],
+                    'garden_code'=>$this->pdata['garden_code'],
+                    'room_num'=>$this->pdata['room_num'],
+                    'user_code'=>$user_code,
+                    'role'=>1,
+                    'garden_name'=>$this->pdata['garden_name'],
+                    'relation_name'=>$this->pdata['real_name'],
+                    'relation_name'=>$this->pdata['relation_name'],
+                    'create_time'=>time(),
+                ));
                 if($user_code){
-                    //2.garden_room 分表添加用户数据
-                    $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
-                    $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
-                    $garden_num->startTrans();
-                    $res2 = $garden_num->add(array(
-                        'city_id'=>$this->pdata['city_id'],
-                        'garden_code'=>$this->pdata['garden_code'],
-                        'room_num'=>$this->pdata['room_num'],
-                        'user_code'=>$user_code,
-                        'role'=>1,
-                        'create_time'=>time(),
-                    ));
                     //3.用户信息分表内添加小区记录
                     $user_city_id = substr($user_code,0,4);
                     $user_garden = M('baseinfo.user_info_'.$user_city_id)->where(['account_code'=>$user_code])->getField('user_garden');
@@ -447,7 +460,7 @@ class UserCenterController extends VersionController
                     }
                     $user_info = M('baseinfo.user_info_'.$user_city_id);
                     $user_info->startTrans();
-                    $res3 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
+                    $res5 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
                     if(!$res1 or !$res2 or !$res3 or !$res4 or !$res5){
                         $garden_num->rollback();
                         $model->rollback();
@@ -464,7 +477,7 @@ class UserCenterController extends VersionController
                         $this->echoEncrypData(0);
                     }
                 }
-                if($res1 and $res4 and $res5){
+                if($res1 and $res2 and $res3 and $res4){
                     $point_record->commit();
                     M()->commit();
                     $model->commit();
@@ -479,16 +492,6 @@ class UserCenterController extends VersionController
                 $this->echoEncrypData(1,'只有房主才有此操作权利哦');
             }
         }
-    }
-    /*
-     * 业主删除成员
-     * @param city_id 城市id
-     * @param application_id 认证id
-     * */
-    protected function ownerDelNum_v1_0_0(){
-        $this->checkParam(array('city_id','application_id'));
-        $account_code = $this->account_code;
-
     }
 
     /*
@@ -529,15 +532,35 @@ class UserCenterController extends VersionController
         //获取通过认证的业主认证
         $city_id = substr($account_code,0,4);
         $model = new Model\OwnerApplicationController($city_id);
-        $data = $model->where(['user_code'=>$account_code,'status'=>1])->select();
+        $data = $model->field('room_num,garden_code,city_id')->where(['user_code'=>$account_code,'status'=>1])->select();
         $num_list = array();
         if(!$data){
             $this->echoEncrypData(5);
         }else{
+            $swf_area =M('bseinfo.swf_area');
             foreach ($data as $k=>$v){
-                $num_list[] = $model->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name,city_id')->where(['garden_code'=>$v['garden_code'],'city_id'=>$v['city_id'],'room_num'=>$v['room_num'],'status'=>1])->select();
+                $province_id =$swf_area->where(['id'=>$v['city_id']])->getField('parent_id');
+                $mode = new Model\GardenRoomModel($province_id,$v['city_id']);
+                $num_list[] = $mode->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name,city_id')->where(['city_id'=>$v['city_id'],'garden_code'=>$v['garden_code'],'room_num'=>$v['room_num'],'role'=>1])->select();
             }
             $this->echoEncrypData(0,'',$num_list);
+        }
+    }
+    /*
+     * 业主删除成员
+     * @param city_id 城市id
+     * @param application_id 认证id
+     * */
+    protected function ownerDelNum_v1_0_0(){
+        $this->checkParam(array('city_id','application_id'));
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $mode = new Model\OwnerApplicationController($city_id);
+        $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
+        if(!$role) {
+            $this->echoEncrypData(1, '只有房主才有此操作权利哦');
+        }else{
+
         }
     }
     /*
@@ -547,8 +570,15 @@ class UserCenterController extends VersionController
      * */
     protected function getMyOwnNumInfo_v1_0_0(){
         $this->checkParam(array('application_id','city_id'));
-        $model = new Model\OwnerApplicationController($this->pdata['city_id']);
-        $data = $model->where(['id'=>$this->pdata['application_id']])->find();
+        $province_id = M('baseinfo.swf_area')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
+        $model = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+        $user_code = $model->field('city_id,garden_code,room_num,user_code')->where(['id'=>$this->pdata['application_id']])->find();
+        if(!$user_code)$this->echoEncrypData(1);
+        $first_application_code = $model->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'relation_name'=>'户主','role'=>1])->getField('user_code');
+        $user_code['user_code']?$city_id =substr($user_code['user_code'],0,4):$city_id=substr($first_application_code,0,4);
+        $owner_application = new Model\OwnerApplicationController($city_id);
+        $data = $owner_application->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'user_code'=>$user_code['user_code']])->find();
+//        $data = $model->where(['id'=>$this->pdata['application_id']])->find();
         if(!$data){
             $this->echoEncrypData(1);
         }
@@ -588,7 +618,7 @@ class UserCenterController extends VersionController
         $mongo =new \MongoClient();
         if(!$this->pdata['garden_code']){
             $garden = $mongo->baseinfo->garden_area->findOne(array('garden_name'=>$this->pdata['garden_name'],'city_id'=>$this->pdata['city_id']));
-            //检索小区表是否存在该小区 不存在则添加到小区表
+            //是否存在该小区 不存在则添加到小区表
             if($garden){
                 $garden_code = $garden['garden_code'];
             }else{
@@ -643,6 +673,9 @@ class UserCenterController extends VersionController
             'room_num'=>$this->pdata['room_num'],
             'user_code'=>$this->account_code,
             'role'=>2,
+            'real_name'=>$this->pdata['real_name'],
+            'garden_name'=>$this->pdata['garden_name'],
+            'relation_name'=>'主租户',
             'create_time'=>time(),
         ));
          //3.用户user_info分表添加小区记录
@@ -701,14 +734,21 @@ class UserCenterController extends VersionController
         //验证操作用户权限
         $account_code = $this->account_code;
         $city_id = substr($account_code,0,4);
-        $model = new Model\TenantApplicationModel($city_id);
-        $model->startTrans();
-        $role = $model->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num']])->getField('role');
+        $mode = new Model\TenantApplicationModel($city_id);
+        $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num']])->getField('role');
         if(!$role){
             $this->echoEncrypData(1,'只有主租户才有此操作权限哦');
         }else{
             if(intval($role) ===1){
                 //1.添加认证记录
+                $user_account =$this->pdata['account'];
+                $mongo = new \MongoClient();
+                $user_account?$user_account_code = $mongo->baseinfo->user_area->findOne(array(
+                    'account'=>$user_account
+                ),array('account_code'))['account_code']:$user_account_code='';
+                $user_account_code?$user_city_id=substr($user_account_code,0,4):$user_city_id=$city_id;
+                $model= new Model\OwnerApplicationController($user_city_id);//传递了account的认证保存在其本人认证分表  没有传递则保存在操作人（户主）分表内
+                $model->startTrans();
                 $res1 = $model->addApplication(array(
                     'user_code'=>$user_code,
                     'real_name'=>$this->pdata['real_name'],
@@ -728,7 +768,7 @@ class UserCenterController extends VersionController
                 $point_record = new Model\PointRecordModel($account_code);
                 $point_record->startTrans();
                 $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('ADD_NUM')])->find();
-                $res4 = $point_record->add(array(
+                $res2 = $point_record->add(array(
                     'name_id'=>$point['id'],
                     'name'=>$point['name'],
                     'type'=>$point['type'],
@@ -736,24 +776,26 @@ class UserCenterController extends VersionController
                     'create_time'=>time(),
                 ));
                 M()->startTrans();
-                $res5 = true;
                 if($point_limit = $this->getPointLimitStatus($account_code)){
                     $point_limit>$point['value']?$add=$point['value']:$add=$point_limit;
                 }
-                $res5 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='.$account_code);
+                $res3 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='.$account_code);
+                $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
+                $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+                $garden_num->startTrans();
+                //2.小区分库garden_room分表添加用户
+                $res4 = $garden_num->add(array(
+                    'city_id'=>$this->pdata['city_id'],
+                    'garden_code'=>$this->pdata['garden_code'],
+                    'room_num'=>$this->pdata['room_num'],
+                    'user_code'=>$user_code,
+                    'role'=>2,
+                    'real_name'=>$this->pdata['real_name'],
+                    'garden_name'=>$this->pdata['garden_name'],
+                    'relation_name'=>$this->pdata['relation_name'],
+                    'create_time'=>time(),
+                ));
                 if($user_code){
-                    $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
-                    $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
-                    $garden_num->startTrans();
-                    //2.小区分库garden_room分表添加用户
-                    $res2 = $garden_num->add(array(
-                        'city_id'=>$this->pdata['city_id'],
-                        'garden_code'=>$this->pdata['garden_code'],
-                        'room_num'=>$this->pdata['room_num'],
-                        'user_code'=>$user_code,
-                        'role'=>2,
-                        'create_time'=>time(),
-                    ));
                     //3.用户信息分表内添加小区记录
                     $user_city_id = substr($user_code,0,4);
                     $user_garden = M('baseinfo.user_info_'.$user_city_id)->where(['account_code'=>$user_code])->getField('user_garden');
@@ -764,7 +806,7 @@ class UserCenterController extends VersionController
                     }
                     $user_info = M('baseinfo.user_info_'.$user_city_id);
                     $user_info->startTrans();
-                    $res3 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
+                    $res5 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
                     if(!$res1 || !$res2 || !$res3 || !$res4 || $res5){
                         M()->rollback();
                         $point_record->rollback();
@@ -781,7 +823,7 @@ class UserCenterController extends VersionController
                         $this->echoEncrypData(0);
                     }
                 }
-                if($res1 && $res4 && $res5){
+                if($res1 && $res2 && $res3 && $res4){
                     $model->commit();
                     $point_record->commit();
                     M()->commit();
@@ -835,13 +877,16 @@ class UserCenterController extends VersionController
         //获取通过认证的业主认证
         $city_id = substr($account_code,0,4);
         $model = new Model\TenantApplicationModel($city_id);
-        $data = $model->where(['user_code'=>$account_code,'status'=>1])->select();
+        $data = $model->field('city_id,garden_code,room_num')->where(['user_code'=>$account_code,'status'=>1])->select();
         $num_list = array();
         if(!$data){
             $this->echoEncrypData(5);
         }else{
+            $swf_area =M('baseinfo.swf_area');
             foreach ($data as $k=>$v){
-                $num_list[] = $model->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name,city_id')->where(['garden_code'=>$v['garden_code'],'city_id'=>$v['city_id'],'room_num'=>$v['room_num'],'status'=>1])->select();
+                $province_id =$swf_area->where(['id'=>$v['city_id']])->getField('parent_id');
+                $mode = new Model\GardenRoomModel($province_id,$v['city_id']);
+                $num_list[] = $mode->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name,city_id')->where(['city_id'=>$v['city_id'],'garden_code'=>$v['garden_code'],'room_num'=>$v['room_num'],'role'=>1])->select();
             }
             $this->echoEncrypData(0,'',$num_list);
         }
@@ -853,8 +898,14 @@ class UserCenterController extends VersionController
      * */
     protected function getTenantNumInfo_v1_0_0(){
         $this->checkParam(array('application_id','city_id'));
-        $model = new Model\OwnerApplicationController($this->pdata['city_id']);
-        $data = $model->where(['id'=>$this->pdata['application_id']])->find();
+        $province_id = M('baseinfo.swf_area')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
+        $model = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+        $user_code = $model->field('city_id,garden_code,room_num,user_code')->where(['id'=>$this->pdata['application_id']])->find();
+        if(!$user_code)$this->echoEncrypData(1);
+        $first_application_code = $model->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'relation_name'=>'户主','role'=>1])->getField('user_code');
+        $user_code['user_code']?$city_id =substr($user_code['user_code'],0,4):$city_id=substr($first_application_code,0,4);
+        $owner_application = new Model\OwnerApplicationController($city_id);
+        $data = $owner_application->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'user_code'=>$user_code['user_code']])->find();
         if(!$data){
             $this->echoEncrypData(1);
         }
@@ -1062,13 +1113,16 @@ class UserCenterController extends VersionController
     /*
      * 用户删除认证
      * @param application_id   认证id
+     * @type 删除的认证类型 1：业主认证 2：租户认证
      * */
     protected function ownDelApplication_v1_0_0(){
-        $this->checkParam(array('application_id'));
+        $this->checkParam(array('application_id','type'));
         $account_code = $this->account_code;
         $city_id = substr($account_code,0,4);
-        $owner_application = new Model\OwnerApplicationController($city_id);
-        $res1 = $owner_application->where(['id'=>$this->pdata['application_id']])->delete();
+        $type = intval($this->pdata['type']);
+        $type !== 1 || $type !== 2?$this->echoEncrypData(1,'参数错误'):$type ===1?
+            $mode = new Model\OwnerApplicationController($city_id):$mode =new Model\TenantApplicationModel($city_id);
+        $res1 = $mode->where(['id'=>$this->pdata['application_id']])->delete();
         if(!$res1)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
@@ -1130,24 +1184,5 @@ class UserCenterController extends VersionController
         }
         array_multisort($key_array,$sort,$multi_array);
         return $multi_array;
-    }
-    /*
-     * 运行sql文件
-     * */
-    public function executeSql($fileName,$data){
-        $sql=file_get_contents(C('SQL_PATH').$fileName);
-        $sql=str_replace('$city_id',$data['city_id'],$sql);
-        $sql=str_replace('$province_id',$data['province_id'],$sql);
-        $sql=str_replace('$account_code',$data['account_code'],$sql);
-        $sql=str_replace('$subject_id',$data['subject_id'],$sql);
-        $model=M();
-        $model->startTrans();
-        $res=$model->execute($sql);
-        if($res !== false){
-            $model->commit();
-        }else{
-            $model->rollback();
-            $this->echoEncrypData(3);
-        }
     }
 }
