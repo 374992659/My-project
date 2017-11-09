@@ -126,9 +126,9 @@ $(document).ready(function(){
     <!--个人照片-->
     <div class="weui-cells">
         <div class="weui-cell">
-            <div class="weui-cell__bd myPic">
+            <div class="weui-cell__bd">
                 <label class="left" style="vertical-align: top">个人照片：</label>
-                <div class="likes">
+                <div class="likes myPic">
                     <img src="image/firenda.jpg" alt="" >
                     <img src="image/firenda.jpg" alt="" >
                     <img src="image/firenda.jpg" alt="" >
@@ -149,20 +149,29 @@ $(document).ready(function(){
                           });
                   //循环小区照片
                   var plotPic="";
+                  //将json字符串转换成数组
                   var garden_picture=eval('(' + item.garden_picture + ')');
                   $.each(garden_picture,function(i,item){
                       plotPic+=`
                       <img src="${item}" alt="" >
                       `
                   });
-
+                    //循环个人照片
+                  var myPic="";
+                        var myPicObj=eval('('+item.yourself_picture+')');
+                        if(myPicObj){
+                            $.each(myPicObj,function(i,item){
+                                myPic+=`
+                                 <img src="http://wx.junxiang.ren/project/${item}" alt="" >                               
+                                `
+                            });
+                        }
                       }
                       $(".RenZdetails").html(html);
                       $(".papersPic").append(id_card_pictures);
                       $(".plotPic").append(plotPic);
+                      $(".myPic").append(myPic);
                   });
-
-
               }
           },
           error:function(){}
