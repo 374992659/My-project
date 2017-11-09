@@ -21,10 +21,9 @@ $(document).ready(function(){
             console.log(data);
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
-                var html="";
-                $.each(data.data,function(i,item){
-                    console.log(item);
-                        html=`
+                var result=data.data;
+                if(parseInt(result.status)===1){
+                    var   html=`
                     <h4 class="weui-media-box__title" style="text-align: center">${item.title}</h4>
             <p class="weui-media-box__desc">
                 ${item.content}
@@ -35,8 +34,21 @@ $(document).ready(function(){
                 <li class="">联系方式：<span>${item.dealer_phone}</span></li>
             </ul>
                     
-                    `
-                });
+                    `;
+                }else{
+                    var   html=`
+                    <h4 class="weui-media-box__title" style="text-align: center">${item.title}</h4>
+            <p class="weui-media-box__desc">
+                ${item.content}
+            </p>
+            <ul class="right">
+                <li class=""><span style="color:green;">你的意见已经解决</span></li>
+                <li class="">处理人：<span>${item.dealer_name}</span></li>
+                <li class="">联系方式：<span>${item.dealer_phone}</span></li>
+            </ul>
+                    
+                    `;
+                }
                 $(".ideaContent").html(html)
             }
         },
