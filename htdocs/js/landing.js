@@ -94,6 +94,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    history.back();
                     window.location.href="friend.html"
                 }else{
                     alert(data.errmsg);

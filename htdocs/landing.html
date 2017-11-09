@@ -222,7 +222,6 @@
                         type:'POST',
                         data:{'url':Url},
                         success:function(res){
-                            console.log(res);
                             location.href=res.data;
                         }
                     })
@@ -232,7 +231,6 @@
                         type:'POST',
                         data:{'code':code},
                         success:function(res){
-                            console.log(res.data);
                             localStorage.setItem('openId',res.data.openid);
                         }
                     })
