@@ -32,7 +32,7 @@ $(document).ready(function(){
                 });
                 $(".memberList").append(html);
                var relation=$(".relation");
-                if(relation.text()===null){
+                if(relation.text()==null){
                     console.log(13);
                     relation.html("本人")
                 }
