@@ -341,6 +341,8 @@ CREATE TABLE if NOT EXISTS `garden_room_$city_id` (
   `room_num` varchar(10) NOT NULL COMMENT '房间号码',
   `user_code` varchar(50) NOT NULL COMMENT '用户code',
   `role` tinyint(4) NOT NULL COMMENT '角色 1：业主或业主相关  2：租户或租户相关',
+  `relation_name` varchar(50) DEFAULT NULL COMMENT '家庭身份  （与业主/主租户关系）',
+  `real_name` varchar(20) DEFAULT NULL COMMENT '真实姓名',
   `create_time` int(11) unsigned NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`),
   KEY `city_id` (`city_id`),
