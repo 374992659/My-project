@@ -174,7 +174,7 @@ $(document).ready(function(){
                   var relation=$(".relation");
                   console.log(relation.text());
                   console.log(typeof relation.text());
-                  if(relation.text()==null){
+                  if(relation.text()==="null"){
                       relation.html("本人");
                   }
               }
