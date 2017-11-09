@@ -54,7 +54,7 @@ $(document).ready(function(){
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
                                 <label class="left">关系：</label>
-                                <span>${result.relation_name}</span>
+                                <span class="relation">${result.relation_name}</span>
                             </div>
                         </div>
                     </div>
