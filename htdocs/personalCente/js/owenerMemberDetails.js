@@ -99,8 +99,7 @@ $(document).ready(function(){
             <div class="weui-cell">
                 <div class="weui-cell__bd papersPic">
                     <label class="left" style="vertical-align: top">证件照：</label>
-                        <img src="image/firenda.jpg" alt="" >
-                        <img src="image/firenda.jpg" alt="" >
+                        
                 </div>
             </div>
         </div>
@@ -141,7 +140,7 @@ $(document).ready(function(){
                 if(id_cardPicObj){
                     $.each(id_cardPicObj,function(i,item){
                         id_cardPic+=`
-                         <img src="${item}" alt="" >
+                         <img src="http://wx.junxiang.ren/project/${item}" alt="" >
                         `
                     });
                 }$(".papersPic").append(id_cardPic);
@@ -149,18 +148,22 @@ $(document).ready(function(){
                 var myPic="";
                 var myPicObj=eval('('+result.yourself_picture+')');
                 if(myPicObj){
-                    myPic+=`
+                    $.each(myPicObj,function(i,item){
+                        myPic+=`
                      <img src="${item}" alt="" >
                     `
+                    });
                 }$(".myPic").append(myPic);
               //   小区照片
                 var gardenPic="";
                 var gardenPicObj=eval('('+ result.garden_picture+')');
                 if(gardenPicObj){
-                    gardenPic+=`
+                    $.each(gardenPicObj,function(i,item){
+                        gardenPic+=`
                      <img src="${item}" alt="" >
                     
                     `
+                    })
                 }$(".gardenPic").append(gardenPic);
               if(result.relation_name===null){
                   $(".relation").html("本人")
