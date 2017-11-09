@@ -17,10 +17,14 @@ $(document).ready(function(){
               var data=jsDecodeData(data);
               var result=data.data;
               console.log(data);
+              console.log(result);
               if(data.errcode===0){
+                  console.log(1);
                   localStorage.setItem("apptoken",data.apptoken);
                   $.each(result,function(i,item){
+                      console.log(2);
                       if(parseInt(item.id)===id){
+                          console.log(3);
                           var html=`
                      <!--姓名-->
     <div class="weui-cells">
