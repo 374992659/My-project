@@ -46,7 +46,7 @@ $(document).ready(function(){
         localStorage.setItem("application_id",application_id);
         localStorage.setItem("renterCity_id",city_id);
         if(application_id&&city_id){
-            window.localtion.href="";//跳转到租户成员详情页面
+            window.location.href="renterMemberDetails.html";//跳转到租户成员详情页面
         }
     })
 });
