@@ -44,6 +44,6 @@ $(document).ready(function(){
         // 存在本地下一个跳转页面用
         localStorage.setItem("personalCity_id",city_id);
         localStorage.setItem("application_id",application_id);
-        window.location.href="";//跳转到成员业主认证详情页面
+        window.location.href="owenerMemberDetails.html";//跳转到成员业主认证详情页面
     })
 });

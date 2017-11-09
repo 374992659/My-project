@@ -43,7 +43,7 @@ $(document).ready(function(){
         var id=$(this).attr("title");
         localStorage.setItem("informID",id);
         if(id){
-            window.localtion.href="informContent.html";//跳转通知详情页面
+            window.location.href="informContent.html";//跳转通知详情页面
         }
     })
 });
