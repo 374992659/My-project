@@ -72,7 +72,7 @@ $(document).ready(function(){
             <div class="weui-cell">
                 <div class="weui-cell__bd">
                     <label class="left">小区地址：</label>
-                    <span>${result.garden_addr}</span>
+                    <span class="garden_addr">${result.garden_addr}</span>
                 </div>
             </div>
         </div>
@@ -123,6 +123,9 @@ $(document).ready(function(){
               $(".RenZdetails").html(html);
               if(result.relation_name===null){
                   $(".relation").html("本人")
+              }
+              if(result.garden_addr===null){
+                  $(".garden_addr").html("主人太懒什么都没有留下");
               }
             }
         },
