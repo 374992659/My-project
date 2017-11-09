@@ -33,6 +33,7 @@ $(document).ready(function(){
                         // 获取其值
                         var gardenName=$(this).html();
                         console.log(gardenName);
+                        $("#gardenName").empty();
                         $("#gardenName").attr("value",gardenName)
                     })
                 }
