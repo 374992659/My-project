@@ -25,7 +25,6 @@ $(document).ready(function(){
                   $.each(result,function(i,item){
                       console.log(item);
                       if(item.id===id){
-                          console.log(3);
                           var html=`
                      <!--姓名-->
     <div class="weui-cells">

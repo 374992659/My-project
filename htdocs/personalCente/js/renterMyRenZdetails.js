@@ -99,8 +99,8 @@ $(document).ready(function(){
         <div class="weui-cell">
             <div class="weui-cell__bd papersPic">
                 <label class="left" style="vertical-align: top">证件照：</label>
-                <img src="image/firenda.jpg" alt="" >
-                <img src="image/firenda.jpg" alt="" >
+                <!--<img src="image/firenda.jpg" alt="" >-->
+                <!--<img src="image/firenda.jpg" alt="" >-->
         </div>
         </div>
     </div>
@@ -133,8 +133,18 @@ $(document).ready(function(){
         </div>
     </div>                                                       
                    `;
-                        $(".RenZdetails").html(html);
+                        // 循环证件照
+                        var id_card_pictures="";
+                        var obj = eval('(' + item.id_card_pictures + ')');
+                        $.each(obj,function(i,item){
+                            id_card_pictures+=`
+                              <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                              `
+                        });
+
                     }
+                    $(".RenZdetails").html(html);
+                    $(".papersPic").append(id_card_pictures)
 
                 });
             }
