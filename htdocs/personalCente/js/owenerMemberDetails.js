@@ -104,6 +104,20 @@ $(document).ready(function(){
                 </div>
             </div>
         </div>
+        <!--小区照片-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd gardenPic">
+                    <label class="left" style="vertical-align: top">小区照片：</label>
+                    <div class="likes">
+                        <img src="image/firenda.jpg" alt="" >
+                        <img src="image/firenda.jpg" alt="" >
+                        <img src="image/firenda.jpg" alt="" >
+                        <img src="image/firenda.jpg" alt="" >
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--个人照片-->
         <div class="weui-cells">
             <div class="weui-cell">
@@ -120,7 +134,34 @@ $(document).ready(function(){
         </div>
                 
                 `;
-              $(".RenZdetails").html(html);
+                $(".RenZdetails").html(html);
+              // 身份证照片
+                var id_cardPic="";
+                var id_cardPicObj=eval('('+result.id_card_pictures+')');
+                if(id_cardPicObj){
+                    $.each(id_cardPicObj,function(i,item){
+                        id_cardPic+=`
+                         <img src="${item}" alt="" >
+                        `
+                    });
+                }$(".papersPic").append(id_cardPic);
+              // 个人照片
+                var myPic="";
+                var myPicObj=eval('('+result.yourself_picture+')');
+                if(myPicObj){
+                    myPic+=`
+                     <img src="${item}" alt="" >
+                    `
+                }$(".myPic").append(myPic);
+              //   小区照片
+                var gardenPic="";
+                var gardenPicObj=eval('('+ result.garden_picture+')');
+                if(gardenPicObj){
+                    gardenPic+=`
+                     <img src="${item}" alt="" >
+                    
+                    `
+                }$(".gardenPic").append(gardenPic);
               if(result.relation_name===null){
                   $(".relation").html("本人")
               }
