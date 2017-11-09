@@ -75,6 +75,9 @@ $(document).ready(function(){
     });
     // 登录
     $(".phoneregBtn").click(function(){
+        function goBack(){
+            window.history.back()
+        }
         // 获取验证码
         var phone=$(".phone").val();
         var code=$(".code").val();
@@ -94,7 +97,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    history.back();
+                    goBack();
                     window.location.href="friend.html"
                 }else{
                     alert(data.errmsg);
