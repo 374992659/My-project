@@ -245,9 +245,9 @@ $(document).ready(function(){
 // 点击跳转到群聊天页面
     $(".newsList").on("click",".groupChat",function(e){
         // 获取群num
-        var group_num=$(e.target).find("span").attr("title");
+        var group_num=$(this).find("span").attr("title"),
         // 获取群code
-        var group_code=$(this).attr("title"),
+            group_code=$(this).attr("title"),
             // 群头像
             group_head=$(this).find("img").attr("src"),
             //群名字
