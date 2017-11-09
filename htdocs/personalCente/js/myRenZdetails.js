@@ -152,7 +152,7 @@ $(document).ready(function(){
                   var garden_picture=eval('(' + item.garden_picture + ')');
                   $.each(garden_picture,function(i,item){
                       plotPic+=`
-                      <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                      <img src="${item}" alt="" >
                       `
                   });
 
