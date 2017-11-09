@@ -46,6 +46,7 @@
     </style>
 </head>
 <body>
+    <div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
     <div style="padding:0 5px">
         <div class="lr_nb">
             <div class="slider_wrap line">
@@ -75,8 +76,10 @@
             <!--推广二维码-->
             <div class="qrCode">
                 <img src="image/u1313.png" alt="">
-                <div>推广二维码</div>
-                <span>签到</span>
+                <div>推广二维码
+                    <span class="right signIn">签到</span>
+                </div>
+
                 <!--个人信息-->
                 <div style="padding: 5px" class="personal">
                     <!--图像相关-->
@@ -860,5 +863,6 @@
 <script src="../js/encrypt-decode.js"></script>
 <script src="js/index.js"></script>
 <script src="../js/timestamp.js"></script>
+    <script src="../js/showHide.js"></script>
 </body>
 </html>

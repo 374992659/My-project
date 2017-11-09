@@ -2,7 +2,31 @@ $(document).ready(function(){
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
     // 签到
-    $("")
+    $(".signIn").click(function(){
+        // 数据格式转换
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        // 加密
+        var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"UserCenter_signIn",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $(this).attr("style","font-size: 20px;color: red");
+                    showHide(data.errmsg);
+                }else{
+                    showHide(data.errmsg)
+                }
+            },
+            error:function(){}
+        })
+    });
     // 进入页面请求接口加载页面如果没人有登录跳转到登录页面
     (function(){
         // 数据格式转换
