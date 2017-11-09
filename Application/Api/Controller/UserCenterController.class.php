@@ -246,7 +246,6 @@ class UserCenterController extends VersionController
         }
         $this->echoEncrypData(0,'',array('status'=>$status)); //1：还未被认证 2：已有认证
     }
-
     /*
      *  业主认证   表中照片均以json字符串形式传递路劲
      * @param real_name 真实姓名
@@ -354,7 +353,6 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(1);
         }
     }
-
     /*
      * 业主添加成员
      * @param real_name 真实姓名
@@ -493,7 +491,6 @@ class UserCenterController extends VersionController
             }
         }
     }
-
     /*
      * 业主认证/业主添加成员 上传图片
      * */
@@ -537,7 +534,7 @@ class UserCenterController extends VersionController
         if(!$data){
             $this->echoEncrypData(5);
         }else{
-            $swf_area =M('bseinfo.swf_area');
+            $swf_area =M('baseinfo.swf_area');
             foreach ($data as $k=>$v){
                 $province_id =$swf_area->where(['id'=>$v['city_id']])->getField('parent_id');
                 $mode = new Model\GardenRoomModel($province_id,$v['city_id']);
@@ -549,7 +546,7 @@ class UserCenterController extends VersionController
     /*
      * 业主删除成员
      * @param city_id 城市id
-     * @param application_id 认证id
+     * @param application_id 认证id（实际为garden_room 分表id）
      * */
     protected function ownerDelNum_v1_0_0(){
         $this->checkParam(array('city_id','application_id'));
@@ -560,7 +557,10 @@ class UserCenterController extends VersionController
         if(!$role) {
             $this->echoEncrypData(1, '只有房主才有此操作权利哦');
         }else{
-
+            $province_id= M('baseinfo.swf_area')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
+            $garden_room = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+            $user_info = $garden_room->field('user_code,city_id,garden_code,room_num')->where(['id'=>$this->pdata['application_id']])->find();
+            if(!$user_info)$this->echoEncrypData()
         }
     }
     /*
@@ -584,7 +584,6 @@ class UserCenterController extends VersionController
         }
         $this->echoEncrypData(0,'',$data);
     }
-
     /*
      * 租户认证
      * @param real_name 真实姓名
