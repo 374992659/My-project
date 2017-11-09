@@ -123,7 +123,12 @@ $(document).ready(function(){
             </div>
         </div>
     </div>                                   
-                  `
+                  `;
+                          // 循环证件照
+                      $.each(item.id_card_pictures,function(i,item){
+                          console.log(item);
+
+                      })
                       }
                       $(".RenZdetails").html(html);
                       if(item.relation_name===null){
