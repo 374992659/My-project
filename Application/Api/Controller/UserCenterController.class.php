@@ -1059,6 +1059,19 @@ class UserCenterController extends VersionController
             }
         }
     }
+    /*
+     * 用户删除认证
+     * @param application_id   认证id
+     * */
+    protected function ownDelApplication_v1_0_0(){
+        $this->checkParam(array('application_id'));
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $owner_application = new Model\OwnerApplicationController($city_id);
+        $res1 = $owner_application->where(['id'=>$this->pdata['application_id']])->delete();
+        if(!$res1)$this->echoEncrypData(1);
+        $this->echoEncrypData(0);
+    }
 
     /*
      * 判断用户今日是否已达分数上限
