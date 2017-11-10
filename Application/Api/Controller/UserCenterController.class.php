@@ -29,7 +29,6 @@ class UserCenterController extends VersionController
 
     }
 
-
     /*
      * 修改个人资料
      * @param portrait 用户头像
@@ -431,6 +430,7 @@ class UserCenterController extends VersionController
                 if($point_limit = $this->getPointLimitStatus($account_code)){
                     $point_limit>$point['value']?$add=$point['value']:$add=$point_limit;
                 }
+                $this->echoEncrypData(1,array($point_limit,$point));
                 $res3 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='.$account_code);
                 //2.garden_room 分表添加用户数据
                 $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
@@ -544,7 +544,7 @@ class UserCenterController extends VersionController
         }
     }
     /*
-     * 业主删除成员
+     * 户主删除成员
      * @param city_id 城市id
      * @param application_id 认证id（实际为garden_room 分表id）
      * */
@@ -554,13 +554,86 @@ class UserCenterController extends VersionController
         $city_id = substr($account_code,0,4);
         $mode = new Model\OwnerApplicationController($city_id);
         $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
-        if(!$role) {
+        if(intval($role) !== 1) {
             $this->echoEncrypData(1, '只有房主才有此操作权利哦');
         }else{
             $province_id= M('baseinfo.swf_area')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
             $garden_room = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
-            $user_info = $garden_room->field('user_code,city_id,garden_code,room_num')->where(['id'=>$this->pdata['application_id']])->find();
-            if(!$user_info)$this->echoEncrypData();
+            $garden_room->startTrans();
+            $user_info = $garden_room->field('user_code,city_id,garden_code,real_name,room_num')->where(['id'=>$this->pdata['application_id']])->find();
+            if(!$user_info)$this->echoEncrypData(1);
+            $first_application_code = $garden_room->where([
+                'city_id'=>$user_info['city_id'],
+                'garden_code'=>$user_info['garden_code'],
+                'room_num'=>$user_info['room_num'],
+                'role'=>1,
+                'relation_name'=>'户主',
+            ])->getField('user_code');
+            $user_info['user_code']?$city_id=substr($user_info['user_code'],0,4):$city_id=substr($first_application_code,0,4);
+            $owner_application = new Model\OwnerApplicationController($city_id);
+            $owner_application->startTrans();
+            $res1 = $owner_application->where(['user_code'=>$user_info['user_code'],'city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'real_name'=>$user_info['real_name'],'room_num'=>$user_info['room_num']])->delete();
+            if($user_info['user_code']){
+                $userInfo = M('baseinfo.user_info_'.$city_id);
+                $userInfo->startTrans();
+                $user_garden = $userInfo->where(['account_code'=>$user_info['user_code']])->getField('user_garden');
+                $garden = array();
+                if($user_garden){
+                    $garden_arr = explode(';',$user_garden);
+                    if(!$garden_arr){
+                        $garden_arr[]=$user_garden;
+                    }
+                    foreach($garden_arr as $k=>$v){
+                        $arr = explode(',',$v);
+                        $garden[]['garden_code'] =$arr[0];
+                        $garden[]['role'] =$arr[1];
+                    }
+                }
+                if(!$garden){
+                    $res2=true;
+                }else{
+                    foreach($garden as $key=>$val){
+                        if($val['garden_code'] === $user_info['garden_code'] and intval($val['role']) === 1){
+                            unset($garden[$key]);
+                            break;
+                        }
+                    }
+                    $string = '';
+                    if($garden){
+                        foreach($garden as $kk=>$vv){
+                            if($string ===''){
+                                $string.=implode(',',$vv);
+                            }else{
+                                $string.=';'.implode(',',$vv);
+                            }
+                        }
+                    }
+                    $res2 = $userInfo->where(['account_code'=>$user_info['user_code']])->save(['user_garden'=>$string]);
+                }
+                $res3 =$garden_room->where(['id'=>$this->pdata['application_id']])->delete();
+                if($res1 && $res2 && $res3){
+                    $owner_application->commit();
+                    $userInfo->commit();
+                    $garden_room->commit();
+                    $this->echoEncrypData(0);
+                }
+                $owner_application->rollback();
+                $userInfo->rollback();
+                $garden_room->rollback();
+                $this->echoEncrypData(1);
+            }else{
+                $res3 = $garden_room->where(['id'=>$this->pdata['application_id']])->delete();
+                if($res1 and $res3){
+                    $garden_room->commit();
+                    $owner_application->commit();
+                    $this->echoEncrypData(0);
+                }else{
+                    $garden_room->rollback();
+                    $owner_application->rollback();
+                    $this->echoEncrypData(1);
+                }
+            }
+
         }
     }
     /*
@@ -891,6 +964,92 @@ class UserCenterController extends VersionController
         }
     }
     /*
+     *主租户删除成员
+     * @param city_id 城市id
+     * @param application_id 认证id（实际为garden_room 分表id）
+     * */
+    protected function TenantDelNum_v1_0_0(){
+        $this->checkParam(array('city_id','application_id'));
+        $account_code = $this->account_code;
+        $city_id = substr($account_code,0,4);
+        $mode = new Model\OwnerApplicationController($city_id);
+        $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
+        if(intval($role) !== 1) {
+            $this->echoEncrypData(1, '只有房主才有此操作权利哦');
+        }else{
+            $province_id = M('baseinfo.swf')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
+            $garden_room = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
+            $garden_room->startTrans();
+            $user_info = $garden_room->field('user_code,city_id,garden_code,room_num,real_name')->where(['id'=>$this->pdata['application_id']])->find();
+            if(!$user_info)$this->echoEncrypData(1);
+            $first_application_code = $garden_room->where(['city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>2,'relation_name'=>'主租户'])->getField('user_code');
+            $user_info['user_code']?$city_id= substr($user_info['user_code'],0,4):$city_id=substr($first_application_code,0,4);
+            $tenant_application = new Model\TenantApplicationModel($city_id);
+            $tenant_application->startTrans();
+            $res1 = $tenant_application->where(['user_code'=>$user_info['user_code'],'city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'real_name'=>$user_info['real_name'],'room_num'=>$user_info['room_num']])->delete();
+            if($user_info['user_code']){
+                $userInfo = M('baseinfo.user_info_'.$city_id);
+                $userInfo->startTrans();
+                $user_garden = $userInfo->where(['account_code'=>$user_info['user_ocde']])->getField('user_garden');
+                $garden = array();
+                if($user_garden){
+                    $garden_arr = explode(';',$user_garden);
+                    if(!$garden_arr){
+                        $garden_arr[]=$user_garden;
+                    }
+                    foreach($garden_arr as $k=>$v){
+                        $arr = explode(',',$v);
+                        $garden[]['garden_code'] =$arr[0];
+                        $garden[]['role'] =$arr[1];
+                    }
+                }
+                if(!$garden){
+                    $res2=true;
+                }else{
+                    foreach($garden as $key=>$val){
+                        if($val['garden_code'] === $user_info['garden_code'] and intval($val['role']) === 1){
+                            unset($garden[$key]);
+                            break;
+                        }
+                    }
+                    $string = '';
+                    if($garden){
+                        foreach($garden as $kk=>$vv){
+                            if($string ===''){
+                                $string.=implode(',',$vv);
+                            }else{
+                                $string.=';'.implode(',',$vv);
+                            }
+                        }
+                    }
+                    $res2 = $userInfo->where(['account_code'=>$user_info['user_code']])->save(['user_garden'=>$string]);
+                }
+                $res3 =$garden_room->where(['id'=>$this->pdata['application_id']])->delete();
+                if($res1 and $res2 and $res3){
+                    $tenant_application->commit();
+                    $userInfo->commit();
+                    $garden_room->commit();
+                    $this->echoEncrypData(0);
+                }else{
+                    $tenant_application->rollback();
+                    $userInfo->rollback();
+                    $garden_room->rollback();
+                    $this->echoEncrypData(1);
+                }
+            }
+            $res3 = $garden_room->where(['id'=>$this->pdata['application_id']])->delete();
+            if($res1 and $res3){
+                $tenant_application->commit();
+                $garden_room->commit();
+                $this->echoEncrypData(0);
+            }else{
+                $tenant_application->rollback();
+                $garden_room->rollback();
+                $this->echoEncrypData(1);
+            }
+        }
+    }
+    /*
      * 获取租户认证详情
      * @param application_id 认证id
      * @param city_id 城市id
@@ -1112,9 +1271,9 @@ class UserCenterController extends VersionController
     /*
      * 用户删除认证
      * @param application_id   认证id
-     * @type 删除的认证类型 1：业主认证 2：租户认证
+     * @param type 删除的认证类型 1：业主认证 2：租户认证
      * */
-    protected function ownDelApplication_v1_0_0(){
+    protected function delApplication_v1_0_0(){
         $this->checkParam(array('application_id','type'));
         $account_code = $this->account_code;
         $city_id = substr($account_code,0,4);
