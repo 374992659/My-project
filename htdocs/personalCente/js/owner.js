@@ -295,6 +295,7 @@ $(document).ready(function(){
            var a=$(".placePlot").find("img");
            $.each(a,function (i,item) {
                console.log(item);
+               console.log(item.attr("src"))
            });
            console.log(a);
 
