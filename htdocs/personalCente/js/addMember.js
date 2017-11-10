@@ -45,6 +45,8 @@ $(document).ready(function(){
                     }
                 }
             })
+        }else{
+           $(".allGarden").empty();
         }
     });
     //上传身份证照片
