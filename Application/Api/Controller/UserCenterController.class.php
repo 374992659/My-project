@@ -430,7 +430,6 @@ class UserCenterController extends VersionController
                 if($point_limit = $this->getPointLimitStatus($account_code)){
                     $point_limit>$point['value']?$add=$point['value']:$add=$point_limit;
                 }
-                $this->echoEncrypData(1,array($point_limit,$point));
                 $res3 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='.$account_code);
                 //2.garden_room 分表添加用户数据
                 $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
