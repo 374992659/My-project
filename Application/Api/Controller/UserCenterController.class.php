@@ -1297,7 +1297,7 @@ class UserCenterController extends VersionController
             'create_time'=>['egt',$today],
             'type'=>1,
             'id'=>['neq',C('INVITE_REGISTER')],
-        ])->count('value'); //邀请他人注册得分不计入得分上限
+        ])->getField('count(value)'); //邀请他人注册得分不计入得分上限
         if(intval($today_point) < intval($point_limit)){
             return (intval($point_limit) - intval($today_point));
         }
