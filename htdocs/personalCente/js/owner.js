@@ -293,11 +293,11 @@ $(document).ready(function(){
             garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
         // 小区照片
            var a=$(".placePlot").find("img");
-           for(var i=0,len=a.length;i<len;i++){
-               console.log(a[i].attr("src"));
-           }
-           console.log(a);
-
+          a.each(function(i,item){
+              var _this=$(this);
+            console.log(_this.attr("src"));
+          });
+        
         // 合同房产证照片（可填）
 
         // picture=
