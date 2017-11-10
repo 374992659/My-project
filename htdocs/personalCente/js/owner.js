@@ -292,7 +292,7 @@ $(document).ready(function(){
         //     garden_addr=$("#plotPlace").val();
             garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
         // 小区照片
-        var garden_picture=new Array();
+        var garden_picture={};
            var a=$(".placePlot").find("img");
           a.each(function(i,item){
               var _this=$(this);
