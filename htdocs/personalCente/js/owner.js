@@ -281,7 +281,7 @@ $(document).ready(function(){
                     error:function(){}
                 })
             }else{
-
+                $(".allGarden").empty()
             }
         })
     })();
