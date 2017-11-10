@@ -213,7 +213,7 @@ class SubjectController extends VersionController
         $res = $model->addSubjectCommont($content,$userinfo);
         if(!$res)$this->echoEncrypData(1);
         $model->execute('update subject_'.$city_id.' set commont_num = commont_num+1 where id='.$subject_id);
-        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('COMMENT')])->find();
+        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.COMMENT')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
         $point_record->add(array(
             'name_id'=>$point['id'],
@@ -255,7 +255,7 @@ class SubjectController extends VersionController
             $res = $model->addSubjectLikes($res);
             if(!$res)$this->echoEncrypData(1);
             $model->execute('update subject_'.$city_id.' set likes_num = likes_num +1 where id = '.$subject_id);
-            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('LIKES')])->find();
+            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.LIKES')])->find();
             $point_record = new Model\PointRecordModel($this->account_code);
             $point_record->add(array(
                 'name_id'=>$point['id'],
@@ -275,7 +275,7 @@ class SubjectController extends VersionController
             if(!$res)$this->echoEncrypData(1);
             $model->execute('update subject_'.$city_id.' set likes_num = likes_num -1 where id = '.$subject_id);//减去点赞数
             //扣除积分以及相应记录
-            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CANCEL_LIKES')])->find();
+            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.CANCEL_LIKES')])->find();
             $point_record =new Model\PointRecordModel($this->account_code);
             $point_record->add(array(
                 'name_id'=>$point['id'],
@@ -313,7 +313,7 @@ class SubjectController extends VersionController
             $res = $model->addSubjectCommontLikes($commont_id,$res);
             if(!$res)$this->echoEncrypData(1);
             $model->execute('update subject_dynamics_'.$city_id.'_'.$subject_id.' set commont_likes_num =commont_likes_num+1 where id='.$commont_id);
-            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('LIKES')])->find();
+            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.LIKES')])->find();
             $point_record = new Model\PointRecordModel($this->account_code);
             $point_record->add(array(
                 'name_id'=>$point['id'],
@@ -332,7 +332,7 @@ class SubjectController extends VersionController
             $res = $model->cancelSubjectCommontLikes($commont_id,$this->account_code);
             if(!$res)$this->echoEncrypData(1);
             $model->execute('update subject_dynamics_'.$city_id.'_'.$subject_id.' set commont_likes_num =commont_likes_num-1 where id='.$commont_id);
-            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CANCEL_LIKES')])->find();
+            $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.CANCEL_LIKES')])->find();
             $point_record =new Model\PointRecordModel($this->account_code);
             $point_record->add(array(
                 'name_id'=>$point['id'],
@@ -368,7 +368,7 @@ class SubjectController extends VersionController
         $res = $new_model->where(['id ='.$subject_id])->getField('commont_num');
         $new_model->where(['id ='.$subject_id])->save(['commont_id'=>$res-1]);
         if(!$res)$this->echoEncrypData(1);
-        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('DEL_COMMENT')])->find();
+        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.DEL_COMMENT')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
         $point_record->add(array(
             'name_id'=>$point['id'],
@@ -519,7 +519,7 @@ class SubjectController extends VersionController
 * 没超过上限则返回与上线分的差值
 * */
     public function getPointLimitStatus($account_code){
-        $point_limit = M('baseinfo.point_config')->where(['id'=>C('DAY_LIMIT')])->getField('value');
+        $point_limit = M('baseinfo.point_config')->where(['id'=>C('POINT_CONFIG.DAY_LIMIT')])->getField('value');
         $today = strtotime('today');
         $point_record = new Model\PointRecordModel($account_code);
         $today_point = $point_record->where([

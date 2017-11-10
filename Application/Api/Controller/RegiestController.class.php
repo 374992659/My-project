@@ -201,7 +201,7 @@ class RegiestController extends BaseController
             'nickname'=>$account,
         ));
         //注册积分
-        $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('REGISTER')])->find();
+        $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
         $data2= array(
             'account' =>$account,
             'password' => md5(md5($password).$account),
@@ -237,7 +237,7 @@ class RegiestController extends BaseController
                 //邀请注册
                 $point_record2 = new Model\PointRecordModel($inviter_code);
                 $invitet_city = substr($inviter_code,0,4);
-                $inviter_point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('INVITE_REGISTER')])->find();//邀请注册得分无上限
+                $inviter_point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.INVITE_REGISTER')])->find();//邀请注册得分无上限
 //                $limit_point =  M('baseinfo.point_config')->where(['name'=>'每日上限'])->getField('value');
 //                $today = strtotime('today');
 //                $today_point = $point_record2->where(['create_time'=>array('egt',$today),'type'=>1])->count('value');
