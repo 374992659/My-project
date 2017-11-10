@@ -59,9 +59,9 @@ class UserCenterController extends VersionController
                 //检测身份证姓名是否匹配
                 //完成实名认证积分
                 $point_record = new Model\PointRecordModel($account_code);
-                $exists = $point_record->where(['name_id'=>C('CERTIFICATION')])->count();
+                $exists = $point_record->where(['name_id'=>C('POINT_CONFIG.CERTIFICATION')])->count();
                 if(!$exists){
-                    $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CERTIFICATION')])->find();
+                    $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.CERTIFICATION')])->find();
                     $point_record->add(array(
                         'name_id'=>$point['id'],
                         'name'=>$point['name'],
@@ -418,7 +418,7 @@ class UserCenterController extends VersionController
                 ));
                 $point_record = new Model\PointRecordModel($account_code);
                 $point_record->startTrans();
-                $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('ADD_NUM')])->find();
+                $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.ADD_NUM')])->find();
                 $res2 = $point_record->add(array(
                     'name_id'=>$point['id'],
                     'name'=>$point['name'],
@@ -839,7 +839,7 @@ class UserCenterController extends VersionController
                 ));
                 $point_record = new Model\PointRecordModel($account_code);
                 $point_record->startTrans();
-                $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('ADD_NUM')])->find();
+                $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.ADD_NUM')])->find();
                 $res2 = $point_record->add(array(
                     'name_id'=>$point['id'],
                     'name'=>$point['name'],
@@ -1225,12 +1225,12 @@ class UserCenterController extends VersionController
         $account_code = $this->account_code;
         $point_record = new Model\PointRecordModel($account_code);
         $today = strtotime('today');
-        $count = $point_record->where(['name_id'=>C('SING_IN'),'create_time'=>['egt',$today]])->count();
+        $count = $point_record->where(['name_id'=>C('POINT_CONFIG.SING_IN'),'create_time'=>['egt',$today]])->count();
         if($count){
             $this->echoEncrypData(1,'您今天已经签到了,无需重复操作哦');
         }else{
             $city = substr($account_code,0,4);
-            $point=  M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('SING_IN')])->find();
+            $point=  M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.SING_IN')])->find();
             $point_record = new Model\PointRecordModel($account_code);
             $point_record->startTrans();
             $res1 = $point_record->add(array(
@@ -1301,7 +1301,7 @@ class UserCenterController extends VersionController
         if(intval($today_point) < intval($point_limit)){
             return (intval($point_limit) - intval($today_point));
         }
-        return $point_limit;
+        return false;
     }
 
     /*

@@ -779,7 +779,7 @@ class GroupController extends VersionController
         }
         //评论积分
         M()->startTrans();
-        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('COMMENT')])->find();
+        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.COMMENT')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
         $point_record->startTrans();
         $res3 = $point_record->add(array(
@@ -830,7 +830,7 @@ class GroupController extends VersionController
         if(!$res){
             $this->echoEncrypData(1);
         }
-        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('DEL_COMMENT')])->find();
+        $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.DEL_COMMENT')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
         $point_record->add(array(
             'name_id'=>$point['id'],
@@ -877,7 +877,7 @@ class GroupController extends VersionController
                 if(!$res){
                     $this->echoEncrypData(1);
                 }
-                $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CANCEL_LIKES')])->find();
+                $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.CANCEL_LIKES')])->find();
                 $point_record =new Model\PointRecordModel($this->account_code);
                 $point_record->add(array(
                     'name_id'=>$point['id'],
@@ -893,7 +893,7 @@ class GroupController extends VersionController
         $model->startTrans();
         $res1=$model->addGroupSubjectDynamics($data);
         $res2=$model->execute('update group_subject set likes_num = likes_num+1 where id ='.$subject_id);
-        $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('LIKES')])->find();
+        $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.LIKES')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
         $point_record->startTrans();
         M()->startTrans();
@@ -957,7 +957,7 @@ class GroupController extends VersionController
                 if(!$res){
                     $this->echoEncrypData(1);
                 }
-                $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('CANCEL_LIKES')])->find();
+                $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.CANCEL_LIKES')])->find();
                 $point_record =new Model\PointRecordModel($this->account_code);
                 $point_record->add(array(
                     'name_id'=>$point['id'],
@@ -973,7 +973,7 @@ class GroupController extends VersionController
         $model->startTrans();
         $res1=$model->addGroupSubjectDynamics($data);
         $res2=$model->execute('update group_subject_dynamics_'.intval($subject_id).' set commont_likes=commont_likes+1 where id='.$commont_id);
-        $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('LIKES')])->find();
+        $point= M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.LIKES')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
         $point_record->startTrans();
         M()->startTrans();
@@ -1278,7 +1278,7 @@ class GroupController extends VersionController
     * 没超过上限则返回与上线分的差值
     * */
     public function getPointLimitStatus($account_code){
-        $point_limit = M('baseinfo.point_config')->where(['id'=>C('DAY_LIMIT')])->getField('value');
+        $point_limit = M('baseinfo.point_config')->where(['id'=>C('POINT_CONFIG.DAY_LIMIT')])->getField('value');
         $today = strtotime('today');
         $point_record = new Model\PointRecordModel($account_code);
         $today_point = $point_record->where([
