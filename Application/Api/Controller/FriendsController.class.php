@@ -95,7 +95,7 @@ class FriendsController extends VersionController
         $this->checkParam(array('user_code'));
         $user_city_id = substr($this->pdata['user_code'], 0, 4);
         $account_code = $this->account_code;
-        $user_info = M('baseinfo.user_info_' . $user_city_id)->field('nickname.portrait,signature')->where(['account_code' => $this->pdata['user_code']])->find();
+        $user_info = M('baseinfo.user_info_' . $user_city_id)->field('nickname,portrait,signature')->where(['account_code' => $this->pdata['user_code']])->find();
         $model = new Model\UserFriendsModel($account_code);
         $res = $model->where(['friend_user_code'=>$this->pdata['user_code']])->save(['friend_nickname'=>$user_info['nickname'],'friend_portrait'=>$user_info['portrait'],'friend_signature'=>$user_info['signature']]);
         if($res)$this->echoEncrypData(0);
