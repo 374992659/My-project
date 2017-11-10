@@ -97,6 +97,7 @@ a:hover {
     line-height: 50px;
 }
 .left{
+    font-size: 15px;
     display: inline-block;
     width:32%;
     text-align: right;
