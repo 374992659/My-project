@@ -232,9 +232,9 @@ $(document).ready(function(){
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
-        $("#houseName").on("input",function(){
+        $("#gardenName").on("input",function(){
             var city_id=$("#city option:selected").val();  // 获取城市id
-            var key=$("#houseName").val();
+            var key=$("#gardenName").val();
             if(key){
                     // 数据格式转换
                 var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"key":key})],
