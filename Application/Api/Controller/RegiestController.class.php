@@ -197,7 +197,7 @@ class RegiestController extends BaseController
             'status'=>1,
             'account_code'=>$area_id.$account,
             'openId'=>$openId,
-            'portrait'=>'/Application/Common/Source/Img/default_portrait.jpg',
+            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
             'nickname'=>$account,
         ));
         //注册积分
@@ -206,7 +206,7 @@ class RegiestController extends BaseController
             'account' =>$account,
             'password' => md5(md5($password).$account),
             'nickname' => $account,
-            'portrait'=>'/Application/Common/Source/Img/default_portrait.jpg',
+            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
             'account_code' => $area_id.$account,
             'create_time' => time(),
             'total_point'=>$point['value'],
