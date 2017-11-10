@@ -36,7 +36,7 @@
     </style>
 </head>
 <body>
-<div class="success"></div>
+<div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
 <div style="padding: 5px 10px">
     <!--姓名-->
     <div class="weui-cells">
@@ -190,7 +190,7 @@
 <script src="../js/aes.js"></script>
 <script src="../js/pad-zeropadding.js"></script>
 <script src="../js/encrypt-decode.js"></script>
-<script src="js/renterAddMember.js"></script>
+<script src="../js/showHide.js"></script>
 <script src="../js/addRess.js"></script>
 <script >
     addRess();
@@ -201,5 +201,6 @@
         dateFormat: 'yyyy年mm月dd日'  // 自定义格式的时候，不能通过 input 的value属性赋值 '2016年12月12日' 来定义初始值，这样会导致无法解析初始值而报错。只能通过js中设置 value 的形式来赋值，并且需要按标准形式赋值（yyyy-mm-dd 或者时间戳)
     });
 </script>
+<script src="js/renterAddMember.js"></script>
 </body>
 </html>
