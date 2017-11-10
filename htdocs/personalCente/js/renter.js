@@ -305,9 +305,9 @@ $(document).ready(function(){
     //9 参数：city_id 小区所在城市
         var city_id=$("#city option:selected").val();
     //10 参数：garden_name 小区名
-        var garden_name=$("#houseName").val();
+        var garden_name=$("#gardenName").val();
     //11 参数：garden_code 小区code 可填 用户若选择检索出的小区则传递其code至后台否则不传递
-        var garden_code=$(".gardenName").attr("title");
+        var garden_code=$("#gardenName").attr("title");
     //12 参数：garden_addr 楼盘地址
         var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
     //13 参数：contract_period 合同期限 10位时间戳 整型
