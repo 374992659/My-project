@@ -550,8 +550,8 @@ class UserCenterController extends VersionController
     protected function ownerDelNum_v1_0_0(){
         $this->checkParam(array('city_id','application_id'));
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
-        $mode = new Model\OwnerApplicationController($city_id);
+        $account_city_id = substr($account_code,0,4);
+        $mode = new Model\OwnerApplicationController($account_city_id);
         $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
         if(intval($role) !== 1) {
             $this->echoEncrypData(1, '只有房主才有此操作权利哦');
@@ -572,6 +572,18 @@ class UserCenterController extends VersionController
             $owner_application = new Model\OwnerApplicationController($city_id);
             $owner_application->startTrans();
             $res1 = $owner_application->where(['user_code'=>$user_info['user_code'],'city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'real_name'=>$user_info['real_name'],'room_num'=>$user_info['room_num']])->delete();
+            $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.DEL_NUM')])->find();
+            $point_record = new Model\PointRecordModel($this->account_code);
+            $point_record->startTrans();
+            $res4 = $point_record->add(array(
+                'name_id'=>$point['id'],
+                'name'=>$point['name'],
+                'type'=>$point['type'],
+                'value'=>$point['value'],
+                'create_time'=>time(),
+            ));
+            M()->startTrans();
+            $res5 = M()->execute('update baseinfo.user_info_'.$account_city_id.' set total_point=total_point-'.$point['value'].' where account_code ='."'".$account_code."'");
             if($user_info['user_code']){
                 $userInfo = M('baseinfo.user_info_'.$city_id);
                 $userInfo->startTrans();
@@ -610,25 +622,33 @@ class UserCenterController extends VersionController
                     $res2 = $userInfo->where(['account_code'=>$user_info['user_code']])->save(['user_garden'=>$string]);
                 }
                 $res3 =$garden_room->where(['id'=>$this->pdata['application_id']])->delete();
-                if($res1 && $res2 && $res3){
+                if($res1 && $res2 && $res3 && $res4 && $res5){
                     $owner_application->commit();
                     $userInfo->commit();
                     $garden_room->commit();
+                    $point_record->commit();
+                    M()->commit();
                     $this->echoEncrypData(0);
                 }
                 $owner_application->rollback();
                 $userInfo->rollback();
                 $garden_room->rollback();
+                $point_record->rollback();
+                M()->rollback();
                 $this->echoEncrypData(1);
             }else{
                 $res3 = $garden_room->where(['id'=>$this->pdata['application_id']])->delete();
-                if($res1 and $res3){
+                if($res1 and $res3 and $res4 and $res5){
                     $garden_room->commit();
                     $owner_application->commit();
+                    $point_record->commit();
+                    M()->commit();
                     $this->echoEncrypData(0);
                 }else{
                     $garden_room->rollback();
                     $owner_application->rollback();
+                    $point_record->rollback();
+                    M()->rollback();
                     $this->echoEncrypData(1);
                 }
             }
@@ -970,8 +990,8 @@ class UserCenterController extends VersionController
     protected function TenantDelNum_v1_0_0(){
         $this->checkParam(array('city_id','application_id'));
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
-        $mode = new Model\OwnerApplicationController($city_id);
+        $account_city_id = substr($account_code,0,4);
+        $mode = new Model\OwnerApplicationController($account_city_id);
         $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
         if(intval($role) !== 1) {
             $this->echoEncrypData(1, '只有房主才有此操作权利哦');
@@ -986,6 +1006,8 @@ class UserCenterController extends VersionController
             $tenant_application = new Model\TenantApplicationModel($city_id);
             $tenant_application->startTrans();
             $res1 = $tenant_application->where(['user_code'=>$user_info['user_code'],'city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'real_name'=>$user_info['real_name'],'room_num'=>$user_info['room_num']])->delete();
+            $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.DEL_NUM')])->find();
+
             if($user_info['user_code']){
                 $userInfo = M('baseinfo.user_info_'.$city_id);
                 $userInfo->startTrans();
