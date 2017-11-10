@@ -220,8 +220,6 @@ $(document).ready(function(){
                `
                         }
                         $(".placePlot").prepend(html);
-                        console.log("输出小区的照片src");
-                        console.log($(".placePlot img").attr("src"));
                     }
                 },
                 error:function (data) {
@@ -294,7 +292,7 @@ $(document).ready(function(){
         //     garden_addr=$("#plotPlace").val();
             garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
         // 小区照片
-           var a=$(".placePlot").find("img").attr("src");
+           var a=$(".placePlot").find("img");
            console.log(a);
 
         // 合同房产证照片（可填）
