@@ -301,12 +301,19 @@ $(document).ready(function(){
           });
         console.log(garden_picture);
         // 合同房产证照片（可填）
-
-        // picture=
+        var PPa=$(".PPflockHeadA img").attr("src");
+        var PPb=$(".PPflockHeadB img").attr("src");
+        var picture="{'a':'"+PPa+"':'b':'"+PPb+"'}";
         // 个人照片（可填）
-        // yourself_picture=
+        var yourself_picture={};
+        var  myImg=$(".myPic").find("img");
+        myImg.each(function(i,item){
+            var _this=$(this);
+            var src=_this.attr("arc");
+            yourself_picture[i]=src;
+        });
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_picture,"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":garden_picture})],
+        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_picture,"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":garden_picture,"picture":picture,"yourself_picture":yourself_picture})],
         //    数据加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
