@@ -211,7 +211,7 @@ $(document).ready(function(){
                         if(Url){
                             html+=`
                         <li class="lf" style="margin-right: 10px">
-                            <img  src="${Url}" style="height: 79px;width: 79px" alt="" >
+                            <img  src="${data.data[0]}" style="height: 79px;width: 79px" alt="" >
                         </li>             
                `
                         }
