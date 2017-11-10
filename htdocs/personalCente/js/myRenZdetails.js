@@ -139,32 +139,38 @@ $(document).ready(function(){
                   `;
                   // 循环证件照
                           var id_card_pictures="";
-                          var obj = eval('(' + item.id_card_pictures + ')');
-                          $.each(obj,function(i,item){
-                              id_card_pictures+=`
+                          if(item.id_card_pictures){
+                              var obj = eval('(' + item.id_card_pictures + ')');
+                              $.each(obj,function(i,item){
+                                  id_card_pictures+=`
                               <img src="http://wx.junxiang.ren/project/${item}" alt="" >
                               `
-                          });
+                              });
+                          }
+
                   //循环小区照片
                   var plotPic="";
                   //将json字符串转换成数组
-                  var garden_picture=eval('(' + item.garden_picture + ')');
-                  $.each(garden_picture,function(i,item){
-                      plotPic+=`
+                  if(item.garden_picture){
+                      var garden_picture=eval('(' + item.garden_picture + ')');
+                      $.each(garden_picture,function(i,item){
+                          plotPic+=`
                       <img src="${item}" alt="" >
                       `
-                  });
+                      });
+                  }
+
                     //循环个人照片
                   var myPic="";
-                        var myPicObj=eval('('+item.yourself_picture+')');
-                        if(myPicObj){
-                            $.each(myPicObj,function(i,item){
-                                myPic+=`
+                  if(item.yourself_picture){
+                      var myPicObj=eval('('+item.yourself_picture+')');
+                      $.each(myPicObj,function(i,item){
+                          myPic+=`
                                  <img src="http://wx.junxiang.ren/project/${item}" alt="" >                               
                                 `
-                            });
-                        }
-                      }
+                      });
+                  }
+               }
                       $(".RenZdetails").html(html);
                       $(".papersPic").append(id_card_pictures);
                       $(".plotPic").append(plotPic);
