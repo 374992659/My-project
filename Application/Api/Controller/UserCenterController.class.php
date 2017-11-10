@@ -1290,7 +1290,7 @@ class UserCenterController extends VersionController
      * 没超过上限则返回与上线分的差值
      * */
     public function getPointLimitStatus($account_code){
-        $point_limit = M('baseinfo.point_config')->where(['id'=>C('DAY_LIMIT')])->getField('value');
+        $point_limit = M('baseinfo.point_config')->where(['id'=>C('POINT_CONFIG.DAY_LIMIT')])->getField('value');
         $today = strtotime('today');
         $point_record = new Model\PointRecordModel($account_code);
         $today_point = $point_record->where([
