@@ -1,6 +1,5 @@
 $(document).ready(function(){
     // 获取小区code
-    var code="";
     $("#gardenName").on("input",function(){
         var apptoken=localStorage.getItem("apptoken");
         var cityid=$("#city option:selected").val();
@@ -46,6 +45,119 @@ $(document).ready(function(){
             }
         })
     });
+    //上传身份证照片
+        (function(){
+        // 上传身份证正面A
+        $('#uploaderInputA').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderInputA")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'uploaderInputA',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        $(".flockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
+                        $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".flockHeadA").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+        // 上传身份证正面B
+        $('#uploaderInputB').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]);
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderInputB")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'uploaderInputB',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        $(".flockHeadB img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
+                        $(".loaderB").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".flockHeadB").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    })();
+    // 上传个人照片
+        (function(){
+            $('#MyPicuploaderInput').change(function(e) {
+                var Url=window.URL.createObjectURL(this.files[0]) ;
+                var formData= new FormData();
+                var apptoken=localStorage.getItem("apptoken");
+                formData.append("file",$("#MyPicuploaderInput")[0].files[0]);
+                var data=["",JSON.stringify({"apptoken":apptoken})];
+                var json=jsEncryptData(data);
+                formData.append("data",json);
+                console.log(formData);
+                $.ajax({
+                    type:"POST",
+                    url:url+"UserCenter_uploadOwnerApplicationPic",
+                    fileElementId:'MyPicuploaderInput',
+                    data:formData,
+                    processData : false,
+                    contentType : false,
+                    secureuri:false,
+                    success : function(data){
+                        // 解密
+                        data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            console.log(data.data[0]);
+                            var html="";
+                            if(Url){
+                                html+=`
+                        <li class="lf" style="margin-right: 10px">
+                            <img  src="http://wx.junxiang.ren/project/${data.data[0]}" style="height: 79px;width: 79px" alt="" >
+                        </li>             
+               `
+                            }
+                            $(".myPic").prepend(html);
+                        }
+                    },
+                    error:function (data) {
+                        console.log(data);
+                    }
+                });
+            });
+        })();
     // 提交
     $(".weui-btn").click(function(){
         // 获取apptoken
@@ -70,9 +182,17 @@ $(document).ready(function(){
         // relation_name 关系
         var relation_name=$("#rela option:selected").val();
         // id_card_pictures 身份证照片 可填
-        var id_card_pictures="";
+        var a=$(".flockHeadA").attr("src");
+        var b=$(".flockHeadB").attr("src");
+        var id_card_pictures="{'a':'"+a+"','b':'"+b+"'}";
         // yourself_picture 个人照片  可填
-        var yourself_picture="";
+        var myPic=$(".myPic").find("img");
+        var yourself_picture={};
+        myPic.each(function(i,item){
+            var _this=$(this);
+            var src=_this.attr("src");
+            yourself_picture[i]=src
+        });
         // account 添加用户的账户 可填
         var account="";
         // 数据转换格式
@@ -89,13 +209,13 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    showHide(data.errmsg)
+                }else{
+                    showHide(data.errmsg)
                 }
-
             },
             error:function(){}
         })
-
     })
-
 });
