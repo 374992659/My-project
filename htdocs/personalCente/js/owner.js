@@ -292,12 +292,14 @@ $(document).ready(function(){
         //     garden_addr=$("#plotPlace").val();
             garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
         // 小区照片
+        var garden_picture=new Array();
            var a=$(".placePlot").find("img");
           a.each(function(i,item){
               var _this=$(this);
-            console.log(_this.attr("src"));
+             var  src=_this.attr("src");
+              garden_picture="{'"+i+"':'"+src+"'}"
           });
-        
+        console.log(garden_picture);
         // 合同房产证照片（可填）
 
         // picture=
