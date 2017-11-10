@@ -295,6 +295,7 @@ $(document).ready(function(){
         var garden_picture=new Array();
            var a=$(".placePlot").find("img");
           a.each(function(i,item){
+              console.log(i);
               var _this=$(this);
              var  src=_this.attr("src");
               garden_picture="{'"+i+"':'"+src+"'}"
