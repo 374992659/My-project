@@ -133,7 +133,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         console.log(data.data);
                         $(".PPflockHeadB img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
-                        $(".PPformB").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".PPloaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".PPflockHeadB").attr("style","display:block");
                     }
                 },
