@@ -101,6 +101,7 @@ a:hover {
     display: inline-block;
     width:32%;
     text-align: right;
+    font-weight: bold;
 }
 .weui-cell {
     text-align: left;
