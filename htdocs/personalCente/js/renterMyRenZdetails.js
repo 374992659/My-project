@@ -125,7 +125,7 @@ $(document).ready(function(){
                             var obj = eval('(' + item.id_card_pictures + ')');
                             $.each(obj,function(i,item){
                                 id_card_pictures+=`
-                              <img src="${item}" alt="" style="width: 100px">
+                              <img src="${item}" alt="">
                               `
                             });
                         }
