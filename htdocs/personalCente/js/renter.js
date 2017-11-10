@@ -307,14 +307,9 @@ $(document).ready(function(){
     //10 参数：garden_name 小区名
         var garden_name=$("#houseName").val();
     //11 参数：garden_code 小区code 可填 用户若选择检索出的小区则传递其code至后台否则不传递
-        var tilte=$(".gardenName").attr("title");
-        if(tilte){
-            var garden_code=tilte;
-        }else{
-            var garden_code="";
-        }
+        var garden_code=$(".gardenName").attr("title");
     //12 参数：garden_addr 楼盘地址
-        var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
+        var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
     //13 参数：contract_period 合同期限 10位时间戳 整型
         var contract_period=$("#date2").val();
     //14 参数：pictures 合同照
