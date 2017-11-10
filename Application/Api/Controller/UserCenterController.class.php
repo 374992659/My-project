@@ -1007,7 +1007,17 @@ class UserCenterController extends VersionController
             $tenant_application->startTrans();
             $res1 = $tenant_application->where(['user_code'=>$user_info['user_code'],'city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'real_name'=>$user_info['real_name'],'room_num'=>$user_info['room_num']])->delete();
             $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.DEL_NUM')])->find();
-
+            $point_record = new Model\PointRecordModel($this->account_code);
+            $point_record->startTrans();
+            $res4 = $point_record->add(array(
+                'name_id'=>$point['id'],
+                'name'=>$point['name'],
+                'type'=>$point['type'],
+                'value'=>$point['value'],
+                'create_time'=>time(),
+            ));
+            M()->startTrans();
+            $res5 = M()->execute('update baseinfo.user_info_'.$account_city_id.' set total_point=total_point-'.$point['value'].' where account_code ='."'".$account_code."'");
             if($user_info['user_code']){
                 $userInfo = M('baseinfo.user_info_'.$city_id);
                 $userInfo->startTrans();
@@ -1046,12 +1056,16 @@ class UserCenterController extends VersionController
                     $res2 = $userInfo->where(['account_code'=>$user_info['user_code']])->save(['user_garden'=>$string]);
                 }
                 $res3 =$garden_room->where(['id'=>$this->pdata['application_id']])->delete();
-                if($res1 and $res2 and $res3){
+                if($res1 and $res2 and $res3 and $res4 and $res5){
+                    $point_record->commit();
+                    M()->commit();
                     $tenant_application->commit();
                     $userInfo->commit();
                     $garden_room->commit();
                     $this->echoEncrypData(0);
                 }else{
+                    $point_record->rollback();
+                    M()->rollback();
                     $tenant_application->rollback();
                     $userInfo->rollback();
                     $garden_room->rollback();
@@ -1059,11 +1073,15 @@ class UserCenterController extends VersionController
                 }
             }
             $res3 = $garden_room->where(['id'=>$this->pdata['application_id']])->delete();
-            if($res1 and $res3){
+            if($res1 and $res3 and $res4 and $res5){
+                $point_record->commit();
+                M()->commit();
                 $tenant_application->commit();
                 $garden_room->commit();
                 $this->echoEncrypData(0);
             }else{
+                $point_record->rollback();
+                M()->rollback();
                 $tenant_application->rollback();
                 $garden_room->rollback();
                 $this->echoEncrypData(1);
