@@ -293,6 +293,9 @@ $(document).ready(function(){
             garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
         // 小区照片
            var a=$(".placePlot").find("img");
+           $.each(a,function (i,item) {
+               console.log(item.attr("arc"));
+           });
            console.log(a);
 
         // 合同房产证照片（可填）
