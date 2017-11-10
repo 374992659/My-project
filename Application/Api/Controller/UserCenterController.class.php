@@ -818,7 +818,7 @@ class UserCenterController extends VersionController
                     'account'=>$user_account
                 ),array('account_code'))['account_code']:$user_account_code='';
                 $user_account_code?$user_city_id=substr($user_account_code,0,4):$user_city_id=$city_id;
-                $model= new Model\OwnerApplicationController($user_city_id);//传递了account的认证保存在其本人认证分表  没有传递则保存在操作人（户主）分表内
+                $model= new Model\TenantApplicationModel($user_city_id);//传递了account的认证保存在其本人认证分表  没有传递则保存在操作人（户主）分表内
                 $model->startTrans();
                 $res1 = $model->addApplication(array(
                     'user_code'=>$user_code,
