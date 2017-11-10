@@ -878,13 +878,13 @@ class UserCenterController extends VersionController
                     $user_info = M('baseinfo.user_info_'.$user_city_id);
                     $user_info->startTrans();
                     $res5 = $user_info->where(['account_code'=>$user_code])->save(['user_garden'=>$user_garden]);
-                    if(!$res1 || !$res2 || !$res3 || !$res4 || $res5){
+                    if(!$res1 || !$res2 || !$res3 || !$res4 || !$res5){
                         M()->rollback();
                         $point_record->rollback();
                         $garden_num->rollback();
                         $model->rollback();
                         $user_info->rollback();
-                        $this->echoEncrypData(1,array($res1,$res2,$res3,$res4,$res5));
+                        $this->echoEncrypData(1);
                     }else{
                         M()->commit();
                         $point_record->commit();
@@ -903,7 +903,7 @@ class UserCenterController extends VersionController
                     $model->rollback();
                     $point_record->rollback();
                     M()->rollback();
-                    $this->echoEncrypData(1,array($res1,$res2,$res3,$res4));
+                    $this->echoEncrypData(1);
                 }
             }else{
                 $this->echoEncrypData(1,'只有主租户才有此操作权限哦');
