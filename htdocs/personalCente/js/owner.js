@@ -220,6 +220,8 @@ $(document).ready(function(){
                `
                         }
                         $(".placePlot").prepend(html);
+                        console.log("输出小区的照片src");
+                        console.log($(".placePlot img").attr("src"));
                     }
                 },
                 error:function (data) {
