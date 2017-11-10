@@ -372,7 +372,6 @@ class GroupController extends VersionController
         }
         $this->echoEncrypData(0,'',$data);
     }
-
     /*
      * 获取群公告
      * @param group_num 所属群号码
