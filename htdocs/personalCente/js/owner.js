@@ -26,7 +26,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         console.log(data.data);
                         localStorage.setItem("myPicA",data.data[0]);
-                        $(".flockHeadA img").attr("src",Url);
+                        $(".flockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".flockHeadA").attr("style","display:block");
                     }
@@ -61,7 +61,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         console.log(data.data);
                         localStorage.setItem("myPicB",data.data[0]);
-                        $(".flockHeadB img").attr("src",Url);
+                        $(".flockHeadB img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".loaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".flockHeadB").attr("style","display:block");
                     }
@@ -97,9 +97,8 @@ $(document).ready(function(){
                     data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
-                        console.log(data.data);
-                        localStorage.setItem("myPicA",data.data[0]);
-                        $(".PPflockHeadA img").attr("src",Url);
+                        console.log(data.data[0]);
+                        $(".PPflockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".PPloaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".PPflockHeadA").attr("style","display:block");
                     }
@@ -133,8 +132,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicA",data.data[0]);
-                        $(".PPflockHeadB img").attr("src",Url);
+                        $(".PPflockHeadB img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".PPformB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".PPflockHeadB").attr("style","display:block");
                     }
@@ -298,6 +296,7 @@ $(document).ready(function(){
             var garden_picture="{'a':'"+a+"'}";
             console.log(typeof id_card_picture );
         // 合同房产证照片（可填）
+
         // picture=
         // 个人照片（可填）
         // yourself_picture=
