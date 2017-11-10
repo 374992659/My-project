@@ -169,11 +169,17 @@ $(document).ready(function(){
                     data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
-                        console.log(data.data);
-                        localStorage.setItem("myPicA",data.data[0]);
-                        $(".MyPicflockHead img").attr("src",Url);
-                        $(".MyPicloader").attr("style","position:absolute;left:40%;opacity: 0;");
-                        $(".MyPicflockHead").attr("style","display:block");
+                        console.log(data.data[0]);
+                        var html="";
+                        if(Url){
+                            html+=`
+                        <li class="lf" style="margin-right: 10px">
+                            <img  src="http://wx.junxiang.ren/project/${data.data[0]}" style="height: 79px;width: 79px" alt="" >
+                        </li>             
+               `
+                        }
+                        $(".myPic").prepend(html);
+
                     }
                 },
                 error:function (data) {
