@@ -215,7 +215,7 @@ $(document).ready(function(){
                         </li>             
                `
                         }
-                        $(".placePlot").html(html);
+                        $(".placePlot").prepend(html);
                     }
                 },
                 error:function (data) {
