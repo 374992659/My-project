@@ -22,9 +22,13 @@
             margin: 0 auto;
             display: none;
         }
+        .weui-cells:after {
+            border-bottom:none;
+        }
     </style>
 </head>
 <body>
+    <div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
     <div style="padding: 5px 10px">
         <!--姓名-->
         <div class="weui-cells">
@@ -153,8 +157,23 @@
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <label class="left" for="">个人照片：<span style="color:green">*</span></label>
-
+                    <label class="left" for="" style="vertical-align: top">个人照片：<span style="color:green">*</span></label>
+                    <!--上传个人照片-->
+                    <ul style="display: inline-block" class="myPic">
+                        <!--个人照片位置-->
+                        <!--个人照片位置-->
+                        <!--个人照片位置-->
+                        <!--个人照片位置-->
+                        <li style="display: inline-block">
+                            <div class="weui-cells weui-cells_form" style="display: inline-block">
+                                <div class="weui-uploader__input-box MyPicloader">
+                                    <form action="" id="MyPicform" enctype="multipart/form-data">
+                                        <input id="MyPicuploaderInput" name="MyPicuploaderInput" class="weui-uploader__input" type="file">
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -173,10 +192,12 @@
     <script src="../js/aes.js"></script>
     <script src="../js/pad-zeropadding.js"></script>
     <script src="../js/encrypt-decode.js"></script>
-    <script src="js/addMember.js"></script>
     <script src="../js/addRess.js"></script>
     <script >
         addRess();
     </script>
+    <script src="../js/showHide.js"></script>
+    <script src="js/addMember.js"></script>
+
 </body>
 </html>
