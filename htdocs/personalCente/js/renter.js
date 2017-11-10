@@ -322,7 +322,7 @@ $(document).ready(function(){
         var  pictures="{'a':'"+ContractPic+"'}";
     //15 参数：yourself_picture 个人照片 可填
         var yourself_picture={};
-        var myPic=$(".myPic").find("img").attr("src");
+        var myPic=$(".myPic").find("img");
         myPic.each(function(i,item){
             var _this=$(this);
             var src=_this.attr("src");
