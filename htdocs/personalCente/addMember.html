@@ -24,7 +24,9 @@
         }
         .weui-cells:after {
             border-bottom:none;
-        }
+        }.weui-cells {
+             overflow: visible;
+         }
     </style>
 </head>
 <body>
@@ -52,14 +54,14 @@
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
+                    <label class="left" for="">房号：<span style="color:red">*</span></label>
                     <select name="" id="dongNum">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
-                    </select>栋/座
+                    </select>栋
                     <select name="" id="floorNum">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -84,16 +86,25 @@
                         <option value="儿子">儿子</option>
                         <option value="妻子">妻子</option>
                         <option value="父母">父母</option>
+                        <option value="朋友">朋友</option>
                     </select>
                 </div>
             </div>
         </div>
-
         <!--小区地址-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="plotPlace">小区地址：<span style="color:red">*</span></label>
+                    <input type="text" id="plotPlace">
+                </div>
+            </div>
+        </div>
+        <!--小区名-->
         <div class="weui-cells" style="position: relative;z-index: 1000">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
-                    <label class="left" for="">小区地址：<span style="color:red">*</span></label>
+                    <label class="left" for="">小区名：<span style="color:red">*</span></label>
                     <div class="weui-cell__bd" id="sanji" style="display: inline-block">
                         <select name="province" id="province">
                             <option value="">请选择</option>
@@ -102,10 +113,12 @@
                             <option value="">请选择</option>
                         </select>
                     </div>
-                    <input type="text" title="" id="gardenName" placeholder="小区名字" style="width: 20%;">
-                    <ul class="allGarden" style="position: absolute;top:20px;right: 12px;display: none">
+                    <div style="display: inline-block;position: absolute;z-index: 100000">
+                        <input type="text" title="" id="gardenName" placeholder="小区名字" style="width: 68%;">
+                        <ul class="allGarden" style="position: absolute;top:20px;right: 12px;display: none">
+                        </ul>
+                    </div>
 
-                    </ul>
                 </div>
             </div>
         </div>
