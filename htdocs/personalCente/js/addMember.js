@@ -182,8 +182,8 @@ $(document).ready(function(){
         // relation_name 关系
         var relation_name=$("#rela option:selected").val();
         // id_card_pictures 身份证照片 可填
-        var a=$(".flockHeadA").attr("src");
-        var b=$(".flockHeadB").attr("src");
+        var a=$(".flockHeadA img").attr("src");
+        var b=$(".flockHeadB img").attr("src");
         var id_card_pictures="{'a':'"+a+"','b':'"+b+"'}";
         // yourself_picture 个人照片  可填
         var myPic=$(".myPic").find("img");
