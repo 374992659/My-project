@@ -192,8 +192,8 @@ $(document).ready(function(){
         }
     });
     $("#qrcode").qrcode({
-        width: 150,//二维码宽度
-        height:150,//二维码高度
+        width: 180,//二维码宽度
+        height:180,//二维码高度
         text: '',    //此处填写生成二维码的生成数据 （拼接了inviter_code的注册页面地址，注册页面在url中获取到inviter_code传递给后台注册接口）
     });
 });
