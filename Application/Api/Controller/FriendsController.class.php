@@ -87,6 +87,21 @@ class FriendsController extends VersionController
         $this->echoEncrypData($code);
     }
     /*
+    *更新好友信息
+    * @param user_code 用户code
+    * */
+    protected function updateFriendsInfo_v1_0_0()
+    {
+        $this->checkParam(array('user_code'));
+        $user_city_id = substr($this->pdata['user_code'], 0, 4);
+        $account_code = $this->account_code;
+        $user_info = M('baseinfo.user_info_' . $user_city_id)->field('nickname.portrait,signature')->where(['account_code' => $this->pdata['user_code']])->find();
+        $model = new Model\UserFriendsModel($account_code);
+        $res = $model->where(['friend_user_code'=>$this->pdata['user_code']])->save(['friend_nickname'=>$user_info['nickname'],'friend_portrait'=>$user_info['portrait'],'friend_signature'=>$user_info['signature']]);
+        if($res)$this->echoEncrypData(0);
+        $this->echoEncrypData(1);
+    }
+    /*
      * 获取分组下的好友信息
      *@parma group_id 分组id
      * */
