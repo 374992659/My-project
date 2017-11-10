@@ -294,7 +294,7 @@ $(document).ready(function(){
         // 小区照片
            var a=$(".placePlot").find("img");
            $.each(a,function (i,item) {
-               console.log(item.attr("arc"));
+               console.log(item);
            });
            console.log(a);
 
