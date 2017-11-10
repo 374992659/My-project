@@ -4,46 +4,48 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         var cityid=$("#city option:selected").val();
         var key=$("#gardenName").val();
-        // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"city_id":cityid,"key":key})];
-        // 加密
-        var jsonEncryptData=jsEncryptData(data);
-        console.log(data);
-        $.ajax({
-            url:url+"UserCenter_getGardenInfo",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                // 解密
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    var li="";
-                    localStorage.setItem("apptoken",data.apptoken);
-                    $.each(data.data,function(i,item){
-                        console.log(item);
-                        li+=`
+        if(key){
+            // 数据格式转换
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":cityid,"key":key})];
+            // 加密
+            var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"UserCenter_getGardenInfo",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        var li="";
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $.each(data.data,function(i,item){
+                            console.log(item);
+                            li+=`
                         <li title="${item.garden_code}">${item.garden_name}</li>
                         
                         `
-                    });
-                    var allGarden= $(".allGarden");
+                        });
+                        var allGarden= $(".allGarden");
                         allGarden.append(li);
                         allGarden.show();
-                    allGarden.on("click","li",function(){
-                        // 获取其值
-                        var garden_Name=$(this).html();
-                        var gardenCode=$(this).attr("title");
-                        var gardenName= $("#gardenName");
-                        gardenName.val("");
-                        gardenName.val(garden_Name);
-                        gardenName.attr("title","");
-                        gardenName.attr("title",gardenCode);
-                        allGarden.hide();
-                    })
+                        allGarden.on("click","li",function(){
+                            // 获取其值
+                            var garden_Name=$(this).html();
+                            var gardenCode=$(this).attr("title");
+                            var gardenName= $("#gardenName");
+                            gardenName.val("");
+                            gardenName.val(garden_Name);
+                            gardenName.attr("title","");
+                            gardenName.attr("title",gardenCode);
+                            allGarden.hide();
+                        })
+                    }
                 }
-            }
-        })
+            })
+        }
     });
     //上传身份证照片
         (function(){
