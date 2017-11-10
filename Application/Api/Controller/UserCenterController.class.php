@@ -19,7 +19,7 @@ class UserCenterController extends VersionController
         $account_code = $this->account_code;
         $point_record = new Model\PointRecordModel($account_code);
         $data = $point_record->field('name_id,name,type,value,create_time')->order(['create_time'=>'desc'])->select();
-        if(!$data)$this->echoEncrypData(1);
+        if(!$data)$this->echoEncrypData(5);
         $this->echoEncrypData(0,'',$data);
     }
     /*
@@ -884,7 +884,7 @@ class UserCenterController extends VersionController
                         $garden_num->rollback();
                         $model->rollback();
                         $user_info->rollback();
-                        $this->echoEncrypData(1);
+                        $this->echoEncrypData(1,array($res1,$res2,$res3,$res4,$res5));
                     }else{
                         M()->commit();
                         $point_record->commit();
@@ -903,7 +903,7 @@ class UserCenterController extends VersionController
                     $model->rollback();
                     $point_record->rollback();
                     M()->rollback();
-                    $this->echoEncrypData(1);
+                    $this->echoEncrypData(1,array($res1,$res2,$res3,$res4));
                 }
             }else{
                 $this->echoEncrypData(1,'只有主租户才有此操作权限哦');
@@ -963,7 +963,7 @@ class UserCenterController extends VersionController
         }
     }
     /*
-     *主租户删除成员
+     *租户删除成员
      * @param city_id 城市id
      * @param application_id 认证id（实际为garden_room 分表id）
      * */
