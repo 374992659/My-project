@@ -7,11 +7,11 @@ $(document).ready(function(){
         console.log(typeof history_chat);
         if(history_chat){
             var history= $.parseJSON(history_chat);
-            var jsonObj = eval('(' + history + ')');
+            var jsonObj = eval('('+history+')');
             console.log(jsonObj);
             data=[];
             $.each(history,function(i,item){
-                var jsonObj = eval('(' + item + ')');
+                var jsonObj = eval('('+item+')');
                 data[i]=jsonObj;
             });
             console.log(data);
@@ -29,12 +29,11 @@ $(document).ready(function(){
                         <p class="weui-media-box__desc"></p><!--最新的消息-->
                     </div>
                 </div>
-                   `
+                   `;
                 }
             });
             $(".newsList").append(html);
         }
-
     })();
     // 获取所有有聊天记录的code
     var apptoken = localStorage.getItem('apptoken');
