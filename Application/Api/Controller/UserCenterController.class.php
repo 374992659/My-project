@@ -1301,7 +1301,7 @@ class UserCenterController extends VersionController
         if(intval($today_point) < intval($point_limit)){
             return (intval($point_limit) - intval($today_point));
         }
-        return $today_point;
+        return $point_limit;
     }
 
     /*
