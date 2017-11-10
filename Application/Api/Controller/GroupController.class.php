@@ -886,7 +886,7 @@ class GroupController extends VersionController
                     'value'=>$point['value'],
                     'create_time'=>time(),
                 ));
-                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='.$this->account_code);
+                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
                 $this->echoEncrypData(0);
             }
         }
@@ -907,7 +907,7 @@ class GroupController extends VersionController
         $res4 = true;
         if($point_limit = $this->getPointLimitStatus($this->account_code)){
             $point_limit > $point['value']?$add = $point['value']:$add =$point_limit;
-            $res4 = M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='.$this->account_code);
+            $res4 = M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='."'".$this->account_code."'");
         }
         if(!$res1 || !$res2 || !$res3 || !$res4){
             $model->rollback();
@@ -966,7 +966,7 @@ class GroupController extends VersionController
                     'value'=>$point['value'],
                     'create_time'=>time(),
                 ));
-                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='.$this->account_code);
+                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
                 $this->echoEncrypData(0);
             }
         }
@@ -987,7 +987,7 @@ class GroupController extends VersionController
         $res4 = true;
         if($point_limit = $this->getPointLimitStatus($this->account_code)){
             $point_limit > $point['value']?$add = $point['value']:$add =$point_limit;
-            $res4 = M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='.$this->account_code);
+            $res4 = M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='."'".$this->account_code."'");
         }
         if(!$res1 || !$res2 || !$res3 || !$res4){
             $model->rollback();
