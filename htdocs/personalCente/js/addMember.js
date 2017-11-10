@@ -5,6 +5,7 @@ $(document).ready(function(){
         var cityid=$("#city option:selected").val();
         var key=$("#gardenName").val();
         if(key){
+            $(".allGarden").empty();
             // 数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":cityid,"key":key})];
             // 加密
@@ -19,6 +20,7 @@ $(document).ready(function(){
                     var data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
+
                         var li="";
                         localStorage.setItem("apptoken",data.apptoken);
                         $.each(data.data,function(i,item){
