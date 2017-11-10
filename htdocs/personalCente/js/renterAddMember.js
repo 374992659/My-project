@@ -121,30 +121,30 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         // 2 参数：real_name 真实姓名
         var real_name=$("#name").val();
-        // 3 参数：phone 手机号码
+        // 3 参数：phone手机号码
         var phone=$("#phone").val();
-        // 4 参数：room_num 房间号码
+        // 4 参数：room_num房间号码
         var dongNum=$("#dongNum option:selected").val();
         var floorNum=$("#floorNum option:selected").val();
         var roomNum=$("#roomNum option:selected").val();
         var room_num=dongNum+"-"+floorNum+"-"+roomNum;
-        // 5 参数：id_card_num 身份证号码
+        // 5 参数：id_card_num身份证号码
         var id_card_num=$("#identityCard").val();
-        // 6 参数：garden_code 小区code
+        // 6 参数：garden_code小区code
         var garden_code=$("#plotName").attr("title");
         // 7 参数：garden_name 小区名称
         var garden_name=$("#plotName").val();
         // 8 参数：city_id 城市id
         var city_id=$("#city option:selected").val();
-        // 9 参数：relation_name 关系
+        // 9 参数：relation_name关系
         var relation_name=$("#rela option:selected").val();
-        // 10 参数：contract_period 合同期限
+        // 10 参数：contract_period合同期限
         var contract_period=$("#date2").val();
-        // 11 参数：id_card_pictures 身份证照片  可填
+        // 11 参数：id_card_pictures身份证照片可填
         var A=$(".flockHeadA img").attr("src");
         var B=$(".flockHeadB img").attr("src");
         var id_card_pictures="{'a':'"+A+"','b':'"+B+"'}";
-        // 12 参数：yourself_picture 个人照片  可填
+        // 12 参数：yourself_picture个人照片可填
         var yourself_picture="";
         // 13 参数：account 添加用户的账户 可填
         var account="";
@@ -163,25 +163,12 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
+                    showHide(data.errmsg)
                 }else{
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    $(".success").html(html);
-                    setTimeout(hideTop,3000);
+                    showHide(data.errmsg)
                 }
-
-
-
             },
             error:function(){}
         })
     })
-
-
 });
