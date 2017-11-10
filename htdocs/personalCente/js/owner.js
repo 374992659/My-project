@@ -309,7 +309,7 @@ $(document).ready(function(){
         var  myImg=$(".myPic").find("img");
         myImg.each(function(i,item){
             var _this=$(this);
-            var src=_this.attr("arc");
+            var src=_this.attr("src");
             yourself_picture[i]=src;
         });
         // 数据格式转换
