@@ -1,117 +1,230 @@
 $(document).ready(function(){
-    // 上传身份证正面A
-    $('#uploaderInputA').change(function(e) {
-        var Url=window.URL.createObjectURL(this.files[0]) ;
-        var formData= new FormData();
-        var apptoken=localStorage.getItem("apptoken");
-        formData.append("file",$("#uploaderInputA")[0].files[0]);
-        var data=["",JSON.stringify({"apptoken":apptoken})];
-        var json=jsEncryptData(data);
-        formData.append("data",json);
-        console.log(formData);
-        $.ajax({
-            type:"POST",
-            url:url+"UserCenter_uploadOwnerApplicationPic",
-            fileElementId:'uploaderInputA',
-            data:formData,
-            processData : false,
-            contentType : false,
-            secureuri:false,
-            success : function(data){
-                // 解密
-                data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    console.log(data.data);
-                    localStorage.setItem("myPicA",data.data[0]);
-                    $(".flockHeadA img").attr("src",Url);
-                    $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
-                    $(".flockHeadA").attr("style","display:block");
+    //上传身份证照片
+    (function(){
+        // 上传身份证正面A
+        $('#uploaderInputA').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderInputA")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'uploaderInputA',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        localStorage.setItem("myPicA",data.data[0]);
+                        $(".flockHeadA img").attr("src",Url);
+                        $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".flockHeadA").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
                 }
-            },
-            error:function (data) {
-                console.log(data);
-            }
+            });
         });
-    });
-    // 上传身份证正面B
-    $('#uploaderInputB').change(function(e) {
-        var Url=window.URL.createObjectURL(this.files[0]) ;
-
-        var formData= new FormData();
-        var apptoken=localStorage.getItem("apptoken");
-        formData.append("file",$("#uploaderInputB")[0].files[0]);
-        var data=["",JSON.stringify({"apptoken":apptoken})];
-        var json=jsEncryptData(data);
-        formData.append("data",json);
-        console.log(formData);
-        $.ajax({
-            type:"POST",
-            url:url+"UserCenter_uploadOwnerApplicationPic",
-            fileElementId:'uploaderInputB',
-            data:formData,
-            processData : false,
-            contentType : false,
-            secureuri:false,
-            success : function(data){
-                // 解密
-                data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    console.log(data.data);
-                    localStorage.setItem("myPicB",data.data[0]);
-                    $(".flockHeadB img").attr("src",Url);
-                    $(".loaderB").attr("style","position:absolute;left:40%;opacity: 0;");
-                    $(".flockHeadB").attr("style","display:block");
+        // 上传身份证正面B
+        $('#uploaderInputB').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]);
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#uploaderInputB")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'uploaderInputB',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        localStorage.setItem("myPicB",data.data[0]);
+                        $(".flockHeadB img").attr("src",Url);
+                        $(".loaderB").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".flockHeadB").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
                 }
-            },
-            error:function (data) {
-                console.log(data);
-            }
+            });
         });
-    });
+    })();
+    // 上传房产证照片
+    (function(){
+        // A
+        $('#PPuploaderInputA').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#PPuploaderInputA")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'PPuploaderInputA',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        localStorage.setItem("myPicA",data.data[0]);
+                        $(".PPflockHeadA img").attr("src",Url);
+                        $(".PPloaderA").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".PPflockHeadA").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+        // B
+        $('#PPuploaderInputB').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#PPuploaderInputB")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'PPuploaderInputB',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        localStorage.setItem("myPicA",data.data[0]);
+                        $(".PPflockHeadB img").attr("src",Url);
+                        $(".PPformB").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".PPflockHeadB").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    })();
+    // 上传个人照片
+    (function(){
+        $('#MyPicuploaderInput').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#MyPicuploaderInput")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'MyPicuploaderInput',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data);
+                        localStorage.setItem("myPicA",data.data[0]);
+                        $(".MyPicflockHead img").attr("src",Url);
+                        $(".MyPicloader").attr("style","position:absolute;left:40%;opacity: 0;");
+                        $(".MyPicflockHead").attr("style","display:block");
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    })();
     // 上传小区照片
-    $('#uploaderInputPlot').change(function(e) {
-        var Url=window.URL.createObjectURL(this.files[0]) ;
-        var formData= new FormData();
-        var apptoken=localStorage.getItem("apptoken");
-        formData.append("file",$("#uploaderInputPlot")[0].files[0]);
-        var data=["",JSON.stringify({"apptoken":apptoken})];
-        var json=jsEncryptData(data);
-        formData.append("data",json);
-        console.log(formData);
-        $.ajax({
-            type:"POST",
-            url:url+"UserCenter_uploadOwnerApplicationPic",
-            fileElementId:'uploaderInputPlot',
-            data:formData,
-            processData : false,
-            contentType : false,
-            secureuri:false,
-            success : function(data){
-                // 解密
-                data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    console.log(data.data.file_path);
-                    var html="";
-                    if(Url){
-                   html+=`
-               <li class="lf" style="margin-right: 10px">
+    (function(){
+        $('#plotPicuploaderInput').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#plotPicuploaderInput")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'plotPicuploaderInput',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data.file_path);
+                        var html="";
+                        if(Url){
+                            html+=`
+                        <li class="lf" style="margin-right: 10px">
                             <img  src="${Url}" style="height: 79px;width: 79px" alt="" >
                         </li>             
                `
+                        }
+                        $(".placePlot").html(html);
                     }
-                    $(".placePlot").html(html);
+                },
+                error:function (data) {
+                    console.log(data);
                 }
-            },
-            error:function (data) {
-                console.log(data);
-            }
+            });
         });
-    });
+    })();
     //根据城市id以及关键词获取小区信息
-
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -192,14 +305,15 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
-                console.log(data);
                 // 解密
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    showHide(data.errmsg);
+                }else{
+                    showHide(data.errmsg);
                 }
-
             },
             error:function(){}
         })

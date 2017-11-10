@@ -25,6 +25,7 @@
     </style>
 </head>
 <body>
+    <div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
     <div id="tab2" class="weui-tab__bd-item owner" style="padding: 0 10px">
     <!--姓名-->
     <div class="weui-cells">
@@ -84,6 +85,23 @@
             </div>
         </div>
     </div>
+    <!--楼盘地址-->
+    <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="housePlace">楼盘地址：<span style="color:red">*</span></label>
+                    <div class="weui-cell__bd" id="sanji" style="display: inline-block">
+                        <select name="province" id="province">
+                            <option value="">请选择</option>
+                        </select>
+                        <select name="city" id="city">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <input type="text" id="houseName" placeholder="小区名字" style="width: 20%">
+                </div>
+            </div>
+        </div>
     <!--身份证-->
     <div class="weui-cells">
         <div class="weui-cell">
@@ -126,64 +144,28 @@
             </div>
         </div>
     </div>
-    <!--小区名-->
-    <!--<div class="weui-cells">-->
-        <!--<div class="weui-cell">-->
-            <!--<div class="weui-cell__bd">-->
-                <!--<label class="left" for="plotName">小区名：<span style="color:red">*</span></label>-->
-                <!--<input type="text" id="plotName">-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <!--楼盘地址-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <label class="left" for="housePlace">楼盘地址：<span style="color:red">*</span></label>
-                <div class="weui-cell__bd" id="sanji" style="display: inline-block">
-                    <select name="province" id="province">
-                        <option value="">请选择</option>
-                    </select>
-                    <select name="city" id="city">
-                        <option value="">请选择</option>
-                    </select>
-                </div>
-                <input type="text" id="houseName" placeholder="小区名字" style="width: 20%">
-            </div>
-        </div>
-    </div>
-     <!--小区详细地址   -->
-        <!--<div class="weui-cells">-->
-            <!--<div class="weui-cell">-->
-                <!--<div class="weui-cell__bd">-->
-                    <!--<label class="left" for="plotPlace">小区详细地址：<span style="color:red">*</span></label>-->
-                    <!--<input type="text" id="plotPlace">-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     <!--小区大门照-->
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <label class="left" for="plotPic" style="vertical-align: top">小区照片：<span style="color:red">*</span></label>
+                <label class="left" for="" style="vertical-align: top">小区照片：<span style="color:red">*</span></label>
                 <!--上传小区照片-->
-                <div style="">
-                    <ul class="placePlot">
-                        <!--<li class="lf" style="margin-right: 10px">-->
-                            <!--<img  src="" style="height: 79px;width: 79px" alt="" >-->
-                        <!--</li>-->
-                        <!--<li class="lf"  style="margin-right: 10px">-->
-                            <!--<img src=""  style="height: 79px;width: 79px" alt="">-->
-                        <!--</li>-->
-                    </ul>
-                    <div class="weui-uploader__bd lf">
-                        <div class="weui-uploader__input-box">
-                            <form action="" id="formPlot" enctype="multipart/form-data">
-                                <input id="uploaderInputPlot" name="uploaderInput" class="weui-uploader__input" type="file">
-                            </form>
+                <ul class="placePlot" style="display: inline-block">
+                    <!--照片位置-->
+                    <!--照片位置-->
+                    <!--照片位置-->
+                    <li>
+                        <div class="weui-cells weui-cells_form" style="display: inline-block">
+                            <div class="weui-uploader__input-box plotPicloaderA">
+                                <form action="" id="plotPicform" enctype="multipart/form-data">
+                                    <input id="plotPicuploaderInput" name="PPuploaderInputA" class="weui-uploader__input" type="file">
+                                </form>
+                            </div>
+
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
@@ -191,23 +173,28 @@
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <label class="left" for="ownershipPic" style="vertical-align: top">房产证：<span style="color:red"></span></label>
+                <label class="left" for="" style="vertical-align: top">房产证：<span style="color:green">*</span></label>
                 <!--上传房产证照片-->
-                <div style="">
-                    <ul>
-                        <li class="lf" style="margin-right: 10px">
-                            <img  src="" style="height: 79px;width: 79px" alt="" >
-                        </li>
-                        <li class="lf"  style="margin-right: 10px">
-                            <img src=""  style="height: 79px;width: 79px" alt="">
-                        </li>
-                    </ul>
-                    <div class="weui-uploader__bd lf">
-                        <div class="weui-uploader__input-box">
-                            <form action="" id="formShip" enctype="multipart/form-data">
-                                <input id="uploaderInputShip" name="uploaderInput" class="weui-uploader__input" type="file">
-                            </form>
-                        </div>
+                <!--A-->
+                <div class="weui-cells weui-cells_form" style="display: inline-block">
+                    <div class="weui-uploader__input-box PPloaderA">
+                        <form action="" id="PPformA" enctype="multipart/form-data">
+                            <input id="PPuploaderInputA" name="PPuploaderInputA" class="weui-uploader__input" type="file">
+                        </form>
+                    </div>
+                    <div class="PPflockHeadA">
+                        <img src="" alt="" style="width: 80px;height: 80px" >
+                    </div>
+                </div>
+                <!--B-->
+                <div class="weui-cells weui-cells_form" style="display: inline-block">
+                    <div class="weui-uploader__input-box PPloaderB">
+                        <form action="" id="PPformB" enctype="multipart/form-data">
+                            <input id="PPuploaderInputB" name="PPuploaderInputB" class="weui-uploader__input" type="file">
+                        </form>
+                    </div>
+                    <div class="PPflockHeadB">
+                        <img src="" alt="" style="width: 80px;height: 80px" >
                     </div>
                 </div>
             </div>
@@ -217,35 +204,29 @@
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <label class="left" for="ownerPic" style="vertical-align: top">个人照片：<span style="color:red"></span></label>
+                <label class="left" for="" style="vertical-align: top">个人照片：<span style="color:green">*</span></label>
                 <!--上传个人照片-->
-                <div style="">
-                    <ul>
-                        <li class="lf" style="margin-right: 10px">
-                            <img  src="" style="height: 79px;width: 79px" alt="" >
-                        </li>
-                        <li class="lf"  style="margin-right: 10px">
-                            <img src=""  style="height: 79px;width: 79px" alt="">
-                        </li>
-                    </ul>
-                    <div class="weui-uploader__bd lf">
-                        <div class="weui-uploader__input-box">
-                            <form action="" id="formMy" enctype="multipart/form-data">
-                                <input id="uploaderInputMy" name="uploaderInput" class="weui-uploader__input" type="file">
-                            </form>
+                <ul style="display: inline-block" class="myPic">
+                    <!--个人照片位置-->
+                    <!--个人照片位置-->
+                    <!--个人照片位置-->
+                    <!--个人照片位置-->
+                    <li style="display: inline-block">
+                        <div class="weui-cells weui-cells_form" style="display: inline-block">
+                            <div class="weui-uploader__input-box MyPicloader">
+                                <form action="" id="MyPicform" enctype="multipart/form-data">
+                                    <input id="MyPicuploaderInput" name="MyPicuploaderInput" class="weui-uploader__input" type="file">
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
+
             </div>
         </div>
     </div>
     <!--提交按钮-->
     <button class="weui-btn weui-btn_primary">确认</button>
-    <!--<div class="weui-flex">-->
-        <!--<a class="weui-flex__item" href="memberList.html">成员列表</a>-->
-        <!--<a class="weui-flex__item" href="addMember.html" style="margin: 0 10px">添加成员</a>-->
-        <!--<a class="weui-flex__item" href="myRenZ.html">我的认证</a>-->
-    <!--</div>-->
 </div>
     <script src="../js/jquery-1.11.3.js"></script>
     <script src="../JQuery_weui/fastclick.js"></script>
@@ -260,10 +241,11 @@
     <script src="../js/aes.js"></script>
     <script src="../js/pad-zeropadding.js"></script>
     <script src="../js/encrypt-decode.js"></script>
-    <script src="js/owner.js"></script>
+    <script src="../js/showHide.js"></script>
     <script src="../js/addRess.js"></script>
     <script >
         addRess();
     </script>
+    <script src="js/owner.js"></script>
 </body>
 </html>
