@@ -33,9 +33,21 @@
             height: 1.41176471em;
             line-height: 0;
         }
+        .weui-cells {
+            overflow: visible;
+        }
+        .allGarden li{
+            padding: 5px;
+            background: beige;
+            color: green;
+        }
+        .allGarden li:hover{
+            background: blue;
+        }
     </style>
 </head>
 <body>
+    <div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
     <div id="tab3" class="weui-tab__bd-item renter">
     <!--姓名-->
     <div class="weui-cells">
@@ -167,15 +179,6 @@
             </div>
         </div>
     </div>
-    <!--小区名-->
-    <!--<div class="weui-cells">-->
-        <!--<div class="weui-cell">-->
-            <!--<div class="weui-cell__bd">-->
-                <!--<label class="left" for="renter_plotName">小区名：<span style="color:red">*</span></label>-->
-                <!--<input type="text" id="renter_plotName">-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
         <!--楼盘地址-->
         <div class="weui-cells">
             <div class="weui-cell">
@@ -189,7 +192,11 @@
                             <option value="">请选择</option>
                         </select>
                     </div>
-                    <input type="text" id="houseName" placeholder="小区名字" style="width: 20%">
+                    <div style="display: inline-block;position: absolute;">
+                        <input type="text" title="" id="gardenName" placeholder="小区名字" style="width: 68%;">
+                        <ul class="allGarden" style="position: absolute;top:20px;left:-100px;display: none">
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -197,7 +204,7 @@
     <div class="weui-cells">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <label class="left" for="renter_contractLife">合同有效期：<span style="color:red">*</span></label>
+                <label class="left" for="date2">合同有效期：<span style="color:red">*</span></label>
                 <input class="weui-input" id="date2" type="text" value="">
             </div>
         </div>
@@ -221,6 +228,31 @@
             </div>
         </div>
     </div>
+    <!--个人照片-->
+    <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="" style="vertical-align: top">个人照片：<span style="color:green">*</span></label>
+                    <!--上传个人照片-->
+                    <ul style="display: inline-block" class="myPic">
+                        <!--个人照片位置-->
+                        <!--个人照片位置-->
+                        <!--个人照片位置-->
+                        <!--个人照片位置-->
+                        <li style="display: inline-block">
+                            <div class="weui-cells weui-cells_form" style="display: inline-block">
+                                <div class="weui-uploader__input-box MyPicloader">
+                                    <form action="" id="MyPicform" enctype="multipart/form-data">
+                                        <input id="MyPicuploaderInput" name="MyPicuploaderInput" class="weui-uploader__input" type="file">
+                                    </form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
     <button class="weui-btn weui-btn_primary">确定</button>
     <div class="weui-flex">
         <a class="weui-flex__item" href="renterMemberList.html">成员列表</a>
@@ -240,7 +272,7 @@
     <script src="../js/aes.js"></script>
     <script src="../js/pad-zeropadding.js"></script>
     <script src="../js/encrypt-decode.js"></script>
-    <script src="js/renter.js"></script>
+    <script src="../js/showHide.js"></script>
     <script src="../js/addRess.js"></script>
     <script >
         addRess();
@@ -251,5 +283,6 @@
             dateFormat: 'yyyy年mm月dd日'  // 自定义格式的时候，不能通过 input 的value属性赋值 '2016年12月12日' 来定义初始值，这样会导致无法解析初始值而报错。只能通过js中设置 value 的形式来赋值，并且需要按标准形式赋值（yyyy-mm-dd 或者时间戳)
         });
     </script>
+    <script src="js/renter.js"></script>
 </body>
 </html>

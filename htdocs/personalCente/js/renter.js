@@ -181,9 +181,103 @@ $(document).ready(function(){
     })();
     // 上传个人照片
     (function(){
-
-
+        $('#MyPicuploaderInput').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#MyPicuploaderInput")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'MyPicuploaderInput',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data[0]);
+                        var html="";
+                        if(Url){
+                            html+=`
+                        <li class="lf" style="margin-right: 10px">
+                            <img  src="http://wx.junxiang.ren/project/${data.data[0]}" style="height: 79px;width: 79px" alt="" >
+                        </li>             
+               `
+                        }
+                        $(".myPic").prepend(html);
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
     })();
+    //根据城市id以及关键词获取小区信息
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        $("#gardenName").on("input",function(){
+            var city_id=$("#city option:selected").val();  // 获取城市id
+            var key=$("#gardenName").val();
+            if(key){
+                $(".allGarden").empty();
+                // 数据格式转换
+                var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"key":key})],
+                    // 加密
+                    jsonEncryptData=jsEncryptData(data);
+                console.log("通过关键词搜索小区");
+                console.log(data);
+                $.ajax({
+                    url:url+"UserCenter_getGardenInfo",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function(data){
+                        // 解密
+                        var data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            var li="";
+                            localStorage.setItem("apptoken",data.apptoken);
+                            $.each(data.data,function(i,item){
+                                console.log(item);
+                                li+=`
+                        <li title="${item.garden_code}">${item.garden_name}</li>
+                        
+                        `
+                            });
+                            var allGarden= $(".allGarden");
+                            allGarden.append(li);
+                            allGarden.show();
+                            allGarden.on("click","li",function(){
+                                // 获取其值
+                                var garden_Name=$(this).html();
+                                var gardenCode=$(this).attr("title");
+                                var gardenName= $("#gardenName");
+                                gardenName.val("");
+                                gardenName.val(garden_Name);
+                                gardenName.attr("title","");
+                                gardenName.attr("title",gardenCode);
+                                allGarden.hide();
+                            })
+                        }
+                    },
+                    error:function(){}
+                })
+            }else{
+                $(".allGarden").empty()
+            }
+        })
+    })();
+    // 提交按钮
     $(".weui-btn").click(function () {
     //1 参数：apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -213,7 +307,12 @@ $(document).ready(function(){
     //10 参数：garden_name 小区名
         var garden_name=$("#houseName").val();
     //11 参数：garden_code 小区code 可填 用户若选择检索出的小区则传递其code至后台否则不传递
-        var garden_code="";
+        var tilte=$(".gardenName").attr("title");
+        if(tilte){
+            var garden_code=tilte;
+        }else{
+            var garden_code="";
+        }
     //12 参数：garden_addr 楼盘地址
         var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
     //13 参数：contract_period 合同期限 10位时间戳 整型
@@ -222,7 +321,13 @@ $(document).ready(function(){
         var  ContractPic=$(".ContractPic img").attr("src");
         var  pictures="{'a':'"+ContractPic+"'}";
     //15 参数：yourself_picture 个人照片 可填
-        var yourself_picture="";
+        var yourself_picture={};
+        var myPic=$(".myPic").find("img").attr("src");
+        myPic.each(function(i,item){
+            var _this=$(this);
+            var src=_this.attr("src");
+            yourself_picture[i]=src
+        });
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_pictures,"owner_id_card_num":owner_id_card_num,"owner_id_card_picture":owner_id_card_picture,"city_id":city_id,"garden_name":garden_name,"garden_code":garden_code,"garden_addr":garden_addr,"contract_period":contract_period,"pictures":pictures,"yourself_picture":yourself_picture})];
         // 加密
@@ -237,8 +342,10 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
-
+                    localStorage.setItem("apptoken",data.apptoken);
+                    showHide(data.errmsg)
+                }else{
+                    showHide(data.errmsg)
                 }
             },
             error:function (){}
