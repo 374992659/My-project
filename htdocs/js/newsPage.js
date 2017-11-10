@@ -66,7 +66,7 @@ $(document).ready(function(){
                 if(parseInt(result.errcode)===0){
                     var data = (result.data);
                         //本地保存在线好友列表
-                    // 好友未读消息
+                        // 好友未读消息
                     var friends_new_message=data.friends_new_message;
                     if(friends_new_message){              //好友新消息  已按用户分组 时间倒序排列
                          var friend_code=$(".newsNum").attr("id");
@@ -129,12 +129,11 @@ $(document).ready(function(){
                   `
                          }
                                 });
-                                $(".newsList").append(html);
-                    }
+                  $(".newsList").append(html);
+            }
                     //好友申请未读消息
                     var friends_new_apply = data.friends_new_apply;
                     if(friends_new_apply){                      //用户添加好友的申请
-
                     }
                 }
                 break;
@@ -199,7 +198,6 @@ $(document).ready(function(){
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
     };
-
     //群聊点击发送
     $(".elements").click(function(){
         var content=$(".elements").val('content');                //获取页面发送内容
