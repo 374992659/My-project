@@ -228,7 +228,7 @@ class SubjectController extends VersionController
             if($point_limit < $point['value']){
                 $add = $point_limit;
             }
-            M()->execute('update baseinfo.user_info_'.$city.' set total_point =total_point+'.$add.' where account_code='.$this->account_code);
+            M()->execute('update baseinfo.user_info_'.$city.' set total_point =total_point+'.$add.' where account_code='."'".$this->account_code."'");
         }
         $this->echoEncrypData(0);
     }
@@ -266,7 +266,7 @@ class SubjectController extends VersionController
             ));
             if($point_limit = $this->getPointLimitStatus($this->account_code)){
                 $point_limit > $point['value']?$add = $point['value']:$add =$point_limit;
-                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='.$this->account_code);
+                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='."'".$this->account_code."'");
             }
             $this->echoEncrypData(0);
         }else{
@@ -284,7 +284,7 @@ class SubjectController extends VersionController
                 'value'=>$point['value'],
                 'create_time'=>time(),
             ));
-            M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='.$this->account_code);
+            M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
             $this->echoEncrypData(0);
         }
     }
@@ -324,7 +324,7 @@ class SubjectController extends VersionController
             ));
             if($point_limit = $this->getPointLimitStatus($this->account_code)){
                 $point_limit > $point['value']?$add = $point['value']:$add =$point_limit;
-                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='.$this->account_code);
+                M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point+'.$add.' where account_code='."'".$this->account_code."'");
             }
             $this->echoEncrypData(0);
         }else{
@@ -341,7 +341,7 @@ class SubjectController extends VersionController
                 'value'=>$point['value'],
                 'create_time'=>time(),
             ));
-            M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='.$this->account_code);
+            M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
             $this->echoEncrypData(0);
         }
     }
@@ -378,7 +378,7 @@ class SubjectController extends VersionController
             'create_time'=>time(),
         ));
         $user_city = substr($this->account,0,4);
-        M()->execute('update baseinfo.user_info_'.$user_city.' set total_point =total_point-'.$point['value'].' where account_code='.$this->account_code);
+        M()->execute('update baseinfo.user_info_'.$user_city.' set total_point =total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
         $this->echoEncrypData(0);
     }
     /*
