@@ -23,6 +23,7 @@ $(document).ready(function(){
         var repassword=$(".repassword").val();
         // 获取验证码
         var  code=$(".code").val();
+        var openId=localStorage.getItem("openId");
         // 数据加密
     info=['', JSON.stringify({"openId":openId,"account":numeber,"area_id":area_id,"password":password,'repassword':repassword,"apptoken":apptoken,"piccode":code})];
         console.log(info);
