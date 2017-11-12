@@ -1,6 +1,6 @@
 $(document).ready(function() {
     "use strict";
-    // 获取自己的信息
+    // 获取自己的个人信息
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
@@ -51,7 +51,6 @@ $(document).ready(function() {
         });
     })();
     // 及时通讯
-
     (function(){
         var apptoken = localStorage.getItem('apptoken');
         if(!apptoken)alert('请重新登录');
@@ -100,19 +99,18 @@ $(document).ready(function() {
                         localStorage.setItem('history_' + result.data.sender_code, JSON.stringify(history_chats));
                     }
                     // 保存聊天的好友资料
-                    var json = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
+                    var json = "{'sender_code':'"+result.data.sender_code+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
                     console.log(json);
-                    var history_chats = localStorage.getItem('history_'+result.data.group);
+                    var history_chats = localStorage.getItem("friend_info");
                     if(!history_chats){
                         var history_chats = new Array();
                         history_chats=[json_str];
-                        localStorage.setItem('history_'+result.data.sender_code,JSON.stringify(history_chats));
+                        localStorage.setItem("friend_info",JSON.stringify(history_chats));
                     }else {
                         history_chats = JSON.parse(history_chats);
                         history_chats[history_chats.length] = json_str;
-                        localStorage.setItem('history_' + result.data.sender_code, JSON.stringify(history_chats));
+                        localStorage.setItem("friend_info", JSON.stringify(history_chats));
                     }
-
                 }
             })();
             switch(parseInt(result.type)){
