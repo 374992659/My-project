@@ -115,17 +115,18 @@ $(document).ready(function() {
                             data[i]=jsonObj;
                         });
                         console.log(data);
+                        var a=0;
                         for(var i=0,len=data.length;i<len;i++){
-                            console.log(data[i]);
                             if(parseInt(data[i].sender_code)===parseInt(result.data.sender_code)){
                                 console.log("好友信息1");
-                            }else{
-                                console.log("好友信息2");
-                                history_chat = JSON.parse(history_chat);
-                                history_chat[history_chat.length] = json;
-                                localStorage.setItem("friend_info", JSON.stringify(history_chat));
-
+                                a++;
                             }
+                        }
+                        if(a===0){
+                            console.log("好友信息2");
+                            history_chat = JSON.parse(history_chat);
+                            history_chat[history_chat.length] = json;
+                            localStorage.setItem("friend_info", JSON.stringify(history_chat));
                         }
                     }
                 }
