@@ -87,7 +87,6 @@ $(document).ready(function() {
                 }else if(result.errmsg==="好友消息"){
                     // 本地未读聊天记录
                     var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
-                    console.log(json_str);
                     var history_chats = localStorage.getItem('history_'+ result.data.sender_code);
                     if(!history_chats){
                         var history_chats = new Array();
@@ -96,7 +95,6 @@ $(document).ready(function() {
                     }else {
                         history_chats = JSON.parse(history_chats);
                         history_chats[history_chats.length] = json_str;
-                        console.log(json_str);
                         localStorage.setItem('history_' + result.data.sender_code, JSON.stringify(history_chats));
                     }
                     // 保存聊天的好友资料
@@ -167,6 +165,7 @@ $(document).ready(function() {
                         console.log(online_friends);
                         if(!contains(online_friends,friend_code)){
                             console.log("好友上线");
+                            getGroup();
                            var newOnline = parseInt(JSON.parse(online_friends));
                            console.log(newOnline);
                             // newOnline.push(friend_code);
@@ -272,21 +271,22 @@ $(document).ready(function() {
         }
     })();
     //功能1 请求好友分组
-    var apptoken=localStorage.getItem("apptoken"),
-    data=["", JSON.stringify({"apptoken":apptoken})],
-    jsonEncryptData = jsEncryptData(data);
-    console.log(data);
-    $.ajax({
-        url:url+"friends_getGroup",
-        type:"POST",
-        data:{"data":jsonEncryptData},
-        success: function (data){
-            data = jsDecodeData(data);
-            console.log(data);
-            if(data.errcode===0){
-                localStorage.setItem("apptoken",data.apptoken);
-                var html = "";
-                $.each(data.data,function(i, item){
+    var getGroup=function(){
+        var apptoken=localStorage.getItem("apptoken"),
+            data=["", JSON.stringify({"apptoken":apptoken})],
+            jsonEncryptData = jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"friends_getGroup",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success: function (data){
+                data = jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html = "";
+                    $.each(data.data,function(i, item){
                         var arr=[];
                         $.each(item.friend_user,function(i,tem){
                             // 获取所有在线好友
@@ -300,8 +300,8 @@ $(document).ready(function() {
                             }
                         });
 
-                   var online=arr.length;
-                    html += `
+                        var online=arr.length;
+                        html += `
      <div class="weui-cells">
         <div class="weui-cell LinkBtn"  title="${item.id} ">
             <div class="weui-cell__hd ">
@@ -316,19 +316,21 @@ $(document).ready(function() {
         </div>
         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
             <div class="weui-panel__bd " id="${item.id}">
-                    
-            </div>
-        </div> 
-     </div>                  
-        `
-                });
-                $(".group").append(html);
 
-            }else{
+            </div>
+        </div>
+     </div>
+        `
+                    });
+                    $(".group").append(html);
+
+                }else{
                     window.location.href ="landing.html";
+                }
             }
-        }
-    });
+        });
+    };getGroup();
+
     $(".group").on("click", ".weui-cells .LinkBtn", function (e) {
         // 功能2 请求好友分组下的好友信息
         (function(){
