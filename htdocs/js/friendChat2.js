@@ -180,7 +180,7 @@ $(document).ready(function(){
                         </div>
                         <div class="weui-media-box__bd">
                                 <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;padding: 0">
-                                   <img src="http://wx.junxiang.ren/project/${item.content}" style="width: 80px" alt=""/>
+                                   <img src="${item.content}" style="width: 80px" alt=""/>
 
                                 </span>
                        </div>
