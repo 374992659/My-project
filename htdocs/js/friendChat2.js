@@ -169,10 +169,29 @@ $(document).ready(function(){
                         console.log(result.data);
                         var html="";
                         $.each(result.data,function(i,item){
+                            var httP=item.send_portrait.split(":")[0];
                             console.log(item);
                             if(item.sender_code==sender_code){
                                 if(parseInt(item.type)===2){
-                                    html+=`
+                                    if(httP==="http"){
+                                        html+=`
+                <div class="sendHtml">
+                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                     <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                            <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;padding: 0">
+                                   <img src="${item.content}" style="width: 80px" alt=""/>
+
+                                </span>
+                       </div>
+                    </div>
+                </div>
+                                `
+                                    }else{
+                                        html+=`
                 <div class="sendHtml">
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -188,8 +207,26 @@ $(document).ready(function(){
                     </div>
                 </div>
                                 `
+                                    }
                                 }else{
-                                    html+=`
+                                    if(httP==="http"){
+                                        html+=`
+                <div class="sendHtml">
+                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                     <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                            <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;">
+                                   ${item.content}
+                                </span>
+                       </div>
+                    </div>
+                </div>
+                                `
+                                    }else{
+                                        html+=`
                 <div class="sendHtml">
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -204,16 +241,36 @@ $(document).ready(function(){
                     </div>
                 </div>
                                 `
+                                    }
                                 }
                             }else if(item.getter_code==sender_code){
                                 if(parseInt(item.type)===2){
-                                    html+=`
+                                    if(httP==="http"){
+                                        html+=`
                             <div class="getHtml">
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
                                         <span class="weui-media-box__desc right"  style="background:white;font-size: 13px;color: black;padding: 0">
-                                               
+
+                                         <img src="${item.content}" style="width: 80px"  alt=""/>
+                                        </span>
+                                    </div>
+                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
+                                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
+                                    </div>
+                                 </div>
+                            </div>
+
+                                `
+                                    }else{
+                                        html+=`
+                            <div class="getHtml">
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                 <div class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__bd">
+                                        <span class="weui-media-box__desc right"  style="background:white;font-size: 13px;color: black;padding: 0">
+
                                          <img src="${item.content}" style="width: 80px"  alt=""/>
                                         </span>
                                     </div>
@@ -224,8 +281,27 @@ $(document).ready(function(){
                             </div>
 
                                 `
+                                    }
                                 }else{
-                                    html+=`
+                                    if(httP==="http"){
+                                        html+=`
+                            <div class="getHtml">
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                 <div class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__bd">
+                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">
+                                            ${item.content}
+                                        </span>
+                                    </div>
+                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
+                                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
+                                    </div>
+                                 </div>
+                            </div>
+
+                                `
+                                    }else{
+                                        html+=`
                             <div class="getHtml">
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
@@ -241,6 +317,7 @@ $(document).ready(function(){
                             </div>
 
                                 `
+                                    }
                                 }
                             }
                         });
