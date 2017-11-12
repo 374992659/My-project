@@ -487,6 +487,7 @@ $(document).ready(function(){
             (function(){
                 var history_chat = localStorage.getItem("friend_info");
                 var json = "{'sender_code':'"+sender_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
+                console.log(json);
                 if(!history_chat){
                     var history_chat = new Array();
                     history_chat=[json];
