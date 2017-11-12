@@ -397,7 +397,7 @@ $(document).ready(function() {
                             "use strict";
                             if(item.group_id==id){
                                 html+=`
-                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}"">
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
                         </div>
@@ -492,12 +492,12 @@ $(document).ready(function() {
                     var html="";
                     $.each(data.data,function(i,item){
                         html+=`
-                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}" value="${item.friend_nickname}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h5 class="weui-media-box__title name">${item.friend_nickname}</h5>
+                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
                             <p class="weui-media-box__desc searchRemark">${item.friend_signature}</p>
                         </div>                      
                     </div>
@@ -526,6 +526,8 @@ $(document).ready(function() {
     // 点击好友跳转到聊天页面
     $(".group").on("click",".skipChat",function(){
         console.log(123);
+        //好友名字
+        var sender_name=$(this).find("h4").text();
         // 获取好友code
         var sender_code=$(this).attr("title"),
         // 头像
@@ -533,6 +535,7 @@ $(document).ready(function() {
         // 存本地
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
+        localStorage.setItem("sender_name",sender_name);
         window.location.href="friendChat.html";
     });
     //搜索好友跳转到聊天页面
