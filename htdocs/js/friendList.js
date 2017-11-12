@@ -16,9 +16,16 @@ $(document).ready(function() {
                 // 解密
                 var data=jsDecodeData(data);
                 console.log(data);
+                //判断返回的头像是否为自定义的
+               var nickname=data.data.portrait.split(":");
+                if(nickname[0]==="http"){
+                    localStorage.setItem("my_head",data.data.portrait);
+                }else{
+                    localStorage.setItem("my_head","http://wx.junxiang.ren/project/"+data.data.portrait);
+                }
                 localStorage.setItem("apptoken",data.apptoken);
                 localStorage.setItem("my_code",data.data.account_code);
-                localStorage.setItem("my_head",data.data.portrait);
+
             }
         })
     })();
