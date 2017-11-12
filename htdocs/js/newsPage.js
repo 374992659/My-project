@@ -2,11 +2,12 @@ $(document).ready(function(){
     // 获取本地聊天记录
     (function(){
         // 获取好友code
-        var sender_code=localStorage.getItem("sender_code");
-        var history_chat = localStorage.getItem('history_'+sender_code);
+        var friend_info=localStorage.getItem("friend_info");
+        console.log(friend_info);
+        //var history_chat = localStorage.getItem('history_'+sender_code);
         console.log(typeof history_chat);
-        if(history_chat){
-            var history= $.parseJSON(history_chat);
+        if(friend_info){
+            var history= $.parseJSON(friend_info);
             var jsonObj = eval('('+history+')');
             console.log(jsonObj);
             data=[];
