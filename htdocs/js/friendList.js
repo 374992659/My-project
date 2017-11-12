@@ -206,7 +206,6 @@ $(document).ready(function() {
                         console.log(online_friends);
                         if(!contains(online_friends,friend_code)){
                             console.log("好友上线");
-                            window.location.reload();
                            var newOnline = parseInt(JSON.parse(online_friends));
                            console.log(newOnline);
                             // newOnline.push(friend_code);
