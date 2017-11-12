@@ -117,9 +117,6 @@ $(document).ready(function() {
                         console.log(data);
                         for(var i=0,len=data.length;i<len;i++){
                             console.log(data[i]);
-                        }
-                        $.each(data,function(i,item){
-                            console.log(item);
                             if(parseInt(item.sender_code)===parseInt(result.data.sender_code)){
                                 console.log("好友信息1");
                             }else{
@@ -129,6 +126,9 @@ $(document).ready(function() {
                                 localStorage.setItem("friend_info", JSON.stringify(history_chat));
 
                             }
+                        }
+                        $.each(data,function(i,item){
+                            console.log(item);
                         });
 
                     }
