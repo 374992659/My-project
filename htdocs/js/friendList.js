@@ -99,18 +99,6 @@ $(document).ready(function() {
                         localStorage.setItem('history_' + result.data.sender_code, JSON.stringify(history_chats));
                     }
                     // 保存聊天的好友资料
-                    var json = "{'sender_code':'"+result.data.sender_code+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
-                    console.log(json);
-                    var history_chats = localStorage.getItem("friend_info");
-                    if(!history_chats){
-                        var history_chats = new Array();
-                        history_chats=[json_str];
-                        localStorage.setItem("friend_info",JSON.stringify(history_chats));
-                    }else {
-                        history_chats = JSON.parse(history_chats);
-                        history_chats[history_chats.length] = json_str;
-                        localStorage.setItem("friend_info", JSON.stringify(history_chats));
-                    }
                 }
             })();
             switch(parseInt(result.type)){
@@ -300,15 +288,12 @@ $(document).ready(function() {
                 $.each(data.data,function(i, item){
                         var arr=[];
                         $.each(item.friend_user,function(i,tem){
-                            console.log(tem.friend_user_code);
                             // 获取所有在线好友
                             if(localStorage.getItem("online_friends")){
                                 var onlineFriend=JSON.parse(localStorage.getItem("online_friends"));
                                 $.each(onlineFriend,function(i,online){
-                                    console.log(online);
                                     if(parseInt(tem.friend_user_code)===parseInt(online)){
                                         arr.push(tem.friend_user_code);
-                                        console.log("zaixian");
                                     }
                                 })
                             }
