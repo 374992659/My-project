@@ -204,7 +204,6 @@ $(document).ready(function(){
                 </div>
                                 `
                                 }
-
                             }else if(item.getter_code==sender_code){
                                 if(parseInt(item.type)===2){
                                     html+=`
@@ -246,6 +245,8 @@ $(document).ready(function(){
                             }
                         });
                         $("#chatPage").prepend(html);
+                        document.body.scrollTop=chatPage.height()+100;
+                        $(".historyNews").hide();
                     }
                     break
             }
