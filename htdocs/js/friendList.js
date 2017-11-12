@@ -117,7 +117,7 @@ $(document).ready(function() {
                         console.log(data);
                         for(var i=0,len=data.length;i<len;i++){
                             console.log(data[i]);
-                            if(parseInt(item.sender_code)===parseInt(result.data.sender_code)){
+                            if(parseInt(data[i].sender_code)===parseInt(result.data.sender_code)){
                                 console.log("好友信息1");
                             }else{
                                 console.log("好友信息2");
@@ -127,10 +127,6 @@ $(document).ready(function() {
 
                             }
                         }
-                        $.each(data,function(i,item){
-                            console.log(item);
-                        });
-
                     }
                 }
             })();
