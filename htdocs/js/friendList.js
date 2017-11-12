@@ -117,11 +117,14 @@ $(document).ready(function() {
                         console.log(data);
                         $.each(data,function(i,item){
                             console.log(item);
-                            if(!parseInt(item.sender_code)===parseInt(result.data.sender_code)){
-                                console.log("好友信息");
+                            if(parseInt(item.sender_code)===parseInt(result.data.sender_code)){
+                                console.log("好友信息1");
+                            }else{
+                                console.log("好友信息2");
                                 history_chat = JSON.parse(history_chat);
                                 history_chat[history_chat.length] = json;
                                 localStorage.setItem("friend_info", JSON.stringify(history_chat));
+
                             }
                         });
 
