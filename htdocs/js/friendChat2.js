@@ -165,15 +165,13 @@ $(document).ready(function(){
                     // 服务器保存的历史消息
                 case 9:
                     if(parseInt(result.errcode)===0){
-                        console.log(1);
-                        console.log(result.data);
                         var html="";
                         $.each(result.data,function(i,item){
                             var httP=item.send_portrait.split(":")[0];
-                            console.log(item);
-                            if(item.sender_code==sender_code){
-                                if(parseInt(item.type)===2){
-                                    if(httP==="http"){
+
+                            if(item.sender_code==sender_code){//发送方为好友
+                                if(parseInt(item.type)===2){//获取的内容为图片
+                                    if(httP==="http"){//好友头像为系统默认头像
                                         html+=`
                 <div class="sendHtml">
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -190,7 +188,7 @@ $(document).ready(function(){
                     </div>
                 </div>
                                 `
-                                    }else{
+                                    }else{//头像为自己设置的头像
                                         html+=`
                 <div class="sendHtml">
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -208,7 +206,7 @@ $(document).ready(function(){
                 </div>
                                 `
                                     }
-                                }else{
+                                }else{//内容为文字
                                     if(httP==="http"){
                                         html+=`
                 <div class="sendHtml">
@@ -243,9 +241,9 @@ $(document).ready(function(){
                                 `
                                     }
                                 }
-                            }else if(item.getter_code==sender_code){
-                                if(parseInt(item.type)===2){
-                                    if(httP==="http"){
+                            }else if(item.getter_code==sender_code){//发送方为自己本人
+                                if(parseInt(item.type)===2){//获取的内容为图片
+                                    if(httP==="http"){//头像为系统默认头像的
                                         html+=`
                             <div class="getHtml">
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -282,7 +280,7 @@ $(document).ready(function(){
 
                                 `
                                     }
-                                }else{
+                                }else{//内容为文字
                                     if(httP==="http"){
                                         html+=`
                             <div class="getHtml">
@@ -485,6 +483,39 @@ $(document).ready(function(){
                 }
                 localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
             }
+            // 保存聊天的好友资料
+            (function(){
+                var history_chat = localStorage.getItem("friend_info");
+                var json = "{'sender_code':'"+sender_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
+                if(!history_chat){
+                    var history_chat = new Array();
+                    history_chat=[json];
+                    localStorage.setItem("friend_info",JSON.stringify(history_chat));
+                }else {
+                    var history= $.parseJSON(history_chat);
+                    var jsonObj = eval('('+history+')');
+                    console.log(jsonObj);
+                    data=[];
+                    $.each(history,function(i,item){
+                        var jsonObj = eval('('+item+')');
+                        data[i]=jsonObj;
+                    });
+                    console.log(data);
+                    var a=0;
+                    for(var i=0,len=data.length;i<len;i++){
+                        if(parseInt(data[i].sender_code)===parseInt(sender_code)){
+                            console.log("好友信息1");
+                            a++;
+                        }
+                    }
+                    if(a===0){
+                        console.log("好友信息2");
+                        history_chat = JSON.parse(history_chat);
+                        history_chat[history_chat.length] = json;
+                        localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                    }
+                }
+            })();
         });
         // 发送图片
         $("#uploaderInputPic").change(function(){
