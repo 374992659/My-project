@@ -1,20 +1,31 @@
-/**
- * Created by Administrator on 2017/10/7 0007.
- */
 $(document).ready(function(){
     var data=localStorage.getItem("data");
     console.log(data);
     // 把json中为数组
-   info=JSON.parse(data);
+    info=JSON.parse(data);
     console.log(info);
     console.log(info.data);
     var apptoken=localStorage.getItem("apptoken");
     var html="";
     $.each(info.data,function(i,item){
-        html+=`
+        if(item.signature===null){
+            html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
+            </div>
+            <div class="weui-media-box__bd">
+                <h4 class="weui-media-box__title name">${item.nickname}</h4>
+                <p class="weui-media-box__desc">此人很懒什么都没有留下</p>
+            </div>
+            <button class="addFriend">加为好友</button>
+        </a>
+        `
+        }else{
+            html+=`
+        <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
+            <div class="weui-media-box__hd">
+                <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
             </div>
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title name">${item.nickname}</h4>
@@ -23,6 +34,8 @@ $(document).ready(function(){
             <button class="addFriend">加为好友</button>
         </a>
         `
+        }
+
     });
     $(".weui-panel__bd").append(html);
     // 添加好友
@@ -47,9 +60,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    alert("添加成功")
+                    showHide(data.errmsg)
                 }else{
-                    alert("添加失败")
+                    showHide(data.errmsg)
                 }
             }
 
