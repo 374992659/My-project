@@ -245,7 +245,7 @@ $(document).ready(function(){
                             }
                         });
                         $("#chatPage").prepend(html);
-                        document.body.scrollTop=chatPage.height()+100;
+                        document.body.scrollTop=$("#chatPage").height()+100;
                         $(".historyNews").hide();
                     }
                     break
