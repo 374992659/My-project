@@ -508,8 +508,11 @@ $(document).ready(function() {
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
+                        var portrait=item.friend_portrait;
+                        var htP=portrait.split(":")[0];
                         if(item.friend_signature===null){
-                            html+=`
+                            if(htP==="http"){
+                                html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}" value="${item.friend_nickname}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
@@ -520,8 +523,22 @@ $(document).ready(function() {
                         </div>
                     </div>
                     `
+                            }else{
+                                html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}" value="${item.friend_nickname}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.friend_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc searchRemark">次人很懒什么也没有说</p>
+                        </div>
+                    </div>
+                    `
+                            }
                         }else{
-                            html+=`
+                            if(htP==="http"){
+                                html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}" value="${item.friend_nickname}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
@@ -532,8 +549,21 @@ $(document).ready(function() {
                         </div>
                     </div>
                     `
-                        }
 
+                            }else{
+                                html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}" value="${item.friend_nickname}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.friend_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc searchRemark">${item.friend_signature}</p>
+                        </div>
+                    </div>
+                    `
+                            }
+                        }
                     });
                     $(".keyFriend").append(html);
                 }else if(data.errcode===301){
