@@ -339,13 +339,13 @@ $(document).ready(function() {
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
-            data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
+            var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
             console.log(data);
-           var  encreptdata = jsEncryptData(data);
+           var  jsonEncryptData = jsEncryptData(data);
             $.ajax({
                 url:url+"friends_getGroupFriends",
                 type:"POST",
-                data:{"data":encreptdata},
+                data:{"data":jsonEncryptData},
                 success:function(data){
                     data=jsDecodeData(data);
                     console.log(data);
