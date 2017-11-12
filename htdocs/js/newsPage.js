@@ -18,7 +18,8 @@ $(document).ready(function(){
             console.log(data);
             var html="";
             $.each(data,function(i,item){
-                    html=`
+                console.log(item);
+                    html+=`
                    <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
                     <div class="weui-media-box__hd">
                         <span class="newsNum" id="${item.sender_code}"></span>
