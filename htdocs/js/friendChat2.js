@@ -169,6 +169,7 @@ $(document).ready(function(){
                         console.log(result.data);
                         var html="";
                         $.each(result.data,function(i,item){
+                            console.log(item);
                             if(item.sender_code==sender_code){
                                 if(parseInt(item.type)===2){
                                     html+=`
