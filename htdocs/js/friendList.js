@@ -1,6 +1,6 @@
 $(document).ready(function() {
     "use strict";
-    window.location.reload();
+    
     // 获取自己的个人信息
     (function(){
         // 获取apptoken
