@@ -18,7 +18,6 @@ $(document).ready(function(){
             console.log(data);
             var html="";
             $.each(data,function(i,item){
-                if(item.sender_code===sender_code){
                     html=`
                    <div class="weui-media-box weui-media-box_appmsg friendChat" title="${item.sender_code}">
                     <div class="weui-media-box__hd">
@@ -31,7 +30,6 @@ $(document).ready(function(){
                     </div>
                 </div>
                    `;
-                }
             });
             $(".newsList").append(html);
         }
