@@ -35,10 +35,9 @@ $(document).ready(function(){
             "max_age":parammax_age,
             "sex":paramsex
         })];
-        console.log(data);
         // 加密数据
         josnEncyptData=jsEncryptData( data );
-        console.log(josnEncyptData);
+        console.log(data);
         $.ajax({
             url:url+"friends_searchUser",
             type:"POST",
