@@ -88,7 +88,7 @@ $(document).ready(function() {
                     // 本地未读聊天记录
                     var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
                     console.log(json_str);
-                    var history_chats = localStorage.getItem('history_'+result.data.group);
+                    var history_chats = localStorage.getItem('history_'+ result.data.sender_code);
                     if(!history_chats){
                         var history_chats = new Array();
                         history_chats=[json_str];
