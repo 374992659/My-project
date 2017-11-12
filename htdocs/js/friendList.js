@@ -98,16 +98,31 @@ $(document).ready(function() {
                         localStorage.setItem('history_' + result.data.sender_code, JSON.stringify(history_chats));
                     }
                     // 保存聊天的好友资料
-                    var json = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
                     var history_chat = localStorage.getItem("friend_info");
+                    var json = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
+
                     if(!history_chat){
                         var history_chat = new Array();
                         history_chat=[json];
                         localStorage.setItem("friend_info",JSON.stringify(history_chat));
                     }else {
-                        history_chat = JSON.parse(history_chat);
-                        history_chat[history_chat.length] = json;
-                        localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                        var history= $.parseJSON(history_chat);
+                        var jsonObj = eval('('+history+')');
+                        console.log(jsonObj);
+                        data=[];
+                        $.each(history,function(i,item){
+                            var jsonObj = eval('('+item+')');
+                            data[i]=jsonObj;
+                        });
+                        console.log(data);
+                        $.each(data,function(i,item){
+                            if(!item.sender_code===result.data.sender_code){
+                                history_chat = JSON.parse(history_chat);
+                                history_chat[history_chat.length] = json;
+                                localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                            }
+                        });
+
                     }
                 }
             })();
