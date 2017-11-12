@@ -1,5 +1,6 @@
 $(document).ready(function() {
     "use strict";
+    window.location.reload();
     // 获取自己的个人信息
     (function(){
         // 获取apptoken
@@ -491,7 +492,20 @@ $(document).ready(function() {
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
-                        html+=`
+                        if(item.friend_signature===null){
+                            html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}" value="${item.friend_nickname}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc searchRemark">次人很懒什么也没有说</p>
+                        </div>
+                    </div>
+                    `
+                        }else{
+                            html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}" value="${item.friend_nickname}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
@@ -499,21 +513,17 @@ $(document).ready(function() {
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
                             <p class="weui-media-box__desc searchRemark">${item.friend_signature}</p>
-                        </div>                      
+                        </div>
                     </div>
                     `
+                        }
+
                     });
                     $(".keyFriend").append(html);
-                    //获取个人介绍的内容
-                    var remark=$(".searchRemark");
-                    console.log(remark.html());
-                    if(!remark.html()){
-                        remark.html("此人很懒哦什么都没有留下")
-                    }
                 }else if(data.errcode===301){
                     var html=`
                      <p style="text-align: center">${data.errmsg}</p>               
-                `;
+                        `;
                     $(".keyFriend").html(html);
                 }else{
 
