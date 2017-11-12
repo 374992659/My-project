@@ -40,14 +40,10 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     var  cityID=$("#city option:selected").val();
                     localStorage.setItem("city_id",cityID);
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
+                   showHide(data.errmsg);
                    window.location.href="index.html";
                 }else{
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
+                    showHide(data.errmsg);
                 }
             }
         })
