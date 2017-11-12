@@ -31,10 +31,10 @@ $(document).ready(function(){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
                     goBack();
-                    showHide(dataerrmsg);
+                    showHide(data.errmsg);
                     window.location.href="index.html";
                 }else{
-                    showHide(dataerrmsg)
+                    showHide(data.errmsg)
                 }
             }
         });
