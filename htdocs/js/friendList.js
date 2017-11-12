@@ -117,7 +117,7 @@ $(document).ready(function() {
                         console.log(data);
                         $.each(data,function(i,item){
                             console.log(item);
-                            if(!parseInt(item.sender_code)===result.data.sender_code){
+                            if(!parseInt(item.sender_code)===parseInt(result.data.sender_code)){
                                 console.log("好友信息");
                                 history_chat = JSON.parse(history_chat);
                                 history_chat[history_chat.length] = json;
