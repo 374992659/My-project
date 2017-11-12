@@ -115,6 +115,9 @@ $(document).ready(function() {
                             data[i]=jsonObj;
                         });
                         console.log(data);
+                        data.each(function(i,item){
+                            console.log(item);
+                        });
                         $.each(data,function(i,item){
                             console.log(item);
                             if(parseInt(item.sender_code)===parseInt(result.data.sender_code)){
