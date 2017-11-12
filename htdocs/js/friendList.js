@@ -96,6 +96,7 @@ $(document).ready(function() {
                     }else {
                         history_chats = JSON.parse(history_chats);
                         history_chats[history_chats.length] = json_str;
+                        console.log(json_str);
                         localStorage.setItem('history_' + result.data.sender_code, JSON.stringify(history_chats));
                     }
                     // 保存聊天的好友资料
