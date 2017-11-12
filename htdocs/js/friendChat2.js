@@ -179,7 +179,7 @@ $(document).ready(function(){
                             <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;padding: 0">
                                    <img src="http://wx.junxiang.ren/project/${item.content}" style="width: 80px" alt=""/>
 
                                 </span>
@@ -196,7 +196,7 @@ $(document).ready(function(){
                             <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;">
                                    ${item.content}
                                 </span>
                        </div>
@@ -211,7 +211,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right"  style="background:#66CD00;font-size: 13px;color: black">
+                                        <span class="weui-media-box__desc right"  style="background:white;font-size: 13px;color: black;padding: 0">
                                                
                                          <img src="${item.content}" style="width: 80px"  alt=""/>
                                         </span>
@@ -241,7 +241,6 @@ $(document).ready(function(){
 
                                 `
                                 }
-
                             }
                         });
                         $("#chatPage").prepend(html);
