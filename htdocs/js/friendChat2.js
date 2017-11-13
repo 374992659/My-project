@@ -692,41 +692,20 @@ $(document).ready(function(){
             });
             //开始录音
             function startRecord(event){
-                event.preventDefault();
-                START = new Date().getTime();
+                wx.startRecord({
+                    cancel: function () {
+                        alert('用户拒绝授权录音');
+                    }
+                });
 
-                recordTimer = setTimeout(function(){
-                    wx.startRecord({
-                        success: function(){
-                            localStorage.rainAllowRecord = 'true';
-                        },
-                        cancel: function () {
-                            alert('用户拒绝授权录音');
-                        }
-                    });
-                },300);
             }
             //停止录音
-            function stopRecord(event) {
-                event.preventDefault();
-                END = new Date().getTime();
-
-                if((END - START) < 300){
-                    END = 0;
-                    START = 0;
-                    //小于300ms，不录音
-                    clearTimeout(recordTimer);
-                }else{
-                    wx.stopRecord({
-                        success: function (res) {
-                            voice.localId = res.localId;
-                            uploadVoice();
-                        },
-                        fail: function (res) {
-                            alert(JSON.stringify(res));
-                        }
-                    });
-                }
+            function stopRecord() {
+                wx.stopRecord({
+                    success: function (res) {
+                        localId = res.localId;
+                    }
+                });
             }
             //监听录音自动停止接口
             function onVoiceRecordEnd() {
