@@ -793,9 +793,9 @@ $(document).ready(function(){
             // 播放语音
             $("#chatPage").on("click","#playVoice",function(){
                 console.log("语音播放");
-                console.log(local_id);
+                console.log(localId);
                 wx.playVoice({
-                    localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
+                    localId:localId,  // 需要播放的音频的本地ID，由stopRecord接口获得
                     success: function(){
                         wx.stopVoice({
                             localId: local_id,
