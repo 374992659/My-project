@@ -760,18 +760,20 @@ $(document).ready(function(){
                     isShowProgressTips: 1, // 默认为1，显示进度提示
                     success: function (res) {
                         //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
-                        $.ajax({
-                            url: '后端处理上传录音的接口',
-                            type: 'post',
-                            data: JSON.stringify(res),
-                            dataType: "json",
-                            success: function(data){
-                                alert('文件已经保存到七牛的服务器');//这回，我使用七牛存储
-                            },
-                            error: function (xhr, errorType, error) {
-                                console.log(error);
-                            }
-                        });
+                        serverId = res.serverId; // 返回音频的服务器端ID
+                        var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+         <div class="weui-media-box weui-media-box_appmsg" id="playVoice">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">语音播放</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
+             </div>
+         </div>
+            `;
+                        var chatPage=$("#chatPage");
+                        chatPage.append(html);
                     }
                 });
             }
