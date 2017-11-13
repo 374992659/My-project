@@ -672,7 +672,9 @@ $(document).ready(function(){
         //上传语音
         // 发送语音功能
         (function(){
-            signature = '';
+            var localId="",
+            signature = '',
+            serverId= '';
             $.ajax({
                 url:'http://39.108.237.198/project/index.php?m=Api&c=JsSdk&a=getSignPackage&debugging=test',
                 type:'POST',
@@ -704,6 +706,7 @@ $(document).ready(function(){
                 // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
 
             });
+           // 开始录音
             $('#talk_btn').on('touchstart', function(event){
                 console.log("开始录音");
                 event.preventDefault();
@@ -713,7 +716,6 @@ $(document).ready(function(){
                         wx.startRecord({
                             success: function(){
                                 localStorage.rainAllowRecord = 'true';
-                                wx.stopRecord();
                             },
                             cancel: function () {
                                 alert('用户拒绝授权录音');
@@ -721,6 +723,13 @@ $(document).ready(function(){
                         });
                     }
                 },300);
+            });
+            //监听录音
+            wx.onVoiceRecordEnd({
+                // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+                complete: function (res) {
+                    localId = res.localId;
+                }
             });
             //松手结束录音
             var localId="";
@@ -738,7 +747,7 @@ $(document).ready(function(){
                         success: function (res) {
                             console.log(res);
                              localId = res.localId;
-                            uploadVoice();
+                             uploadVoice();
                         },
                         fail: function (res) {
                             alert(JSON.stringify(res));
@@ -746,7 +755,6 @@ $(document).ready(function(){
                     });
                 }
             });
-
             //上传录音
             function uploadVoice(){
                 //调用微信的上传录音接口把本地录音先上传到微信的服务器
@@ -756,8 +764,8 @@ $(document).ready(function(){
                     isShowProgressTips: 1, // 默认为1，显示进度提示
                     success: function (res) {
                         //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
-                        var serverId = res.serverId; // 返回音频的服务器端ID
-                        console.log(serverId);
+                         serverId = res.serverId; // 返回音频的服务器端ID
+                        alert("上传录音")
                         // 向本地页面添加播放按钮
                         (function(){
                             var  html=`
