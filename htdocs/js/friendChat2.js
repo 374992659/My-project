@@ -855,6 +855,7 @@ $(document).ready(function(){
             $("#talk_btn").on("touchend",function(){
                 stopRecord(event);
                 var account_code =sender_code;
+                console.log(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
                 ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
             });
             // 播放语音
