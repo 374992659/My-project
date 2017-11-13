@@ -133,48 +133,8 @@ $(document).ready(function(){
                     });
                 }
                 //上传录音
-                function uploadRecord(){
-                    //调用微信的上传录音接口把本地录音先上传到微信的服务器
-                    //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
-                    wx.uploadVoice({
-                        localId:localId, // 需要上传的音频的本地ID，由stopRecord接口获得
-                        isShowProgressTips: 1, // 默认为1，显示进度提示
-                        success: function (res) {
-                            //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
-                            serverId = res.serverId; // 返回音频的服务器端ID
-                            alert("录音上传");
-                            var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-         <div class="weui-media-box weui-media-box_appmsg" id="playVoice" title="${localId}">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">语音播放</span>
-            </div>
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
-             </div>
-         </div>
-            `;
-                            var chatPage=$("#chatPage");
-                            chatPage.append(html);
-                            var account_code =sender_code;
-                            console.log(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
-                            ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
-
-                            // 播放语音
-                            $("#chatPage").on("click","#playVoice",function(){
-                                var localId=$(this).attr("title");
-                                console.log(localId);
-                                //播放本地语音
-                                wx.playVoice({
-                                    localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
-                                });
-                            });
-                        }
-                    });
-                }
                 // 下载录音
-                function downloadRecord(){
-                    wx.ready(function () {
+                function downloadVoice(){
                         wx.downloadVoice({
                             serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
                             isShowProgressTips: 1, // 默认为1，显示进度提示
@@ -183,7 +143,6 @@ $(document).ready(function(){
                                 return localId;
                             }
                         });
-                    })
                 }
                 // 调用函数
                 //按下开始录音
