@@ -736,7 +736,7 @@ $(document).ready(function(){
                     wx.stopRecord({
                         success: function (res) {
                             console.log(res);
-                            voice.localId = res.localId;
+                            var localId = res.localId;
                             uploadVoice();
                         },
                         fail: function (res) {
