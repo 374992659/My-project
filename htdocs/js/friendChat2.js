@@ -755,7 +755,7 @@ $(document).ready(function(){
                             alert("结束录音");
                             console.log(res);
                             localId = res.localId;
-                            uploadVoice();
+                            uploadRecord();
                         },
                         fail: function (res) {
                             alert(JSON.stringify(res));
@@ -803,14 +803,12 @@ $(document).ready(function(){
             }
             //停止播放语音文件
             function stopPlayRecord(){
-                wx.ready(function () {
                     wx.stopVoice({
                         localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
                     });
-                })
             }
             //上传录音
-            function uploadVoice(){
+            function uploadRecord(){
                 //调用微信的上传录音接口把本地录音先上传到微信的服务器
                 //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
                 wx.uploadVoice({
