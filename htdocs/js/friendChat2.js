@@ -282,7 +282,26 @@ $(document).ready(function(){
 
                                 `
                                     }
-                                }else{//内容为文字
+                                } else if(parseInt(item.type)===2){
+                                    html+=`
+                            <div class="getHtml">
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                 <div class="weui-media-box weui-media-box_appmsg" id="playRecord">
+                                    <div class="weui-media-box__bd">
+                                        <span class="weui-media-box__desc right"  style="background:white;font-size: 13px;color: black;padding: 0">
+
+                                         语音文件
+                                        </span>
+                                    </div>
+                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
+                                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="">
+                                    </div>
+                                 </div>
+                            </div>
+
+                                `
+                                }
+                                else{//内容为文字
                                     if(httP==="http"){
                                         html+=`
                             <div class="getHtml">
