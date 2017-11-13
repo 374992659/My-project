@@ -832,11 +832,11 @@ $(document).ready(function(){
             // 调用函数
             //按下开始录音
             $("#talk_btn").on("touchstart",function(){
-                starRecord();
+                starRecord(event);
             });
             //松手结束录音
             $("#talk_btn").on("touchend",function(){
-                stopRecord();
+                stopRecord(event);
             });
             // 播放语音
             $("#chatPage").on("click","#playVoice",function(){
