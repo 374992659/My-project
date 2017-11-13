@@ -709,7 +709,7 @@ $(document).ready(function(){
         (function(){
             var localId="",
                 signature = '',
-                serverId= '';
+                serverId='';
             $.ajax({
                 url:'http://39.108.237.198/project/index.php?m=Api&c=JsSdk&a=getSignPackage&debugging=test',
                 type:'POST',
@@ -830,6 +830,9 @@ $(document).ready(function(){
             `;
                         var chatPage=$("#chatPage");
                         chatPage.append(html);
+                        var account_code =sender_code;
+                        console.log(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
+                        ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
                     }
                 });
             }
@@ -854,9 +857,6 @@ $(document).ready(function(){
             //松手结束录音
             $("#talk_btn").on("touchend",function(){
                 stopRecord(event);
-                var account_code =sender_code;
-                console.log(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
-                ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
             });
             // 播放语音
             $("#chatPage").on("click","#playVoice",function(){
