@@ -709,15 +709,17 @@ $(document).ready(function(){
                 event.preventDefault();
                 START = new Date().getTime();
                 recordTimer = setTimeout(function(){
-                    wx.startRecord({
-                        success: function(){
-                            console.log("录音成功");
-                            localStorage.rainAllowRecord = 'true';
-                        },
-                        cancel: function () {
-                            alert('用户拒绝授权录音');
-                        }
-                    });
+                    if(!localStorage.rainAllowRecord || localStorage.rainAllowRecord !== 'true'){
+                        wx.startRecord({
+                            success: function(){
+                                localStorage.rainAllowRecord = 'true';
+                                wx.stopRecord();
+                            },
+                            cancel: function () {
+                                alert('用户拒绝授权录音');
+                            }
+                        });
+                    }
                 },300);
             });
             //松手结束录音
