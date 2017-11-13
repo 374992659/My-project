@@ -830,7 +830,7 @@ $(document).ready(function(){
                         alert("录音上传");
                         var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-         <div class="weui-media-box weui-media-box_appmsg" id="playVoice">
+         <div class="weui-media-box weui-media-box_appmsg" id="playVoice" title="${localId}">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">语音播放</span>
             </div>
@@ -871,6 +871,7 @@ $(document).ready(function(){
             });
             // 播放语音
             $("#chatPage").on("click","#playVoice",function(){
+                var localId=$(this).attr("title");
                 playRecord(localId,serverId);
             });
 
