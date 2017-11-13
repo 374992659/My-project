@@ -673,8 +673,8 @@ $(document).ready(function(){
         // 发送语音功能
         (function(){
             var localId="",
-            signature = '',
-            serverId= '';
+                signature = '',
+                serverId= '';
             $.ajax({
                 url:'http://39.108.237.198/project/index.php?m=Api&c=JsSdk&a=getSignPackage&debugging=test',
                 type:'POST',
@@ -694,18 +694,15 @@ $(document).ready(function(){
             });
             wx.ready(function(){
                 wx.onVoicePlayEnd({
-                    success: function (res) {
+                    success: function(res){
                         stopWave();
                     }
                 });
                 uploadVoice();
                 // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
             });
-
             wx.error(function(res){
-
                 // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-
             });
            // 开始录音
             $('#talk_btn').on('touchstart', function(event){
@@ -756,37 +753,6 @@ $(document).ready(function(){
                 }
             });
             //上传录音
-            function uploadVoice(){
-                //调用微信的上传录音接口把本地录音先上传到微信的服务器
-                //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
-                wx.uploadVoice({
-                    localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
-                    isShowProgressTips: 1, // 默认为1，显示进度提示
-                    success: function (res) {
-                        //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
-                         serverId = res.serverId; // 返回音频的服务器端ID
-                        alert("上传录音");
-                        // 向本地页面添加播放按钮
-
-                            var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-         <div class="weui-media-box weui-media-box_appmsg">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" id="playVoice" style="background:#66CD00;font-size: 13px;color: black">语音播放</span>
-            </div>
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
-             </div>
-         </div>
-            `;
-                            var chatPage=$("#chatPage");
-                            chatPage.append(html);
-                            //保持滚动条一直在最底部
-                            document.body.scrollTop=chatPage.height()+100;
-
-                    }
-                });
-            }
 
             // 播放语音
             $("#chatPage").on("click",".weui-media-box .weui-media-box__bd #playVoice",function(){
@@ -796,7 +762,6 @@ $(document).ready(function(){
 
             });
         })();
-
         /*
         * 判断是否存在元素
         * */
