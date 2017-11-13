@@ -724,13 +724,14 @@ $(document).ready(function(){
             });
            // 开始录音
             function starRecord(event){
-                console.log("开始录音");
+                alert("开始录音");
                 event.preventDefault();
                 START = new Date().getTime();
                 recordTimer = setTimeout(function(){
                     if(!localStorage.rainAllowRecord||localStorage.rainAllowRecord!=='true'){
                         wx.startRecord({
                             success: function(){
+                                alert("录音成功");
                                 localStorage.rainAllowRecord = 'true';
                             },
                             cancel: function () {
@@ -742,7 +743,6 @@ $(document).ready(function(){
             }
             //结束录音
             function stopRecord(event) {
-                console.log("结束录音");
                 event.preventDefault();
                 END = new Date().getTime();
                 if((END - START) < 300){
@@ -753,6 +753,7 @@ $(document).ready(function(){
                 }else{
                     wx.stopRecord({
                         success: function (res) {
+                            alert("结束录音");
                             console.log(res);
                             localId = res.localId;
                             uploadVoice();
@@ -819,6 +820,7 @@ $(document).ready(function(){
                     success: function (res) {
                         //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
                         serverId = res.serverId; // 返回音频的服务器端ID
+                        alert("录音上传");
                         var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
          <div class="weui-media-box weui-media-box_appmsg" id="playVoice">
