@@ -124,7 +124,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" title="${data.content}" style="background:white;font-size: 13px;color:black" id="playVoice">
+                            <span class="weui-media-box__desc" title="${data.content}" style="background:white;font-size: 13px;color:black" id="playVoiceFriend">
                               语音播放                             
                             </span>
                    </div>                   
@@ -144,9 +144,10 @@ $(document).ready(function(){
                 </div>                  `;
                                 }
                                 chatPage.append(html);
-                                chatPage.on("click",".weui-media-box .weui-media-box__bd #playVoive",function(){
+                                chatPage.on("click",".weui-media-box .weui-media-box__bd #playVoiceFriend",function(){
                                     // 获取serverId
                                     var serverId=$(this).attr("title");
+                                    console.log(serverId);
                                     playRecord(local_id,serverId);
                                 });
                                 document.body.scrollTop=chatPage.height()+100;
