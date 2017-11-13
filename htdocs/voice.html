@@ -11,10 +11,10 @@
         <div id="playRecord" style="align-content: center;background-color: #0bb20c;height: 50px;width:100px" value="播放录音"></div>
 </body>
 </html>
-<script src="jquery-3.2.1.min.js"></script>
+<script src="js/jquery-3.2.1.min.js"></script>
 <script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
 <script>
-    $(function(){
+    (function(){
         signature = '';
         $.ajax({
             url:'http://39.108.237.198/project/index.php?m=Api&c=JsSdk&a=getSignPackage&debugging=test',
@@ -216,5 +216,5 @@
             alert(serverId);
             playRecord(signature,localId,serverId);
         })
-    });
+    })();
 </script>

@@ -427,9 +427,22 @@ $(document).ready(function(){
         // 通过ready接口处理成功验证
         wx.ready(function(res){
             console.log(res);
-            wx.onVoicePlayEnd({
-                success: function (res) {
-                    stopWave();
+            wx.playVoice({
+                localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
+                success: function () {
+                    wx.stopVoice({
+                        localId: local_id,
+                    });
+                },
+                fail: function () {
+                    wx.downloadVoice({
+                        serverId:serverId,
+                        isShowProgressTips: 1,
+                        success: function (res) {
+                            localId = res.localId;
+                            playRecord(signature,localId,serverId);
+                        }
+                    });
                 }
             });
         });
