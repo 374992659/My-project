@@ -436,6 +436,9 @@ $(document).ready(function(){
                         }
                     });
 
+                });
+                wx.error(function(res){
+                    console.log(res);
                 })
             }
         });
