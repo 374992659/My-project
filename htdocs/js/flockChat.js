@@ -404,9 +404,212 @@ $(document).ready(function(){
 
         }
     );
-    // 发送语音
+    // 发送语音功能
+    (function(){
+        $(function(){
+            signature = '';
+            $.ajax({
+                url:'http://39.108.237.198/project/index.php?m=Api&c=JsSdk&a=getSignPackage&debugging=test',
+                type:'POST',
+                data : {'url':location.href},
+                success:function(data){
+                    console.log(data);
+                    signature = data.data;
+                }
+            });
+            //开始录音
+            function startRecord(signature){
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: signature.appId, // 必填，公众号的唯一标识
+                    timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
+                    signature:  signature.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function () {
+                    wx.startRecord({
+                        cancel: function () {
+                            alert('用户拒绝授权录音');
+                        }
+                    });
+
+                })
+            }
+            //停止录音
+            function stopRecord(signature) {
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: signature.appId, // 必填，公众号的唯一标识
+                    timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
+                    signature:  signature.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function () {
+                    wx.stopRecord({
+                        success: function (res) {
+                            localId = res.localId;
+                        }
+                    });
+                })
+            }
+            //监听录音自动停止接口
+            function onVoiceRecordEnd(signature) {
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: signature.appId, // 必填，公众号的唯一标识
+                    timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
+                    signature:  signature.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.onVoiceRecordEnd({
+                    // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+                    complete: function (res) {
+                        localId = res.localId;
+                    }
+                });
+            }
+            //播放语音文件
+            function playRecord(signature,local_id,serverId) {
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: signature.appId, // 必填，公众号的唯一标识
+                    timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
+                    signature:  signature.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function () {
+                    wx.playVoice({
+                        localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
+                        success: function () {
+                            wx.stopVoice({
+                                localId: local_id,
+                            });
+                        },
+                        fail: function () {
+                            wx.downloadVoice({
+                                serverId:serverId,
+                                isShowProgressTips: 1,
+                                success: function (res) {
+                                    localId = res.localId;
+                                    playRecord(signature,localId,serverId);
+                                }
+                            });
+                        }
+                    });
+                })
+            }
+            //暂停播放语音文件
+            function pauseRecord(signature) {
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: signature.appId, // 必填，公众号的唯一标识
+                    timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
+                    signature:  signature.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.pauseVoice({
+                    localId: localId, // 需要暂停的音频的本地ID，由stopRecord接口获得
+                });
+            }
+            //停止播放语音文件
+            function stopPlayRecord(signature) {
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: signature.appId, // 必填，公众号的唯一标识
+                    timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
+                    signature:  signature.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'stopVoice'
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function () {
+                    wx.stopVoice({
+                        localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
+                    });
+                })
+            }
+            //上传录音文件
+            function uploadRecord(signature) {
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: signature.appId, // 必填，公众号的唯一标识
+                    timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
+                    signature:  signature.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'uploadVoice',
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function () {
+                    wx.uploadVoice({
+                        localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            serverId = res.serverId; // 返回音频的服务器端ID
+                        }
+                    });
+                })
+            }
+            //下载录音文件
+            function downloadRecord(signature) {
+                wx.config({
+                    debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+                    appId: signature.appId, // 必填，公众号的唯一标识
+                    timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                    nonceStr:  signature.nonceStr, // 必填，生成签名的随机串
+                    signature:  signature.signature,// 必填，签名，见附录1
+                    jsApiList: [
+                        'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',
+                    ] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                });
+                wx.ready(function () {
+                    wx.downloadVoice({
+                        serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            var localId = res.localId; // 返回音频的本地ID
+                            return localId;
+                        }
+                    });
+                })
+            }
+//语音消息业务流程 发送方 1.开始录音->2.1监听录音自动结束（超过一分钟自动结束录音）->2.2结束录音->3.1上传语音文件->3.2播放语音文件等（首选播放本地文件 若播放失败）->4.向服务器发送语音消息（content内包含serverId（用于其他用户下载语音文件），localId（用于发送者播放本地文件））
+//        接受方 接收到语音消息 根据content内的serverId下载语音文件 返回本地的localId 本地更新聊天消息（历史记录）内的localId
 
 
+
+            localId = '';
+            serverId= '';
+            $('#talk_btn').on('touchstart',function(){
+                startRecord(signature);
+            });
+            $('#talk_btn').on("touchend",function(){
+                stopRecord(signature);
+                uploadRecord(signature);
+            });
+            $('#playRecord').click(function(){
+                console.log(localId);
+                alert(serverId);
+                playRecord(signature,localId,serverId);
+            })
+        });
+    })();
 
     /*
     * 判断是否存在元素

@@ -206,11 +206,11 @@
         serverId= '';
        $('#record').on('click',function(){
             startRecord(signature);
-       })
+       });
         $('#cancelRecord').click(function(){
             stopRecord(signature);
             uploadRecord(signature);
-        })
+        });
         $('#playRecord').click(function(){
             console.log(localId);
             alert(serverId);
