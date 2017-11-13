@@ -745,7 +745,7 @@ $(document).ready(function(){
                 recordTimer = setTimeout(function(){
                     wx.startRecord({
                         success: function(){
-                            localStorage.rainAllowRecord = 'true';
+                            localStorage.rainAllowRecord='true';
                         },
                         cancel: function () {
                             alert('用户拒绝授权录音');
@@ -765,7 +765,7 @@ $(document).ready(function(){
                 }else{
                     wx.stopRecord({
                         success: function (res) {
-                            localId = res.localId;
+                            localId=res.localId;
                             uploadRecord();
                         },
                         fail: function (res) {
@@ -790,10 +790,10 @@ $(document).ready(function(){
                         localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
                         success: function(){
                             wx.stopVoice({
-                                localId: local_id,
+                                localId:local_id
                             });
                         },
-                        fail: function () {
+                        fail:function(){
                             wx.downloadVoice({
                                 serverId:serverId,
                                 isShowProgressTips: 1,
@@ -808,13 +808,13 @@ $(document).ready(function(){
             //暂停播放语音文件
             function pauseRecCord(){
                 wx.pauseVoice({
-                    localId: localId, // 需要暂停的音频的本地ID，由stopRecord接口获得
+                    localId: localId // 需要暂停的音频的本地ID，由stopRecord接口获得
                 });
             }
             //停止播放语音文件
             function stopPlayRecord(){
                     wx.stopVoice({
-                        localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
+                        localId: localId // 需要停止的音频的本地ID，由stopRecord接口获得
                     });
             }
             //上传录音
@@ -849,7 +849,10 @@ $(document).ready(function(){
                         $("#chatPage").on("click","#playVoice",function(){
                             var localId=$(this).attr("title");
                             console.log(localId);
-                            playRecord(localId,serverId);
+                            //播放本地语音
+                            wx.playVoice({
+                                localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                            });
                         });
                     }
                 });
