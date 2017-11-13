@@ -747,7 +747,7 @@ $(document).ready(function(){
                 }
             });
 
-//上传录音
+            //上传录音
             function uploadVoice(){
                 //调用微信的上传录音接口把本地录音先上传到微信的服务器
                 //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
@@ -758,9 +758,30 @@ $(document).ready(function(){
                         //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
                         var serverId = res.serverId; // 返回音频的服务器端ID
                         console.log(serverId);
+                        // 向本地页面添加播放按钮
+                        (function(){
+                            var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+         <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" id="playVoice" style="background:#66CD00;font-size: 13px;color: black">语音播放</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
+             </div>
+         </div>
+            `;
+                            var chatPage=$("#chatPage");
+                            chatPage.append(html);
+                            chatContent.val("");
+                            //保持滚动条一直在最底部
+                            document.body.scrollTop=chatPage.height()+100;
+                        })();
                     }
                 });
             }
+
+            // 播放语音
         })();
 
 
