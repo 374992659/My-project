@@ -275,8 +275,7 @@ $(document).ready(function(){
                                     // 获取serverId
                                     var serverId=$(this).attr("title");
                                     console.log(serverId);
-                                    downloadRecord(serverId);
-                                    playRecord(local_id,serverId);
+                                    downloadVoice(serverId);
                                 });
                                 document.body.scrollTop=chatPage.height()+100;
                                 //发送通知给服务器
