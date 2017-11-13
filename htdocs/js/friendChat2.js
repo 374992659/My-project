@@ -124,7 +124,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black" id="playVoice">
+                            <span class="weui-media-box__desc" title="${item.content}" style="background:white;font-size: 13px;color:black" id="playVoice">
                               语音播放                             
                             </span>
                    </div>                   
@@ -144,6 +144,11 @@ $(document).ready(function(){
                 </div>                  `;
                                 }
                                 chatPage.append(html);
+                                chatPage.on("click",".weui-media-box .weui-media-box__bd #playVoive",function(){
+                                    // 获取serverId
+                                    var serverId=$(this).attr("title");
+                                    playRecord(local_id,serverId);
+                                });
                                 document.body.scrollTop=chatPage.height()+100;
                                 //发送通知给服务器
                                 console.log(JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code}));
@@ -353,11 +358,6 @@ $(document).ready(function(){
                             }
                         });
                         $("#chatPage").prepend(html);
-                        $("#chatPage").on("click",".weui-media-box .weui-media-box__bd #playVoive",function(){
-                             // 获取serverId
-                            var serverId=$(this).attr("title");
-                            playRecord(local_id,serverId);
-                        });
                         document.body.scrollTop=$("#chatPage").height()+100;
                         $(".historyNews").hide();
                     }
