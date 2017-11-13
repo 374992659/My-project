@@ -724,14 +724,13 @@ $(document).ready(function(){
             });
            // 开始录音
             function starRecord(event){
-
                 event.preventDefault();
                 START = new Date().getTime();
                 recordTimer = setTimeout(function(){
                     if(!localStorage.rainAllowRecord||localStorage.rainAllowRecord!=='true'){
                         wx.startRecord({
                             success: function(){
-                                console.log("录音成功");
+                                alert("录音成功");
                                 localStorage.rainAllowRecord = 'true';
                             },
                             cancel: function () {
