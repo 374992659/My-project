@@ -734,13 +734,6 @@ $(document).ready(function(){
             //结束录音
             function stopRecord(event) {
                 event.preventDefault();
-                END = new Date().getTime();
-                if((END - START) < 300){
-                    END = 0;
-                    START = 0;
-                    //小于300ms，不录音
-                    clearTimeout(recordTimer);
-                }else{
                     wx.stopRecord({
                         success: function (res) {
                             alert("结束录音");
@@ -752,7 +745,6 @@ $(document).ready(function(){
                             alert(JSON.stringify(res));
                         }
                     });
-                }
             }
             //监听录音自动停止接口
             function onVoiceRecordEnd(){
