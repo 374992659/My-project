@@ -837,13 +837,14 @@ $(document).ready(function(){
             //松手结束录音
             $("#talk_btn").on("touchend",function(){
                 stopRecord(event);
+                var account_code =sender_code;
+                ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
             });
             // 播放语音
             $("#chatPage").on("click","#playVoice",function(){
                 playRecord(localId,serverId);
             });
-            var account_code =sender_code;
-            ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
+
         })();
         /*
         * 判断是否存在元素
