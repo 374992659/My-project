@@ -779,6 +779,7 @@ $(document).ready(function(){
             }
             // 播放语音
             $("#chatPage").on("click",".weui-media-box .weui-media-box__bd #playVoice",function(){
+                console.log("语音播放");
                 wx.playVoice({
                     localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
                 });
