@@ -102,7 +102,7 @@
                     localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
                     success: function(){
                         wx.stopVoice({
-                            localId: local_id,
+                            localId: local_id
                         });
                     },
                     fail: function () {
