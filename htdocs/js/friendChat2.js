@@ -785,7 +785,6 @@ $(document).ready(function(){
             }
             // 播放语音文件
             function playRecord(local_id,serverId){
-                wx.ready(function(){
                     wx.playVoice({
                         localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
                         success: function(){
@@ -803,7 +802,6 @@ $(document).ready(function(){
                             });
                         }
                     });
-                })
             }
             //暂停播放语音文件
             function pauseRecCord(){
