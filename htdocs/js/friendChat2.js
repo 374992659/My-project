@@ -672,7 +672,9 @@ $(document).ready(function(){
         //上传语音
         // 发送语音功能
         (function(){
-            signature = '';
+            var localId="",
+            signature = '',
+            serverId= '';
             $.ajax({
                 url:'http://39.108.237.198/project/index.php?m=Api&c=JsSdk&a=getSignPackage&debugging=test',
                 type:'POST',
@@ -683,129 +685,57 @@ $(document).ready(function(){
                     wx.config({
                         debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
                         appId: signature.appId, // 必填，公众号的唯一标识
-                        timestamp: signature.timestamp, // 必填，生成签名的时间戳
+                        timestamp:signature.timestamp , // 必填，生成签名的时间戳
                         nonceStr: signature.nonceStr, // 必填，生成签名的随机串
                         signature: signature.signature,// 必填，签名，见附录1
-                        jsApiList: ['startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+                        jsApiList: [ 'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
                     });
                 }
             });
-            //开始录音
-            function startRecord(event){
-                wx.startRecord({
-                    cancel: function () {
-                        alert('用户拒绝授权录音');
-                    }
-                });
-
-            }
-            //停止录音
-            function stopRecord() {
-                wx.stopRecord({
+            wx.ready(function(){
+                wx.onVoicePlayEnd({
                     success: function (res) {
-                        localId = res.localId;
+                        stopWave();
                     }
                 });
-            }
-            //监听录音自动停止接口
-            function onVoiceRecordEnd() {
-                wx.onVoiceRecordEnd({
-                    // 录音时间超过一分钟没有停止的时候会执行 complete 回调
-                    complete: function (res) {
-                        localId = res.localId;
-                    }
-                });
-            }
-            //播放语音文件
-            function playRecord(local_id,serverId) {
-                wx.ready(function(){
-                    wx.playVoice({
-                        localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
-                        success: function(){
-                            wx.stopVoice({
-                                localId: local_id,
-                            });
-                        },
-                        fail: function () {
-                            wx.downloadVoice({
-                                serverId:serverId,
-                                isShowProgressTips: 1,
-                                success: function (res) {
-                                    localId = res.localId;
-                                    playRecord(signature,localId,serverId);
-                                }
-                            });
-                        }
-                    });
-                })
-            }
-            //暂停播放语音文件
-            function pauseRecord() {
-                wx.pauseVoice({
-                    localId: localId, // 需要暂停的音频的本地ID，由stopRecord接口获得
-                });
-            }
-            //停止播放语音文件
-            function stopPlayRecord(){
-                wx.ready(function () {
-                    wx.stopVoice({
-                        localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
-                    });
-                })
-            }
-            //上传录音文件
-            function uploadRecord() {
-                wx.ready(function () {
-                    wx.uploadVoice({
-                        localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
-                        isShowProgressTips: 1, // 默认为1，显示进度提示
-                        success: function (res) {
-                            serverId = res.serverId; // 返回音频的服务器端ID
-                            var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-         <div class="weui-media-box weui-media-box_appmsg" id="playVoice">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">播放语音</span>
-            </div>
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
-             </div>
-         </div>
-            `;
-                            var chatPage=$("#chatPage");
-                            chatPage.append(html);
-                        }
-                    });
-                })
-            }
-            //下载录音文件
-            function downloadRecord() {
-                wx.ready(function () {
-                    wx.downloadVoice({
-                        serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
-                        isShowProgressTips: 1, // 默认为1，显示进度提示
-                        success: function (res) {
-                            var localId = res.localId; // 返回音频的本地ID
-                            return localId;
-                        }
-                    });
-                })
-            }
-//语音消息业务流程 发送方 1.开始录音->2.1监听录音自动结束（超过一分钟自动结束录音）->2.2结束录音->3.1上传语音文件->3.2播放语音文件等（首选播放本地文件 若播放失败）->4.向服务器发送语音消息（content内包含serverId（用于其他用户下载语音文件），localId（用于发送者播放本地文件））
-//        接受方 接收到语音消息 根据content内的serverId下载语音文件 返回本地的localId 本地更新聊天消息（历史记录）内的localId
+                uploadVoice();
+                // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
+            });
 
-            localId = '';
-            serverId= '';
-            //按下开始录音
-            $('#talk_btn').on('touchstart',function(event){
+            wx.error(function(res){
+
+                // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
+
+            });
+           // 开始录音
+            $('#talk_btn').on('touchstart', function(event){
+                console.log("开始录音");
                 event.preventDefault();
                 START = new Date().getTime();
                 recordTimer = setTimeout(function(){
-                    startRecord();
+                    if(!localStorage.rainAllowRecord || localStorage.rainAllowRecord !== 'true'){
+                        wx.startRecord({
+                            success: function(){
+                                localStorage.rainAllowRecord = 'true';
+                            },
+                            cancel: function () {
+                                alert('用户拒绝授权录音');
+                            }
+                        });
+                    }
                 },300);
             });
+            //监听录音
+            wx.onVoiceRecordEnd({
+                // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+                complete: function (res) {
+                    localId = res.localId;
+                }
+            });
             //松手结束录音
-            $('#cancelRecord').click(function(){
+            var localId="";
+            $('#talk_btn').on('touchend', function(event){
+                console.log("结束录音");
                 event.preventDefault();
                 END = new Date().getTime();
                 if((END - START) < 300){
@@ -814,143 +744,59 @@ $(document).ready(function(){
                     //小于300ms，不录音
                     clearTimeout(recordTimer);
                 }else{
-                    stopRecord();
-                    uploadRecord();
+                    wx.stopRecord({
+                        success: function (res) {
+                            console.log(res);
+                             localId = res.localId;
+                             uploadVoice();
+                        },
+                        fail: function (res) {
+                            alert(JSON.stringify(res));
+                        }
+                    });
                 }
             });
-            //播放录音
-            $('#chatPage').on("click","",function(){
-                console.log(localId);
-                alert(serverId);
-                playRecord(localId,serverId);
-            })
+            //上传录音
+            function uploadVoice(){
+                //调用微信的上传录音接口把本地录音先上传到微信的服务器
+                //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
+                wx.uploadVoice({
+                    localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                    success: function (res) {
+                        //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
+                         serverId = res.serverId; // 返回音频的服务器端ID
+                        alert("上传录音");
+                        // 向本地页面添加播放按钮
+
+                            var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+         <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" id="playVoice" style="background:#66CD00;font-size: 13px;color: black">语音播放</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
+             </div>
+         </div>
+            `;
+                            var chatPage=$("#chatPage");
+                            chatPage.append(html);
+                            //保持滚动条一直在最底部
+                            document.body.scrollTop=chatPage.height()+100;
+
+                    }
+                });
+            }
+
+            // 播放语音
+            $("#chatPage").on("click",".weui-media-box .weui-media-box__bd #playVoice",function(){
+                wx.playVoice({
+                    localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                });
+
+            });
         })();
-        // (function(){
-        //     var localId="",
-        //     signature = '',
-        //     serverId= '';
-        //     $.ajax({
-        //         url:'http://39.108.237.198/project/index.php?m=Api&c=JsSdk&a=getSignPackage&debugging=test',
-        //         type:'POST',
-        //         data : {'url':location.href},
-        //         success:function(data){
-        //             console.log(data);
-        //             signature = data.data;
-        //             wx.config({
-        //                 debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
-        //                 appId: signature.appId, // 必填，公众号的唯一标识
-        //                 timestamp:signature.timestamp , // 必填，生成签名的时间戳
-        //                 nonceStr: signature.nonceStr, // 必填，生成签名的随机串
-        //                 signature: signature.signature,// 必填，签名，见附录1
-        //                 jsApiList: [ 'startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
-        //             });
-        //         }
-        //     });
-        //     wx.ready(function(){
-        //         wx.onVoicePlayEnd({
-        //             success: function (res) {
-        //                 stopWave();
-        //             }
-        //         });
-        //         uploadVoice();
-        //         // config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready函数中。
-        //     });
-        //
-        //     wx.error(function(res){
-        //
-        //         // config信息验证失败会执行error函数，如签名过期导致验证失败，具体错误信息可以打开config的debug模式查看，也可以在返回的res参数中查看，对于SPA可以在这里更新签名。
-        //
-        //     });
-        //    // 开始录音
-        //     $('#talk_btn').on('touchstart', function(event){
-        //         console.log("开始录音");
-        //         event.preventDefault();
-        //         START = new Date().getTime();
-        //         recordTimer = setTimeout(function(){
-        //             if(!localStorage.rainAllowRecord || localStorage.rainAllowRecord !== 'true'){
-        //                 wx.startRecord({
-        //                     success: function(){
-        //                         localStorage.rainAllowRecord = 'true';
-        //                     },
-        //                     cancel: function () {
-        //                         alert('用户拒绝授权录音');
-        //                     }
-        //                 });
-        //             }
-        //         },300);
-        //     });
-        //     //监听录音
-        //     wx.onVoiceRecordEnd({
-        //         // 录音时间超过一分钟没有停止的时候会执行 complete 回调
-        //         complete: function (res) {
-        //             localId = res.localId;
-        //         }
-        //     });
-        //     //松手结束录音
-        //     var localId="";
-        //     $('#talk_btn').on('touchend', function(event){
-        //         console.log("结束录音");
-        //         event.preventDefault();
-        //         END = new Date().getTime();
-        //         if((END - START) < 300){
-        //             END = 0;
-        //             START = 0;
-        //             //小于300ms，不录音
-        //             clearTimeout(recordTimer);
-        //         }else{
-        //             wx.stopRecord({
-        //                 success: function (res) {
-        //                     console.log(res);
-        //                      localId = res.localId;
-        //                      uploadVoice();
-        //                 },
-        //                 fail: function (res) {
-        //                     alert(JSON.stringify(res));
-        //                 }
-        //             });
-        //         }
-        //     });
-        //     //上传录音
-        //     function uploadVoice(){
-        //         //调用微信的上传录音接口把本地录音先上传到微信的服务器
-        //         //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
-        //         wx.uploadVoice({
-        //             localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
-        //             isShowProgressTips: 1, // 默认为1，显示进度提示
-        //             success: function (res) {
-        //                 //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
-        //                  serverId = res.serverId; // 返回音频的服务器端ID
-        //                 alert("上传录音");
-        //                 // 向本地页面添加播放按钮
-        //
-        //                     var  html=`
-        //  <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-        //  <div class="weui-media-box weui-media-box_appmsg">
-        //      <div class="weui-media-box__bd">
-        //          <span class="weui-media-box__desc right" id="playVoice" style="background:#66CD00;font-size: 13px;color: black">语音播放</span>
-        //     </div>
-        //      <div class="weui-media-box__hd" style="margin-left:.8em;">
-        //          <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
-        //      </div>
-        //  </div>
-        //     `;
-        //                     var chatPage=$("#chatPage");
-        //                     chatPage.append(html);
-        //                     //保持滚动条一直在最底部
-        //                     document.body.scrollTop=chatPage.height()+100;
-        //
-        //             }
-        //         });
-        //     }
-        //
-        //     // 播放语音
-        //     $("#chatPage").on("click",".weui-media-box .weui-media-box__bd #playVoice",function(){
-        //         wx.playVoice({
-        //             localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
-        //         });
-        //
-        //     });
-        // })();
 
         /*
         * 判断是否存在元素
