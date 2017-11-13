@@ -187,13 +187,7 @@ $(document).ready(function(){
                 }
                 // 调用函数
                 //按下开始录音
-                $("#talk_btn").on("touchstart",function(){
-                    starRecord(event);
-                });
                 //松手结束录音
-                $("#talk_btn").on("touchend",function(){
-                    stopRecord(event);
-                });
             })();
             var result = JSON.parse(e.data);                   //服务器返回结果
            console.log(result);
