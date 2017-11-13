@@ -148,6 +148,7 @@ $(document).ready(function(){
                                     // 获取serverId
                                     var serverId=$(this).attr("title");
                                     console.log(serverId);
+                                    downloadRecord(serverId);
                                     playRecord(local_id,serverId);
                                 });
                                 document.body.scrollTop=chatPage.height()+100;
