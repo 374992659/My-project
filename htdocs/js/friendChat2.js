@@ -752,7 +752,7 @@ $(document).ready(function(){
                 }else{
                     wx.stopRecord({
                         success: function (res) {
-                            console.log("结束录音");
+                            alert("结束录音");
                             console.log(res);
                             localId = res.localId;
                             uploadVoice();
