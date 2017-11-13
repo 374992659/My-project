@@ -277,6 +277,7 @@ $(document).ready(function(){
                                     var serverId=$(this).attr("title");
                                     var localId="";
                                     console.log(serverId);
+                                    //下载语音
                                     wx.downloadVoice({
                                         serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
                                         isShowProgressTips: 1, // 默认为1，显示进度提示
@@ -284,6 +285,10 @@ $(document).ready(function(){
                                              localId = res.localId; // 返回音频的本地ID
                                             return localId;
                                         }
+                                    });
+                                    //播放语音
+                                    wx.playVoice({
+                                        localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
                                     });
                                 });
                                 document.body.scrollTop=chatPage.height()+100;
