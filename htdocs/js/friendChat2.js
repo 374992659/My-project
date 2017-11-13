@@ -773,7 +773,6 @@ $(document).ready(function(){
             `;
                             var chatPage=$("#chatPage");
                             chatPage.append(html);
-                            chatContent.val("");
                             //保持滚动条一直在最底部
                             document.body.scrollTop=chatPage.height()+100;
                         })();
@@ -782,6 +781,12 @@ $(document).ready(function(){
             }
 
             // 播放语音
+            $("#chatPage").on("click",".weui-media-box .weui-media-box__bd #playVoice",function(){
+                wx.playVoice({
+                    localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                });
+
+            });
         })();
 
 
