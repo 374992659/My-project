@@ -422,8 +422,9 @@ $(document).ready(function(){
             timestamp:signature.timestamp , // 必填，生成签名的时间戳
             nonceStr: signature.nonceStr, // 必填，生成签名的随机串
             signature: signature.signature,// 必填，签名，见附录1
-            jsApiList: ['startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            jsApiList: ['startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         });
+        // 通过ready接口处理成功验证
         wx.ready(function(res){
             console.log(res);
             wx.onVoicePlayEnd({
@@ -432,11 +433,13 @@ $(document).ready(function(){
                 }
             });
         });
+        // 通过error接口处理失败验证
         wx.error(function(res){
             console.log(res);
         });
+        // 判断当前客户端版本是否支持指定JS接口
         wx.checkJsApi({
-            jsApiList: ['chooseImage'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+            jsApiList: ['startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
             success: function(res) {
                 console.log(res);
                 // 以键值对的形式返回，可用的api值true，不可用为false
