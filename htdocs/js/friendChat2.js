@@ -844,6 +844,13 @@ $(document).ready(function(){
                         var account_code =sender_code;
                         console.log(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
                         ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
+
+                        // 播放语音
+                        $("#chatPage").on("click","#playVoice",function(){
+                            var localId=$(this).attr("title");
+                            console.log(localId);
+                            playRecord(localId,serverId);
+                        });
                     }
                 });
             }
@@ -869,11 +876,7 @@ $(document).ready(function(){
             $("#talk_btn").on("touchend",function(){
                 stopRecord(event);
             });
-            // 播放语音
-            $("#chatPage").on("click","#playVoice",function(){
-                var localId=$(this).attr("title");
-                playRecord(localId,serverId);
-            });
+
 
         })();
         /*
