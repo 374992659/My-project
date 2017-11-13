@@ -777,14 +777,44 @@ $(document).ready(function(){
                     }
                 });
             }
+            // 下载录音
+            function downloadRecord(){
+                wx.ready(function () {
+                    wx.downloadVoice({
+                        serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                             localId = res.localId; // 返回音频的本地ID
+                             return localId;
+                        }
+                    });
+                })
+            }
             // 播放语音
             $("#chatPage").on("click","#playVoice",function(){
                 console.log("语音播放");
+                console.log(local_id);
                 wx.playVoice({
-                    localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                    localId:local_id,  // 需要播放的音频的本地ID，由stopRecord接口获得
+                    success: function(){
+                        wx.stopVoice({
+                            localId: local_id,
+                        });
+                    },
+                    fail: function () {
+                        wx.downloadVoice({
+                            serverId:serverId,
+                            isShowProgressTips: 1,
+                            success: function (res) {
+                                localId = res.localId;
+                                playRecord(signature,localId,serverId);
+                            }
+                        });
+                    }
                 });
-
             });
+
+
         })();
         /*
         * 判断是否存在元素
