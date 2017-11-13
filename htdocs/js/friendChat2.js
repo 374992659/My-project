@@ -724,14 +724,14 @@ $(document).ready(function(){
             });
            // 开始录音
             function starRecord(event){
-                alert("开始录音");
+
                 event.preventDefault();
                 START = new Date().getTime();
                 recordTimer = setTimeout(function(){
                     if(!localStorage.rainAllowRecord||localStorage.rainAllowRecord!=='true'){
                         wx.startRecord({
                             success: function(){
-                                alert("录音成功");
+                                console.log("录音成功");
                                 localStorage.rainAllowRecord = 'true';
                             },
                             cancel: function () {
@@ -753,7 +753,7 @@ $(document).ready(function(){
                 }else{
                     wx.stopRecord({
                         success: function (res) {
-                            alert("结束录音");
+                            console.log("结束录音");
                             console.log(res);
                             localId = res.localId;
                             uploadVoice();
