@@ -283,6 +283,8 @@ $(document).ready(function(){
                                         success: function (res) {
                                            var  localId = res.localId; // 返回音频的本地ID
                                             //播放语音
+                                            console.log(localId);
+                                            console.log("播放语音");
                                             wx.playVoice({
                                                 localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
                                             });
