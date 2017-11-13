@@ -827,6 +827,19 @@ $(document).ready(function(){
                         isShowProgressTips: 1, // 默认为1，显示进度提示
                         success: function (res) {
                             serverId = res.serverId; // 返回音频的服务器端ID
+                            var  html=`
+         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+         <div class="weui-media-box weui-media-box_appmsg" id="playVoice">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">播放语音</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${my_portrait}" alt="">
+             </div>
+         </div>
+            `;
+                            var chatPage=$("#chatPage");
+                            chatPage.append(html);
                         }
                     });
                 })
@@ -884,7 +897,7 @@ $(document).ready(function(){
                 }
             });
             //播放录音
-            $('#playRecord').click(function(){
+            $('#chatPage').on("click","",function(){
                 console.log(localId);
                 alert(serverId);
                 playRecord(signature,localId,serverId);
