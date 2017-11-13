@@ -713,7 +713,7 @@ $(document).ready(function(){
                 event.preventDefault();
                 START = new Date().getTime();
                 recordTimer = setTimeout(function(){
-                    if(!localStorage.rainAllowRecord || localStorage.rainAllowRecord !== 'true'){
+                    if(!localStorage.rainAllowRecord||localStorage.rainAllowRecord!=='true'){
                         wx.startRecord({
                             success: function(){
                                 localStorage.rainAllowRecord = 'true';
@@ -733,7 +733,6 @@ $(document).ready(function(){
                 }
             });
             //松手结束录音
-            var localId="";
             $('#talk_btn').on('touchend', function(event){
                 console.log("结束录音");
                 event.preventDefault();
