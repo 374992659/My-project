@@ -765,9 +765,9 @@ $(document).ready(function(){
                     success: function (res) {
                         //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
                          serverId = res.serverId; // 返回音频的服务器端ID
-                        alert("上传录音")
+                        alert("上传录音");
                         // 向本地页面添加播放按钮
-                        (function(){
+                      
                             var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
          <div class="weui-media-box weui-media-box_appmsg">
@@ -783,7 +783,7 @@ $(document).ready(function(){
                             chatPage.append(html);
                             //保持滚动条一直在最底部
                             document.body.scrollTop=chatPage.height()+100;
-                        })();
+
                     }
                 });
             }
