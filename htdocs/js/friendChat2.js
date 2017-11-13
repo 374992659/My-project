@@ -287,11 +287,17 @@ $(document).ready(function(){
                                             console.log(localId);
                                             console.log("播放语音");
                                             wx.playVoice({
-                                                localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
+                                                localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+                                                success: function(){
+                                                    console.log("播放成功");
+                                                },
+                                                fail:function(){
+                                                    console.log("播放失败");
+
+                                                }
                                             });
                                         }
                                     });
-
                                 });
                                 document.body.scrollTop=chatPage.height()+100;
                                 //发送通知给服务器
