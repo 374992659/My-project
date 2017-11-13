@@ -435,6 +435,7 @@ $(document).ready(function(){
 
         });
         $('#talk_btn').on('touchstart', function(event){
+            console.log("开始录音");
             event.preventDefault();
             START = new Date().getTime();
 
@@ -451,6 +452,7 @@ $(document).ready(function(){
         });
 //松手结束录音
         $('#talk_btn').on('touchend', function(event){
+            console.log("结束录音");
             event.preventDefault();
             END = new Date().getTime();
 
