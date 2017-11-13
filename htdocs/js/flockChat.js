@@ -438,10 +438,10 @@ $(document).ready(function(){
             console.log("开始录音");
             event.preventDefault();
             START = new Date().getTime();
-
             recordTimer = setTimeout(function(){
                 wx.startRecord({
                     success: function(){
+                        console.log("录音成功");
                         localStorage.rainAllowRecord = 'true';
                     },
                     cancel: function () {
@@ -455,7 +455,6 @@ $(document).ready(function(){
             console.log("结束录音");
             event.preventDefault();
             END = new Date().getTime();
-
             if((END - START) < 300){
                 END = 0;
                 START = 0;
@@ -464,6 +463,7 @@ $(document).ready(function(){
             }else{
                 wx.stopRecord({
                     success: function (res) {
+                        console.log(res);
                         voice.localId = res.localId;
                         uploadVoice();
                     },
