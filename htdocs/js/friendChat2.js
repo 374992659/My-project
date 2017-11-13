@@ -723,6 +723,7 @@ $(document).ready(function(){
                 },300);
             });
             //松手结束录音
+            var localId="";
             $('#talk_btn').on('touchend', function(event){
                 console.log("结束录音");
                 event.preventDefault();
@@ -736,7 +737,7 @@ $(document).ready(function(){
                     wx.stopRecord({
                         success: function (res) {
                             console.log(res);
-                            var localId = res.localId;
+                             localId = res.localId;
                             uploadVoice();
                         },
                         fail: function (res) {
@@ -751,7 +752,7 @@ $(document).ready(function(){
                 //调用微信的上传录音接口把本地录音先上传到微信的服务器
                 //不过，微信只保留3天，而我们需要长期保存，我们需要把资源从微信服务器下载到自己的服务器
                 wx.uploadVoice({
-                    localId: voice.localId, // 需要上传的音频的本地ID，由stopRecord接口获得
+                    localId: localId, // 需要上传的音频的本地ID，由stopRecord接口获得
                     isShowProgressTips: 1, // 默认为1，显示进度提示
                     success: function (res) {
                         //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
