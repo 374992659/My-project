@@ -393,7 +393,6 @@ $(document).ready(function(){
                 console.log(data);
                 var html="";
                 $.each(data,function(i,item){
-                    console.log(item);
                     if(item.sender_code===my_code){
                         console.log("聊天记录");
                         if(parseInt(item.type)===2){
