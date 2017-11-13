@@ -422,7 +422,7 @@ $(document).ready(function(){
             timestamp:signature.timestamp , // 必填，生成签名的时间戳
             nonceStr: signature.nonceStr, // 必填，生成签名的随机串
             signature: signature.signature,// 必填，签名，见附录1
-            jsApiList: ['startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd','translateVoice'] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
+            jsApiList: ['startRecord','stopRecord','playVoice','stopVoice','downloadVoice','uploadVoice','pauseVoice','onVoiceRecordEnd',] // 必填，需要使用的JS接口列表，所有JS接口列表见附录2
         });
         wx.ready(function(res){
             console.log(res);
