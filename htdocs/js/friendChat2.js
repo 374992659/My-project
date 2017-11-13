@@ -799,7 +799,6 @@ $(document).ready(function(){
                                 isShowProgressTips: 1,
                                 success: function (res) {
                                     localId = res.localId;
-                                    playRecord(signature,localId,serverId);
                                 }
                             });
                         }
