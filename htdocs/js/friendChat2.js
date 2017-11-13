@@ -725,20 +725,11 @@ $(document).ready(function(){
            // 开始录音
             function starRecord(event){
                 event.preventDefault();
-                START = new Date().getTime();
-                recordTimer = setTimeout(function(){
-                    if(!localStorage.rainAllowRecord||localStorage.rainAllowRecord!=='true'){
-                        wx.startRecord({
-                            success: function(){
-                                alert("录音成功");
-                                localStorage.rainAllowRecord = 'true';
-                            },
-                            cancel: function () {
-                                alert('用户拒绝授权录音');
-                            }
-                        });
+                wx.startRecord({
+                    cancel: function () {
+                        alert('用户拒绝授权录音');
                     }
-                },300);
+                });
             }
             //结束录音
             function stopRecord(event) {
