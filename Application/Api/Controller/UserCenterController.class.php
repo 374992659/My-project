@@ -11,7 +11,6 @@ use Api\Model;
 
 class UserCenterController extends VersionController
 {
-
     /*
      * 获取我的积分记录
      * */
@@ -28,7 +27,6 @@ class UserCenterController extends VersionController
     protected function pointNoticeWords_v1_0_0(){
 
     }
-
     /*
      * 修改个人资料
      * @param portrait 用户头像
@@ -107,7 +105,6 @@ class UserCenterController extends VersionController
         $portrait = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['portrait'];
         $this->echoEncrypData(0,'',array('account_code'=>$this->account_code,'portrait'=>$portrait));
     }
-
     /*
      * 根据城市id以及关键词获取小区信息
      * @param city_id城市id
@@ -128,7 +125,6 @@ class UserCenterController extends VersionController
         }
         $this->echoEncrypData(0,'',$data);
     }
-
     /*
      * 获取我的个人资料
      * */
@@ -1108,7 +1104,6 @@ class UserCenterController extends VersionController
         }
         $this->echoEncrypData(0,'',$data);
     }
-
     /*
      * 获取小区通知
      * */
@@ -1191,7 +1186,6 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(0);
         }
     }
-
     /*
      * 获取小区意见列表
      * */
@@ -1323,7 +1317,6 @@ class UserCenterController extends VersionController
         if(!$res1)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
-
     /*
      * 判断用户今日是否已达分数上限
      * 没超过上限则返回与上线分的差值
@@ -1342,7 +1335,6 @@ class UserCenterController extends VersionController
         }
         return false;
     }
-
     /*
      * 生成小区code
      * */
@@ -1363,7 +1355,6 @@ class UserCenterController extends VersionController
         }
         return false;
     }
-
     /*
      * 二维数组排序
      * */
