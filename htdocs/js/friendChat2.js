@@ -275,8 +275,16 @@ $(document).ready(function(){
                                 chatPage.on("click",".weui-media-box .weui-media-box__bd #playVoiceFriend",function(){
                                     // 获取serverId
                                     var serverId=$(this).attr("title");
+                                    var localId="";
                                     console.log(serverId);
-                                    downloadVoice(serverId);
+                                    wx.downloadVoice({
+                                        serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                                        success: function (res) {
+                                             localId = res.localId; // 返回音频的本地ID
+                                            return localId;
+                                        }
+                                    });
                                 });
                                 document.body.scrollTop=chatPage.height()+100;
                                 //发送通知给服务器
