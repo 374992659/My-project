@@ -282,14 +282,13 @@ $(document).ready(function(){
 
                                 `
                                     }
-                                } else if(parseInt(item.type)===2){
+                                }else if(parseInt(item.type)===3){
                                     html+=`
                             <div class="getHtml">
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg" id="playRecord">
                                     <div class="weui-media-box__bd">
                                         <span class="weui-media-box__desc right"  style="background:white;font-size: 13px;color: black;padding: 0">
-
                                          语音文件
                                         </span>
                                     </div>
