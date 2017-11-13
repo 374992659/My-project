@@ -726,12 +726,12 @@ $(document).ready(function(){
                 },300);
             });
             //监听录音
-            wx.onVoiceRecordEnd({
-                // 录音时间超过一分钟没有停止的时候会执行 complete 回调
-                complete: function (res) {
-                    localId = res.localId;
-                }
-            });
+            // wx.onVoiceRecordEnd({
+            //     // 录音时间超过一分钟没有停止的时候会执行 complete 回调
+            //     complete: function (res) {
+            //         localId = res.localId;
+            //     }
+            // });
             //松手结束录音
             $('#talk_btn').on('touchend', function(event){
                 console.log("结束录音");
