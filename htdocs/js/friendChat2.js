@@ -756,19 +756,8 @@ $(document).ready(function(){
                     isShowProgressTips: 1, // 默认为1，显示进度提示
                     success: function (res) {
                         //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
-                        $.ajax({
-                            url: 'ChatMessage_uploadFriendsFile',
-                            type: 'post',
-                            data: JSON.stringify(res),
-                            dataType: "json",
-                            success: function (data) {
-                                alert('文件已经保存到七牛的服务器');//这回，我使用七牛存储
-                                console.log(data);
-                            },
-                            error: function (xhr, errorType, error) {
-                                console.log(error);
-                            }
-                        });
+                        var serverId = res.serverId; // 返回音频的服务器端ID
+                        console.log(serverId);
                     }
                 });
             }
