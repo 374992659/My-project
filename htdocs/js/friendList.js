@@ -197,13 +197,18 @@ $(document).ready(function() {
                                             data[i]=jsonObj;
                                         });
                                         console.log(data);
-
-
-                                            history_chats[history_chats.length] = json_str;
-                                           if(history_chats.length>20){
-                                            history_chats.shift();
-                                          }
+                                        console.log("判断是否存入同一时间发送的内容");
+                                        for(var i=0,len=data.length;i<len;i++){
+                                            if(!data[i].send_time===sendTime){
+                                                history_chats[history_chats.length] = json_str;
+                                                if(history_chats.length>20){
+                                                    history_chats.shift();
+                                                }
                                                 localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
+                                            }
+                                        }
+
+
                                     }
                                     // 保存聊天的好友资料
                                     (function(){
