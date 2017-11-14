@@ -172,6 +172,8 @@ $(document).ready(function() {
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message_num;
                                 // 存在本地的聊天记录
+                                console.log("未读好友消息");
+                                console.log(item);
                             })
                         }
                         // 群未读新消息
@@ -182,6 +184,9 @@ $(document).ready(function() {
                             //群组新消息  已按群分组 时间倒序排列
                             $.each(group_new_message,function(i,item){
                                 group_new_messageNum+=item.count;
+                                console.log("未读群消息");
+                                console.log(item);
+
                             })
                         }
                         //好友未读申请通知
