@@ -1105,14 +1105,14 @@ $(document).ready(function(){
                             console.log(typeof num);
                             console.log(parseInt(num%2));
                             //播放本地语音
-                            if(!parseInt(num%2)===0){
+                            if(!parseInt(num)%2===0){
                                 wx.playVoice({
                                     localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
                                     success:function(){
                                         console.log("播放成功");
                                     }
                                 });
-                            }else if(parseInt(num%2)===0){
+                            }else if(parseInt(num)%2===0){
                                 wx.pauseVoice({
                                     localId: localId, // 需要暂停的音频的本地ID，由stopRecord接口获得
                                     success:function () {
