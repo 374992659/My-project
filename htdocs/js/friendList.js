@@ -180,6 +180,52 @@ $(document).ready(function() {
                                 $.each(item.content,function(i,item){
                                    console.log(item.content);
                                    console.log(item.send_time);
+                                   console.log(item.type);
+                                    // 本地未读聊天记录
+                                    var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
+                                    var history_chats = localStorage.getItem('history_'+ sender_code);
+                                    if(!history_chats){
+                                        var history_chats = new Array();
+                                        history_chats=[json_str];
+                                        localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
+                                    }else {
+                                        history_chats = JSON.parse(history_chats);
+                                        history_chats[history_chats.length] = json_str;
+                                        localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
+                                    }
+                                    // 保存聊天的好友资料
+                                    (function(){
+                                        var history_chat = localStorage.getItem("friend_info");
+                                        var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
+                                        if(!history_chat){
+                                            var history_chat = new Array();
+                                            history_chat=[json];
+                                            localStorage.setItem("friend_info",JSON.stringify(history_chat));
+                                        }else {
+                                            var history= $.parseJSON(history_chat);
+                                            var jsonObj = eval('('+history+')');
+                                            console.log(jsonObj);
+                                            data=[];
+                                            $.each(history,function(i,item){
+                                                var jsonObj = eval('('+item+')');
+                                                data[i]=jsonObj;
+                                            });
+                                            console.log(data);
+                                            var a=0;
+                                            for(var i=0,len=data.length;i<len;i++){
+                                                if(parseInt(data[i].sender_code)===parseInt(sender_code)){
+                                                    console.log("好友信息1");
+                                                    a++;
+                                                }
+                                            }
+                                            if(a===0){
+                                                console.log("好友信息2");
+                                                history_chat = JSON.parse(history_chat);
+                                                history_chat[history_chat.length] = json;
+                                                localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                                            }
+                                        }
+                                    })();
                                 })
                             })
                         }
