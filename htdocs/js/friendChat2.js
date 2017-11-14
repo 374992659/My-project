@@ -1103,7 +1103,7 @@ $(document).ready(function(){
                             var localId=$(this).attr("title");
                             console.log(localId);
                             console.log(typeof num);
-                            console.log(typeof parseInt(num%2));
+                            console.log(parseInt(num%2));
                             //播放本地语音
                             if(!parseInt(num%2)===0){
                                 wx.playVoice({
