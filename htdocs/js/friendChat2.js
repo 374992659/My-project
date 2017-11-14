@@ -1102,8 +1102,9 @@ $(document).ready(function(){
                             num++;
                             var localId=$(this).attr("title");
                             console.log(localId);
+                            console.log(num);
                             //播放本地语音
-                            if(num%2===0){
+                            if(!num%2===0){
                                 wx.playVoice({
                                     localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
                                     success:function(){
