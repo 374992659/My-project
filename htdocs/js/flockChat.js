@@ -298,10 +298,26 @@ $(document).ready(function(){
             console.log(data);
             var html="";
             $.each(data,function(i,item){
+                var httP=item.portrait.split(":")[0];
                 if(item.sender_code===my_code){//我的自己的聊天记录
                     console.log("聊天记录");
                     if(parseInt(item.type)===2){//内容为图片、文件
-                        html+=`
+                        if(httP==="http"){//完整路径
+                            html+=`
+                                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
+                    <img style="width: 80px" src="${item.content}" alt=""/>
+                 </span>
+            </div>           
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+             </div>
+         </div>
+                                    `
+                        }else{//相对路径
+                            html+=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
@@ -314,8 +330,24 @@ $(document).ready(function(){
              </div>
          </div>
                                     `
+                        }
                     } else if(parseInt(item.type)===3){//内容为语音
-                        html+=`
+                        if(httP==="http"){//绝对路径
+                            html+=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${item.content}">
+                 语音播放
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+             </div>
+         </div>                                                              
+                `
+                        }else{//相对路径
+                            html+=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
@@ -328,8 +360,23 @@ $(document).ready(function(){
              </div>
          </div>                                                              
                 `
+                        }
+
                     }else{//内容为文字
-                        html+=`
+                        if(httP==="http"){//绝对路径
+                            html+=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+             </div>
+         </div>                                                              
+                `
+                        }else{//相对路径
+                            html+=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
@@ -340,11 +387,28 @@ $(document).ready(function(){
              </div>
          </div>                                                              
                 `
-                    }
+                        }
 
+                    }
                 }else{//好友的聊天记录
                     if(parseInt(item.type)===2){//内容为图片、文件
-                        html+=`
+                        if(httP==="http"){
+                            html+=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                    </div>
+                    
+                    <div class="weui-media-box__bd">
+                    <h6>${item.nickname}</h6>
+                            <span class="weui-media-box__desc" style="padding: 0">                            
+                              <img src="${item.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div> `
+                        }else{
+                            html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -358,8 +422,48 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div> `
+                        }
+
                     } else if(parseInt(item.type)===3){//内容为语音
-                        html+=`
+                        if(httP==="http"){
+                            html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                    </div>
+                   
+                   
+                    <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
+                        <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
+                               播放语音                            
+                        </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                        }else{
+                            if(httP==="http"){
+                                html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                    </div>
+                   
+                   
+                    <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
+                        <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
+                               播放语音                            
+                        </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                            }else{
+                                html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -376,9 +480,32 @@ $(document).ready(function(){
                 </div> 
                                 
                                 `
+                            }
+
+                        }
+
 
                     }else{//内容为文字
-                        html+=`
+                        if(httP==="http"){
+                            html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                    </div>
+                   
+                   
+                    <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
+                        <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}                            
+                        </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                        }else{
+                            html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -395,6 +522,8 @@ $(document).ready(function(){
                 </div> 
                                 
                                 `
+                        }
+
                     }
                 }
             });
