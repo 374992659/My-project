@@ -298,9 +298,9 @@ $(document).ready(function(){
             console.log(data);
             var html="";
             $.each(data,function(i,item){
-                if(item.sender_code===my_code){
+                if(item.sender_code===my_code){//我的自己的聊天记录
                     console.log("聊天记录");
-                    if(parseInt(item.type)===2){
+                    if(parseInt(item.type)===2){//内容为图片、文件
                         html+=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -314,7 +314,21 @@ $(document).ready(function(){
              </div>
          </div>
                                     `
-                    }else{
+                    } else if(parseInt(item.type)===3){//内容为语音
+                        html+=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${item.content}">
+                 语音播放
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
+             </div>
+         </div>                                                              
+                `
+                    }else{//内容为文字
                         html+=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -328,8 +342,8 @@ $(document).ready(function(){
                 `
                     }
 
-                }else{
-                    if(parseInt(item.type)===2){
+                }else{//好友的聊天记录
+                    if(parseInt(item.type)===2){//内容为图片、文件
                         html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -344,7 +358,26 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div> `
-                    }else{
+                    } else if(parseInt(item.type)===3){//内容为语音
+                        html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
+                    </div>
+                   
+                   
+                    <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
+                        <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
+                               播放语音                            
+                        </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+
+                    }else{//内容为文字
                         html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
