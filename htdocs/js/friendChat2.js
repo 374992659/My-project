@@ -441,7 +441,7 @@ $(document).ready(function(){
                         $(".historyNews").hide();
                         //播放服务器获取的语音先通过serverID下载在本再地通过本地id播放
                         chatPage.on("click",".weui-media-box .weui-media-box__bd .playServreVoice",function () {
-
+                            num++;
                             //获取微信服务器的id
                             // 获取serverId
                             var serverId=$(this).attr("title");
@@ -452,6 +452,7 @@ $(document).ready(function(){
                                 isShowProgressTips: 1, // 默认为1，显示进度提示
                                 success: function (res){
                                     var  localId = res.localId; // 返回音频的本地ID
+                                    console.log("下载成功");
                                     // 播放语音
                                     if(num%2===1){
                                         wx.playVoice({
