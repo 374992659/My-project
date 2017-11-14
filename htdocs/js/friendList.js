@@ -178,6 +178,7 @@ $(document).ready(function() {
                                 var sender_portrait=item.sender_portrait;
                                 $.each(item.content,function(i,item){
                                    console.log(item.content);
+                                    var sendTime=item.send_time;
                                    console.log(item.send_time);
                                    console.log(item.type);
                                     // 本地未读聊天记录
@@ -190,9 +191,21 @@ $(document).ready(function() {
                                     }else {
                                         history_chats = JSON.parse(history_chats);
                                         console.log("WEIDU消息");
-                                       console.log(history_chats);
-                                        history_chats[history_chats.length] = json_str;
-                                        localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
+                                        //转换数据格式
+                                        var jsonObj = eval('(' + history_chats + ')');
+                                        console.log(jsonObj);
+                                        data=[];
+                                        $.each(history,function(i,item){
+                                            var jsonObj = eval('(' + item + ')');
+                                            data[i]=jsonObj;
+                                        });
+                                        console.log(data);
+                                        $.each(data,function(i,item){
+                                            if(!item.send_time===sendTime){
+                                                history_chats[history_chats.length] = json_str;
+                                                localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
+                                            }
+                                        });
                                     }
                                     // 保存聊天的好友资料
                                     (function(){
