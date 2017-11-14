@@ -189,6 +189,8 @@ $(document).ready(function() {
                                         localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
                                     }else {
                                         history_chats = JSON.parse(history_chats);
+                                        console.log("WEIDU消息");
+                                       console.log(history_chats);
                                         history_chats[history_chats.length] = json_str;
                                         localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
                                     }
