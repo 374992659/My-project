@@ -254,41 +254,41 @@ $(document).ready(function(){
                                 } else if(parseInt(item.type)===3){//语音
                                         if(httP==="http"){//头像没有http
                                             html+=`
-                <div class="sendHtml">
+                
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                         <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                             <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;" class="friendVoice">
+                                <span class="weui-media-box__desc playServreVoice" title="${item.content}" style="background:white;font-size: 13px;color: black>
                                   播放语音
                                 </span>
                        </div>
                     </div>
-                </div>
+                
                                 `
                                         }else{//头像http
                                             html+=`
-                <div class="sendHtml">
+               
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                         <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                             <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;" class="friendVoice">
+                                <span class="weui-media-box__desc playServreVoice" title="${item.content}" style="background:white;font-size: 13px;color: black;">
                                   播放语音
                                 </span>
                        </div>
                     </div>
-                </div>
+               
                                 `
                                         }
                                 }else{//内容为文字
                                     if(httP==="http"){
                                         html+=`
-                <div class="sendHtml">
+                
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                         <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -300,11 +300,11 @@ $(document).ready(function(){
                                 </span>
                        </div>
                     </div>
-                </div>
+                
                                 `
                                     }else{
                                         html+=`
-                <div class="sendHtml">
+               
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                         <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -316,7 +316,7 @@ $(document).ready(function(){
                                 </span>
                        </div>
                     </div>
-                </div>
+               
                                 `
                                     }
                                 }
@@ -324,7 +324,7 @@ $(document).ready(function(){
                                 if(parseInt(item.type)===2){//获取的内容为图片
                                     if(httP==="http"){//头像为系统默认头像的
                                         html+=`
-                            <div class="getHtml">
+                            
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
@@ -337,12 +337,12 @@ $(document).ready(function(){
                                         <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                                     </div>
                                  </div>
-                            </div>
+                           
 
                                 `
                                     }else{
                                         html+=`
-                            <div class="getHtml">
+                            
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
@@ -355,18 +355,18 @@ $(document).ready(function(){
                                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="">
                                     </div>
                                  </div>
-                            </div>
+                           
 
                                 `
                                     }
                                 }else if(parseInt(item.type)===3){
                                     if(httP==="http"){
                                         html+=`
-                            <div class="getHtml">
+                            
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg" id="playRecord">
                                     <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right"  title="${item.content}" style="background:white;font-size: 13px;color: black;padding: 0">
+                                        <span class="weui-media-box__desc right playServreVoice"  title="${item.content}" style="background:white;font-size: 13px;color: black;padding: 0">
                                          语音播放
                                         </span>
                                     </div>
@@ -374,16 +374,16 @@ $(document).ready(function(){
                                         <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                                     </div>
                                  </div>
-                            </div>
+                           
 
                                 `
                                     }else{
                                         html+=`
-                            <div class="getHtml">
+                            
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg" id="playRecord">
                                     <div class="weui-media-box__bd">
-                                        <span class="weui-media-box__desc right"  title="${item.content}" style="background:white;font-size: 13px;color: black;padding: 0">
+                                        <span class="weui-media-box__desc right playServreVoice"  title="${item.content}" style="background:white;font-size: 13px;color: black;padding: 0">
                                          语音播放
                                         </span>
                                     </div>
@@ -391,7 +391,7 @@ $(document).ready(function(){
                                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="">
                                     </div>
                                  </div>
-                            </div>
+                            
 
                                 `
                                     }
@@ -399,7 +399,7 @@ $(document).ready(function(){
                                 else{//内容为文字
                                     if(httP==="http"){
                                         html+=`
-                            <div class="getHtml">
+                           
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
@@ -411,12 +411,12 @@ $(document).ready(function(){
                                         <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                                     </div>
                                  </div>
-                            </div>
+                           
 
                                 `
                                     }else{
                                         html+=`
-                            <div class="getHtml">
+                            
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__bd">
@@ -428,16 +428,48 @@ $(document).ready(function(){
                                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="">
                                     </div>
                                  </div>
-                            </div>
+                           
 
                                 `
                                     }
                                 }
                             }
                         });
-                        $("#chatPage").prepend(html);
-                        document.body.scrollTop=$("#chatPage").height()+100;
+                        var chatPage=$("#chatPage");
+                        chatPage.prepend(html);
+                        document.body.scrollTop=chatPage.height()+100;
                         $(".historyNews").hide();
+                        //播放服务器获取的语音先通过serverID下载在本再地通过本地id播放
+                        chatPage.on("click",".weui-media-box .weui-media-box__bd .playServreVoice",function () {
+                            //获取微信服务器的id
+                            // 获取serverId
+                            var serverId=$(this).attr("title");
+                            console.log(serverId);
+                            //下载语音
+                            wx.downloadVoice({
+                                serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                                isShowProgressTips: 1, // 默认为1，显示进度提示
+                                success: function (res) {
+                                    console.log(res);
+                                    var  localId = res.localId; // 返回音频的本地ID
+                                    //播放语音
+                                    console.log(localId);
+                                    console.log("播放语音");
+                                    // 播放语音
+                                    wx.playVoice({
+                                        localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+                                        success: function(){
+                                            console.log("播放成功");
+                                        },
+                                        fail:function(){
+                                            console.log("播放失败");
+
+                                        }
+                                    });
+                                }
+                            });
+
+                        });
                     }
                     break
             }
