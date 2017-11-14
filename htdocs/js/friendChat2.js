@@ -1102,8 +1102,8 @@ $(document).ready(function(){
                             num++;
                             var localId=$(this).attr("title");
                             console.log(localId);
-                            console.log(num);
-                            console.log(num%2);
+                            console.log(typeof num);
+                            console.log(typeof num%2);
                             //播放本地语音
                             if(!num%2===0){
                                 wx.playVoice({
