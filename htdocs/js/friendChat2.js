@@ -125,7 +125,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" title="${data.content}" style="background:white;font-size: 13px;color:black" class="playVoiceFriend">
+                            <span class="weui-media-box__desc playVoiceFriend" title="${data.content}" style="background:white;font-size: 13px;color:black" >
                               语音播放                             
                             </span>
                    </div>                   
