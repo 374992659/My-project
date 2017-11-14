@@ -403,7 +403,7 @@ $(document).ready(function(){
             document.body.scrollTop=chatPage.height()+100;
             //播放语音
             var number=0;
-            chatPage.on("click",".eui-media-box .weui-media-box__bd .playVoice",function(){
+            chatPage.on("click",".weui-media-box .weui-media-box__bd .playVoice",function(){
                 //从微信服务器下载因为返回的服务器id在存本地id
                 //获取服务器id
                 number++;
