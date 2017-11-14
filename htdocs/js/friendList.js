@@ -188,24 +188,12 @@ $(document).ready(function() {
                                         var history_chats = new Array();
                                         history_chats=[json_str];
                                         localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
-                                    }else {
-                                       var history_chat = JSON.parse(history_chats);
-                                        console.log("WEIDU消息");
-                                        //转换数据格式
-                                        var jsonObj = eval('(' + history_chat + ')');
-                                        console.log(jsonObj);
-                                        data=[];
-                                        $.each(history,function(i,item){
-                                            var jsonObj = eval('(' + item + ')');
-                                            data[i]=jsonObj;
-                                        });
-                                        console.log(data);
-                                        $.each(data,function(i,item){
-                                            if(!item.send_time===sendTime){
-                                                history_chats[history_chats.length] = json_str;
+                                    }else{ history_chats = JSON.parse(history_chats);
+                                            history_chats[history_chats.length] = json_str;
+                                        if(history_chats.length>20){
+                                            history_chats.shift();
+                                          }
                                                 localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
-                                            }
-                                        });
                                     }
                                     // 保存聊天的好友资料
                                     (function(){
