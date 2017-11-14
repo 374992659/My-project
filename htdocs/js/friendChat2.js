@@ -491,7 +491,7 @@ $(document).ready(function(){
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black" class="playMyVoice" title="${item.content}">
+                 <span class="weui-media-box__desc right playMyVoice" style="background:#66CD00;font-size: 13px;color: black"  title="${item.content}">
                  播放语音
                  </span>
             </div>
@@ -536,7 +536,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black" class="friendPlayVoice" class="${item.content}">
+                            <span class="weui-media-box__desc friendPlayVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
                               语音播放
                             </span>
                    </div>
@@ -566,8 +566,51 @@ $(document).ready(function(){
                 chatPage.html(html);
                 document.body.scrollTop=chatPage.height()+100;
                 //播放自己的语音
+                chatPage.on("click",".weui-media-box .weui-media-box__bd .playMyVoice",function(){
+                    // 获取本地语音id
+                    var id=$(this).attr("title");
+                    console.log(id);
+                    //播放本地语音
+                    wx.playVoice({
+                        localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+                        success:function(){
+                            console.log("播放本地语音成功")
+                        },
+                        fail:function(){
+                            console.log("播放本地语音失败");
+                        }
+                    });
 
+                });
                 //播放好友的语音
+                chatPage.on("click",".weui-media-box .weui-media-box__bd .friendPlayVoice",function(){
+                    // 获取serverId
+                    var serverId=$(this).attr("title");
+                    console.log(serverId);
+                    //下载语音
+                    wx.downloadVoice({
+                        serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                        isShowProgressTips: 1, // 默认为1，显示进度提示
+                        success: function (res) {
+                            console.log(res);
+                            var  localId = res.localId; // 返回音频的本地ID
+                            //播放语音
+                            console.log(localId);
+                            console.log("播放语音");
+                            // 播放语音
+                            wx.playVoice({
+                                localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+                                success: function(){
+                                    console.log("播放成功");
+                                },
+                                fail:function(){
+                                    console.log("播放失败");
+
+                                }
+                            });
+                        }
+                    });
+                });
             }
         })();
         // 聊天历史记录
