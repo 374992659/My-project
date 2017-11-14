@@ -107,8 +107,8 @@ $(document).ready(function(){
                             }
                             //展示好友发送的聊天信息
                             var html="";
-                            if(my_code===data.sender_code){
-                                if(data.type===2){
+                            if(my_code===data.sender_code){//我自己的信息
+                                if(data.type===2){//图片、文件
                                     html=`
                                     <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -122,7 +122,23 @@ $(document).ready(function(){
              </div>
          </div>
                                     `
-                                }else{
+                                } else if(data.type===3){//语音
+                                    html=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${data.content}">
+                    播放语音
+                 </span>
+            </div>
+           
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+             </div>
+         </div>
+                                                              
+                                `
+                                }else{//文字
                                     html=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -137,8 +153,8 @@ $(document).ready(function(){
                                                               
                                 `
                                 }
-                            }else{
-                                if(data.type===2){
+                            }else{//群里其他人发的信息
+                                if(data.type===2){//图片、文件
                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -152,7 +168,24 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `
-                                }else{
+                                } else if(data.type===3){//语音
+                                    html=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                             <h6>${data.send_nickname}</h6>
+                            <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${data.content}">
+                              播放语音
+                            
+                            </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                                }else{//文字
                                     html=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -175,8 +208,35 @@ $(document).ready(function(){
                             chatPage.append(html);
                             document.body.scrollTop=chatPage.height()+100;
                             //发送通知给服务器
-                            var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
+                            var sendMessage=JSON.stringify({'apptoken':apptoken,'type':7,'group_code':current_code});
                             ws.send(sendMessage);
+                            //播放语音
+                            chatPage.on("click",".weui-media-box .weui-media-box__bd .playVoice",function(){
+                                //从微信服务器下载因为返回的服务器id在存本地id
+                                //获取服务器id
+                                var id=$(this).attr("title");
+                                wx.downloadVoice({
+                                    serverId: id, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                                    success: function (res){
+                                        console.log("下载语音成功");
+                                        var localId=res.localId; // 返回音频的本地ID
+                                        wx.playVoice({
+                                            localId:localId,  // 需要播放的音频的本地ID，由stopRecord接口获得
+                                            success: function(){
+                                               console.log("播放语音成功");
+                                            },
+                                            fail:function () {
+                                                console.log("播放语音失败");
+                                            }
+                                        });
+                                    },
+                                    fail:function () {
+                                        console.log("下载语音失败");
+                                    }
+                                });
+                            });
+                            
                         }
                     }else{    //其他页面 暂不处理
                     }
