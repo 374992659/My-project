@@ -249,7 +249,7 @@ $(document).ready(function() {
                                     console.log(item.sender_nickname);
                                     console.log(item.sender_portrait);
                                     // 本地未读聊天记录
-                                    var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.send_nickname+"','portrait':'"+ "http://wx.junxiang.ren/project/"+item.send_portrait+"'}";
+                                    var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+ "http://wx.junxiang.ren/project/"+item.sender_portrait+"'}";
                                     console.log(json_str);
                                     var history_chats = localStorage.getItem('history_'+group_code);
                                     if(!history_chats){
