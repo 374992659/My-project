@@ -174,6 +174,13 @@ $(document).ready(function() {
                                 // 存在本地的聊天记录
                                 console.log("未读好友消息");
                                 console.log(item);
+                                var sender_code=item.sender_code;
+                                var sender_nickname=item.sender_nickname;
+                                var sender_portrait=item.sender_portrait;
+                                $.each(item.content,function(i,item){
+                                   console.log(item.content);
+                                   console.log(item.send_time);
+                                })
                             })
                         }
                         // 群未读新消息
