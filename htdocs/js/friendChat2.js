@@ -1097,8 +1097,8 @@ $(document).ready(function(){
                         ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
 
                         // 播放语音
+                        var num=0;
                         $("#chatPage").on("click","#playVoice",function(){
-                            var num=0;
                             num++;
                             var localId=$(this).attr("title");
                             console.log(localId);
