@@ -491,7 +491,7 @@ $(document).ready(function(){
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black" id="playMyVoice">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black" id="playMyVoice" title="${item.content}">
                  播放语音
                  </span>
             </div>
@@ -536,7 +536,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black" id="friendPlayVoice">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black" id="friendPlayVoice" class="${item.content}">
                               语音播放
                             </span>
                    </div>
