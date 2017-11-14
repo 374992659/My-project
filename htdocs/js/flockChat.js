@@ -401,6 +401,48 @@ $(document).ready(function(){
             var chatPage=$("#chatPage");
             chatPage.html(html);
             document.body.scrollTop=chatPage.height()+100;
+            //播放语音
+            var number=0;
+            chatPage.on("click",".eui-media-box .weui-media-box__bd .playVoice",function(){
+                //从微信服务器下载因为返回的服务器id在存本地id
+                //获取服务器id
+                number++;
+                var id=$(this).attr("title");
+                console.log(id);
+                wx.downloadVoice({
+                    serverId: id, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                    isShowProgressTips: 1, // 默认为1，显示进度提示
+                    success: function (res){
+                        console.log("下载语音成功");
+                        var localId=res.localId; // 返回音频的本地ID
+                        if(number%2===1){
+                            wx.playVoice({
+                                localId:localId,  // 需要播放的音频的本地ID，由stopRecord接口获得
+                                success: function(){
+                                    console.log("播放语音成功");
+                                },
+                                fail:function () {
+                                    console.log("播放语音失败");
+                                }
+                            });
+                        }else{
+                            wx.pauseVoice({
+                                localId: localId, // 需要暂停的音频的本地ID，由stopRecord接口获得
+                                success:function () {
+                                    console.log("暂停成功");
+                                },
+                                fail:function(){
+                                    console.log("暂停失败");
+                                }
+                            });
+                        }
+
+                    },
+                    fail:function () {
+                        console.log("下载语音失败");
+                    }
+                });
+            });
         }
     })();
     // 聊天历史记录
