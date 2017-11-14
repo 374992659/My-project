@@ -138,7 +138,6 @@ $(document).ready(function() {
                             }
                         }
                     })();
-
                 }
             })();
             switch(parseInt(result.type)){
@@ -239,6 +238,7 @@ $(document).ready(function() {
                                 group_new_messageNum+=item.count;
                                 console.log("未读群消息");
                                 console.log(item);
+
 
                             })
                         }
