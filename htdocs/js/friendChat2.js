@@ -21,7 +21,6 @@ $(document).ready(function(){
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
         ws.onmessage=function(e){
-
             var result = JSON.parse(e.data);                   //服务器返回结果
            console.log(result);
             switch(parseInt(result.type)){
@@ -451,23 +450,31 @@ $(document).ready(function(){
                             wx.downloadVoice({
                                 serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
                                 isShowProgressTips: 1, // 默认为1，显示进度提示
-                                success: function (res) {
-                                    console.log(res);
+                                success: function (res){
                                     var  localId = res.localId; // 返回音频的本地ID
-                                    //播放语音
-                                    console.log(localId);
-                                    console.log("播放语音");
                                     // 播放语音
-                                    wx.playVoice({
-                                        localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
-                                        success: function(){
-                                            console.log("播放成功");
-                                        },
-                                        fail:function(){
-                                            console.log("播放失败");
+                                    if(num%2===1){
+                                        wx.playVoice({
+                                            localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+                                            success: function(){
+                                                console.log("播放成功");
+                                            },
+                                            fail:function(){
+                                                console.log("播放失败");
+                                            }
+                                        });
+                                    }else{
+                                        wx.stopVoice({
+                                            localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
+                                            success:function(){
+                                                console.log("暂停成功");
+                                            },
+                                            fail:function () {
+                                                console.log("暂停失败");
+                                            }
+                                        });
+                                    }
 
-                                        }
-                                    });
                                 }
                             });
 
@@ -632,7 +639,9 @@ $(document).ready(function(){
 
                 });
                 //播放好友的语音
+                var number=0;
                 chatPage.on("click",".weui-media-box .weui-media-box__bd .friendPlayVoice",function(){
+                    number++;
                     // 获取serverId
                     var serverId=$(this).attr("title");
                     console.log(serverId);
@@ -641,22 +650,30 @@ $(document).ready(function(){
                         serverId: serverId, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
                         isShowProgressTips: 1, // 默认为1，显示进度提示
                         success: function (res) {
-                            console.log(res);
                             var  localId = res.localId; // 返回音频的本地ID
-                            //播放语音
-                            console.log(localId);
-                            console.log("播放语音");
                             // 播放语音
-                            wx.playVoice({
-                                localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
-                                success: function(){
-                                    console.log("播放成功");
-                                },
-                                fail:function(){
-                                    console.log("播放失败");
+                            if(number%2===1){
+                                wx.playVoice({
+                                    localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+                                    success: function(){
+                                        console.log("播放成功");
+                                    },
+                                    fail:function(){
+                                        console.log("播放失败");
+                                    }
+                                });
+                            }else{
+                                wx.stopVoice({
+                                    localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
+                                    success:function(){
+                                        console.log("暂停成功");
+                                    },
+                                    fail:function () {
+                                        console.log("暂停失败");
+                                    }
+                                });
+                            }
 
-                                }
-                            });
                         }
                     });
                 });
@@ -709,7 +726,7 @@ $(document).ready(function(){
             console.log(json_str);
             var history_chats = localStorage.getItem('history_'+sender_code);
             if(!history_chats){
-               history_chats = new Array();
+                history_chats=new Array();
                 history_chats=[json_str];
                 localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
             }else{
@@ -819,7 +836,6 @@ $(document).ready(function(){
                                 history_chats.shift();
                             }
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
-
                         }
                         // 保存聊天的好友资料
                         (function(){
@@ -890,6 +906,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoekn",data.apptoekn);
                         console.log(data.data[0]);
+                        localStorage.setItem("friendFile","http://wx.junxiang.ren/project/"+data.data[0]);
                         var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -906,7 +923,7 @@ $(document).ready(function(){
                         var chatPage=$("#chatPage");
                         chatPage.append(html);
                         document.body.scrollTop=chatPage.height()+100;
-                        var content=localStorage.getItem("friendPic");
+                        var content=localStorage.getItem("friendFile");
                         console.log(content);
                         // 发送给服务器
                         var message_type = 2;
@@ -965,7 +982,6 @@ $(document).ready(function(){
                                 }
                             }
                         })();
-
                     }
                 },
                 error:function (data) {
@@ -1095,7 +1111,6 @@ $(document).ready(function(){
                     success: function (res) {
                         //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
                         serverId = res.serverId; // 返回音频的服务器端ID
-                        alert("录音上传");
                         var  html=`
          <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
          <div class="weui-media-box weui-media-box_appmsg" id="playVoice" title="${localId}">
@@ -1110,17 +1125,12 @@ $(document).ready(function(){
                         var chatPage=$("#chatPage");
                         chatPage.append(html);
                         var account_code =sender_code;
-                        console.log(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
                         ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
-
                         // 播放语音
                         var num=0;
                         $("#chatPage").on("click","#playVoice",function(){
                             num++;
                             var localId=$(this).attr("title");
-                            console.log(localId);
-                            console.log(num);
-                            console.log(num%2);
                             //播放本地语音
                             if(num%2==1){
                                 wx.playVoice({
@@ -1137,12 +1147,7 @@ $(document).ready(function(){
                                     }
                                 });
                             }
-
-                            //暂停播放
-
-                            //停止播放
                         });
-
                         // 本地存聊天记录
                         var message_type=3;
                         var sender=localStorage.getItem("sender_code");
@@ -1161,7 +1166,6 @@ $(document).ready(function(){
                                 history_chats.shift();
                             }
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
-
                         }
                         // 保存聊天的好友资料
                         (function(){
@@ -1251,55 +1255,6 @@ $(document).ready(function(){
             weuiGrids.hide();
         }
     });
-    //上传文件
-    // $('#uploaderInputFile').change(function(e) {
-    //     var Url=window.URL.createObjectURL(this.files[0]) ;
-    //     var formData= new FormData();
-    //     console.log($("#uploaderInputFile")[0]);
-    //     var apptoken=localStorage.getItem("apptoken");
-    //     formData.append("file",$("#uploaderInputFile")[0].files[0]);
-    //     var data=["",JSON.stringify({"apptoken":apptoken})];
-    //     var json=jsEncryptData(data);
-    //     formData.append("data",json);
-    //     console.log(formData);
-    //     $.ajax({
-    //         type:"POST",
-    //         url:url+"ChatMessage_uploadGroupFile",
-    //         fileElementId:'uploaderInput',
-    //         data:formData,
-    //         processData : false,
-    //         contentType : false,
-    //         secureuri:false,
-    //         success : function(data){
-    //             // 解密
-    //             data=jsDecodeData(data);
-    //             console.log(data);
-    //             if(data.errcode===0){
-    //                 localStorage.setItem("apptoekn",data.apptoekn);
-    //                 console.log(data.data[0]);
-    //                 var  html=`
-    //      <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
-    //     <div class="weui-media-box weui-media-box_appmsg">
-    //          <div class="weui-media-box__bd">
-    //              <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-    //                 <img style="width: 100px" src="http://wx.junxiang.ren/project/${data.data[0]}" alt=""/>
-    //              </span>
-    //         </div>
-    //          <div class="weui-media-box__hd" style="margin-left:.8em;">
-    //              <img class="weui-media-box__thumb" src="image/firendb.jpg" alt="">
-    //          </div>
-    //      </div>
-    //         `;
-    //                 var chatPage=$("#chatPage");
-    //                 chatPage.append(html);
-    //                 $(".chatContent").val("");
-    //             }
-    //         },
-    //         error:function (data) {
-    //             console.log(data);
-    //         }
-    //     });
-    // });
 // 图片放大预览
     (function(){
         var gallery=$(".weui-gallery");
