@@ -259,7 +259,7 @@ $(document).ready(function() {
                                 var group_num=item.group_num;
                                 var group_code=item.group_code;
                                 var group_portrait=item.group_portrait;
-                                $.each(item.content,function(i,item){
+                                //$.each(item.content,function(i,item){
                                     //console.log(item.content);
                                     //console.log(item.send_time);
                                     //console.log(item.type);
@@ -287,7 +287,7 @@ $(document).ready(function() {
                                     //}
                                     // 保存聊天的好友资料
 
-                                })
+                                //})
 
                             })
                         }
