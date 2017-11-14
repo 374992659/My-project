@@ -436,11 +436,13 @@ $(document).ready(function(){
                             }
                         });
                         var chatPage=$("#chatPage");
+                        var num=0;
                         chatPage.prepend(html);
                         document.body.scrollTop=chatPage.height()+100;
                         $(".historyNews").hide();
                         //播放服务器获取的语音先通过serverID下载在本再地通过本地id播放
                         chatPage.on("click",".weui-media-box .weui-media-box__bd .playServreVoice",function () {
+
                             //获取微信服务器的id
                             // 获取serverId
                             var serverId=$(this).attr("title");
@@ -595,23 +597,38 @@ $(document).ready(function(){
                     }
                 });
                 var chatPage=$("#chatPage");
+                var num=0;
                 chatPage.html(html);
                 document.body.scrollTop=chatPage.height()+100;
                 //播放自己的语音
                 chatPage.on("click",".weui-media-box .weui-media-box__bd .playMyVoice",function(){
+                    num++;
                     // 获取本地语音id
                     var id=$(this).attr("title");
                     console.log(id);
-                    //播放本地语音
-                    wx.playVoice({
-                        localId:id, // 需要播放的音频的本地ID，由stopRecord接口获得
-                        success:function(){
-                            console.log("播放本地语音成功")
-                        },
-                        fail:function(){
-                            console.log("播放本地语音失败");
-                        }
-                    });
+                    if(num%2===1){
+                        //播放本地语音
+                        wx.playVoice({
+                            localId:id, // 需要播放的音频的本地ID，由stopRecord接口获得
+                            success:function(){
+                                console.log("播放本地语音成功")
+                            },
+                            fail:function(){
+                                console.log("播放本地语音失败");
+                            }
+                        });
+                    }else{
+                        wx.stopVoice({
+                            localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
+                            success:function(){
+                                console.log("暂停成功");
+                            },
+                            fail:function () {
+                                console.log("暂停失败");
+                            }
+                        });
+                    }
+
 
                 });
                 //播放好友的语音
