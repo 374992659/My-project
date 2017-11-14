@@ -189,8 +189,18 @@ $(document).ready(function() {
                                         history_chats=[json_str];
                                         localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
                                     }else{ history_chats = JSON.parse(history_chats);
+                                        var jsonObj = eval('('+history_chats+')');
+                                        console.log(jsonObj);
+                                        data=[];
+                                        $.each(history_chats,function(i,item){
+                                            var jsonObj = eval('('+item+')');
+                                            data[i]=jsonObj;
+                                        });
+                                        console.log(data);
+
+
                                             history_chats[history_chats.length] = json_str;
-                                        if(history_chats.length>20){
+                                           if(history_chats.length>20){
                                             history_chats.shift();
                                           }
                                                 localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
