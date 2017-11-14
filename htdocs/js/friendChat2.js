@@ -804,6 +804,40 @@ $(document).ready(function(){
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
 
                         }
+                        // 保存聊天的好友资料
+                        (function(){
+                            var history_chat = localStorage.getItem("friend_info");
+                            var json = "{'sender_code':'"+sender_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+sender_name+"','portrait':'"+header+"'}";
+                            console.log(json);
+                            if(!history_chat){
+                                var history_chat = new Array();
+                                history_chat=[json];
+                                localStorage.setItem("friend_info",JSON.stringify(history_chat));
+                            }else {
+                                var history= $.parseJSON(history_chat);
+                                var jsonObj = eval('('+history+')');
+                                console.log(jsonObj);
+                                data=[];
+                                $.each(history,function(i,item){
+                                    var jsonObj = eval('('+item+')');
+                                    data[i]=jsonObj;
+                                });
+                                console.log(data);
+                                var a=0;
+                                for(var i=0,len=data.length;i<len;i++){
+                                    if(parseInt(data[i].sender_code)===parseInt(sender_code)){
+                                        console.log("好友信息1");
+                                        a++;
+                                    }
+                                }
+                                if(a===0){
+                                    console.log("好友信息2");
+                                    history_chat = JSON.parse(history_chat);
+                                    history_chat[history_chat.length] = json;
+                                    localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                                }
+                            }
+                        })();
 
                     }
                 },
@@ -880,6 +914,40 @@ $(document).ready(function(){
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
 
                         }
+                        // 保存聊天的好友资料
+                        (function(){
+                            var history_chat = localStorage.getItem("friend_info");
+                            var json = "{'sender_code':'"+sender_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+sender_name+"','portrait':'"+header+"'}";
+                            console.log(json);
+                            if(!history_chat){
+                                var history_chat = new Array();
+                                history_chat=[json];
+                                localStorage.setItem("friend_info",JSON.stringify(history_chat));
+                            }else {
+                                var history= $.parseJSON(history_chat);
+                                var jsonObj = eval('('+history+')');
+                                console.log(jsonObj);
+                                data=[];
+                                $.each(history,function(i,item){
+                                    var jsonObj = eval('('+item+')');
+                                    data[i]=jsonObj;
+                                });
+                                console.log(data);
+                                var a=0;
+                                for(var i=0,len=data.length;i<len;i++){
+                                    if(parseInt(data[i].sender_code)===parseInt(sender_code)){
+                                        console.log("好友信息1");
+                                        a++;
+                                    }
+                                }
+                                if(a===0){
+                                    console.log("好友信息2");
+                                    history_chat = JSON.parse(history_chat);
+                                    history_chat[history_chat.length] = json;
+                                    localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                                }
+                            }
+                        })();
 
                     }
                 },
@@ -1030,13 +1098,32 @@ $(document).ready(function(){
 
                         // 播放语音
                         $("#chatPage").on("click","#playVoice",function(){
+                            var num=0;
+                            num++;
                             var localId=$(this).attr("title");
                             console.log(localId);
                             //播放本地语音
-                            wx.playVoice({
-                                localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
-                            });
+                            if(num%2===0){
+                                wx.playVoice({
+                                    localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+                                    success:function(){
+                                        console.log("播放成功");
+                                    }
+                                });
+                            }else {
+                                wx.pauseVoice({
+                                    localId: localId, // 需要暂停的音频的本地ID，由stopRecord接口获得
+                                    success:function () {
+                                        console.log("暂停播放");
+                                    }
+                                });
+                            }
+
+                            //暂停播放
+
+                            //停止播放
                         });
+
                         // 本地存聊天记录
                         var message_type=3;
                         var sender=localStorage.getItem("sender_code");
@@ -1057,6 +1144,40 @@ $(document).ready(function(){
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
 
                         }
+                        // 保存聊天的好友资料
+                        (function(){
+                            var history_chat = localStorage.getItem("friend_info");
+                            var json = "{'sender_code':'"+sender_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+localId+"','nickname':'"+sender_name+"','portrait':'"+header+"'}";
+                            console.log(json);
+                            if(!history_chat){
+                                var history_chat = new Array();
+                                history_chat=[json];
+                                localStorage.setItem("friend_info",JSON.stringify(history_chat));
+                            }else {
+                                var history= $.parseJSON(history_chat);
+                                var jsonObj = eval('('+history+')');
+                                console.log(jsonObj);
+                                data=[];
+                                $.each(history,function(i,item){
+                                    var jsonObj = eval('('+item+')');
+                                    data[i]=jsonObj;
+                                });
+                                console.log(data);
+                                var a=0;
+                                for(var i=0,len=data.length;i<len;i++){
+                                    if(parseInt(data[i].sender_code)===parseInt(sender_code)){
+                                        console.log("好友信息1");
+                                        a++;
+                                    }
+                                }
+                                if(a===0){
+                                    console.log("好友信息2");
+                                    history_chat = JSON.parse(history_chat);
+                                    history_chat[history_chat.length] = json;
+                                    localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                                }
+                            }
+                        })();
                     }
                 });
             }
