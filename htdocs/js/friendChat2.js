@@ -491,7 +491,7 @@ $(document).ready(function(){
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black" id="playMyVoice" title="${item.content}">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black" class="playMyVoice" title="${item.content}">
                  播放语音
                  </span>
             </div>
@@ -536,7 +536,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black" id="friendPlayVoice" class="${item.content}">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black" class="friendPlayVoice" class="${item.content}">
                               语音播放
                             </span>
                    </div>
@@ -566,6 +566,7 @@ $(document).ready(function(){
                 chatPage.html(html);
                 document.body.scrollTop=chatPage.height()+100;
                 //播放自己的语音
+
                 //播放好友的语音
             }
         })();
@@ -728,6 +729,7 @@ $(document).ready(function(){
                             localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
 
                         }
+
                     }
                 },
                 error:function (data) {
@@ -960,6 +962,26 @@ $(document).ready(function(){
                                 localId:localId // 需要播放的音频的本地ID，由stopRecord接口获得
                             });
                         });
+                        // 本地存聊天记录
+                        var message_type=3;
+                        var sender=localStorage.getItem("sender_code");
+                        var time= (new Date()).toLocaleDateString();
+                        var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+localId+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
+                        console.log(json_str);
+                        var history_chats = localStorage.getItem('history_'+sender_code);
+                        if(!history_chats){
+                            history_chats = new Array();
+                            history_chats=[json_str];
+                            localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+                        }else{
+                            history_chats = JSON.parse(history_chats);
+                            history_chats[history_chats.length] = json_str;
+                            if(history_chats.length>20){
+                                history_chats.shift();
+                            }
+                            localStorage.setItem('history_'+sender,JSON.stringify(history_chats));
+
+                        }
                     }
                 });
             }
