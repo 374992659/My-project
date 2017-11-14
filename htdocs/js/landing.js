@@ -32,7 +32,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     goBack();
                     showHide(data.errmsg);
-                    window.location.href="index.html";
+                    // window.location.href="index.html";
                 }else{
                     showHide(data.errmsg)
                 }
