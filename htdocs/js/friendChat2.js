@@ -125,7 +125,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                            <span class="weui-media-box__desc" title="${data.content}" style="background:white;font-size: 13px;color:black" id="playVoiceFriend">
+                            <span class="weui-media-box__desc" title="${data.content}" style="background:white;font-size: 13px;color:black" class="playVoiceFriend">
                               语音播放                             
                             </span>
                    </div>                   
@@ -145,7 +145,8 @@ $(document).ready(function(){
                 </div>                  `;
                                 }
                                 chatPage.append(html);
-                                chatPage.on("click",".weui-media-box .weui-media-box__bd #playVoiceFriend",function(){
+                                document.body.scrollTop=chatPage.height()+100;
+                                chatPage.on("click",".weui-media-box .weui-media-box__bd .playVoiceFriend",function(){
                                     // 获取serverId
                                     var serverId=$(this).attr("title");
                                     console.log(serverId);
@@ -159,6 +160,7 @@ $(document).ready(function(){
                                             //播放语音
                                             console.log(localId);
                                             console.log("播放语音");
+                                            // 播放语音
                                             wx.playVoice({
                                                 localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
                                                 success: function(){
@@ -172,7 +174,7 @@ $(document).ready(function(){
                                         }
                                     });
                                 });
-                                document.body.scrollTop=chatPage.height()+100;
+
                                 //发送通知给服务器
                                 console.log(JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code}));
                                 var sendMessage = JSON.stringify({'apptoken':apptoken,'type':6,'account_code':current_code});
@@ -249,6 +251,40 @@ $(document).ready(function(){
                 </div>
                                 `
                                     }
+                                } else if(parseInt(item.type)===3){//语音
+                                        if(httP==="http"){//头像没有http
+                                            html+=`
+                <div class="sendHtml">
+                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                     <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                            <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;" class="friendVoice">
+                                  播放语音
+                                </span>
+                       </div>
+                    </div>
+                </div>
+                                `
+                                        }else{//头像http
+                                            html+=`
+                <div class="sendHtml">
+                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                     <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                        <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                                <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;" class="friendVoice">
+                                  播放语音
+                                </span>
+                       </div>
+                    </div>
+                </div>
+                                `
+                                        }
                                 }else{//内容为文字
                                     if(httP==="http"){
                                         html+=`
@@ -324,7 +360,25 @@ $(document).ready(function(){
                                 `
                                     }
                                 }else if(parseInt(item.type)===3){
-                                    html+=`
+                                    if(httP==="http"){
+                                        html+=`
+                            <div class="getHtml">
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                 <div class="weui-media-box weui-media-box_appmsg" id="playRecord">
+                                    <div class="weui-media-box__bd">
+                                        <span class="weui-media-box__desc right"  title="${item.content}" style="background:white;font-size: 13px;color: black;padding: 0">
+                                         语音播放
+                                        </span>
+                                    </div>
+                                    <div class="weui-media-box__hd" style="margin-left:.8em;">
+                                        <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
+                                    </div>
+                                 </div>
+                            </div>
+
+                                `
+                                    }else{
+                                        html+=`
                             <div class="getHtml">
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg" id="playRecord">
@@ -340,6 +394,7 @@ $(document).ready(function(){
                             </div>
 
                                 `
+                                    }
                                 }
                                 else{//内容为文字
                                     if(httP==="http"){
@@ -415,7 +470,7 @@ $(document).ready(function(){
                 });
                 var html="";
                 $.each(data,function(i,item){
-                    if(item.sender_code===my_code){
+                    if(item.sender_code===my_code){//自己
                         console.log("聊天记录");
                         if(parseInt(item.type)===2){
                             html+=`
@@ -431,7 +486,7 @@ $(document).ready(function(){
              </div>
          </div>
                                     `
-                        } else if(parseInt(item.type)===3){
+                        }else if(parseInt(item.type)===3){
                             html+=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -459,7 +514,7 @@ $(document).ready(function(){
                 `
                         }
 
-                    }else{
+                    }else{//好友
                         if(parseInt(item.type)===2){
                             html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -511,7 +566,6 @@ $(document).ready(function(){
                 chatPage.html(html);
                 document.body.scrollTop=chatPage.height()+100;
                 //播放自己的语音
-                $("#chatPage").on("click",".",function(){});
                 //播放好友的语音
             }
         })();
