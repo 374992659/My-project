@@ -626,7 +626,7 @@ $(document).ready(function(){
                         });
                     }else{
                         wx.stopVoice({
-                            localId: localId, // 需要停止的音频的本地ID，由stopRecord接口获得
+                            localId: id, // 需要停止的音频的本地ID，由stopRecord接口获得
                             success:function(){
                                 console.log("暂停成功");
                             },
