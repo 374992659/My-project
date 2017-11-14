@@ -523,8 +523,6 @@ $(document).ready(function(){
                 success: function (res) {
                     //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
                     serverId = res.serverId; // 返回音频的服务器端ID
-                    var chatPage=$("#chatPage");
-                    chatPage.append(html);
                     var group =localStorage.getItem("group_code");
                     var  message_type=3;
                     ws.send(JSON.stringify({"group":group,'type' : 3,'content':serverId,'apptoken':apptoken,'message_type':message_type}));
