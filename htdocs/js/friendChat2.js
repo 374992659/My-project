@@ -572,7 +572,7 @@ $(document).ready(function(){
                     console.log(id);
                     //播放本地语音
                     wx.playVoice({
-                        localId:localId, // 需要播放的音频的本地ID，由stopRecord接口获得
+                        localId:id, // 需要播放的音频的本地ID，由stopRecord接口获得
                         success:function(){
                             console.log("播放本地语音成功")
                         },
