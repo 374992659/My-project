@@ -1,5 +1,4 @@
 $(document).ready(function(){
-    var inviter_code="";
     var $_GET = (function() {
         var url = window.document.location.href.toString();
         var u = url.split("?");
@@ -15,7 +14,7 @@ $(document).ready(function(){
             return {};
         }
     })();
-    inviter_code=$_GET["inviter_code"];
+    var inviter_code=$_GET["inviter_code"];
     //alert($_GET["inviter_code"]);
     // 图片验证码刷新
     $(".refreshImg").click(function(){
