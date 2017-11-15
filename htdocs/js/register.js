@@ -55,8 +55,8 @@ $(document).ready(function(){
             data:{"data":afterDate},
             success:function(data){
                 data=jsDecodeData(data);
-                localStorage.setItem("apptoken",data.apptoken);
                 if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
                     var  cityID=$("#city option:selected").val();
                     localStorage.setItem("city_id",cityID);
                     showHide(data.errmsg);
