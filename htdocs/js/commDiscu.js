@@ -74,7 +74,7 @@ $(document).ready(function(){
                     group_num=localStorage.getItem("group_num"),
                     is_cancel=$(this).val(),
                 //数据格转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"is_cancel":1})],
+                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,})],
                     jsonEncryptData=jsEncryptData(data);
                 console.log(data);
                 $.ajax({
@@ -115,7 +115,7 @@ $(document).ready(function(){
                     group_num=localStorage.getItem("group_num"),
                     is_cancel=$(this).val(),
                 //数据格转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})],
+                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,is_cancel:1})],
                     jsonEncryptData=jsEncryptData(data);
                 console.log(data);
                 $.ajax({
