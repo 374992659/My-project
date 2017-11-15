@@ -698,7 +698,7 @@ $(document).ready(function() {
         // 数据转换
         var data=["",JSON.stringify({"apptoken":apptoken,"user_code":sender_code})];
         // 加密
-        var jsonEncryptData=jsEncryptData();
+        var jsonEncryptData=jsEncryptData(data);
         $.ajax({
             url:url+"Friends_updateFriendsInfo",
             type:"POST",
