@@ -32,7 +32,10 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var  html="";
                     if(parseInt(data.data.community_status)===2){
-                        $(".setSpeak").prop("checked",true)
+                        $(".setSpeak").prop("checked",true);
+                        $(".setSpeak").val(data.data.community_status)
+                    }else{
+                        $(".setSpeak").val(data.data.community_status)
                     }
                     $.each(data.data.Number_data,function(i,item){
                         var httP=item.portrait.split(":")[0];
