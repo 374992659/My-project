@@ -26,7 +26,7 @@ $(document).ready(function(){
                      manege="",
                      user="";
                     $.each(data.data.Number_data,function(i,item){
-                        var httP=item.portrait.split("")[0];
+                        var httP=item.portrait.split(":")[0];
                         console.log(httP);
                         if(item.role==2){
                             console.log(item);
