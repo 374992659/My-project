@@ -199,6 +199,7 @@ class RegiestController extends BaseController
             'openId'=>$openId,
             'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
             'nickname'=>$account,
+            'phone'=>'',
         ));
         //注册积分
         $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
