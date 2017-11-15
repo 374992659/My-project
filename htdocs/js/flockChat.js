@@ -35,7 +35,6 @@ $(document).ready(function(){
                             if(item.content){
                                 $.each(item.content,function(i,item){
                                     console.log(item);
-                                    var httP=item.portrait.split(":")[0];
                                     if(item.type===2){//图片、文件
                                         html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
