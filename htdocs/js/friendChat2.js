@@ -135,7 +135,6 @@ $(document).ready(function(){
                 </div>                  `;
                                         }
                                     }
-
                                     // 本地未读聊天记录
                                     var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
                                     var history_chats = localStorage.getItem('history_'+ sender_code);
