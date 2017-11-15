@@ -26,7 +26,6 @@ $(document).ready(function(){
                         console.log(group_new_message);
                         //群组新消息  已按群分组 时间倒序排列
                         $.each(group_new_message,function(i,item){
-                            group_new_messageNum+=item.count;
                             console.log("未读群消息");
                             console.log(item);
                             var group_num=item.group_num;
