@@ -186,6 +186,17 @@ class RegiestController extends BaseController
 
         //注册积分
         $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
+        $mongo->baseinfo->user_area->insert(array(
+            '_id'=>getNextId($mongo,'baseinfo','user_area'),
+            'account'=> $account,
+            'table_id'=>$area_id,
+            'status'=>1,
+            'account_code'=>$area_id.$account,
+            'openId'=>$openId,
+            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
+            'nickname'=>$account,
+            'phone'=>'',
+        ));
         $data2= array(
             'account' =>$account,
             'password' => md5(md5($password).$account),
@@ -195,7 +206,6 @@ class RegiestController extends BaseController
             'create_time' => time(),
             'total_point'=>$point['value'],
             'create_addr_code' => $area_id,
-
         );
         $this->autoBuildDatabase($account);
 //        M()->startTrans();
@@ -252,17 +262,6 @@ class RegiestController extends BaseController
             $this->account_code = $area_id.$account;
 //            M()->commit();
 //            $point_record->commit();
-            $mongo->baseinfo->user_area->insert(array(
-                '_id'=>getNextId($mongo,'baseinfo','user_area'),
-                'account'=> $account,
-                'table_id'=>$area_id,
-                'status'=>1,
-                'account_code'=>$area_id.$account,
-                'openId'=>$openId,
-                'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
-                'nickname'=>$account,
-                'phone'=>'',
-            ));
             $this->echoEncrypData(0,'注册成功');
         }else{
 //            M()->rollback();
