@@ -1,5 +1,20 @@
 $(document).ready(function(){
-    // 图片验证码刷新
+    var $_GET = (function() {
+        var url = window.document.location.href.toString();
+        var u = url.split("?");
+        if (typeof(u[1]) == "string") {
+            u = u[1].split("&");
+            var get = {};
+            for (var i in u) {
+                var j = u[i].split("=");
+                get[j[0]] = j[1];
+            }
+            return get;
+        } else {
+            return {};
+        }
+    })();
+    alert($_GET["invitor_code"]);  // 图片验证码刷新
     $(".refreshImg").click(function(){
         console.log(123);
         var timestamp = new Date().getTime();
@@ -50,9 +65,5 @@ $(document).ready(function(){
         })
 
     });
-
-
-
-
 
 });
