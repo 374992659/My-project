@@ -27,7 +27,7 @@ $(document).ready(function(){
                     console.log(data.data.Number_data);
                     $.each(data.data.Number_data,function(i,item){
                         console.log(item);
-                        if(item.role==1||item.role==2){
+                        if(item.role==2){
                             console.log(item);
                             htmlAdministrator+=`
                     <div  class="weui-media-box weui-media-box_appmsg">
