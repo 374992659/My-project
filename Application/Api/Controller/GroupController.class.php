@@ -54,7 +54,7 @@ class GroupController extends VersionController
 //       );
 //       $count = M('baseinfo.group_area')->where(['user_code'=>$this->account_code])->count();
        $mongo = new \MongoClient();
-       $count = $mongo->baseinfo->group_area->count(array('user_code'=>$this->account_code));
+       $count = $mongo->baseinfo->group_area->count(array('user_code'=>$this->account_code,'status'=>1));
        if(intval($count) >= 5){
            $this->echoEncrypData(305);
        }
