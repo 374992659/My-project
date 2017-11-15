@@ -35,104 +35,55 @@ $(document).ready(function(){
                             if(item.content){
                                 $.each(item.content,function(i,item){
                                     console.log(item);
-                                    var httP=item.sender_portrait.split(":")[0];
-                                    //显示在页面
-                                    if(item.type===2){//內容為圖片，文件
-                                        if(httP==="http"){
-                                            html=`
-                                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-        <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 80px" src="${item.content}" alt=""/>
-                 </span>
-            </div>          
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${item.sender_portrait}" alt="">
-             </div>
-         </div>
-                                    `
-                                        }else{
-                                            html=`
-                                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-        <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 80px" src="${item.content}" alt=""/>
-                 </span>
-            </div>          
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
-             </div>
-         </div>
-                                    `
-                                        }
-                                    }else if(item.type===3){//內容為語音
-                                        if(httP==="http"){
-                                            html=`
-                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-        <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${item.content}">
-                    播放语音
-                 </span>
-            </div>
-           
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="${item.sender_portrait}" alt="">
-             </div>
-         </div>
-                                                              
-                                `
-                                        }else{
-                                            html=`
-                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-        <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-             <div class="weui-media-box__bd">
-                 <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${item.content}">
-                    播放语音
-                 </span>
-            </div>
-           
-             <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
-             </div>
-         </div>
-                                                              
-                                `
-                                        }
-                                    }else{//內容為文字
-                                        if(httP==="http"){
-                                            html+=`
-                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                                    var httP=item.portrait.split(":")[0];
+                                    if(item.type===2){//图片、文件
+                                        html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${item.sender_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                             <h6>${item.sender_nickname}</h6>
-                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               ${item.content}                             
-                             </span>
-                    </div>                   
-                </div>                                 
-                                `;
-                                        }else{
-                                            html+=`
+                     <h6>${item.send_nickname}</h6>
+                            <span class="weui-media-box__desc" style="padding: 0">                            
+                              <img src="${item.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div>                  `
+                                    } else if(item.type===3){//语音
+                                        html=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                             <h6>${item.sender_nickname}</h6>
-                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                               ${item.content}                             
-                             </span>
-                    </div>                   
-                </div>                                 
-                                `;
-                                        }
+                             <h6>${item.send_nickname}</h6>
+                            <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
+                              播放语音
+                            
+                            </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                                    }else{//文字
+                                        html=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                             <h6>${item.send_nickname}</h6>
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}
+                             
+                            </span>
+                   </div>                   
+                </div> 
+                                
+                                `
                                     }
                                     // 本地未读聊天记录保存
                                     (function(){
