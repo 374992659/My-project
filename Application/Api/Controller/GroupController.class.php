@@ -141,9 +141,6 @@ class GroupController extends VersionController
         if(!$user_code || !$group_num)$this->echoEncrypData(21);
         $mongo = new \MongoClient();
         $create_data = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num));
-        $account_code = $this->account_code;
-        $group_user = new Model\GroupUserModel($create_data['user_code']);
-        $group_user->startTrans();
         if(strpos($user_code,',')){
             $arr = explode(',',$user_code);
         }else{
@@ -151,15 +148,18 @@ class GroupController extends VersionController
         }
         $res =true;
         foreach ($arr as $k=>$v){
+            $group_user = new Model\GroupUserModel($v);
+            $group_user->startTrans();
             $count = $group_user->where(['user_code'=>$v])->count();
             if(!$count){
                 $user_data = $mongo->baseinfo->user_area->findOne(array('account_code'=>$v),array('nickname','portrait'));
+
                 $result1 = $group_user->addUser($create_data['group_code'],$group_num,$create_data['group_name'],$create_data['group_portrait'],$user_code,$user_data['nickname'],$user_data['portrait'],3);  //1.将用户添加至创建人群用户表
                 $user_group = new Model\UserGroupModel($v);
                 $user_group->startTrans();
                 $result2 = $user_group->addGroup($create_data['group_name'],$create_data['group_portrait'],$create_data['group_code'],$group_num,3,$create_data['group_type'],$create_data['garden_code']);
                 if(!$result1 || !$result2){
-                    $res =false;
+                    $res = false;
                     break;
                 }
             }
