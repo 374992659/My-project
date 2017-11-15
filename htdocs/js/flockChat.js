@@ -322,7 +322,7 @@ $(document).ready(function(){
         var group=localStorage.getItem("group_code");
         var history_chat = localStorage.getItem('history_'+group);
         var my_code=localStorage.getItem("my_code");
-        console.log(typeof history_chat);
+        console.log(history_chat);
         if(history_chat){
             var history= $.parseJSON(history_chat);
             var jsonObj = eval('(' + history + ')');
