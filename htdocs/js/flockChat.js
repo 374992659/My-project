@@ -299,6 +299,7 @@ $(document).ready(function(){
                 break;
             case 8:
                 console.log(result);
+                showHide(result.errmsg);
                 break;
             case 9://历史消息
 
