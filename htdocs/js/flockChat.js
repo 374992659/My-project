@@ -35,7 +35,7 @@ $(document).ready(function(){
                             if(item.content){
                                 $.each(item.content,function(i,item){
                                     console.log(item);
-                                    if(item.type===2){//图片、文件
+                                    if(parseInt(item.type===2)){//图片、文件
                                         html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -43,13 +43,13 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                     <h6>${item.send_nickname}</h6>
+                     <h6>${item.sender_nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
                               <img src="${item.content}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `
-                                    } else if(item.type===3){//语音
+                                    } else if(parseInt(item.type)===3){//语音
                                         html=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -57,7 +57,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                             <h6>${item.send_nickname}</h6>
+                             <h6>${item.sender_nickname}</h6>
                             <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
                               播放语音
                             
@@ -74,7 +74,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                             <h6>${item.send_nickname}</h6>
+                             <h6>${item.sender_nickname}</h6>
                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                                ${item.content}
                              
