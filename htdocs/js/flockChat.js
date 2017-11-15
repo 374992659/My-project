@@ -299,8 +299,10 @@ $(document).ready(function(){
                 break;
             case 8:
                 console.log(result);
-                showHide(result.errmsg);
-                console.log(result.errmsg);
+                if(result.errmsg==="该群已被禁言"){
+                    showHide(result.errmsg);
+                }
+
                 break;
             case 9://历史消息
 
