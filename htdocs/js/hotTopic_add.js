@@ -25,7 +25,7 @@ $(document).ready(function(){
                     var allAdList="";
                     $.each(data.data,function(i,item){
                         allAdList+=`
-                        <div href="hotTopic_addCon.html" title="${item.adverse_id}"  class="adList">
+                        <div title="${item.adverse_id}"  class="adList">
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${item.title}</h4>
                                 <p class="weui-media-box__desc">${item.content}</p>
@@ -141,7 +141,7 @@ $(document).ready(function(){
         })
     });
     //跳转到所有公告详情页面存广告id
-    (".allAdList").on("click",".adList",function(){
+    $(".allAdList").on("click",".adList",function(){
         //获取广告id
         var adID=$(this).attr("title");
         console.log(adID);
