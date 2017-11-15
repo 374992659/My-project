@@ -40,15 +40,24 @@ $(document).ready(function(){
                                 var sender_nickname=item.sender_nickname;
                                 var sender_portrait=item.sender_portrait;
                                 var httP=sender_portrait.split(":")[0];
-                                $.each(item.content,function(i,item){
-                                    console.log(item.content);
-                                    var sendTime=item.send_time;
-                                    console.log(item.send_time);
-                                    console.log(item.type);
-                                    //到该页面的时候显示未读消息
+                                if(sender_code===sender_code){
+                                    $.each(item.content,function(i,item){
+                                        console.log(item.content);
+                                        html+=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${data.content}                             
+                            </span>
+                   </div>                   
+                </div>                  `;
 
-                                })
-
+                                    })
+                                }
                             });
                             //向页面添加元素
                             var chatPage=$("#chatPage");
