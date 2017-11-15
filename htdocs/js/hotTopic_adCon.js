@@ -1,16 +1,16 @@
 $(document).ready(function(){
     "use strict";
-    //»ñÈ¡apptoken
+    //è·å–apptoken
     var apptoken=localStorage.getItem("apptoken");
-    //city_id ³ÇÊĞid
+    //city_id åŸå¸‚id
     var city_id=localStorage.getItem("city_id");
-    //²ÎÊı£ºgarden_code Ğ¡Çøcode ¿ÉÌî
-    var garden_code=2017113;
-    //»ñÈ¡¹ã¸æid
+    //å‚æ•°ï¼šgarden_code å°åŒºcode å¯å¡«
+    var garden_code=2701113;
+    //è·å–å¹¿å‘Šid
     var adID=localStorage.getItem("adID");
-    //Êı¾İ¸ñÊ½×ª»»
-   var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code})];
-    //¼ÓÃÜ
+    //æ•°æ®æ ¼å¼è½¬æ¢
+    var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code})];
+    //åŠ å¯†
     var jsonEncryptData=jsEncryptData(data);
     console.log(data);
     $.ajax({
@@ -18,7 +18,7 @@ $(document).ready(function(){
         type:"POST",
         data:{"data":jsonEncryptData},
         success:function(data){
-            //½âÃÜ
+            //è§£å¯†
             var data=jsDecodeData(data);
             console.log(data);
             var html="";
@@ -31,13 +31,13 @@ $(document).ready(function(){
                ${item.content}
             </p>
             <ul class="weui-media-box__info" style="font-size: 12px">
-                <li class="weui-media-box__info__meta">ÎÄ×ÖÀ´Ô´ <span>ÀîËÄ</span></li>
-                <li class="weui-media-box__info__meta">Ê±¼ä <span>${item.create_time}</span></li>
+                <li class="weui-media-box__info__meta">æ–‡å­—æ¥æº <span>æå››</span></li>
+                <li class="weui-media-box__info__meta">æ—¶é—´ <span>${item.create_time}</span></li>
             </ul>
             <ul class="weui-media-box__info share" style="font-size: 12px;color: blue;text-align: right">
-                <li class="weui-media-box__info__meta">·ÖÏí</li>
-                <li class="weui-media-box__info__meta">·ÖÏíÁ¿ <span>2017.12.05</span></li>
-                <li class="weui-media-box__info__meta">ÔÄ¶ÁÁ¿ <span>1</span></li>
+                <li class="weui-media-box__info__meta">åˆ†äº«</li>
+                <li class="weui-media-box__info__meta">åˆ†äº«é‡ <span>2017.12.05</span></li>
+                <li class="weui-media-box__info__meta">é˜…è¯»é‡ <span>1</span></li>
             </ul>
                     `;
                 }
