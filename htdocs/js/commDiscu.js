@@ -66,7 +66,7 @@ $(document).ready(function(){
     $(".setSpeak").click(function(){
         var val=$(this).val();
         console.log($(".setSpeak").val());
-        if(parseInt(val)===1){//设置禁言判断
+        if(parseInt($(".setSpeak").val())===1){//设置禁言判断
             if(confirm("确认禁言")){
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
@@ -107,7 +107,7 @@ $(document).ready(function(){
             }else{
                 $(this).prop("checked",false);
             }
-        }else if(parseInt(val)===0){//取消禁言判断
+        }else if(parseInt($(".setSpeak").val())===0){//取消禁言判断
             if(confirm("取消禁言")){
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
