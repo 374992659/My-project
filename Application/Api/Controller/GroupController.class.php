@@ -218,6 +218,7 @@ class GroupController extends VersionController
         }
         $model  = new Model\UserGroupModel($this->account_code);
         $res = $model->where(['group_num'=>$group_num])->save(['status'=>2]);
+        $mongo->baseinfo->group_area->update(array('group_num'=>$group_num),array('$set'=>array('status'=>2)));
         if($res){
             $this->echoEncrypData(0);
         }else{
