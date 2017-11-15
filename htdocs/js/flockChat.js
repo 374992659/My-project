@@ -24,6 +24,7 @@ $(document).ready(function(){
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                         console.log("群消息");
                         console.log(group_new_message);
+                        var html="";
                         //群组新消息  已按群分组 时间倒序排列
                         $.each(group_new_message,function(i,item){
                             console.log("未读群消息");
@@ -31,11 +32,11 @@ $(document).ready(function(){
                             var group_num=item.group_num;
                             var group_code=item.group_code;
                             var group_portrait=item.group_portrait;
-                            var html="";
+
                             if(item.content){
                                 $.each(item.content,function(i,item){
                                     //显示在页面
-                                    html=`
+                                    html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -50,7 +51,7 @@ $(document).ready(function(){
                 </div>                                 
                                 `;
                                     // 本地未读聊天记录保存
-                                    (function (){
+                                    (function(){
                                         var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+item.sender_portrait+"'}";
                                         console.log(json_str);
                                         var history_chats = localStorage.getItem('history_'+group_code);
@@ -68,11 +69,13 @@ $(document).ready(function(){
                                         }
                                     })();
                                     //保存聊天的好友资料
-
                                 })
                             }
-
-                        })
+                        });
+                        //向页面添加元素
+                        var chatPage=$("#chatPage");
+                        chatPage.append(html);
+                        document.body.scrollTop=chatPage.height()+100;
                     }
                     var friends_new_apply = data.friends_new_apply;
                     if(friends_new_apply){                      //用户添加好友的申请

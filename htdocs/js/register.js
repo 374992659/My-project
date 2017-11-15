@@ -54,13 +54,13 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":afterDate},
             success:function(data){
-                data=jsDecodeData( data );
+                data=jsDecodeData(data);
                 localStorage.setItem("apptoken",data.apptoken);
                 if(data.errcode===0){
                     var  cityID=$("#city option:selected").val();
                     localStorage.setItem("city_id",cityID);
-                   showHide(data.errmsg);
-                   window.location.href="index.html";
+                    showHide(data.errmsg);
+                    window.location.href="index.html";
                 }else{
                     showHide(data.errmsg);
                 }
