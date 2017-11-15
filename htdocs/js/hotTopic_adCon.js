@@ -7,12 +7,12 @@ $(document).ready(function(){
     //获取广告id
     var adID=localStorage.getItem("adID");
     //数据格式转换
-    var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code})];
+    var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
     //加密
-    var jsonEncryptData=jsEncryptData(data);
+        jsonEncryptData=jsEncryptData(data);
     console.log(data);
     $.ajax({
-        url:url+"Subject_getAdList",
+        url:url+"Subject_getMyAdList",
         type:"POST",
         data:{"data":jsonEncryptData},
         success:function(data){
