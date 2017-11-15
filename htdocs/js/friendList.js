@@ -688,13 +688,31 @@ $(document).ready(function() {
     });
     // 点击好友跳转到聊天页面
     $(".group").on("click",".skipChat",function(){
-        console.log(123);
+        var apptoken=localStorage.getItem("apptoken");
         //好友名字
         var sender_name=$(this).find("h4").text();
         // 获取好友code
         var sender_code=$(this).attr("title"),
         // 头像
             header=$(this).find("img").attr("src");
+        // 数据转换
+        var data=["",JSON.stringify({"apptoken":apptoken,"user_code":sender_code})];
+        // 加密
+        var jsonEncryptData=jsEncryptData();
+        $.ajax({
+            url:url+"Friends_updateFriendsInfo",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken)
+                }
+            },
+            error:function(){}
+        });
         // 存本地
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
