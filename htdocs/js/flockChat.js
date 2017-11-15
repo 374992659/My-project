@@ -36,7 +36,7 @@ $(document).ready(function(){
                                 $.each(item.content,function(i,item){
                                     console.log(item);
                                     if(parseInt(item.type===2)){//图片、文件
-                                        html=`
+                                        html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -50,7 +50,7 @@ $(document).ready(function(){
                    </div>                   
                 </div>                  `
                                     } else if(parseInt(item.type)===3){//语音
-                                        html=`
+                                        html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -67,7 +67,7 @@ $(document).ready(function(){
                                 
                                 `
                                     }else{//文字
-                                        html=`
+                                        html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
