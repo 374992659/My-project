@@ -42,8 +42,78 @@ $(document).ready(function(){
                                 var httP=sender_portrait.split(":")[0];
                                 if(sender_code===sender_code){
                                     $.each(item.content,function(i,item){
-                                        console.log(item.content);
-                                        html+=`
+                                        if(item.type===2){//内容为文件、图片
+                                            if(httP==="http"){
+                                                html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="padding: 0">                              
+                              <img src="${item.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div>                  `;
+                                            }else{
+                                                html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="padding: 0">                              
+                              <img src="${item.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div>                  `;
+                                            }
+                                        } else if(item.type===3){//内容为语音
+                                            if(httP==="http"){
+                                                html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc playVoiceFriend" title="${item.content}" style="background:white;font-size: 13px;color:black" >
+                              语音播放                             
+                            </span>
+                   </div>                   
+                </div>                  `;
+                                            }else{
+                                                html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc playVoiceFriend" title="${item.content}" style="background:white;font-size: 13px;color:black" >
+                              语音播放                             
+                            </span>
+                   </div>                   
+                </div>                  `;
+                                            }
+                                        }else{//内容为文字
+                                            if(httP==="http"){
+                                                html+=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}                             
+                            </span>
+                   </div>                   
+                </div>                  `;
+                                            }else{
+                                                html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
@@ -55,6 +125,11 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
+                                            }
+                                        }
+
+                                        console.log(item.content);
+
                                         //把未读消息保存本地
                                         (function(){
                                             var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
@@ -72,7 +147,40 @@ $(document).ready(function(){
                                                 }
                                                 localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
                                             }
-                                        })()
+                                        })();
+                                        //保存好友资料
+                                        (function(){
+                                            var history_chat = localStorage.getItem("friend_info");
+                                            var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
+                                            if(!history_chat){
+                                                var history_chat = new Array();
+                                                history_chat=[json];
+                                                localStorage.setItem("friend_info",JSON.stringify(history_chat));
+                                            }else {
+                                                var history= $.parseJSON(history_chat);
+                                                var jsonObj = eval('('+history+')');
+                                                console.log(jsonObj);
+                                                data=[];
+                                                $.each(history,function(i,item){
+                                                    var jsonObj = eval('('+item+')');
+                                                    data[i]=jsonObj;
+                                                });
+                                                console.log(data);
+                                                var a=0;
+                                                for(var i=0,len=data.length;i<len;i++){
+                                                    if(parseInt(data[i].sender_code)===parseInt(result.data.sender_code)){
+                                                        console.log("好友信息1");
+                                                        a++;
+                                                    }
+                                                }
+                                                if(a===0){
+                                                    console.log("好友信息2");
+                                                    history_chat = JSON.parse(history_chat);
+                                                    history_chat[history_chat.length] = json;
+                                                    localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                                                }
+                                            }
+                                        })();
                                     })
                                 }
                             });
