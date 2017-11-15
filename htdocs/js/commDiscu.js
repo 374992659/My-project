@@ -66,7 +66,7 @@ $(document).ready(function(){
     $(".setSpeak").click(function(){
         var val=$(this).val();
         console.log($(".setSpeak").val());
-        if(parseInt($(".setSpeak").val())===0){//设置禁言判断
+        if(parseInt($(".setSpeak").val())===1){//设置禁言判断
             if(confirm("确认禁言")){
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
@@ -74,7 +74,7 @@ $(document).ready(function(){
                     group_num=localStorage.getItem("group_num"),
                     is_cancel=$(this).val(),
                 //数据格转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,})],
+                    data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})],
                     jsonEncryptData=jsEncryptData(data);
                 console.log(data);
                 $.ajax({
@@ -107,7 +107,7 @@ $(document).ready(function(){
             }else{
                 $(this).prop("checked",false);
             }
-        }else if(parseInt($(".setSpeak").val())===1){//取消禁言判断
+        }else if(parseInt($(".setSpeak").val())===0){//取消禁言判断
             if(confirm("取消禁言")){
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
