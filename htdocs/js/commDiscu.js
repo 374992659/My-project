@@ -35,11 +35,21 @@ $(document).ready(function(){
                         $(".setSpeak").prop("checked",true)
                     }
                     $.each(data.data.Number_data,function(i,item){
-                        html+=`
+                        var httP=item.portrait.split(":")[0];
+                        if(httP==="http"){
+                            html+=`
+                         <li class="lf">
+                          <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
+                      </li>
+                        `
+                        }else{
+                            html+=`
                          <li class="lf">
                           <img style="width: 35px;height: 35px" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
                       </li>
                         `
+                        }
+
                     });
                     $(".flockMember").prepend(html);
                     $(".userMember").html(data.data.Number_data.length);
