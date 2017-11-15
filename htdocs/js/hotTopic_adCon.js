@@ -1,11 +1,9 @@
 $(document).ready(function(){
     "use strict";
     //获取apptoken
-    var apptoken=localStorage.getItem("apptoken");
-    //city_id 城市id
-    var city_id=localStorage.getItem("city_id");
-    //参数：garden_code 小区code 可填
-    var garden_code="2701113";
+    var apptoken=localStorage.getItem("apptoken"),
+        city_id=localStorage.getItem("city_id"),
+        garden_code="2701113";
     //获取广告id
     var adID=localStorage.getItem("adID");
     //数据格式转换
