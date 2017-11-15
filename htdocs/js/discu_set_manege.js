@@ -26,10 +26,12 @@ $(document).ready(function(){
                     var htmlMember="";
                     console.log(data.data.Number_data);
                     $.each(data.data.Number_data,function(i,item){
+                        var httP=item.portrait.split(":")[0];
                         console.log(item);
                         if(item.role==2){
                             console.log(item);
-                            htmlAdministrator+=`
+                            if(httP==="http"){
+                                htmlAdministrator+=`
                     <div  class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.portrait}">
@@ -40,9 +42,25 @@ $(document).ready(function(){
                         <button class="cancelBtn" title="${item.user_code}">撤销</button>
                     </div>
                     `;
-                            manegeNum=i+1;
-                        }else{
-                            htmlMember+=`
+                                manegeNum=i+1;
+                            }else{
+                                htmlAdministrator+=`
+                    <div  class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.nickname}</h4>                           
+                        </div>
+                        <button class="cancelBtn" title="${item.user_code}">撤销</button>
+                    </div>
+                    `;
+                                manegeNum=i+1;
+                            }
+
+                        }else if(item.role==3){
+                            if(httP==="http"){
+                                htmlMember+=`
                     <div  class="weui-media-box weui-media-box_appmsg">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${item.portrait}">
@@ -54,7 +72,22 @@ $(document).ready(function(){
                         <button class="addBtn" title="${item.user_code}">添加</button>
                     </div>
                         `;
-                            ueserNum=i+1;
+                                ueserNum=i+1;
+                            }else{
+                                htmlMember+=`
+                    <div  class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.nickname}</h4>
+                          
+                        </div>
+                        <button class="addBtn" title="${item.user_code}">添加</button>
+                    </div>
+                        `;
+                                ueserNum=i+1;
+                            }
                         }
                     });
                     $(".administrator").html(htmlAdministrator);
