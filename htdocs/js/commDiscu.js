@@ -110,7 +110,7 @@ $(document).ready(function(){
             }else{
                 $(this).prop("checked",false);
             }
-        }else if(parseInt($(".setSpeak").val())===0){//取消禁言判断
+        }else if(parseInt($(".setSpeak").val())===2){//取消禁言判断
             if(confirm("取消禁言")){
                 //获取apptoken
                 var apptoken=localStorage.getItem("apptoken"),
