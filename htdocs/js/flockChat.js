@@ -31,8 +31,24 @@ $(document).ready(function(){
                             var group_num=item.group_num;
                             var group_code=item.group_code;
                             var group_portrait=item.group_portrait;
+                            var html="";
                             if(item.content){
                                 $.each(item.content,function(i,item){
+                                    //显示在页面
+                                    html=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                             <h6>${item.sender_nickname}</h6>
+                             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}                             
+                             </span>
+                    </div>                   
+                </div>                                 
+                                `;
                                     // 本地未读聊天记录保存
                                     (function (){
                                         var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+item.sender_portrait+"'}";
@@ -55,6 +71,7 @@ $(document).ready(function(){
 
                                 })
                             }
+
                         })
                     }
                     var friends_new_apply = data.friends_new_apply;
