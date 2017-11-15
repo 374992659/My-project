@@ -558,9 +558,7 @@ $(document).ready(function(){
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
-                    </div>
-                   
-                   
+                    </div>                                     
                     <div class="weui-media-box__bd">
                      <h6>${item.nickname}</h6>
                         <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
@@ -571,10 +569,7 @@ $(document).ready(function(){
                                 
                                 `
                             }
-
                         }
-
-
                     }else{//内容为文字
                         if(httP==="http"){
                             html+=`
