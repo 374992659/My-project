@@ -65,7 +65,7 @@ $(document).ready(function(){
     //设置禁言
     $(".setSpeak").click(function(){
         var val=$(this).val();
-        console.log(val);
+        console.log($(".setSpeak").val());
         if(parseInt(val)===1){//设置禁言判断
             if(confirm("确认禁言")){
                 //获取apptoken
