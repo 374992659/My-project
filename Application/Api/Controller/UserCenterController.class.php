@@ -92,6 +92,7 @@ class UserCenterController extends VersionController
             $mongo->baseinfo->user_area->update(array('account_code'=>$account_code),array('$set'=>array(
                 'portrait'=>$portrait,
                 'nickname'=>$nickname,
+                'phone'=>$this->pdata['phone'],
             )));
             $this->echoEncrypData(0);
         }
