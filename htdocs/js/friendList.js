@@ -73,25 +73,25 @@ $(document).ready(function() {
             (function(){
                 console.log(result.errmsg);
                 if(result.errmsg==="群消息"){
-                        // 本地未读聊天记录
-                        //var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.send_nickname+"','portrait':'"+ "http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
-                        //console.log(json_str);
-                        //var history_chats = localStorage.getItem('history_'+result.data.group);
-                        //if(!history_chats){
-                        //    var history_chats = new Array();
-                        //    history_chats=[json_str];
-                        //    localStorage.setItem('history_'+result.data.group,JSON.stringify(history_chats));
-                        //}else{
-                        //    history_chats = JSON.parse(history_chats);
-                        //    history_chats[history_chats.length] = json_str;
-                        //    console.log("输出数组长度");
-                        //    console.log(history_chats.length);
-                        //    if(history_chats.length>20){
-                        //        history_chats.shift();
-                        //    }
-                        //    console.log(history_chats);
-                        //    localStorage.setItem('history_' + result.data.group, JSON.stringify(history_chats));
-                        //}
+                        //本地未读聊天记录
+                        var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.send_nickname+"','portrait':'"+ "http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
+                        console.log(json_str);
+                        var history_chats = localStorage.getItem('history_'+result.data.group);
+                        if(!history_chats){
+                           var history_chats = new Array();
+                           history_chats=[json_str];
+                           localStorage.setItem('history_'+result.data.group,JSON.stringify(history_chats));
+                        }else{
+                           history_chats = JSON.parse(history_chats);
+                           history_chats[history_chats.length] = json_str;
+                           console.log("输出数组长度");
+                           console.log(history_chats.length);
+                           if(history_chats.length>20){
+                               history_chats.shift();
+                           }
+                           console.log(history_chats);
+                           localStorage.setItem('history_' + result.data.group, JSON.stringify(history_chats));
+                        }
                 }else if(result.errmsg==="好友消息"){
                     // 本地未读聊天记录
                     var json_str = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
