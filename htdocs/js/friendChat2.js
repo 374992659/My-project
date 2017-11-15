@@ -40,7 +40,6 @@ $(document).ready(function(){
                                 var sender_nickname=item.sender_nickname;
                                 var sender_portrait=item.sender_portrait;
                                 var httP=sender_portrait.split(":")[0];
-
                                 $.each(item.content,function(i,item){
                                     console.log(item.content);
                                     var sendTime=item.send_time;
@@ -98,7 +97,7 @@ $(document).ready(function(){
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc playVoiceFriend" title="${data.content}" style="background:white;font-size: 13px;color:black" >
@@ -136,7 +135,6 @@ $(document).ready(function(){
                 </div>                  `;
                                         }
                                     }
-
 
                                     // 本地未读聊天记录
                                     var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
@@ -202,7 +200,7 @@ $(document).ready(function(){
                                     })();
                                 })
 
-                            })
+                            });
                             //向页面添加元素
                             var chatPage=$("#chatPage");
                             chatPage.append(html);
