@@ -32,7 +32,6 @@ $(document).ready(function(){
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){//好友新消息  已按用户分组 时间倒序排列
                             $.each(friends_new_message,function(i,item){
-                                friends_new_messageNum+=item.message_num;
                                 // 存在本地的聊天记录
                                 console.log("未读好友消息");
                                 console.log(item);
