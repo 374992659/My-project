@@ -194,7 +194,8 @@ class RegiestController extends BaseController
             'account_code' => $area_id.$account,
             'create_time' => time(),
             'total_point'=>$point['value'],
-            'create_addr_code' => $area_id
+            'create_addr_code' => $area_id,
+
         );
         $this->autoBuildDatabase($account);
 //        M()->startTrans();

@@ -20,7 +20,7 @@ CREATE TABLE  if not exists `user_info_$city_id` (
   `create_addr_code` int(10) unsigned NOT NULL COMMENT '注册地的区域id',
   `sex` tinyint(1) DEFAULT '0' COMMENT '性别 0：保密 1：男 2：女',
   `total_point` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '总积分',
-  `id_card_ num` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '身份证编号',
+  `id_card_ num` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '身份证编号',
   `role` tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_code` (`account_code`)
