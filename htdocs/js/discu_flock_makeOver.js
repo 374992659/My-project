@@ -26,9 +26,11 @@ $(document).ready(function(){
                      manege="",
                      user="";
                     $.each(data.data.Number_data,function(i,item){
-                        if(item.role==1||item.role==2){
+                        var httP=item.portrait.split("")[0];
+                        if(item.role==2){
                             console.log(item);
-                            manege+=`
+                            if(httP==="http"){
+                                manege+=`
                 <div class="weui-cells weui-cells_checkbox ">
                     <label class="weui-cell weui-check__label" for="${item.user_code}">
                         <div class="weui-cell__hd">
@@ -51,9 +53,60 @@ $(document).ready(function(){
                     </label>
                 </div>
                     `;
-                            manegeNum=i+1;
-                        }else{
-                            user+=`
+                                manegeNum=i+1;
+                            }else{
+                                manege+=`
+                <div class="weui-cells weui-cells_checkbox ">
+                    <label class="weui-cell weui-check__label" for="${item.user_code}">
+                        <div class="weui-cell__hd">
+                            <input type="radio" class="weui-check" name="checkbox1" id="${item.user_code}" >
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-panel__bd">
+                                <div  class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">${item.nickname}</h4>
+                                        <p class="weui-media-box__desc"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                    `;
+                                manegeNum=i+1;
+                            }
+                        }else if(item.role==3){
+                            if(httP==="http"){
+                                user+=`
+                <div class="weui-cells weui-cells_checkbox ">
+                    <label class="weui-cell weui-check__label" for="${item.user_code}">
+                        <div class="weui-cell__hd">
+                            <input type="radio" class="weui-check" name="checkbox1" id="${item.user_code}" >
+                            <i class="weui-icon-checked"></i>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <div class="weui-panel__bd">
+                                <div  class="weui-media-box weui-media-box_appmsg">
+                                    <div class="weui-media-box__hd">
+                                        <img class="weui-media-box__thumb" src="${item.portrait}">
+                                    </div>
+                                    <div class="weui-media-box__bd">
+                                        <h4 class="weui-media-box__title">${item.nickname}</h4>                                                        <p class="weui-media-box__desc"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+                        `;
+                                ueserNum=i+1;
+                            }else{
+                                user+=`
                 <div class="weui-cells weui-cells_checkbox ">
                     <label class="weui-cell weui-check__label" for="${item.user_code}">
                         <div class="weui-cell__hd">
@@ -75,7 +128,9 @@ $(document).ready(function(){
                     </label>
                 </div>
                         `;
-                            ueserNum=i+1;
+                                ueserNum=i+1;
+                            }
+
                         }
                     });
                     $(".manegeList").html(manege);
