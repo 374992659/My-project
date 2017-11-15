@@ -25,12 +25,12 @@ $(document).ready(function(){
                     var allAdList="";
                     $.each(data.data,function(i,item){
                         allAdList+=`
-                        <a href="hotTopic_addCon.html" title="${item.adverse_id}"  class="adList">
+                        <div href="hotTopic_addCon.html" title="${item.adverse_id}"  class="adList">
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${item.title}</h4>
                                 <p class="weui-media-box__desc">${item.content}</p>
                             </div>
-                        </a>
+                        </div>
                         `
                     });
                     $(".allAdList").append(allAdList)
@@ -140,5 +140,12 @@ $(document).ready(function(){
 
         })
     });
-    //跳转到公告详情页面存广告id
+    //跳转到所有公告详情页面存广告id
+    (".allAdList").on("click",".adList",function(){
+        //获取广告id
+        var adID=$(this).attr("title");
+        //存在本地跳转下一个详情页面判断用
+        localStorage.setItem("adID",adID);
+        window.location.href="hotTopic_addCon.html";
+    });
 });
