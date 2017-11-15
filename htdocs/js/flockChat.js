@@ -32,16 +32,16 @@ $(document).ready(function(){
                             var group_num=item.group_num;
                             var group_code=item.group_code;
                             var group_portrait=item.group_portrait;
-
                             if(item.content){
                                 $.each(item.content,function(i,item){
+                                    console.log(item);
                                     var httP=item.sender_portrait.split(":")[0];
                                     //显示在页面
                                     if(item.type===2){//內容為圖片，文件
                                         if(httP==="http"){
                                             html=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
                     <img style="width: 80px" src="${item.content}" alt=""/>
@@ -55,7 +55,7 @@ $(document).ready(function(){
                                         }else{
                                             html=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
                     <img style="width: 80px" src="${item.content}" alt=""/>
@@ -71,7 +71,7 @@ $(document).ready(function(){
                                         if(httP==="http"){
                                             html=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${item.content}">
                     播放语音
@@ -87,7 +87,7 @@ $(document).ready(function(){
                                         }else{
                                             html=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-        <div class="weui-media-box weui-media-box_appmsg">
+        <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${item.content}">
                     播放语音
