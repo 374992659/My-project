@@ -14,7 +14,7 @@ $(document).ready(function(){
             return {};
         }
     })();
-    alert($_GET["invitor_code"]);  // 图片验证码刷新
+    alert($_GET["inviter_code"]);  // 图片验证码刷新
     $(".refreshImg").click(function(){
         console.log(123);
         var timestamp = new Date().getTime();
