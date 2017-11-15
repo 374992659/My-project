@@ -93,7 +93,7 @@ $(document).ready(function(){
                             $(document).on('click','#show-success',function(){
                                 $.toptip(data.errmsg, 'success');
                             });
-                            $(".setSpeak").attr("value",0);
+                            $(".setSpeak").attr("value",2);
                             success.html(data.errmsg);
                             show();
                             setTimeout(hide,3000);
