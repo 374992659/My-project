@@ -55,7 +55,24 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
-
+                                        //把未读消息保存本地
+                                        (function(){
+                                            var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
+                                            console.log(json_str);
+                                            var history_chats = localStorage.getItem('history_'+sender_code);
+                                            if(!history_chats){
+                                                history_chat = new Array();
+                                                history_chats=[json_str];
+                                                localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
+                                            }else{
+                                                history_chats = JSON.parse(history_chats);
+                                                history_chats[history_chats.length] = json_str;
+                                                if(history_chats.length>20){
+                                                    history_chats.shift();
+                                                }
+                                                localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
+                                            }
+                                        })()
                                     })
                                 }
                             });
