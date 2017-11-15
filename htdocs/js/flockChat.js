@@ -300,6 +300,7 @@ $(document).ready(function(){
             case 8:
                 console.log(result);
                 showHide(result.errmsg);
+                console.log(result.errmsg);
                 break;
             case 9://历史消息
 
