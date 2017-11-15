@@ -184,10 +184,10 @@ class RegiestController extends BaseController
             $this->echoEncrypData(1,'该账号已被注册');
         }
         if(md5($password) !== md5($repassword))$this->echoEncrypData(1,'请确认两次密码输入一致');
-        $data1 = array(
-            'account' =>$account,
-            'table_id' => $area_id
-        );
+//        $data1 = array(
+//            'account' =>$account,
+//            'table_id' => $area_id
+//        );
 //        $res1=M()->table('baseinfo.user_area')->add($data1);
         $mongo = new \MongoClient();
         $mongo->baseinfo->user_area->insert(array(
