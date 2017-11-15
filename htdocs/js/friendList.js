@@ -709,16 +709,16 @@ $(document).ready(function() {
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    localStorage.setItem("sender_code",sender_code);
-                    localStorage.setItem("header",header);
-                    localStorage.setItem("sender_name",sender_name);
-                    window.location.href="friendChat.html";
+
                 }
             },
             error:function(){}
         });
         // 存本地
-
+        localStorage.setItem("sender_code",sender_code);
+        localStorage.setItem("header",header);
+        localStorage.setItem("sender_name",sender_name);
+        window.location.href="friendChat.html";
     });
     //搜索好友跳转到聊天页面
     $(".keyFriend").on("click",".skipChat",function(){
