@@ -164,8 +164,8 @@ $(document).ready(function(){
             var apptoken=localStorage.getItem("apptoken"),
             // 获取群号码
                 group_num=localStorage.getItem("group_num");
-             $("input[type=checkbox]:checked").val().each(function(i,item){
-                 console.log(item);
+             $("input[type=checkbox]:checked").each(function(i,item){
+                    console.log(item);
              });
 
             //数据格式转换
