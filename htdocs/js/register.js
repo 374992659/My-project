@@ -43,7 +43,7 @@ $(document).ready(function(){
         var  code=$(".code").val();
         var openId=localStorage.getItem("openId");
         // 数据加密
-    info=['', JSON.stringify({"openId":openId,"account":numeber,"area_id":area_id,"password":password,'repassword':repassword,"apptoken":apptoken,"piccode":code,"inviter_code":inviter_code,"coedd":inviter_code})];
+    info=['', JSON.stringify({"openId":openId,"account":numeber,"area_id":area_id,"password":password,'repassword':repassword,"apptoken":apptoken,"piccode":code,"inviter_code":5,"coedd":inviter_code})];
         console.log(info);
         // 加密后的数据
         var afterDate=jsEncryptData(info);
