@@ -31,180 +31,180 @@ $(document).ready(function(){
                        // localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){//好友新消息  已按用户分组 时间倒序排列
-                //             $.each(friends_new_message,function(i,item){
-                //                 // 存在本地的聊天记录
-                //                 console.log("未读好友消息");
-                //                 console.log(item);
-                //                 var sender_code=item.sender_code;
-                //                 var sender_nickname=item.sender_nickname;
-                //                 var sender_portrait=item.sender_portrait;
-                //                 var httP=sender_portrait.split(":")[0];
-                //                 var html="";
-                //                 $.each(item.content,function(i,item){
-                //                     console.log(item.content);
-                //                     var sendTime=item.send_time;
-                //                     console.log(item.send_time);
-                //                     console.log(item.type);
-                //                     //到该页面的时候显示未读消息
-                //                     if(item.type===2){//消息内容为图片、文件
-                //                         if(httP==="http"){
-                //                             html=`
-                //                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //             <span class="weui-media-box__desc" style="padding: 0">
-                //               <img src="${item.content}" alt="" style="width: 80px">
-                //             </span>
-                //    </div>
-                // </div>
-                //
-                //                    `;
-                //                         }else{
-                //                             html=`
-                //                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //             <span class="weui-media-box__desc" style="padding: 0">
-                //               <img src="${data.content}" alt="" style="width: 80px">
-                //             </span>
-                //    </div>
-                // </div>
-                //
-                //                    `;
-                //                         }
-                //                     }else if(item.type===3){//消息内容为语音
-                //                         if(httP==="http"){
-                //                             html=`
-                // <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //             <span class="weui-media-box__desc playVoiceFriend" title="${item.content}" style="background:white;font-size: 13px;color:black" >
-                //               语音播放
-                //             </span>
-                //    </div>
-                // </div>                  `;
-                //                         }else{
-                //                             html=`
-                // <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //             <span class="weui-media-box__desc playVoiceFriend" title="${data.content}" style="background:white;font-size: 13px;color:black" >
-                //               语音播放
-                //             </span>
-                //    </div>
-                // </div>                  `;
-                //                         }
-                //                     }else{//消息内容为文字
-                //                         if(httP==="http"){
-                //                             html=`
-                // <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                //                ${item.content}
-                //             </span>
-                //    </div>
-                // </div>                  `;
-                //                         }else{
-                //                             html=`
-                // <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                // <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                //     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                //         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
-                //     </div>
-                //     <div class="weui-media-box__bd">
-                //             <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
-                //                ${item.content}
-                //             </span>
-                //    </div>
-                // </div>                  `;
-                //                         }
-                //                     }
-                //
-                //
-                //                     // 本地未读聊天记录
-                //                     var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
-                //                     var history_chats = localStorage.getItem('history_'+ sender_code);
-                //                     if(!history_chats){
-                //                         var history_chats = new Array();
-                //                         history_chats=[json_str];
-                //                         localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
-                //                     }else{ history_chats = JSON.parse(history_chats);
-                //                         var jsonObj = eval('('+history_chats+')');
-                //                         console.log(jsonObj);
-                //                         data=[];
-                //                         $.each(history_chats,function(i,item){
-                //                             var jsonObj = eval('('+item+')');
-                //                             data[i]=jsonObj;
-                //                         });
-                //                         console.log(data);
-                //                         console.log("判断是否存入同一时间发送的内容");
-                //                         for(var i=0,len=data.length;i<len;i++){
-                //                             if(!data[i].send_time===sendTime){
-                //                                 history_chats[history_chats.length] = json_str;
-                //                                 if(history_chats.length>20){
-                //                                     history_chats.shift();
-                //                                 }
-                //                                 localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
-                //                             }
-                //                         }
-                //
-                //
-                //                     }
-                //                     // 保存聊天的好友资料
-                //                     (function(){
-                //                         var history_chat = localStorage.getItem("friend_info");
-                //                         var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
-                //                         if(!history_chat){
-                //                             var history_chat = new Array();
-                //                             history_chat=[json];
-                //                             localStorage.setItem("friend_info",JSON.stringify(history_chat));
-                //                         }else {
-                //                             var history= $.parseJSON(history_chat);
-                //                             var jsonObj = eval('('+history+')');
-                //                             console.log(jsonObj);
-                //                             data=[];
-                //                             $.each(history,function(i,item){
-                //                                 var jsonObj = eval('('+item+')');
-                //                                 data[i]=jsonObj;
-                //                             });
-                //                             console.log(data);
-                //                             var a=0;
-                //                             for(var i=0,len=data.length;i<len;i++){
-                //                                 if(parseInt(data[i].sender_code)===parseInt(sender_code)){
-                //                                     console.log("好友信息1");
-                //                                     a++;
-                //                                 }
-                //                             }
-                //                             if(a===0){
-                //                                 console.log("好友信息2");
-                //                                 history_chat = JSON.parse(history_chat);
-                //                                 history_chat[history_chat.length] = json;
-                //                                 localStorage.setItem("friend_info", JSON.stringify(history_chat));
-                //                             }
-                //                         }
-                //                     })();
-                //                 });
-                //                 //向页面添加元素
-                //                 var chatPage=$("#chatPage");
-                //                 chatPage.append(html);
-                //                 document.body.scrollTop=chatPage.height()+100;
-                //             })
+                            $.each(friends_new_message,function(i,item){
+                                // 存在本地的聊天记录
+                                console.log("未读好友消息");
+                                console.log(item);
+                                var sender_code=item.sender_code;
+                                var sender_nickname=item.sender_nickname;
+                                var sender_portrait=item.sender_portrait;
+                                var httP=sender_portrait.split(":")[0];
+                                var html="";
+                                $.each(item.content,function(i,item){
+                                    console.log(item.content);
+                                    var sendTime=item.send_time;
+                                    console.log(item.send_time);
+                                    console.log(item.type);
+                                    //到该页面的时候显示未读消息
+                                    if(item.type===2){//消息内容为图片、文件
+                                        if(httP==="http"){
+                                            html=`
+                                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="padding: 0">
+                              <img src="${item.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>
+                </div>
+
+                                   `;
+                                        }else{
+                                            html=`
+                                   <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="padding: 0">
+                              <img src="${data.content}" alt="" style="width: 80px">
+                            </span>
+                   </div>
+                </div>
+
+                                   `;
+                                        }
+                                    }else if(item.type===3){//消息内容为语音
+                                        if(httP==="http"){
+                                            html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc playVoiceFriend" title="${item.content}" style="background:white;font-size: 13px;color:black" >
+                              语音播放
+                            </span>
+                   </div>
+                </div>                  `;
+                                        }else{
+                                            html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc playVoiceFriend" title="${data.content}" style="background:white;font-size: 13px;color:black" >
+                              语音播放
+                            </span>
+                   </div>
+                </div>                  `;
+                                        }
+                                    }else{//消息内容为文字
+                                        if(httP==="http"){
+                                            html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}
+                            </span>
+                   </div>
+                </div>                  `;
+                                        }else{
+                                            html=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
+                    </div>
+                    <div class="weui-media-box__bd">
+                            <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}
+                            </span>
+                   </div>
+                </div>                  `;
+                                        }
+                                    }
+
+
+                                    // 本地未读聊天记录
+                                    var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
+                                    var history_chats = localStorage.getItem('history_'+ sender_code);
+                                    if(!history_chats){
+                                        var history_chats = new Array();
+                                        history_chats=[json_str];
+                                        localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
+                                    }else{ history_chats = JSON.parse(history_chats);
+                                        var jsonObj = eval('('+history_chats+')');
+                                        console.log(jsonObj);
+                                        data=[];
+                                        $.each(history_chats,function(i,item){
+                                            var jsonObj = eval('('+item+')');
+                                            data[i]=jsonObj;
+                                        });
+                                        console.log(data);
+                                        console.log("判断是否存入同一时间发送的内容");
+                                        for(var i=0,len=data.length;i<len;i++){
+                                            if(!data[i].send_time===sendTime){
+                                                history_chats[history_chats.length] = json_str;
+                                                if(history_chats.length>20){
+                                                    history_chats.shift();
+                                                }
+                                                localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
+                                            }
+                                        }
+
+
+                                    }
+                                    // 保存聊天的好友资料
+                                    (function(){
+                                        var history_chat = localStorage.getItem("friend_info");
+                                        var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
+                                        if(!history_chat){
+                                            var history_chat = new Array();
+                                            history_chat=[json];
+                                            localStorage.setItem("friend_info",JSON.stringify(history_chat));
+                                        }else {
+                                            var history= $.parseJSON(history_chat);
+                                            var jsonObj = eval('('+history+')');
+                                            console.log(jsonObj);
+                                            data=[];
+                                            $.each(history,function(i,item){
+                                                var jsonObj = eval('('+item+')');
+                                                data[i]=jsonObj;
+                                            });
+                                            console.log(data);
+                                            var a=0;
+                                            for(var i=0,len=data.length;i<len;i++){
+                                                if(parseInt(data[i].sender_code)===parseInt(sender_code)){
+                                                    console.log("好友信息1");
+                                                    a++;
+                                                }
+                                            }
+                                            if(a===0){
+                                                console.log("好友信息2");
+                                                history_chat = JSON.parse(history_chat);
+                                                history_chat[history_chat.length] = json;
+                                                localStorage.setItem("friend_info", JSON.stringify(history_chat));
+                                            }
+                                        }
+                                    })();
+                                });
+                                //向页面添加元素
+                                var chatPage=$("#chatPage");
+                                chatPage.append(html);
+                                document.body.scrollTop=chatPage.height()+100;
+                            })
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){//群组新消息  已按群分组 时间倒序排列
