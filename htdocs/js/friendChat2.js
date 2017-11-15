@@ -168,7 +168,7 @@ $(document).ready(function(){
                                                 console.log(data);
                                                 var a=0;
                                                 for(var i=0,len=data.length;i<len;i++){
-                                                    if(parseInt(data[i].sender_code)===parseInt(result.data.sender_code)){
+                                                    if(parseInt(data[i].sender_code)===parseInt(sender_code)){
                                                         console.log("好友信息1");
                                                         a++;
                                                     }
