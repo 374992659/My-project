@@ -164,10 +164,11 @@ $(document).ready(function(){
             var apptoken=localStorage.getItem("apptoken"),
             // 获取群号码
                 group_num=localStorage.getItem("group_num");
+            var arr=[];
              $("input[type=checkbox]:checked").each(function(i,item){
-                    console.log($(this).val());
+                 arr.push($(this).val());
              });
-
+            console.log(arr);
             //数据格式转换
                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
             // 加密
