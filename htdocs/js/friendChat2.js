@@ -153,7 +153,7 @@ $(document).ready(function(){
                                             var history_chat = localStorage.getItem("friend_info");
                                             var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
                                             if(!history_chat){
-                                                var history_chat = new Array();
+                                                var history_chat=new Array();
                                                 history_chat=[json];
                                                 localStorage.setItem("friend_info",JSON.stringify(history_chat));
                                             }else {
