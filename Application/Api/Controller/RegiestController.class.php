@@ -12,7 +12,7 @@ use Api\Model;
 
 class RegiestController extends BaseController
 {
-    /*
+    /**
      * 获取图片验证码
      * */
     public function getPicCode(){
@@ -173,34 +173,17 @@ class RegiestController extends BaseController
         if(!$account || !$password || !$repassword || !$area_id ||!$piccode){
             $this->echoEncrypData(1,'注册信息不完整');
         }
-//        if(!$this->check_verify($piccode))$this->echoEncrypData(1,'验证码不正确');
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
-//        $account_count = M('user_area')->where(['account'=>$account])->count();
         $mongo = new \MongoClient();
         $account_count = $mongo->baseinfo->user_area->count(array('account'=>$account));
         if( $account_count ){
             $this->echoEncrypData(1,'该账号已被注册');
         }
         if(md5($password) !== md5($repassword))$this->echoEncrypData(1,'请确认两次密码输入一致');
-//        $data1 = array(
-//            'account' =>$account,
-//            'table_id' => $area_id
-//        );
-//        $res1=M()->table('baseinfo.user_area')->add($data1);
         $mongo = new \MongoClient();
-        $mongo->baseinfo->user_area->insert(array(
-            '_id'=>getNextId($mongo,'baseinfo','user_area'),
-            'account'=> $account,
-            'table_id'=>$area_id,
-            'status'=>1,
-            'account_code'=>$area_id.$account,
-            'openId'=>$openId,
-            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
-            'nickname'=>$account,
-            'phone'=>'',
-        ));
+
         //注册积分
         $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
         $data2= array(
@@ -215,7 +198,7 @@ class RegiestController extends BaseController
         );
         $this->autoBuildDatabase($account);
         M()->startTrans();
-        $res2=M()->table("baseinfo.user_info_".$area_id)->add($data2);
+        $res2=M("baseinfo.user_info_".$area_id)->add($data2);
         $point_record = new Model\PointRecordModel($area_id.$account);
         $point_record->startTrans();
         $res3 = $point_record->add(array(
@@ -239,30 +222,22 @@ class RegiestController extends BaseController
                 $point_record2 = new Model\PointRecordModel($inviter_code);
                 $invitet_city = substr($inviter_code,0,4);
                 $inviter_point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.INVITE_REGISTER')])->find();//邀请注册得分无上限
-//                $limit_point =  M('baseinfo.point_config')->where(['name'=>'每日上限'])->getField('value');
-//                $today = strtotime('today');
-//                $today_point = $point_record2->where(['create_time'=>array('egt',$today),'type'=>1])->count('value');
-//                if(intval($today_point) < intval($limit_point)){
-//                    $add = intval($inviter_point['value']);
-//                    if( (intval($limit_point) - intval($today_point)) < intval($inviter_point['value']) ){
-//                        $add = intval($limit_point) - intval($today_point);
-//                    }
-                    $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point=total_point+'.intval($point['value']).' where account_code ='.$inviter_code);
-                    $point_record2->startTrans();
-                    $res4 = $point_record2->add(array(
-                        'name_id'=>$inviter_point['id'],
-                        'name'=>$inviter_point['name'],
-                        'type'=>$inviter_point['type'],
-                        'value'=>$inviter_point['value'],
-                    ));
-                    if(!$res3 || !$res4){
-                        M()->rollback();
-                        $point_record->rollback();
-                        $point_record2->rollback();
-                        $this->echoEncrypData(1,'注册失败');
-                    }else{
-                        $point_record2->commit();
-                    }
+                $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point=total_point+'.intval($inviter_point['value']).' where account_code ='."'".$inviter_code."'");
+                $point_record2->startTrans();
+                $res4 = $point_record2->add(array(
+                    'name_id'=>$inviter_point['id'],
+                    'name'=>$inviter_point['name'],
+                    'type'=>$inviter_point['type'],
+                    'value'=>$inviter_point['value'],
+                ));
+                if(!$res3 || !$res4){
+                    M()->rollback();
+                    $point_record->rollback();
+                    $point_record2->rollback();
+                    $this->echoEncrypData(1,'注册失败');
+                }else{
+                    $point_record2->commit();
+                }
 //                }
             }else{
                 $mongo->baseinfo->user_level->insert(array(
@@ -276,6 +251,17 @@ class RegiestController extends BaseController
             $this->account_code = $area_id.$account;
             M()->commit();
             $point_record->commit();
+            $mongo->baseinfo->user_area->insert(array(
+                '_id'=>getNextId($mongo,'baseinfo','user_area'),
+                'account'=> $account,
+                'table_id'=>$area_id,
+                'status'=>1,
+                'account_code'=>$area_id.$account,
+                'openId'=>$openId,
+                'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
+                'nickname'=>$account,
+                'phone'=>'',
+            ));
             $this->echoEncrypData(0,'注册成功');
         }else{
             M()->rollback();
