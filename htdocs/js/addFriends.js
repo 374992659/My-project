@@ -29,7 +29,9 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 $.each(data.data,function(i,item){
-                    html+=`
+                    var httP=item.friend_portrait.split(":")[0];
+                    if(httP==="http"){
+                        html+=`
                     <div class="weui-media-box weui-media-box_appmsg"
                     title="${item.friend_user_code}" value="1">
                         <div class="weui-media-box__hd">
@@ -42,6 +44,23 @@ $(document).ready(function(){
                         <button class="addFriend">加为好友</button>
                     </div>
                     `
+                    }else{
+                        html+=`
+                    <div class="weui-media-box weui-media-box_appmsg"
+                    title="${item.friend_user_code}" value="1">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.friend_portrait}" alt="">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc">${item.friend_signature}</p>
+                        </div>
+                        <button class="addFriend">加为好友</button>
+                    </div>
+                    `
+
+                    }
+
                 });
                 var keyFriend=$(".keyFriend");
                 console.log(html);
