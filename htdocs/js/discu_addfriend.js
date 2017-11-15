@@ -76,7 +76,9 @@ $(document).ready(function(){
                         var html="";
                         $.each(data.data,function(i,item){
                             if(item.group_id==group_id){
-                                html+=`
+                                var httP=item.friend_portrait.split(":")[0];
+                                if(httP==="http"){
+                                    html+=`
                         <div class="weui-cells weui-cells_checkbox">
                             <label class="weui-cell weui-check__label" for="${item.friend_user_code}">
                                 <div class="weui-cell__hd">
@@ -99,6 +101,32 @@ $(document).ready(function(){
                             </label>
                         </div>
                         `
+                                }else{
+                                    html+=`
+                        <div class="weui-cells weui-cells_checkbox">
+                            <label class="weui-cell weui-check__label" for="${item.friend_user_code}">
+                                <div class="weui-cell__hd">
+                                    <input type="checkbox" class="weui-check" value="${item.friend_user_code}" name="checkbox1"  src="${item.friend_portrait}" id="${item.friend_user_code}" title="${item.friend_user_code}">
+                                    <i class="weui-icon-checked"></i>
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <div class="weui-panel__bd">
+                                        <div  class="weui-media-box weui-media-box_appmsg">
+                                            <div class="weui-media-box__hd">
+                                                <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.friend_portrait}">
+                                            </div>
+                                            <div class="weui-media-box__bd">
+                                                <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                                                <!--<p class="weui-media-box__desc">个人说明</p>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        `
+                                }
+
                             }
                         });
                         $(".linkList").append(html);
