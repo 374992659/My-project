@@ -160,20 +160,10 @@ $(document).ready(function(){
         //}
         //添加好友
         $(".addBtn").click(function(){
-            var success=$(".success");
-            var hideTop=function(){
-                success.empty();
-            };
             //获取  apptoken
             var apptoken=localStorage.getItem("apptoken"),
             // 获取群号码
                 group_num=localStorage.getItem("group_num");
-            // 用户code
-            //     user_code=[];
-            //    $(".linkList input[type=checkbox]").each(function(){
-            //        user_code.push($(this).val());
-            //         console.log(user_code);
-            //     });
             var  user_code=$("input[type=checkbox]:checked").val();
             console.log(user_code);
             //数据格式转换
@@ -186,6 +176,7 @@ $(document).ready(function(){
                 type:"POST",
                 data:{"data":jsonEncryptData},
                 success:function(data){
+                    console.log(data);
                     //解密
                     var data=jsDecodeData(data);
                     console.log(data);
