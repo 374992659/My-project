@@ -31,6 +31,7 @@ $(document).ready(function(){
                        // localStorage.setItem('online_friends',data.online_friends);         //本地保存在线好友列表
                         var friends_new_message = data.friends_new_message;
                         if(friends_new_message){//好友新消息  已按用户分组 时间倒序排列
+                            var html="";
                             $.each(friends_new_message,function(i,item){
                                 // 存在本地的聊天记录
                                 console.log("未读好友消息");
@@ -39,7 +40,7 @@ $(document).ready(function(){
                                 var sender_nickname=item.sender_nickname;
                                 var sender_portrait=item.sender_portrait;
                                 var httP=sender_portrait.split(":")[0];
-                                var html="";
+
                                 $.each(item.content,function(i,item){
                                     console.log(item.content);
                                     var sendTime=item.send_time;
@@ -199,12 +200,13 @@ $(document).ready(function(){
                                             }
                                         }
                                     })();
-                                });
-                                //向页面添加元素
-                                var chatPage=$("#chatPage");
-                                chatPage.append(html);
-                                document.body.scrollTop=chatPage.height()+100;
+                                })
+
                             })
+                            //向页面添加元素
+                            var chatPage=$("#chatPage");
+                            chatPage.append(html);
+                            document.body.scrollTop=chatPage.height()+100;
                         }
                         var group_new_message=data.group_new_message;
                         if(group_new_message){//群组新消息  已按群分组 时间倒序排列
