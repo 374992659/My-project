@@ -21,7 +21,7 @@ $(document).ready(function(){
                     console.log(1);
                     localStorage.setItem("apptoken",data.apptoken);
                     var ueserNum="";
-                    var manegeNum="";
+                    var manegeNum=0;
                     var htmlAdministrator="";
                     var htmlMember="";
                     console.log(data.data.Number_data);
@@ -29,7 +29,6 @@ $(document).ready(function(){
                         var httP=item.portrait.split(":")[0];
                         console.log(item);
                         if(item.role==2){
-                            console.log(item);
                             if(httP==="http"){
                                 htmlAdministrator+=`
                     <div  class="weui-media-box weui-media-box_appmsg">
@@ -42,7 +41,7 @@ $(document).ready(function(){
                         <button class="cancelBtn" title="${item.user_code}">撤销</button>
                     </div>
                     `;
-                                manegeNum=i;
+                                manegeNum++;
                             }else{
                                 htmlAdministrator+=`
                     <div  class="weui-media-box weui-media-box_appmsg">
