@@ -149,9 +149,7 @@ class RegiestController extends BaseController
         }
     }
 
-    public function getProvinceAndCity(){
-        $latitude= '30';
-        $longitude = '104';
+    public function getProvinceAndCity($longitude,$latitude){
         $curl = curl_init();
         curl_setopt($curl,CURLOPT_URL,'http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location='.$latitude.','.$longitude.'&output=json&pois=0&ak='.C('MAPAK'));
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
@@ -166,7 +164,7 @@ class RegiestController extends BaseController
                'province'=>$arr['result']['addressComponent']['province'],
                'city'=>$arr['result']['addressComponent']['city'],
            );
-            var_dump($data);
+            return $data;
        }else{
            return false;
        }
@@ -226,103 +224,58 @@ class RegiestController extends BaseController
      * @param city 城市 APP必填
      * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据 APP由扫码获得
      * */
-//    protected function regiest(){
-//        $this->checkParam(array('account','password','repassword'));
-//        if(intval($_GET['is_wap']) === 1){
-//           $this->checkParam(array('openId'));
-//        }
-//        if( !preg_match('/^[a-z\d]{6,12}$/i',trim($this->pdata['account']))){ //账号格式 字母开头6-12位
-//            $this->echoEncrypData(106);
-//        }
-//        $mongo = new \MongoClient();
-//        if(md5($this->pdata['password']) !== md5($this->pdata['repassword']))$this->echoEncrypData(1,'请确认两次密码输入一致');
-//        $mongo = new \MongoClient();
-//        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$this->pdata['account']));
-//        if( $account_count ){
-//            $this->echoEncrypData(1,'该账号已被注册');
-//        }
-//
-//        //注册地检测
-//
-//        //注册积分
-//        $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
-//        $mongo->baseinfo->user_area->insert(array(
-//            '_id'=>getNextId($mongo,'baseinfo','user_area'),
-//            'account'=> $this->pdata['account'],
-//            'table_id'=>$area_id,
-//            'status'=>1,
-//            'account_code'=>$area_id.$account,
-//            'openId'=>$openId,
-//            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
-//            'nickname'=>$account,
-//            'phone'=>'',
-//        ));
-//    }
-
-
-    /*
-     * 用户注册
-     * @param account 账号
-     * @param area_id 区域
-     * @param password 密码
-     * @param repassword 确认密码
-     * @param piccode 图片验证码
-     * @param openId 微信openid
-     * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据
-     * */
-    public function regiest(){
-        $account   = trim($this->pdata['account']);
-        $area_id = trim($this->pdata['area_id']);
-        $password  = trim($this->pdata['password']);
-        $repassword   = trim($this->pdata['repassword']);
-        $piccode = trim($this->pdata['piccode']);
-        $inviter_code = trim($this->pdata['inviter_code']);
-        $openId = trim($this->pdata['openId']);
-        if(intval($_GET['is_wap']) === 1){
-            if(!$openId)$this->echoEncrypData(21);
+    protected function regiest(){
+        $this->checkParam(array('account','password','repassword'));
+        if(intval($_GET['is_wap']) === 1){//微信
+           $this->checkParam(array('openId','longitude','latitude'));
+        }else{//APP
+            $this->checkParam(array('province','city'));
         }
-        if(!$account || !$password || !$repassword || !$area_id ||!$piccode){
-            $this->echoEncrypData(1,'注册信息不完整');
-        }
-        if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){ //账号格式 字母开头6-12位
+        if( !preg_match('/^[a-z\d]{6,12}$/i',trim($this->pdata['account']))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
+        if(md5($this->pdata['password']) !== md5($this->pdata['repassword']))$this->echoEncrypData(1,'请确认两次密码输入一致');
         $mongo = new \MongoClient();
-        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$account));
+        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$this->pdata['account']));
         if( $account_count ){
             $this->echoEncrypData(1,'该账号已被注册');
         }
-        if(md5($password) !== md5($repassword))$this->echoEncrypData(1,'请确认两次密码输入一致');
-        $mongo = new \MongoClient();
-
+        //注册地检测
+        if(intval($_GET['is_wap']) === 1){
+            $data =  $this->getProvinceAndCity($this->pdata['longitude'],$this->pdata['latitude']);
+            if(!$data)$this->echoEncrypData(1,'暂不支持该区域');
+            $area_id = $this->checkCity($data['province'],$data['city']);
+        }else{
+            $area_id = $this->checkCity($this->pdata['province'],$this->pdata['city']);
+        }
         //注册积分
         $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
-        $mongo->baseinfo->user_area->insert(array(
+        $mongo->baseinfo->user_area->insert(array(  //mongodb添加用户记录
             '_id'=>getNextId($mongo,'baseinfo','user_area'),
-            'account'=> $account,
+            'account'=>$this->pdata['account'],
             'table_id'=>$area_id,
             'status'=>1,
-            'account_code'=>$area_id.$account,
-            'openId'=>$openId,
+            'account_code'=>$area_id.$this->pdata['account'],
+            'openId'=>$this->pdata['openId'],
             'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
-            'nickname'=>$account,
+            'nickname'=>$this->pdata['account'],
             'phone'=>'',
         ));
         $data2= array(
-            'account' =>$account,
-            'password' => md5(md5($password).$account),
-            'nickname' => $account,
+            'account' =>$this->pdata['account'],
+            'password' => md5(md5($this->pdata['password']).$this->pdata['account']),
+            'nickname' => $this->pdata['account'],
             'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
-            'account_code' => $area_id.$account,
+            'account_code' => $area_id.$this->pdata['account'],
             'create_time' => time(),
             'total_point'=>$point['value'],
             'create_addr_code' => $area_id,
         );
-        $this->autoBuildDatabase($account);
+        $this->autoBuildDatabase($this->pdata['account']);
         $user_info=M("baseinfo.user_info_".$area_id);
         $user_info->startTrans();
         $res2=$user_info->add($data2);//添加注册用户信息
-        $point_record = new Model\PointRecordModel($area_id.$account);
+        $point_record = new Model\PointRecordModel($area_id.$this->pdata['account']);
         $point_record->startTrans();
         $res3 = $point_record->add(array(//添加注册用户积分记录
             'name_id'=>$point['id'],
@@ -331,13 +284,14 @@ class RegiestController extends BaseController
             'value'=>$point['value'],
             'create_time'=>time()
         ));
+        $inviter_code = $this->pdata['inviter_code'];
         if($res2 and $res3){
             if($inviter_code){ //存在邀请人
                 $Level = $mongo->baseinfo->user_level->findOne(array('user_code'=>$inviter_code),array('level'));
                 $level = $Level['level'];
                 $mongo->baseinfo->user_level->insert(array(//设置注册用户等级
                     '_id'=>getNextId($mongo,'baseinfo','user_level'),
-                    'user_code'=> $area_id.$account,
+                    'user_code'=> $area_id.$this->pdata['account'],
                     'inviter_code'=>$inviter_code,
                     'level'=>intval($level)+1
                 ));
@@ -360,38 +314,171 @@ class RegiestController extends BaseController
                     $user_info->rollback();
                     $point_record->rollback();
                     $point_record2->rollback();
-                    $mongo->baseinfo->user_area->remove(array('account'=>$account));
+                    $mongo->baseinfo->user_area->remove(array('account'=>$this->pdata['account']));
                     $this->echoEncrypData(1,'注册失败',$inviter_code);
                 }else{
                     $this->appToken=true;
-                    $this->account_code = $area_id.$account;
+                    $this->account_code = $area_id.$this->pdata['account'];
                     $point_record2->commit();
                     M()->commit();
                     $user_info->commit();
                     $point_record->commit();
                     $this->echoEncrypData(0,'注册成功');
                 }
-//                }
             }else{
                 $mongo->baseinfo->user_level->insert(array(
                     '_id'=>getNextId($mongo,'baseinfo','user_level'),
-                    'user_code'=> $area_id.$account,
+                    'user_code'=> $area_id.$this->pdata['account'],
                     'inviter_code'=>null,
                     'level'=>0,
                 ));
             }
             $this->appToken=true;
-            $this->account_code = $area_id.$account;
+            $this->account_code = $area_id.$this->pdata['account'];
             $user_info->commit();
             $point_record->commit();
             $this->echoEncrypData(0,'注册成功');
         }else{
             $user_info->rollback();
             $point_record->rollback();
-            $mongo->baseinfo->user_area->remove(array('account'=>$account));
+            $mongo->baseinfo->user_area->remove(array('account'=>$this->pdata['account']));
             $this->echoEncrypData(1,'注册失败',$inviter_code);
         }
     }
+
+
+    /*
+     * 用户注册
+     * @param account 账号
+     * @param area_id 区域
+     * @param password 密码
+     * @param repassword 确认密码
+     * @param piccode 图片验证码
+     * @param openId 微信openid
+     * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据
+     * */
+//    public function regiest(){
+//        $account   = trim($this->pdata['account']);
+//        $area_id = trim($this->pdata['area_id']);
+//        $password  = trim($this->pdata['password']);
+//        $repassword   = trim($this->pdata['repassword']);
+//        $piccode = trim($this->pdata['piccode']);
+//        $inviter_code = trim($this->pdata['inviter_code']);
+//        $openId = trim($this->pdata['openId']);
+//        if(intval($_GET['is_wap']) === 1){
+//            if(!$openId)$this->echoEncrypData(21);
+//        }
+//        if(!$account || !$password || !$repassword || !$area_id ||!$piccode){
+//            $this->echoEncrypData(1,'注册信息不完整');
+//        }
+//        if( !preg_match('/^[a-z\d]{6,12}$/i',trim($account))){ //账号格式 字母开头6-12位
+//            $this->echoEncrypData(106);
+//        }
+//        $mongo = new \MongoClient();
+//        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$account));
+//        if( $account_count ){
+//            $this->echoEncrypData(1,'该账号已被注册');
+//        }
+//        if(md5($password) !== md5($repassword))$this->echoEncrypData(1,'请确认两次密码输入一致');
+//        $mongo = new \MongoClient();
+//
+//        //注册积分
+//        $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
+//        $mongo->baseinfo->user_area->insert(array(
+//            '_id'=>getNextId($mongo,'baseinfo','user_area'),
+//            'account'=> $account,
+//            'table_id'=>$area_id,
+//            'status'=>1,
+//            'account_code'=>$area_id.$account,
+//            'openId'=>$openId,
+//            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
+//            'nickname'=>$account,
+//            'phone'=>'',
+//        ));
+//        $data2= array(
+//            'account' =>$account,
+//            'password' => md5(md5($password).$account),
+//            'nickname' => $account,
+//            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
+//            'account_code' => $area_id.$account,
+//            'create_time' => time(),
+//            'total_point'=>$point['value'],
+//            'create_addr_code' => $area_id,
+//        );
+//        $this->autoBuildDatabase($account);
+//        $user_info=M("baseinfo.user_info_".$area_id);
+//        $user_info->startTrans();
+//        $res2=$user_info->add($data2);//添加注册用户信息
+//        $point_record = new Model\PointRecordModel($area_id.$account);
+//        $point_record->startTrans();
+//        $res3 = $point_record->add(array(//添加注册用户积分记录
+//            'name_id'=>$point['id'],
+//            'name'=>$point['name'],
+//            'type'=>$point['type'],
+//            'value'=>$point['value'],
+//            'create_time'=>time()
+//        ));
+//        if($res2 and $res3){
+//            if($inviter_code){ //存在邀请人
+//                $Level = $mongo->baseinfo->user_level->findOne(array('user_code'=>$inviter_code),array('level'));
+//                $level = $Level['level'];
+//                $mongo->baseinfo->user_level->insert(array(//设置注册用户等级
+//                    '_id'=>getNextId($mongo,'baseinfo','user_level'),
+//                    'user_code'=> $area_id.$account,
+//                    'inviter_code'=>$inviter_code,
+//                    'level'=>intval($level)+1
+//                ));
+//                //邀请注册
+//                $point_record2 = new Model\PointRecordModel($inviter_code);
+//                $invitet_city = substr($inviter_code,0,4);
+//                $inviter_point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.INVITE_REGISTER')])->find();//邀请注册得分无上限
+//                M()->startTrans();
+//                $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point =total_point+'.$inviter_point['value'].' where account_code='."'".$inviter_code."'");
+//                $point_record2->startTrans();
+//                $res4 = $point_record2->add(array(
+//                    'name_id'=>$inviter_point['id'],
+//                    'name'=>$inviter_point['name'],
+//                    'type'=>$inviter_point['type'],
+//                    'value'=>$inviter_point['value'],
+//                    'create_time'=>time(),
+//                ));
+//                if(!$res3 || !$res4){
+//                    M()->rollback();
+//                    $user_info->rollback();
+//                    $point_record->rollback();
+//                    $point_record2->rollback();
+//                    $mongo->baseinfo->user_area->remove(array('account'=>$account));
+//                    $this->echoEncrypData(1,'注册失败',$inviter_code);
+//                }else{
+//                    $this->appToken=true;
+//                    $this->account_code = $area_id.$account;
+//                    $point_record2->commit();
+//                    M()->commit();
+//                    $user_info->commit();
+//                    $point_record->commit();
+//                    $this->echoEncrypData(0,'注册成功');
+//                }
+////                }
+//            }else{
+//                $mongo->baseinfo->user_level->insert(array(
+//                    '_id'=>getNextId($mongo,'baseinfo','user_level'),
+//                    'user_code'=> $area_id.$account,
+//                    'inviter_code'=>null,
+//                    'level'=>0,
+//                ));
+//            }
+//            $this->appToken=true;
+//            $this->account_code = $area_id.$account;
+//            $user_info->commit();
+//            $point_record->commit();
+//            $this->echoEncrypData(0,'注册成功');
+//        }else{
+//            $user_info->rollback();
+//            $point_record->rollback();
+//            $mongo->baseinfo->user_area->remove(array('account'=>$account));
+//            $this->echoEncrypData(1,'注册失败',$inviter_code);
+//        }
+//    }
 
     /*
      * 發送忘記密碼短信認證
