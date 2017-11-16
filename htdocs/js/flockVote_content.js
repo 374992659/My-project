@@ -24,7 +24,7 @@ $(document).ready(function(){
                 var voteList="";
                 console.log(result.vote_info);
                 var httP=result.portrait.split(":")[0];
-                if(result.have_choise===1){
+                if(parseInt(result.have_choise)===1){
                     $.each(result.vote_info,function(i,item){
                         console.log(item);
                         voteList+=`
