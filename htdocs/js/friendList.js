@@ -477,7 +477,27 @@ $(document).ready(function() {
             }
         });
     };getGroup();
+    (function(){
+        var apptoken=localStorage.getItem("apptoken");
+        var title=1;
+        var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
+        console.log(data);
+        var  jsonEncryptData = jsEncryptData(data);
+        $.ajax({
+            url:url+"friends_getGroupFriends",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
 
+                }
+            }
+        })
+    })();
     $(".group").on("click", ".weui-cells .LinkBtn", function (e) {
         // 功能2 请求好友分组下的好友信息
         (function(){
