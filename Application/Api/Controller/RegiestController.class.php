@@ -149,9 +149,7 @@ class RegiestController extends BaseController
         }
     }
 
-    public function checkCity(){
-        $province=$_GET['province'];
-        $city=$_GET['city'];
+    public function checkCity($province,$city){
         $province_id = M('baseinfo.swf_area')->where(['name'=>$province])->getField('id');
         if(!$province_id){
             $last_p_id=M('baseinfo.swf_area')->where(['parent_id'=>'0000'])->getField('MAX(id)');
@@ -169,6 +167,27 @@ class RegiestController extends BaseController
                 'name'=>$city,
                 'sort'=>$new_id,
             ));
+            return intval($new_p_id)+1;
+        }else{
+          $city_id = M('baseinfo.swf_area')->where(['parent_id'=>$province_id,'name'=>$city])->getField('id');
+          if(!$city_id){
+              $last_c_id = M('baseinfo.swf_area')->where(['parent_id'=>$province_id])->getField('MAX(id)');
+              $sort = intval(substr($province_id,0,-2));
+              if($last_c_id){
+                  $new_c_id = intval($last_c_id)+1;
+              }else{
+                  $new_c_id = intval($province_id)+1;
+              }
+              M('baseinfo.swf_area')->add(array(
+                  'id'=>$new_c_id,
+                  'parent_id'=>$province_id,
+                  'name'=>$city,
+                  'sort'=>$sort,
+              ));
+              return $new_c_id;
+          }else{
+              return $city_id;
+          }
         }
     }
 
