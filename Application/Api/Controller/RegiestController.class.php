@@ -160,7 +160,7 @@ class RegiestController extends BaseController
         $output=str_replace('renderReverse&&renderReverse','',$output);
         $output=ltrim($output,'(');
         $output=rtrim($output,')');
-        var_dump(($output));
+        var_dump(json_decode($output,true));
     }
 
     public function checkCity($province,$city){
