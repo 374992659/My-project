@@ -218,7 +218,7 @@ class RegiestController extends BaseController
      * @param password 密码
      * @param repassword 确认密码
      * @param openId 微信openid  微信版必填
-     * @param longitude 经度 微信版 必填
+     * @param longitude 经度 微信版必填
      * @param latitude 纬度 微信版 必填
      * @param province 省份 APP 必填
      * @param city 城市 APP必填
