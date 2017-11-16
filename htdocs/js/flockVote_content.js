@@ -307,7 +307,7 @@ $(document).ready(function(){
            // choised=$("input[name=radio1]:checked").attr("id");
              var arr={};
         var choised=$("input[name=radio1]:checked").parent().prev().find("p").text();
-           arr[1]=choised;
+           arr["1"]=choised;
         console.log(arr);
         // 数据格式转换
         data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"vote_id":vote_id,"choised":choised})];
