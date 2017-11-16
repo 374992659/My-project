@@ -28,10 +28,10 @@ $(document).ready(function(){
                             <div class="weui-panel__bd">
                                 <div  class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
-                                        <img class="weui-media-box__thumb" src="image/frihead.jpg" style="border-radius: 50px">
+                                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" style="border-radius: 50px">
                                     </div>
                                     <div class="weui-media-box__bd" >
-                                        <h4 class="weui-media-box__title" style="font-size: 15px;">${item.user_code}</h4>
+                                        <h4 class="weui-media-box__title" style="font-size: 15px;">${item.nickname}</h4>
                                         <button class="right delBtn" title="${item.id}" style="font-size: 14px">删除</button>
                                         <span class="weui-media-box__desc" style="font-size: 14px">${getLocalTime(item.create_time)}</span>
                                     </div>
