@@ -557,6 +557,7 @@ $(document).ready(function() {
                     });
                     $("#1").html(html);
                     $(".friend").show();
+                    $("#1").children().children("img").css("transform","rotate(90deg)");
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                     var online=JSON.parse(localStorage.getItem("online_friends"));
                     for(var i=0 ,len=allfriend.length;i<len;i++){
