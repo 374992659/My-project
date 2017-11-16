@@ -305,9 +305,12 @@ $(document).ready(function(){
             vote_id=localStorage.getItem("vote_id");
         // 获取choised
            // choised=$("input[name=radio1]:checked").attr("id");
-              var arr=[];
-        choised=$("input[name=radio1]:checked").parent().prev().find("p").text();
-        console.log(choised);
+              var arr={};
+        var choised=$("input[name=radio1]:checked").parent().prev().find("p").text();
+        choised.each(function(i,item){
+            arr[parseInt(i+1)]=item;
+        });
+        console.log(arr);
         // 数据格式转换
         data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"vote_id":vote_id,"choised":choised})];
         // 加密
