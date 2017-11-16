@@ -147,10 +147,10 @@ class GroupController extends VersionController
             $arr[]=$user_code;
         }
         $res =true;
+        $group_user = new Model\GroupUserModel($this->account_code);
+        $group_user->startTrans();
         foreach ($arr as $k=>$v){
-            $group_user = new Model\GroupUserModel($v);
-            $group_user->startTrans();
-            $count = $group_user->where(['user_code'=>$v])->count();
+            $count = $group_user->where(['user_code'=>$v,'group_num'=>$group_num])->count();
             if(!$count){
                 $user_data = $mongo->baseinfo->user_area->findOne(array('account_code'=>$v),array('nickname','portrait'));
 
