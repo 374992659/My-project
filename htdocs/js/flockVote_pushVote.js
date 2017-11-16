@@ -249,7 +249,7 @@ $(".weui-gallery").click(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg);
-                    window.location.href="flockVote.html";
+                    //window.location.href="flockVote.html";
                 }else{
                     showHide(data.errmsg);
                 }
