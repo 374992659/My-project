@@ -22,8 +22,9 @@ $.ajax({
             var html="";
             $.each(data.data,function(i,item){
                 console.log(item);
-                var
-                html+=`
+                var httP=item.portrait.split(":")[0];
+                if(httP==="http"){
+                    html+=`
                 <div style="padding: 0 10px" class="weui-panel weui-panel_access voteID" title="${item.vote_id}">
             <div class="weui-panel__bd">
                 <div>
@@ -53,6 +54,39 @@ $.ajax({
             </div>
         </div>
             `
+                }else{
+                    html+=`
+                <div style="padding: 0 10px" class="weui-panel weui-panel_access voteID" title="${item.vote_id}">
+            <div class="weui-panel__bd">
+                <div>
+                    <div  class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title" style="font-size: 15px">${item.nickname}</h4>
+                            <span class="weui-media-box__desc" style="font-size: 14px">${getLocalTime(item.create_time)}</span>
+                           
+                        </div>
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title" style="font-size: 15px">主题：${item.title}</h4>
+                        <ul>
+                            <li class="lf">
+                                <img src="http://wx.junxiang.ren/project/${item.picture}" alt="" class="topic">
+                            </li>                          
+                        </ul>
+                        <div style="text-align: right">
+                            <span style="font-size: 15px;">总票数：</span>
+                            <span style="font-size: 15px;">${item.total_user}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            `
+                }
+
             });
         $("#flockVote").append(html);
         }else{
