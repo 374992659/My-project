@@ -310,7 +310,7 @@ $(document).ready(function(){
           var arr={1:choised};
         console.log(arr);
         // 数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"vote_id":vote_id,"choised":choised})];
+        data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"vote_id":vote_id,"choised":arr})];
         // 加密
         jsonEncryptData=jsEncryptData(data);
         console.log(data);
