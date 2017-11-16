@@ -22,6 +22,7 @@ $.ajax({
             var html="";
             $.each(data.data,function(i,item){
                 console.log(item);
+                var
                 html+=`
                 <div style="padding: 0 10px" class="weui-panel weui-panel_access voteID" title="${item.vote_id}">
             <div class="weui-panel__bd">
@@ -32,7 +33,7 @@ $.ajax({
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title" style="font-size: 15px">${item.nickname}</h4>
-                            <span class="weui-media-box__desc" style="font-size: 14px">${item.create_time}</span>
+                            <span class="weui-media-box__desc" style="font-size: 14px">${getLocalTime(item.create_time)}</span>
                            
                         </div>
                     </div>
