@@ -59,7 +59,7 @@ class GroupVoteModel extends Model
      * @param vote_id 投票id
      * */
     public function getVoteInfo($vote_id){
-        $res =$this->field('id as vote_id,title,content,picture,choice,create_time,end_time,group_num,user_code,nickname,portrait,total_user')->where(['id'=>$vote_id])->find();
+        $res =$this->field('id as vote_id,title,content,picture,choice,create_time,end_time,group_num,user_code,nickname,portrait,anonymous,type,total_user')->where(['id'=>$vote_id])->find();
         if(!$res)return false;
         return $res;
     }
