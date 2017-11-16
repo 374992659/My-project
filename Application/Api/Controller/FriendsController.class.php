@@ -221,7 +221,7 @@ class FriendsController extends VersionController
 
     /*
      * 高级搜索
-     * @param area_id 区域id  必填
+     * @param area_id 区域id  可填 不填默认用户注册地
      * @param min_age   最小年龄 可填
      * @param max_age  最大年龄  可填
      * @param sex 性别  可填  0：保密 1：男 2：女
@@ -232,7 +232,7 @@ class FriendsController extends VersionController
         $max_age=$this->pdata['max_age'];
         $sex=intval($this->pdata['sex']);
         if(!$area_id){
-            $this->echoEncrypData(21);
+            $area_id = substr($this->account_code,0,4);
         }
         $map = array();
         if($min_age){
