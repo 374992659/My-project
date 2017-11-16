@@ -164,15 +164,17 @@ $(document).ready(function(){
             var apptoken=localStorage.getItem("apptoken"),
             // 获取群号码
                 group_num=localStorage.getItem("group_num");
-            var arr=[];
+            var str='';
              $("input[type=checkbox]:checked").each(function(i,item){
-                 arr.push($(this).val());
+                 if(!str){
+                     str = str+$(this).val();
+                 }else{
+                     str = str+','+$(this).val();
+                 }
              });
-            console.log(arr);
-           var  user_code=arr.join(",");
-           console.log(user_code);
+           
             //数据格式转换
-               var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})],
+               var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":str})],
             // 加密
                jsonEncryptData=jsEncryptData(data);
             console.log(data);
