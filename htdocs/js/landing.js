@@ -30,6 +30,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
+                    console.log(document.referrer);
                     goBack();
                     showHide(data.errmsg);
                     window.location.href="index.html";
