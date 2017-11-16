@@ -61,8 +61,8 @@ $(document).ready(function(){
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 15px;color: #b2b2b2">
-                                <span class="lf" style="font-size: 15px">单选</span>
-                                <span class="lf" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
+                                <span class="lf type" style="font-size: 15px">单选</span>
+                                <span class="lf anonymous" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
                             </div>
                         </div>
                     </div>
@@ -104,8 +104,8 @@ $(document).ready(function(){
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 15px;color: #b2b2b2">
-                                <span class="lf" style="font-size: 15px">单选</span>
-                                <span class="lf" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
+                                <span class="lf type" style="font-size: 15px">单选</span>
+                                <span class="lf anonymous" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
                             </div>
                         </div>
                     </div>
@@ -165,8 +165,8 @@ $(document).ready(function(){
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 15px;color: #b2b2b2">
-                                <span class="lf" style="font-size: 15px">单选</span>
-                                <span class="lf" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
+                                <span class="lf type" style="font-size: 15px">单选</span>
+                                <span class="lf anonymous" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
                             </div>
                         </div>
                     </div>
@@ -208,8 +208,8 @@ $(document).ready(function(){
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 15px;color: #b2b2b2">
-                                <span class="lf" style="font-size: 15px">单选</span>
-                                <span class="lf" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
+                                <span class="lf type" style="font-size: 15px">单选</span>
+                                <span class="lf anonymous" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_user}</span>
                             </div>
                         </div>
                     </div>
@@ -233,15 +233,24 @@ $(document).ready(function(){
                 }
                 $(".voteContent").append(html);
                 $(".optionList").append(voteList);
-                console.log("票数");
-               $("input").click(function(e){
-                   if($(this).prop('checked')){
-                       var a=parseInt($(this).siblings(".voteNum").html());
-                       console.log(a);
-                       a=a+1;
-                       $(this).siblings(".voteNum").html(a)
-                   }
-               });
+                if(parseInt(result.anonymous)===1){
+                    $(".anonymous").html("匿名投票")
+                }else{
+                    $(".anonymous").html("实名投票")
+                }
+                if(parseInt(result.type)===1){
+                    $(".type").html("单选");
+                }else{
+                    $(".type").html("多选");
+                }
+               //  console.log("票数");
+               // $("input").click(function(e){
+               //     if($(this).prop('checked')){
+               //         var a=parseInt($(this).siblings(".voteNum").html());
+               //         a=a+1;
+               //         $(this).siblings(".voteNum").html(a)
+               //     }
+               // });
 
             }else{
                 console.log(data.errmsg);
