@@ -150,10 +150,9 @@ class GroupController extends VersionController
         $group_user = new Model\GroupUserModel($this->account_code);
         $group_user->startTrans();
         foreach ($arr as $k=>$v){
-            $count = $group_user->where(['user_code'=>$v,'group_num'=>$group_num])->count();
+            $count = $group_user->where(['user_code'=>$v,'group_num'=>$group_num])->getField('id');
             if(!$count){
                 $user_data = $mongo->baseinfo->user_area->findOne(array('account_code'=>$v),array('nickname','portrait'));
-
                 $result1 = $group_user->addUser($create_data['group_code'],$group_num,$create_data['group_name'],$create_data['group_portrait'],$user_code,$user_data['nickname'],$user_data['portrait'],3);  //1.将用户添加至创建人群用户表
                 $user_group = new Model\UserGroupModel($v);
                 $user_group->startTrans();
