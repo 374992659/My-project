@@ -156,7 +156,7 @@ class RegiestController extends BaseController
         if(!$province_id){
             $last_p_id=M('baseinfo.swf_area')->where(['parent_id'=>'0000'])->getField('MAX(id)');
             substr($last_p_id,0,-2);
-            var_dump($last_p_id) ;
+            var_dump(substr($last_p_id,0,-2)) ;
         }
     }
 
