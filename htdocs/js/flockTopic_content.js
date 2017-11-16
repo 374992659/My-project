@@ -296,7 +296,6 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(".publishDis").hide();
-                        getPage();
                     }else{
                         console.log(data.errmsg);
                     }
@@ -476,8 +475,8 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                        localStorage.setItem("apptoken",data.apptoken);
-                       $(this).parent().parent().remove();
-                        // getPage();
+                       // $(this).parent().parent().remove();
+                        getPage();
                     }else{
                     }
                 },
