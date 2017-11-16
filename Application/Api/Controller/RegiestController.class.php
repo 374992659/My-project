@@ -208,11 +208,12 @@ class RegiestController extends BaseController
             'create_addr_code' => $area_id,
         );
         $this->autoBuildDatabase($account);
-        M()->startTrans();
-        $res2=M("baseinfo.user_info_".$area_id)->add($data2);
+        $user_info=M("baseinfo.user_info_".$area_id);
+        $user_info->startTrans();
+        $res2=$user_info->add($data2);//添加注册用户信息
         $point_record = new Model\PointRecordModel($area_id.$account);
         $point_record->startTrans();
-        $res3 = $point_record->add(array(
+        $res3 = $point_record->add(array(//添加注册用户积分记录
             'name_id'=>$point['id'],
             'name'=>$point['name'],
             'type'=>$point['type'],
@@ -223,7 +224,7 @@ class RegiestController extends BaseController
             if($inviter_code){ //存在邀请人
                 $Level = $mongo->baseinfo->user_level->findOne(array('user_code'=>$inviter_code),array('level'));
                 $level = $Level['level'];
-                $mongo->baseinfo->user_level->insert(array(
+                $mongo->baseinfo->user_level->insert(array(//设置注册用户等级
                     '_id'=>getNextId($mongo,'baseinfo','user_level'),
                     'user_code'=> $area_id.$account,
                     'inviter_code'=>$inviter_code,
@@ -233,6 +234,7 @@ class RegiestController extends BaseController
                 $point_record2 = new Model\PointRecordModel($inviter_code);
                 $invitet_city = substr($inviter_code,0,4);
                 $inviter_point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.INVITE_REGISTER')])->find();//邀请注册得分无上限
+                M()->startTrans();
                 $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point =total_point+'.$inviter_point['value'].' where account_code='."'".$inviter_code."'");
                 $point_record2->startTrans();
                 $res4 = $point_record2->add(array(
@@ -244,6 +246,7 @@ class RegiestController extends BaseController
                 ));
                 if(!$res3 || !$res4){
                     M()->rollback();
+                    $user_info->rollback();
                     $point_record->rollback();
                     $point_record2->rollback();
                     $mongo->baseinfo->user_area->remove(array('account'=>$account));
@@ -253,6 +256,7 @@ class RegiestController extends BaseController
                     $this->account_code = $area_id.$account;
                     $point_record2->commit();
                     M()->commit();
+                    $user_info->commit();
                     $point_record->commit();
                     $this->echoEncrypData(0,'注册成功');
                 }
@@ -267,11 +271,11 @@ class RegiestController extends BaseController
             }
             $this->appToken=true;
             $this->account_code = $area_id.$account;
-            M()->commit();
+            $user_info->commit();
             $point_record->commit();
             $this->echoEncrypData(0,'注册成功');
         }else{
-            M()->rollback();
+            $user_info->rollback();
             $point_record->rollback();
             $mongo->baseinfo->user_area->remove(array('account'=>$account));
             $this->echoEncrypData(1,'注册失败',$inviter_code);
