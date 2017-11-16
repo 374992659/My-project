@@ -15,8 +15,6 @@ $(document).ready(function(){
         }
     })();
     var inviter_code=$_GET["inviter_code"];
-    var a="";
-    //alert($_GET["inviter_code"]);
     // 图片验证码刷新
     $(".refreshImg").click(function(){
         console.log(123);
