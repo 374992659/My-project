@@ -33,7 +33,7 @@ $(document).ready(function(){
                                     <div class="weui-media-box__bd" >
                                         <h4 class="weui-media-box__title" style="font-size: 15px;">${item.user_code}</h4>
                                         <button class="right delBtn" title="${item.id}" style="font-size: 14px">删除</button>
-                                        <span class="weui-media-box__desc" style="font-size: 14px">${item.create_time}</span>
+                                        <span class="weui-media-box__desc" style="font-size: 14px">${getLocalTime(item.create_time)}</span>
                                     </div>
                                 </div>
                                 <p style="font-size: 13px;padding: 0 5px"></p>
