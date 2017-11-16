@@ -33,7 +33,7 @@ $(document).ready(function(){
                     console.log(document.referrer);
                     goBack();
                     showHide(data.errmsg);
-                    window.location.href="index.html";
+                   // window.location.href="index.html";
                 }else{
                     showHide(data.errmsg)
                 }
