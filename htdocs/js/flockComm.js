@@ -29,7 +29,7 @@ $(document).ready(function(){
                             <div class="weui-media-box__bd">
                                 <h4 class="weui-media-box__title" style="font-size: 17px">${item.title}</h4>
                                 <p class="weui-media-box__desc" style="font-size: 15px">${item.content}</p>
-                                <span class="right time" style="font-size: 14px;color:#b1b3b5;">${item.create_time}</span>
+                                <span class="right time" style="font-size: 14px;color:#b1b3b5;">${getLocalTime(item.create_time)}</span>
                             </div>
                         </a>
                         `
