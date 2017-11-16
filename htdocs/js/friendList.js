@@ -565,7 +565,7 @@ $(document).ready(function() {
                                 $("#"+online[j]).attr("style","opacity: 1");
                                 var clone=$("#"+online[j]).parent().parent().clone(true);
                                 $("#"+online[j]).parent().parent().remove();
-                                $("#"+id).prepend(clone);
+                                $("#1").prepend(clone);
                             }
                         }
                     }
