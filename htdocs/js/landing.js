@@ -30,10 +30,11 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     // 把apptoken存在本地
                     localStorage.setItem("apptoken",data.apptoken);
-                    console.log(document.referrer);
-                    //goBack();
-                    showHide(data.errmsg);
-                   // window.location.href="index.html";
+                    if(document.referrer==="http://wx.junxiang.ren/project/htdocs/personalCente/"){
+                        goBack();
+                    }else{
+                        window.location.href="index.html";
+                    }
                 }else{
                     showHide(data.errmsg)
                 }
