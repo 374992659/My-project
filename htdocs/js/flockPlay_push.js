@@ -388,6 +388,38 @@ $(document).ready(function(){
 
             });
         })();
+        //获取获取活动交通方式
+        (function(){
+            // 获取apptoken
+            var apptoken =localStorage.getItem("apptoken");
+            // 数据格式转换
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            // 加密
+            var jsonEncryptData=jsEncryptData(data);
+            $.ajax({
+                url:url+"group_getTransport",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var html="";
+                        $.each(data.data,function(i,item){
+                            html+=`
+                           
+                           
+                            `
+                        })
+                    }else{
+
+                    }
+                }
+            })
+        })();
+        //44.费用类型
         $(".subBtn").click(function(){
             var success=$(".success");
             var hideTop=function(){
@@ -442,7 +474,13 @@ $(document).ready(function(){
             });
             console.log(tag);
             // 获取picture 图片 可填
-            var picture="";
+            var picture={};
+            // 获取picPlace下img的src
+            var Url=$(".picPlace").find("img");
+            Url.each(function(i,item){
+                picture[parseInt(i+1)]=$(this).attr("src")
+            });
+            console.log(picture);
             // 获取detailed_introduction 详细介绍 可填
             var detailed_introduction=$(".weui-textarea").val();
             // 获取group_num 群号码

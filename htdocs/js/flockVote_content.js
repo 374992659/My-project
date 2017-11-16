@@ -333,7 +333,6 @@ $(document).ready(function(){
         // 获取choised
            // choised=$("input[name=radio1]:checked").attr("id");
         var arr={};
-        var choised=$("input[name=radio1]:checked").parent().prev().find("p").text();
         $("input[name=radio1]:checked").each(function(i,item){
             arr[parseInt(i+1)]=$(this).parent().prev().find("p").text();
         });
