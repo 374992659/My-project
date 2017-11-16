@@ -408,7 +408,6 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
-                            console.log(item);
                             html+=`
                              <option value="${i}">${item}</option>
                            
@@ -441,7 +440,6 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
-                            console.log(item);
                             html+=`
                              <option value="${i}">${item}</option>
                            
@@ -499,12 +497,19 @@ $(document).ready(function(){
             // 获取rote_planning 路线规划 可填
             var rote_planning=$("#line").val();
             // 获取tag 标签 可填
-            var tag={arrayTag:[]};
-            var tagLi=$(".labelBox").find($(".itemLi"));
-            console.log(tagLi);
-            $.each(tagLi,function(i,item){
-                console.log(item.innerHTML);
-                tag.arrayTag.push(item.innerHTML)
+            // var tag={arrayTag:[]};
+            // var tagLi=$(".labelBox").find($(".itemLi"));
+            // console.log(tagLi);
+            // $.each(tagLi,function(i,item){
+            //     console.log(item.innerHTML);
+            //     tag.arrayTag.push(item.innerHTML)
+            // });
+            // console.log(tag);
+            var tag={};
+            //获取labelBox下所有li
+            var Li=$(".labelBox").find("li");
+            Li.each(function(i,item){
+                tag[parseInt(i+1)]=$(this).text();
             });
             console.log(tag);
             // 获取picture 图片 可填
