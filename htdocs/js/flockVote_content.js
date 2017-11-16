@@ -24,7 +24,7 @@ $(document).ready(function(){
                 var voteList="";
                 console.log(result.vote_info);
                 var httP=result.portrait.split(":")[0];
-                if(parseInt(result.have_choise)===1){
+                if(parseInt(result.have_choise)===1){//已经投票
                     $.each(result.vote_info,function(i,item){
                         console.log(item);
                         voteList+=`
@@ -127,10 +127,11 @@ $(document).ready(function(){
                 `;
                     }
 
-                }else{
-                    $.each(result.vote_info,function(i,item){
-                        console.log(item);
-                        voteList+=`
+                }else{//没有投票
+                    if(parseInt(result.type)===1){//单选
+                        $.each(result.vote_info,function(i,item){
+                            console.log(item);
+                            voteList+=`
                     <label class="weui-cell weui-check__label" style="padding: 5px 0" for="${i}">
                         <div class="weui-cell__bd">
                             <p>${item.comtent}</p>
@@ -142,7 +143,24 @@ $(document).ready(function(){
                         </div>
                     </label>
                     `
-                    });
+                        });
+                    }else{//多选
+                        $.each(result.vote_info,function(i,item){
+                            console.log(item);
+                            voteList+=`
+                    <label class="weui-cell weui-check__label" style="padding: 5px 0" for="${i}">
+                        <div class="weui-cell__bd">
+                            <p>${item.comtent}</p>
+                        </div>
+                        <div class="weui-cell__ft">
+                            <input type="checkbox" class="weui-check" name="radio1" id="${i}">
+                            <span class="weui-icon-checked"></span>
+                           
+                        </div>
+                    </label>
+                    `
+                        });
+                    }
                     if(httP==="http"){
                         var html=`
                     <div class="weui-panel__bd">
@@ -314,10 +332,11 @@ $(document).ready(function(){
             vote_id=localStorage.getItem("vote_id");
         // 获取choised
            // choised=$("input[name=radio1]:checked").attr("id");
-
+        var arr={};
         var choised=$("input[name=radio1]:checked").parent().prev().find("p").text();
-        $("input[name=radio1]:checked").each(function(i,item){});
-          var arr={1:choised};
+        $("input[name=radio1]:checked").each(function(i,item){
+            arr[parseInt(i+1)]=parent().prev().find("p").text();
+        });
         console.log(arr);
         // 数据格式转换
         data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"vote_id":vote_id,"choised":arr})];
