@@ -307,6 +307,7 @@ $(document).ready(function(){
            // choised=$("input[name=radio1]:checked").attr("id");
 
         var choised=$("input[name=radio1]:checked").parent().prev().find("p").text();
+        $("input[name=radio1]:checked").each(function(i,item){});
           var arr={1:choised};
         console.log(arr);
         // 数据格式转换
