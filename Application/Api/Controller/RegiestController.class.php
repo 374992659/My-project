@@ -149,7 +149,7 @@ class RegiestController extends BaseController
         }
     }
 
-    public function getProvinceAndCity($longitude,$latitude){
+    public function getProvinceAndCity(){
         $latitude= '30';
         $longitude = '104';
         $curl = curl_init();
