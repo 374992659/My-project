@@ -1,7 +1,5 @@
 $(document).ready(function(){
     // 时间戳转换函数
-    function getLocalTime(nS){
-        return new Date(parseInt(nS) * 1000).toLocaleString().substr(0,17)}
     "use strict";
     // 功能1加载页面
     var getPage=function(){
@@ -41,7 +39,7 @@ $(document).ready(function(){
                     <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${data.data.title}</h4>
                     <ul class="weui-media-box__info" style="font-size: 15px;color: #BEBEBE">
                         <li class="weui-media-box__info__meta">作者：<a href=""><span>${data.data.nickname}</span></a></li>
-                        <li class="weui-media-box__info__meta">时间：${data.data.create_time}</li>
+                        <li class="weui-media-box__info__meta">时间：${getLocalTime(data.data.create_time)}</li>
 
                     </ul>
                     <p class="weui-media-box__desc" style=" text-indent:1em;font-size: 16px;color:black">
@@ -245,7 +243,7 @@ $(document).ready(function(){
                                   <a href="">
                                       <p class="weui-media-box__title lf">${item.nickname}</p>
                                   </a>
-                                  <span class="right" style="font-size: 12px">${item.create_time}</span>
+                                  <span class="right" style="font-size: 12px">${getLocalTime(item.create_time)}</span>
                               </div>
                               <p class="weui-media-box__desc">
                                  ${item.content}
@@ -476,7 +474,8 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                        localStorage.setItem("apptoken",data.apptoken);
-                        getPage();
+                       $(this).parent().parent().remove();
+                        // getPage();
                     }else{
                     }
                 },
