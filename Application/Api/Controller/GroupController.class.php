@@ -169,7 +169,7 @@ class GroupController extends VersionController
             if($user_group){
                 $user_group->commit();
             }
-            $this->echoEncrypData(0,$arr);
+            $this->echoEncrypData(0);
         }else{
             $group_user->rollback();
             if($user_group){
