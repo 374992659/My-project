@@ -76,7 +76,7 @@ $(document).ready(function(){
         var topicPic={};
         var Img=$("#uploaderFiles").find("img");
         Img.each(function(i,item){
-            Img[parseInt(i+1)]=$(this).attr("src");
+            topicPic[parseInt(i+1)]=$(this).attr("src");
         });
         // 获取标题
         var title=$(".topicTitle").val();
