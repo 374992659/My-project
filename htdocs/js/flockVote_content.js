@@ -76,7 +76,7 @@ $(document).ready(function(){
                         <div class="weui-cell">
                             <div class="weui-cell__bd" style="color: #bbbbbb">
                                 <span  style="font-size: 15px">截止时间：</span>
-                                <span style="font-size: 15px">${result.end_time}</span>
+                                <span style="font-size: 15px">${getLocalTime(result.end_time)}</span>
                             </div>
                         </div>
                     </div>
