@@ -252,9 +252,9 @@ $(document).ready(function(){
                 $(".voteContent").append(html);
                 $(".optionList").append(voteList);
                 if(parseInt(result.anonymous)===1){
-                    $(".anonymous").html("（匿名投票）")
-                }else{
                     $(".anonymous").html("（实名投票）")
+                }else{
+                    $(".anonymous").html("（匿名投票）")
                 }
                 if(parseInt(result.type)===1){
                     $(".type").html("单选");
