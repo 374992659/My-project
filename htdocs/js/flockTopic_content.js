@@ -296,6 +296,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         $(".publishDis").hide();
+                        getPage();
                     }else{
                         console.log(data.errmsg);
                     }
@@ -469,6 +470,7 @@ $(document).ready(function(){
                 type:"POST",
                 data:{"data":jsonEncryptData},
                 success:function(data){
+                    console.log(data);
                     // 解密
                     var data=jsDecodeData(data);
                     console.log(data);
