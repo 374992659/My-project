@@ -208,10 +208,10 @@ class RegiestController extends BaseController
             'create_addr_code' => $area_id,
         );
         $this->autoBuildDatabase($account);
-        M()->startTrans();
+//        M()->startTrans();
         $res2=M("baseinfo.user_info_".$area_id)->add($data2);
         $point_record = new Model\PointRecordModel($area_id.$account);
-        $point_record->startTrans();
+//        $point_record->startTrans();
         $res3 = $point_record->add(array(
             'name_id'=>$point['id'],
             'name'=>$point['name'],
@@ -234,7 +234,7 @@ class RegiestController extends BaseController
                 $invitet_city = substr($inviter_code,0,4);
                 $inviter_point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.INVITE_REGISTER')])->find();//邀请注册得分无上限
                 $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point =total_point+'.$inviter_point['value'].' where account_code='."'".$inviter_code."'");
-                $point_record2->startTrans();
+//                $point_record2->startTrans();
                 $res4 = $point_record2->add(array(
                     'name_id'=>$inviter_point['id'],
                     'name'=>$inviter_point['name'],
@@ -243,13 +243,13 @@ class RegiestController extends BaseController
                     'crate_time'=>time(),
                 ));
                 if(!$res3 || !$res4){
-                    M()->rollback();
-                    $point_record->rollback();
-                    $point_record2->rollback();
+//                    M()->rollback();
+//                    $point_record->rollback();
+//                    $point_record2->rollback();
                     $mongo->baseinfo->user_area->remove(array('account'=>$account));
                     $this->echoEncrypData(1,'注册失败',$inviter_code);
                 }else{
-                    $point_record2->commit();
+//                    $point_record2->commit();
                 }
 //                }
             }else{
@@ -262,12 +262,12 @@ class RegiestController extends BaseController
             }
             $this->appToken=true;
             $this->account_code = $area_id.$account;
-            M()->commit();
-            $point_record->commit();
+//            M()->commit();
+//            $point_record->commit();
             $this->echoEncrypData(0,'注册成功');
         }else{
-            M()->rollback();
-            $point_record->rollback();
+//            M()->rollback();
+//            $point_record->rollback();
             $mongo->baseinfo->user_area->remove(array('account'=>$account));
             $this->echoEncrypData(1,'注册失败',$inviter_code);
         }
