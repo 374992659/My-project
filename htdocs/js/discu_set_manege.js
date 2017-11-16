@@ -42,7 +42,7 @@ $(document).ready(function(){
                         <button class="cancelBtn" title="${item.user_code}">撤销</button>
                     </div>
                     `;
-                                manegeNum=i+1;
+                                manegeNum=i;
                             }else{
                                 htmlAdministrator+=`
                     <div  class="weui-media-box weui-media-box_appmsg">
@@ -55,7 +55,7 @@ $(document).ready(function(){
                         <button class="cancelBtn" title="${item.user_code}">撤销</button>
                     </div>
                     `;
-                                manegeNum=i+1;
+                                manegeNum=i;
                             }
 
                         }else if(item.role==3){
