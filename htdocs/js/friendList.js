@@ -446,7 +446,6 @@ $(document).ready(function() {
                                 })
                             }
                         });
-
                         var online=arr.length;
                         html += `
      <div class="weui-cells">
@@ -477,6 +476,8 @@ $(document).ready(function() {
             }
         });
     };getGroup();
+
+
     (function(){
         var apptoken=localStorage.getItem("apptoken");
         var title=1;
@@ -524,7 +525,6 @@ $(document).ready(function() {
                             `
                             }
                     });
-
                 }
             }
         })
