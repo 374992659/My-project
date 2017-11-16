@@ -500,7 +500,7 @@ $(document).ready(function() {
                         console.log(item);
                         var httP=item.friend_portrait.split(":")[0];
                             if(httP==="http"){
-                                if(item.friend_signature==="null"){
+                                if(item.friend_signature===null){
                                     html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
@@ -527,7 +527,7 @@ $(document).ready(function() {
                                 }
 
                             }else{
-                                if(item.friend_signature==="null"){
+                                if(item.friend_signature===null){
                                     html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
