@@ -23,7 +23,7 @@ $(document).ready(function(){
                 var result=data.data;
                 var voteList="";
                 console.log(result.vote_info);
-                var httP=item.portrait.split(":")[0];
+                var httP=result.portrait.split(":")[0];
                 $.each(result.vote_info,function(i,item){
 
                     console.log(item);
