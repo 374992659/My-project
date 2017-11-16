@@ -149,6 +149,18 @@ class RegiestController extends BaseController
         }
     }
 
+    public function checkCity(){
+        $province=$_GET['province'];
+        $city=$_GET['city'];
+        $province_id = M('baseinfo.swf_area')->where(['name'=>$province])->getField('id');
+        if(!$province_id){
+            $last_p_id=M('baseinfo.swf_area')->field('MAX(id)')->where(['parent_id'=>'0000'])->find();
+            return $last_p_id;
+        }
+    }
+
+
+
     /*
      * 用户注册
      * @param account 账号
