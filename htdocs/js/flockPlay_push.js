@@ -422,6 +422,38 @@ $(document).ready(function(){
             })
         })();
         //44.费用类型
+        (function(){
+            // 获取apptoken
+            var apptoken =localStorage.getItem("apptoken");
+            // 数据格式转换
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            // 加密
+            var jsonEncryptData=jsEncryptData(data);
+            $.ajax({
+                url:url+"group_getCostType",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var html="";
+                        $.each(data.data,function(i,item){
+                            console.log(item);
+                            html+=`
+                             <option value="${i}">${item}</option>
+                           
+                            `
+                        });
+                        $("#changPlan").append(html);
+                    }else{
+
+                    }
+                }
+            })
+        })();
         $(".subBtn").click(function(){
             var success=$(".success");
             var hideTop=function(){
