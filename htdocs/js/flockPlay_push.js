@@ -408,8 +408,9 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
+                            console.log(item);
                             html+=`
-                           
+                             <option value="${i}">${item}</option>
                            
                             `
                         })
