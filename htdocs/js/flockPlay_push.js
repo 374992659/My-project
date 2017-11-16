@@ -485,7 +485,7 @@ $(document).ready(function(){
             // 获取phone 联系电话
             var phone=$("#contactWay").val();
             // 获取transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
-            var transport=$("#vehicle option:selected").val();
+            var transport=$("#vehicle option:selected").text();
             // 获取garden_code 小区code
             var garden_code="1231";
             // 获取garden_name 小区名称
