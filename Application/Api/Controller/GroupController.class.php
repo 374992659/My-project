@@ -166,11 +166,16 @@ class GroupController extends VersionController
         }
         if($res){
             $group_user->commit();
-            $user_group->commit();
+            if($user_group){
+                $user_group->commit();
+            }
+
             $this->echoEncrypData(0);
         }else{
             $group_user->rollback();
-            $user_group->rollback();
+            if($user_group){
+                $user_group->rollback();
+            }
             $this->echoEncrypData(1,'',array($create_data));
         }
     }
