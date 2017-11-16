@@ -476,7 +476,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                        localStorage.setItem("apptoken",data.apptoken);
                        // $(this).parent().parent().remove();
-                        getPage();
+                       // getPage();
                     }else{
                     }
                 },

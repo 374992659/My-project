@@ -61,6 +61,7 @@ $(document).ready(function(){
     hot.hotTopic();
     // 功能2  城市发生改变的时候
     $("#city").change(function(){
+        $(".hotTopicList").empty();
         // 获取改变的城市id
        var  city_id= $(this).val();
        console.log(city_id);

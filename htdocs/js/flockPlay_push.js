@@ -354,9 +354,9 @@ $(document).ready(function(){
                         $.each(data.data,function(i,item){
                             LiImg+=`
                              <li class="weui-uploader__file" >
-                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
-                                     <img src="image/del.png" alt="" width="20px" class="delImg">
-                                 </li>
+                                  <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
+                                 <img src="image/del.png" alt="" width="20px" class="delImg">
+                             </li>
                             `
                         });
                         $(".picPlace").append(LiImg)
@@ -428,7 +428,6 @@ $(document).ready(function(){
             var total_num=$("#number").val();
             // 获取cost_type 花费类型 1：AA制 2：自驾游 3：发布人请客 ...
             var cost_type=$("#changPlan option:selected").val();
-
             // 获取average_cost 人均消费
             var average_cost=$("#perCapita").val();
             // 获取rote_planning 路线规划 可填
