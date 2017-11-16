@@ -52,6 +52,13 @@ class GroupPictureModel extends Model
         if(!$group_num)return 21;
         $data=$this->field('id,picture_path,user_code,create_time')->where(['group_num'=>$group_num])->select();
         if(!$data) return 5;
+        $mongo = new \MongoClient();
+        foreach ($data as $k=>$v){
+            $user_info = $mongo->baseinfo->user_area->findOne(array('account_code'=>$v['user_code']));
+            $v['nickname']=$user_info['nickname'];
+            $v['portrait']=$user_info['portrait'];
+            $data[$k]=$v;
+        }
         return $data;
     }
     /*
