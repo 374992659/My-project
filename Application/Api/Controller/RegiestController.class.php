@@ -233,7 +233,7 @@ class RegiestController extends BaseController
                 $point_record2 = new Model\PointRecordModel($inviter_code);
                 $invitet_city = substr($inviter_code,0,4);
                 $inviter_point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.INVITE_REGISTER')])->find();//邀请注册得分无上限
-                $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point=total_point+'.intval($inviter_point['value']).' where account_code ='."'".$inviter_code."'");
+                $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point =total_point+'.$inviter_point['value'].' where account_code='."'".$inviter_code."'");
 //                $point_record2->startTrans();
                 $res4 = $point_record2->add(array(
                     'name_id'=>$inviter_point['id'],
@@ -245,7 +245,8 @@ class RegiestController extends BaseController
 //                    M()->rollback();
 //                    $point_record->rollback();
 //                    $point_record2->rollback();
-                    $this->echoEncrypData(1,'注册失败');
+                    $mongo->baseinfo->user_area->remove(array('account'=>$account));
+                    $this->echoEncrypData(1,'注册失败',$inviter_code);
                 }else{
 //                    $point_record2->commit();
                 }
@@ -266,7 +267,8 @@ class RegiestController extends BaseController
         }else{
 //            M()->rollback();
 //            $point_record->rollback();
-            $this->echoEncrypData(1,'注册失败');
+            $mongo->baseinfo->user_area->remove(array('account'=>$account));
+            $this->echoEncrypData(1,'注册失败',$inviter_code);
         }
     }
 
