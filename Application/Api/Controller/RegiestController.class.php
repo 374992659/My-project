@@ -158,8 +158,8 @@ class RegiestController extends BaseController
         curl_setopt($curl,CURLLOPT_HEADER,0);
         $output = curl_exec($curl);
         $output=str_replace('renderReverse&&renderReverse','',$output);
-        $output=ltrim('(',$output);
-        $output=rtrim(')',$output);
+//        $output=ltrim('(',$output);
+//        $output=rtrim(')',$output);
         var_dump(($output));
     }
 
