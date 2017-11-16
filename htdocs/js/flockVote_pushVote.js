@@ -128,9 +128,9 @@ var num=2;
     $(".switch").click(function(){
         num++;
         if(num%2===0){
-            $(".switch").attr("value",0)
-        }else{
             $(".switch").attr("value",1)
+        }else{
+            $(".switch").attr("value",2)
         }
         console.log(num);
     });
