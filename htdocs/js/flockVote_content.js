@@ -138,7 +138,7 @@ $(document).ready(function(){
                         <div class="weui-cell__ft">
                             <input type="radio" class="weui-check" name="radio1" id="${i}">
                             <span class="weui-icon-checked"></span>
-                            <span class="voteNum">${item.num}</span>
+                           
                         </div>
                     </label>
                     `
