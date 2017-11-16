@@ -73,12 +73,11 @@ $(document).ready(function(){
         // 获取群号码
         var group_num=localStorage.getItem("group_num");
         // 获取图片
-        var topicPic=[];
-        var imgUrl=$(".topicPlace li img").attr("src");
-        console.log(imgUrl);
-        for(var i=0,len=imgUrl.length;i<len;i++){
-            topicPic.push(imgUrl[i])
-        }
+        var topicPic={};
+        var Img=$("#uploaderFiles").find("img");
+        Img.each(function(i,item){
+            Img[parseInt(i+1)]=$(this).attr(src);
+        });
         // 获取标题
         var title=$(".topicTitle").val();
         // 获取内容
