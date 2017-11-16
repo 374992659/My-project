@@ -413,7 +413,8 @@ $(document).ready(function(){
                              <option value="${i}">${item}</option>
                            
                             `
-                        })
+                        });
+                        $("#vehicle").append(html);
                     }else{
 
                     }
