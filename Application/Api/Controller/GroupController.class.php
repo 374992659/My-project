@@ -303,7 +303,7 @@ class GroupController extends VersionController
         $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
         if(intval($role) !== 1)$this->echoEncrypData(500);
         $res = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->getField('role');
-        if(intval($res) === 2)$this->echoEncrypData(1,'该用户不是管理员');
+        if(intval($res) !== 2)$this->echoEncrypData(1,'该用户不是管理员');
         $result= $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>3]);
         if(!$result)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
