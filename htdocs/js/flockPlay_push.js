@@ -319,7 +319,8 @@ $(document).ready(function(){
             `;
                 $(".labelBox").append(Label);
 
-            }
+            };
+            $(".labelPlace").val("");
         });
         // 图片上传
         $("#uploaderInput").change(function(e){
