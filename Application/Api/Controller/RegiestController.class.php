@@ -157,7 +157,7 @@ class RegiestController extends BaseController
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($curl,CURLLOPT_HEADER,0);
         $output = curl_exec($curl);
-        var_dump(josn_decode(trim($output,"'"),true));
+        var_dump(json_decode(trim($output,"'"),true));
     }
 
     public function checkCity($province,$city){
