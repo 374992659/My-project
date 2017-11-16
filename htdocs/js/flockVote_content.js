@@ -335,7 +335,7 @@ $(document).ready(function(){
         var arr={};
         var choised=$("input[name=radio1]:checked").parent().prev().find("p").text();
         $("input[name=radio1]:checked").each(function(i,item){
-            arr[parseInt(i+1)]=parent().prev().find("p").text();
+            arr[parseInt(i+1)]=$(this).parent().prev().find("p").text();
         });
         console.log(arr);
         // 数据格式转换
