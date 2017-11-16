@@ -153,7 +153,7 @@ class RegiestController extends BaseController
         $latitude= '30';
         $longitude = '104';
         $curl = curl_init();
-        curl_setopt($curl,CURLOPT_URL,'http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location='.$latitude.','.$longitude.'&output=json&pois=0&ak='.C('MAPAK'));
+        curl_setopt($curl,CURLOPT_URL,'http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location='.$latitude.','.$longitude.'&output=xml&pois=0&ak='.C('MAPAK'));
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
         curl_setopt($curl,CURLLOPT_HEADER,0);
         $output = curl_exec($curl);
