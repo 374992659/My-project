@@ -141,7 +141,7 @@ class GroupController extends VersionController
         if(!$user_code || !$group_num)$this->echoEncrypData(21);
         $mongo = new \MongoClient();
         $create_data = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num));
-        if(strpos($user_code,',')){
+        if(count(explode(',',$user_code))>1){
             $arr = explode(',',$user_code);
         }else{
             $arr[]=$user_code;
