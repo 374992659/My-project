@@ -150,6 +150,8 @@ class RegiestController extends BaseController
     }
 
     public function getProvinceAndCity($longitude,$latitude){
+        $latitude= '30';
+        $longitude = '104';
         $curl = curl_init();
         curl_setopt($curl,CURLOPT_URL,'http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location='.$latitude.','.$longitude.'&output=json&pois=1&ak='.C('MAPAK'));
         curl_setopt($curl,CURLOPT_RETURNTRANSFER,1);
