@@ -54,7 +54,7 @@ $(document).ready(function(){
                     </label>
                 </div>
                     `;
-                                manegeNum=i+1;
+                                manegeNum=i;
                             }else{
                                 manege+=`
                 <div class="weui-cells weui-cells_checkbox ">
@@ -79,7 +79,7 @@ $(document).ready(function(){
                     </label>
                 </div>
                     `;
-                                manegeNum=i+1;
+                                manegeNum=i;
                             }
                         }else if(item.role==3){
                             if(httP==="http"){
@@ -105,7 +105,7 @@ $(document).ready(function(){
                     </label>
                 </div>
                         `;
-                                ueserNum=i+1;
+                                ueserNum=i;
                             }else{
                                 user+=`
                 <div class="weui-cells weui-cells_checkbox ">
@@ -129,7 +129,7 @@ $(document).ready(function(){
                     </label>
                 </div>
                         `;
-                                ueserNum=i+1;
+                                ueserNum=i;
                             }
 
                         }
