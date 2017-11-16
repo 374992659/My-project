@@ -154,7 +154,7 @@ class RegiestController extends BaseController
         $city=$_GET['city'];
         $province_id = M('baseinfo.swf_area')->where(['name'=>$province])->getField('id');
         if(!$province_id){
-            $last_p_id=M('baseinfo.swf_area')->field('MAX(id)')->where(['parent_id'=>'0000'])->find();
+            $last_p_id=M('baseinfo.swf_area')->field('MAX(id)')->where(['parent_id'=>'0000'])->getField('id');
             var_dump($last_p_id) ;
         }
     }
