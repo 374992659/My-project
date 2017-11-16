@@ -557,6 +557,18 @@ $(document).ready(function() {
                     });
                     $("#1").html(html);
                     $(".friend").show();
+                    var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
+                    var online=JSON.parse(localStorage.getItem("online_friends"));
+                    for(var i=0 ,len=allfriend.length;i<len;i++){
+                        for(var j=0,le=online.length;j<le;j++){
+                            if(allfriend[i]==online[j]){
+                                $("#"+online[j]).attr("style","opacity: 1");
+                                var clone=$("#"+online[j]).parent().parent().clone(true);
+                                $("#"+online[j]).parent().parent().remove();
+                                $("#"+id).prepend(clone);
+                            }
+                        }
+                    }
                 }
             }
         })
