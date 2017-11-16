@@ -21,8 +21,8 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(1);
                     localStorage.setItem("apptoken",data.apptoken);
-                    var ueserNum="",
-                     manegeNum="",
+                    var ueserNum=0,
+                     manegeNum=0,
                      manege="",
                      user="";
                     $.each(data.data.Number_data,function(i,item){
@@ -54,7 +54,7 @@ $(document).ready(function(){
                     </label>
                 </div>
                     `;
-                                manegeNum=i;
+                                manegeNum++;
                             }else{
                                 manege+=`
                 <div class="weui-cells weui-cells_checkbox ">
@@ -79,7 +79,7 @@ $(document).ready(function(){
                     </label>
                 </div>
                     `;
-                                manegeNum=i;
+                                manegeNum++;
                             }
                         }else if(item.role==3){
                             if(httP==="http"){
@@ -105,7 +105,7 @@ $(document).ready(function(){
                     </label>
                 </div>
                         `;
-                                ueserNum=i;
+                                ueserNum++;
                             }else{
                                 user+=`
                 <div class="weui-cells weui-cells_checkbox ">
@@ -129,7 +129,7 @@ $(document).ready(function(){
                     </label>
                 </div>
                         `;
-                                ueserNum=i;
+                                ueserNum++;
                             }
 
                         }
