@@ -25,9 +25,7 @@ $(document).ready(function(){
                 console.log(result.vote_info);
                 var httP=result.portrait.split(":")[0];
                 $.each(result.vote_info,function(i,item){
-
                     console.log(item);
-
                    voteList+=`
                     <label class="weui-cell weui-check__label" style="padding: 5px 0" for="${i}">
                         <div class="weui-cell__bd">
