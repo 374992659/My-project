@@ -42,4 +42,6 @@ return array(
     'APPSECRET'     =>'d6ced1ed28305e5ab8ad6794df07635d',
     'WEIXIN_API_TOKEN'  =>'tokenlv',
     'ENCODINGAESKEY'    =>'T2CGwfnGK3CSzo0WV879VtPcnSeRzU8yuib82EXds3P',
+    //百度地图
+    'MAPAK'         =>'uxOw0r15yGpM6bF5ZxeCRPjTZsiMvfEO',
 );
