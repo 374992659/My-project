@@ -211,38 +211,38 @@ class RegiestController extends BaseController
      * @param city 城市 APP必填
      * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据 APP由扫码获得
      * */
-    protected function regiest(){
-        $this->checkParam(array('account','password','repassword'));
-        if(intval($_GET['is_wap']) === 1){
-           $this->checkParam(array('openId'));
-        }
-        if( !preg_match('/^[a-z\d]{6,12}$/i',trim($this->pdata['account']))){ //账号格式 字母开头6-12位
-            $this->echoEncrypData(106);
-        }
-        $mongo = new \MongoClient();
-        if(md5($this->pdata['password']) !== md5($this->pdata['repassword']))$this->echoEncrypData(1,'请确认两次密码输入一致');
-        $mongo = new \MongoClient();
-        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$this->pdata['account']));
-        if( $account_count ){
-            $this->echoEncrypData(1,'该账号已被注册');
-        }
-
-        //注册地检测
-
-        //注册积分
-        $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
-        $mongo->baseinfo->user_area->insert(array(
-            '_id'=>getNextId($mongo,'baseinfo','user_area'),
-            'account'=> $this->pdata['account'],
-            'table_id'=>$area_id,
-            'status'=>1,
-            'account_code'=>$area_id.$account,
-            'openId'=>$openId,
-            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
-            'nickname'=>$account,
-            'phone'=>'',
-        ));
-    }
+//    protected function regiest(){
+//        $this->checkParam(array('account','password','repassword'));
+//        if(intval($_GET['is_wap']) === 1){
+//           $this->checkParam(array('openId'));
+//        }
+//        if( !preg_match('/^[a-z\d]{6,12}$/i',trim($this->pdata['account']))){ //账号格式 字母开头6-12位
+//            $this->echoEncrypData(106);
+//        }
+//        $mongo = new \MongoClient();
+//        if(md5($this->pdata['password']) !== md5($this->pdata['repassword']))$this->echoEncrypData(1,'请确认两次密码输入一致');
+//        $mongo = new \MongoClient();
+//        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$this->pdata['account']));
+//        if( $account_count ){
+//            $this->echoEncrypData(1,'该账号已被注册');
+//        }
+//
+//        //注册地检测
+//
+//        //注册积分
+//        $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
+//        $mongo->baseinfo->user_area->insert(array(
+//            '_id'=>getNextId($mongo,'baseinfo','user_area'),
+//            'account'=> $this->pdata['account'],
+//            'table_id'=>$area_id,
+//            'status'=>1,
+//            'account_code'=>$area_id.$account,
+//            'openId'=>$openId,
+//            'portrait'=>'Application/Common/Source/Img/default_portrait.jpg',
+//            'nickname'=>$account,
+//            'phone'=>'',
+//        ));
+//    }
 
 
     /*
