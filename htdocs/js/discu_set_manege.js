@@ -20,7 +20,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(1);
                     localStorage.setItem("apptoken",data.apptoken);
-                    var ueserNum="";
+                    var ueserNum=0;
                     var manegeNum=0;
                     var htmlAdministrator="";
                     var htmlMember="";
@@ -71,7 +71,7 @@ $(document).ready(function(){
                         <button class="addBtn" title="${item.user_code}">添加</button>
                     </div>
                         `;
-                                ueserNum=i;
+                                ueserNum++;
                             }else{
                                 htmlMember+=`
                     <div  class="weui-media-box weui-media-box_appmsg">
@@ -85,7 +85,7 @@ $(document).ready(function(){
                         <button class="addBtn" title="${item.user_code}">添加</button>
                     </div>
                         `;
-                                ueserNum=i;
+                                ueserNum++;
                             }
                         }
                     });
