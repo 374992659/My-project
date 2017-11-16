@@ -240,7 +240,7 @@ class RegiestController extends BaseController
                     'name'=>$inviter_point['name'],
                     'type'=>$inviter_point['type'],
                     'value'=>$inviter_point['value'],
-                    'crate_time'=>time(),
+                    'create_time'=>time(),
                 ));
                 if(!$res3 || !$res4){
 //                    M()->rollback();
