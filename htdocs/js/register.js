@@ -15,6 +15,7 @@ $(document).ready(function(){
         }
     })();
     var inviter_code=$_GET["inviter_code"];
+    alert(inviter_code);
     // 图片验证码刷新
     $(".refreshImg").click(function(){
         console.log(123);
@@ -43,6 +44,7 @@ $(document).ready(function(){
         // 数据加密
     info=['', JSON.stringify({"openId":openId,"account":numeber,"area_id":area_id,"password":password,'repassword':repassword,"apptoken":apptoken,"piccode":code,"inviter_code":inviter_code})];
         console.log(info);
+        alert(info);
         // 加密后的数据
         var afterDate=jsEncryptData(info);
         console.log(afterDate);
