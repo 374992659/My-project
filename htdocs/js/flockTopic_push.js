@@ -74,7 +74,7 @@ $(document).ready(function(){
         var group_num=localStorage.getItem("group_num");
         // 获取图片
         var topicPic={};
-        var Img=$("#uploaderFiles").find("img");
+        var Img=$("#uploaderFiles .weui-uploader__file").find("img");
         Img.each(function(i,item){
             topicPic[parseInt(i+1)]=$(this).attr("src");
         });
