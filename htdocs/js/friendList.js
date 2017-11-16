@@ -500,7 +500,20 @@ $(document).ready(function() {
                         console.log(item);
                         var httP=item.friend_portrait.split(":")[0];
                             if(httP==="http"){
-                                html+=`
+                                if(item.friend_signature==="null"){
+                                    html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">此人很懒什么都没有留下</p>
+                        </div>
+                    </div>
+                            `
+                                }else{
+                                    html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
@@ -511,8 +524,23 @@ $(document).ready(function() {
                         </div>
                     </div>
                             `
+                                }
+
                             }else{
-                                html+=`
+                                if(item.friend_signature==="null"){
+                                    html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">此人很懒什么都没有留下</p>
+                        </div>
+                    </div>
+                            `
+                                }else{
+                                    html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
@@ -523,6 +551,8 @@ $(document).ready(function() {
                         </div>
                     </div>
                             `
+                                }
+
                             }
                     });
                     $("#1").html(html);
