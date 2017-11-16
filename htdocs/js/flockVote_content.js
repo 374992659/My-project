@@ -302,9 +302,12 @@ $(document).ready(function(){
         // 群号
             group_num=localStorage.getItem("group_num"),
         // 投票id
-            vote_id=localStorage.getItem("vote_id"),
+            vote_id=localStorage.getItem("vote_id");
         // 获取choised
-            choised=$("input[name=radio1]:checked").attr("id");
+           // choised=$("input[name=radio1]:checked").attr("id");
+              var arr=[];
+        choised=$("input[name=radio1]:checked").parent().prev().find("p").text();
+        console.log(choised);
         // 数据格式转换
         data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"vote_id":vote_id,"choised":choised})];
         // 加密
