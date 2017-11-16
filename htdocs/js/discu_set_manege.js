@@ -54,7 +54,7 @@ $(document).ready(function(){
                         <button class="cancelBtn" title="${item.user_code}">撤销</button>
                     </div>
                     `;
-                                manegeNum=i;
+                                manegeNum++;
                             }
 
                         }else if(item.role==3){
