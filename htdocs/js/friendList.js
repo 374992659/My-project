@@ -492,7 +492,38 @@ $(document).ready(function() {
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
+                    var html="";
+                    var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
+                    $.each(result,function(i,item){
+                        console.log(item);
+                        var httP=item.friend_portrait.split(":")[0];
+                            if(httP==="http"){
+                                html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+                        </div>
+                    </div>
+                            `
+                            }else{
+                                html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+                        </div>
+                    </div>
+                            `
+                            }
+                    });
 
                 }
             }
