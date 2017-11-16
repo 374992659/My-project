@@ -172,7 +172,7 @@ $(document).ready(function(){
                      str = str+','+$(this).val();
                  }
              });
-           
+
             //数据格式转换
                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":str})],
             // 加密
