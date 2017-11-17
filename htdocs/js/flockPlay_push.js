@@ -493,8 +493,8 @@ $(document).ready(function(){
             // 转换成时间戳
             //var timestamp1 = Date.parse(new Date(startTime));
            // var start_time= timestamp1 / 1000;
-            var arr = startTime.split(/[- : \/]/),
-                date = new Date(arr[0], arr[1]-1, arr[2], arr[3]),
+            var arr = startTime.split(":"),
+                date = new Date(arr[0], arr[1]-1, arr[2]),
                 start_time=date/1000;
             alert(start_time);
             // 获取end_time 结束时间
