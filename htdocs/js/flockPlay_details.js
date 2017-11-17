@@ -27,23 +27,39 @@ $(document).ready(function(){
                 if (data.errcode === 0) {
                     var result = data.data;
                     localStorage.setItem("apptoken",data.apptoken);
+                    var picStr=result.picture;
+                    var picObj=JSON.parse(picStr);
+                    var pic="";
+                    var tag="";
+                    $.each(picObj,function(i,item){
+                        pic+=`
+                        <div class="swiper-slide"><img src="${item}" style="height:200px"/></div>
+                        `
+                    });
+                    var tagStr=result.tag;
+                    var tagObj=JSON.parse(tagStr);
+                    $.each(tagObj,function(i,item){
+                        tag+=`
+                        <div class="weui-flex__item"><div class="placeholder">美女</div></div>
+                        `
+                    });
                     var html=`              
         <div class="swiper-container">          
             <div class="swiper-wrapper">
                 <!-- Slides -->
-                <div class="swiper-slide"><img src="./image/1.jpg" style="height:200px"/></div>
-                <div class="swiper-slide"><img src="./image/2.jpg"  style="height:200px"/></div>
-                <div class="swiper-slide"><img src="./image/3.jpg"  style="height:200px"/></div>
+                // <div class="swiper-slide"><img src="./image/1.jpg" style="height:200px"/></div>
+                // <div class="swiper-slide"><img src="./image/2.jpg"  style="height:200px"/></div>
+                // <div class="swiper-slide"><img src="./image/3.jpg"  style="height:200px"/></div>
             </div>
             <!-- If we need pagination -->
             <div class="swiper-pagination"></div>
         </div>
         <!--标签-->
         <div class="weui-flex">
-            <div class="weui-flex__item"><div class="placeholder">美女</div></div>
-            <div class="weui-flex__item"><div class="placeholder">帅哥</div></div>
-            <div class="weui-flex__item"><div class="placeholder">自驾</div></div>
-            <div class="weui-flex__item"><div class="placeholder">happy</div></div>
+            // <div class="weui-flex__item"><div class="placeholder">美女</div></div>
+            // <div class="weui-flex__item"><div class="placeholder">帅哥</div></div>
+            // <div class="weui-flex__item"><div class="placeholder">自驾</div></div>
+            // <div class="weui-flex__item"><div class="placeholder">happy</div></div>
         </div>
         <!--标题-->
         <div class="weui-cell" style="padding: 0">
@@ -147,6 +163,8 @@ $(document).ready(function(){
                         $(".Btn").attr("disabled", true);
                     }
                     $("#flockPlay_details").html(html);
+                    $(".swiper-wrapper").html(pic);
+                    $(".weui-flex").html(tag);
                 }
             }
 
