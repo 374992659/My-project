@@ -29,8 +29,7 @@ $(document).ready(function(){
                 var picObj=JSON.parse(picStr);
                 var data=[];
                   $.each(picObj,function(i,item){
-                      var jsonObj = eval('(' + item + ')');
-                      data[i]=jsonObj;
+                    data.push(item);
                   });
                   console.log(data);
                   html+=`
