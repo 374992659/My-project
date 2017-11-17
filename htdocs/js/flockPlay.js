@@ -27,10 +27,8 @@ $(document).ready(function(){
               $.each(data.data,function(i,item){
                 var picStr=item.picture;
                 var picObj=JSON.parse(picStr);
-                  var jsonObj = eval('(' + picStr + ')');
-                  console.log(jsonObj);
-                  data=[];
-                  $.each(history,function(i,item){
+                var data=[];
+                  $.each(picObj,function(i,item){
                       var jsonObj = eval('(' + item + ')');
                       data[i]=jsonObj;
                   });
