@@ -224,7 +224,7 @@ class RegiestController extends BaseController
      * @param city 城市 APP必填
      * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据 APP由扫码获得
      * */
-    protected function regiest(){
+    public function regiest(){
         $this->checkParam(array('account','password','repassword'));
         if(intval($_GET['is_wap']) === 1){//微信
            $this->checkParam(array('openId','longitude','latitude'));
