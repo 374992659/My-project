@@ -29,7 +29,7 @@ $(document).ready(function(){
                 var picStr=item.picture;
                 var picObj=JSON.parse(picStr);
                 console.log(picObj);
-                console.log(picObj);
+                console.log(picObj[1]);
                   html+=`
                   <div class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
                     <div class="weui-media-box__hd">
