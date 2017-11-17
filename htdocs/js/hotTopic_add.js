@@ -1,7 +1,7 @@
 $(document).ready(function(){
     "use strict";
     localStorage.setItem("city_id",2701);
-    //获取认证下区情况
+    //获取认证小区情况
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
