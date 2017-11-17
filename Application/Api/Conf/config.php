@@ -36,6 +36,8 @@ return array(
         'CANCEL_LIKES'=>11,         //取消点赞id
         'DEL_NUM'=>12,                  //删除成员id
     ),
+    //群文件过期时间
+    'GROUP_FILE_LIFE'=>60*60*24*120,//120天
     //活动配置
     'ACTIVITY_TRANSPORT'=>array(
         '1'=>'汽车自驾',
