@@ -32,8 +32,8 @@ $(document).ready(function(){
     //功能1 获取全部广告
     var allAd=function(){
         var apptoken=localStorage.getItem("apptoken"),
-            city_id=localStorage.getItem("city_id"),
-            garden_code="2701113";
+            city_id= $("#tab1 .city option:selected"),
+            garden_code=$(".plot option:selected").attr("title");
         //数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
             //加密
@@ -68,8 +68,8 @@ $(document).ready(function(){
     //功能2 获取我的广告
     var myAd=function(){
         var apptoken=localStorage.getItem("apptoken"),
-            city_id=localStorage.getItem("city_id"),
-            garden_code="2701113";
+            city_id=$("#tab2 .city option:selected").val(),
+            garden_code=$("#tab2 .plot option:selected").val();
         //数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
             //加密
