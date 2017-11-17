@@ -58,6 +58,19 @@ CREATE TABLE if NOT EXISTS `friends_apply` (
   KEY `status` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='好友申请消息';
 
+CREATE TABLE if NOT EXISTS `group_files` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `file_path` varchar(255) NOT NULL COMMENT '文件保存路径',
+  `user_code` varchar(50) NOT NULL COMMENT '创建人code',
+  `nickname` varchar(255) NOT NULL COMMENT '创建人昵称',
+  `portrait` varchar(255) NOT NULL COMMENT '创建人头像',
+  `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `group_num` varchar(50) NOT NULL COMMENT '群号码',
+  PRIMARY KEY (`id`),
+  KEY `group_num` (`group_num`),
+  KEY `user_code` (`user_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='群文件';
+
 CREATE TABLE  if not exists `friends_group` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '自增主键',
   `user_code` varchar(255)  NOT NULL COMMENT '用户唯一标识。区域id+手机号的形式',
