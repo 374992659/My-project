@@ -66,6 +66,7 @@ CREATE TABLE if NOT EXISTS `group_files` (
   `portrait` varchar(255) NOT NULL COMMENT '创建人头像',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `group_num` varchar(50) NOT NULL COMMENT '群号码',
+  `show_name` varchar(255) NOT NULL COMMENT '展示名称',
   PRIMARY KEY (`id`),
   KEY `group_num` (`group_num`),
   KEY `user_code` (`user_code`)
