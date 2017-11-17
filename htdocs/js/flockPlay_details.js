@@ -70,7 +70,7 @@ $(document).ready(function(){
         <!--标题-->
         <div class="weui-cell" style="padding: 0">
             <div class="weui-cell__bd">
-                <p style="font-size: 15px;font-weight: bold">${result.title}</p>
+                <p style="font-size: 15px;font-weight: bold">标题：${result.title}</p>
             </div>
         </div>
         <!--活动内容-->
