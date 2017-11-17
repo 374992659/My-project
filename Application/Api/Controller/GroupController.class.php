@@ -1215,6 +1215,8 @@ class GroupController extends VersionController
             $data['enroll_status']=$mode->getEnroolStatus($activity_id,$this->account_code); //报名状态 0：未报名
         }
         if(!$data)$this->echoEncrypData(1);
+        $data['transport']=$this->getTransport_v1_0_0()[$data['transport']];
+        $data['cost_type']=$this->getCostType_v1_0_0()[$data['cost_type']];
         $this->echoEncrypData(0,'',$data);
     }
     /*
