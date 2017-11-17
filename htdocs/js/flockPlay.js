@@ -27,7 +27,14 @@ $(document).ready(function(){
               $.each(data.data,function(i,item){
                 var picStr=item.picture;
                 var picObj=JSON.parse(picStr);
-
+                  var jsonObj = eval('(' + picObj + ')');
+                  console.log(jsonObj);
+                  data=[];
+                  $.each(history,function(i,item){
+                      var jsonObj = eval('(' + item + ')');
+                      data[i]=jsonObj;
+                  });
+                  console.log(data);
                   html+=`
                   <div class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
                     <div class="weui-media-box__hd">
