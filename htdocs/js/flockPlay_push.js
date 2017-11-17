@@ -539,6 +539,7 @@ $(document).ready(function(){
                 tag[parseInt(i+1)]=$(this).text();
             });
             console.log(tag);
+           var tagStr=JSON.stringify(tag);
             // 获取picture 图片 可填
             var picture={};
             // 获取picPlace下img的src
@@ -547,12 +548,13 @@ $(document).ready(function(){
                 picture[parseInt(i+1)]=$(this).attr("src")
             });
             console.log(picture);
+            var pictureStr=JSON.stringify(picture);
             // 获取detailed_introduction 详细介绍 可填
             var detailed_introduction=$(".weui-textarea").val();
             // 获取group_num 群号码
             var group_num=localStorage.getItem("group_num");
             // 数据格式转换
-         var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tag,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"garden_code":garden_code,"garden_name":garden_name,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":picture,"detailed_introduction":detailed_introduction,"group_num":group_num})];
+         var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tagStr,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"garden_code":garden_code,"garden_name":garden_name,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":pictureStr,"detailed_introduction":detailed_introduction,"group_num":group_num})];
             alert(data);
             // 数据加密
             var jsonEncryptData=jsEncryptData(data);
