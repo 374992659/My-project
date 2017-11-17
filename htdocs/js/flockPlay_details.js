@@ -44,7 +44,7 @@ $(document).ready(function(){
                         `
                     });
                     var html=`              
-        <div class="swiper-container">          
+        <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">          
             <div class="swiper-wrapper">
                 <!-- Slides -->
                 // <div class="swiper-slide"><img src="./image/1.jpg" style="height:200px"/></div>
