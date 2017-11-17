@@ -248,7 +248,7 @@ $(".weui-gallery").click(function(){
        console.log(typeof type);
         console.log(type);
         // 获取小区code
-        var garden_code="";
+        var garden_code=$(".votoGarden option:selected").attr("title");
         // 获取结束时间
         var time=$(".voteEndTime").val();
         // 转换成时间戳
