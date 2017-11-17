@@ -252,9 +252,11 @@ $(".weui-gallery").click(function(){
         // 获取结束时间
         var time=$(".voteEndTime").val();
         // 转换成时间戳
-        var timestamp2 = Date.parse(new Date(time));
+       // var timestamp2 = Date.parse(new Date(time));
+        var timestamp2=new Date(time);
         var overTime= timestamp2 / 1000;
         // 获取是否匿名
+        alert(timestamp2);
         var anonymous=$(".switch").val();
         // 数据格式转换
         // Choice=JSON.stringify(option);
