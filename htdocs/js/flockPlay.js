@@ -27,11 +27,13 @@ $(document).ready(function(){
               $.each(data.data,function(i,item){
                 var picStr=item.picture;
                 var picObj=JSON.parse(picStr);
-                // var data=[];
-                //   $.each(picObj,function(i,item){
-                //     data.push(item);
-                //   });
-                //   console.log(data);
+                var data=[];
+                if(picObj){
+                    $.each(picObj,function(i,item){
+                        data.push(item);
+                    });
+                }
+                  console.log(data);
                   html+=`
                   <div class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
                     <div class="weui-media-box__hd">
