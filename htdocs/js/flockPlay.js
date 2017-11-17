@@ -25,10 +25,10 @@ $(document).ready(function(){
               localStorage.setItem("apptoken",data.apptoken);
               var html="";
               $.each(data.data,function(i,item){
-               
+
                 var picStr=item.picture;
                 var picObj=JSON.parse(picStr);
-                 var a= picObj[Object.keys(obj).sort((a,b)=>a-b)[0]];
+                 var a= picObj[Object.keys(picObj).sort((a,b)=>a-b)[0]];
                  console.log(a);
 
                   html+=`
