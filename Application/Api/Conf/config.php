@@ -36,6 +36,19 @@ return array(
         'CANCEL_LIKES'=>11,         //取消点赞id
         'DEL_NUM'=>12,                  //删除成员id
     ),
+    //活动配置
+    'ACTIVITY_TRANSPORT'=>array(
+        '1'=>'汽车自驾',
+        '2'=>'徒步',
+        '3'=>'自行车骑行',
+        '4'=>'摩托车骑行',
+    ),
+    'COST_TYPE'=>array(
+        '1'=>'AA制',
+        '2'=>'自驾游',
+        '3'=>'发布人请客',
+    ),
+    //数据库sql文件存放路径
     'SQL_PATH'      => './Application/Api/Sql/',
     //微信公众号
     'APPID'             =>'wx3a8d29551364f089',
