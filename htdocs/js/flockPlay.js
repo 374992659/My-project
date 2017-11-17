@@ -30,12 +30,13 @@ $(document).ready(function(){
                   var pictureStr=item.picture;
                   var pictureObj=JSON.parse(pictureStr);
                   $.each(pictureObj,function (i,item) {
-                      console.log(item);
+                    var pic=  pictureObj[0];
+                      console.log(pic);
                   });
                   html+=`
                   <div class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
                     <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb" src="${playPic}">
+                        <img class="weui-media-box__thumb" src="${}">
                     </div>
                     <div class="weui-media-box__bd">
                         <h4 class="weui-media-box__title" style="font-size: 15px">${item.title}</h4>
