@@ -500,14 +500,20 @@ $(document).ready(function(){
             // 获取end_time 结束时间
             var endTime=$("#other-date2").val();
             // 转换成时间戳
-            var timestamp2 = Date.parse(new Date(endTime));
-            var end_time= timestamp2 / 1000;
+            var end = endTime.split(/[- : \/]/),
+                dateEnd = new Date(end[0], end[1]-1, end[2]),
+                end_time=dateEnd/1000;
+            alert(end_time);
             // 获取destination 目的地
             var destination=$("#bourn").val();
             // 获取collection_time 集合时间
             var collectionTime=$("#gathertime").val();
-            var timestamp3 = Date.parse(new Date(collectionTime));
-            var collection_time= timestamp3 / 1000;
+            //var timestamp3 = Date.parse(new Date(collectionTime));
+            //var collection_time= timestamp3 / 1000;
+            var collection = collectionTime.split(/[- : \/]/),
+                timestamp3 = new Date(collection[0], collection[1]-1, collection[2],collection[3],collection[4]),
+                collection_time=timestamp3/1000;
+            alert(collection_time);
             // 获取collection_place 集合地
             var collection_place=$("#gatherPlace").val();
             // 获取contact 联系人
