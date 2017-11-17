@@ -261,6 +261,17 @@ class Events
                 $database= $mongo->$userdatastr; //群聊记录保存在创建人分库
                 $collection = $database->group_chat;
                 $collection->insert($data);   //插入数据
+               $group_time = $mongo->baseinfo->user_group_time->count(array('user_code'=>$account_code['account_code'],'group_code'=>$message->group));
+               if($group_time){
+                   $mongo->baseinfo->user_group_time->update(array('user_code'=>$account_code['account_code'],'group_code'=>$message->group),array('$set'=>array('time'=>time())));
+               }else{
+                  $mongo->baseinfo->user_group_time->insert(array(
+                    '_id'=>self::getNextId($mongo,'baseinfo','user_group_time'),
+                      'user_code'=>$account_code['account_code'],
+                      'group_code'=>$message->group,
+                      'time'=>time(),
+                  ));
+               }
                 $returnData =self::returnData(0,5,'群消息',$data);
                 Gateway::sendToGroup($message->group,json_encode($returnData));
                 $returnData =self::returnData(0,8,'群消息发送成功');
@@ -336,9 +347,9 @@ class Events
            case 7:                                    //读取群消息
                 $group_code =$message->group_code;
                 $mongo =new MongoClient();
-                $data = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('id','time'));
+                $data = $mongo->baseinfo->user_group_time->count(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code));
                 if($data){
-                    $mongo->baseinfo->user_group_time->update(array('_id'=>$data['_id']),array('$set'=>array('time'=>time())));
+                    $mongo->baseinfo->user_group_time->update(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('$set'=>array('time'=>time())));
                 }else{
                     $mongo->baseinfo->user_group_time->insert(array('_id'=>self::getNextId($mongo,'baseinfo','user_group_time'),'user_code'=>$account_code['account_code'],'group_code'=>$group_code,'time'=>time()));
                 }
