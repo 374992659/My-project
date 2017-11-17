@@ -69,6 +69,7 @@ $(document).ready(function(){ "use strict";
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
+        console.log("获取小区");
         $.ajax({
             url:url+"UserCenter_getApplicationGarden",
             type:"POST",
