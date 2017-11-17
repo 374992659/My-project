@@ -32,6 +32,8 @@ $(document).ready(function(){
                     $.each(picObj,function(i,item){
                         data.push(item);
                     });
+                }else{
+                    data.push("http://wx.junxiang.ren/project/Application/Common/Source/Img/default_portrait.jpg");
                 }
                   console.log(data);
                   html+=`
