@@ -35,7 +35,7 @@ $(document).ready(function(){
                     $.each(picTop,function(i,item){
                         topicPic+=`
                          <li class="weui-media-box__info__meta">
-                            <img src="${item}" alt="" style="width:100px;">
+                            <img src="${item}" alt="" style="width:80px;height: 90px">
                          </li>
                         `
                     });
