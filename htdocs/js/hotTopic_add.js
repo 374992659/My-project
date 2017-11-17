@@ -1,6 +1,33 @@
 $(document).ready(function(){
     "use strict";
     localStorage.setItem("city_id",2701);
+    //获取认证下区情况
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        $.ajax({
+            url:url+"UserCenter_getApplicationGarden",
+            type:"POST",
+            data:{"data":json},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html="";
+                    $.each(data.data,function(i,item){
+                        html+=`
+                         <option title="${item.garden_code}">${item.garden_name}</option>                     
+                        `
+                    });
+                    $("#plot").html(html);
+                }
+            }
+        })
+    })();
     //获取apptoken
     //功能1 获取全部广告
     var allAd=function(){
