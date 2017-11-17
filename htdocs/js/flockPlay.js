@@ -25,11 +25,9 @@ $(document).ready(function(){
               localStorage.setItem("apptoken",data.apptoken);
               var html="";
               $.each(data.data,function(i,item){
-
                 var picStr=item.picture;
                 var picObj=JSON.parse(picStr);
-                 var a= picObj[picObj.keys(picObj).sort((a,b)=>a-b)[0]];
-                 console.log(a);
+                 console.log(picObj["1"]);
 
                   html+=`
                   <div class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
