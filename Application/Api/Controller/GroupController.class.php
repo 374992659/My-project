@@ -339,7 +339,6 @@ class GroupController extends VersionController
     }
 
 
-
    /*
     * 添加群公告
     * @param title 公告标题
@@ -433,6 +432,16 @@ class GroupController extends VersionController
         if(!$res) $this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
+    /*
+   * 上传群文件
+   * @param group_num  群号码
+   * */
+    protected function uploadGroupFile_v1_0_0(){
+
+    }
+
+
+
     /*
      * 上传图片到群相册
      * @param group_num 群号码
@@ -1079,23 +1088,14 @@ class GroupController extends VersionController
      * 获取活动交通方式
      * */
     public function getTransport_v1_0_0(){
-        $data=array(
-            '1'=>'汽车自驾',
-            '2'=>'徒步',
-            '3'=>'自行车骑行',
-            '4'=>'摩托车骑行',
-        );
+        $data=C('ACTIVITY_TRANSPORT');
         $this->echoEncrypData(0,'',$data);
     }
     /*
      * 费用类型
      * */
     public function getCostType_v1_0_0(){
-        $data=array(
-            '1'=>'AA制',
-            '2'=>'自驾游',
-            '3'=>'发布人请客',
-        );
+        $data = C('COST_TYPE');
         $this->echoEncrypData(0,'',$data);
     }
     /*
@@ -1215,8 +1215,9 @@ class GroupController extends VersionController
             $data['enroll_status']=$mode->getEnroolStatus($activity_id,$this->account_code); //报名状态 0：未报名
         }
         if(!$data)$this->echoEncrypData(1);
-        $data['transport']=$this->getTransport_v1_0_0()[$data['transport']];
-        $data['cost_type']=$this->getCostType_v1_0_0()[$data['cost_type']];
+        $arr1 =
+        $data['transport']=C('ACTIVITY_TRANSPORT')[$data['transport']];
+        $data['cost_type']=C('COST_TYPE')[$data['cost_type']];
         $this->echoEncrypData(0,'',$data);
     }
     /*
