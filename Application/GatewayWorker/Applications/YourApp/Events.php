@@ -130,7 +130,7 @@ class Events
                             $content = '';
                             $group_time = $mongo->baseinfo->user_group_time->findOne(array('user_code'=>$account_code['account_code'],'group_code'=>$val['group_code']),array('user_code','group_code','time'));
                             $time =$group_time['time']?$group_time['time']:0;
-                                $count = $user_database->group_chat->count(array('group'=>$val['group_code'],'send_time'=>array('$gte'=>$time)));
+                                $count = $user_database->group_chat->count(array('group'=>$val['group_code'],'send_time'=>array('$gt'=>$time)));
                                 $res=iterator_to_array($user_database->group_chat->find(array('send_time'=>array('$gte'=>$time),'group'=>$val['group_code']))->sort(array('send_time'=>1)));
                                 foreach ($res as $kk=>$vv){
                                     $content[$kk]['group_code']=$vv['group'];
