@@ -744,7 +744,7 @@ class GroupController extends VersionController
         if(!$subject_id=$model->addGroupSubject($data))$this->echoEncrypData(1);
         $database=new RegiestController();
         $database->executeSql('group_subject_dynamics.sql',array('account_code'=>$create_code,'subject_id'=>$subject_id));
-        $this->echoEncrypData(0);
+        $this->echoEncrypData(0,$picture);
     }
     /*
      * 上传群话题图片
