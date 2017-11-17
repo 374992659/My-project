@@ -31,18 +31,24 @@ $(document).ready(function(){
                     var picObj=JSON.parse(picStr);
                     var pic="";
                     var tag="";
-                    $.each(picObj,function(i,item){
-                        pic+=`
+                    if(picObj){
+                        $.each(picObj,function(i,item){
+                            pic+=`
                         <div class="swiper-slide"><img src="${item}" style="height:200px"/></div>
                         `
-                    });
+                        });
+                    }
+
                     var tagStr=result.tag;
                     var tagObj=JSON.parse(tagStr);
-                    $.each(tagObj,function(i,item){
-                        tag+=`
-                        <div class="weui-flex__item"><div class="placeholder">美女</div></div>
+                    if(tagObj){
+                        $.each(tagObj,function(i,item){
+                            tag+=`
+                        <div class="weui-flex__item"><div class="placeholder">${item}</div></div>
                         `
-                    });
+                        });
+                    }
+
                     var html=`              
         <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">          
             <div class="swiper-wrapper">
