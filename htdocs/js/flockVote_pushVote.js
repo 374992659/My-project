@@ -198,7 +198,7 @@ $(".weui-gallery").click(function(){
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
-        var data=["",JSON.stringify({"apptoekn":apptoken})];
+        var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         $.ajax({
             url:url+"UserCenter_getApplicationGarden",
