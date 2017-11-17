@@ -24,10 +24,6 @@ $(document).ready(function(){
                 var voteList="";
                 console.log(result.vote_info);
                 var httP=result.portrait.split(":")[0];
-                var pic=data.data.picture;
-                var picTop=JSON.parse(pic);
-                console.log(picTop);
-                console.log(typeof picTop);
                 if(result.have_choise===null){//已经投票
                     $.each(result.vote_info,function(i,item){
                         console.log(item);

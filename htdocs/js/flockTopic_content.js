@@ -27,6 +27,9 @@ $(document).ready(function(){
                     // 获取用户的id
                     var userCode=data.data.user_code;
                     localStorage.setItem("apptoken",data.apptoken);
+                    var pic=data.data.picture;
+                    var picTop=JSON.parse(pic);
+                    console.log(picTop);
                     // 所有评论
                     var alldiscuss="";
                     // 我的评论
