@@ -30,6 +30,15 @@ $(document).ready(function(){
                     var pic=data.data.picture;
                     var picTop=JSON.parse(pic);
                     console.log(picTop);
+                    //循环图片
+                    var topicPic="";
+                    $.each(picTop,function(i,item){
+                        topicPic+=`
+                         <li class="weui-media-box__info__meta">
+                            <img src="${item}" alt="" style="width:100px;">
+                         </li>
+                        `
+                    });
                     // 所有评论
                     var alldiscuss="";
                     // 我的评论
@@ -43,6 +52,10 @@ $(document).ready(function(){
                     <ul class="weui-media-box__info" style="font-size: 15px;color: #BEBEBE">
                         <li class="weui-media-box__info__meta">作者：<a href=""><span>${data.data.nickname}</span></a></li>
                         <li class="weui-media-box__info__meta">时间：${getLocalTime(data.data.create_time)}</li>
+
+                    </ul>
+                    <ul class="weui-media-box__info picPlace">
+                       
 
                     </ul>
                     <p class="weui-media-box__desc" style=" text-indent:1em;font-size: 16px;color:black">
@@ -114,6 +127,10 @@ $(document).ready(function(){
                     <ul class="weui-media-box__info" style="font-size: 15px;color: #BEBEBE">
                         <li class="weui-media-box__info__meta">作者：<a href=""><span>${data.data.nickname}</span></a></li>
                         <li class="weui-media-box__info__meta">时间：${data.data.create_time}</li>
+
+                    </ul>
+                     <ul class="weui-media-box__info picPlace">
+                       
 
                     </ul>
                     <p class="weui-media-box__desc" style=" text-indent:1em;font-size: 16px;color:black">
@@ -261,6 +278,7 @@ $(document).ready(function(){
                         });
                     }
                     $("#topicText").html(html);
+                    $(".picPlace").html(topicPic);
                     $(".myDiscuss").append(mydiscuss);
                     $(".allDiscuss").append(alldiscuss);
                 }
