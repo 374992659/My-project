@@ -29,10 +29,11 @@ $(document).ready(function(){
                   console.log(item.picture);
                   var pictureStr=item.picture;
                   var pictureObj=JSON.parse(pictureStr);
+                  var arr=[];
                   $.each(pictureObj,function (i,item) {
-                    var pic=  pictureObj[0];
-                      console.log(pic);
+                    arr.push(item);
                   });
+                  console.log(arr);
                   html+=`
                   <div class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
                     <div class="weui-media-box__hd">
