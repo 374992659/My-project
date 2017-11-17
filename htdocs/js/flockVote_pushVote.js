@@ -194,6 +194,30 @@ $(".weui-gallery").click(function(){
         $(".voteImg").removeAttr("src");
         console.log(321);
     });
+    //获取小区code
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoekn":apptoken})];
+        var json=jsEncryptData(data);
+        $.ajax({
+            url:url+"UserCenter_getApplicationGarden",
+            type:"POST",
+            data:{"data":json},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    html="";
+                    $.each(data.data,function(i,item){
+                        console.log(item);
+                    })
+                }
+            }
+        })
+    })();
 // 发布投票
     $(".submitBtn").click(function(){
         var success=$(".success");
