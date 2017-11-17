@@ -257,15 +257,13 @@ $(".weui-gallery").click(function(){
        // var overTime= timestamp2 / 1000;
         var arr = time.split(/[- : \/]/),
              date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4]);
-            alert(date);
         var overTime= date / 1000;
         // 获取是否匿名
         var anonymous=$(".switch").val();
         // 数据格式转换
         // Choice=JSON.stringify(option);
         data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":garden_code,"group_num":group_code,"end_time":overTime,"anonymous":anonymous,"choice":JSON.stringify(option)})];
-        alert(data);
-        // console.log(Choice);
+        console.log(data);
 // 数据加密
     jsonEncryptData=jsEncryptData(data);
     // choice=jsonEncryptData(Choice);
@@ -287,16 +285,7 @@ $(".weui-gallery").click(function(){
                 }
             }
         })
-
-
-
-
-
-
     });
-
-
-
 });
 
 
