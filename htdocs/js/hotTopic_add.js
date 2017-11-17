@@ -23,7 +23,7 @@ $(document).ready(function(){
                          <option title="${item.garden_code}">${item.garden_name}</option>                     
                         `
                     });
-                    $("#plot").append(html);
+                    $(".plot").append(html);
                 }
             }
         })
@@ -113,7 +113,7 @@ $(document).ready(function(){
                 //城市id
                 city_id=$("#city option:selected").val(),
                 //小区id
-                garden_code="270113";
+                garden_code=$("#plot option:selected").val();
                 localStorage.setItem("city_id",city_id);
             //数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];

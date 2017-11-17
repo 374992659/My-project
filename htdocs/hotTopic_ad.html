@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
+<div class="success" style="position: fixed;top:0;left: 0;z-index: 501;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
     <div id="hotAd">
         <div class="weui-tab">
             <!--广告导航-->
@@ -36,6 +36,22 @@
             <div class="weui-tab__bd">
                 <!--全部广告-->
                 <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                    <!--选中显示区域的广告-->
+                    <div>
+                        <div class="weui-cells__title" style="color: black">投放区域：</div>
+                        <div class="weui-cell__bd" id="sanji1" >
+                            <select name="province" class="province">
+                                <option value="">请选择</option>
+                            </select>省
+                            <select name="city" class="city">
+                                <option value="">请选择</option>
+                            </select>市
+                            <select name="city" class="plot">
+                                <option value="">可不选</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div></div>
                     <div class="weui-panel__bd allAdList">
                         <!--广告1-->
 
@@ -49,6 +65,21 @@
                 </div>
                 <!--我的广告-->
                 <div id="tab2" class="weui-tab__bd-item">
+                    <!--选中显示区域的广告-->
+                    <div>
+                        <div class="weui-cells__title" style="color: black">投放区域：</div>
+                        <div class="weui-cell__bd" id="sanji2" >
+                            <select name="province" class="province">
+                                <option value="">请选择</option>
+                            </select>省
+                            <select name="city" class="city">
+                                <option value="">请选择</option>
+                            </select>市
+                            <select name="city" class="plot">
+                                <option value="">可不选</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="weui-panel__bd myAdList" >
                        <!--公告存放区-->
                     </div>
@@ -75,7 +106,7 @@
                             <select name="city" id="city">
                                 <option value="">请选择</option>
                             </select>市
-                            <select name="city" id="plot">
+                            <select name="city" class="plot">
                                 <option value="">可不选</option>
                             </select>
                         </div>
@@ -122,6 +153,7 @@
     <script src="js/addRess.js"></script>
     <script >
         addRess();
+        addRess1();
     </script>
     <script src="js/showHide.js"></script>
     <script src="js/hotTopic_add.js"></script>
