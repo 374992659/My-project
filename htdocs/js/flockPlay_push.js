@@ -453,6 +453,33 @@ $(document).ready(function(){
                 }
             })
         })();
+        //获取小区code
+        (function(){
+            // 获取apptoken
+            var apptoken=localStorage.getItem("apptoken");
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            $.ajax({
+                url:url+"UserCenter_getApplicationGarden",
+                type:"POST",
+                data:{"data":json},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var html="";
+                        $.each(data.data,function(i,item){
+                            html+=`
+                         <option value="2" title="${item.garden_code}">${item.garden_name}</option>                     
+                        `
+                        });
+                        $("#house").html(html);
+                    }
+                }
+            })
+        })();
         $(".subBtn").click(function(){
             var success=$(".success");
             var hideTop=function(){
@@ -464,8 +491,12 @@ $(document).ready(function(){
             // 获取start_time 开始时间
             var startTime=$("#other-date1").val();
             // 转换成时间戳
-            var timestamp1 = Date.parse(new Date(startTime));
-            var start_time= timestamp1 / 1000;
+            //var timestamp1 = Date.parse(new Date(startTime));
+           // var start_time= timestamp1 / 1000;
+            var arr = startTime.split(/[-  \/]/),
+                date = new Date(arr[0], arr[1]-1, arr[2], arr[3]),
+                start_time=date/1000;
+            alert(start_time);
             // 获取end_time 结束时间
             var endTime=$("#other-date2").val();
             // 转换成时间戳
@@ -486,7 +517,7 @@ $(document).ready(function(){
             // 获取transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
             var transport=$("#vehicle option:selected").text();
             // 获取garden_code 小区code
-            var garden_code="1231";
+            var garden_code=$("#house option:selected").attr("title");
             // 获取garden_name 小区名称
             var garden_name=$("#house option:selected").text();
             // 获取total_num 目标人数
@@ -498,14 +529,6 @@ $(document).ready(function(){
             // 获取rote_planning 路线规划 可填
             var rote_planning=$("#line").val();
             // 获取tag 标签 可填
-            // var tag={arrayTag:[]};
-            // var tagLi=$(".labelBox").find($(".itemLi"));
-            // console.log(tagLi);
-            // $.each(tagLi,function(i,item){
-            //     console.log(item.innerHTML);
-            //     tag.arrayTag.push(item.innerHTML)
-            // });
-            // console.log(tag);
             var tag={};
             //获取labelBox下所有li
             var Li=$(".labelBox").find("li");
@@ -516,7 +539,7 @@ $(document).ready(function(){
             // 获取picture 图片 可填
             var picture={};
             // 获取picPlace下img的src
-            var Url=$(".picPlace").find("img");
+            var Url=$(".picPlace").find(".pushTopic_Img");
             Url.each(function(i,item){
                 picture[parseInt(i+1)]=$(this).attr("src")
             });
