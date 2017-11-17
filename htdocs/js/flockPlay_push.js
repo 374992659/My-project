@@ -496,14 +496,12 @@ $(document).ready(function(){
             var arr = startTime.split(/[- : \/]/),
                 date = new Date(arr[0], arr[1]-1, arr[2]),
                 start_time=date/1000;
-            alert(start_time);
             // 获取end_time 结束时间
             var endTime=$("#other-date2").val();
             // 转换成时间戳
             var end = endTime.split(/[- : \/]/),
                 dateEnd = new Date(end[0], end[1]-1, end[2]),
                 end_time=dateEnd/1000;
-            alert(end_time);
             // 获取destination 目的地
             var destination=$("#bourn").val();
             // 获取collection_time 集合时间
@@ -513,7 +511,6 @@ $(document).ready(function(){
             var collection = collectionTime.split(/[- : \/]/),
                 timestamp3 = new Date(collection[0], collection[1]-1, collection[2],collection[3],collection[4]),
                 collection_time=timestamp3/1000;
-            alert(collection_time);
             // 获取collection_place 集合地
             var collection_place=$("#gatherPlace").val();
             // 获取contact 联系人
@@ -556,7 +553,7 @@ $(document).ready(function(){
             var group_num=localStorage.getItem("group_num");
             // 数据格式转换
          var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tag,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"garden_code":garden_code,"garden_name":garden_name,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":picture,"detailed_introduction":detailed_introduction,"group_num":group_num})];
-            console.log(data);
+            alert(data);
             // 数据加密
             var jsonEncryptData=jsEncryptData(data);
             $.ajax({
