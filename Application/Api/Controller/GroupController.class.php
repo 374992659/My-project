@@ -437,10 +437,56 @@ class GroupController extends VersionController
    * @param group_num  群号码
    * */
     protected function uploadGroupFile_v1_0_0(){
-
+        $group_num = $this->pdata['group_num'];
+        if($group_num)$this->echoEncrypData(21);
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
+        import('Vendor.UploadFile');
+        $upload =new \UploadFile();
+        $path=APP_PATH.'Common/Upload/Group/GroupFiles/'.date(m).date(d).'/';//群文件夹
+        $res = $upload->upload($path);
+        if(!$res){
+            $this->echoEncrypData(1,'文件上传失败');
+        }
+        var_dump($res);die;
+        foreach($res as $k=>$v){
+            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+        }
+        $file_path=serialize($data);
+        $user_code=$this->account_code;
+        $user_info= $mongo->baseinfo->user_area->findOne(array('account_code'=>$user_code));
+        $model =new Model\GroupFileModel($create_code);
+        $res = $model->add(array(
+            'file_path'=>$file_path,
+            'user_code'=>$user_info['account_code'],
+            'nickname'=>$user_info['nickname'],
+            'portrait'=>$user_info['portrait'],
+            'create_time'=>time(),
+            'group_num'=>$group_num,
+        ));
+        if(!$res) $this->echoEncrypData(1);
+        $this->echoEncrypData(0);
     }
-
-
+    /*
+     * 获取群文件列表
+     * @param 群号码
+     * */
+    protected function getGroupFileList_v1_0_0(){
+        $group_num=$this->pdata['group_num'];
+        if(!$group_num)$this->echoEncrypData(21);
+        $mongo = new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
+        $create_code = $create_code['user_code'];
+        $group_file =new Model\GroupFileModel($create_code);
+        $time = time()-C('GROUP_FILE_LIFE');
+        $data = $group_file->where(['group_num'=>$group_num,'create_time'=>array('EGT'=>$time)])->select();//查询有效期内的群文件
+        if(!$data)$this->echoEncrypData(5);
+        foreach ($data as $k =>$v){
+            $data[$k]['file_path'] = unserialize($v['file_path']);
+        }
+        $this->echoEncrypData(0,'',$data);
+    }
 
     /*
      * 上传图片到群相册
