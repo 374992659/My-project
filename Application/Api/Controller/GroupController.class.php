@@ -433,7 +433,7 @@ class GroupController extends VersionController
         $this->echoEncrypData(0);
     }
     /*
-   * 上传群文件
+   * 上传群文件 单个文件上传
    * @param group_num  群号码
    * */
     protected function uploadGroupFile_v1_0_0(){
@@ -449,7 +449,7 @@ class GroupController extends VersionController
         if(!$res){
             $this->echoEncrypData(1,'文件上传失败');
         }
-        var_dump($res);die;
+//        var_dump($res);die;
         foreach($res as $k=>$v){
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];
         }
@@ -464,6 +464,7 @@ class GroupController extends VersionController
             'portrait'=>$user_info['portrait'],
             'create_time'=>time(),
             'group_num'=>$group_num,
+            'show_name'=>$res[0]['name'],
         ));
         if(!$res) $this->echoEncrypData(1);
         $this->echoEncrypData(0);
