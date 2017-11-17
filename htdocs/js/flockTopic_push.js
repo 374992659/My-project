@@ -78,12 +78,14 @@ $(document).ready(function(){
         Img.each(function(i,item){
             topicPic[parseInt(i+1)]=$(this).attr("src");
         });
+       var picTopic=JSON.stringify(topicPic);
+       console.log(typeof picTopic);
         // 获取标题
         var title=$(".topicTitle").val();
         // 获取内容
         var content=$(".topicContent").val();
         // 数据格式转换
-       var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"picture":topicPic,"title":title,"content":content})];
+       var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"picture":picTopic,"title":title,"content":content})];
        console.log(data);
         // 数据加密
        var jsonEncryptData=jsEncryptData(data);
