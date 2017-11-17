@@ -651,7 +651,6 @@ $(document).ready(function(){
                     ws.send(sendMessage);
                 }
             })();
-
         };
          //获取本地聊天记录
         (function(){
