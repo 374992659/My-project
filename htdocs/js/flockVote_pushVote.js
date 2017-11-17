@@ -259,7 +259,7 @@ $(".weui-gallery").click(function(){
         // 数据格式转换
         // Choice=JSON.stringify(option);
         data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":garden_code,"group_num":group_code,"end_time":overTime,"anonymous":anonymous,"choice":JSON.stringify(option)})];
-        console.log(data);
+        alert(data);
         // console.log(Choice);
 // 数据加密
     jsonEncryptData=jsEncryptData(data);
