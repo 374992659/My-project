@@ -63,6 +63,33 @@ $(document).ready(function(){ "use strict";
             })();
         });
     })();
+    //获取小区code
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        $.ajax({
+            url:url+"UserCenter_getApplicationGarden",
+            type:"POST",
+            data:{"data":json},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                  var  html="";
+                    $.each(data.data,function(i,item){
+                        html+=`
+                         <option value="2" title="${item.garden_code}">${item.garden_name}</option>                     
+                        `
+                    });
+                    $("#house").html(html);
+                }
+            }
+        })
+    })();
     // 发送数据
     $(".subBtn").click(function(){
         var success=$(".success");
