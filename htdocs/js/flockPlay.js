@@ -28,7 +28,7 @@ $(document).ready(function(){
 
                 var picStr=item.picture;
                 var picObj=JSON.parse(picStr);
-                 var a= picObj[Object.keys(picObj).sort((a,b)=>a-b)[0]];
+                 var a= picObj[picObj.keys(picObj).sort((a,b)=>a-b)[0]];
                  console.log(a);
 
                   html+=`
