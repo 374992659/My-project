@@ -23,7 +23,7 @@ $(document).ready(function(){
                          <option title="${item.garden_code}">${item.garden_name}</option>                     
                         `
                     });
-                    $("#plot").html(html);
+                    $("#plot").append(html);
                 }
             }
         })
