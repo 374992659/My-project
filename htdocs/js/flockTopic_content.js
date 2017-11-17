@@ -32,13 +32,16 @@ $(document).ready(function(){
                     console.log(picTop);
                     //循环图片
                     var topicPic="";
-                    $.each(picTop,function(i,item){
-                        topicPic+=`
+                    if(picTop){
+                        $.each(picTop,function(i,item){
+                            topicPic+=`
                          <li class="weui-media-box__info__meta">
                             <img src="${item}" alt="" style="width:80px;height: 90px">
                          </li>
                         `
-                    });
+                        });
+                    }
+
                     // 所有评论
                     var alldiscuss="";
                     // 我的评论
