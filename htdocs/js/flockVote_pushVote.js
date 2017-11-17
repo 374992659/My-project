@@ -212,8 +212,11 @@ $(".weui-gallery").click(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     html="";
                     $.each(data.data,function(i,item){
-                        console.log(item);
-                    })
+                        html+=`
+                         <option value="2" title="${item.garden_code}">${item.garden_name}</option>                     
+                        `
+                    });
+                    $(".weui-select").html(html);
                 }
             }
         })
@@ -245,7 +248,7 @@ $(".weui-gallery").click(function(){
        console.log(typeof type);
         console.log(type);
         // 获取小区code
-        var code="";
+        var garden_code="";
         // 获取结束时间
         var time=$(".voteEndTime").val();
         // 转换成时间戳
@@ -255,7 +258,7 @@ $(".weui-gallery").click(function(){
         var anonymous=$(".switch").val();
         // 数据格式转换
         // Choice=JSON.stringify(option);
-        data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":123,"group_num":group_code,"end_time":overTime,"anonymous":anonymous,"choice":JSON.stringify(option)})];
+        data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"picture":picture,"type":type,"garden_code":garden_code,"group_num":group_code,"end_time":overTime,"anonymous":anonymous,"choice":JSON.stringify(option)})];
         console.log(data);
         // console.log(Choice);
 // 数据加密
