@@ -308,12 +308,12 @@ $(document).ready(function(){
         // 小区名字
             garden_name=$("#houseName").val(),
         // 小区code（没有可不填）
-            garden_code=$(".gardenName").attr("title"),
+            garden_code=$("#gardenName").attr("title"),
         // 小区所属城市
             city_id=$("#city option:selected").val(),
         // 小区详细地址
         //     garden_addr=$("#plotPlace").val();
-            garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
+            garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
         console.log(garden_code);
         // 小区照片
         var garden_picture={};
