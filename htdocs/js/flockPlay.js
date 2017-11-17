@@ -37,7 +37,7 @@ $(document).ready(function(){
                   html+=`
                   <div class="weui-media-box weui-media-box_appmsg storePlay_id" title="${item.activity_id}">
                     <div class="weui-media-box__hd">
-                        <img class="weui-media-box__thumb" src="">
+                        <img class="weui-media-box__thumb" src="${arr[0]}">
                     </div>
                     <div class="weui-media-box__bd">
                         <h4 class="weui-media-box__title" style="font-size: 15px">${item.title}</h4>
