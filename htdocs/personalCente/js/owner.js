@@ -314,6 +314,7 @@ $(document).ready(function(){
         // 小区详细地址
         //     garden_addr=$("#plotPlace").val();
             garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#houseName").val();
+        console.log(garden_code);
         // 小区照片
         var garden_picture={};
            var a=$(".placePlot").find("img");
