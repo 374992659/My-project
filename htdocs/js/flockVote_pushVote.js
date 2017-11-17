@@ -216,7 +216,7 @@ $(".weui-gallery").click(function(){
                          <option value="2" title="${item.garden_code}">${item.garden_name}</option>                     
                         `
                     });
-                    $(".weui-select").html(html);
+                    $(".votoGarden").html(html);
                 }
             }
         })
