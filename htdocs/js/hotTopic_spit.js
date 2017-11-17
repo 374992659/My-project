@@ -93,9 +93,6 @@ $(document).ready(function(){ "use strict";
     })();
     // 发送数据
     $(".subBtn").click(function(){
-        var success=$(".success");
-        var hideTop=function(){
-            success.empty()};
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 参数：title 标题
@@ -103,18 +100,18 @@ $(document).ready(function(){ "use strict";
         // 参数：content 内容
             content=$(".content").val(),
         // 参数：garden_code 小区
-            garden_code="270113",
+            garden_code=$("#house option:selected").attr("title"),
         // 参数：garden_name 小区名称
             garden_name=$("#house option:selected").text(),
         // 参数：c 选择项 json格式
             choise={},
         // 参数：end_time 结束时间
-            endTime=$("#gathertime").val(),
+            endTime=$("#gathertime").val();
             // 转换时间戳
-         timestamp2 = Date.parse(new Date(endTime)),
-         end_time= timestamp2 / 1000,
+         //timestamp2 = Date.parse(new Date(endTime)),
+        // end_time= timestamp2 / 1000,
         // 参数：picture 图片 可填
-            picture="asdasd",
+         var picture="asdasd",
         // 参数：type 选择类型
             type=parseInt($("#type option:selected").val()),
         // 参数：is_public 是否公开
@@ -140,7 +137,6 @@ $(document).ready(function(){ "use strict";
                 // 解密
                var data=jsDecodeData(data);
                 console.log(data);
-                var success=$(".success");
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg);
