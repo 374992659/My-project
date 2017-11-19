@@ -115,10 +115,10 @@ $(document).ready(function(){
     });
     $("#searchClear").click(function(){
         $(".keyFriend").empty();
-        $(".group").show();
+        $(".addFriendCondition").show();
     });
     $("#searchCancel").click(function(){
         $(".keyFriend").empty();
-        $(".group").show();
+        $(".addFriendCondition").show();
     });
 });
