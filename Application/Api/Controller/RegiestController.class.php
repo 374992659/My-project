@@ -181,6 +181,7 @@ class RegiestController extends BaseController
         $highestRow = $sheet->getHighestRow(); // 取得总行数
         $highestColumn = $sheet->getHighestColumn(); // 取得总列数
         $k = 0;
+        $swf_area= M('baseinfo.swf_area');
         for($j=2;$j<=$highestRow;$j++)
         {
 
@@ -191,8 +192,14 @@ class RegiestController extends BaseController
             $e = $objPHPExcel->getActiveSheet()->getCell("E".$j)->getValue();//获取B列的值
             $f = $objPHPExcel->getActiveSheet()->getCell("F".$j)->getValue();//获取B列的值
             $g = $objPHPExcel->getActiveSheet()->getCell("G".$j)->getValue();//获取B列的值
-            var_dump($a.$b.$c.$d.$e.$f.$g.'\n');
-
+            $swf_area->add(array(
+                'province'=>$b,
+                'city'=>$c,
+                'area'=>$d,
+                'province_code'=>$e,
+                'city_code'=>$f,
+                'area_code'=>$g,
+            ));
         }
     }
 
