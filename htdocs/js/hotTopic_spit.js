@@ -121,7 +121,7 @@ $(document).ready(function(){ "use strict";
          var picture={};
          var Url=$(".picPlace").find(".pushSpit_Img");
          Url.each(function(i,item){
-             picture[parseInt(i+1)]=$(this).val();
+             picture[parseInt(i+1)]=$(this).attr("src");
          });
          console.log(picture);
         // 参数：type 选择类型
