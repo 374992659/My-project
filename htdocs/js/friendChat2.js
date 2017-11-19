@@ -678,10 +678,10 @@ $(document).ready(function(){
                     var jsonObj = eval('(' + item + ')');
                     data[i]=jsonObj;
                 });
-                alert(data);
+               
                 var html="";
                 $.each(data,function(i,item){
-                    console.log(item.portrait);
+                    alert(item.portrait);
                     var httP=item.portrait.split(":")[0];
                     console.log(httP);
                     var pic="";
