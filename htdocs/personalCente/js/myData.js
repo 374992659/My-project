@@ -1,4 +1,30 @@
 $(document).ready(function(){
+    //获取个人资料
+    (function(){
+        var apptoken=localStorage.getItem("apptoken");
+        // 数据格式转换
+        var data=["",JSON.stringify({"apptoken":apptoken})],
+            // 加密
+            jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        console.log(jsonEncryptData);
+        $.ajax({
+            url:url+"UserCenter_getMyInfo",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                //解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken)
+
+                }
+
+            },
+            error:function(){}
+        })
+    })();
     // 获取个人账号
     var account=localStorage.getItem("account");
     $(".account").text(account);
