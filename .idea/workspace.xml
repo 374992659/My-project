@@ -28,8 +28,20 @@
         <entry file="file://$PROJECT_DIR$/htdocs/addfriends.html">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-22.967741">
-              <caret line="85" column="27" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="27" />
+              <caret line="86" column="31" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commDiscu.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-12.774194">
+              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="168" />
+              <folding>
+                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#a#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -37,15 +49,15 @@
       <file leaf-file-name="addFriends.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htdocs/js/addFriends.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74507535">
-              <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.64310545">
+              <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
               <folding>
-                <marker date="1511100255474" expanded="true" signature="1340:1878" placeholder="..." />
-                <marker date="1511100255474" expanded="true" signature="1397:1524" placeholder="..." />
-                <marker date="1511100255474" expanded="true" signature="1581:1787" placeholder="..." />
-                <marker date="1511100255474" expanded="true" signature="2066:2635" placeholder="..." />
-                <marker date="1511100255474" expanded="true" signature="2123:2281" placeholder="..." />
-                <marker date="1511100255474" expanded="true" signature="2338:2544" placeholder="..." />
+                <marker date="1511100435626" expanded="true" signature="1340:1878" placeholder="..." />
+                <marker date="1511100435626" expanded="true" signature="1397:1524" placeholder="..." />
+                <marker date="1511100435626" expanded="true" signature="1581:1787" placeholder="..." />
+                <marker date="1511100435626" expanded="true" signature="2066:2635" placeholder="..." />
+                <marker date="1511100435626" expanded="true" signature="2123:2281" placeholder="..." />
+                <marker date="1511100435626" expanded="true" signature="2338:2544" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -65,7 +77,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/htdocs/flockChat.html" />
         <option value="$PROJECT_DIR$/htdocs/css/hotTopic_spit.css" />
         <option value="$PROJECT_DIR$/htdocs/flockComm_content.html" />
         <option value="$PROJECT_DIR$/htdocs/js/flockComm_content.js" />
@@ -115,6 +126,7 @@
         <option value="$PROJECT_DIR$/htdocs/flockMember.html" />
         <option value="$PROJECT_DIR$/htdocs/js/flockMember.js" />
         <option value="$PROJECT_DIR$/htdocs/js/discu_addfriend.js" />
+        <option value="$PROJECT_DIR$/htdocs/addfriends.html" />
         <option value="$PROJECT_DIR$/htdocs/js/addFriends.js" />
       </list>
     </option>
@@ -653,16 +665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8018018">
-          <caret line="147" column="25" selection-start-line="147" selection-start-column="25" selection-end-line="147" selection-end-column="25" />
-          <folding>
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#a#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/flockMember.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7705678">
@@ -729,25 +731,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-12.774194">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="168" />
+          <folding>
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#a#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/addfriends.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-22.967741">
-          <caret line="85" column="27" selection-start-line="85" selection-start-column="27" selection-end-line="85" selection-end-column="27" />
+          <caret line="86" column="31" selection-start-line="86" selection-start-column="31" selection-end-line="86" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/addFriends.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74507535">
-          <caret line="68" column="35" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.64310545">
+          <caret line="103" column="40" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
           <folding>
-            <marker date="1511100255474" expanded="true" signature="1340:1878" placeholder="..." />
-            <marker date="1511100255474" expanded="true" signature="1397:1524" placeholder="..." />
-            <marker date="1511100255474" expanded="true" signature="1581:1787" placeholder="..." />
-            <marker date="1511100255474" expanded="true" signature="2066:2635" placeholder="..." />
-            <marker date="1511100255474" expanded="true" signature="2123:2281" placeholder="..." />
-            <marker date="1511100255474" expanded="true" signature="2338:2544" placeholder="..." />
+            <marker date="1511100435626" expanded="true" signature="1340:1878" placeholder="..." />
+            <marker date="1511100435626" expanded="true" signature="1397:1524" placeholder="..." />
+            <marker date="1511100435626" expanded="true" signature="1581:1787" placeholder="..." />
+            <marker date="1511100435626" expanded="true" signature="2066:2635" placeholder="..." />
+            <marker date="1511100435626" expanded="true" signature="2123:2281" placeholder="..." />
+            <marker date="1511100435626" expanded="true" signature="2338:2544" placeholder="..." />
           </folding>
         </state>
       </provider>
