@@ -84,7 +84,7 @@ $(document).ready(function(){
     allad.add();
     // 当城市发生改变的时候获取其他城市的广告
     $("#tab1 .city").change(function(){
-        $(".adList").empty();
+        $(".allAdList").empty();
         // 获取城市id
        var cityid=$("#tab1 .city option:selected").val();
        var garden_code=$("#tab1 .plot option:selected").val();
