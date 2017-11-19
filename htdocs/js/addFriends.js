@@ -64,10 +64,8 @@ $(document).ready(function(){
                 var keyFriend=$(".keyFriend");
                 console.log(html);
                 keyFriend.append(html);
-                console.log(typeof $(".weui-media-box__desc").html());
                 if($(".weui-media-box__desc").html()==="null"){
-                    console.log(123);
-                    $("weui-media-box__desc").html("此人太懒")
+                    $(".weui-media-box__desc").html("此人太懒")
                 }
                 keyFriend.show();
             }else if(data.errcode===301){
@@ -83,7 +81,7 @@ $(document).ready(function(){
         });
 
     });
-    $(".keyFriend .weui-media-box").on("click",".addFriend",function(){
+    $(".keyFriend").on("click"," .weui-media-box .addFriend",function(){
         console.log(123);
         //获取account_code
         var title=$(this).parent().attr("title");
@@ -107,9 +105,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    alert("添加好友成功");
+                    showHide(data.errmsg)
                 }else{
-                    alert("添加失败");
+                    showHide(data.errmsg)
                 }
             }
         })
