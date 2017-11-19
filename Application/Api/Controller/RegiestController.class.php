@@ -159,13 +159,13 @@ class RegiestController extends BaseController
         $extension = strtolower( pathinfo($fileName, PATHINFO_EXTENSION) );
 
         if ($extension =='xlsx') {
-            $objReader = new PHPExcel_Reader_Excel2007();
+            $objReader = new \PHPExcel_Reader_Excel2007();
             $objExcel = $objReader ->load($fileName);
         } else if ($extension =='xls') {
-            $objReader = new PHPExcel_Reader_Excel5();
+            $objReader = new \PHPExcel_Reader_Excel5();
             $objExcel = $objReader ->load($fileName);
         } else if ($extension=='csv') {
-            $PHPReader = new PHPExcel_Reader_CSV();
+            $PHPReader = new \PHPExcel_Reader_CSV();
 
             //默认输入字符集
             $PHPReader->setInputEncoding('GBK');
