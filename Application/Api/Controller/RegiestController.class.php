@@ -159,8 +159,9 @@ class RegiestController extends BaseController
         $extension = strtolower( pathinfo($fileName, PATHINFO_EXTENSION) );
 
         if ($extension =='xlsx') {
-            $objReader = new \PHPExcel_Reader_Excel2007();
-            $objExcel = $objReader ->load($fileName);
+            $objReader = PHPExcel_IOFactory::createReader('Excel2007');
+            $objReader->setReadDataOnly(true);
+            $objPHPExcel = $objReader->load($fileName);
         } else if ($extension =='xls') {
             $objReader = new \PHPExcel_Reader_Excel5();
             $objExcel = $objReader ->load($fileName);
