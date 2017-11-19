@@ -65,7 +65,7 @@ $(document).ready(function(){
                 console.log(html);
                 keyFriend.append(html);
                 console.log($(".weui-media-box__desc").html());
-                if($(".weui-media-box__desc").html()==="null"){
+                if($(".weui-media-box__desc").html()===null){
                     $("weui-media-box__desc").html("此人太懒")
                 }
                 keyFriend.show();
