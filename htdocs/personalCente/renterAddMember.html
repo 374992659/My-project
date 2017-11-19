@@ -33,6 +33,9 @@
             height: 1.41176471em;
             line-height: 0;
         }
+        .weui-cells {
+            overflow: visible;
+        }
     </style>
 </head>
 <body>
@@ -120,9 +123,12 @@
                     </select>
                 </div>
                 <!--<input type="text" id="housePlace" placeholder="街道" style="width: 20%">-->
-                <input type="text" id="plotName" style="width: 20%"  placeholder="小区名字">
-                <ul class="allGarden" style="position: absolute;top:20px;left:-100px;display: none">
-                </ul>
+                <div style="position: relative;z-index: 50">
+                    <input type="text" id="plotName" style="width: 20%"  placeholder="小区名字">
+                    <ul class="allGarden" style="position: absolute;top:40px;left:0;display: none">
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
