@@ -80,6 +80,7 @@ $(document).ready(function(){
                     var group_new_message = data.group_new_message;
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
                                 var html="";
+
                                 $.each(group_new_message,function(i,item){
                                     if(item.count===0){
                                         html+=`

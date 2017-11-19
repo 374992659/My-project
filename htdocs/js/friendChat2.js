@@ -40,6 +40,11 @@ $(document).ready(function(){
                                 var sender_nickname=item.sender_nickname;
                                 var sender_portrait=item.sender_portrait;
                                 var httP=sender_portrait.split(":")[0];
+                                if(httP==="http"){
+                                    sender_portrait=item.sender_portrait;
+                                }else{
+                                    sender_portrait="http://wx.junxiang.ren/project/"+item.sender_portrait
+                                }
                                 if(sender_code===sender_code){
                                     $.each(item.content,function(i,item){
                                         if(item.type===2){//内容为文件、图片
@@ -132,7 +137,7 @@ $(document).ready(function(){
 
                                         //把未读消息保存本地
                                         (function(){
-                                            var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
+                                            var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
                                             console.log(json_str);
                                             var history_chats = localStorage.getItem('history_'+sender_code);
                                             if(!history_chats){
@@ -151,7 +156,7 @@ $(document).ready(function(){
                                         //保存好友资料
                                         (function(){
                                             var history_chat = localStorage.getItem("friend_info");
-                                            var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+sender_portrait+"'}";
+                                            var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
                                             if(!history_chat){
                                                 var history_chat=new Array();
                                                 history_chat=[json];
