@@ -17,8 +17,117 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var result=data.data;
+                    var header=result.portrait;
+                    var httP=header.split(":")[0];
+                    var pic="";
+                    if(httP==="http"){
+                        pic=header;
+                    }else{
+                        pic="http://wx.junxiang.ren/project/"+header
+                    }
+                    console.log(pic);
+                  var   html=`
+                    !--个人头像-->
+            <div class="weui-panel weui-panel_access">
+                <div class="weui-panel__bd">
+                    <div class="weui-media-box weui-media-box_appmsg">
+                        <div class="weui-media-box__hd">
+                            <div class="weui-cells weui-cells_form">
+                                <div class="weui-uploader__input-box loader">
+                                    <form action="" id="form" enctype="multipart/form-data">
+                                        <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">
+                                    </form>
+                                </div>
+                                <div class="flockHead" style="position: absolute;top:1px;left: 1px">
+                                    <img src="${pic}" alt="" style="width: 68px;height: 68px" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <button  class="finishBtn" style="float: right;background: white;border: none;font-size: 18px;color: green">完成</button>
+                            <h4 class="weui-media-box__title">昵称：
+                                <input type="text" id="nickname" placeholder="" autofocus="autofocus" style="border: none" value="${result.nickname}">
+                            </h4>
+                            <h4 class="weui-media-box__title ">账号：<span class="account"></span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--姓名-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="name">姓名：<span style="color: green">*</span></label>
+                        <input type="text" id="name" autofocus="autofocus" value="${result.realname}">
+                    </div>
+                </div>
+            </div>
+            <!--电话-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="phone">电话：<span style="color: green">*</span></label>
+                        <input type="text" id="phone" placeholder="" value="${result.phone}">
+                    </div>
+                </div>
+            </div>
+            <!--微信-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="weiXin">微信：<span style="color: green">*</span></label>
+                        <input type="text" id="weiXin" placeholder="" value"${result.wechat_num}">
+                    </div>
+                </div>
+            </div>
+            <!--QQ-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="QQ">QQ：<span style="color: green">*</span></label>
+                        <input type="number" id="QQ" placeholder="" value="${result.qq_num}">
+                    </div>
+                </div>
+            </div>
+            <!--常住小区-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="house">常住小区：<span style="color: green">*</span></label>
+                        <input type="text" id="house" value="${result.default_garden}">
+                    </div>
+                </div>
+            </div>
+            <!--出生年月-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="">出生年月：<span style="color: green">*</span></label>
+                        <select name="" id="yearBirth">
+                            <option value="1980">1980</option>
+                           
+                        </select>年
+                        <select name="" id="mouthBirth">
+                            <option value="1">1</option>
+                           
+                        </select>月
 
+                    </div>
+                </div>
+            </div>
+            <!--喜好-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="likes">爱好：<span style="color: green">*</span></label>
+                        <input type="text" id="likes" placeholder="" value="${result.hobby}">
+                    </div>
+                </div>
+            </div>
+                    `;
+                  $(".myInfo").html(html);
                 }
 
             },
