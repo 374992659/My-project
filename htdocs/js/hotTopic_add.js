@@ -69,6 +69,11 @@ $(document).ready(function(){
                         `
                         });
                         $(".allAdList").append(allAdList)
+                    }else{
+                        var html=`
+                         <p class="weui-media-box__desc">${data.errmsg}</p>
+                        `;
+                        $(".allAdList").append(html)
                     }
                 }
             })
