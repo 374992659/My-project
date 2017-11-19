@@ -110,6 +110,9 @@ $(document).ready(function(){ "use strict";
             // 转换时间戳
          //timestamp2 = Date.parse(new Date(endTime)),
         // end_time= timestamp2 / 1000,
+        var arr = endTime.split(/[- : \/]/),
+            date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4]);
+        var end_time= date / 1000;
         // 参数：picture 图片 可填
          var picture="asdasd",
         // 参数：type 选择类型
