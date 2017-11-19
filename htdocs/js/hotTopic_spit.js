@@ -55,7 +55,7 @@ $(document).ready(function(){ "use strict";
                     $.each(data.data,function(i,item){
                         LiImg+=`
                          <li class="weui-uploader__file" >
-                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
+                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushSpit_Img">
                                      <img src="image/del.png" alt="" width="20px" class="delImg">
                                  </li>
                         `
@@ -118,9 +118,14 @@ $(document).ready(function(){ "use strict";
             date = new Date(arr[0], arr[1]-1, arr[2], arr[3], arr[4]);
         var end_time= date / 1000;
         // 参数：picture 图片 可填
-         var picture="asdasd",
+         var picture={};
+         var Url=$(".picPlace").find(".pushSpit_Img");
+         Url.each(function(i,item){
+             picture[parseInt(i+1)]=$(this).val();
+         });
+         console.log(picture);
         // 参数：type 选择类型
-            type=parseInt($("#type option:selected").val()),
+         var   type=parseInt($("#type option:selected").val()),
         // 参数：is_public 是否公开
             is_public=parseInt($("#isPublic option:selected").val()),
         // 参数：is_push 是否需要推送
