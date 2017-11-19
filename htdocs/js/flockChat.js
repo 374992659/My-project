@@ -34,13 +34,20 @@ $(document).ready(function(){
                             var group_portrait=item.group_portrait;
                             if(item.content){
                                 $.each(item.content,function(i,item){
+                                    var httP=item.sender_portrait.split(":")[0];
+                                    var sender_portrait="";
+                                    if(httP==="http"){
+                                        sender_portrait=item.sender_portrait;
+                                    }else{
+                                        sender_portrait="http://wx.junxiang.ren/project/"+item.sender_portrait
+                                    }
                                     console.log(item);
                                     if(parseInt(item.type)===2){//图片、文件
                                         html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                             <h6>${item.sender_nickname}</h6>
@@ -54,7 +61,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                              <h6>${item.sender_nickname}</h6>
@@ -71,7 +78,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.sender_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${sender_portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                              <h6>${item.sender_nickname}</h6>
@@ -86,7 +93,7 @@ $(document).ready(function(){
                                     }
                                     // 本地未读聊天记录保存
                                     (function(){
-                                        var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+item.sender_portrait+"'}";
+                                        var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+sender_portrait+"'}";
                                         console.log(json_str);
                                         var history_chats = localStorage.getItem('history_'+group_code);
                                         if(!history_chats){
@@ -195,6 +202,13 @@ $(document).ready(function(){
                             //展示好友发送的聊天信息
                             var html="";
                             if(my_code===data.sender_code){//我自己的信息
+                                var httP=data.send_portrait.split(":")[0];
+                               var  send_portrait="";
+                               if(httP==="http"){
+                                   send_portrait=data.send_portrait
+                               }else{
+                                   send_portrait="http://wx.junxiang.ren/project/"+data.send_portrait
+                               }
                                 if(data.type===2){//图片、文件
                                     html=`
                                     <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
@@ -205,7 +219,7 @@ $(document).ready(function(){
                  </span>
             </div>          
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${send_portrait}" alt="">
              </div>
          </div>
                                     `
@@ -220,7 +234,7 @@ $(document).ready(function(){
             </div>
            
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${send_portrait}" alt="">
              </div>
          </div>
                                                               
@@ -234,19 +248,26 @@ $(document).ready(function(){
             </div>
            
              <div class="weui-media-box__hd" style="margin-left:.8em;">
-                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${send_portrait}" alt="">
              </div>
          </div>
                                                               
                                 `
                                 }
                             }else{//群里其他人发的信息
+                                var httPs=data.send_portrait.split(":")[0];
+                                var  send_portraits="";
+                                if(httP==="http"){
+                                    send_portraits=data.send_portrait
+                                }else{
+                                    send_portraits="http://wx.junxiang.ren/project/"+data.send_portrait
+                                }
                                 if(data.type===2){//图片、文件
                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${send_portraits}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                      <h6>${data.send_nickname}</h6>
@@ -260,7 +281,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${send_portraits}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                              <h6>${data.send_nickname}</h6>
@@ -277,7 +298,7 @@ $(document).ready(function(){
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${data.send_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${send_portraits}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
                              <h6>${data.send_nickname}</h6>
