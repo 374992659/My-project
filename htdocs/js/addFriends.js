@@ -112,6 +112,13 @@ $(document).ready(function(){
             }
         })
 
-    })
-
+    });
+    $("#searchClear").click(function(){
+        $(".keyFriend").empty();
+        $(".group").show();
+    });
+    $("#searchCancel").click(function(){
+        $(".keyFriend").empty();
+        $(".group").show();
+    });
 });
