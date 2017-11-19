@@ -9,7 +9,7 @@ $(document).ready(function(){
             url:url+"UserCenter_pointNoticeWords",
             type:"POST",
             data:{"data":jsonEncryptData},
-            success:function () {
+            success:function (data) {
                 //解密
                 var data=jsDecodeData(data);
                 console.log(data);
