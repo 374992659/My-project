@@ -9,7 +9,7 @@ $(document).ready(function(){
     var html="";
     if(info){
         $.each(info.data,function(i,item){
-            var httP=item.portrait.split(":");
+            var httP=item.portrait.split(":")[0];
             var portrait="";
             if(httP==="http"){
                 portrait=item.portrait;
