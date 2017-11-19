@@ -147,6 +147,7 @@ $(document).ready(function(){
    myAD.otherAD();
    //当城市发生改变的时候发起
     $("#tab2 .city").change(function(){
+        $(".myAdList").empty();
         // 获取城市id
         var cityid=$("#tab2 .city option:selected").val();
         var garden_code=$("#tab2 .plot option:selected").val();
