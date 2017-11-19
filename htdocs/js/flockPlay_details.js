@@ -50,16 +50,20 @@ $(document).ready(function(){
                     }
 
                     var html=`              
-        <div class="swiper-container" data-space-between='10' data-pagination='.swiper-pagination' data-autoplay="1000">          
-            <div class="swiper-wrapper">
-                <!-- Slides -->
-                // <div class="swiper-slide"><img src="./image/1.jpg" style="height:200px"/></div>
-                // <div class="swiper-slide"><img src="./image/2.jpg"  style="height:200px"/></div>
-                // <div class="swiper-slide"><img src="./image/3.jpg"  style="height:200px"/></div>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    //<div class="swiper-slide">
+                    //    <img alt="" src="http://wx.okair.net/wxpic/wxb2c/indexpage/index_banner1.jpg">
+                    //</div>
+                    //<div class="swiper-slide">
+                    //    <img alt="" src="http://wx.okair.net/wxpic/wxb2c/indexpage/index_banner2.jpg">
+                    //</div>
+                    //<div class="swiper-slide">
+                    //    <img alt="" src="http://wx.okair.net/wxpic/wxb2c/indexpage/index_banner3.jpg">
+                    //</div>
+                </div>
+                <div class="swiper-pagination"></div> <!--需要轮播序号的时候写-->
             </div>
-            <!-- If we need pagination -->
-            <div class="swiper-pagination"></div>
-        </div>
         <!--标签-->
         <div class="weui-flex">
             // <div class="weui-flex__item"><div class="placeholder">美女</div></div>
@@ -174,6 +178,17 @@ $(document).ready(function(){
                 }
             }
 
+    });
+    var mySwiper = new Swiper('.swiper-container', {
+        pagination : '.swiper-pagination',
+        loop : true,
+        autoplay : 3000
+    });
+    var mySwiper = new Swiper('.swiper-container', {
+        pagination : '.swiper-pagination',
+        loop : true,
+        autoplay : 3000,
+        autoplayDisableOnInteraction : false    /* 注意此参数，默认为true */
     });
     // 我要报名
     $("#flockPlay_details").on("click", ".Btn", function () {
