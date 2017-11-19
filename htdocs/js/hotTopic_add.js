@@ -53,6 +53,7 @@ $(document).ready(function(){
                 success:function(data){
                     //解密
                     var data=jsDecodeData(data);
+                    console.log(data);
                     if(data.errcode===0){
                         console.log(data);
                         localStorage.setItem("apptoken",data.apptoken);
