@@ -110,9 +110,9 @@ $(document).ready(function() {
                         var pic="";
                         console.log(httP);
                         if(httP==="http"){
-                            pic=result.send_portrait;
+                            pic=result.data.send_portrait;
                         }else{
-                            pic="http://wx.junxiang.ren/project/"+result.send_portrait
+                            pic="http://wx.junxiang.ren/project/"+result.data.send_portrait
                         }console.log(pic);
                         var history_chat = localStorage.getItem("friend_info");
                         var json = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+pic+"'}";
