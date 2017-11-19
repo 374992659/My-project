@@ -147,7 +147,7 @@ class GroupController extends VersionController
             $arr[]=$user_code;
         }
         $res =true;
-        $group_user = new Model\GroupUserModel($this->account_code);
+        $group_user = new Model\GroupUserModel($create_data['user_code']);
         $group_user->startTrans();
         foreach ($arr as $k=>$v){
             $count = $group_user->where(['user_code'=>$v,'group_num'=>$group_num])->getField('id');
@@ -177,6 +177,20 @@ class GroupController extends VersionController
             $this->echoEncrypData(1,'',array($create_data));
         }
     }
+
+    /*
+     * 移除群成员
+     * @param group_num 群号码
+     * @param user_code 被移除人code
+     * */
+    protected function delGroupNum_v1_0_0(){
+        $this->checkParam(array('group_num','user_code'));
+        $mongo =new \MongoClient();
+        $create_code = $mongo->baseinfo->group_area->find(array('group_num'=>$this->pdata['group_num']))['user_code'];
+
+    }
+
+
     /*
      * 设置/取消群禁言
      * @param group_num 群号码
