@@ -76,7 +76,7 @@ $(document).ready(function(){
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
-        $("#gardenName").on("input",function(){
+        $("#plotName").on("input",function(){
             var city_id=$("#city option:selected").val();  // 获取城市id
             var key=$("#plotName").val();
             if(key){
