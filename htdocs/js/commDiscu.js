@@ -65,6 +65,7 @@ $(document).ready(function(){
     // 页面跳转到添加群成员页面
     $(".addGroupUser").click(function(){
         window.location.href="discu_addfriend.html";
+        return false;
     });
     //设置禁言
     $(".setSpeak").click(function(){
