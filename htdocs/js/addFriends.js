@@ -90,7 +90,7 @@ $(document).ready(function(){
         //获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         //数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoken,"account_code":title,"param group_id":group_id})];
+        data=["",JSON.stringify({"apptoken":apptoken,"account_code":title,"group_id":group_id})];
         console.log(data);
         //数据加密
         jsonEncryptDate=jsEncryptData(data);
