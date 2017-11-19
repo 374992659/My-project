@@ -92,29 +92,36 @@ $(document).ready(function(){
         otherAd.add();
     });
     //功能2 获取我的广告
-    var myAd=function(){
-        var apptoken=localStorage.getItem("apptoken"),
-            city_id=localStorage.getItem("city_id"),
-            garden_code=$("#tab2 .plot option:selected").val();
+   function myaD(apptoken,city_id,garden_code){
+       // apptoken
+       this.apptoken=apptoken;
+       // 城市id在注册的时候就存本地
+       this.city_id=city_id;
+       // 小区id
+       this.garden_code=garden_code;
+        // var apptoken=localStorage.getItem("apptoken"),
+        //     city_id=localStorage.getItem("city_id"),
+        //     garden_code=$("#tab2 .plot option:selected").val();
         //数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
-            //加密
-            jsonEncryptData=jsEncryptData(data);
-        console.log(data);
-        $.ajax({
-            url:url+"Subject_getMyAdList",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                //解密
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    console.log(data);
-                    localStorage.setItem("apptoken",data.apptoken);
-                    var myAdList="";
-                    $.each(data.data,function(i,item){
-                        myAdList+=`
+       this.otherAD=function(){
+           var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
+               //加密
+               jsonEncryptData=jsEncryptData(data);
+           console.log(data);
+           $.ajax({
+               url:url+"Subject_getMyAdList",
+               type:"POST",
+               data:{"data":jsonEncryptData},
+               success:function(data){
+                   //解密
+                   var data=jsDecodeData(data);
+                   console.log(data);
+                   if(data.errcode===0){
+                       console.log(data);
+                       localStorage.setItem("apptoken",data.apptoken);
+                       var myAdList="";
+                       $.each(data.data,function(i,item){
+                           myAdList+=`
                         <div title="${item.adverse_id}"  class="adList">
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${item.title}</h4>
@@ -123,12 +130,29 @@ $(document).ready(function(){
                             </div>
                         </div>
                         `
-                    });
-                    $(".myAdList").append( myAdList)
-                }
-            }
-        })
-    }; myAd();
+                       });
+                       $(".myAdList").append( myAdList)
+                   }else{
+                       var html=`
+                         <p class="weui-media-box__desc">${data.errmsg}</p>
+                        `;
+                       $(".myAdList").append(html)
+                   }
+               }
+           })
+       };
+    }
+    //加载页面的时候发起
+    var myAD=new myaD(apptoken,city_id,garden_code);
+   myAD.otherAD();
+   //当城市发生改变的时候发起
+    $("#tab2 .city").change(function(){
+        // 获取城市id
+        var cityid=$("#tab2 .city option:selected").val();
+        var garden_code=$("#tab2 .plot option:selected").val();
+        var cityChang=new myaD(apptoken,cityid,garden_code);
+        cityChang.otherAD();
+    });
     //功能3 发布广告
     $(".addBtn").click(function(){
             var apptoken=localStorage.getItem("apptoken");
