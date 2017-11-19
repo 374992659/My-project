@@ -209,6 +209,7 @@ $(document).ready(function(){
                                }else{
                                    send_portrait="http://wx.junxiang.ren/project/"+data.send_portrait
                                }
+                               console.log(send_portrait);
                                 if(data.type===2){//图片、文件
                                     html=`
                                     <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
