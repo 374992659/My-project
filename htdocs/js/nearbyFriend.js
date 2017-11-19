@@ -20,7 +20,7 @@ $(document).ready(function(){
                 html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                <img class="weui-media-box__thumb" src="${portrait}" alt="">
             </div>
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title name">${item.nickname}</h4>
@@ -33,7 +33,7 @@ $(document).ready(function(){
                 html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                <img class="weui-media-box__thumb" src="${portrait}" alt="">
             </div>
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title name">${item.nickname}</h4>
