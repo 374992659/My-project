@@ -73,8 +73,8 @@ $(document).ready(function(){
                 });
                 $(".manage").html(manageHtml);
                 $(".member").html(memberHtml);
-                $(".memberNum").html(memberNum);
-                $(".manegeNum").html(manegeNum);
+                $(".memberNum").html((memberNum));
+                $(".manageNum").html(manegeNum);
             }
         },
         error:function(){}

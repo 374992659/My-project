@@ -23,36 +23,44 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="flockMember.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/htdocs/flockMember.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.967741">
-              <caret line="70" column="23" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flockMember.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/htdocs/js/flockMember.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0764774">
-              <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
-              <folding>
-                <marker date="1511098360156" expanded="true" signature="1491:1833" placeholder="..." />
-                <marker date="1511098360156" expanded="true" signature="1491:1836" placeholder="..." />
-                <marker date="1511098360156" expanded="true" signature="1544:1654" placeholder="..." />
-                <marker date="1511098360156" expanded="true" signature="1707:1813" placeholder="..." />
-                <marker date="1511098360156" expanded="true" signature="2400:2745" placeholder="..." />
-                <marker date="1511098360156" expanded="true" signature="2453:2563" placeholder="..." />
-                <marker date="1511098360156" expanded="true" signature="2616:2722" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.45157233">
+      <split-first>
+        <leaf>
+          <file leaf-file-name="flockMember.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/htdocs/flockMember.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.35585585">
+                  <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="flockMember.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/htdocs/js/flockMember.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.6628042">
+                  <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="69" selection-end-column="35" />
+                  <folding>
+                    <marker date="1511098586613" expanded="true" signature="1491:1833" placeholder="..." />
+                    <marker date="1511098586613" expanded="true" signature="1491:1836" placeholder="..." />
+                    <marker date="1511098586613" expanded="true" signature="1544:1654" placeholder="..." />
+                    <marker date="1511098586613" expanded="true" signature="1707:1813" placeholder="..." />
+                    <marker date="1511098586613" expanded="true" signature="2400:2745" placeholder="..." />
+                    <marker date="1511098586613" expanded="true" signature="2453:2563" placeholder="..." />
+                    <marker date="1511098586613" expanded="true" signature="2616:2722" placeholder="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -66,7 +74,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/htdocs/flochPhpto.html" />
         <option value="$PROJECT_DIR$/htdocs/js/flockPhpto.js" />
         <option value="$PROJECT_DIR$/htdocs/flockChat.html" />
         <option value="$PROJECT_DIR$/htdocs/css/hotTopic_spit.css" />
@@ -116,6 +123,7 @@
         <option value="$PROJECT_DIR$/htdocs/personalCente/owner.html" />
         <option value="$PROJECT_DIR$/htdocs/commDiscu.html" />
         <option value="$PROJECT_DIR$/htdocs/js/commDiscu.js" />
+        <option value="$PROJECT_DIR$/htdocs/flockMember.html" />
         <option value="$PROJECT_DIR$/htdocs/js/flockMember.js" />
       </list>
     </option>
@@ -693,24 +701,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/flockMember.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.967741">
-          <caret line="70" column="23" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.35585585">
+          <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/flockMember.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0764774">
-          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.6628042">
+          <caret line="68" column="26" selection-start-line="68" selection-start-column="26" selection-end-line="69" selection-end-column="35" />
           <folding>
-            <marker date="1511098360156" expanded="true" signature="1491:1833" placeholder="..." />
-            <marker date="1511098360156" expanded="true" signature="1491:1836" placeholder="..." />
-            <marker date="1511098360156" expanded="true" signature="1544:1654" placeholder="..." />
-            <marker date="1511098360156" expanded="true" signature="1707:1813" placeholder="..." />
-            <marker date="1511098360156" expanded="true" signature="2400:2745" placeholder="..." />
-            <marker date="1511098360156" expanded="true" signature="2453:2563" placeholder="..." />
-            <marker date="1511098360156" expanded="true" signature="2616:2722" placeholder="..." />
+            <marker date="1511098586613" expanded="true" signature="1491:1833" placeholder="..." />
+            <marker date="1511098586613" expanded="true" signature="1491:1836" placeholder="..." />
+            <marker date="1511098586613" expanded="true" signature="1544:1654" placeholder="..." />
+            <marker date="1511098586613" expanded="true" signature="1707:1813" placeholder="..." />
+            <marker date="1511098586613" expanded="true" signature="2400:2745" placeholder="..." />
+            <marker date="1511098586613" expanded="true" signature="2453:2563" placeholder="..." />
+            <marker date="1511098586613" expanded="true" signature="2616:2722" placeholder="..." />
           </folding>
         </state>
       </provider>
