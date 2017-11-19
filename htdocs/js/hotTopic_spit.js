@@ -123,6 +123,7 @@ $(document).ready(function(){ "use strict";
          Url.each(function(i,item){
              picture[parseInt(i+1)]=$(this).attr("src");
          });
+         picture=JSON.stringify(picture);
          console.log(picture);
         // 参数：type 选择类型
          var   type=parseInt($("#type option:selected").val()),
