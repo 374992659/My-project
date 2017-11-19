@@ -33,6 +33,7 @@ $(document).ready(function(){
         city_id= localStorage.getItem("city_id"),
         garden_code=$(".plot option:selected").attr("title");
     function allAd(apptoken,city_id,garden_code){
+        console.log("广告");
         // apptoken
         this.apptoken=apptoken;
         // 城市id在注册的时候就存本地
