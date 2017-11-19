@@ -177,7 +177,18 @@ class RegiestController extends BaseController
             //载入文件
             $objExcel = $PHPReader->load($fileName);
         }
-        print_r($objPHPExcel);
+        $sheet = $objPHPExcel->getSheet(0);
+        $highestRow = $sheet->getHighestRow(); // 取得总行数
+        $highestColumn = $sheet->getHighestColumn(); // 取得总列数
+        $k = 0;
+        for($j=2;$j<=$highestRow;$j++)
+        {
+
+            $a = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();//获取A列的值
+            $b = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();//获取B列的值
+            var_dump($a.$b.'\n');
+
+        }
     }
 
 
