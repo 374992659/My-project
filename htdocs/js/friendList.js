@@ -17,9 +17,8 @@ $(document).ready(function() {
                 var data=jsDecodeData(data);
                 console.log(data);
                 var account_code=data.data.account_code;
-               var  str = '1234567';
-                var str1 = str.charAt(5);
-alert(str1);
+               var  str = account_code.substring(0, 6);
+               console.log(str);
                 //判断返回的头像是否为自定义的
                var nickname=data.data.portrait.split(":");
                 if(nickname[0]==="http"){
