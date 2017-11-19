@@ -173,9 +173,8 @@ $(document).ready(function(){
         }
     });
     // 功能5 上传用户头像
-    $('#uploaderInput').change(function(e) {
+    $('.myInfo').on("change",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__hd .weui-cells .weui-uploader__input-box #uploaderInput",function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
-
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
