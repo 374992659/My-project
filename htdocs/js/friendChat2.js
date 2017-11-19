@@ -678,7 +678,7 @@ $(document).ready(function(){
                     var jsonObj = eval('(' + item + ')');
                     data[i]=jsonObj;
                 });
-               
+
                 var html="";
                 $.each(data,function(i,item){
                     alert(item.portrait);
