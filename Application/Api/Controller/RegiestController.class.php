@@ -116,7 +116,8 @@ class RegiestController extends BaseController
     public function getAreaArr(){
         $model=new Model\UserAreaModel();
         $res=$model->getArea();
-        $this->echoEncrypData(0,'',$res);
+        $res2 =$model->query("select province,city,province_code as parent_id,area_code as id from swf_area where city_code = '0' and province_code ='0'" );
+        $this->echoEncrypData(0,'',array('province'=>$res2,'city'=>$res));
     }
 
     /**
