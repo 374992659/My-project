@@ -372,11 +372,8 @@ $(document).ready(function(){
                 if(result.errmsg==="该群已被禁言"){
                     showHide(result.errmsg);
                 }
-
                 break;
             case 9://历史消息
-
-
                 break;
         }
     };

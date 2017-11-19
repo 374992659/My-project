@@ -38,21 +38,22 @@ $(document).ready(function(){
                         $(".setSpeak").val(data.data.community_status)
                     }
                     $.each(data.data.Number_data,function(i,item){
-                        var httP=item.portrait.split(":")[0];
-                        if(httP==="http"){
-                            html+=`
+                        if(i<2){
+                            var httP=item.portrait.split(":")[0];
+                            if(httP==="http"){
+                                html+=`
                          <li class="lf">
                           <img style="width: 35px;height: 35px" src="${item.portrait}" alt="">
                       </li>
                         `
-                        }else{
-                            html+=`
+                            }else{
+                                html+=`
                          <li class="lf">
                           <img style="width: 35px;height: 35px" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
                       </li>
                         `
+                            }
                         }
-
                     });
                     $(".flockMember").prepend(html);
                     $(".userMember").html(data.data.Number_data.length);
