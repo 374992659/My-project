@@ -678,6 +678,7 @@ $(document).ready(function(){
                     var jsonObj = eval('(' + item + ')');
                     data[i]=jsonObj;
                 });
+                alert(data);
                 var html="";
                 $.each(data,function(i,item){
                     console.log(item.portrait);
@@ -781,7 +782,6 @@ $(document).ready(function(){
                                 
                                 `
                         }
-
                     }
                 });
                 var chatPage=$("#chatPage");
