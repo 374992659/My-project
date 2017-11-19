@@ -4,6 +4,7 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"UserCenter_pointNoticeWords",
             type:"POST",
