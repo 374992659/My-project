@@ -676,12 +676,14 @@ $(document).ready(function(){
                 $.each(data,function(i,item){
                     console.log(item.portrait);
                     var httP=item.portrait.split(":")[0];
+                    console.log(httP);
                     var pic="";
                     if(httP==="http"){
                         pic=item.portrait;
                     }else{
                         pic="http://wx.junxiang.ren/project/"+item.portrait
-                    }console.log(pic);
+                    }
+                    console.log(pic);
                     if(item.sender_code===my_code){//自己
                         console.log("聊天记录");
                         if(parseInt(item.type)===2){
