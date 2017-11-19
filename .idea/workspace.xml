@@ -37,15 +37,15 @@
       <file leaf-file-name="nearbyFriend.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htdocs/js/nearbyFriend.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0764774">
-              <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.5863268">
+              <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
               <folding>
-                <marker date="1511100850209" expanded="true" signature="776:1192" placeholder="..." />
-                <marker date="1511100850209" expanded="true" signature="821:922" placeholder="..." />
-                <marker date="1511100850209" expanded="true" signature="967:1127" placeholder="..." />
-                <marker date="1511100850209" expanded="true" signature="1368:1790" placeholder="..." />
-                <marker date="1511100850209" expanded="true" signature="1413:1514" placeholder="..." />
-                <marker date="1511100850209" expanded="true" signature="1559:1725" placeholder="..." />
+                <marker date="1511101169952" expanded="true" signature="776:1187" placeholder="..." />
+                <marker date="1511101169952" expanded="true" signature="821:917" placeholder="..." />
+                <marker date="1511101169952" expanded="true" signature="962:1122" placeholder="..." />
+                <marker date="1511101169952" expanded="true" signature="1363:1780" placeholder="..." />
+                <marker date="1511101169952" expanded="true" signature="1408:1504" placeholder="..." />
+                <marker date="1511101169952" expanded="true" signature="1549:1715" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -797,15 +797,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/nearbyFriend.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0764774">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.5863268">
+          <caret line="29" column="12" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
           <folding>
-            <marker date="1511100850209" expanded="true" signature="776:1192" placeholder="..." />
-            <marker date="1511100850209" expanded="true" signature="821:922" placeholder="..." />
-            <marker date="1511100850209" expanded="true" signature="967:1127" placeholder="..." />
-            <marker date="1511100850209" expanded="true" signature="1368:1790" placeholder="..." />
-            <marker date="1511100850209" expanded="true" signature="1413:1514" placeholder="..." />
-            <marker date="1511100850209" expanded="true" signature="1559:1725" placeholder="..." />
+            <marker date="1511101169952" expanded="true" signature="776:1187" placeholder="..." />
+            <marker date="1511101169952" expanded="true" signature="821:917" placeholder="..." />
+            <marker date="1511101169952" expanded="true" signature="962:1122" placeholder="..." />
+            <marker date="1511101169952" expanded="true" signature="1363:1780" placeholder="..." />
+            <marker date="1511101169952" expanded="true" signature="1408:1504" placeholder="..." />
+            <marker date="1511101169952" expanded="true" signature="1549:1715" placeholder="..." />
           </folding>
         </state>
       </provider>
