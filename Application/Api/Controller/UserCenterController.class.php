@@ -936,7 +936,7 @@ class UserCenterController extends VersionController
         $path=APP_PATH.'Common/Upload/TenantApplication/'.date(m).date(d).'/';
         $res = $upload->upload($path);
         if(!$res){
-            $this->echoEncrypData(1,'图片上传失败');
+            $this->echoEncrypData(1,$upload->getErrorMsg());
         }
         foreach($res as $k=>$v){
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];

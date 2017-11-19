@@ -95,7 +95,7 @@ class GroupController extends VersionController
         $save_path= APP_PATH.'Common/Upload/Img/GroupPortrait/'.date(m).date(d).'/';
         $res = $model->upload($save_path);
         if(!$res){
-            $this->echoEncrypData(1,'图片上传失败');
+            $this->echoEncrypData(1,$model->getErrorMsg());
         }
         foreach($res as $k=>$v){
             $data['file_path'][]=$res[$k]['savepath'].$res[$k]['savename'];
@@ -383,7 +383,7 @@ class GroupController extends VersionController
         $path=APP_PATH.'Common/Upload/Img/NoticePicture/'.date(m).date(d).'/';
         $res = $upload->upload($path);
         if(!$res){
-            $this->echoEncrypData(1,'图片上传失败');
+            $this->echoEncrypData(1,$upload->getErrorMsg());
         }
         foreach($res as $k=>$v){
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];
@@ -447,7 +447,7 @@ class GroupController extends VersionController
         $path=APP_PATH.'Common/Upload/Group/GroupFiles/'.date(m).date(d).'/';//群文件夹
         $res = $upload->upload($path);
         if(!$res){
-            $this->echoEncrypData(1,'文件上传失败');
+            $this->echoEncrypData(1,$upload->getErrorMsg());
         }
 //        var_dump($res);die;
         foreach($res as $k=>$v){
@@ -505,7 +505,7 @@ class GroupController extends VersionController
         $path=APP_PATH.'Common/Upload/Img/GroupPicture/'.date(m).date(d).'/';
         $res = $upload->upload($path);
         if(!$res){
-            $this->echoEncrypData(1,'图片上传失败');
+            $this->echoEncrypData(1,$upload->getErrorMsg());
         }
         foreach($res as $k=>$v){
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];
@@ -576,7 +576,7 @@ class GroupController extends VersionController
         $path=APP_PATH.'Common/Upload/Img/VotePicture/'.date(m).date(d).'/';
         $res = $upload->upload($path);
         if(!$res){
-            $this->echoEncrypData(1,'图片上传失败');
+            $this->echoEncrypData(1,$upload->getErrorMsg());
         }
         foreach($res as $k=>$v){
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];
@@ -811,7 +811,7 @@ class GroupController extends VersionController
         $path=APP_PATH.'Common/Upload/Img/SubjectPicture/'.date(m).date(d).'/';
         $res = $upload->upload($path);
         if(!$res){
-            $this->echoEncrypData(1,'图片上传失败');
+            $this->echoEncrypData(1,$upload->getErrorMsg());
         }
         foreach($res as $k=>$v){
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];
