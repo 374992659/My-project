@@ -42,7 +42,7 @@ class GroupController extends VersionController
         }
         $group_num = $this->createGroupCode();
         if(!$group_num) $this->echoEncrypData(1,'群创建失败，请重试');
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $group_code=$table_id.$group_num;
 //       $data=array(
 //            'group_num'=>$group_num,
@@ -366,7 +366,7 @@ class GroupController extends VersionController
             $this->echoEncrypData(307);
         }
         $model=new Model\GroupNoticeModel($create_code);
-        $table_id=substr($user_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $nickname =M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$user_code])->getField('nickname');
         $res = $model->addGroupNotice($title,$content,$portrait,$user_code,$nickname,$group_num);
         if(!$res){
@@ -613,7 +613,7 @@ class GroupController extends VersionController
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $account_code=$this->account_code;
-        $table_id = substr($account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         if(!$table_id)$this->echoEncrypData(1);
         $res = M('baseinfo.user_info_'.$table_id)->Field('nickname,portrait')->where(['account_code'=>$account_code])->find();
         $data=array(
@@ -679,7 +679,7 @@ class GroupController extends VersionController
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $account_code=$this->account_code;
-        $table_id = substr($account_code,0,4);
+        $table_id= substr($this->account_code,0,6);
         if(!$table_id)$this->echoEncrypData(1);
         $res = M('baseinfo.user_info_'.$table_id)->Field('nickname,portrait')->where(['account_code'=>$account_code])->find();
         $mode=new Model\GroupVoteModel($create_code);
@@ -780,7 +780,7 @@ class GroupController extends VersionController
         $picture =$this->pdata['picture'];
         $group_num =$this->pdata['group_num'];
         if(!$title || !$content)$this->echoEncrypData(21);
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data = array(
             'title'=>$title,
@@ -833,7 +833,7 @@ class GroupController extends VersionController
         $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data = array(
             'type'=>1,
@@ -913,7 +913,7 @@ class GroupController extends VersionController
             'value'=>$point['value'],
             'create_time'=>time(),
         ));
-        $city_id = substr($this->account_code,0,4);
+        $city_id = substr($this->account_code,0,6);
         M()->execute('update baseinfo.user_info_'.$city_id.' set total_point =total_point-'.$point['value'].' where account_code ='.$this->account_code);
         $this->echoEncrypData(0);
     }
@@ -932,7 +932,7 @@ class GroupController extends VersionController
         $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data = array(
             'type'=>2,
@@ -1011,7 +1011,7 @@ class GroupController extends VersionController
         $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data = array(
             'type'=>3,
@@ -1192,7 +1192,7 @@ class GroupController extends VersionController
         $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data=array(
             'title'=>$title,
@@ -1279,7 +1279,7 @@ class GroupController extends VersionController
         $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $mode=new Model\GroupActivityModel($create_code);
         $collection_time=$mode->where(['id'=>$activity_id])->getField('collection_time');

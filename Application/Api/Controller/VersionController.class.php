@@ -25,7 +25,7 @@ class VersionController extends BaseController
         $account_code= $this->account_code;
         if(!$account_code )$this->echoEncrypData(100);
         if(!$this->setUserData($account_code)){    //从session中获取数据
-            $account_num=substr($account_code,4);
+            $account_num=substr($account_code,6);
 //            $data=M('user_area')->field('table_id,account')->where(['account'=>$account_num])->find();
             $mongo = new \MongoClient();
             $data = $mongo->baseinfo->user_area->findOne(array('account'=>$account_num),array('table_id','account'));

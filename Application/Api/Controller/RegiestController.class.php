@@ -358,7 +358,7 @@ class RegiestController extends BaseController
                 ));
                 //邀请注册
                 $point_record2 = new Model\PointRecordModel($inviter_code);
-                $invitet_city = substr($inviter_code,0,4);
+                $invitet_city = substr($inviter_code,0,6);
                 $inviter_point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.INVITE_REGISTER')])->find();//邀请注册得分无上限
                 M()->startTrans();
                 $res3 = M()->execute('update baseinfo.user_info_'.$invitet_city.' set total_point =total_point+'.$inviter_point['value'].' where account_code='."'".$inviter_code."'");
