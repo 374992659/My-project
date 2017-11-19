@@ -679,9 +679,12 @@ $(document).ready(function(){
                     console.log(httP);
                     var pic="";
                     if(httP==="http"){
+                        console.log("http");
                         pic=item.portrait;
                     }else{
+                        
                         pic="http://wx.junxiang.ren/project/"+item.portrait
+                        console.log("PIC");
                     }
                     console.log(pic);
                     if(item.sender_code===my_code){//自己
