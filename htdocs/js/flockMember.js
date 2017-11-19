@@ -26,7 +26,7 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 $.each(member,function(i,item){
                     console.log(item);
-                    if(item.roal===3){
+                    if(item.role===3){
                         var httP=item.portrait.split(":")[0];
                         var portrait="";
                         if(httP==="http"){
@@ -37,10 +37,10 @@ $(document).ready(function(){
                         memberHtml+=`
                 <div  class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
-                      <img class="weui-media-box__thumb" src="" alt="">
+                      <img class="weui-media-box__thumb" src="${portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                      <h4 class="weui-media-box__title">标题一</h4>
+                      <h4 class="weui-media-box__title">${item.nickname}</h4>
 
                     </div>
                 </div>
@@ -58,10 +58,10 @@ $(document).ready(function(){
                         manageHtml+=`
                  <div  class="weui-media-box weui-media-box_appmsg">
                     <div class="weui-media-box__hd">
-                      <img class="weui-media-box__thumb" src="" alt="">
+                      <img class="weui-media-box__thumb" src="${portrait}" alt="">
                     </div>
                     <div class="weui-media-box__bd">
-                      <h4 class="weui-media-box__title">标题一</h4>
+                      <h4 class="weui-media-box__title">${item.nickname}</h4>
 
                     </div>
                 </div>
