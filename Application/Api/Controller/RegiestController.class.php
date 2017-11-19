@@ -149,7 +149,7 @@ class RegiestController extends BaseController
         }
     }
     public function testPHPExcel(){
-        import('Vendor.PHPExcel');
+        import('Vendor.PHPExcel.PHPExcel');
         $objReader = new \PHPExcel_Reader_Excel5();
         $objPHPExcel = $objReader->load('swf_area_V3.0_9.03.xlsx');
         var_dump($objPHPExcel);
