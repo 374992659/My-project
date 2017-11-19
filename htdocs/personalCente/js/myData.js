@@ -197,7 +197,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data.data.file_path);
                     localStorage.setItem("myPortrait",data.data.file_path);
-                    $(".flockHead img").attr("src",Url);
+                    $(".flockHead img").attr("src","http://wx.junxiang.ren/project/"+data.data.file_path);
                     $(".loader").attr("style","position:absolute;left:40%;opacity: 0;");
                     $(".flockHead").attr("style","display:block");
                 }
