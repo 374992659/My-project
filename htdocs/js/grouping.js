@@ -56,25 +56,26 @@ $(document).ready(function(){
         //数据加密
       var  jsonEncryptDate=jsEncryptData(data);
         console.log(jsonEncryptDate);
-        $.ajax({
-            url:url+"friends_delGroup",
-            type:"POST",
-            data:{"data":jsonEncryptDate},
-            success:function(data){
-            //数据解密
-                data=jsDecodeData(data);
-            if(data.errcode===0){
-                localStorage.setItem("apptoken",data.apptoken);
-                if(confirm("确认删除?")){
-                    $(e.target).parent().remove();
+        if(confirm("确认删除?")){
+            $.ajax({
+                url:url+"friends_delGroup",
+                type:"POST",
+                data:{"data":jsonEncryptDate},
+                success:function(data){
+                    //数据解密
+                    data=jsDecodeData(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                            $(e.target).parent().remove();
+                    }else{
+                        $(document).on('click','#show-success',function(){
+                            $.toptip(data.errmsg, 'success');
+                        });
+                    }
                 }
-            }else{
-                $(document).on('click','#show-success',function(){
-                    $.toptip(data.errmsg, 'success');
-                });
-            }
-           }
-        });
+            });
+        }
+
     });
 //   功能2 新建好友分组
     $(".addGroupBtn").click(function(){
