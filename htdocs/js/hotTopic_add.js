@@ -76,13 +76,14 @@ $(document).ready(function(){
     //加载页面的时候获取全广告
  var allad=  new allAd(apptoken,city_id,garden_code);
     allad.add();
-    // 获取其他城市的广告
+    // 当城市发生改变的时候获取其他城市的广告
     $("#tab1 .city").change(function(){
         $(".adList").empty();
         // 获取城市id
        var cityid=$("#tab1 .city option:selected").val();
        var garden_code=$("#tab1 .plot option:selected").val();
-        allAd(apptoken,cityid,garden_code);
+       var otherAd=new allAd(apptoken,cityid,garden_code);
+        otherAd.add();
     });
     //功能2 获取我的广告
     var myAd=function(){
