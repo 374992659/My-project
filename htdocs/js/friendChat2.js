@@ -674,13 +674,13 @@ $(document).ready(function(){
                 });
                 var html="";
                 $.each(data,function(i,item){
-                    console.log(item);
-                    var httP=item.send_portrait.split(":")[0];
+                    console.log(item.portrait);
+                    var httP=item.portrait.split(":")[0];
                     var pic="";
                     if(httP==="http"){
-                        pic=item.send_portrait;
+                        pic=item.portrait;
                     }else{
-                        pic="http://wx.junxiang.ren/project/"+item.send_portrait
+                        pic="http://wx.junxiang.ren/project/"+item.portrait
                     }console.log(pic);
                     if(item.sender_code===my_code){//自己
                         console.log("聊天记录");
