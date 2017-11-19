@@ -76,7 +76,7 @@ class UserAreaModel extends Model
         }else{
             $data['id']=$data['_id'];
             $data['city_id'] = $data['table_id'];
-            $res= M('swf_area')->field('parent_id')->where(array('id'=>$data['city_id']))->find();
+            $res= M('swf_area')->field('province_code')->where(array('city_code'=>$data['city_id']))->find();
             $data['province_id']=$res['parent_id'];
             $data['account_code'] = $data['table_id'].$account;
             return $data;
