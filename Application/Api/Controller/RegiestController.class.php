@@ -191,7 +191,7 @@ class RegiestController extends BaseController
             $e = $objPHPExcel->getActiveSheet()->getCell("E".$j)->getValue();//获取B列的值
             $f = $objPHPExcel->getActiveSheet()->getCell("F".$j)->getValue();//获取B列的值
             $g = $objPHPExcel->getActiveSheet()->getCell("G".$j)->getValue();//获取B列的值
-            var_dump($a.$b.$c.$d.$e.$f.'\n');
+            var_dump($a.$b.$c.$d.$e.$f.$g.'\n');
 
         }
     }
