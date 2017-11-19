@@ -26,7 +26,7 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 $.each(member,function(i,item){
                     console.log(item);
-                    if(item.role===3){
+                    if(parseInt(item.role)===3){
                         var httP=item.portrait.split(":")[0];
                         var portrait="";
                         if(httP==="http"){
