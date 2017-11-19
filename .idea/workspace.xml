@@ -24,13 +24,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="commDiscu.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="commDiscu.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47972974">
-              <caret line="95" column="90" selection-start-line="95" selection-start-column="90" selection-end-line="95" selection-end-column="90" />
+            <state vertical-scroll-proportion="-22.967741">
+              <caret line="147" column="25" selection-start-line="147" selection-start-column="25" selection-end-line="147" selection-end-column="25" />
               <folding>
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#a#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="commDiscu.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6349942">
+              <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+              <folding>
+                <marker date="1511097673750" expanded="true" signature="1672:1795" placeholder="..." />
+                <marker date="1511097673750" expanded="false" signature="1712:1736" placeholder="..." />
+                <marker date="1511097673750" expanded="true" signature="1937:2091" placeholder="..." />
+                <marker date="1511097673750" expanded="false" signature="1977:2001" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -66,7 +81,6 @@
         <option value="$PROJECT_DIR$/htdocs/discu_addfriend.html" />
         <option value="$PROJECT_DIR$/htdocs/js/discu_addfriend.js" />
         <option value="$PROJECT_DIR$/htdocs/js/showHide.js" />
-        <option value="$PROJECT_DIR$/htdocs/js/commDiscu.js" />
         <option value="$PROJECT_DIR$/htdocs/js/discu_set_manege.js" />
         <option value="$PROJECT_DIR$/htdocs/discu_flock_makeOver.html" />
         <option value="$PROJECT_DIR$/htdocs/js/discu_flock_makeOver.js" />
@@ -101,6 +115,7 @@
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic_adCon.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/owner.html" />
         <option value="$PROJECT_DIR$/htdocs/commDiscu.html" />
+        <option value="$PROJECT_DIR$/htdocs/js/commDiscu.js" />
       </list>
     </option>
   </component>
@@ -332,13 +347,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.9884125">
           <caret line="79" column="68" selection-start-line="79" selection-start-column="68" selection-end-line="79" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35689455">
-          <caret line="32" column="33" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -675,10 +683,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/commDiscu.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47972974">
-          <caret line="95" column="90" selection-start-line="95" selection-start-column="90" selection-end-line="95" selection-end-column="90" />
+        <state vertical-scroll-proportion="-22.967741">
+          <caret line="147" column="25" selection-start-line="147" selection-start-column="25" selection-end-line="147" selection-end-column="25" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#a#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/js/commDiscu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6349942">
+          <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
+          <folding>
+            <marker date="1511097673750" expanded="true" signature="1672:1795" placeholder="..." />
+            <marker date="1511097673750" expanded="false" signature="1712:1736" placeholder="..." />
+            <marker date="1511097673750" expanded="true" signature="1937:2091" placeholder="..." />
+            <marker date="1511097673750" expanded="false" signature="1977:2001" placeholder="..." />
           </folding>
         </state>
       </provider>
