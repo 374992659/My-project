@@ -33,26 +33,26 @@ $(document).ready(function(){
                     var httP=result.portrait.split(":")[0];
                     if(httP==="http"){
                         html+=`
-                    <div class="weui-media-box weui-media-box_appmsg" title="${result.friend_user_code}" value="1">
+                    <div class="weui-media-box weui-media-box_appmsg" title="${result.account}" value="1">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="${result.friend_portrait}" alt="">
+                            <img class="weui-media-box__thumb" src="${result.portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title name">${result.friend_nickname}</h4>
-                            <p class="weui-media-box__desc">${result.friend_signature}</p>
+                            <h4 class="weui-media-box__title name">${result.nickname}</h4>
+                            <p class="weui-media-box__desc">${result.signature}</p>
                         </div>
                         <button class="addFriend">加为好友</button>
                     </div>
                     `
                     }else{
                         html+=`
-                    <div class="weui-media-box weui-media-box_appmsg" title="${result.friend_user_code}" value="1">
+                    <div class="weui-media-box weui-media-box_appmsg" title="${result.account}" value="1">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${result.friend_portrait}" alt="">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${result.portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title name">${result.friend_nickname}</h4>
-                            <p class="weui-media-box__desc">${result.friend_signature}</p>
+                            <h4 class="weui-media-box__title name">${result.nickname}</h4>
+                            <p class="weui-media-box__desc">${result.signature}</p>
                         </div>
                         <button class="addFriend">加为好友</button>
                     </div>
