@@ -682,8 +682,7 @@ $(document).ready(function(){
                         console.log("http");
                         pic=item.portrait;
                     }else{
-                        
-                        pic="http://wx.junxiang.ren/project/"+item.portrait
+                        pic="http://wx.junxiang.ren/project/"+item.portrait;
                         console.log("PIC");
                     }
                     console.log(pic);
