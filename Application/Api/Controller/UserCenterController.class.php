@@ -233,7 +233,7 @@ class UserCenterController extends VersionController
      * */
     protected function roomRoleExists_v1_0_0(){
         $this->checkParam(array('city_id','garden_code','room_num','role'));
-        $province_id = M('baseinfo.swf_area')->where('id ='.$this->pdata['city_id'])->getField('parent_id');//省份id
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');//省份id
         $garden_num= new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
         $count = $garden_num->getRoomRoleNum($this->pdata['garden_code'],$this->pdata['room_num'],$this->pdata['role']);
         !$count?$status=1:$status=0;
@@ -310,7 +310,7 @@ class UserCenterController extends VersionController
 //            'status'=>0,
             'status'=>1,//目前默认通过审核
         ));
-        $province_id = M('baseinfo.swf_area')->where('id ='.$this->pdata['city_id'])->getField('parent_id');//省份id
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
         $class = new RegiestController();
         $class->executeSql('databases.sql',array('city_id'=>$this->pdata['city_id'],'province_id'=>$province_id,'account_code'=>$this->account_code));//用户可能会选择非注册地进行验证，数据库并未创建而连接失败
         $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
@@ -429,7 +429,7 @@ class UserCenterController extends VersionController
                 }
                 $res3 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='."'".$this->account_code."'");
                 //2.garden_room 分表添加用户数据
-                $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
+                $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
                 $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
                 $garden_num->startTrans();
                 $res4 = $garden_num->add(array(
@@ -532,7 +532,7 @@ class UserCenterController extends VersionController
         }else{
             $swf_area =M('baseinfo.swf_area');
             foreach ($data as $k=>$v){
-                $province_id =$swf_area->where(['id'=>$v['city_id']])->getField('parent_id');
+                $province_id =$swf_area->where(['city_code'=>$v['city_id']])->getField('province_code');
                 $mode = new Model\GardenRoomModel($province_id,$v['city_id']);
                 $num_list[] = $mode->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name,city_id')->where(['city_id'=>$v['city_id'],'garden_code'=>$v['garden_code'],'room_num'=>$v['room_num'],'role'=>1])->select();
             }
@@ -553,7 +553,7 @@ class UserCenterController extends VersionController
         if(intval($role) !== 1) {
             $this->echoEncrypData(1, '只有房主才有此操作权利哦');
         }else{
-            $province_id= M('baseinfo.swf_area')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
+            $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
             $garden_room = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
             $garden_room->startTrans();
             $user_info = $garden_room->field('user_code,city_id,garden_code,real_name,room_num')->where(['id'=>$this->pdata['application_id']])->find();
@@ -659,7 +659,7 @@ class UserCenterController extends VersionController
      * */
     protected function getMyOwnNumInfo_v1_0_0(){
         $this->checkParam(array('application_id','city_id'));
-        $province_id = M('baseinfo.swf_area')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
         $model = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
         $user_code = $model->field('city_id,garden_code,room_num,user_code')->where(['id'=>$this->pdata['application_id']])->find();
         if(!$user_code)$this->echoEncrypData(1);
@@ -749,7 +749,7 @@ class UserCenterController extends VersionController
             'status'=>1,
             'garden_code'=>$garden_code,
         ));
-        $province_id = M('baseinfo.swf_area')->where('id ='.$this->pdata['city_id'])->getField('parent_id');//省份id
+        $province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
         $class = new RegiestController();
         $class->executeSql('databases.sql',array('city_id'=>$this->pdata['city_id'],'province_id'=>$province_id,'account_code'=>$this->account_code));//用户可能会选择非注册地进行验证，数据库并未创建而连接失败
         $garden_num= new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
@@ -868,7 +868,7 @@ class UserCenterController extends VersionController
                     $point_limit>$point['value']?$add=$point['value']:$add=$point_limit;
                 }
                 $res3 = M()->execute('update baseinfo.user_info_'.$city_id.' set total_point=total_point+'.$add.' where account_code='."'".$this->account_code."'");
-                $province_id = M('baseinfo.swf_area')->where('id='.$this->pdata['city_id'])->getField('parent_id');
+                $province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
                 $garden_num = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
                 $garden_num->startTrans();
                 //2.小区分库garden_room分表添加用户
@@ -972,7 +972,7 @@ class UserCenterController extends VersionController
         }else{
             $swf_area =M('baseinfo.swf_area');
             foreach ($data as $k=>$v){
-                $province_id =$swf_area->where(['id'=>$v['city_id']])->getField('parent_id');
+                $province_id =$swf_area->where(['city_code'=>$v['city_id']])->getField('province_code');
                 $mode = new Model\GardenRoomModel($province_id,$v['city_id']);
                 $num_list[] = $mode->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name,city_id')->where(['city_id'=>$v['city_id'],'garden_code'=>$v['garden_code'],'room_num'=>$v['room_num'],'role'=>1])->select();
             }
@@ -993,7 +993,7 @@ class UserCenterController extends VersionController
         if(intval($role) !== 1) {
             $this->echoEncrypData(1, '只有房主才有此操作权利哦');
         }else{
-            $province_id = M('baseinfo.swf')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
+            $province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
             $garden_room = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
             $garden_room->startTrans();
             $user_info = $garden_room->field('user_code,city_id,garden_code,room_num,real_name')->where(['id'=>$this->pdata['application_id']])->find();
@@ -1092,7 +1092,7 @@ class UserCenterController extends VersionController
      * */
     protected function getTenantNumInfo_v1_0_0(){
         $this->checkParam(array('application_id','city_id'));
-        $province_id = M('baseinfo.swf_area')->where(['id'=>$this->pdata['city_id']])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
         $model = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
         $user_code = $model->field('city_id,garden_code,room_num,user_code')->where(['id'=>$this->pdata['application_id']])->find();
         if(!$user_code)$this->echoEncrypData(1);
@@ -1129,7 +1129,7 @@ class UserCenterController extends VersionController
                 $mongo = new \MongoClient();
                 foreach ($result as $key=>$val){
                     $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
-                    $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
+                    $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
                     $model = new Model\GardenMessageModel($garden_province_id,$garden_city_id);
                     $message[$val] = $model->where(['garden_code'=>$val])->select();
                 }
@@ -1169,7 +1169,7 @@ class UserCenterController extends VersionController
             }
             $mongo  = new \MongoClient();
             $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
-            $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
+            $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
             $garden_opinion = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
             $res = $garden_opinion->add(array(
                 'title'=>$this->pdata['title'],
@@ -1212,7 +1212,7 @@ class UserCenterController extends VersionController
         $result = array_unique($result);
         foreach ($result as $key=>$val){
             $garden_city_id =$mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
-            $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
+            $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
             $garden_opinion = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
             $garden_opinion = $garden_opinion->field('title,content,garden_code,garden_name,status,create_time,id')->where(['garden_code'=>$val,'user_code'=>$this->account_code])->select();
             if($garden_opinion){
@@ -1243,7 +1243,7 @@ class UserCenterController extends VersionController
         $this->checkParam(array('id','garden_code'));
         $mongo = new \MongoClient();
         $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
-        $garden_province_id = M('baseinfo.swf_area')->where(['id'=>$garden_city_id])->getField('parent_id');
+        $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
         $model = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
         $data = $model->where(['id'=>$this->pdata['id']])->find();
         if(!$data){

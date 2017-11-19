@@ -78,7 +78,7 @@ class SubjectController extends VersionController
             $data['is_push']=$is_push;
         }
         $city_id=substr($garden_code,0,4);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectModel($province_id,$city_id);
         $res = $model->addSubject($data);
         if(!$res)$this->echoEncrypData(1,$model->getError());
@@ -99,7 +99,7 @@ class SubjectController extends VersionController
         $garden_code=$this->pdata['garden_code'];
         if(!$garden_code && !$city_id)$this->echoEncrypData(21);
         if(!$garden_code){//未指定小区显示城市所有公开话题
-            $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+            $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
             $model=new Model\SubjectModel($province_id,$city_id);
             $data=$model->getPublicSubject();
             if(!$data)$this->echoEncrypData(5);
@@ -108,7 +108,7 @@ class SubjectController extends VersionController
             $table_id=substr($this->account_code,0,4);
             $city_id=substr($garden_code,0,4);
             $res = M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$this->account_code])->getField('user_garden');
-            $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+            $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
             $model=new Model\SubjectModel($province_id,$city_id);
             if($res){
                 $garden_arr=explode(';',$res);
@@ -143,7 +143,7 @@ class SubjectController extends VersionController
         $subject_id=$this->pdata['subject_id'];
         if(!$garden_code || !$subject_id)$this->echoEncrypData(21);
         $city_id=substr($garden_code,0,4);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectModel($province_id,$city_id);
         $model->where(['subject_id'=>$subject_id])->setInc('read_num');
         $mode=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
@@ -203,7 +203,7 @@ class SubjectController extends VersionController
         $city_id=substr($garden_code,0,4);
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
         $userinfo=array(
             'user_code'=>$this->account_code,
@@ -248,7 +248,7 @@ class SubjectController extends VersionController
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $res['user_code']=$this->account_code;
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
         if(!$is_cancel){
             if($model->where(['type'=>2,'user_code'=>$res['user_code'],'status'=>1])->find())$this->echoEncrypData(1,'您已经点过赞了哦');
@@ -306,7 +306,7 @@ class SubjectController extends VersionController
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $res['user_code']=$this->account_code;
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
         if(!$is_cancel){
             if($model->where(['type'=>3,'user_code'=>$res['user_code'],'status'=>1,'commont_id'=>$commont_id])->find())$this->echoEncrypData(1,'您已经点过赞了哦');
@@ -358,7 +358,7 @@ class SubjectController extends VersionController
         $commont_id=$this->pdata['commont_id'];
         if(!$garden_code || !$subject_id || !$commont_id)$this->echoEncrypData(21);
         $city_id=substr($garden_code,0,4);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
         $user_code=$model->getSubjectCommontC($commont_id);
         if($user_code !==$this->account_code)$this->echoEncrypData(500);
@@ -396,7 +396,7 @@ class SubjectController extends VersionController
         if(!$garden_code || !$subject_id || !$choise || !$content)$this->echoEncrypData(21);
         $city_id=substr($garden_code,0,4);
         $table_id=substr($this->account_code,0,4);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
         $userinfo = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $userinfo['user_code']=$this->account_code;
@@ -419,7 +419,7 @@ class SubjectController extends VersionController
        foreach($subject_arr as $k =>$v){
            $garden_code=$v['garden_code'];
            $city_id=substr($garden_code,0,4);
-           $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+           $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
            $subject=new Model\SubjectModel($province_id,$city_id);
            $subject=$subject->getUserSubject($account_code,$garden_code);
             if($subject){
@@ -444,7 +444,7 @@ class SubjectController extends VersionController
         $title=$this->pdata['title'];
         $content=$this->pdata['content'];
         if(!$city_id || !$title || !$content)$this->echoEncrypData(21);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data=array(
@@ -474,7 +474,7 @@ class SubjectController extends VersionController
         $city_id=$this->pdata['city_id'];
         $adverse_id=$this->pdata['adverse_id'];
         if(!$city_id || !$adverse_id)$this->echoEncrypData(21);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $adverse=new Model\AdeverseModel($province_id,$city_id);
         $user_code = $adverse->getAdverseC($adverse_id);
         if(!$user_code)$this->echoEncrypData(1);
@@ -493,7 +493,7 @@ class SubjectController extends VersionController
         $city_id=$this->pdata['city_id'];
         $garden_code=$this->pdata['garden_code'];
         if(!$city_id)$this->echoEncrypData(21);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $adverse=new Model\AdeverseModel($province_id,$city_id);
         $data = $adverse->getAdverseList($city_id,$garden_code);
         if(!$data)$this->echoEncrypData(5);
@@ -508,7 +508,7 @@ class SubjectController extends VersionController
         $city_id=$this->pdata['city_id'];
         $garden_code=$this->pdata['garden_code'];
         if(!$city_id)$this->echoEncrypData(21);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $adverse=new Model\AdeverseModel($province_id,$city_id);
         $data = $adverse->getMyAdverseList($city_id,$this->account_code,$garden_code);
         if(!$data)$this->echoEncrypData(5);
