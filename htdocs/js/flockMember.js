@@ -35,7 +35,7 @@ $(document).ready(function(){
                             portrait="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         memberHtml+=`
-                <div  class="weui-media-box weui-media-box_appmsg">
+                <div  class="weui-media-box weui-media-box_appmsg" title="${item.user_code}" value="${item.nickname}">
                     <div class="weui-media-box__hd">
                       <img class="weui-media-box__thumb" src="${portrait}" alt="">
                     </div>
@@ -56,7 +56,7 @@ $(document).ready(function(){
                             portrait="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         manageHtml+=`
-                 <div  class="weui-media-box weui-media-box_appmsg">
+                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.user_code}" value="${item.nickname}">
                     <div class="weui-media-box__hd">
                       <img class="weui-media-box__thumb" src="${portrait}" alt="">
                     </div>
@@ -78,6 +78,19 @@ $(document).ready(function(){
             }
         },
         error:function(){}
-    })
+    });
+    $(".manage").on("click",".weui-media-box",function(){
+        //获取user_code
+        var user_code=$(this).attr("title");
+        //nickname
+        var nickname=$(this).val();
 
+    });
+    $(".member").on("click",".weui-media-box",function(){
+        //获取user_code
+        var user_code=$(this).attr("title");
+        //nickname
+        var nickname=$(this).val();
+
+    });
 });
