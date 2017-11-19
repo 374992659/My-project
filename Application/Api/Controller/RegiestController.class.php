@@ -196,9 +196,9 @@ class RegiestController extends BaseController
                 'province'=>$b,
                 'city'=>$c,
                 'area'=>$d,
-                'province_code'=>$e,
-                'city_code'=>$f,
-                'area_code'=>$g,
+                'province_code'=>$e?$e:'0',
+                'city_code'=>$f?$f:'0',
+                'area_code'=>$g?$g:'0',
             ));
         }
     }
