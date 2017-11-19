@@ -48,12 +48,20 @@ $(document).ready(function(){
                     var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
                     localStorage.setItem("account",result.account);
+                    var header=result.portrait;
+                    var httP=header.split(":")[0];
+                    var pic="";
+                    if(httP==="http"){
+                        pic=header
+                    }else{
+                        pic="http://wx.junxiang.ren/project/"+header
+                    }
                   var  html=`        
                         <div class="weui-panel weui-panel_access">
                             <div class="weui-panel__bd">
                                 <div class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
-                                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${result.portrait}">
+                                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${pic}">
                                     </div>
                                     <div class="weui-media-box__bd">
                                         <a href="myData.html" style="float: right;color:green">完善个人资料</a>
