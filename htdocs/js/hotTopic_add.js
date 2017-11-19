@@ -227,4 +227,14 @@ $(document).ready(function(){
         localStorage.setItem("adID",adID);
         window.location.href="hotTopic_addCon.html";
     });
+    //跳转到我的广告详情页面
+    $(".myAdList").on("click",".adList",function(){
+        //获取广告id
+        var adID=$(this).attr("title");
+        console.log(adID);
+        //存在本地跳转下一个详情页面判断用
+        localStorage.setItem("adID",adID);
+        window.location.href="hotTopic_addCon.html";
+
+    })
 });
