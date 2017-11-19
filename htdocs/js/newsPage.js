@@ -16,6 +16,7 @@ $(document).ready(function(){
                 data[i]=jsonObj;
             });
             console.log(data);
+
             var html="";
             $.each(data,function(i,item){
                 console.log(item);
