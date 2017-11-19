@@ -258,11 +258,12 @@ $(document).ready(function(){
                             }else{//群里其他人发的信息
                                 var httPs=data.send_portrait.split(":")[0];
                                 var  send_portraits="";
-                                if(httP==="http"){
+                                if(httPs==="http"){
                                     send_portraits=data.send_portrait
                                 }else{
                                     send_portraits="http://wx.junxiang.ren/project/"+data.send_portrait
                                 }
+                                console.log(send_portraits);
                                 if(data.type===2){//图片、文件
                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
