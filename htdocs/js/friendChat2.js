@@ -245,6 +245,7 @@ $(document).ready(function(){
                              var img=data.content.split("/");
                              var http=img[0];
                              var chatPage=$("#chatPage");
+                             alert(data.send_portrait);
                              // 存在本地的聊天记录
                                 var httP=data.send_portrait.split(":")[0];
                                 var pic="";
