@@ -29,7 +29,7 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 var result=data.data;
-                    console.log(data);
+                    console.log(result);
                     var httP=result.portrait.split(":")[0];
                     if(httP==="http"){
                         html+=`
@@ -50,7 +50,7 @@ $(document).ready(function(){
                     <div class="weui-media-box weui-media-box_appmsg"
                     title="${item.friend_user_code}" value="1">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.friend_portrait}" alt="">
+                            <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${result.friend_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title name">${result.friend_nickname}</h4>
