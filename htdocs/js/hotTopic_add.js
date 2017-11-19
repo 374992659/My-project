@@ -67,7 +67,7 @@ $(document).ready(function(){
     //功能2 获取我的广告
     var myAd=function(){
         var apptoken=localStorage.getItem("apptoken"),
-            city_id=localStorage.setItem("city_id"),
+            city_id=localStorage.getItem("city_id"),
             garden_code=$("#tab2 .plot option:selected").val();
         //数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
