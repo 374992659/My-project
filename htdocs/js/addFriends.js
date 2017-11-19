@@ -64,6 +64,9 @@ $(document).ready(function(){
                 var keyFriend=$(".keyFriend");
                 console.log(html);
                 keyFriend.append(html);
+                if($("weui-media-box__desc").text()===null){
+                    $("weui-media-box__desc").html("此人太懒")
+                }
                 keyFriend.show();
             }else if(data.errcode===301){
                 // var html=`
