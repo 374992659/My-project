@@ -1,6 +1,5 @@
 $(document).ready(function() {
     "use strict";
-
     // 获取自己的个人信息
     (function(){
         // 获取apptoken
@@ -26,7 +25,6 @@ $(document).ready(function() {
                 }
                 localStorage.setItem("apptoken",data.apptoken);
                 localStorage.setItem("my_code",data.data.account_code);
-
             }
         })
     })();
@@ -110,6 +108,7 @@ $(document).ready(function() {
                         console.log(result.data.send_portrait);
                         var httP=result.data.send_portrait.split(":")[0];
                         var pic="";
+                        console.log(httP);
                         if(httP==="http"){
                             pic=result.send_portrait;
                         }else{
