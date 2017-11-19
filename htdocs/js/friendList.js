@@ -107,6 +107,7 @@ $(document).ready(function() {
                     // }
                     // // 保存聊天的好友资料
                     (function(){
+                        console.log(result.send_portrait);
                         var httP=result.send_portrait.split(":")[0];
                         var pic="";
                         if(httP==="http"){
