@@ -674,6 +674,7 @@ $(document).ready(function(){
                 });
                 var html="";
                 $.each(data,function(i,item){
+                    console.log(item.send_portrait);
                     var httP=item.send_portrait.split(":")[0];
                     var pic="";
                     if(httP==="http"){
