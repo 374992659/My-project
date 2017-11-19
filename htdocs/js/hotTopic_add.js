@@ -32,7 +32,7 @@ $(document).ready(function(){
     var apptoken=localStorage.getItem("apptoken"),
         city_id= localStorage.getItem("city_id"),
         garden_code=$(".plot option:selected").attr("title");
-    var allAd=function(apptoken,city_id,garden_code){
+    function allAd(apptoken,city_id,garden_code){
         // apptoken
         this.apptoken=apptoken;
         // 城市id在注册的时候就存本地
@@ -71,7 +71,7 @@ $(document).ready(function(){
                 }
             })
         };
-    };
+    }
     //加载页面的时候获取全广告
     allAd(apptoken,city_id,garden_code);
     // 获取其他城市的广告
