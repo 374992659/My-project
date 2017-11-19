@@ -184,10 +184,37 @@ class GroupController extends VersionController
      * @param user_code 被移除人code
      * */
     protected function delGroupNum_v1_0_0(){
+        $account_code=$this->account_code;
         $this->checkParam(array('group_num','user_code'));
         $mongo =new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->find(array('group_num'=>$this->pdata['group_num']))['user_code'];
+        $mode =new Model\GroupUserModel($create_code);
+        if($account_code !== $create_code){
+            $role = $mode->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$account_code])->getField('role');
+            if($account_code !== $this->pdata['user_code']){ //不是管理员、群主 也可以移除自己 （退出群）
+                if(intval($role) >2){
+                    $this->echoEncrypData(1,'无权执行此操作');
+                }
+            }
+        }
+        if($this->pdata['user_code'] === $create_code){
+            $this->echoEncrypData(1,'不能移除群主');
+        }
 
+        $mode->startTrans();
+        $res1 = $mode->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$this->pdata['user_code']])->delete();
+        $user_group = new Model\UserGroupModel($this->pdata['user_code']);
+        $user_group->startTrans();
+        $res2 = $user_group->where(['group_num'])->delete();
+        if($res1 and $res2){
+            $mode->commit();
+            $user_group->commit();
+            $this->echoEncrypData(0);
+        }else{
+            $mode->rollback();
+            $user_group->rollback();
+            $this->echoEncrypData(1);
+        }
     }
 
 
