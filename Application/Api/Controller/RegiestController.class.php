@@ -227,7 +227,7 @@ class RegiestController extends BaseController
     }
 
     public function checkCity($province,$city){
-        $province_id = M('baseinfo.swf_area')->where(['province'=>$province])->getField('province_code');
+        $province_id = M('baseinfo.swf_area')->where(['province'=>$province])->getField('area_code');
         if(!$province_id){
             $last_p_id=M('baseinfo.swf_area')->where(['province_code'=>'0'])->getField('MAX(area_code)');
             $new_id = intval(substr($last_p_id,0,-4))+1 ;
