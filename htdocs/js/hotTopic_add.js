@@ -74,7 +74,8 @@ $(document).ready(function(){
         };
     }
     //加载页面的时候获取全广告
-    allAd(apptoken,city_id,garden_code);
+ var allad=  new allAd(apptoken,city_id,garden_code);
+    allad.add();
     // 获取其他城市的广告
     $("#tab1 .city").change(function(){
         $(".adList").empty();
