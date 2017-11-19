@@ -9,11 +9,18 @@ $(document).ready(function(){
     var html="";
     if(info){
         $.each(info.data,function(i,item){
+            var httP=item.portrait.split(":");
+            var portrait="";
+            if(httP==="http"){
+                portrait=item.portrait;
+            }else{
+                portrait="http://wx.junxiang.ren/project/"+item.portrait;
+            }console.log(portrait);
             if(item.signature===null){
                 html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
+                <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
             </div>
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title name">${item.nickname}</h4>
@@ -26,7 +33,7 @@ $(document).ready(function(){
                 html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
-                <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
+                <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
             </div>
             <div class="weui-media-box__bd">
                 <h4 class="weui-media-box__title name">${item.nickname}</h4>
