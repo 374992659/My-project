@@ -150,10 +150,10 @@ class RegiestController extends BaseController
     }
     public function testPHPExcel(){
         Vendor('PHPExcel.PHPExcel');
-        $objPHPExcel = new \PHPExcel();
-        $objPHPExcel = $objPHPExcel::load('swf_area_V3.0_9.03.xlsx');
-//        $objReader = new \PHPExcel_Reader_Excel5();
-//        $objPHPExcel = $objReader->load('swf_area_V3.0_9.03.xlsx');
+//        $objPHPExcel = new \PHPExcel();
+//        $objPHPExcel = $objPHPExcel::load('swf_area_V3.0_9.03.xlsx');
+        $objReader = new \PHPExcel_Reader_Excel5();
+        $objPHPExcel = $objReader->load('swf_area_V3.0_9.03.xlsx');
         var_dump($objPHPExcel);
     }
 
