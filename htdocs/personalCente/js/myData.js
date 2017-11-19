@@ -209,7 +209,7 @@ $(document).ready(function(){
         });
     });
     // 功能6 提交用户资料
-    $(".finishBtn").click(function(){
+    $(".myInfo").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__bd .finishBtn",function(){
         var success=$(".success");
         var hideTop=function(){
             success.empty()};
