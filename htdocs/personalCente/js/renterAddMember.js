@@ -72,45 +72,61 @@ $(document).ready(function(){
     })();
     // 上传个人照片
 
-    // 获取小区code
+    //根据城市id以及关键词获取小区信息
     (function(){
+        // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
-        $("#plotName").on("input",function(){
-            var city_id=$("#city option:selected").val();
+        $("#gardenName").on("input",function(){
+            var city_id=$("#city option:selected").val();  // 获取城市id
             var key=$("#plotName").val();
             if(key){
-
+                $(".allGarden").empty();
+                // 数据格式转换
+                var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"key":key})],
+                    // 加密
+                    jsonEncryptData=jsEncryptData(data);
+                console.log("通过关键词搜索小区");
+                console.log(data);
+                $.ajax({
+                    url:url+"UserCenter_getGardenInfo",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function(data){
+                        // 解密
+                        var data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            var li="";
+                            localStorage.setItem("apptoken",data.apptoken);
+                            $.each(data.data,function(i,item){
+                                console.log(item);
+                                li+=`
+                        <li title="${item.garden_code}">${item.garden_name}</li>
+                        
+                        `
+                            });
+                            var allGarden= $(".allGarden");
+                            allGarden.append(li);
+                            allGarden.show();
+                            allGarden.on("click","li",function(){
+                                // 获取其值
+                                var garden_Name=$(this).html();
+                                var gardenCode=$(this).attr("title");
+                                var gardenName= $("#gardenName");
+                                gardenName.val("");
+                                gardenName.val(garden_Name);
+                                gardenName.attr("title","");
+                                gardenName.attr("title",gardenCode);
+                                allGarden.hide();
+                            })
+                        }
+                    },
+                    error:function(){}
+                })
             }else{
-
+                $(".allGarden").empty()
             }
-            // 数据格式转换
-            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"key":key})],
-                // 加密
-                jsonEncryptData=jsEncryptData(data);
-            console.log("通过关键词搜索小区");
-            console.log(data);
-            $.ajax({
-                url:url+"UserCenter_getGardenInfo",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    // 解密
-                    var data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        console.log(data.data);
-                        localStorage.setItem("apptoken",data.apptoken);
-                        $.each(data.data,function(i,item){
-                            console.log(item);
-                            $("#plotName").attr("title",item.garden_code)
-                        });
-
-                    }
-                },
-                error:function(){}
-            })
-        });
-
+        })
     })();
     // 提交
     $(".weui-btn").click(function(){
