@@ -52,9 +52,9 @@ class ActivityController extends VersionController
         $picture =$this->pdata['picture'];
         $detailed_introduction =$this->pdata['detailed_introduction'];
         if(!$title || !$start_time  || !$end_time  || !$destination  || !$collection_time || !$collection_place  || !$contact  || !$phone  || !$transport  || !$garden_code  || !$garden_name  || !$total_num  || !$cost_type  || !$average_cost) $this->echoEncrypData(21);
-        $city_id=substr($garden_code,0,4);
+        $city_id=substr($garden_code,0,6);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data=array(
             'title'=>$title,
@@ -123,7 +123,7 @@ class ActivityController extends VersionController
         $activity_id =$this->pdata['activity_id'];
         if(!$city_id || !$activity_id)$this->echoEncrypData(21);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $activity=new Model\ActivityModel($province_id,$city_id);
         $collection_time=$activity->where(['id'=>$activity_id])->getField('collection_time');

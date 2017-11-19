@@ -48,7 +48,7 @@ class UserController extends VersionController
             $this->echoEncrypData(1,'参数不完整');
         }
         $account_code=$this->account_code;
-        $account=substr($account_code,4);
+        $account=substr($account_code,6);
         if(!$this->checkLogin($account_code)){
             $this->echoEncrypData(100);
         }else {

@@ -43,7 +43,7 @@ class UserCenterController extends VersionController
      * */
     protected function updateUserInfo_v1_0_0(){
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $portrait = $this->pdata['portrait'];
         $nickname = $this->pdata['nickname'];
         if(!$portrait || !$nickname)$this->echoEncrypData(21);
@@ -131,7 +131,7 @@ class UserCenterController extends VersionController
      * */
     protected function getMyInfo_v1_0_0(){
         $account_code=$this->account_code;
-        $city_id=substr($account_code,0,4);
+        $city_id=substr($account_code,0,6);
         $user_info =new Model\UserInfoModel($city_id);
         $data = $user_info->getUserinfo($account_code);
         if(!$data)$this->echoEncrypData(1);
@@ -177,7 +177,7 @@ class UserCenterController extends VersionController
         $mongo =new \MongoClient();
         $old_path = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code),array('portrait'));
         $mongo->baseinfo->user_area->update(array('account_code'=>$this->account_code),array('$set'=>array('portrait'=>$path)));
-        $city_id = substr($this->account_code,0,4);
+        $city_id = substr($this->account_code,0,6);
         M()->startTrans();
         $res = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->save(['portrait'=>$path]);
         if($res !== false){
@@ -197,7 +197,7 @@ class UserCenterController extends VersionController
      * */
     protected function getApplicationGarden_v1_0_0(){
         $account_code=$this->account_code;
-        $city_id=substr($account_code,0,4);
+        $city_id=substr($account_code,0,6);
         $user_info =new Model\UserInfoModel($city_id);
         $user_garden = $user_info->where(['account_code'=>$account_code])->getField('user_garden');
         if($user_garden){
@@ -283,7 +283,7 @@ class UserCenterController extends VersionController
         }else{
             $garden_code = $this->pdata['garden_code'];
         }
-        $city_id = substr($this->account_code,0,4);
+        $city_id = substr($this->account_code,0,6);
         $model = new Model\OwnerApplicationController($city_id); //该记录根据用户所属地区分表
         $model->startTrans();
         $real_name = $model->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1])->getField('real_name');
@@ -383,7 +383,7 @@ class UserCenterController extends VersionController
         }
         //1.验证操作人的身份
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $mode = new Model\OwnerApplicationController($city_id);
         $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
         if(!$role){
@@ -395,7 +395,7 @@ class UserCenterController extends VersionController
                 $user_account?$user_account_code = $mongo->baseinfo->user_area->findOne(array(
                     'account'=>$user_account
                 ),array('account_code'))['account_code']:$user_account_code='';
-                $user_account_code?$user_city_id=substr($user_account_code,0,4):$user_city_id=$city_id;
+                $user_account_code?$user_city_id=substr($user_account_code,0,6):$user_city_id=$city_id;
                 $model= new Model\OwnerApplicationController($user_city_id);//传递了account的认证保存在其本人认证分表  没有传递则保存在操作人（户主）分表内
                 $model->startTrans();
                 $res1 = $model->addApplication(array(
@@ -445,7 +445,7 @@ class UserCenterController extends VersionController
                 ));
                 if($user_code){
                     //3.用户信息分表内添加小区记录
-                    $user_city_id = substr($user_code,0,4);
+                    $user_city_id = substr($user_code,0,6);
                     $user_garden = M('baseinfo.user_info_'.$user_city_id)->where(['account_code'=>$user_code])->getField('user_garden');
                     if($user_garden){
                         $user_garden = $user_garden.';'.$this->pdata['garden_code'].',1';
@@ -508,7 +508,7 @@ class UserCenterController extends VersionController
      * */
     protected function getMyOwnerApplicationInfo_v1_0_0(){
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $model = new Model\OwnerApplicationController($city_id);
         $data = $model->where(['user_code'=>$account_code])->order('status asc')->select();
         if(!$data){
@@ -523,7 +523,7 @@ class UserCenterController extends VersionController
     protected function getMyOwnRoomNum_v1_0_0(){
         $account_code = $this->account_code;
         //获取通过认证的业主认证
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $model = new Model\OwnerApplicationController($city_id);
         $data = $model->field('room_num,garden_code,city_id')->where(['user_code'=>$account_code,'status'=>1])->select();
         $num_list = array();
@@ -547,7 +547,7 @@ class UserCenterController extends VersionController
     protected function ownerDelNum_v1_0_0(){
         $this->checkParam(array('city_id','application_id'));
         $account_code = $this->account_code;
-        $account_city_id = substr($account_code,0,4);
+        $account_city_id = substr($account_code,0,6);
         $mode = new Model\OwnerApplicationController($account_city_id);
         $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
         if(intval($role) !== 1) {
@@ -565,7 +565,7 @@ class UserCenterController extends VersionController
                 'role'=>1,
                 'relation_name'=>'户主',
             ])->getField('user_code');
-            $user_info['user_code']?$city_id=substr($user_info['user_code'],0,4):$city_id=substr($first_application_code,0,4);
+            $user_info['user_code']?$city_id=substr($user_info['user_code'],0,6):$city_id=substr($first_application_code,0,6);
             $owner_application = new Model\OwnerApplicationController($city_id);
             $owner_application->startTrans();
             $res1 = $owner_application->where(['user_code'=>$user_info['user_code'],'city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'real_name'=>$user_info['real_name'],'room_num'=>$user_info['room_num']])->delete();
@@ -664,7 +664,7 @@ class UserCenterController extends VersionController
         $user_code = $model->field('city_id,garden_code,room_num,user_code')->where(['id'=>$this->pdata['application_id']])->find();
         if(!$user_code)$this->echoEncrypData(1);
         $first_application_code = $model->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'relation_name'=>'户主','role'=>1])->getField('user_code');
-        $user_code['user_code']?$city_id =substr($user_code['user_code'],0,4):$city_id=substr($first_application_code,0,4);
+        $user_code['user_code']?$city_id =substr($user_code['user_code'],0,6):$city_id=substr($first_application_code,0,6);
         $owner_application = new Model\OwnerApplicationController($city_id);
         $data = $owner_application->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'user_code'=>$user_code['user_code']])->find();
 //        $data = $model->where(['id'=>$this->pdata['application_id']])->find();
@@ -721,7 +721,7 @@ class UserCenterController extends VersionController
         }else{
             $garden_code = $this->pdata['garden_code'];
         }
-        $city_id = substr($this->account_code,0,4);
+        $city_id = substr($this->account_code,0,6);
         $tenant_application = new Model\TenantApplicationModel($city_id);
         $tenant_application->startTrans();
         $real_name = $tenant_application->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'role'=>1])->getField('real_name');
@@ -821,7 +821,7 @@ class UserCenterController extends VersionController
         }
         //验证操作用户权限
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $mode = new Model\TenantApplicationModel($city_id);
         $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num']])->getField('role');
         if(!$role){
@@ -834,7 +834,7 @@ class UserCenterController extends VersionController
                 $user_account?$user_account_code = $mongo->baseinfo->user_area->findOne(array(
                     'account'=>$user_account
                 ),array('account_code'))['account_code']:$user_account_code='';
-                $user_account_code?$user_city_id=substr($user_account_code,0,4):$user_city_id=$city_id;
+                $user_account_code?$user_city_id=substr($user_account_code,0,6):$user_city_id=$city_id;
                 $model= new Model\TenantApplicationModel($user_city_id);//传递了account的认证保存在其本人认证分表  没有传递则保存在操作人（户主）分表内
                 $model->startTrans();
                 $res1 = $model->addApplication(array(
@@ -885,7 +885,7 @@ class UserCenterController extends VersionController
                 ));
                 if($user_code){
                     //3.用户信息分表内添加小区记录
-                    $user_city_id = substr($user_code,0,4);
+                    $user_city_id = substr($user_code,0,6);
                     $user_garden = M('baseinfo.user_info_'.$user_city_id)->where(['account_code'=>$user_code])->getField('user_garden');
                     if($user_garden){
                         $user_garden = $user_garden.';'.$this->pdata['garden_code'].',2';
@@ -948,7 +948,7 @@ class UserCenterController extends VersionController
      * */
     protected function getMyTenantApplicationInfo_v1_0_0(){
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $model = new Model\TenantApplicationModel($city_id);
         $data = $model->where(['user_code'=>$account_code])->order('status asc')->select();
         if(!$data){
@@ -963,7 +963,7 @@ class UserCenterController extends VersionController
     protected function getMyTenantRoomNum_v1_0_0(){
         $account_code = $this->account_code;
         //获取通过认证的业主认证
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $model = new Model\TenantApplicationModel($city_id);
         $data = $model->field('city_id,garden_code,room_num')->where(['user_code'=>$account_code,'status'=>1])->select();
         $num_list = array();
@@ -987,7 +987,7 @@ class UserCenterController extends VersionController
     protected function TenantDelNum_v1_0_0(){
         $this->checkParam(array('city_id','application_id'));
         $account_code = $this->account_code;
-        $account_city_id = substr($account_code,0,4);
+        $account_city_id = substr($account_code,0,6);
         $mode = new Model\OwnerApplicationController($account_city_id);
         $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
         if(intval($role) !== 1) {
@@ -999,7 +999,7 @@ class UserCenterController extends VersionController
             $user_info = $garden_room->field('user_code,city_id,garden_code,room_num,real_name')->where(['id'=>$this->pdata['application_id']])->find();
             if(!$user_info)$this->echoEncrypData(1);
             $first_application_code = $garden_room->where(['city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>2,'relation_name'=>'主租户'])->getField('user_code');
-            $user_info['user_code']?$city_id= substr($user_info['user_code'],0,4):$city_id=substr($first_application_code,0,4);
+            $user_info['user_code']?$city_id= substr($user_info['user_code'],0,6):$city_id=substr($first_application_code,0,6);
             $tenant_application = new Model\TenantApplicationModel($city_id);
             $tenant_application->startTrans();
             $res1 = $tenant_application->where(['user_code'=>$user_info['user_code'],'city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'real_name'=>$user_info['real_name'],'room_num'=>$user_info['room_num']])->delete();
@@ -1097,7 +1097,7 @@ class UserCenterController extends VersionController
         $user_code = $model->field('city_id,garden_code,room_num,user_code')->where(['id'=>$this->pdata['application_id']])->find();
         if(!$user_code)$this->echoEncrypData(1);
         $first_application_code = $model->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'relation_name'=>'户主','role'=>1])->getField('user_code');
-        $user_code['user_code']?$city_id =substr($user_code['user_code'],0,4):$city_id=substr($first_application_code,0,4);
+        $user_code['user_code']?$city_id =substr($user_code['user_code'],0,6):$city_id=substr($first_application_code,0,6);
         $owner_application = new Model\OwnerApplicationController($city_id);
         $data = $owner_application->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'user_code'=>$user_code['user_code']])->find();
         if(!$data){
@@ -1110,7 +1110,7 @@ class UserCenterController extends VersionController
      * */
     protected function getMyGardenMessage_v1_0_0(){
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $user_garden = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('user_garden');
         if(!$user_garden){
             $this->echoEncrypData(5);
@@ -1150,7 +1150,7 @@ class UserCenterController extends VersionController
     protected function addGardenMessage_v1_0_0(){
         $this->checkParam(array('garden_code','garden_name','title','content'));
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $user_info = M('baseinfo.user_info_'.$city_id)->field('user_garden,nickname,portrait')->where(['account_code'=>$account_code])->find();
         if(!$user_info['user_garden']){
             $this->echoEncrypData(1,'您还没有认证通过的小区');
@@ -1192,7 +1192,7 @@ class UserCenterController extends VersionController
      * */
     protected function getGardenMessageList_v1_0_0(){
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $user_garden = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$account_code])->getField('user_garden');
         if(!$user_garden){
             $this->echoEncrypData(1,'暂无认证通过的小区');
@@ -1263,7 +1263,7 @@ class UserCenterController extends VersionController
         if($count){
             $this->echoEncrypData(1,'您今天已经签到了,无需重复操作哦');
         }else{
-            $city = substr($account_code,0,4);
+            $city = substr($account_code,0,6);
             $point=  M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.SING_IN')])->find();
             $point_record = new Model\PointRecordModel($account_code);
             $point_record->startTrans();
@@ -1310,7 +1310,7 @@ class UserCenterController extends VersionController
     protected function delApplication_v1_0_0(){
         $this->checkParam(array('application_id','type'));
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($account_code,0,6);
         $type = intval($this->pdata['type']);
         $type !== 1 || $type !== 2?$this->echoEncrypData(1,'参数错误'):$type ===1?
             $mode = new Model\OwnerApplicationController($city_id):$mode =new Model\TenantApplicationModel($city_id);

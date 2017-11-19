@@ -93,7 +93,7 @@ class FriendsController extends VersionController
     protected function updateFriendsInfo_v1_0_0()
     {
         $this->checkParam(array('user_code'));
-        $user_city_id = substr($this->pdata['user_code'], 0, 4);
+        $user_city_id = substr($this->pdata['user_code'], 0, 6);
         $account_code = $this->account_code;
         $user_info = M('baseinfo.user_info_' . $user_city_id)->field('nickname,portrait,signature')->where(['account_code' => $this->pdata['user_code']])->find();
         $model = new Model\UserFriendsModel($account_code);
@@ -153,14 +153,14 @@ class FriendsController extends VersionController
         if($account_code === $this->account_code){
             $this->echoEncrypData(303);
         }
-        $table_id=substr($account_code,0,4);
+        $table_id=substr($account_code,0,6);
         $data1=M('baseinfo.user_info_'.$table_id)->field('account_code as friend_user_code , nickname as friend_nickname , portrait as friend_portrait , signature as friend_signature')->where(['account_code'=>$account_code])->find();
         if(!$data1){
             $this->echoEncrypData(302);
         }else{
             $data1['group_id'] =$group_id;
             $account=$this->account_code;
-            $table_id2=substr($account,0,4);
+            $table_id2=substr($account,0,6);
             $data2 = M('baseinfo.user_info_'.$table_id2)->field('account_code as user_code , nickname ,portrait,signature')->where(['account_code'=>$account])->find();
             $data = array_merge($data1,$data2);
         }
@@ -232,7 +232,7 @@ class FriendsController extends VersionController
         $max_age=$this->pdata['max_age'];
         $sex=intval($this->pdata['sex']);
         if(!$area_id){
-            $area_id = substr($this->account_code,0,4);
+            $area_id = substr($this->account_code,0,6);
         }
         $map = array();
         if($min_age){

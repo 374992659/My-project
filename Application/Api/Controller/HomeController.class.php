@@ -17,7 +17,7 @@ class HomeController extends VersionController
      * */
     protected function getHomePage_v1_0_0(){
         $account_code=$this->account_code;
-        $city_id = substr($account_code,0,4);
+        $city_id = substr($this->account_code,0,6);
         $role = M('baseinfo.user_info_'.$city_id)->where('acount_code ='.$account_code)->getField('role');
         $banner  = M('baseinfo.home_banner')->field('id as banner_id,url,picture')->where(['status'=>1])->order('create_time desc')->limit(0,3)->select();//首页轮播图
         $menu = M()->query('select id as menu_id,`name`,picture,url from beseinfo.home_menu where id in (SELECT home_menu from role_menu where role='.$role.') order by id asc');//菜单

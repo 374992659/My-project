@@ -55,7 +55,7 @@ class SubjectController extends VersionController
         $is_public = $this->pdata['is_public'];
         $is_push = $this->pdata['is_push'];
         if(!$title || !$content || !$garden_code || !$garden_name || !$choise || !$end_time || !$type)$this->echoEncrypData(21);
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data = array(
             'title'=>$title,
@@ -77,7 +77,7 @@ class SubjectController extends VersionController
         if($is_push){
             $data['is_push']=$is_push;
         }
-        $city_id=substr($garden_code,0,4);
+        $city_id=substr($garden_code,0,6);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectModel($province_id,$city_id);
         $res = $model->addSubject($data);
@@ -105,8 +105,8 @@ class SubjectController extends VersionController
             if(!$data)$this->echoEncrypData(5);
             $this->echoEncrypData(0,'',$data);
         }else{//指定小区 判断该小区用户是否认证 认证通过显示小区所有话题 没有则显示小区公开话题
-            $table_id=substr($this->account_code,0,4);
-            $city_id=substr($garden_code,0,4);
+            $table_id=substr($this->account_code,0,6);
+            $city_id=substr($garden_code,0,6);
             $res = M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$this->account_code])->getField('user_garden');
             $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
             $model=new Model\SubjectModel($province_id,$city_id);
@@ -142,7 +142,7 @@ class SubjectController extends VersionController
         $garden_code=$this->pdata['garden_code'];
         $subject_id=$this->pdata['subject_id'];
         if(!$garden_code || !$subject_id)$this->echoEncrypData(21);
-        $city_id=substr($garden_code,0,4);
+        $city_id=substr($garden_code,0,6);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectModel($province_id,$city_id);
         $model->where(['subject_id'=>$subject_id])->setInc('read_num');
@@ -200,8 +200,8 @@ class SubjectController extends VersionController
         $subject_id = $this->pdata['subject_id'];
         $content  = $this->pdata['content'];
         if(!$garden_code || !$subject_id || !$content)$this->echoEncrypData(21);
-        $city_id=substr($garden_code,0,4);
-        $table_id=substr($this->account_code,0,4);
+        $city_id=substr($garden_code,0,6);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
@@ -222,7 +222,7 @@ class SubjectController extends VersionController
             'value'=>$point['value'],
             'create_time'=>time(),
         ));
-        $city = substr($this->account_code,0,4);
+        $city = substr($this->account_code,0,6);
         if($point_limit = $this->getPointLimitStatus($this->account_code)){
             $add = $point['value'];
             if($point_limit < $point['value']){
@@ -244,8 +244,8 @@ class SubjectController extends VersionController
         $subject_id = $this->pdata['subject_id'];
         $is_cancel =$this->pdata['is_cancel'];
         if(!$garden_code || !$subject_id )$this->echoEncrypData(21);
-        $city_id=substr($garden_code,0,4);
-        $table_id=substr($this->account_code,0,4);
+        $city_id=substr($garden_code,0,6);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $res['user_code']=$this->account_code;
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
@@ -302,8 +302,8 @@ class SubjectController extends VersionController
         $commont_id= $this->pdata['commont_id'];
         $is_cancel= $this->pdata['is_cancel'];
         if(!$garden_code || !$subject_id || !$commont_id)$this->echoEncrypData(21);
-        $city_id=substr($garden_code,0,4);
-        $table_id=substr($this->account_code,0,4);
+        $city_id=substr($garden_code,0,6);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $res['user_code']=$this->account_code;
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
@@ -357,7 +357,7 @@ class SubjectController extends VersionController
         $subject_id=$this->pdata['subject_id'];
         $commont_id=$this->pdata['commont_id'];
         if(!$garden_code || !$subject_id || !$commont_id)$this->echoEncrypData(21);
-        $city_id=substr($garden_code,0,4);
+        $city_id=substr($garden_code,0,6);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
         $user_code=$model->getSubjectCommontC($commont_id);
@@ -377,7 +377,7 @@ class SubjectController extends VersionController
             'value'=>$point['value'],
             'create_time'=>time(),
         ));
-        $user_city = substr($this->account,0,4);
+        $user_city = substr($this->account,0,6);
         M()->execute('update baseinfo.user_info_'.$user_city.' set total_point =total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
         $this->echoEncrypData(0);
     }
@@ -394,8 +394,8 @@ class SubjectController extends VersionController
         $choise=$this->pdata['choise'];
         $content=$this->pdata['content'];
         if(!$garden_code || !$subject_id || !$choise || !$content)$this->echoEncrypData(21);
-        $city_id=substr($garden_code,0,4);
-        $table_id=substr($this->account_code,0,4);
+        $city_id=substr($garden_code,0,6);
+        $table_id=substr($this->account_code,0,6);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
         $userinfo = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
@@ -418,7 +418,7 @@ class SubjectController extends VersionController
        $subject_list=array();
        foreach($subject_arr as $k =>$v){
            $garden_code=$v['garden_code'];
-           $city_id=substr($garden_code,0,4);
+           $city_id=substr($garden_code,0,6);
            $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
            $subject=new Model\SubjectModel($province_id,$city_id);
            $subject=$subject->getUserSubject($account_code,$garden_code);
@@ -445,7 +445,7 @@ class SubjectController extends VersionController
         $content=$this->pdata['content'];
         if(!$city_id || !$title || !$content)$this->echoEncrypData(21);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
-        $table_id=substr($this->account_code,0,4);
+        $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data=array(
             'title'=>$title,

@@ -116,7 +116,7 @@ class UserFriendsModel extends Model
      * @param account_code 用户code
      * */
     public function is_online($account_code){
-        $table_id = substr($account_code,0,4);
+        $table_id = substr($account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$account_code])->getField('is_online');
         return $res;
     }
