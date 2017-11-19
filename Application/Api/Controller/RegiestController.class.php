@@ -152,6 +152,30 @@ class RegiestController extends BaseController
         Vendor('PHPExcel.PHPExcel');
 //        $objPHPExcel = new \PHPExcel();
 //        $objPHPExcel = $objPHPExcel::load('swf_area_V3.0_9.03.xlsx');
+        $fileName = 'swf_area_V3.0_9.03.xlsx';
+        if (!file_exists($fileName)) {
+            die('no file!');
+        }
+        $extension = strtolower( pathinfo($fileName, PATHINFO_EXTENSION) );
+
+        if ($extension =='xlsx') {
+            $objReader = new PHPExcel_Reader_Excel2007();
+            $objExcel = $objReader ->load($fileName);
+        } else if ($extension =='xls') {
+            $objReader = new PHPExcel_Reader_Excel5();
+            $objExcel = $objReader ->load($fileName);
+        } else if ($extension=='csv') {
+            $PHPReader = new PHPExcel_Reader_CSV();
+
+            //默认输入字符集
+            $PHPReader->setInputEncoding('GBK');
+
+            //默认的分隔符
+            $PHPReader->setDelimiter(',');
+
+            //载入文件
+            $objExcel = $PHPReader->load($fileName);
+        }
         $objReader = new \PHPExcel_Reader_Excel5();
         $objPHPExcel = $objReader->load('swf_area_V3.0_9.03.xlsx');
         var_dump($objPHPExcel);
