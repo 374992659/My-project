@@ -32,7 +32,7 @@ var addRess=function(){
                     });
                     function init() {
                         for (var i = 0; i < result.province.length; i++) {
-                            var item = $("<option value="+result.province[i].id+" parent_id="+result.province[i].province +">"+result[i].name+"</option>");
+                            var item = $("<option value="+result.province[i].id+" parent_id="+result.province[i].province +">"+result[i].province+"</option>");
                             pro.append(item);
                         }
                     }
