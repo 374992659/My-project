@@ -53,7 +53,7 @@ class ActivityController extends VersionController
         $detailed_introduction =$this->pdata['detailed_introduction'];
         if(!$title || !$start_time  || !$end_time  || !$destination  || !$collection_time || !$collection_place  || !$contact  || !$phone  || !$transport  || !$garden_code  || !$garden_name  || !$total_num  || !$cost_type  || !$average_cost) $this->echoEncrypData(21);
         $city_id=substr($garden_code,0,4);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $data=array(
@@ -92,7 +92,7 @@ class ActivityController extends VersionController
     protected function getActivityList_v1_0_0(){
         $city_id=$this->pdata['city_id'];
         if(!$city_id)$this->echoEncrypData(21);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $activity=new Model\ActivityModel($province_id,$city_id);
         $data = $activity->getActivityList();
         if(!$data)$this->echoEncrypData(5);
@@ -107,7 +107,7 @@ class ActivityController extends VersionController
         $city_id=$this->pdata['city_id'];
         $activity_id=$this->pdata['activity_id'];
         if(!$city_id || !$activity_id)$this->echoEncrypData(21);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $activity=new Model\ActivityModel($province_id,$city_id);
         $data =$activity->getActivityInfo($activity_id);
         if(!$data)$this->echoEncrypData(1);
@@ -122,7 +122,7 @@ class ActivityController extends VersionController
         $city_id =$this->pdata['city_id'];
         $activity_id =$this->pdata['activity_id'];
         if(!$city_id || !$activity_id)$this->echoEncrypData(21);
-        $province_id=M('baseinfo.swf_area')->where(['id'=>$city_id])->getField('parent_id');
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $table_id=substr($this->account_code,0,4);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $activity=new Model\ActivityModel($province_id,$city_id);

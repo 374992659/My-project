@@ -148,60 +148,60 @@ class RegiestController extends BaseController
             $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
         }
     }
-    public function testPHPExcel(){
-        Vendor('PHPExcel.PHPExcel');
-//        $objPHPExcel = new \PHPExcel();
-//        $objPHPExcel = $objPHPExcel::load('swf_area_V3.0_9.03.xlsx');
-        $fileName = 'swf_area_V3.0_9.03.xlsx';
-        if (!file_exists($fileName)) {
-            die('no file!');
-        }
-        $extension = strtolower( pathinfo($fileName, PATHINFO_EXTENSION) );
-
-        if ($extension =='xlsx') {
-            $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
-            $objReader->setReadDataOnly(true);
-            $objPHPExcel = $objReader->load($fileName);
-        } else if ($extension =='xls') {
-            $objReader = new \PHPExcel_Reader_Excel5();
-            $objExcel = $objReader ->load($fileName);
-        } else if ($extension=='csv') {
-            $PHPReader = new \PHPExcel_Reader_CSV();
-
-            //默认输入字符集
-            $PHPReader->setInputEncoding('GBK');
-
-            //默认的分隔符
-            $PHPReader->setDelimiter(',');
-
-            //载入文件
-            $objExcel = $PHPReader->load($fileName);
-        }
-        $sheet = $objPHPExcel->getSheet(0);
-        $highestRow = $sheet->getHighestRow(); // 取得总行数
-        $highestColumn = $sheet->getHighestColumn(); // 取得总列数
-        $k = 0;
-        $swf_area= M('baseinfo.swf_area');
-        for($j=2;$j<=$highestRow;$j++)
-        {
-
-            $a = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();//获取A列的值
-            $b = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();//获取B列的值
-            $c = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();//获取B列的值
-            $d = $objPHPExcel->getActiveSheet()->getCell("D".$j)->getValue();//获取B列的值
-            $e = $objPHPExcel->getActiveSheet()->getCell("E".$j)->getValue();//获取B列的值
-            $f = $objPHPExcel->getActiveSheet()->getCell("F".$j)->getValue();//获取B列的值
-            $g = $objPHPExcel->getActiveSheet()->getCell("G".$j)->getValue();//获取B列的值
-            $swf_area->add(array(
-                'province'=>$b,
-                'city'=>$c,
-                'area'=>$d,
-                'province_code'=>$e?$e:'0',
-                'city_code'=>$f?$f:'0',
-                'area_code'=>$g?$g:'0',
-            ));
-        }
-    }
+//    public function testPHPExcel(){
+//        Vendor('PHPExcel.PHPExcel');
+////        $objPHPExcel = new \PHPExcel();
+////        $objPHPExcel = $objPHPExcel::load('swf_area_V3.0_9.03.xlsx');
+//        $fileName = 'swf_area_V3.0_9.03.xlsx';
+//        if (!file_exists($fileName)) {
+//            die('no file!');
+//        }
+//        $extension = strtolower( pathinfo($fileName, PATHINFO_EXTENSION) );
+//
+//        if ($extension =='xlsx') {
+//            $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
+//            $objReader->setReadDataOnly(true);
+//            $objPHPExcel = $objReader->load($fileName);
+//        } else if ($extension =='xls') {
+//            $objReader = new \PHPExcel_Reader_Excel5();
+//            $objExcel = $objReader ->load($fileName);
+//        } else if ($extension=='csv') {
+//            $PHPReader = new \PHPExcel_Reader_CSV();
+//
+//            //默认输入字符集
+//            $PHPReader->setInputEncoding('GBK');
+//
+//            //默认的分隔符
+//            $PHPReader->setDelimiter(',');
+//
+//            //载入文件
+//            $objExcel = $PHPReader->load($fileName);
+//        }
+//        $sheet = $objPHPExcel->getSheet(0);
+//        $highestRow = $sheet->getHighestRow(); // 取得总行数
+//        $highestColumn = $sheet->getHighestColumn(); // 取得总列数
+//        $k = 0;
+//        $swf_area= M('baseinfo.swf_area');
+//        for($j=2;$j<=$highestRow;$j++)
+//        {
+//
+//            $a = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();//获取A列的值
+//            $b = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();//获取B列的值
+//            $c = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();//获取B列的值
+//            $d = $objPHPExcel->getActiveSheet()->getCell("D".$j)->getValue();//获取B列的值
+//            $e = $objPHPExcel->getActiveSheet()->getCell("E".$j)->getValue();//获取B列的值
+//            $f = $objPHPExcel->getActiveSheet()->getCell("F".$j)->getValue();//获取B列的值
+//            $g = $objPHPExcel->getActiveSheet()->getCell("G".$j)->getValue();//获取B列的值
+//            $swf_area->add(array(
+//                'province'=>$b,
+//                'city'=>$c,
+//                'area'=>$d,
+//                'province_code'=>$e?$e:'0',
+//                'city_code'=>$f?$f:'0',
+//                'area_code'=>$g?$g:'0',
+//            ));
+//        }
+//    }
 
 
     public function getProvinceAndCity($longitude,$latitude){
@@ -227,41 +227,47 @@ class RegiestController extends BaseController
     }
 
     public function checkCity($province,$city){
-        $province_id = M('baseinfo.swf_area')->where(['name'=>$province])->getField('id');
+        $province_id = M('baseinfo.swf_area')->where(['province'=>$province])->getField('province_code');
         if(!$province_id){
-            $last_p_id=M('baseinfo.swf_area')->where(['parent_id'=>'0000'])->getField('MAX(id)');
-            $new_id = intval(substr($last_p_id,0,-2))+1 ;
-            $new_p_id = $new_id.'00';
+            $last_p_id=M('baseinfo.swf_area')->where(['province_code'=>'0'])->getField('MAX(area_code)');
+            $new_id = intval(substr($last_p_id,0,-4))+1 ;
+            $new_p_id = $new_id.'0000';
             M('baseinfo.swf_area')->add(array(
-                'id'=>$new_p_id,
-                'parent_id'=>'0000',
-                'name'=>$province,
-                'sort'=>$new_id,
+                'province'=>$province,
+                'city'=>$province,
+                'area'=>$province,
+                'province_code'=>'0',
+                'city_code'=>'0',
+                'area_code'=>$new_p_id,
             ));
             M('baseinfo.swf_area')->add(array(
-                'id'=>intval($new_p_id)+1,
-                'parent_id'=>$new_p_id,
-                'name'=>$city,
-                'sort'=>$new_id,
+                'province'=>$province,
+                'city'=>$city,
+                'area'=>$city,
+                'province_code'=>$new_p_id,
+                'city_code'=>'0',
+                'area_code'=>$new_id.'0100',
             ));
             return intval($new_p_id)+1;
         }else{
-          $city_id = M('baseinfo.swf_area')->where(['parent_id'=>$province_id,'name'=>$city])->getField('id');
+          $city_id = M('baseinfo.swf_area')->where(['province'=>$province,'city'=>$city])->getField('area_code');
           if(!$city_id){
-              $last_c_id = M('baseinfo.swf_area')->where(['parent_id'=>$province_id])->getField('MAX(id)');
-              $sort = intval(substr($province_id,0,-2));
+              $last_c_id = M('baseinfo.swf_area')->where(['province'=>$province])->getField('MAX(area_code)');
               if($last_c_id){
-                  $new_c_id = intval($last_c_id)+1;
+                  $new_c_id = intval(substr($province_id,0,-2))+1;
               }else{
-                  $new_c_id = intval($province_id)+1;
+                  $sort = intval(substr($province_id,0,-4));
+                  $new_c_id = $sort.'01';
               }
               M('baseinfo.swf_area')->add(array(
-                  'id'=>$new_c_id,
-                  'parent_id'=>$province_id,
-                  'name'=>$city,
-                  'sort'=>$sort,
+                  'province'=>$province,
+                  'city'=>$city,
+                  'area'=>$city,
+                  'province_code'=>$province_id,
+                  'city_code'=>'0',
+                  'area_code'=>$new_c_id.'00',
               ));
-              return $new_c_id;
+              return $new_c_id.'00';
           }else{
               return $city_id;
           }
