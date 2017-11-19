@@ -306,7 +306,7 @@ $(document).ready(function(){
         var myPicB=localStorage.getItem("myPicB");
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}",
         // 小区名字
-            garden_name=$("#houseName").val(),
+            garden_name=$("#gardenName").val(),
         // 小区code（没有可不填）
             garden_code=$("#gardenName").attr("title"),
         // 小区所属城市
