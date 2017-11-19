@@ -148,6 +148,13 @@ class RegiestController extends BaseController
             $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
         }
     }
+    public function testPHPExcel(){
+        import('Vendor.PHPExcel');
+        $objReader = new PHPExcel_Reader_Excel5();
+        $objPHPExcel = $objReader->load('swf_area_V3.0_9.03.xlsx');
+        var_dump($objPHPExcel);
+    }
+
 
     public function getProvinceAndCity($longitude,$latitude){
         $curl = curl_init();
