@@ -148,60 +148,60 @@ class RegiestController extends BaseController
             $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
         }
     }
-    public function testPHPExcel(){
-        Vendor('PHPExcel.PHPExcel');
-//        $objPHPExcel = new \PHPExcel();
-//        $objPHPExcel = $objPHPExcel::load('swf_area_V3.0_9.03.xlsx');
-        $fileName = 'swf_area_V3.0_9.03.xlsx';
-        if (!file_exists($fileName)) {
-            die('no file!');
-        }
-        $extension = strtolower( pathinfo($fileName, PATHINFO_EXTENSION) );
-
-        if ($extension =='xlsx') {
-            $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
-            $objReader->setReadDataOnly(true);
-            $objPHPExcel = $objReader->load($fileName);
-        } else if ($extension =='xls') {
-            $objReader = new \PHPExcel_Reader_Excel5();
-            $objExcel = $objReader ->load($fileName);
-        } else if ($extension=='csv') {
-            $PHPReader = new \PHPExcel_Reader_CSV();
-
-            //默认输入字符集
-            $PHPReader->setInputEncoding('GBK');
-
-            //默认的分隔符
-            $PHPReader->setDelimiter(',');
-
-            //载入文件
-            $objExcel = $PHPReader->load($fileName);
-        }
-        $sheet = $objPHPExcel->getSheet(0);
-        $highestRow = $sheet->getHighestRow(); // 取得总行数
-        $highestColumn = $sheet->getHighestColumn(); // 取得总列数
-        $k = 0;
-        $swf_area= M('baseinfo.swf_area');
-        for($j=2;$j<=$highestRow;$j++)
-        {
-
-            $a = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();//获取A列的值
-            $b = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();//获取B列的值
-            $c = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();//获取B列的值
-            $d = $objPHPExcel->getActiveSheet()->getCell("D".$j)->getValue();//获取B列的值
-            $e = $objPHPExcel->getActiveSheet()->getCell("E".$j)->getValue();//获取B列的值
-            $f = $objPHPExcel->getActiveSheet()->getCell("F".$j)->getValue();//获取B列的值
-            $g = $objPHPExcel->getActiveSheet()->getCell("G".$j)->getValue();//获取B列的值
-            $swf_area->add(array(
-                'province'=>$b,
-                'city'=>$c,
-                'area'=>$d,
-                'province_code'=>$e,
-                'city_code'=>$f,
-                'area_code'=>$g,
-            ));
-        }
-    }
+//    public function testPHPExcel(){
+//        Vendor('PHPExcel.PHPExcel');
+////        $objPHPExcel = new \PHPExcel();
+////        $objPHPExcel = $objPHPExcel::load('swf_area_V3.0_9.03.xlsx');
+//        $fileName = 'swf_area_V3.0_9.03.xlsx';
+//        if (!file_exists($fileName)) {
+//            die('no file!');
+//        }
+//        $extension = strtolower( pathinfo($fileName, PATHINFO_EXTENSION) );
+//
+//        if ($extension =='xlsx') {
+//            $objReader = \PHPExcel_IOFactory::createReader('Excel2007');
+//            $objReader->setReadDataOnly(true);
+//            $objPHPExcel = $objReader->load($fileName);
+//        } else if ($extension =='xls') {
+//            $objReader = new \PHPExcel_Reader_Excel5();
+//            $objExcel = $objReader ->load($fileName);
+//        } else if ($extension=='csv') {
+//            $PHPReader = new \PHPExcel_Reader_CSV();
+//
+//            //默认输入字符集
+//            $PHPReader->setInputEncoding('GBK');
+//
+//            //默认的分隔符
+//            $PHPReader->setDelimiter(',');
+//
+//            //载入文件
+//            $objExcel = $PHPReader->load($fileName);
+//        }
+//        $sheet = $objPHPExcel->getSheet(0);
+//        $highestRow = $sheet->getHighestRow(); // 取得总行数
+//        $highestColumn = $sheet->getHighestColumn(); // 取得总列数
+//        $k = 0;
+//        $swf_area= M('baseinfo.swf_area');
+//        for($j=2;$j<=$highestRow;$j++)
+//        {
+//
+//            $a = $objPHPExcel->getActiveSheet()->getCell("A".$j)->getValue();//获取A列的值
+//            $b = $objPHPExcel->getActiveSheet()->getCell("B".$j)->getValue();//获取B列的值
+//            $c = $objPHPExcel->getActiveSheet()->getCell("C".$j)->getValue();//获取B列的值
+//            $d = $objPHPExcel->getActiveSheet()->getCell("D".$j)->getValue();//获取B列的值
+//            $e = $objPHPExcel->getActiveSheet()->getCell("E".$j)->getValue();//获取B列的值
+//            $f = $objPHPExcel->getActiveSheet()->getCell("F".$j)->getValue();//获取B列的值
+//            $g = $objPHPExcel->getActiveSheet()->getCell("G".$j)->getValue();//获取B列的值
+//            $swf_area->add(array(
+//                'province'=>$b,
+//                'city'=>$c,
+//                'area'=>$d,
+//                'province_code'=>$e,
+//                'city_code'=>$f,
+//                'area_code'=>$g,
+//            ));
+//        }
+//    }
 
 
     public function getProvinceAndCity($longitude,$latitude){
