@@ -176,9 +176,7 @@ class RegiestController extends BaseController
             //载入文件
             $objExcel = $PHPReader->load($fileName);
         }
-        $objReader = new \PHPExcel_Reader_Excel5();
-        $objPHPExcel = $objReader->load('swf_area_V3.0_9.03.xlsx');
-        var_dump($objPHPExcel);
+        var_dump($objExcel);
     }
 
 
