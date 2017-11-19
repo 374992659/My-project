@@ -41,7 +41,7 @@ $(document).ready(function(){
         this.garden_code=garden_code;
         //数据格式转换
         this.add=function(){
-            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
+            var data=["",JSON.stringify({"apptoken":this.apptoken,"city_id":this.city_id," garden_code": this.garden_code})],
                 //加密
                 jsonEncryptData=jsEncryptData(data);
             console.log(data);
