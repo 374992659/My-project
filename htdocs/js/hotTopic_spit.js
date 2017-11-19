@@ -24,45 +24,49 @@ $(document).ready(function(){ "use strict";
     // 结束时间
     $.date('#gathertime');
     // 上传图片
-    (function(){
-        var that=$("#uploaderInput");
-        that.change(function(e){
-            var targetElement = e.target,
-                file = targetElement.files[0],
-                url=window.URL.createObjectURL(this.files[0]) ;
-            console.log(file.name);
-            var fd = new FormData();
-            fd.append('fileToUpload', file);
-            localStorage.setItem("hotTopicPic",fd);
-            if(url){
-                var html=`
-                <li><img class="pushPlayImg" src="${url}" alt="" style="width:78px ;height: 78px;" >
-                <img src="image/del.png" alt="" class="delImg">
-                </li>              
-               `
+    $("#uploaderInput").change(function(e){
+        // 图片信息组成的数组
+        var file =$("#uploaderInput")[0].files;
+        console.log(file[0].name);
+        var formData = new FormData();
+        for(var i=0,len=file.length;i<len;i++){
+            formData.append("topic"+i,file[i]);
+        }
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        formData.append("data",json);
+        console.log(data);
+        $.ajax({
+            url:url+"group_uploaSubjectPic",
+            type:"POST",
+            data:formData,
+            processData : false,
+            contentType : false,
+            secureuri:false,
+            success:function(data){
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var LiImg="";
+                    $.each(data.data,function(i,item){
+                        LiImg+=`
+                         <li class="weui-uploader__file" >
+                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
+                                     <img src="image/del.png" alt="" width="20px" class="delImg">
+                                 </li>
+                        `
+                    });
+                    $(".picPlace").append(LiImg);
+                }else{
+                    console.log(data.errmsg);
+                }
             }
-            localStorage.setItem("pic",url);
-            $("#uploaderFiles").append(html);
-            // 取消删除图片
-            $(".picPlace").on("click","li .delImg",function(){
-                console.log(132);
-                $(this).parent().remove();
-            });
-            // 图片放大预览
-            (function(){
-                $(".picPlace").on("click","li .pushPlayImg",function(){
-                    var url=localStorage.getItem("pic");
-                    if($(".weui-gallery").is(":hidden")){
-                        $(".weui-gallery").show();
-                        $(".weui-gallery__img img").attr("src",url)
-                    }
-                });
-                $(".weui-gallery").click(function(){
-                    $(".weui-gallery").hide();
-                });
-            })();
-        });
-    })();
+        })
+    });
     //获取小区code
     (function(){
         // 获取apptoken
