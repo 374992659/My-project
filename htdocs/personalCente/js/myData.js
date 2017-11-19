@@ -29,7 +29,7 @@ $(document).ready(function(){
                     }
                     console.log(pic);
                   var   html=`
-                    !--个人头像-->
+                
             <div class="weui-panel weui-panel_access">
                 <div class="weui-panel__bd">
                     <div class="weui-media-box weui-media-box_appmsg">
@@ -50,7 +50,7 @@ $(document).ready(function(){
                             <h4 class="weui-media-box__title">昵称：
                                 <input type="text" id="nickname" placeholder="" autofocus="autofocus" style="border: none" value="${result.nickname}">
                             </h4>
-                            <h4 class="weui-media-box__title ">账号：<span class="account"></span></h4>
+                            <h4 class="weui-media-box__title ">账号：<span class="account">${result.account}</span></h4>
                         </div>
                     </div>
                 </div>
