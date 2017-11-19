@@ -107,8 +107,15 @@ $(document).ready(function() {
                     // }
                     // // 保存聊天的好友资料
                     (function(){
+                        var httP=result.send_portrait.split(":")[0];
+                        var pic="";
+                        if(httP==="http"){
+                            pic=result.send_portrait;
+                        }else{
+                            pic="http://wx.junxiang.ren/project/"+result.send_portrait
+                        }
                         var history_chat = localStorage.getItem("friend_info");
-                        var json = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+"http://wx.junxiang.ren/project/"+result.data.send_portrait+"'}";
+                        var json = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+pic+"'}";
                         if(!history_chat){
                             var history_chat = new Array();
                             history_chat=[json];
