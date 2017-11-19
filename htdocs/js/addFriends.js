@@ -29,7 +29,7 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
                 $.each(data.data,function(i,item){
-                    var httP=item.friend_portrait.split(":")[0];
+                    var httP=item.portrait.split(":")[0];
                     if(httP==="http"){
                         html+=`
                     <div class="weui-media-box weui-media-box_appmsg"
