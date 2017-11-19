@@ -381,7 +381,6 @@ $(document).ready(function(){
                         var html="";
                         $.each(result.data,function(i,item){
                             var httP=item.send_portrait.split(":")[0];
-
                             if(item.sender_code==sender_code){//发送方为好友
                                 if(parseInt(item.type)===2){//获取的内容为图片
                                     if(httP==="http"){//好友头像为系统默认头像
@@ -678,10 +677,8 @@ $(document).ready(function(){
                     var jsonObj = eval('(' + item + ')');
                     data[i]=jsonObj;
                 });
-
                 var html="";
                 $.each(data,function(i,item){
-                    alert(item.portrait);
                     var httP=item.portrait.split(":")[0];
                     console.log(httP);
                     var pic="";
