@@ -40,11 +40,6 @@ $(document).ready(function(){
                                 var sender_nickname=item.sender_nickname;
                                 var sender_portrait=item.sender_portrait;
                                 var httP=sender_portrait.split(":")[0];
-                                if(httP==="http"){
-                                    sender_portrait=item.sender_portrait;
-                                }else{
-                                    sender_portrait="http://wx.junxiang.ren/project/"+item.sender_portrait
-                                }
                                 if(sender_code===sender_code){
                                     $.each(item.content,function(i,item){
                                         if(item.type===2){//内容为文件、图片
