@@ -7,9 +7,10 @@ $(document).ready(function(){
     console.log(info.data);
     var apptoken=localStorage.getItem("apptoken");
     var html="";
-    $.each(info.data,function(i,item){
-        if(item.signature===null){
-            html+=`
+    if(info){
+        $.each(info.data,function(i,item){
+            if(item.signature===null){
+                html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
@@ -21,8 +22,8 @@ $(document).ready(function(){
             <button class="addFriend">加为好友</button>
         </a>
         `
-        }else{
-            html+=`
+            }else{
+                html+=`
         <a href="javascript:void(0);" class="weui-media-box weui-media-box_appmsg" title="${item.account_code}" value="1">
             <div class="weui-media-box__hd">
                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="">
@@ -34,9 +35,15 @@ $(document).ready(function(){
             <button class="addFriend">加为好友</button>
         </a>
         `
-        }
+            }
 
-    });
+        });
+    }else{
+        html=`
+               
+        `
+    }
+
     $(".weui-panel__bd").append(html);
     // 添加好友
     $(".nearFriend .weui-media-box").on("click",".addFriend",function(){

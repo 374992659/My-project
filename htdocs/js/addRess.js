@@ -6,6 +6,7 @@ var addRess=function(){
             success:function(data) {
                 data=jsDecodeData( data );
                 var result = data.data;
+                console.log(result);
                 $(function () {
                     var pro = $("#province"),
                         city = $("#city"),
