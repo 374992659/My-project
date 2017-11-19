@@ -68,7 +68,7 @@ class Events
                 Gateway::bindUid($client_id,$account_code['account_code']);
                 $_SESSION['account_code'] = $account_code['account_code'];
                 Gateway::updateSession($client_id,$account_code);
-                $table_id= substr($account_code['account_code'],0,4);
+                $table_id= substr($account_code['account_code'],0,6);
                 $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
                 $group_arr = $db->select('group_code')->from('user_group')->where('status =1')->column();
                 if($group_arr){
@@ -99,7 +99,7 @@ class Events
                     foreach ($result as $k=>$v){
                         if(!array_key_exists($v['sender_code'],$friends_new_message)){
                             $friends_new_message[$v['sender_code']]['sender_code'] = $v['sender_code'];  //用户code
-                            $friend_table_id= substr($v['sender_code'],0,4);
+                            $friend_table_id= substr($v['sender_code'],0,6);
                             $friends_new_message[$v['sender_code']]['sender_nickname'] = $friend_db->select('nickname')->from('user_info_'.$friend_table_id)->where('account_code ='.$v['sender_code'])->single();      //用户昵称
                             $friends_new_message[$v['sender_code']]['sender_portrait'] = $friend_db->select('portrait')->from('user_info_'.$friend_table_id)->where('account_code ='.$v['sender_code'])->single();      //用户头像
                             $friends_new_message[$v['sender_code']]['content'][] =array('type'=>$v['type'],'content'=>$v['content'],'send_time'=>$v['send_time']);
@@ -184,7 +184,7 @@ class Events
            case 2:                                          //发送消息给好友
                 $friend_code = $message->account_code;
                 $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                $table_id =substr($account_code['account_code'],0,4);
+                $table_id =substr($account_code['account_code'],0,6);
                 $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
                 $mongo =new MongoClient();
                 $userdatastr = 'user_info_'.$account_code['account_code'];
@@ -229,7 +229,7 @@ class Events
                     break;
            case 3://群聊
                 $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                $table_id =substr($account_code['account_code'],0,4);
+                $table_id =substr($account_code['account_code'],0,6);
                $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
 //               var_dump($user_info);
 //                       $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
@@ -363,7 +363,7 @@ class Events
                     Gateway::sendToCurrentClient(json_encode($returnData));
                 }
                 $baseinfo = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
-                $table_id =substr($account_code['account_code'],0,4);
+                $table_id =substr($account_code['account_code'],0,6);
                 $user_info= $baseinfo->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
                 $data = array(
                     'user_code'=>$account_code['account_code'],
