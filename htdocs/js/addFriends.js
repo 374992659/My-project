@@ -28,18 +28,19 @@ $(document).ready(function(){
                 console.log(data);
                 localStorage.setItem("apptoken",data.apptoken);
                 var html="";
-                $.each(data.data,function(i,item){
-                    var httP=item.portrait.split(":")[0];
+                var result=data.data;
+                    console.log(data);
+                    var httP=result.portrait.split(":")[0];
                     if(httP==="http"){
                         html+=`
                     <div class="weui-media-box weui-media-box_appmsg"
                     title="${item.friend_user_code}" value="1">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb" src="${item.friend_portrait}" alt="">
+                            <img class="weui-media-box__thumb" src="${result.friend_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
-                            <p class="weui-media-box__desc">${item.friend_signature}</p>
+                            <h4 class="weui-media-box__title name">${result.friend_nickname}</h4>
+                            <p class="weui-media-box__desc">${result.friend_signature}</p>
                         </div>
                         <button class="addFriend">加为好友</button>
                     </div>
@@ -52,8 +53,8 @@ $(document).ready(function(){
                             <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.friend_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title name">${item.friend_nickname}</h4>
-                            <p class="weui-media-box__desc">${item.friend_signature}</p>
+                            <h4 class="weui-media-box__title name">${result.friend_nickname}</h4>
+                            <p class="weui-media-box__desc">${result.friend_signature}</p>
                         </div>
                         <button class="addFriend">加为好友</button>
                     </div>
@@ -61,7 +62,7 @@ $(document).ready(function(){
 
                     }
 
-                });
+
                 var keyFriend=$(".keyFriend");
                 console.log(html);
                 keyFriend.append(html);
