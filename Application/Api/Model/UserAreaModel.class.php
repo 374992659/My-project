@@ -16,7 +16,7 @@ class UserAreaModel extends Model
      * 返回全国地区
      * */
     public function getArea(){
-        $data=M('swf_area')->where(['city_code'=>'0','province_code'=>array('neq'=>'0')])->select();
+        $data=M('swf_area')->where(['city_code'=>'0','province_code'=>array('ne'=>'0')])->select();
         return $data;
     }
 
