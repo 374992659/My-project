@@ -177,7 +177,7 @@ class RegiestController extends BaseController
             //载入文件
             $objExcel = $PHPReader->load($fileName);
         }
-        var_dump($objPHPExcel);
+        print_r($objPHPExcel);
     }
 
 
