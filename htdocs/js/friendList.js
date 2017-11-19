@@ -184,10 +184,11 @@ $(document).ready(function() {
                                 var sender_nickname=item.sender_nickname;
                                 var sender_portrait=item.sender_portrait;
                                 var httP=sender_portrait.split(":")[0];
+                                var senderPIC="";
                                 if(httP==="http"){
-                                    sender_portrait=item.sender_portrait;
+                                    senderPIC=item.sender_portrait;
                                 }else{
-                                    sender_portrait="http://wx.junxiang.ren/project/"+sender_portrait
+                                    senderPIC="http://wx.junxiang.ren/project/"+sender_portrait
                                 }
                                 $.each(item.content,function(i,item){
                                    console.log(item.content);
@@ -195,7 +196,7 @@ $(document).ready(function() {
                                    console.log(item.send_time);
                                    console.log(item.type);
                                     // 本地未读聊天记录
-                                    var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
+                                    var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+senderPIC+"'}";
                                     var history_chats = localStorage.getItem('history_'+ sender_code);
                                     if(!history_chats){
                                         var history_chats = new Array();
@@ -224,7 +225,7 @@ $(document).ready(function() {
                                     // 保存聊天的好友资料
                                     (function(){
                                         var history_chat = localStorage.getItem("friend_info");
-                                        var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
+                                        var json = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+senderPIC+"'}";
                                         if(!history_chat){
                                             var history_chat = new Array();
                                             history_chat=[json];
