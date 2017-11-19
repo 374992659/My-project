@@ -114,7 +114,7 @@ $(document).ready(function() {
                             pic=result.send_portrait;
                         }else{
                             pic="http://wx.junxiang.ren/project/"+result.send_portrait
-                        }
+                        }console.log(pic);
                         var history_chat = localStorage.getItem("friend_info");
                         var json = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+pic+"'}";
                         if(!history_chat){
@@ -215,8 +215,6 @@ $(document).ready(function() {
                                                 localStorage.setItem('history_' + sender_code, JSON.stringify(history_chats));
                                             }
                                         }
-
-
                                     }
                                     // 保存聊天的好友资料
                                     (function(){
