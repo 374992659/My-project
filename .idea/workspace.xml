@@ -37,15 +37,15 @@
       <file leaf-file-name="addFriends.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htdocs/js/addFriends.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5156431">
-              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+            <state vertical-scroll-proportion="-0.22363847">
+              <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
               <folding>
-                <marker date="1511099695186" expanded="true" signature="1304:1926" placeholder="..." />
-                <marker date="1511099695186" expanded="true" signature="1424:1558" placeholder="..." />
-                <marker date="1511099695186" expanded="true" signature="1615:1835" placeholder="..." />
-                <marker date="1511099695186" expanded="true" signature="2078:2731" placeholder="..." />
-                <marker date="1511099695186" expanded="true" signature="2198:2363" placeholder="..." />
-                <marker date="1511099695186" expanded="true" signature="2420:2640" placeholder="..." />
+                <marker date="1511099761473" expanded="true" signature="1349:1908" placeholder="..." />
+                <marker date="1511099761473" expanded="true" signature="1406:1540" placeholder="..." />
+                <marker date="1511099761473" expanded="true" signature="1597:1817" placeholder="..." />
+                <marker date="1511099761473" expanded="true" signature="2105:2695" placeholder="..." />
+                <marker date="1511099761473" expanded="true" signature="2162:2327" placeholder="..." />
+                <marker date="1511099761473" expanded="true" signature="2384:2604" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -738,15 +738,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/addFriends.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5156431">
-          <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+        <state vertical-scroll-proportion="-0.22363847">
+          <caret line="45" column="21" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
           <folding>
-            <marker date="1511099695186" expanded="true" signature="1304:1926" placeholder="..." />
-            <marker date="1511099695186" expanded="true" signature="1424:1558" placeholder="..." />
-            <marker date="1511099695186" expanded="true" signature="1615:1835" placeholder="..." />
-            <marker date="1511099695186" expanded="true" signature="2078:2731" placeholder="..." />
-            <marker date="1511099695186" expanded="true" signature="2198:2363" placeholder="..." />
-            <marker date="1511099695186" expanded="true" signature="2420:2640" placeholder="..." />
+            <marker date="1511099761473" expanded="true" signature="1349:1908" placeholder="..." />
+            <marker date="1511099761473" expanded="true" signature="1406:1540" placeholder="..." />
+            <marker date="1511099761473" expanded="true" signature="1597:1817" placeholder="..." />
+            <marker date="1511099761473" expanded="true" signature="2105:2695" placeholder="..." />
+            <marker date="1511099761473" expanded="true" signature="2162:2327" placeholder="..." />
+            <marker date="1511099761473" expanded="true" signature="2384:2604" placeholder="..." />
           </folding>
         </state>
       </provider>
