@@ -25,6 +25,7 @@ $(document).ready(function(){
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
                 $.each(member,function(i,item){
+                    console.log(item);
                     if(item.roal===3){
                         var httP=item.portrait.split(":")[0];
                         var portrait="";
@@ -34,12 +35,15 @@ $(document).ready(function(){
                             portrait="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         memberHtml+=`
-                    <div class="weui-cell">
-                         <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:60px;margin-right:5px;display:block"></div>
-                         <div class="weui-cell__bd">
-                         <p>${item.nickname}</p>
-                        </div>
+                <div  class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                      <img class="weui-media-box__thumb" src="" alt="">
                     </div>
+                    <div class="weui-media-box__bd">
+                      <h4 class="weui-media-box__title">标题一</h4>
+
+                    </div>
+                </div>
                        
                         `;
                         memberNum++
@@ -52,12 +56,15 @@ $(document).ready(function(){
                             portrait="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         manageHtml+=`
-                    <div class="weui-cell">
-                         <div class="weui-cell__hd"><img src="${portraits}" alt="" style="width:60px;margin-right:5px;display:block"></div>
-                         <div class="weui-cell__bd">
-                         <p>${item.nickname}</p>
-                        </div>
+                 <div  class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                      <img class="weui-media-box__thumb" src="" alt="">
                     </div>
+                    <div class="weui-media-box__bd">
+                      <h4 class="weui-media-box__title">标题一</h4>
+
+                    </div>
+                </div>
                         
                         `;
                         manegeNum++
