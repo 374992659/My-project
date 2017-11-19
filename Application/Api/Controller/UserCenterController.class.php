@@ -199,7 +199,7 @@ class UserCenterController extends VersionController
         $account_code=$this->account_code;
         $city_id=substr($account_code,0,4);
         $user_info =new Model\UserInfoModel($city_id);
-        $user_garden = $user_info->where(['account_codes'=>$account_code])->getField('user_garden');
+        $user_garden = $user_info->where(['account_code'=>$account_code])->getField('user_garden');
         if($user_garden){
             $garden_arr = explode(';',$user_garden);
             if(!$garden_arr){
