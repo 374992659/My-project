@@ -240,6 +240,7 @@ $(document).ready(function(){
                     </div>
                         `
                     }
+                    alert("页面内容");
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
