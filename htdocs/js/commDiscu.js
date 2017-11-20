@@ -12,6 +12,8 @@ $(document).ready(function(){
     var myCode=localStorage.getItem("my_code");
     if(parseInt(groupOwner)===parseInt(myCode)){
         console.log("123");
+        
+    }else{
         $("#setSpeak").attr("style","display:none")
     }
     // 获取群内用户
