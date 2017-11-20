@@ -46,7 +46,7 @@ $(document).ready(function(){
                                      <a href="">
                                          <p class="weui-media-box__title lf">${item.nickname}</p>
                                      </a>
-                                     <span class="right" style="font-size: 12px">${item.create_time}</span>
+                                     <span class="right" style="font-size: 12px">${getLocalTime(item.create_time)}</span>
                                  </div>
                                  <p class="weui-media-box__desc">
                                      ${item.content}
@@ -65,7 +65,7 @@ $(document).ready(function(){
                                      <a href="">
                                          <p class="weui-media-box__title lf">${item.nickname}</p>
                                      </a>
-                                     <span class="right" style="font-size: 12px">${item.create_time}</span>
+                                     <span class="right" style="font-size: 12px">${getLocalTime(item.create_time)}</span>
                                  </div>
                                  <p class="weui-media-box__desc">
                                      ${item.content}
