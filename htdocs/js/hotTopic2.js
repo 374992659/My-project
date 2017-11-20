@@ -28,19 +28,37 @@ $(document).ready(function(){
                         var html="";
                         localStorage.setItem("apptoken",data.apptoken);
                         $.each(data.data,function(i,item){
-                            html+=`
-                                <a href="hotTopic_myTopicText.html" class="hotTopicA" value="${item.subject_id}" title="${item.graden_code}">
+                            if(item.status===1){
+                                html+=`
+                    <div  class="hotTopicA" value="${item.subject_id}" title="${item.garden_code}">
                         <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                             <div class="headline">
                                 <h4 class="weui-media-box__title lf" style="font-size: 15px;">${item.title}</h4>
-                                <span class="right" style="font-size: 13px;color: green">已经解决</span>
+                                <span class="right" style="font-size: 13px;color: red">未解决</span>
                             </div>
 
                             <p class="weui-media-box__desc" style="font-size: 12px">${item.content}</p>
                             <div style="font-size: 12px;text-align: right;color: #c2c0be">阅读量 <span>${item.read_num}</span> 回帖数 <span>${item.commont_num}</span></div>
                         </div>
-                    </a>                          
+                    </div>                          
                             `
+                            }else{
+                                html+=`
+                    <div class="hotTopicA" value="${item.subject_id}" title="${item.garden_code}">
+                        <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
+                            <div class="headline">
+                                <h4 class="weui-media-box__title lf" style="font-size: 15px;">${item.title}</h4>
+                                <span class="right" style="font-size: 13px;color: green">已解决</span>
+                            </div>
+
+                            <p class="weui-media-box__desc" style="font-size: 12px">${item.content}</p>
+                            <div style="font-size: 12px;text-align: right;color: #c2c0be">阅读量 <span>${item.read_num}</span> 回帖数 <span>${item.commont_num}</span></div>
+                        </div>
+                    </div>                          
+                            `
+
+                            }
+
                         });
                         $(".hotTopicList").append(html)
                     }else{
