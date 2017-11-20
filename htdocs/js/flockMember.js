@@ -118,5 +118,6 @@ $(document).ready(function(){
 
     });
     $('.weui-cell_swiped').swipeout();
-
+    $('.weui-cell_swiped').swipeout('open') ;//打开
+    $('.weui-cell_swiped').swipeout('close') //关闭
 });
