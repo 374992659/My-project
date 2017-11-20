@@ -93,6 +93,8 @@ $(document).ready(function(){
         // 获取所属小区
            code=$(this).attr("title");
         console.log("页面跳转");
+        console.log(id);
+        console.log(code);
         if(id&&code){
             localStorage.setItem("subject_id",id);
             localStorage.setItem("garden_code",code);
