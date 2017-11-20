@@ -159,7 +159,7 @@ $(document).ready(function(){
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
                         <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
                             <li class="weui-media-box__info__meta">作者：<span>${result.nickname}</span></li>
-                            <li class="weui-media-box__info__meta">时间：${result.create_time}</li>
+                            <li class="weui-media-box__info__meta">时间：${getLocalTime(result.create_time)}</li>
 
                         </ul>
                         <p class="weui-media-box__desc" style=" text-indent:2em">
@@ -181,7 +181,7 @@ $(document).ready(function(){
                         <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${result.title}</h4>
                         <ul class="weui-media-box__info" style="font-size: 10px;color: #BEBEBE">
                             <li class="weui-media-box__info__meta">作者：<span>${result.nickname}</span></li>
-                            <li class="weui-media-box__info__meta">时间：${result.create_time}</li>
+                            <li class="weui-media-box__info__meta">时间：${getLocalTime(result.create_time)}</li>
 
                         </ul>
                         <p class="weui-media-box__desc" style=" text-indent:2em">
