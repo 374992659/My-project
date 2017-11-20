@@ -213,7 +213,7 @@ class GroupController extends VersionController
         }else{
             $mode->rollback();
             $user_group->rollback();
-            $this->echoEncrypData(1);
+            $this->echoEncrypData(1,$res1,$res2);
         }
     }
 
