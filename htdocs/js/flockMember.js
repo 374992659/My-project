@@ -1,4 +1,6 @@
 $(document).ready(function(){
+    // 获取我的code号
+    var myCode=localStorage.getItem("my_code");
     var group_header=localStorage.getItem("group_header"),
         // 获取apptoken
         apptoken=localStorage.getItem("apptoken"),
@@ -26,15 +28,16 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 $.each(member,function(i,item){
                     console.log(item);
-                    if(parseInt(item.role)===3){
-                        var httP=item.portrait.split(":")[0];
-                        var portrait="";
-                        if(httP==="http"){
-                            portrait=item.portrait;
-                        }else{
-                            portrait="http://wx.junxiang.ren/project/"+item.portrait
-                        }
-                        memberHtml+=`
+                    if(parseInt(myCode)===1){//群主
+                        if(parseInt(item.role)===3){
+                            var httP=item.portrait.split(":")[0];
+                            var portrait="";
+                            if(httP==="http"){
+                                portrait=item.portrait;
+                            }else{
+                                portrait="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            memberHtml+=`
     <div class="weui-cell weui-cell_swiped">
         <div class="weui-cell__bd">
             <div class="weui-cell">
@@ -50,16 +53,16 @@ $(document).ready(function(){
     </div>
                       
                         `;
-                        memberNum++
-                    }else if(parseInt(item.role)===2){
-                        var httPs=item.portrait.split(":")[0];
-                        var portraits="";
-                        if(httPs==="http"){
-                            portraits=item.portrait;
-                        }else{
-                            portraits="http://wx.junxiang.ren/project/"+item.portrait
-                        }
-                        manageHtml+=`
+                            memberNum++
+                        }else if(parseInt(item.role)===2){
+                            var httPs=item.portrait.split(":")[0];
+                            var portraits="";
+                            if(httPs==="http"){
+                                portraits=item.portrait;
+                            }else{
+                                portraits="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            manageHtml+=`
                  <div class="weui-cell weui-cell_swiped">
         <div class="weui-cell__bd">
             <div class="weui-cell">
@@ -74,16 +77,16 @@ $(document).ready(function(){
         </div>
     </div>
                         `;
-                        manegeNum++
-                    }else{
-                        var httPs=item.portrait.split(":")[0];
-                        var portraits="";
-                        if(httPs==="http"){
-                            portraits=item.portrait;
+                            manegeNum++
                         }else{
-                            portraits="http://wx.junxiang.ren/project/"+item.portrait
-                        }
-                        manageHtml+=`
+                            var httPs=item.portrait.split(":")[0];
+                            var portraits="";
+                            if(httPs==="http"){
+                                portraits=item.portrait;
+                            }else{
+                                portraits="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            manageHtml+=`
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
                                     <div class="weui-cell" style="padding: 0">
@@ -96,9 +99,150 @@ $(document).ready(function(){
       
                             </div>
                         `;
-                        manegeNum++
-                    }
+                            manegeNum++
+                        }
+                    }else if(parseInt(myCode)===2){//管理员
+                        if(parseInt(item.role)===3){//成员
+                            var httP=item.portrait.split(":")[0];
+                            var portrait="";
+                            if(httP==="http"){
+                                portrait=item.portrait;
+                            }else{
+                                portrait="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            memberHtml+=`
+    <div class="weui-cell weui-cell_swiped">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>${item.nickname}</p>
+                </div>
+            </div>
+        </div>
+        <div class="weui-cell__ft">
+            <button class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout"  title="${item.user_code}" style="">删除</button>
+        </div>
+    </div>
+                      
+                        `;
+                            memberNum++
+                        }else if(parseInt(item.role)===2){//管理员
+                            var httPs=item.portrait.split(":")[0];
+                            var portraits="";
+                            if(httPs==="http"){
+                                portraits=item.portrait;
+                            }else{
+                                portraits="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            manageHtml+=`
+                 <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="${portraits}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>${item.nickname}</p>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+                        `;
+                            manegeNum++
+                        }else{//群主
+                            var httPs=item.portrait.split(":")[0];
+                            var portraits="";
+                            if(httPs==="http"){
+                                portraits=item.portrait;
+                            }else{
+                                portraits="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            manageHtml+=`
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <div class="weui-cell" style="padding: 0">
+                                        <div class="weui-cell__hd"><img src="${portraits}" alt=""  title="${item.user_code}" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                                        <div class="weui-cell__bd">
+                                            <p>${item.nickname}</p>
+                                        </div>
+                                        </div>
+                                 </div>
+      
+                            </div>
+                        `;
+                            manegeNum++
+                        }
 
+                    }else{//成员
+                        if(parseInt(item.role)===3){
+                            var httP=item.portrait.split(":")[0];
+                            var portrait="";
+                            if(httP==="http"){
+                                portrait=item.portrait;
+                            }else{
+                                portrait="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            memberHtml+=`
+    <div class="weui-cell ">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>${item.nickname}</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+                      
+                        `;
+                            memberNum++
+                        }else if(parseInt(item.role)===2){
+                            var httPs=item.portrait.split(":")[0];
+                            var portraits="";
+                            if(httPs==="http"){
+                                portraits=item.portrait;
+                            }else{
+                                portraits="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            manageHtml+=`
+                 <div class="weui-cell">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="${portraits}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>${item.nickname}</p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+                        `;
+                            manegeNum++
+                        }else{
+                            var httPs=item.portrait.split(":")[0];
+                            var portraits="";
+                            if(httPs==="http"){
+                                portraits=item.portrait;
+                            }else{
+                                portraits="http://wx.junxiang.ren/project/"+item.portrait
+                            }
+                            manageHtml+=`
+                            <div class="weui-cell">
+                                <div class="weui-cell__bd">
+                                    <div class="weui-cell" style="padding: 0">
+                                        <div class="weui-cell__hd"><img src="${portraits}" alt=""  title="${item.user_code}" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                                        <div class="weui-cell__bd">
+                                            <p>${item.nickname}</p>
+                                        </div>
+                                        </div>
+                                 </div>
+      
+                            </div>
+                        `;
+                            manegeNum++
+                        }
+                    }
                 });
                 $(".manage").html(manageHtml);
                 $(".member").html(memberHtml);
