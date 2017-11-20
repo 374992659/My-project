@@ -10,7 +10,7 @@ $(document).ready(function(){
     var groupOwner="";
     // 获取自己code号
     var myCode=localStorage.getItem("my_code");
-    if(groupOwner===myCode){
+    if(parseInt(groupOwner)===parseInt(myCode)){
         $(".setSpeak").show()
     }
     // 获取群内用户
