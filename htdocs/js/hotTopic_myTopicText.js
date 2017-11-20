@@ -187,6 +187,10 @@ $(document).ready(function(){
                             <span class="topicDiscu">评论 ${result.commont_num}</span>
                             <span>分享</span>
                         </div>
+                        <div style="text-align: right;font-size: 15px;color: #b2b2b2">
+                                <span class="lf type" style="font-size: 15px">单选</span>
+                                <span class="lf anonymous" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_votes}</span>
+                            </div>
                     </div>
                     <div class="weui-cells choiseList">
                     </div>
@@ -212,6 +216,10 @@ $(document).ready(function(){
                             <span class="topicDiscu">评论${result.commont_num}</span>
                             <span>分享</span>
                         </div>
+                        <div style="text-align: right;font-size: 15px;color: #b2b2b2">
+                                <span class="lf type" style="font-size: 15px">单选</span>
+                                <span class="lf anonymous" style="font-size: 15px">（匿名投票）</span> 票数：<span style="font-size: 15px">${result.total_votes}</span>
+                            </div>
                     </div>
                     <div class="weui-cells choiseList">
                     </div>
