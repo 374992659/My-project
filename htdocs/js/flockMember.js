@@ -35,8 +35,8 @@ $(document).ready(function(){
                             portrait="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         memberHtml+=`
-               <div class="weui-cell weui-cell_swiped">
-            <div class="weui-cell__bd" style="transform: translate3d(0px, 0px, 0px);">
+                <div class="weui-cell weui-cell_swiped">
+            <div class="weui-cell__bd">
               <div class="weui-cell">
                 <div class="weui-cell__bd">
                   <p>左滑列表</p>
