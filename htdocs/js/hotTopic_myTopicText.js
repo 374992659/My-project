@@ -159,7 +159,7 @@ $(document).ready(function(){
                     var pic=JSON.parse(result.picture);
                     $.each(pic,function(i,item){
                         topicPic+=`
-                            <li class="lf">
+                            <li>
                                     <img src="${item}" alt="" class="topic" width="80px">
                                 </li>
                         
