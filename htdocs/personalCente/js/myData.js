@@ -69,7 +69,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="phone">电话：<span style="color: green">*</span></label>
-                        <input type="text" id="phone" placeholder="" value="${result.phone}"  onblur="checkphone()">
+                        <input type="text" id="phone" placeholder="" value="${result.phone}" >
                     </div>
                 </div>
             </div>
@@ -126,17 +126,6 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
-            <script>
-                    function checkphone() {
-                        phone = $(this).val();
-                        if(!(/^1[34578]\d{9}$/.test(phone))){
-                            alert('手机号码格式错误');
-                            return false;
-                        }else{
-                            return true;
-                        }
-                    }
-            </script>
                     `;
                   $(".myInfo").html(html);
                 }
