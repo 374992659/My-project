@@ -155,9 +155,10 @@ class GroupController extends VersionController
                 $user_data = $mongo->baseinfo->user_area->findOne(array('account_code'=>$v),array('nickname','portrait'));
                 $result1 = $group_user->addUser($create_data['group_code'],$group_num,$create_data['group_name'],$create_data['group_portrait'],$v,$user_data['nickname'],$user_data['portrait'],3);  //1.将用户添加至创建人群用户表
                 $user_group = new Model\UserGroupModel($v);
-                $user_group->startTrans();
+
                 $result2 = $user_group->addGroup($create_data['group_name'],$create_data['group_portrait'],$create_data['group_code'],$group_num,3,$create_data['group_type'],$create_data['garden_code']);
                 if(!$result1 || !$result2){
+
                     $res = false;
                     break;
                 }
@@ -165,15 +166,11 @@ class GroupController extends VersionController
         }
         if($res){
             $group_user->commit();
-            if($user_group){
-                $user_group->commit();
-            }
+
             $this->echoEncrypData(0);
         }else{
             $group_user->rollback();
-            if($user_group){
-                $user_group->rollback();
-            }
+
             $this->echoEncrypData(1,'',array($create_data));
         }
     }
