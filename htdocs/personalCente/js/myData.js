@@ -233,7 +233,13 @@ $(document).ready(function(){
             // 出生月份（可填）
                     birth_month=$("#mouthBirth option:selected").val(),
             // 爱好（可填）
-                    hobby=$("#likes").val(),
+                    hobby=$("#likes").val();
+            //数据格式验证
+            if(isChina(wechat_num)){
+                alert('微信号码不能包含中文');
+            }else if(isChina(wechat_num)){
+                alert('QQ号不能包含中文');
+            }
             // 数据格式转换
                     data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby})];
             // 加密
@@ -264,4 +270,13 @@ $(document).ready(function(){
         height:220,//二维码高度
         text: 'http://www.baidu.com',//此处填写生成二维码的生成数据 （拼接了inviter_code的注册页面地址，注册页面在url中获取到inviter_code传递给后台注册接口）
     });
+    //判断字符是否是中文字符
+    function isChina(s)
+    {
+        if (/.*[\u4e00-\u9fa5]+.*/.test(s)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 });
