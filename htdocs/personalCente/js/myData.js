@@ -77,7 +77,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="weiXin">微信：<span style="color: green">*</span></label>
-                        <input type="text" id="weiXin" placeholder="" value"${result.wechat_num}">
+                        <input type="text" id="weiXin" placeholder="" value="${result.wechat_num}">
                     </div>
                 </div>
             </div>
@@ -131,6 +131,14 @@ $(document).ready(function(){
 
             },
             error:function(){}
+        })
+        $.ajax({
+            url:url+'UserCenter_getApplicationGarden',
+            type:'POST',
+            data:{'data':jsonEncryptData},
+            success:function(data){
+                var data=jsDecodeData(data);
+            }
         })
     })();
     // 获取个人账号
