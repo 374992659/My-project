@@ -126,6 +126,17 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
+            <script>
+                    function checkPhone() {
+                        phone = $(this).val();
+                        if(!(/^1[34578]\d{9}$/.test(phone))){
+                            alert('手机号码格式错误');
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    }
+            </script>
                     `;
                   $(".myInfo").html(html);
                 }
