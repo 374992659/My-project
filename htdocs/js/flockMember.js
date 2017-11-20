@@ -87,7 +87,7 @@ $(document).ready(function(){
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
                                     <div class="weui-cell" style="padding: 0">
-                                        <div class="weui-cell__hd"><img src="${portraits}" alt=""  style="width:40px;margin-right:5px;display:block"></div>
+                                        <div class="weui-cell__hd"><img src="${portraits}" alt=""  style="width:40px;height:40px;margin-right:5px;display:block"></div>
                                         <div class="weui-cell__bd">
                                             <p>${item.nickname}</p>
                                         </div>
