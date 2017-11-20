@@ -28,8 +28,7 @@ $(document).ready(function(){
                         pic="http://wx.junxiang.ren/project/"+header
                     }
                     console.log(pic);
-                  var   html=`
-                
+                  var   html=`                
             <div class="weui-panel weui-panel_access">
                 <div class="weui-panel__bd">
                     <div class="weui-media-box weui-media-box_appmsg">
@@ -69,7 +68,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="phone">电话：<span style="color: green">*</span></label>
-                        <input type="text" id="phone" placeholder="" value="${result.phone}" >
+                        <input type="text" id="phone" placeholder="" value="${result.phone}">
                     </div>
                 </div>
             </div>
@@ -241,6 +240,11 @@ $(document).ready(function(){
             }else if(isChina(wechat_num)){
                 alert('QQ号不能包含中文');
                 return;
+            }else if(phone){
+                if(!(/^1[34578]\d{9}$/.test(phone))){
+                    alert('手机号码格式错误');
+                    return;
+                }
             }
             // 数据格式转换
                     data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby})];
