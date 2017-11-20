@@ -95,7 +95,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="house">常住小区：<span style="color: green">*</span></label>
-                        <input type="text" id="house" garden_code="${JSON.parse(result.default_garden).garden_code}" value="${JSON.parse(result.default_garden).garden_name}">
+                        <input type="text" id="house" garden_code="" value="${result.default_garden}">
                         <select name='' id='gardenLIst'></select>
                     </div>
                 </div>
