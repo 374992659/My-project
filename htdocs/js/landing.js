@@ -65,12 +65,36 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     // 保存apptoken
                     localStorage.setItem("apptoken",data.apptoken);
-                    console.log(data.errcode)
+                    console.log(data.errcode);
+                    function invokeSettime(obj){
+                        var countdown=60;
+                        settime(obj);
+                        function settime(obj) {
+                            if (countdown == 0) {
+                                $(obj).attr("disabled",false);
+                                $(obj).text("获取验证码");
+                                countdown = 60;
+                                return;
+                            } else {
+                                $(obj).attr("disabled",true);
+                                $(obj).text("(" + countdown + ") s 重新发送");
+                                countdown--;
+                            }
+                            setTimeout(function() {
+                                    settime(obj) }
+                                ,1000)
+                        }
+                    }
+                    new invokeSettime(".getCodeBtn");
+
+                }else{
+
                 }
             }
         });
         return phone;
     });
+
     // 登录
     $(".phoneregBtn").click(function(){
         function goBack(){
