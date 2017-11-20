@@ -237,7 +237,7 @@ $(document).ready(function(){
                         $(".type").html("多选");
                     }
                     if(result.is_push===1){
-                        $(".anonymous").html("匿名");
+                        $(".anonymous").html("("+"匿名"+")");
                     }else{
                         $(".anonymous").html("公开");
                     }
