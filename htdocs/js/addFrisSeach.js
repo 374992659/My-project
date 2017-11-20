@@ -62,7 +62,7 @@ $(document).ready(function(){
                           function show(){
                              $(".hint").hide();
                          }
-                     setTimeout("show()",1000);
+                     setTimeout(show(),1000);
 
                 }
             }
