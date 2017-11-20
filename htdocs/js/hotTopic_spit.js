@@ -148,6 +148,8 @@ $(document).ready(function(){ "use strict";
           choise[parseInt(i+1)]=$(this).val();
       });
         choise=JSON.stringify(choise);
+        console.log(typeof choise);
+        console.log(typeof picture);
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":garden_code,"garden_name":garden_name,"choise":choise,"end_time":end_time,"picture":picture,"type":type,"is_public":is_public,"is_push":is_push})];
         // 加密
