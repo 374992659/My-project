@@ -146,7 +146,7 @@ $(document).ready(function(){
                     $.each(data.data,function(i,item){
                         html= "<option value='"+item.garden_code+"'>item.garden_name</option>";
                     })
-                    $('#gardenLIst').append();
+                    $('#gardenLIst').append(html);
                 }
             }
         })
