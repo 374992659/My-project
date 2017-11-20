@@ -84,7 +84,17 @@ $(document).ready(function(){
                             portraits="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         manageHtml+=`
-                            
+                            <div class="weui-cell weui-cell_swiped">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="${portraits}" alt="" ></div>
+                <div class="weui-cell__bd">
+                    <p>${item.nickname}</p>
+                </div>
+                </div>
+            </div>
+      
+        </div>
                         `;
                         manegeNum++
                     }
