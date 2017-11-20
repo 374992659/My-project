@@ -155,9 +155,16 @@ $(document).ready(function(){
                           });
                     }
                     //添加图片
+                    var topicPic="";
                     var pic=JSON.parse(result.picture);
                     $.each(pic,function(i,item){
-                        console.log(item);
+                        constopivPicole.log(item);
+                        topicPic+=`
+                            <li class="lf">
+                                    <img src="${item}" alt="" class="topic">
+                                </li>
+                        
+                        `
                     });
                     //加载页面内容
                     if(parseInt(result.is_likes)===1){
@@ -216,6 +223,7 @@ $(document).ready(function(){
                     $(".allDiscuss").append(allDiscuss);
                     $(".choiseList").append(choise);
                     $(".optionList").append(option);
+                    $(".picPlace").html(topicPic);
                 }
             }
         })
