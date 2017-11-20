@@ -42,7 +42,7 @@ $(document).ready(function(){
                     }
                     $.each(data.data.Number_data,function(i,item){
                         console.log(item);
-                        if(item.role===1){
+                        if(parseInt(item.role)===1){
                             groupOwner=item.user_code;
                         }
                         if(i<3){
