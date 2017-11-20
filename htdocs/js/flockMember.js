@@ -36,19 +36,21 @@ $(document).ready(function(){
                         }
                         memberHtml+=`
                 <div class="weui-cell weui-cell_swiped">
-            <div class="weui-cell__bd" style="transform: translate3d(0px, 0px, 0px);">
-              <div class="weui-cell">
-                <div class="weui-cell__bd">
-                  <p>左滑列表</p>
+                    <div class="weui-cell__bd" style="transform: translate3d(0px, 0px, 0px);">
+                    <div class="weui-media-box__hd">
+                      <img class="weui-media-box__thumb" src="${portrait}" alt="">
+                    </div>
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <p>${item.nickname}</p>
+                            </div>                        
+                        </div>
+                    </div>
+                    <div class="weui-cell__ft">
+                        <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:">删除</a>
+                    </div>
                 </div>
-                <div class="weui-cell__ft">向左滑动试试</div>
-              </div>
-            </div>
-            <div class="weui-cell__ft">
-              <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:">删除</a>
-            </div>
-          </div>
-                       
+                      
                         `;
                         memberNum++
                     }else if(parseInt(item.role)===2){
