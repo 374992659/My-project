@@ -10,15 +10,6 @@ $(document).ready(function(){
     var groupOwner="";
     // 获取自己code号
     var myCode=localStorage.getItem("my_code");
-    if(parseInt(groupOwner)===parseInt(myCode)){
-    }else{
-        $("#setSpeak").hide()
-    }
-    if(groupOwner===myCode){
-
-    }else{
-        $("#dissolveFlock").hide()
-    }
     // 获取群内用户
     var getGroupUser=function(){
         //获取群头像
@@ -170,7 +161,6 @@ $(document).ready(function(){
                     $(this).prop("checked",true);
                 }
             }
-
     });
     //解散群
     $(".dissolveFlock").click(function(){
@@ -211,7 +201,6 @@ $(document).ready(function(){
     });
     //设置管理员页面跳转
     $(".set_manege").click(function(){
-
         if(myCode===groupOwner){
             window.location.href="discu_set_manege.html"
         }else{
@@ -227,6 +216,16 @@ $(document).ready(function(){
         }
     });
     //设置禁言
+    if(parseInt(groupOwner)===parseInt(myCode)){
+        $("#setSpeak").show()
+    }else{
+        $("#setSpeak").hide()
+    }
+    if(groupOwner===myCode){
+        $("#dissolveFlock").show()
+    }else{
+        $("#dissolveFlock").hide()
+    }
 });
 
 
