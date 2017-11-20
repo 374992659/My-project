@@ -1,30 +1,30 @@
 CREATE TABLE  if not exists `user_info_$city_id` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '自增主键',
   `account` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
-  `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '电话号码(为空则用户没有验证手机号)',
+  `phone` varchar(20) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '电话号码(为空则用户没有验证手机号)',
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT '密码',
   `nickname` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '昵称',
-  `realname` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '真实姓名',
+  `realname` varchar(20) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '真实姓名',
   `account_code` varchar(50) COLLATE utf8_unicode_ci NOT NULL COMMENT '用户唯一识别符 采用区域+acount_num',
-  `signature` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个性签名',
-  `wechat_num` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '微信账号',
-  `qq_num` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT 'qq账号',
-  `portrait` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户头像',
-  `user_garden` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户所属小区，可以为多个用分号间隔，小区唯一识别符、role角色。role(0:未认证，1:业主，2：租户,3:管委会成员，4:管委会主任)\r\n如：garden_code,role;garden_code,role格式',
-  `default_garden` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '用户默认所属小区，可以为多个用分号间隔，小区唯一识别符、role角色。role(0:未认证，1:业主，2：租户,3:管委会成员，4:管委会主任)\r\n如：garden_code,role',
-  `birth_month` varchar(2) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '出生月份',
-  `birth_year` char(4) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '出生年份',
-  `hobby` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '爱好 （描述下自己吧，两百字以内）',
+  `signature` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '个性签名',
+  `wechat_num` varchar(20) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '微信账号',
+  `qq_num` varchar(20) COLLATE utf8_unicode_ci DEFAULT '' COMMENT 'qq账号',
+  `portrait` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '用户头像',
+  `user_garden` varchar(500) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '用户所属小区，可以为多个用分号间隔，小区唯一识别符、role角色。role(0:未认证，1:业主，2：租户,3:管委会成员，4:管委会主任)\r\n如：garden_code,role;garden_code,role格式',
+  `default_garden` varchar(255) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '用户默认所属小区，可以为多个用分号间隔，小区唯一识别符、role角色。role(0:未认证，1:业主，2：租户,3:管委会成员，4:管委会主任)\r\n如：garden_code,role',
+  `birth_month` varchar(2) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '出生月份',
+  `birth_year` char(4) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '出生年份',
+  `hobby` varchar(200) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '爱好 （描述下自己吧，两百字以内）',
   `is_online` tinyint(1) NOT NULL DEFAULT '0' COMMENT '在线状态 0：离线 1：在线',
   `create_time` int(10) unsigned NOT NULL COMMENT '注册时间',
   `create_addr_code` int(10) unsigned NOT NULL COMMENT '注册地的区域id',
   `sex` tinyint(1) DEFAULT '0' COMMENT '性别 0：保密 1：男 2：女',
   `total_point` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '总积分',
-  `id_card_ num` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '身份证编号',
+  `id_card_ num` varchar(20) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '身份证编号',
   `role` tinyint(4) unsigned DEFAULT '1',
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_code` (`account_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息库，由区域分表';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息库，由区域分表';
 
 CREATE DATABASE if not exists friends_and_group_$account_code;
 
