@@ -13,7 +13,7 @@ $(document).ready(function(){
         jsonEncryptData=jsEncryptData(data);
     console.log(data);
     $.ajax({
-        url:url+"Subject_getMyAdList",
+        url:url+"Subject_getAdList",
         type:"POST",
         data:{"data":jsonEncryptData},
         success:function(data){
