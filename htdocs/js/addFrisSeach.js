@@ -58,11 +58,11 @@ $(document).ready(function(){
                     var html=`
                        <p style="text-align: center;background: green;color: red;">${data.errmsg}</p>
                        `;
-                    // $(".hint").html(html);
-                    //      function show(){
-                    //         $(".hint").html();
-                    //     }
-                    // setTimeout("show()",1000);
+                     $(".hint").html(html);
+                          function show(){
+                             $(".hint").html();
+                         }
+                     setTimeout("show()",1000);
 
                 }
             }
