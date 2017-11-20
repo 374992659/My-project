@@ -158,7 +158,6 @@ $(document).ready(function(){
                     var topicPic="";
                     var pic=JSON.parse(result.picture);
                     $.each(pic,function(i,item){
-                        constopivPicole.log(item);
                         topicPic+=`
                             <li class="lf">
                                     <img src="${item}" alt="" class="topic">
