@@ -215,7 +215,8 @@ $(document).ready(function(){
                 }
             }
 
-        })
+        });
+        return false;
     });
     //跳转到所有公告详情页面存广告id
     $(".allAdList").on("click",".adList",function(){
