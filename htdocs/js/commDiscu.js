@@ -7,6 +7,7 @@ $(document).ready(function(){
     var hide=function(){
         success.hide()
     };
+    var groupOwner="";
     // 获取群内用户
     var getGroupUser=function(){
         //获取群头像
@@ -39,6 +40,9 @@ $(document).ready(function(){
                     }
                     $.each(data.data.Number_data,function(i,item){
                         console.log(item);
+                        if(item.role===1){
+                            groupOwner=item.user_code;
+                        }
                         if(i<3){
                             var httP=item.portrait.split(":")[0];
                             if(httP==="http"){
@@ -196,8 +200,14 @@ $(document).ready(function(){
     });
     //设置管理员页面跳转
     $(".set_manege").click(function(){
+        // 获取自己code号
+        var myCode=localStorage.getItem("my_code");
+        if(myCode===groupOwner){
+            window.location.href="discu_set_manege.html"
+        }else{
+            showHide("无权进行此操作")
+        }
 
-        window.location.href="discu_set_manege.html"
 
     });
 });
