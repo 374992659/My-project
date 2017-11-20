@@ -48,9 +48,9 @@ $(document).ready(function(){
 
 
                 });
-                $(".headline").append(statusSpan);
+              
                 $(".myTopicList").append(html);
-
+                $(".headline").append(statusSpan);
 
             }else{
                 console.log(data.errmsg);
