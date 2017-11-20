@@ -38,9 +38,9 @@ $(document).ready(function(){
     <div class="weui-cell weui-cell_swiped">
         <div class="weui-cell__bd">
             <div class="weui-cell">
-                <div class="weui-cell__hd"><img src="image/firenda.jpg" alt="" style="width:40px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:40px;margin-right:5px;display:block"></div>
                 <div class="weui-cell__bd">
-                    <p>左滑列表</p>
+                    <p>${item.nickname}</p>
                 </div>
             </div>
         </div>
@@ -60,16 +60,19 @@ $(document).ready(function(){
                             portraits="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         manageHtml+=`
-                 <div  class="weui-media-box weui-media-box_appmsg weui-cell weui-cell_swiped" title="${item.user_code}" value="${item.nickname}">
-                    <div class="weui-media-box__hd">
-                      <img class="weui-media-box__thumb" src="${portraits}" alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                      <h4 class="weui-media-box__title">${item.nickname}</h4>
-
-                    </div>
+                 <div class="weui-cell weui-cell_swiped">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="${portraits}" alt="" style="width:40px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                    <p>${item.nickname}</p>
                 </div>
-                        
+            </div>
+        </div>
+        <div class="weui-cell__ft">
+            <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:" style="">删除</a>
+        </div>
+    </div>
                         `;
                         manegeNum++
                     }else{
@@ -81,16 +84,7 @@ $(document).ready(function(){
                             portraits="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         manageHtml+=`
-                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.user_code}" value="${item.nickname}">
-                    <div class="weui-media-box__hd">
-                      <img class="weui-media-box__thumb" src="${portraits}" alt="">
-                    </div>
-                    <div class="weui-media-box__bd">
-                      <h4 class="weui-media-box__title">${item.nickname}</h4>
-
-                    </div>
-                </div>
-                        
+                            
                         `;
                         manegeNum++
                     }
