@@ -237,8 +237,10 @@ $(document).ready(function(){
             //数据格式验证
             if(isChina(wechat_num)){
                 alert('微信号码不能包含中文');
+                return;
             }else if(isChina(wechat_num)){
                 alert('QQ号不能包含中文');
+                return;
             }
             // 数据格式转换
                     data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby})];
