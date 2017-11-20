@@ -10,6 +10,9 @@ $(document).ready(function(){
     var groupOwner="";
     // 获取自己code号
     var myCode=localStorage.getItem("my_code");
+    if(groupOwner===myCode){
+        $(".setSpeak").show()
+    }
     // 获取群内用户
     var getGroupUser=function(){
         //获取群头像
@@ -76,7 +79,6 @@ $(document).ready(function(){
     });
     //设置禁言
     $(".setSpeak").click(function(){
-        if(groupOwner===myCode){
             var val=$(this).val();
             console.log($(".setSpeak").val());
             if(parseInt($(".setSpeak").val())===1){//设置禁言判断
@@ -162,13 +164,10 @@ $(document).ready(function(){
                     $(this).prop("checked",true);
                 }
             }
-        }else{
-            showHide("无权进行该操作")
-        }
+
     });
     //解散群
     $(".dissolveFlock").click(function(){
-        if(groupOwner===myCode){
             if(confirm("确认解散")){
                 //获取群号码
                 var group_num=localStorage.getItem("group_num"),
@@ -203,11 +202,6 @@ $(document).ready(function(){
             }else{
                 $(this).prop("checked",false);
             }
-        }else{
-            showHide("你无权进行该操作");
-            $(".setSpeak").attr("disable",disabled)
-        }
-
     });
     //设置管理员页面跳转
     $(".set_manege").click(function(){
