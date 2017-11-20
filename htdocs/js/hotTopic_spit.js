@@ -95,7 +95,7 @@ $(document).ready(function(){ "use strict";
                     $("#spitTopic").hide();
                     html=`
                       <div style="text-align: center">
-                        <p>你还没有认证的小区请到个人心认证</p>
+                        <p>你还没有认证的小区请到个人心认证不能发布槽点</p>
                         <a href="http://wx.junxiang.ren/project/htdocs/personalCente/" style="background: red;color: white">点我到个人中心</a>
                     </div>
                     `;
