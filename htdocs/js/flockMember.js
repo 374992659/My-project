@@ -124,7 +124,7 @@ $(document).ready(function(){
 
     });
     //删除群成员
-    $(".member").on("click",".weui-cell_swiped .weui-cell__ft .weui-swiped-btn",function(){
+    $(".member").on("click",".weui-cell_swiped .weui-cell__ft .weui-swiped-btn",function(e){
         // group_num群号码
         var group_num=localStorage.getItem("group_num");
         // 参数：user_code 被移出用户code
@@ -149,14 +149,14 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         console.log("删除成员");
-                        $(this).parent().parent().remove();
+                        $(e.target).parent().parent().remove();
                     }
                 }
             })
         }
     });
     //删除管理员
-    $(".manage").on("click",".weui-cell_swiped .weui-cell__ft .weui-swiped-btn",function(){
+    $(".manage").on("click",".weui-cell_swiped .weui-cell__ft .weui-swiped-btn",function(e){
         // group_num群号码
         var group_num=localStorage.getItem("group_num");
         // 参数：user_code 被移出用户code
@@ -181,7 +181,7 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         console.log("删除成员");
-                        $(this).parent().parent().remove();
+                        $(e.target).parent().parent().remove();
                     }
                 }
             })
