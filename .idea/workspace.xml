@@ -23,30 +23,7 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="flockPlay_details.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/htdocs/flockPlay_details.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2972973">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="flockPlay_details.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/htdocs/js/flockPlay_details.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.696428">
-              <caret line="184" column="16" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
-              <folding>
-                <marker date="1511102299193" expanded="false" signature="1394:1406" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -122,7 +99,8 @@
     <order />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="8" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -150,7 +128,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -197,8 +174,27 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiejia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiejia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="htdocs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -277,20 +273,20 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="8" y="0" width="1936" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.178125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26770833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -311,27 +307,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/htdocs/css/commDiscu.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/js/showHide.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25492468">
-          <caret line="10" column="11" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/js/discu_set_manege.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46465817">
-          <caret line="132" column="34" selection-start-line="132" selection-start-column="34" selection-end-line="132" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/discu_flock_makeOver.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.69409037">
@@ -498,7 +473,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8018018">
           <caret line="193" column="23" selection-start-line="193" selection-start-column="23" selection-end-line="193" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -506,7 +480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8018018">
           <caret line="211" column="28" selection-start-line="211" selection-start-column="28" selection-end-line="211" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -521,14 +494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.019698726">
           <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
-          <folding>
-            <marker date="1510758665702" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1510758665702" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1510758665702" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1510758665702" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1510758665702" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1510758665702" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -536,16 +501,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.1529548">
           <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <marker date="1511095312918" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312918" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312918" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312918" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312918" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312918" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312918" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312918" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -553,7 +508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7522523">
           <caret line="158" column="28" selection-start-line="158" selection-start-column="28" selection-end-line="158" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -561,7 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="28" column="6" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -569,13 +522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.5492468">
           <caret line="26" column="43" selection-start-line="26" selection-start-column="43" selection-end-line="26" selection-end-column="43" />
-          <folding>
-            <marker date="1511095312948" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312948" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312948" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312948" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312948" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -583,7 +529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8119369">
           <caret line="162" column="23" selection-start-line="162" selection-start-column="23" selection-end-line="162" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -591,14 +536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2972973">
           <caret line="105" column="57" selection-start-line="105" selection-start-column="57" selection-end-line="105" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#div#0;n#div#3;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#label#0;n#div#0;n#div#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#0;n#div#0;n#div#0;n#div#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#select#1;n#div#0;n#div#0;n#div#0;n#div#4;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -606,12 +543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6349942">
           <caret line="63" column="21" selection-start-line="63" selection-start-column="21" selection-end-line="63" selection-end-column="21" />
-          <folding>
-            <marker date="1511097673750" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511097673750" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511097673750" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511097673750" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -619,15 +550,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7705678">
           <caret line="87" column="7" selection-start-line="87" selection-start-column="7" selection-end-line="87" selection-end-column="7" />
-          <folding>
-            <marker date="1511098945235" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511098945235" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511098945235" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511098945235" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511098945235" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511098945235" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511098945235" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -635,7 +557,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35585585">
           <caret line="23" column="66" selection-start-line="23" selection-start-column="66" selection-end-line="23" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -643,33 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.50984937">
           <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-          <folding>
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511099129047" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -677,7 +571,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0">
           <caret line="224" column="32" selection-start-line="224" selection-start-column="32" selection-end-line="224" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -685,9 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44594595">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="168" />
-          <folding>
-            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#a#1;n#div#2;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -695,54 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5110081">
           <caret line="697" column="7" selection-start-line="690" selection-start-column="3" selection-end-line="697" selection-end-column="7" />
-          <folding>
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511095312938" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -750,7 +592,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8018018">
           <caret line="91" column="28" selection-start-line="91" selection-start-column="28" selection-end-line="91" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -758,14 +599,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.12746234">
           <caret line="11" column="47" selection-start-line="11" selection-start-column="47" selection-end-line="11" selection-end-column="47" />
-          <folding>
-            <marker date="1511101221434" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511101221434" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511101221434" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511101221434" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511101221434" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511101221434" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -773,7 +606,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8018018">
           <caret line="63" column="24" selection-start-line="63" selection-start-column="24" selection-end-line="63" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -781,14 +613,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.3140209">
           <caret line="112" column="10" selection-start-line="112" selection-start-column="10" selection-end-line="112" selection-end-column="10" />
-          <folding>
-            <marker date="1511100655759" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511100655759" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511100655759" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511100655759" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511100655759" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511100655759" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -796,16 +620,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8367117">
           <caret line="87" column="26" selection-start-line="87" selection-start-column="26" selection-end-line="87" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/flockPlay_details.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.696428">
+        <state vertical-scroll-proportion="0.0">
           <caret line="184" column="16" selection-start-line="184" selection-start-column="16" selection-end-line="184" selection-end-column="16" />
           <folding>
-            <marker date="1511102299193" expanded="false" signature="1394:1406" placeholder="..." />
+            <marker date="1511102299193" expanded="false" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -814,14 +637,37 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/flockPlay_details.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2972973">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/jQuerySwipeslider/dist/swipeslider.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/jQuerySwipeslider/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/jQuerySwipeslider/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9797297">
+          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
           <folding />
         </state>
       </provider>
