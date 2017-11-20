@@ -223,7 +223,7 @@ $(document).ready(function(){
             // 手机号（可填）
                     phone=$("#phone").val(),
             // 微信（可填）
-                    wechat_num=$("#weixin").val(),
+                    wechat_num=$("#weiXin").val(),
             // QQ（可填）
                     qq_num=$("#QQ").val(),
             // 常住小区（可填）
@@ -237,7 +237,6 @@ $(document).ready(function(){
             // 数据格式转换
                     data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby})];
             // 加密
-                   console.log(data);return;
                     jsonEncryptData=jsEncryptData(data);
                     console.log(data);
         $.ajax({
