@@ -44,6 +44,7 @@ $(document).ready(function(){
                         console.log(item);
                         if(parseInt(item.role)===1){
                             groupOwner=item.user_code;
+                            console.log(groupOwner);
                         }
                         if(i<3){
                             var httP=item.portrait.split(":")[0];
