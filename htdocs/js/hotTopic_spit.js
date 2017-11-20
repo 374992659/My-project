@@ -91,6 +91,13 @@ $(document).ready(function(){ "use strict";
                         `
                     });
                     $("#house").html(html);
+                }else if(data.errcode===5){
+                    $("#spitTopic").hide();
+                    html=`
+                      <div>
+                        <span>你还没有认证的小区请到个人心认证</span><a href="http://wx.junxiang.ren/project/htdocs/personalCente/">点我到个人中心</a>
+                    </div>
+                    `
                 }
             }
         })
