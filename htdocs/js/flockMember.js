@@ -36,18 +36,19 @@ $(document).ready(function(){
                         }
                         memberHtml+=`
                 <div class="weui-cell weui-cell_swiped">
-                    <div class="weui-cell__bd" style="transform: translate3d(0px, 0px, 0px);">
-                   <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:60px;margin-right:5px;display:block"></div>
-                        <div class="weui-cell">
-                            <div class="weui-cell__bd">
-                                <p>${item.nickname}</p>
-                            </div>                        
-                        </div>
-                    </div>
-                    <div class="weui-cell__ft">
-                        <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:">删除</a>
-                    </div>
+            <div class="weui-cell__bd">
+              <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:20px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__bd">
+                  <p>左滑列表</p>
                 </div>
+               
+              </div>
+            </div>
+            <div class="weui-cell__ft">
+              <a class="weui-swiped-btn weui-swiped-btn_default close-swipeout" href="javascript:">取消关注</a>
+            </div>
+          </div>
                       
                         `;
                         memberNum++
