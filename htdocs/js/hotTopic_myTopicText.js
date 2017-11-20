@@ -452,17 +452,10 @@ $(document).ready(function(){
             garden_code=localStorage.getItem("garden_code"),
             subject_id=localStorage.getItem("subject_id"),
             content=$(".contentVote").val();
-            // choise={},
-            //
-            // $(".optionList input[name=radio1]:checked").each(function(i,item){
-            //     choise[parseInt(i+1)]=$(this).parent().prev().children().html()
-            // });
-            // console.log(choise);
         var choise={};
         $("input[name=radio1]:checked").each(function(i,item){
             choise[parseInt(i+1)]=$(this).parent().prev().find("p").text();
         });
-
         choise=JSON.stringify(choise);
         console.log(typeof choise);
         // 数据格式转换
@@ -483,6 +476,7 @@ $(document).ready(function(){
                 }
             }
         })
-    })
+    });
+    //删除
 
 });
