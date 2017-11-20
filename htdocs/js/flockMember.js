@@ -126,7 +126,7 @@ $(document).ready(function(){
     //删除群成员
     $(".member").on("click",".weui-cell_swiped .weui-cell__ft .weui-swiped-btn",function(){
         // group_num群号码
-        var group_num=localStorage.getItem("apptoken");
+        var group_num=localStorage.getItem("group_num");
         // 参数：user_code 被移出用户code
         var user_code=$(this).attr("title");
         //apptoken
