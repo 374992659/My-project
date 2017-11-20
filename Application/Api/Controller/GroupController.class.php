@@ -187,7 +187,7 @@ class GroupController extends VersionController
         $account_code=$this->account_code;
         $this->checkParam(array('group_num','user_code'));
         $mongo =new \MongoClient();
-        $create_code = $mongo->baseinfo->group_area->find(array('group_num'=>$this->pdata['group_num']))['user_code'];
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']))['user_code'];
         $mode =new Model\GroupUserModel($create_code);
         if($account_code !== $create_code){
             $role = $mode->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$account_code])->getField('role');
