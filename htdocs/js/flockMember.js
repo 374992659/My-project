@@ -146,8 +146,8 @@ $(document).ready(function(){
                     var data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken)
-
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(this).parent().parent().remove();
                     }
                 }
             })
