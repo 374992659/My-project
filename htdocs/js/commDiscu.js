@@ -65,7 +65,26 @@ $(document).ready(function(){
                     });
                     $(".flockMember").prepend(html);
                     $(".userMember").html(data.data.Number_data.length);
-                    $(".headImg").attr("src",group_header)
+                    $(".headImg").attr("src",group_header);
+                    //设置禁言
+                    if(parseInt(groupOwner)===parseInt(myCode)){
+                        console.log(groupOwner);
+                        console.log(myCode);
+                        $("#setSpeak").show()
+                    }else{
+                        console.log(groupOwner);
+                        console.log(myCode);
+                        $("#setSpeak").hide()
+                    }
+                    if(groupOwner===myCode){
+                        console.log(groupOwner);
+                        console.log(myCode);
+                        $("#dissolveFlock").show()
+                    }else{
+                        console.log(groupOwner);
+                        console.log(myCode);
+                        $("#dissolveFlock").hide()
+                    }
                 }
             }
         })
@@ -216,25 +235,7 @@ $(document).ready(function(){
             showHide("无权进行此操作")
         }
     });
-    //设置禁言
-    if(parseInt(groupOwner)===parseInt(myCode)){
-        console.log(groupOwner);
-        console.log(myCode);
-        $("#setSpeak").show()
-    }else{
-        console.log(groupOwner);
-        console.log(myCode);
-        $("#setSpeak").hide()
-    }
-    if(groupOwner===myCode){
-        console.log(groupOwner);
-        console.log(myCode);
-        $("#dissolveFlock").show()
-    }else{
-        console.log(groupOwner);
-        console.log(myCode);
-        $("#dissolveFlock").hide()
-    }
+
 });
 
 
