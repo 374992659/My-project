@@ -38,7 +38,8 @@ $(document).ready(function(){
                         $(".setSpeak").val(data.data.community_status)
                     }
                     $.each(data.data.Number_data,function(i,item){
-                        if(i<2){
+                        console.log(item);
+                        if(i<3){
                             var httP=item.portrait.split(":")[0];
                             if(httP==="http"){
                                 html+=`
@@ -192,8 +193,13 @@ $(document).ready(function(){
         }else{
             $(this).prop("checked",false);
         }
+    });
+    //设置管理员页面跳转
+    $(".set_manege").click(function(){
 
-    })
+        window.location.href="discu_set_manege.html"
+
+    });
 });
 
 
