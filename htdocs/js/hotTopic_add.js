@@ -165,7 +165,6 @@ $(document).ready(function(){
                 city_id=$("#city option:selected").val(),
                 //小区id
                 garden_code=$("#plot option:selected").val();
-                localStorage.setItem("city_id",city_id);
             //数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
             //加密
