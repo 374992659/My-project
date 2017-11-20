@@ -102,7 +102,7 @@ $(document).ready(function(){
                             manegeNum++
                         }
                     }else if(parseInt(myCode)===2){//管理员
-                        if(parseInt(item.role)===3){//成员
+                        if(parseInt(item.role)===3){
                             var httP=item.portrait.split(":")[0];
                             var portrait="";
                             if(httP==="http"){
@@ -113,7 +113,7 @@ $(document).ready(function(){
                             memberHtml+=`
     <div class="weui-cell weui-cell_swiped">
         <div class="weui-cell__bd">
-            <div class="weui-cell">
+            <div class="weui-cell" style="padding: 0">
                 <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
                 <div class="weui-cell__bd">
                     <p>${item.nickname}</p>
@@ -127,7 +127,7 @@ $(document).ready(function(){
                       
                         `;
                             memberNum++
-                        }else if(parseInt(item.role)===2){//管理员
+                        }else if(parseInt(item.role)===2){
                             var httPs=item.portrait.split(":")[0];
                             var portraits="";
                             if(httPs==="http"){
@@ -149,7 +149,7 @@ $(document).ready(function(){
     </div>
                         `;
                             manegeNum++
-                        }else{//群主
+                        }else{
                             var httPs=item.portrait.split(":")[0];
                             var portraits="";
                             if(httPs==="http"){
@@ -185,7 +185,7 @@ $(document).ready(function(){
                             memberHtml+=`
     <div class="weui-cell ">
         <div class="weui-cell__bd">
-            <div class="weui-cell">
+            <div class="weui-cell" style="padding: 0">
                 <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
                 <div class="weui-cell__bd">
                     <p>${item.nickname}</p>
@@ -208,7 +208,7 @@ $(document).ready(function(){
                             manageHtml+=`
                  <div class="weui-cell">
         <div class="weui-cell__bd">
-            <div class="weui-cell">
+            <div class="weui-cell" style="padding: 0">
                 <div class="weui-cell__hd"><img src="${portraits}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
                 <div class="weui-cell__bd">
                     <p>${item.nickname}</p>
