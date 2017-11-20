@@ -23,7 +23,7 @@ $(document).ready(function(){
                 var html="";
                 var statusSpan="";
                 $.each(data.data,function(i,item){
-                    if(item.status===1){
+                    if(parseInt(item.status)===1){
                         statusSpan=`
                     <span class="right" style="font-size: 13px;color: green">已经解决</span>
                     `
