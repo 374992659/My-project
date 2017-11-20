@@ -138,7 +138,9 @@ $(document).ready(function(){
             data:{'data':jsonEncryptData},
             success:function(data){
                 var data=jsDecodeData(data);
-                console.log(data);
+                if(data.errcode === 5){
+                    alert('暂无认证通过的小区')
+                }
             }
         })
     })();
