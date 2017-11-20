@@ -81,7 +81,7 @@ class SubjectController extends VersionController
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectModel($province_id,$city_id);
         $res = $model->addSubject($data);
-        if(!$res)$this->echoEncrypData(1,$choise,$picture);
+        if(!$res)$this->echoEncrypData(1);
         $database=new RegiestController();
         $database->executeSql('subject_dynamics.sql',array('province_id'=>$province_id,'city_id'=>$city_id,'subject_id'=>$res));
         //在我的话题关联表中添加记录
