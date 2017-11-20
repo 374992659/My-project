@@ -69,7 +69,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="phone">电话：<span style="color: green">*</span></label>
-                        <input type="text" id="phone" placeholder="" value="${result.phone}">
+                        <input type="text" id="phone" placeholder="" value="${result.phone}"  onblur="checkPhone()">
                     </div>
                 </div>
             </div>
