@@ -37,9 +37,7 @@ $(document).ready(function(){
                         memberHtml+=`
                 <div class="weui-cell weui-cell_swiped">
                     <div class="weui-cell__bd" style="transform: translate3d(0px, 0px, 0px);">
-                    <div class="weui-media-box__hd">
-                      <img class="weui-media-box__thumb" src="${portrait}" alt="" width="100px">
-                    </div>
+                   <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:60px;margin-right:5px;display:block"></div>
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
                                 <p>${item.nickname}</p>
