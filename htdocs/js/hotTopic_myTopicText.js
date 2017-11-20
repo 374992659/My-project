@@ -449,14 +449,22 @@ $(document).ready(function(){
     $(".Vote").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
-            garden_code=270113,
+            garden_code=localStorage.getItem("garden_code"),
             subject_id=localStorage.getItem("subject_id"),
-            choise={},
             content=$(".contentVote").val();
-            $(".optionList input[name=radio1]:checked").each(function(i,item){
-                choise[parseInt(i+1)]=$(this).parent().prev().children().html()
-            });
-            console.log(choise);
+            // choise={},
+            //
+            // $(".optionList input[name=radio1]:checked").each(function(i,item){
+            //     choise[parseInt(i+1)]=$(this).parent().prev().children().html()
+            // });
+            // console.log(choise);
+        var choise={};
+        $("input[name=radio1]:checked").each(function(i,item){
+            choise[parseInt(i+1)]=$(this).parent().prev().find("p").text();
+        });
+
+        choise=JSON.stringify(choise);
+        console.log(typeof choise);
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"subject_id":subject_id,"choise":choise,"content":content})],
         // 加密
