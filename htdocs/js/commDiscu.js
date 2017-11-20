@@ -217,13 +217,21 @@ $(document).ready(function(){
     });
     //设置禁言
     if(parseInt(groupOwner)===parseInt(myCode)){
+        console.log(groupOwner);
+        console.log(myCode);
         $("#setSpeak").show()
     }else{
+        console.log(groupOwner);
+        console.log(myCode);
         $("#setSpeak").hide()
     }
     if(groupOwner===myCode){
+        console.log(groupOwner);
+        console.log(myCode);
         $("#dissolveFlock").show()
     }else{
+        console.log(groupOwner);
+        console.log(myCode);
         $("#dissolveFlock").hide()
     }
 });
