@@ -36,7 +36,7 @@ $(document).ready(function(){
                         }
                         memberHtml+=`
                 <div class="weui-cell weui-cell_swiped">
-            <div class="weui-cell__bd">
+            <div class="weui-cell__bd" style="transform: translate3d(0px, 0px, 0px);">
               <div class="weui-cell">
                 <div class="weui-cell__bd">
                   <p>左滑列表</p>
@@ -118,7 +118,4 @@ $(document).ready(function(){
         var nickname=$(this).val();
 
     });
-    $('.weui-cell_swiped').swipeout();
-    $('.weui-cell_swiped').swipeout('open') ;//打开
-    $('.weui-cell_swiped').swipeout('close') //关闭
 });
