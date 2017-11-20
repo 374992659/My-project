@@ -25,10 +25,10 @@ $(document).ready(function(){
                     var data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken);
                         var html="";
+                        localStorage.setItem("apptoken",data.apptoken);
                         $.each(data.data,function(i,item){
-                            html=`
+                            html+=`
                                 <a href="hotTopic_myTopicText.html" class="hotTopicA" value="${item.subject_id}" title="${item.graden_code}">
                         <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                             <div class="headline">
