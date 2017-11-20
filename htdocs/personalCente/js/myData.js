@@ -95,7 +95,8 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="house">常住小区：<span style="color: green">*</span></label>
-                        <input type="text" id="house" value="${result.default_garden}">
+                        <input type="text" id="house" garden_code="${JSON.parse(result.default_garden).garden_code}" value="${JSON.parse(result.default_garden).garden_name}">
+                        <select name='' id='gardenLIst'></select>
                     </div>
                 </div>
             </div>
@@ -141,7 +142,11 @@ $(document).ready(function(){
                 if(data.errcode === 5){
                     $('#house').val('暂无认证通过的小区');
                 }else if(data.errcode  === 0){
-
+                    var html='';
+                    $.each(data.data,function(i,item){
+                        html= "<option value='"+item.garden_code+"'>item.garden_name</option>";
+                    })
+                    $('#gardenLIst').append();
                 }
             }
         })
@@ -225,21 +230,23 @@ $(document).ready(function(){
         var hideTop=function(){
             success.empty()};
             // 获取apptoken
-               var apptoken= localStorage.getItem("apptoken"),
+               var apptoken= localStorage.getItem("apptoken");
             // 获取头像
-                   portrait=$(".flockHead img").attr("src"),
+                   portrait=$(".flockHead img").attr("src");
             // 获取昵称
-                    nickname=$("#nickname").val(),
+                    nickname=$("#nickname").val();
             // 获取真实姓名（可填）
-                    realname=$("#name").val(),
+                    realname=$("#name").val();
             // 手机号（可填）
-                    phone=$("#phone").val(),
+                    phone=$("#phone").val();
             // 微信（可填）
-                    wechat_num=$("#weiXin").val(),
+                    wechat_num=$("#weiXin").val();
             // QQ（可填）
-                    qq_num=$("#QQ").val(),
+                    qq_num=$("#QQ").val();
             // 常住小区（可填）
-                    default_garden=$("#house").val(),
+                    var garden_code = $('#house').attr('garden_code');
+                    var garden_name = $('#house').val();
+                    default_garden=$("#house").val()==='暂无认证通过的小区'?'':JSON.stringify({garden_code:garden_name});//
             // 出生年份（可填）
                     birth_year=$("#yearBirth option:selected").val(),
             // 出生月份（可填）
