@@ -11,7 +11,7 @@ $(document).ready(function(){
     // 获取自己code号
     var myCode=localStorage.getItem("my_code");
     if(parseInt(groupOwner)===parseInt(myCode)){
-        $("#setSpeak").hide()
+        $("#setSpeak").attr("style","display:none")
     }
     // 获取群内用户
     var getGroupUser=function(){
