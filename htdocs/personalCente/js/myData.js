@@ -235,10 +235,11 @@ $(document).ready(function(){
             // 爱好（可填）
                     hobby=$("#likes").val(),
             // 数据格式转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby})],
+                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby})];
             // 加密
+                   console.log(data);
                     jsonEncryptData=jsEncryptData(data);
-                console.log(data);
+                    console.log(data);
         $.ajax({
             url:url+"UserCenter_updateUserInfo",
             type:"POST",
