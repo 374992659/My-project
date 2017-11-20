@@ -45,7 +45,7 @@ $(document).ready(function(){
             </div>
         </div>
         <div class="weui-cell__ft">
-            <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:" style="">删除</a>
+            <button class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:" style="">删除</button>
         </div>
     </div>
                       
