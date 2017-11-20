@@ -154,7 +154,37 @@ $(document).ready(function(){
                 }
             })
         }
-
-
-    })
+    });
+    //删除管理员
+    $(".manage").on("click",".weui-cell_swiped .weui-cell__ft .weui-swiped-btn",function(){
+        // group_num群号码
+        var group_num=localStorage.getItem("group_num");
+        // 参数：user_code 被移出用户code
+        var user_code=$(this).attr("title");
+        //apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        //数据格式转换
+        if(confirm("删除群成员")){
+            var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})];
+            // 加密
+            var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"group_delGroupNum",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    console.log(data);
+                    //解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        console.log("删除成员");
+                        $(this).parent().parent().remove();
+                    }
+                }
+            })
+        }
+    });
 });
