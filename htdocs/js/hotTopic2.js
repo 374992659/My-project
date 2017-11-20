@@ -62,7 +62,7 @@ $(document).ready(function(){
                         });
                         $(".hotTopicList").append(html)
                     }else{
-                        console.log(data.errmsg);
+                      $(".hotTopicList").html(data.errmsg);
                     }
                 }
             })
