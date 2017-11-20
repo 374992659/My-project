@@ -28,7 +28,7 @@ $(document).ready(function(){
                         var html="";
                         localStorage.setItem("apptoken",data.apptoken);
                         $.each(data.data,function(i,item){
-                            if(item.status===1){
+                            if(parseInt(item.status)===1){
                                 html+=`
                     <div  class="hotTopicA" value="${item.subject_id}" title="${item.garden_code}">
                         <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
