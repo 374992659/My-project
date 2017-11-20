@@ -272,6 +272,14 @@ $(document).ready(function(){
         height:220,//二维码高度
         text: 'http://www.baidu.com',//此处填写生成二维码的生成数据 （拼接了inviter_code的注册页面地址，注册页面在url中获取到inviter_code传递给后台注册接口）
     });
+    function checkPhone() {
+        if(!(/^1[34578]\d{9}$/.test(phone))){
+            alert('手机号码格式错误');
+            return false;
+        }else{
+            return true;
+        }
+    }
     //判断字符是否是中文字符
     function isChina(s)
     {
