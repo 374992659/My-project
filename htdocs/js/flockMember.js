@@ -35,20 +35,19 @@ $(document).ready(function(){
                             portrait="http://wx.junxiang.ren/project/"+item.portrait
                         }
                         memberHtml+=`
-                <div class="weui-cell weui-cell_swiped">
-            <div class="weui-cell__bd">
-              <div class="weui-cell">
-                <div class="weui-cell__hd"><img src="" alt="" style="width:20px;margin-right:5px;display:block"></div>
+    <div class="weui-cell weui-cell_swiped">
+        <div class="weui-cell__bd">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><img src="image/firenda.jpg" alt="" style="width:40px;margin-right:5px;display:block"></div>
                 <div class="weui-cell__bd">
-                  <p>左滑列表</p>
+                    <p>左滑列表</p>
                 </div>
-                <div class="weui-cell__ft">向左滑动试试</div>
-              </div>
             </div>
-            <div class="weui-cell__ft">
-              <a class="weui-swiped-btn weui-swiped-btn_default close-swipeout" href="javascript:">取消关注</a>
-            </div>
-          </div>
+        </div>
+        <div class="weui-cell__ft">
+            <a class="weui-swiped-btn weui-swiped-btn_warn delete-swipeout" href="javascript:" style="">删除</a>
+        </div>
+    </div>
                       
                         `;
                         memberNum++
@@ -101,6 +100,7 @@ $(document).ready(function(){
                 $(".member").html(memberHtml);
                 $(".memberNum").html((memberNum));
                 $(".manageNum").html(manegeNum);
+                $('.weui-cell_swiped').swipeout();
             }
         },
         error:function(){}
