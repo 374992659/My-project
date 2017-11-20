@@ -25,11 +25,12 @@ $(document).ready(function(){
                 $.each(data.data,function(i,item){
                     if(parseInt(item.status)===1){
                         statusSpan=`
-                    <span class="right" style="font-size: 13px;color: green">已经解决</span>
+                   <span class="right" style="font-size: 13px;color: red">未解决</span>
                     `
                     }else{
                         statusSpan=`
-                    <span class="right" style="font-size: 13px;color: red">未解决</span>
+                    
+                    <span class="right" style="font-size: 13px;color: green">已经解决</span>
                     `
                     }
                     html+=`
@@ -48,7 +49,7 @@ $(document).ready(function(){
 
 
                 });
-              
+
                 $(".myTopicList").append(html);
                 $(".headline").append(statusSpan);
 
