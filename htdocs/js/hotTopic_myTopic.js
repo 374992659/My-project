@@ -37,7 +37,7 @@ $(document).ready(function(){
                     <div class="weui-media-box weui-media-box_text" style="padding-bottom: 5px;border-bottom: 1px solid #b2b2b2">
                         <div class="headline">
                             <h4 class="weui-media-box__title lf" style="font-size: 15px;">${item.title}</h4>
-                            <span class="right" style="font-size: 13px;color: green">已经解决</span>
+                           
                         </div>
 
                         <p class="weui-media-box__desc" style="font-size: 12px">${item.content}</p>
