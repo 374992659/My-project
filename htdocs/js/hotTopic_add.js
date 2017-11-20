@@ -190,7 +190,7 @@ $(document).ready(function(){
             })
     });
     //广告删除
-    $(".myAdList").on("click",".adList .weui-media-box .delBtn",function(){
+    $(".myAdList").on("click",".adList .weui-media-box .delBtn",function(e){
         var apptoken=localStorage.getItem("apptoken"),
             city_id=localStorage.getItem("city_id"),
             adverse_id=$(this).attr("title"),
@@ -209,7 +209,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    $(this).parent().parent().parent().remove();
+                    $(e.target).parent().parent().parent().remove();
                 }else{
                     console.log(data.errmsg);
                 }
