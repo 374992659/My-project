@@ -32,7 +32,7 @@ $(document).ready(function(){
             </p>
             <ul class="weui-media-box__info" style="font-size: 12px">
                 <li class="weui-media-box__info__meta">文字来源 <span>李四</span></li>
-                <li class="weui-media-box__info__meta">时间 <span>${item.create_time}</span></li>
+                <li class="weui-media-box__info__meta">时间 <span>${getLocalTime(item.create_time)}</span></li>
             </ul>
             <ul class="weui-media-box__info share" style="font-size: 12px;color: blue;text-align: right">
                 <li class="weui-media-box__info__meta">分享</li>
