@@ -23,7 +23,7 @@ $(document).ready(function(){
             var html="";
             $.each(data.data,function(i,item){
                 console.log(item);
-                if(item.adverse_id===parseInt(adID)){
+                if(parseInt(item.adverse_id)===parseInt(adID)){
                     console.log("广告");
                     html=`
                     <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${item.title}</h4>
