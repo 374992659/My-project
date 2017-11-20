@@ -11,10 +11,13 @@ $(document).ready(function(){
     // 获取自己code号
     var myCode=localStorage.getItem("my_code");
     if(parseInt(groupOwner)===parseInt(myCode)){
-        console.log("123");
-        
     }else{
-        $("#setSpeak").attr("style","display:none")
+        $("#setSpeak").hide()
+    }
+    if(groupOwner===myCode){
+
+    }else{
+        $("#dissolveFlock").hide()
     }
     // 获取群内用户
     var getGroupUser=function(){
