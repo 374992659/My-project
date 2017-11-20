@@ -3,9 +3,10 @@ $(document).ready(function(){
     //获取apptoken
     var apptoken=localStorage.getItem("apptoken"),
         city_id=localStorage.getItem("city_id"),
-        garden_code="2701113";
+        garden_code="";
     //获取广告id
     var adID=localStorage.getItem("adID");
+    console.log(adID);
     //数据格式转换
     var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id," garden_code": garden_code})],
     //加密
