@@ -205,7 +205,7 @@ class GroupController extends VersionController
         $res1 = $mode->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$this->pdata['user_code']])->delete();
         $user_group = new Model\UserGroupModel($this->pdata['user_code']);
         $user_group->startTrans();
-        $res2 = $user_group->where(['group_num'])->delete();
+        $res2 = $user_group->where(['group_num'=>$this->pdata['group_num']])->delete();
         if($res1 and $res2){
             $mode->commit();
             $user_group->commit();
