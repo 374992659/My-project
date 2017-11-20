@@ -89,7 +89,7 @@ $(document).ready(function(){
     // 功能3在页面跳转前把话题id和话题发布所属小区存在本地下一个页面加载的时候调用
     $(".hotTopicList").on("click",".hotTopicA",function () {
         // 获取话题id
-        var id=$(this).val(),
+        var id=$(this).attr("value"),
         // 获取所属小区
            code=$(this).attr("title");
         console.log("页面跳转");
