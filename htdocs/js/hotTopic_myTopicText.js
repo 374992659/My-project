@@ -47,7 +47,7 @@ $(document).ready(function(){
                                          <p class="weui-media-box__title lf">${item.nickname}</p>
                                      </a>
                                      <span class="right" style="font-size: 12px">${getLocalTime(item.create_time)}</span>
-                                 </div>
+                                 </div>                               
                                  <p class="weui-media-box__desc">
                                      ${item.content}
                                  </p>
@@ -67,6 +67,7 @@ $(document).ready(function(){
                                      </a>
                                      <span class="right" style="font-size: 12px">${getLocalTime(item.create_time)}</span>
                                  </div>
+                              
                                  <p class="weui-media-box__desc">
                                      ${item.content}
                                  </p>
@@ -118,7 +119,7 @@ $(document).ready(function(){
                                      <span>${item.commont_likes_num}</span>
                                  </div>
                              </div>
-
+                             
                             `
                             }
                         });
@@ -153,6 +154,12 @@ $(document).ready(function(){
                         `
                           });
                     }
+                    //添加图片
+                    var pic=JSON.parse(result.picture);
+                    $.each(pic,function(i,item){
+                        console.log(item);
+                    });
+                    //加载页面内容
                     if(parseInt(result.is_likes)===1){
                         html=`
                     <div class="weui-media-box weui-media-box_text">
@@ -161,6 +168,9 @@ $(document).ready(function(){
                             <li class="weui-media-box__info__meta">作者：<span>${result.nickname}</span></li>
                             <li class="weui-media-box__info__meta">时间：${getLocalTime(result.create_time)}</li>
 
+                        </ul>
+                        <ul class="picPlace">
+                        
                         </ul>
                         <p class="weui-media-box__desc" style=" text-indent:2em">
                             ${result.content}
@@ -183,6 +193,9 @@ $(document).ready(function(){
                             <li class="weui-media-box__info__meta">作者：<span>${result.nickname}</span></li>
                             <li class="weui-media-box__info__meta">时间：${getLocalTime(result.create_time)}</li>
 
+                        </ul>
+                        <ul class="picPlace">
+                        
                         </ul>
                         <p class="weui-media-box__desc" style=" text-indent:2em">
                             ${result.content}
