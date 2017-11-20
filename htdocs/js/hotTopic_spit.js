@@ -97,7 +97,8 @@ $(document).ready(function(){ "use strict";
                       <div>
                         <span>你还没有认证的小区请到个人心认证</span><a href="http://wx.junxiang.ren/project/htdocs/personalCente/">点我到个人中心</a>
                     </div>
-                    `
+                    `;
+$("body").html(html)
                 }
             }
         })
