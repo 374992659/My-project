@@ -136,6 +136,7 @@ $(document).ready(function(){
             var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"user_code":user_code})];
             // 加密
             var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
             $.ajax({
                 url:url+"group_delGroupNum",
                 type:"POST",
