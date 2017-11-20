@@ -60,7 +60,7 @@ $(document).ready(function(){
                        `;
                      $(".hint").html(html);
                           function show(){
-                             $(".hint").html();
+                             $(".hint").hide();
                          }
                      setTimeout("show()",1000);
 
