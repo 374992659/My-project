@@ -139,7 +139,9 @@ $(document).ready(function(){
             success:function(data){
                 var data=jsDecodeData(data);
                 if(data.errcode === 5){
-                    alert('暂无认证通过的小区')
+                    $('#house').val('暂无认证通过的小区');
+                }else if(data.errcode  === 0){
+
                 }
             }
         })
