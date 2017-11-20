@@ -94,7 +94,7 @@ class UserCenterController extends VersionController
                 'nickname'=>$nickname,
                 'phone'=>$this->pdata['phone'],
             )));
-            $this->echoEncrypData(0);
+            $this->echoEncrypData(0,$this->pdata['wechat_num']);
         }
         $this->echoEncrypData(1);
     }
