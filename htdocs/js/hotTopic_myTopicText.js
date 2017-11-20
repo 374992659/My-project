@@ -160,7 +160,7 @@ $(document).ready(function(){
                     $.each(pic,function(i,item){
                         topicPic+=`
                             <li class="lf">
-                                    <img src="${item}" alt="" class="topic">
+                                    <img src="${item}" alt="" class="topic" width="80px">
                                 </li>
                         
                         `
