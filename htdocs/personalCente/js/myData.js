@@ -138,6 +138,7 @@ $(document).ready(function(){
             data:{'data':jsonEncryptData},
             success:function(data){
                 var data=jsDecodeData(data);
+                console.log(data);
             }
         })
     })();
