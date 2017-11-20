@@ -285,11 +285,10 @@ class RegiestController extends BaseController
      * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据 APP由扫码获得
      * */
     public function regiest(){
-        $this->checkParam(array('account','password','repassword'));
+        $this->checkParam(array('account','password','repassword','longitude','latitude'));
         if(intval($_GET['is_wap']) === 1){//微信
            $this->checkParam(array('openId'));
         }
-        $this->checkParam(array('longitude','latitude'));
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($this->pdata['account']))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
