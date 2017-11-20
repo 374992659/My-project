@@ -204,7 +204,8 @@ $(document).ready(function(){
                 $(this).prop("checked",false);
             }
         }else{
-            showHide("你无权进行该操作")
+            showHide("你无权进行该操作");
+            $(".setSpeak").attr("disable",disabled)
         }
 
     });
