@@ -280,19 +280,16 @@ class RegiestController extends BaseController
      * @param password 密码
      * @param repassword 确认密码
      * @param openId 微信openid  微信版必填
-     * @param longitude 经度 微信版必填
-     * @param latitude 纬度 微信版 必填
-     * @param province 省份 APP 必填
-     * @param city 城市 APP必填
+     * @param longitude 经度 必填
+     * @param latitude 纬度  必填
      * @param inviter_code 邀请人code 可填 前端页面由url获取传递到后台接口  由微信扫描分享二维码跳转的注册页面会有此数据 APP由扫码获得
      * */
     public function regiest(){
         $this->checkParam(array('account','password','repassword'));
         if(intval($_GET['is_wap']) === 1){//微信
-           $this->checkParam(array('openId','longitude','latitude'));
-        }else{//APP
-            $this->checkParam(array('province','city'));
+           $this->checkParam(array('openId'));
         }
+        $this->checkParam(array('longitude','latitude'));
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($this->pdata['account']))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
@@ -303,13 +300,9 @@ class RegiestController extends BaseController
             $this->echoEncrypData(1,'该账号已被注册');
         }
         //注册地检测
-        if(intval($_GET['is_wap']) === 1){
-            $data =  $this->getProvinceAndCity($this->pdata['longitude'],$this->pdata['latitude']);
-            if(!$data)$this->echoEncrypData(1,'暂不支持该区域');
-            $area_id = $this->checkCity($data['province'],$data['city']);
-        }else{
-            $area_id = $this->checkCity($this->pdata['province'],$this->pdata['city']);
-        }
+        $data =  $this->getProvinceAndCity($this->pdata['longitude'],$this->pdata['latitude']);
+        if(!$data)$this->echoEncrypData(1,'暂不支持该区域');
+        $area_id = $this->checkCity($data['province'],$data['city']);
         //注册积分
         $point = M('baseinfo.point_config')->Field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.REGISTER')])->find();
         $mongo->baseinfo->user_area->insert(array(  //mongodb添加用户记录

@@ -337,6 +337,7 @@ class GroupController extends VersionController
         $user_code =$this->pdata['user_code'];
         if(!$group_num || !$user_code)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
+        if($user_code === $this->account_code)$this->echoEncrypData(1,'不能取消自己');
         $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
