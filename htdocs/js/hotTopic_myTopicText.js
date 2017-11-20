@@ -141,7 +141,7 @@ $(document).ready(function(){
                       // 循环添加投票选项
                     if(result.choise_votes){
                           $.each(result.choise_votes,function(i,item){
-                              if(result.type===1){//单选
+                              if(parseInt(result.type)===1){//单选
                                   option+=`
                 <label class="weui-cell weui-check__label" >
                     <div class="weui-cell__bd">
@@ -246,9 +246,11 @@ $(document).ready(function(){
                     $(".choiseList").append(choise);
                     $(".optionList").append(option);
                     $(".picPlace").html(topicPic);
-                    if(result.type===1){
+                    if(parseInt(result.type)===1){
+                        console.log("单选");
                         $(".type").html("单选");
                     }else{
+                        console.log("多选");
                         $(".type").html("多选");
                     }
                     if(result.is_push===1){
