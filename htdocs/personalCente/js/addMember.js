@@ -51,6 +51,7 @@ $(document).ready(function(){
         }
     });
     //上传身份证照片
+    var size=2*1024*1024;
         (function(){
         // 上传身份证正面A
         $('#uploaderInputA').change(function(e) {
@@ -59,7 +60,8 @@ $(document).ready(function(){
             var apptoken=localStorage.getItem("apptoken");
             formData.append("file",$("#uploaderInputA")[0].files[0]);
             console.log("图片信息");
-            console.log( $('#uploaderInputA')[0].files[0]);
+            console.log( $('#uploaderInputA')[0].files[0].size);
+            console.log(size);
             var data=["",JSON.stringify({"apptoken":apptoken})];
             var json=jsEncryptData(data);
             formData.append("data",json);
