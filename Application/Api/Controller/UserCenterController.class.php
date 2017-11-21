@@ -607,8 +607,8 @@ class UserCenterController extends VersionController
 
                     foreach($garden_arr as $k=>$v){
                         $arr = explode(',',$v);
-                        $garden[]['garden_code'] =$arr[0];
-                        $garden[]['role'] =$arr[1];
+                        $garden[$k]['garden_code'] =$arr[0];
+                        $garden[$k]['role'] =$arr[1];
                     }
                 }
                 $this->echoEncrypData(1,$garden);
