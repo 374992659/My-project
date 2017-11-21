@@ -145,11 +145,12 @@ $(document).ready(function(){
                               console.log(id_card_pic);
                               console.log(typeof id_card_pic);
                               var obj = eval('(' + id_card_pic + ')');
-                              $.each(obj,function(i,item){
-                                  id_card_pictures+=`
-                              <img src="http://wx.junxiang.ren/project/${item}" alt="" >
-                              `
-                              });
+                              console.log(obj);
+                              // $.each(obj,function(i,item){
+                              //     id_card_pictures+=`
+                              // <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                              // `
+                              // });
                           }
                     console.log(id_card_pictures);
                   //循环小区照片
