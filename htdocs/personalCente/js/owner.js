@@ -323,8 +323,8 @@ $(document).ready(function(){
              var  src=_this.attr("src");
               garden_picture[i]=src;
           });
-        garden_picture=JSON.stringify(garden_picture);
-        console.log(typeof garden_picture);
+       pica=JSON.stringify(garden_picture);
+        console.log(typeof pica);
         // 合同房产证照片（可填）
         var PPa=$(".PPflockHeadA img").attr("src");
         var PPb=$(".PPflockHeadB img").attr("src");
