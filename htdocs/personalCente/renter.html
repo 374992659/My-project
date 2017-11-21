@@ -182,21 +182,22 @@
         <!--楼盘地址-->
         <div class="weui-cells">
             <div class="weui-cell">
-                <div class="weui-cell__bd">
-                    <label class="left" for="">楼盘地址：<span style="color:red">*</span></label>
-                    <div class="weui-cell__bd" id="sanji" style="display: inline-block">
-                        <select name="province" id="province">
-                            <option value="">请选择</option>
+                <div class="weui-cell__bd" style="position: relative;z-index: 50">
+                    <label class="left" for="" style="vertical-align: top">楼盘地址：<span style="color:red">*</span></label>
+                    <div class="weui-cell__bd" id="sanji" style="display: inline-block;width: 30%">
+                        <select name="province" id="province" style="width:100% ">
+                            <option value="">请选择省</option>
                         </select>
-                        <select name="city" id="city">
-                            <option value="">请选择</option>
+                        <select name="city" id="city"  style="width:100% ">
+                            <option value="">请选择市</option>
                         </select>
                     </div>
                     <div style="display: inline-block;position: absolute;">
                         <input type="text" title="" id="gardenName" placeholder="小区名字" style="width: 68%;">
-                        <ul class="allGarden" style="position: absolute;top:20px;left:-100px;display: none;z-index: 100">
+                        <ul class="allGarden" style="position: absolute;top:20px;left:-100px;display: none">
                         </ul>
                     </div>
+
                 </div>
             </div>
         </div>
