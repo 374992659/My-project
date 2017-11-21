@@ -181,7 +181,7 @@ $(document).ready(function(){
                     var html='';
                     $.each(data.data,function(i,item){
                         html+= `
-                    <option value='"+item.garden_code+"'>${item.garden_name}</option>
+                    <option value="${item.garden_code}">${item.garden_name}</option>
 
                         `;
                     });
@@ -262,8 +262,9 @@ $(document).ready(function(){
             // QQ（可填）
                     qq_num=$("#QQ").val();
             // 常住小区（可填）
-                    var garden_code = $('#house').attr('garden_code');
+                    var garden_code = $('#gardenLIst option:selected').attr('value');
                     var garden_name = $('#gardenLIst option:selected').text();
+
                     default_garden=$("#house").val()==='暂无认证通过的小区'?'':JSON.stringify({garden_code:garden_name});
             // 出生年份（可填）
                     birth_year=$("#yearBirth option:selected").val(),
