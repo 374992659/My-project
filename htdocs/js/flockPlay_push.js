@@ -493,6 +493,7 @@ $(document).ready(function(){
                     date = new Date(arr[0], arr[1]-1, arr[2]),
                     start_time=date/1000;
                 console.log("开始时间"+start_time);
+                var collectionTime=$("#gathertime").val();
                 var collection = collectionTime.split(/[- : \/]/),
                     timestamp3 = new Date(collection[0], collection[1]-1, collection[2],collection[3],collection[4]),
                     collection_time=timestamp3/1000;
