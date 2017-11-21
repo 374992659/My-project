@@ -95,7 +95,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="house">常住小区：<span style="color: green">*</span></label>
-                        <input type="text" id="house" garden_code="" value="${result.default_garden}">
+                      
                         <select name='' id='gardenLIst'></select>
                     </div>
                 </div>
@@ -107,7 +107,7 @@ $(document).ready(function(){
                         <label class="left" for="">出生年月：<span style="color: green">*</span></label>
                         <select name="" id="yearBirth">
                             <option value="1980">1980</option>
-                           
+                            
                         </select>年
                         <select name="" id="mouthBirth">
                             <option value="1">1</option>
@@ -132,7 +132,7 @@ $(document).ready(function(){
 
             },
             error:function(){}
-        })
+        });
         $.ajax({
             url:url+'UserCenter_getApplicationGarden',
             type:'POST',
