@@ -204,7 +204,7 @@ $(document).ready(function(){
                     var  html="";
                     $.each(data.data,function(i,item){
                         html+=`
-                         <option value="2" title="${item.garden_code}">${item.garden_name}</option>                     
+                         <option value="${item.city_id}" title="${item.garden_code}">${item.garden_name}</option>                    
                         `
                     });
                     $("#gardenName").html(html);
