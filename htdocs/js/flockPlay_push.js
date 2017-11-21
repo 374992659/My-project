@@ -499,7 +499,6 @@ $(document).ready(function(){
                     collection_time=timestamp3/1000;
                 console.log("集合时间"+collection_time);
                 if(parseInt(collection_time)-parseInt(start_time)<0){
-                    $("#gathertime").css("background-color","red");
                     $("#gathertime").val("集合时间早于开始时间啦");
                 }
             });
