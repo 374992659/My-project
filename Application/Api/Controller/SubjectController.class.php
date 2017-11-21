@@ -463,7 +463,7 @@ class SubjectController extends VersionController
         $repalce = array(
             'province_id'=>$province_id,
             'city_id'=>$city_id,
-            'account_code'=>$this->account_code,
+            'account_code'=>'',
         );
         $this->executeSql('databases.sql',$repalce);
         $adverse=new Model\AdeverseModel($province_id,$city_id);
