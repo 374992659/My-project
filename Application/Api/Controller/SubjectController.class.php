@@ -494,7 +494,7 @@ class SubjectController extends VersionController
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $adverse=new Model\AdeverseModel($province_id,$city_id);
         $user_code = $adverse->getAdverseC($adverse_id);
-        if(!$user_code)$this->echoEncrypData(1,$province_id,$adverse_id);
+        if(!$user_code)$this->echoEncrypData(1,$city_id,$adverse_id);
         if($user_code !== $this->account_code)$this->echoEncrypData(500);
         $res = $adverse->delAdverse($adverse_id);
         if(!$res)$this->echoEncrypData(1);
