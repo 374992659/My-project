@@ -534,9 +534,9 @@ class UserCenterController extends VersionController
             foreach ($data as $k=>$v){
                 $province_id =$swf_area->where(['city_code'=>$v['city_id']])->getField('province_code');
                 $mode = new Model\GardenRoomModel($province_id,$v['city_id']);
-                $num_list[] = $mode->field('id as application_id,real_name,relation_name,room_num,garden_code,garden_name,city_id')->where(['city_id'=>$v['city_id'],'garden_code'=>$v['garden_code'],'room_num'=>$v['room_num'],'role'=>1])->select();
+                $num_list[] = $mode->field('id as application_id,real_name,relation_name,room_num,garden_code,city_id')->where(['city_id'=>$v['city_id'],'garden_code'=>$v['garden_code'],'room_num'=>$v['room_num'],'role'=>1])->select();
             }
-            $this->echoEncrypData(0,$data,$province_id);
+            $this->echoEncrypData(0,$mode,$num_list);
         }
     }
     /*
