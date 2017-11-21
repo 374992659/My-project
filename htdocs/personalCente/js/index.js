@@ -124,7 +124,7 @@ $(document).ready(function(){
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
                                     <label class="left">常住小区：</label>
-                                    <span>${result.default_garden}</span>
+                                    <span class="garden"></span>
                                 </div>
                             </div>
                         </div>                     
@@ -166,6 +166,9 @@ $(document).ready(function(){
                         </div>                            
                     `;
                   $(".personal").html(html);
+                  //常住小区
+                   var garden=JSON.parse(resulnt).default_garde;
+                    console.log(garden);
                   // 遍历认证楼盘
                     var RenZplot="";
                     if(result.user_garden){
