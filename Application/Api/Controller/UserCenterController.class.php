@@ -1312,7 +1312,7 @@ class UserCenterController extends VersionController
         $account_code = $this->account_code;
         $city_id = substr($account_code,0,6);
         $type = intval($this->pdata['type']);
-        $type !== 1 || $type !== 2?$this->echoEncrypData(1,'参数错误',$type):$type ===1?
+        ($type !== 1 || $type !== 2)?$this->echoEncrypData(1,'参数错误',$type):$type ===1?
             $mode = new Model\OwnerApplicationController($city_id):$mode =new Model\TenantApplicationModel($city_id);
         $res1 = $mode->where(['id'=>$this->pdata['application_id']])->delete();
         if(!$res1)$this->echoEncrypData(1);
