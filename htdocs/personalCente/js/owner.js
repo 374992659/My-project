@@ -289,6 +289,7 @@ $(document).ready(function(){
         $("#phone").blur(function () {
             // 获取号码
         var phoneNum=$("#phone").val();
+        console.log(phoneNum);
             validate4(phoneNum);
         });
     })();
@@ -296,6 +297,7 @@ $(document).ready(function(){
     (function () {
         $("#identityCard").blur(function () {
             var idCard=$("#identityCard").val();
+            console.log(idCard);
             isCardNo(idCard)
         })
     })();
