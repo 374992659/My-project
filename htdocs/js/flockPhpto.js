@@ -27,6 +27,7 @@ $(document).ready(function(){
                         }else{
                             pic="http://wx.junxiang.ren/project/"+item.portrait.split;
                         }
+                        console.log(pic);
                         var html="";
                         var Li="";
                         console.log(item);
