@@ -122,7 +122,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="likes">爱好：<span style="color: green">*</span></label>
-                        <input type="text" id="likes" placeholder="" value="${result.hobby}">
+                        <input type="text" id="likes" placeholder="例如(游泳,足球)" value="${result.hobby}">
                     </div>
                 </div>
             </div>
