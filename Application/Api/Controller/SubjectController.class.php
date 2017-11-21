@@ -454,6 +454,8 @@ class SubjectController extends VersionController
             'portrait'=>$res['portrait'],
             'nickname'=>$res['nickname'],
             'create_time'=>time(),
+            'is_public'=>1,
+            'garden_code'=>$garden_code,
         );
         if($garden_code){
             $data['garden_code']=$garden_code;
@@ -467,8 +469,8 @@ class SubjectController extends VersionController
         );
         $this->executeSql('databases.sql',$replace);
         $adverse=new Model\AdeverseModel($province_id,$city_id);
-        $res= $adverse->addAdverse($data);
-        if(!$res)$this->echoEncrypData(1,$data);
+        $res= $adverse->add($data);
+        if(!$res)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
     /*
