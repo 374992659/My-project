@@ -482,7 +482,7 @@ $(document).ready(function(){
         })();
         //时间失去焦点判断
         (function () {
-            $("#gathertime").blur(function(){
+            $("#linkman").focus(function(){
                 // 获取当前时间的时间戳
                 var timestamp=Date.parse(new Date)/1000;
                 console.log("当前是的时间戳"+timestamp);
