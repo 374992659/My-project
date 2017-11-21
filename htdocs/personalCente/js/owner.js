@@ -289,8 +289,8 @@ $(document).ready(function(){
         $("#phone").blur(function () {
             // 获取号码
         var phoneNum=$("#phone").val();
-        console.log(phoneNum);
-            validate4(phone);
+            console.log(phoneNum);
+            validate4(phoneNum);
         });
     })();
     //判断身份证号格式是否正确
