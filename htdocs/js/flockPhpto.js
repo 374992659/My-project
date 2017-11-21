@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    var mycode=localStorage.getItem("my_code");
         //向页面添加数据
    var photo=function(){
         // 获取群号
@@ -68,7 +69,11 @@ $(document).ready(function(){
                         flockInfo=JSON.parse(flockInfo);
                         console.log(typeof flockInfo);
                        $.each(flockInfo,function (i,item) {
-                           console.log(item);
+                          if(parseInt(item)===parseInt(mycode)){
+                            
+                          }else{
+                              $(".delBtn").hide();
+                          }
                        });
                     });
 
