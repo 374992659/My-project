@@ -351,7 +351,7 @@ CREATE TABLE if NOT EXISTS `garden_opinion_$city_id` (
 
 CREATE TABLE if NOT EXISTS `garden_room_$city_id` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `city_id` char(4) NOT NULL COMMENT '城市id',
+  `city_id` VARCHAR (10) NOT NULL COMMENT '城市id',
   `garden_code` varchar(20) NOT NULL COMMENT '小区code',
   `room_num` varchar(10) NOT NULL COMMENT '房间号码',
   `user_code` varchar(50) DEFAULT NULL COMMENT '用户code',
@@ -472,7 +472,7 @@ CREATE TABLE  if not exists `owner_application_$city_id` (
   `garden_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区code',
   `garden_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区名字',
   `garden_picture` varchar(800) COLLATE utf8_unicode_ci  COMMENT '小区照片',
-  `city_id` int(4) NOT NULL COMMENT '小区所属城市',
+  `city_id` VARCHAR (10) NOT NULL COMMENT '小区所属城市',
   `garden_addr` varchar(255) COLLATE utf8_unicode_ci  COMMENT '小区地址',
   `yourself_picture` varchar(800) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '个人照片',
   `role` tinyint(2) NOT NULL COMMENT '身份 1：房主 2:其他   默认第一位认证的人为房主',
@@ -501,7 +501,7 @@ CREATE TABLE  if not exists `tenant_application_$city_id` (
   `owner_id_card_picture` varchar(800) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '业主身份证照片（正反面）',
   `garden_code` varchar(20) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区code',
   `garden_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT '小区名字',
-  `city_id` int(4) NOT NULL COMMENT '小区所属城市',
+  `city_id` VARCHAR (10) NOT NULL COMMENT '小区所属城市',
   `garden_addr` varchar(255) COLLATE utf8_unicode_ci COMMENT '小区详细地址',
   `role` tinyint(2) NOT NULL COMMENT '身份 1：主租户  2：其他   默认第一位认证的人为主租户',
   `relation_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL COMMENT '和主租户的关系  ',
