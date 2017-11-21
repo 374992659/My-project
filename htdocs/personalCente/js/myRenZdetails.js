@@ -140,7 +140,9 @@ $(document).ready(function(){
                   // 循环证件照
                           var id_card_pictures="";
                           if(item.id_card_pictures){
-                              var obj = eval('(' + item.id_card_pictures + ')');
+                              console.log("循环照片");
+                              var id_card_pic=JSON.parse(item.id_card_pictures);
+                              var obj = eval('(' + id_card_pic + ')');
                               $.each(obj,function(i,item){
                                   id_card_pictures+=`
                               <img src="http://wx.junxiang.ren/project/${item}" alt="" >
