@@ -542,6 +542,7 @@ class UserCenterController extends VersionController
     /*
      * 户主删除成员
      * @param city_id 城市id
+     * @param garden_code 小区code
      * @param application_id 认证id（实际为garden_room 分表id）
      * */
     protected function ownerDelNum_v1_0_0(){
@@ -556,7 +557,7 @@ class UserCenterController extends VersionController
             $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
             $garden_room = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
             $garden_room->startTrans();
-            $user_info = $garden_room->field('user_code,city_id,garden_code,real_name,room_num')->where(['id'=>$this->pdata['application_id']])->find();
+            $user_info = $garden_room->field('user_code,city_id,garden_code,real_name,room_num,role')->where(['id'=>$this->pdata['application_id']])->find();
             if(!$user_info)$this->echoEncrypData(1);
             $first_application_code = $garden_room->where([
                 'city_id'=>$user_info['city_id'],
