@@ -65,6 +65,7 @@ $(document).ready(function(){
                         $("."+item.id).append(Li);
                         // 获取flockInfo
                         var flockInfo=localStorage.getItem("flockInfo");
+                        flockInfo.JSON.parse(flockInfo);
                         console.log(typeof flockInfo);
                     });
 
