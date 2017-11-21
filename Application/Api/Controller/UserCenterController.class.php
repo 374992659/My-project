@@ -346,7 +346,7 @@ class UserCenterController extends VersionController
             $model->rollback();
             $garden_num->rollback();
             $user_info->rollback();
-            $this->echoEncrypData(1);
+            $this->echoEncrypData(1,array($res1,$res2,$res3));
         }
     }
     /*
