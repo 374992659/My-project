@@ -480,7 +480,20 @@ $(document).ready(function(){
                 }
             })
         })();
-
+        //时间失去焦点判断
+        (function () {
+            $("#other").blur(function(){
+                // 获取当前时间的时间戳
+                var timestamp=Date.parse(new Date);
+                console.log("当前是的时间戳"+timestamp);
+                // 获取开始的时间的时间戳
+                var startTime=$("#other-date1").val();
+                var arr = startTime.split(/[- : \/]/),
+                    date = new Date(arr[0], arr[1]-1, arr[2]),
+                    start_time=date/1000;
+                console.log("开始时间"+start_time);
+            });
+        })();
         $(".subBtn").click(function(){
             var success=$(".success");
             var hideTop=function(){
