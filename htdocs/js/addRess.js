@@ -60,6 +60,7 @@ var addRess1=function(){
                     <!-- 省改变 -->
                     pro.change(function () {
                         var num1=$(this).val();
+                        alert(num1);
                         city.find("option").eq(0).siblings().remove();
                         dAC.find("option").eq(0).siblings().remove();
                         if (num1 !== 0) {
