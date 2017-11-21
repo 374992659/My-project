@@ -67,9 +67,9 @@ $(document).ready(function(){
                         var flockInfo=localStorage.getItem("flockInfo");
                         flockInfo=JSON.parse(flockInfo);
                         console.log(typeof flockInfo);
-                        flockInfo.each(function(i,item){
-                            console.log(item);
-                        });
+                       $.each(flockInfo,function (i,item) {
+                           console.log(item);
+                       });
                     });
 
                 }
