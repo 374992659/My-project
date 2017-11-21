@@ -480,6 +480,7 @@ $(document).ready(function(){
                 }
             })
         })();
+
         $(".subBtn").click(function(){
             var success=$(".success");
             var hideTop=function(){
@@ -496,12 +497,14 @@ $(document).ready(function(){
             var arr = startTime.split(/[- : \/]/),
                 date = new Date(arr[0], arr[1]-1, arr[2]),
                 start_time=date/1000;
+            console.log("开始时间"+start_time);
             // 获取end_time 结束时间
             var endTime=$("#other-date2").val();
             // 转换成时间戳
             var end = endTime.split(/[- : \/]/),
                 dateEnd = new Date(end[0], end[1]-1, end[2]),
                 end_time=dateEnd/1000;
+            console.log("结束时间"+end_time);
             // 获取destination 目的地
             var destination=$("#bourn").val();
             // 获取collection_time 集合时间
@@ -511,6 +514,7 @@ $(document).ready(function(){
             var collection = collectionTime.split(/[- : \/]/),
                 timestamp3 = new Date(collection[0], collection[1]-1, collection[2],collection[3],collection[4]),
                 collection_time=timestamp3/1000;
+            console.log("集合时间"+collection_time);
             // 获取collection_place 集合地
             var collection_place=$("#gatherPlace").val();
             // 获取contact 联系人
