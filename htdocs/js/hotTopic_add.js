@@ -31,7 +31,7 @@ $(document).ready(function(){
     //功能1 获取全部广告
     var apptoken=localStorage.getItem("apptoken"),
         city_id= localStorage.getItem("city_id"),
-        garden_code=$(".plot option:selected").attr("title");
+        garden_code=$(".plot1 option:selected").attr("title");
     function allAd(apptoken,city_id,garden_code){
         console.log("广告");
         // apptoken
@@ -83,11 +83,11 @@ $(document).ready(function(){
  var allad=  new allAd(apptoken,city_id,garden_code);
     allad.add();
     // 当城市发生改变的时候获取其他城市的广告
-    $("#tab1 .city").change(function(){
+    $(".city1").change(function(){
         $(".allAdList").empty();
         // 获取城市id
-       var cityid=$("#tab1 .city option:selected").val();
-       var garden_code=$("#tab1 .plot option:selected").val();
+       var cityid=$(".city1 option:selected").val();
+       var garden_code=$(".plot1 option:selected").val();
        var otherAd=new allAd(apptoken,cityid,garden_code);
         otherAd.add();
     });
@@ -146,11 +146,11 @@ $(document).ready(function(){
     var myAD=new myaD(apptoken,city_id,garden_code);
    myAD.otherAD();
    //当城市发生改变的时候发起
-    $("#tab2 .city").change(function(){
+    $(".city2").change(function(){
         $(".myAdList").empty();
         // 获取城市id
-        var cityid=$("#tab2 .city option:selected").val();
-        var garden_code=$("#tab2 .plot option:selected").val();
+        var cityid=$(".city2 option:selected").val();
+        var garden_code=$(".plot2 option:selected").val();
         var cityChang=new myaD(apptoken,cityid,garden_code);
         cityChang.otherAD();
     });

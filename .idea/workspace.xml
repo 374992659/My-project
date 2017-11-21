@@ -23,13 +23,13 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.545826">
+    <splitter split-orientation="horizontal" split-proportion="0.57793343">
       <split-first>
         <leaf>
           <file leaf-file-name="hotTopic_ad.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5292793">
+                <state vertical-scroll-proportion="0.6779279">
                   <caret line="105" column="58" selection-start-line="105" selection-start-column="58" selection-end-line="105" selection-end-column="58" />
                   <folding>
                     <element signature="n#style#0;n#textarea#0;n#div#0;n#div#0;n#div#4;n#div#2;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -56,17 +56,17 @@
           <file leaf-file-name="hotTopic_add.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-0.20393975">
-                  <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
+                <state vertical-scroll-proportion="-0.6882966">
+                  <caret line="153" column="37" selection-start-line="153" selection-start-column="37" selection-end-line="153" selection-end-column="37" />
                   <folding>
-                    <marker date="1511188129152" expanded="true" signature="2386:2780" placeholder="..." />
-                    <marker date="1511188129152" expanded="false" signature="2471:2520" placeholder="..." />
-                    <marker date="1511188129152" expanded="true" signature="2521:2749" placeholder="..." />
-                    <marker date="1511188129152" expanded="false" signature="2596:2611" placeholder="..." />
-                    <marker date="1511188129152" expanded="true" signature="4917:5405" placeholder="..." />
-                    <marker date="1511188129152" expanded="false" signature="5002:5051" placeholder="..." />
-                    <marker date="1511188129152" expanded="true" signature="5052:5374" placeholder="..." />
-                    <marker date="1511188129152" expanded="false" signature="5127:5142" placeholder="..." />
+                    <marker date="1511273974774" expanded="true" signature="2387:2781" placeholder="..." />
+                    <marker date="1511273974774" expanded="false" signature="2472:2521" placeholder="..." />
+                    <marker date="1511273974774" expanded="true" signature="2522:2750" placeholder="..." />
+                    <marker date="1511273974774" expanded="false" signature="2597:2612" placeholder="..." />
+                    <marker date="1511273974774" expanded="true" signature="4903:5391" placeholder="..." />
+                    <marker date="1511273974774" expanded="false" signature="4988:5037" placeholder="..." />
+                    <marker date="1511273974774" expanded="true" signature="5038:5360" placeholder="..." />
+                    <marker date="1511273974774" expanded="false" signature="5113:5128" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -125,7 +125,6 @@
         <option value="$PROJECT_DIR$/htdocs/js/flockChat.js" />
         <option value="$PROJECT_DIR$/htdocs/adDetails.html" />
         <option value="$PROJECT_DIR$/htdocs/hotTopic_addCon.html" />
-        <option value="$PROJECT_DIR$/htdocs/js/hotTopic_add.js" />
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic_adCon.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/owner.html" />
         <option value="$PROJECT_DIR$/htdocs/commDiscu.html" />
@@ -139,6 +138,7 @@
         <option value="$PROJECT_DIR$/htdocs/js/flockPlay_details.js" />
         <option value="$PROJECT_DIR$/htdocs/flockPlay_details.html" />
         <option value="$PROJECT_DIR$/htdocs/hotTopic_ad.html" />
+        <option value="$PROJECT_DIR$/htdocs/js/hotTopic_add.js" />
       </list>
     </option>
   </component>
@@ -681,23 +681,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.20393975">
-          <caret line="7" column="26" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <marker date="1511188129152" expanded="true" signature="2386:2780" placeholder="..." />
-            <marker date="1511188129152" expanded="false" signature="2471:2520" placeholder="..." />
-            <marker date="1511188129152" expanded="true" signature="2521:2749" placeholder="..." />
-            <marker date="1511188129152" expanded="false" signature="2596:2611" placeholder="..." />
-            <marker date="1511188129152" expanded="true" signature="4917:5405" placeholder="..." />
-            <marker date="1511188129152" expanded="false" signature="5002:5051" placeholder="..." />
-            <marker date="1511188129152" expanded="true" signature="5052:5374" placeholder="..." />
-            <marker date="1511188129152" expanded="false" signature="5127:5142" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/addRess.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.625">
@@ -708,11 +691,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5292793">
+        <state vertical-scroll-proportion="0.6779279">
           <caret line="105" column="58" selection-start-line="105" selection-start-column="58" selection-end-line="105" selection-end-column="58" />
           <folding>
             <element signature="n#style#0;n#textarea#0;n#div#0;n#div#0;n#div#4;n#div#2;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#7;n#div#2;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.6882966">
+          <caret line="153" column="37" selection-start-line="153" selection-start-column="37" selection-end-line="153" selection-end-column="37" />
+          <folding>
+            <marker date="1511273974774" expanded="true" signature="2387:2781" placeholder="..." />
+            <marker date="1511273974774" expanded="false" signature="2472:2521" placeholder="..." />
+            <marker date="1511273974774" expanded="true" signature="2522:2750" placeholder="..." />
+            <marker date="1511273974774" expanded="false" signature="2597:2612" placeholder="..." />
+            <marker date="1511273974774" expanded="true" signature="4903:5391" placeholder="..." />
+            <marker date="1511273974774" expanded="false" signature="4988:5037" placeholder="..." />
+            <marker date="1511273974774" expanded="true" signature="5038:5360" placeholder="..." />
+            <marker date="1511273974774" expanded="false" signature="5113:5128" placeholder="..." />
           </folding>
         </state>
       </provider>
