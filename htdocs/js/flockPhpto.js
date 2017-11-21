@@ -71,8 +71,9 @@ $(document).ready(function(){
                         console.log(typeof flockInfo);
                        $.each(flockInfo,function (i,item) {
                           if(parseInt(item)===parseInt(mycode)){
-                            console.log("群相册");
+                            console.log("删除显示");
                           }else{
+                              console.log("删除隐藏");
                               $(".delBtn").hide();
                           }
                        });
