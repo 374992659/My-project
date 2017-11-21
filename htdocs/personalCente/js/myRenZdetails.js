@@ -142,6 +142,7 @@ $(document).ready(function(){
                           if(item.id_card_pictures){
                               console.log("循环照片");
                            var id_card_picture=eval('(' + item.id_card_pictures + ')');
+                           console.log(typeof id_card_picture);
                               $.each(id_card_picture,function(i,item){
                                   id_card_pictures+=`
                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" >
