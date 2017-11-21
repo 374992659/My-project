@@ -3,6 +3,7 @@ function validate4(element){
     var reg = /^0?1[3|4|5|8][0-9]\d{8}$/;
     var byzz=document.getElementById(element).value;
     if(byzz=="" ||byzz.length!=11 ||  !reg.test(byzz)){
+        alert("手机号有误");
         return false;
     }
     return true;

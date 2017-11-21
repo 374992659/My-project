@@ -284,6 +284,21 @@ $(document).ready(function(){
             }
         })
     })();
+    //判断手机号格式是否正确
+    (function () {
+        $("#phone").blur(function () {
+            // 获取号码
+        var phoneNum=$("#phone").val();
+            validate4(phoneNum);
+        });
+    })();
+    //判断身份证号格式是否正确
+    (function () {
+        $("#identityCard").blur(function () {
+            var idCard=$("#identityCard").val();
+            isCardNo(idCard)
+        })
+    })();
     $(".weui-btn").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
@@ -337,27 +352,71 @@ $(document).ready(function(){
             var src=_this.attr("src");
             yourself_picture[i]=src;
         });
+        var role=1;
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":JSON.stringify(id_card_picture),"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":JSON.stringify(garden_picture),"picture":JSON.stringify(picture),"yourself_picture":JSON.stringify(yourself_picture),"garden_code":garden_code})],
         //    数据加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
-        $.ajax({
-            url:url+"UserCenter_ownerApplication",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                // 解密
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    showHide(data.errmsg);
-                }else{
-                    showHide(data.errmsg);
-                }
-            },
-            error:function(){}
-        })
+        //验证该楼盘是房号否已经认证
+        if(garden_code){
+            (function () {
+                var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"room_num":room_num,"garden_code":garden_code,"role":role})];
+                var jsonEncryptData=jsEncryptData(data);
+                $.ajax({
+                    url:url+"UserCenter_roomRoleExists",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function(data){
+                        var data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            localStorage.setItem("apptoken",data.apptoken);
+                            if(data.data.status===1){
+                                $.ajax({
+                                    url:url+"UserCenter_ownerApplication",
+                                    type:"POST",
+                                    data:{"data":jsonEncryptData},
+                                    success:function(data){
+                                        // 解密
+                                        var data=jsDecodeData(data);
+                                        console.log(data);
+                                        if(data.errcode===0){
+                                            localStorage.setItem("apptoken",data.apptoken);
+                                            showHide(data.errmsg);
+                                        }else{
+                                            showHide(data.errmsg);
+                                        }
+                                    },
+                                    error:function(){}
+                                })
+                            }else{
+                                showHide("该小区的此房号已经认证")
+                            }
+                        }
+                    }
+                })
+            })();
+        }else {
+            $.ajax({
+                url:url+"UserCenter_ownerApplication",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        showHide(data.errmsg);
+                    }else{
+                        showHide(data.errmsg);
+                    }
+                },
+                error:function(){}
+            })
+        }
+
+
     })
 });
