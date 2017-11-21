@@ -373,7 +373,6 @@ $(document).ready(function(){
                         console.log(data);
                         if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
-                            if(data.data.status===2){
                                 $.ajax({
                                     url:url+"UserCenter_ownerApplication",
                                     type:"POST",
@@ -391,9 +390,8 @@ $(document).ready(function(){
                                     },
                                     error:function(){}
                                 })
-                            }else{
-                                showHide(data.errmsg)
-                            }
+                        }else {
+                            showHide(data.errmsg)
                         }
                     }
                 })
