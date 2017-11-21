@@ -73,6 +73,7 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
+                console.log(data);
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcoode===0){
