@@ -296,12 +296,16 @@ $(document).ready(function(){
         var A=$(".flockHeadA img").attr("src");
         var B=$(".flockHeadB img").attr("src");
         var id_card_pictures="{'a':'"+A+"','b':'"+B+"'}";
+        console.log("租客身份证");
+        console.log(typeof id_card_pictures);
     //7 参数：owner_id_card_num 房东身份证号码 可填
         var owner_id_card_num=$("#renter_IdentityCard").val();
     //8 参数：owner_id_card_picture 房东身份证照片 可填
         var ownerA=$(".ownerFlockHeadA img").attr("src");
         var ownerB=$(".ownerFlockHeadB img").attr("src");
         var owner_id_card_picture="{'a':'"+ownerA+"','b':'"+ownerB+"'}";
+        console.log("");
+        console.log(typeof owner_id_card_picture);
     //9 参数：city_id 小区所在城市
         var city_id=$("#city option:selected").val();
     //10 参数：garden_name 小区名
