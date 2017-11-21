@@ -35,8 +35,8 @@ var addRess=function(){
                         for (var i = 0; i < result.province.length; i++) {
                             console.log(result.province[i]);
                             // var item = $("<option value="+result.province[i].id+" parent_id="+result.province[i].province +">"+result.province[i].province+"</option>");
-                            pro.append(item);
-                            console.log(item);
+                           // pro.append(item);
+                           // console.log(item);
                         }
                     }
                 });
