@@ -69,14 +69,14 @@ $(document).ready(function(){
                         var flockInfo=localStorage.getItem("flockInfo");
                         flockInfo=JSON.parse(flockInfo);
                         console.log(typeof flockInfo);
-                       $.each(flockInfo,function (i,item) {
-                          if(parseInt(item)===parseInt(mycode)){
-                            console.log("删除显示");
-                          }else{
-                              console.log("删除隐藏");
-                              $(".delBtn").hide();
-                          }
-                       });
+                       // $.each(flockInfo,function (i,item) {
+                       //    if(parseInt(item)===parseInt(mycode)){
+                       //      console.log("删除显示");
+                       //    }else{
+                       //        console.log("删除隐藏");
+                       //        $(".delBtn").hide();
+                       //    }
+                       // });
                     });
 
                 }
