@@ -63,6 +63,9 @@ $(document).ready(function(){
                         console.log(Li);
                         $(".picPlace").prepend(html);
                         $("."+item.id).append(Li);
+                        // 获取flockInfo
+                        var flockInfo=localStorage.getItem("flockInfo");
+                        console.log(flockInfo);
                     });
 
                 }
