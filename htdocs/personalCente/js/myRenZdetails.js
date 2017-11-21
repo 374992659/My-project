@@ -146,11 +146,11 @@ $(document).ready(function(){
                               console.log(typeof id_card_pic);
                               var obj = eval('(' + id_card_pic + ')');
                               console.log(obj);
-                              // $.each(obj,function(i,item){
-                              //     id_card_pictures+=`
-                              // <img src="http://wx.junxiang.ren/project/${item}" alt="" >
-                              // `
-                              // });
+                              $.each(obj,function(i,item){
+                                  id_card_pictures+=`
+                              <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                              `
+                              });
                           }
                     console.log(id_card_pictures);
                   //循环小区照片
