@@ -31,6 +31,7 @@ var addRess=function(){
                         }
                     });
                     function init() {
+                        console.log("加载省");
                         for (var i = 0; i < result.province.length; i++) {
                             var item = $("<option value="+result.province[i].id+" parent_id="+result.province[i].province +">"+result.province[i].province+"</option>");
                             pro.append(item);
