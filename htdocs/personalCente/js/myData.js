@@ -162,33 +162,35 @@ $(document).ready(function(){
                             alert("QQ号有误");
                             return;
                         }
+                    });
+                    //获取认证了的小区
+                    $.ajax({
+                        url:url+'UserCenter_getApplicationGarden',
+                        type:'POST',
+                        data:{'data':jsonEncryptData},
+                        success:function(data){
+                            var data=jsDecodeData(data);
+                            console.log(data);
+                            if(data.errcode === 5){
+                                $(".garden").hide();
+                            }else if(data.errcode  === 0){
+                                var html='';
+                                $.each(data.data,function(i,item){
+                                    html+= `
+                    <option value="${item.garden_code}">${item.garden_name}</option>
+
+                        `;
+                                });
+                                $('#gardenLIst').append(html);
+                            }
+                        }
                     })
                 }
 
             },
             error:function(){}
         });
-        $.ajax({
-            url:url+'UserCenter_getApplicationGarden',
-            type:'POST',
-            data:{'data':jsonEncryptData},
-            success:function(data){
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode === 5){
-                    $(".garden").hide();
-                }else if(data.errcode  === 0){
-                    var html='';
-                    $.each(data.data,function(i,item){
-                        html+= `
-                    <option value="${item.garden_code}">${item.garden_name}</option>
 
-                        `;
-                    });
-                    $('#gardenLIst').append(html);
-                }
-            }
-        })
     })();
     // 获取个人账号
     var account=localStorage.getItem("account");
