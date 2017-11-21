@@ -34,7 +34,7 @@ class AdeverseModel extends Model
      * @param adverse_id 广告id
      * */
     public function getAdverseC($adverse_id){
-        $code = $this->where(['id'=>$adverse_id])->getField('user_code');
+        $code = $this->where(['id'=>intval($adverse_id)])->getField('user_code');
         if(!$code)return false;
         return $code;
     }
