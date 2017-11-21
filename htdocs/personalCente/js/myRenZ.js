@@ -66,6 +66,8 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         var id=parseInt($(this).attr("title"));
         var type=1;
+        console.log(typeof id);
+        console.log(typeof type);
         var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"type":type})];
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
