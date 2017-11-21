@@ -20,6 +20,13 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     $.each(data.data,function(i,item){
+                        var httP=item.portrait.split(":")[0];
+                        var pic="";
+                        if(httP==="http"){
+                            pic=item.portrait.split;
+                        }else{
+                            pic="http://wx.junxiang.ren/project/"+item.portrait.split;
+                        }
                         var html="";
                         var Li="";
                         console.log(item);
@@ -28,7 +35,7 @@ $(document).ready(function(){
                             <div class="weui-panel__bd">
                                 <div  class="weui-media-box weui-media-box_appmsg">
                                     <div class="weui-media-box__hd">
-                                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" style="border-radius: 50px">
+                                        <img class="weui-media-box__thumb" src="${pic}" style="border-radius: 50px">
                                     </div>
                                     <div class="weui-media-box__bd" >
                                         <h4 class="weui-media-box__title" style="font-size: 15px;">${item.nickname}</h4>
