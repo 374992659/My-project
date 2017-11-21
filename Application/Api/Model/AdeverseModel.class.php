@@ -44,7 +44,7 @@ class AdeverseModel extends Model
      * @param adverse_id 广告id
      * */
     public function delAdverse($adverse_id){
-        $res=$this->where(['id'=>$adverse_id])->delete();
+        $res=$this->where(['id'=>intval($adverse_id)])->delete();
         if(!$res)return false;
         return $res;
     }
