@@ -51,6 +51,7 @@ $(document).ready(function(){
                         }else if(parseInt(item.role)===2){
                             userBox.push(item.user_code);
                         }
+                        console.log(userBox);
                         if(i<3){
                             var httP=item.portrait.split(":")[0];
                             if(httP==="http"){
@@ -240,7 +241,8 @@ $(document).ready(function(){
             showHide("无权进行此操作")
         }
     });
-console.log(userBox);
+
+
 });
 
 
