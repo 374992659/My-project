@@ -21,21 +21,21 @@ $(document).ready(function(){
                     $.each(item,function(i,item){
                         if(item.relation_name===null){
                             html+=`                   
-                            <tr title="${item.application_id}" value="${item.city_id}" title="${item.group_code}">
+                            <tr title="${item.application_id}" value="${item.city_id}">
                                 <td>${item.real_name}</td>
                                 <td>本人</td>
                                 <td>2017.03.3</td>
-                                <td ><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
+                                <td  title="${item.group_code}"><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
                             </tr>
                     
                              `
                         }else{
                             html+=`                   
-                            <tr title="${item.application_id}" value="${item.city_id}" title="${item.group_code}">
+                            <tr title="${item.application_id}" value="${item.city_id}">
                                 <td>${item.real_name}</td>
                                 <td>${item.relation_name}</td>
                                 <td>2017.03.3</td>
-                                <td><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
+                                <td title="${item.group_code}"><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
                             </tr>
                     
                              `
