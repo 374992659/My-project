@@ -66,6 +66,7 @@ var addRess1=function(){
                         if (num1 !== 0) {
                             for (var i = 0; i < result.city.length; i++) {
                                 if(num1 === result.city[i].parent_id){
+                                    alert(result.city[i].id);
                                     console.log(12314);
                                     var $item = $("<option value="+result.city[i].id +">" + result.city[i].city + "</option>");
                                     city.append($item);
