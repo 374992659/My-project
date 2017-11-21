@@ -52,6 +52,7 @@ $(document).ready(function(){
                             userBox.push(item.user_code);
                         }
                         console.log(userBox);
+                        localStorage.setItem("flockInfo",userBox);
                         if(i<3){
                             var httP=item.portrait.split(":")[0];
                             if(httP==="http"){
@@ -74,21 +75,13 @@ $(document).ready(function(){
                     $(".headImg").attr("src",group_header);
                     //设置禁言
                     if(parseInt(groupOwner)===parseInt(myCode)){
-                        console.log(groupOwner);
-                        console.log(myCode);
                         $("#setSpeak").show()
                     }else{
-                        console.log(groupOwner);
-                        console.log(myCode);
                         $("#setSpeak").hide()
                     }
                     if(groupOwner===myCode){
-                        console.log(groupOwner);
-                        console.log(myCode);
                         $("#dissolveFlock").show()
                     }else{
-                        console.log(groupOwner);
-                        console.log(myCode);
                         $("#dissolveFlock").hide()
                     }
                 }
