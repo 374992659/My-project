@@ -25,7 +25,7 @@ $(document).ready(function(){
                                 <td>${item.real_name}</td>
                                 <td>本人</td>
                                 <td>2017.03.3</td>
-                                <td ><button style="color: red">删除</button></td>
+                                <td ><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
                             </tr>
                     
                              `
@@ -35,7 +35,7 @@ $(document).ready(function(){
                                 <td>${item.real_name}</td>
                                 <td>${item.relation_name}</td>
                                 <td>2017.03.3</td>
-                                <td><button style="color: red">删除</button></td>
+                                <td><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
                             </tr>
                     
                              `
@@ -59,5 +59,35 @@ $(document).ready(function(){
         localStorage.setItem("personalCity_id",city_id);
         localStorage.setItem("application_id",application_id);
         window.location.href="owenerMemberDetails.html";//跳转到成员业主认证详情页面
-    })
+    });
+    //删除成员
+    $(".memberList").on("click","tr td button",function () {
+        var apptoken=localStorage.getItem("apptoken");
+        var id=parseInt($(this).attr("title"));
+        var cityID=parseInt($(this).attr("value"));
+        var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"city_id":cityID})];
+        var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"UserCenter _ownerDelNum",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcoode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    showHide(data.errmsg)
+
+                }else{
+                    showHide(data.errmsg)
+                }
+
+
+            }
+
+
+        });
+        return false;
+    });
 });
