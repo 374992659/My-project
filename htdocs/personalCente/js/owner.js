@@ -338,7 +338,7 @@ $(document).ready(function(){
             yourself_picture[i]=src;
         });
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":JSON.stringify(id_card_picture),"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":JSON.stringify(garden_picture),"picture":picture,"yourself_picture":yourself_picture,"garden_code":garden_code})],
+        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":JSON.stringify(id_card_picture),"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":JSON.stringify(garden_picture),"picture":JSON.stringify(picture),"yourself_picture":JSON.stringify(yourself_picture),"garden_code":garden_code})],
         //    数据加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
