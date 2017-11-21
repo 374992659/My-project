@@ -229,11 +229,11 @@ $(document).ready(function(){
         // id_card_num 身份证号码
         var id_card_num=$("#identityCard").val();
         // garden_code 小区code
-        var garden_code=$("#gardenName").attr("title");
+        var garden_code=$("#gardenName option:selected").attr("title");
         // garden_name 小区名称
-        var garden_name=$("#gardenName").val();
+        var garden_name=$("#gardenName option:selected").text();
         // city_id 城市id
-        var city_id=$("#city option:selected").val();
+        var city_id=$("#gardenName option:selected").val();
         // relation_name 关系
         var relation_name=$("#rela option:selected").val();
         // id_card_pictures 身份证照片 可填
