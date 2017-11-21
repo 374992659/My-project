@@ -21,7 +21,7 @@ $(document).ready(function(){
                     $.each(item,function(i,item){
                         if(item.relation_name===null){
                             html+=`                   
-                            <tr title="${item.application_id}" value="${item.city_id}">
+                            <tr title="${item.application_id}" value="${item.city_id}" title="${item.group_code}">
                                 <td>${item.real_name}</td>
                                 <td>本人</td>
                                 <td>2017.03.3</td>
@@ -31,7 +31,7 @@ $(document).ready(function(){
                              `
                         }else{
                             html+=`                   
-                            <tr title="${item.application_id}" value="${item.city_id}">
+                            <tr title="${item.application_id}" value="${item.city_id}" title="${item.group_code}">
                                 <td>${item.real_name}</td>
                                 <td>${item.relation_name}</td>
                                 <td>2017.03.3</td>
@@ -65,7 +65,8 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         var id=parseInt($(this).attr("title"));
         var cityID=parseInt($(this).attr("value"));
-        var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"city_id":cityID})];
+        var garden_code=parseInt($(this).parent().attr("title"));
+        var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"city_id":cityID,"garden_code":garden_code})];
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
