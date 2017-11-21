@@ -604,6 +604,7 @@ class UserCenterController extends VersionController
                     if(!$garden_arr){
                         $garden_arr[]=$user_garden;
                     }
+                    $this->echoEncrypData($garden_arr);
                     foreach($garden_arr as $k=>$v){
                         $arr = explode(',',$v);
                         $garden[]['garden_code'] =$arr[0];
