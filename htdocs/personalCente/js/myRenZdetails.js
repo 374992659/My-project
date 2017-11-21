@@ -166,7 +166,7 @@ $(document).ready(function(){
                       var myPicObj=eval('('+item.yourself_picture+')');
                       $.each(myPicObj,function(i,item){
                           myPic+=`
-                                 <img src="http://wx.junxiang.ren/project/${item}" alt="" >                               
+                                 <img src="${item}" alt="" >                               
                                 `
                       });
                   }
