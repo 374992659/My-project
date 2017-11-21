@@ -59,7 +59,7 @@ $(document).ready(function(){
             var apptoken=localStorage.getItem("apptoken");
             formData.append("file",$("#uploaderInputA")[0].files[0]);
             console.log("图片信息");
-            console.log( $('#uploaderInputA').files);
+            console.log( $('#uploaderInputA')[0].files[0]);
             var data=["",JSON.stringify({"apptoken":apptoken})];
             var json=jsEncryptData(data);
             formData.append("data",json);
