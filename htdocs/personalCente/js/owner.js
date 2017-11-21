@@ -304,6 +304,7 @@ $(document).ready(function(){
         var myPicA=localStorage.getItem("myPicA");
         var myPicB=localStorage.getItem("myPicB");
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}",
+            id_card_picture=JSON.stringify(id_card_picture),
         // 小区名字
             garden_name=$("#gardenName").val(),
         // 小区code（没有可不填）
@@ -322,7 +323,8 @@ $(document).ready(function(){
              var  src=_this.attr("src");
               garden_picture[i]=src;
           });
-        console.log(garden_picture);
+        garden_picture=JSON.stringify(garden_picture);
+        console.log(typeof garden_picture);
         // 合同房产证照片（可填）
         var PPa=$(".PPflockHeadA img").attr("src");
         var PPb=$(".PPflockHeadB img").attr("src");
