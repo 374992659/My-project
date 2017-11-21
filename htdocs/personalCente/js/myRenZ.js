@@ -68,6 +68,7 @@ $(document).ready(function(){
         var type=1;
         var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"type":type})];
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"UserCenter_delApplication",
             type:"POST",
