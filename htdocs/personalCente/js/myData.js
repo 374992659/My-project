@@ -131,7 +131,7 @@ $(document).ready(function(){
                     // 功能4 检测手机号是否正确
                     $("#phone").blur(function(){
                         var phone=$("#phone").val();
-                        if(phone){
+                        if(phone==="null"){
                             $("#phone").val("");
                         }
                         console.log(phone);
