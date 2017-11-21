@@ -338,12 +338,12 @@ $(document).ready(function(){
              var  src=_this.attr("src");
               garden_picture[i]=src;
           });
-       pica=JSON.stringify(garden_picture);
-        console.log(typeof pica);
+        console.log(typeof garden_picture);
         // 合同房产证照片（可填）
         var PPa=$(".PPflockHeadA img").attr("src");
         var PPb=$(".PPflockHeadB img").attr("src");
-        var picture="{'a':'"+PPa+"':'b':'"+PPb+"'}";
+        var picture={a:PPa,b:PPb};
+        console.log(typeof picture);
         // 个人照片（可填）
         var yourself_picture={};
         var  myImg=$(".myPic").find("img");
@@ -352,10 +352,10 @@ $(document).ready(function(){
             var src=_this.attr("src");
             yourself_picture[i]=src;
         });
-        var yourself_picture=JSON.stringify(yourself_picture);
+        console.log(typeof yourself_picture);
         var role=1;
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":JSON.stringify(id_card_picture),"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":JSON.stringify(garden_picture),"picture":JSON.stringify(picture),"yourself_picture":JSON.stringify(yourself_picture),"garden_code":garden_code})],
+        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_picture,"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":JSON.stringify(garden_picture),"picture":JSON.stringify(picture),"yourself_picture":JSON.stringify(yourself_picture),"garden_code":garden_code})],
         //    数据加密
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
