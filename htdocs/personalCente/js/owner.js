@@ -289,7 +289,6 @@ $(document).ready(function(){
         $("#phone").blur(function () {
             // 获取号码
         var phoneNum=$("#phone").val();
-            console.log(phoneNum);
             validate4(phoneNum);
         });
     })();
@@ -374,7 +373,7 @@ $(document).ready(function(){
                         console.log(data);
                         if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
-                            if(data.data.status===1){
+                            if(data.data.status===2){
                                 $.ajax({
                                     url:url+"UserCenter_ownerApplication",
                                     type:"POST",
@@ -393,7 +392,7 @@ $(document).ready(function(){
                                     error:function(){}
                                 })
                             }else{
-                                showHide("该小区的此房号已经认证")
+                                showHide(data.errmsg)
                             }
                         }
                     }
