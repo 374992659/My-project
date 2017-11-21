@@ -149,7 +149,7 @@ $(document).ready(function(){
                               `
                               });
                           }
-
+                    console.log(id_card_pictures);
                   //循环小区照片
                   var plotPic="";
                   //将json字符串转换成数组
