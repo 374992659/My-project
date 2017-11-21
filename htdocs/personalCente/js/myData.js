@@ -130,6 +130,7 @@ $(document).ready(function(){
                   $(".myInfo").html(html);
                     // 功能4 检测手机号是否正确
                     var phone=$("#phone").val();
+                    console.log(phone);
                     if(phone==="null"){
                         $("#phone").val("");
                     }
