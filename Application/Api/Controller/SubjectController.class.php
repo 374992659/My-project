@@ -497,7 +497,7 @@ class SubjectController extends VersionController
         if(!$user_code)$this->echoEncrypData(1);
         if($user_code !== $this->account_code)$this->echoEncrypData(500);
         $res = $adverse->delAdverse($adverse_id);
-        if(!$res)$this->echoEncrypData(1);
+        if(!$res)$this->echoEncrypData(1, $city_id,$adverse_id);
         $this->echoEncrypData(0);
     }
 
