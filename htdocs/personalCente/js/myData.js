@@ -129,14 +129,14 @@ $(document).ready(function(){
                     `;
                   $(".myInfo").html(html);
                    //如果微信号为null value值为空
-                    var phone=$("#weiXin").val();
-                    console.log(phone);
-                    if(phone==="null"){
+                    var weiXin=$("#weiXin").val();
+                    if(weiXin==="null"){
                         $("#weiXin").val("");
                         return;
                     }
                     //如果爱好为空
                     var hobby=$("#likes").val();
+                    console.log(hobby);
                     if(hobby==="null"){
                         $("#likes").val("");
                         return;
