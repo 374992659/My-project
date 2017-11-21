@@ -467,14 +467,20 @@ class SubjectController extends VersionController
         );
         $this->executeSql('databases.sql',$replace);
         $adverse=new Model\AdeverseModel($province_id,$city_id);
-        $res= $adverse->execute("INSERT INTO `adverse_`".$city_id."  (`garden_code`, `title`, `content`, `user_code`, `nickname`, `portrait`, `create_time`, `is_public`) VALUES ( '".$data['garden_code']."','".$data['title']."','".$data['content']."','".$data['user_code']."','".$data['nickname']."','".$data['portrait']."',".$data['create_time'].",".$data['is_public']);
-        if(!$res){
-            $res2= $adverse->add($data);
-            if(!$res2){
-                $this->echoEncrypData(1);
+//        $res= $adverse->execute("INSERT INTO `adverse_`".$city_id."  (`garden_code`, `title`, `content`, `user_code`, `nickname`, `portrait`, `create_time`, `is_public`) VALUES ( '".$data['garden_code']."','".$data['title']."','".$data['content']."','".$data['user_code']."','".$data['nickname']."','".$data['portrait']."',".$data['create_time'].",".$data['is_public']);
+//        if(!$res){
+//            $res2= $adverse->add($data);
+//            if(!$res2){
+//                $this->echoEncrypData(1);
+//            }
+//        }
+        while(true){
+            $res= $adverse->add($data);
+            if($res){
+                $this->echoEncrypData(0);
             }
         }
-        $this->echoEncrypData(0);
+//        $this->echoEncrypData(0);
     }
     /*
      * 删除广告
