@@ -457,9 +457,7 @@ class SubjectController extends VersionController
             'is_public'=>1,
             'garden_code'=>$garden_code,
         );
-        if($garden_code){
-            $data['garden_code']=$garden_code;
-        }else{
+        if(!$garden_code){
             $data['is_public']=2;
         }
         $replace = array(
@@ -469,7 +467,7 @@ class SubjectController extends VersionController
         );
         $this->executeSql('databases.sql',$replace);
         $adverse=new Model\AdeverseModel($province_id,$city_id);
-        $res= $adverse->add($data);
+        $res= $adverse->execute("INSERT INTO `adverse_`".$city_id."  (`garden_code`, `title`, `content`, `user_code`, `nickname`, `portrait`, `create_time`, `is_public`) VALUES ( ".$data['garden_code'].",".$data['title'].",".$data['content'].",".$data['user_code'].",".$data['nickname'].",".$data['portrait'].",".$data['create_time'].",".$data['is_public']);
         if(!$res){
             $res2= $adverse->add($data);
             if(!$res2){
