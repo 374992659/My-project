@@ -470,7 +470,12 @@ class SubjectController extends VersionController
         $this->executeSql('databases.sql',$replace);
         $adverse=new Model\AdeverseModel($province_id,$city_id);
         $res= $adverse->add($data);
-        if(!$res)$this->echoEncrypData(1);
+        if(!$res){
+            $res2= $adverse->add($data);
+            if(!$res2){
+                $this->echoEncrypData(1);
+            }
+        }
         $this->echoEncrypData(0);
     }
     /*
