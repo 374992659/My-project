@@ -604,13 +604,14 @@ class UserCenterController extends VersionController
                     if(!$garden_arr){
                         $garden_arr[]=$user_garden;
                     }
-                    $this->echoEncrypData(1,$garden_arr);
+
                     foreach($garden_arr as $k=>$v){
                         $arr = explode(',',$v);
                         $garden[]['garden_code'] =$arr[0];
                         $garden[]['role'] =$arr[1];
                     }
                 }
+                $this->echoEncrypData(1,$garden);
                 if(!$garden){
                     $res2=true;
                 }else{
