@@ -283,14 +283,25 @@ class UserCenterController extends VersionController
         }else{
             $garden_code = $this->pdata['garden_code'];
         }
-        $city_id = substr($this->account_code,0,6);
-        $model = new Model\OwnerApplicationController($city_id); //该记录根据用户所属地区分表
-        $model->startTrans();
-        $real_name = $model->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1])->getField('real_name');
+//        $city_id = substr($this->account_code,0,6);
+//        $model = new Model\OwnerApplicationController($city_id); //该记录根据用户所属地区分表
+//        $model->startTrans();
+//        $real_name = $model->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1])->getField('real_name');
+//        if($real_name){
+//            $name = substr_replace($real_name,'**',1);
+//            $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
+//        }
+        $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
+        $garden_province_id= M('baseinfo.swf_area')->where(['city_code'=>$garden_city_id])->getField('province_code');
+        $garden_room = new Model\GardenRoomModel($garden_province_id,$garden_city_id);
+        $real_name = $garden_room->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1,'relation_name'=>'户主'])->getField('real_name');
         if($real_name){
             $name = substr_replace($real_name,'**',1);
             $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
         }
+        $city_id = substr($this->account_code,0,6);
+        $model = new Model\OwnerApplicationController($city_id); //该记录根据用户所属地区分表
+        $model->startTrans();
         //1.认证申请库添加数据
         $res1 = $model->addApplication(array(
             'user_code'=>$this->account_code,
@@ -726,7 +737,15 @@ class UserCenterController extends VersionController
         $city_id = substr($this->account_code,0,6);
         $tenant_application = new Model\TenantApplicationModel($city_id);
         $tenant_application->startTrans();
-        $real_name = $tenant_application->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'role'=>1])->getField('real_name');
+//        $real_name = $tenant_application->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'role'=>1])->getField('real_name');
+//        if($real_name){
+//            $name = substr_replace($real_name,'**',1);
+//            $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
+//        }
+        $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
+        $garden_province_id= M('baseinfo.swf_area')->where(['city_code'=>$garden_city_id])->getField('province_code');
+        $garden_room = new Model\GardenRoomModel($garden_province_id,$garden_city_id);
+        $real_name = $garden_room->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1,'relation_name'=>'主租户'])->getField('real_name');
         if($real_name){
             $name = substr_replace($real_name,'**',1);
             $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
