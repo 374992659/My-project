@@ -544,6 +544,7 @@ class UserCenterController extends VersionController
      * @param city_id 城市id
      * @param garden_code 小区code
      * @param application_id 认证id（实际为garden_room 分表id）
+     * @param room_num 房号
      * */
     protected function ownerDelNum_v1_0_0(){
         $this->checkParam(array('city_id','application_id'));
@@ -983,7 +984,9 @@ class UserCenterController extends VersionController
     /*
      *租户删除成员
      * @param city_id 城市id
+     * @param garden_code 小区code
      * @param application_id 认证id（实际为garden_room 分表id）
+     * @param room_num 房号
      * */
     protected function TenantDelNum_v1_0_0(){
         $this->checkParam(array('city_id','application_id'));
