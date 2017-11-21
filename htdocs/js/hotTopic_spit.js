@@ -68,10 +68,9 @@ $(document).ready(function(){ "use strict";
         })
     });
     //删除图片
-    
-    //     $(".picPlace").on("click",".weui-uploader__file .delImg",function(e){
-    //         $(e.target).parent().remove();
-    //     })
+    $("#uploaderFiles").on("click",".weui-uploader__file .delImg",function(){
+        $(this).parent().remove();
+    });
     //获取小区code
     (function(){
         // 获取apptoken
