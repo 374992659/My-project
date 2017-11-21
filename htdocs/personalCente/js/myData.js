@@ -91,7 +91,7 @@ $(document).ready(function(){
                 </div>
             </div>
             <!--常住小区-->
-            <div class="weui-cells">
+            <div class="weui-cells garden" >
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="house">常住小区：<span style="color: green">*</span></label>
@@ -176,7 +176,7 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode === 5){
-                    // $('#gardenLIst').val('暂无认证通过的小区');
+                    $(".garden").hide();
                 }else if(data.errcode  === 0){
                     var html='';
                     $.each(data.data,function(i,item){
