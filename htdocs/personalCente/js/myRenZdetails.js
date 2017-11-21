@@ -142,6 +142,8 @@ $(document).ready(function(){
                           if(item.id_card_pictures){
                               console.log("循环照片");
                               var id_card_pic=JSON.parse(item.id_card_pictures);
+                              console.log(id_card_pic);
+                              console.log(typeof id_card_pic);
                               var obj = eval('(' + id_card_pic + ')');
                               $.each(obj,function(i,item){
                                   id_card_pictures+=`
