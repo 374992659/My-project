@@ -128,6 +128,15 @@ $(document).ready(function(){
             </div>
                     `;
                   $(".myInfo").html(html);
+                    // 功能4 检测手机号是否正确
+                    $("#phone").blur(function(){
+                        console.log();
+                        var phone=$("#phone").val();
+                        if(!(/^1[34578]\d{9}$/.test(phone))){
+                            //  alert("手机号码有误，请重填");
+                            return false;
+                        }
+                    });
                 }
 
             },
@@ -167,22 +176,9 @@ $(document).ready(function(){
         var phone=$("#phone").val();
         console.log(phone);
     });
-    // 功能2 查看两次密码是否一致
-    $("#rePassword").blur(function(){
-        console.log(123);
-        // 获取密码
-        var password=$("#password").val(),
-        // 获取重复密码
-            rePassword=$("#rePassword").val();
-        // 比较两个密码
-        console.log(password);
-        console.log(rePassword);
-        if(password!=rePassword){
-            alert("两次密码不一致")
-        }
-    });
     // 功能4 检测手机号是否正确
     $("#phone").blur(function(){
+        console.log();
         var phone=$("#phone").val();
         if(!(/^1[34578]\d{9}$/.test(phone))){
           //  alert("手机号码有误，请重填");
