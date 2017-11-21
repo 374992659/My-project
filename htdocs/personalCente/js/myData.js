@@ -176,7 +176,7 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode === 5){
-                    $('#house').val('暂无认证通过的小区');
+                    // $('#gardenLIst').val('暂无认证通过的小区');
                 }else if(data.errcode  === 0){
                     var html='';
                     $.each(data.data,function(i,item){
