@@ -290,7 +290,7 @@ $(document).ready(function(){
             // 获取号码
         var phoneNum=$("#phone").val();
         console.log(phoneNum);
-            validate4(phoneNum);
+            validate4(phone);
         });
     })();
     //判断身份证号格式是否正确
