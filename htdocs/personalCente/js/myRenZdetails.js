@@ -142,17 +142,15 @@ $(document).ready(function(){
                           if(item.id_card_pictures){
                               console.log("循环照片");
                               var id_card_pic=JSON.parse(item.id_card_pictures);
-                              console.log(id_card_pic);
-                              console.log(typeof id_card_pic);
                               var obj = eval('(' + id_card_pic + ')');
-                              console.log(obj);
-                              console.log(typeof obj);
-                              $.each(obj,function(i,item){
-                                  id_card_pictures+=`
-                              <img src="http://wx.junxiang.ren/project/${item}" alt="" >
-                              `
+                              data=[];
+                              $.each(id_card_pic,function(i,item){
+                                  var obj=eval('(' + item + ')');
+                                  data[i]=obj;
                               });
+                              console.log(data);
                           }
+
                     console.log(id_card_pictures);
                   //循环小区照片
                   var plotPic="";
