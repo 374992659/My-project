@@ -10,6 +10,8 @@ $(document).ready(function(){
     var groupOwner="";
     // 获取自己code号
     var myCode=localStorage.getItem("my_code");
+    var userBox=[];
+    userBox.push(myCode);
     // 获取群内用户
     var getGroupUser=function(){
         //获取群头像
@@ -45,6 +47,9 @@ $(document).ready(function(){
                         if(parseInt(item.role)===1){
                             groupOwner=item.user_code;
                             console.log(groupOwner);
+                            userBox.push(item.user_code);
+                        }else if(parseInt(item.role)===2){
+                            userBox.push(item.user_code);
                         }
                         if(i<3){
                             var httP=item.portrait.split(":")[0];
@@ -235,7 +240,7 @@ $(document).ready(function(){
             showHide("无权进行此操作")
         }
     });
-
+console.log(userBox);
 });
 
 
