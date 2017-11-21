@@ -25,7 +25,7 @@ $(document).ready(function(){
                                 <td>${item.real_name}</td>
                                 <td>本人</td>
                                 <td>2017.03.3</td>
-                                <td  title="${item.group_code}"><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
+                                <td  title="${item.garden_code}"><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
                             </tr>
                     
                              `
@@ -35,7 +35,7 @@ $(document).ready(function(){
                                 <td>${item.real_name}</td>
                                 <td>${item.relation_name}</td>
                                 <td>2017.03.3</td>
-                                <td title="${item.group_code}"><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
+                                <td title="${item.garden_code}"><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
                             </tr>
                     
                              `
