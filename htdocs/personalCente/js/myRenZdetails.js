@@ -146,6 +146,7 @@ $(document).ready(function(){
                               console.log(typeof id_card_pic);
                               var obj = eval('(' + id_card_pic + ')');
                               console.log(obj);
+                              console.log(typeof obj);
                               $.each(obj,function(i,item){
                                   id_card_pictures+=`
                               <img src="http://wx.junxiang.ren/project/${item}" alt="" >
