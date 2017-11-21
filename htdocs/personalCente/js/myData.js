@@ -128,14 +128,21 @@ $(document).ready(function(){
             </div>
                     `;
                   $(".myInfo").html(html);
-                    // 功能4 检测手机号是否正确
+                   //如果微信号为null value值为空
                     var phone=$("#weiXin").val();
                     console.log(phone);
                     if(phone==="null"){
                         $("#weiXin").val("");
+                        return;
                     }
+                    //如果爱好为空
+                    var hobby=$("#likes").val();
+                    if(hobby==="null"){
+                        $("#likes").val("");
+                        return;
+                    }
+                    // 功能4 检测手机号是否正确
                     $("#phone").blur(function(){
-
                         console.log(phone);
                         if(!(/^1[34578]\d{9}$/.test(phone))){
                             alert("手机号码有误，请重填");
