@@ -64,7 +64,7 @@ $(document).ready(function(){
     //删除我的认证
     $(".RZlist").on("click",".renZdetails td button",function () {
         var apptoken=localStorage.getItem("apptoken");
-        var id=$(this).attr("title");
+        var id=parseInt($(this).attr("title"));
         var type=1;
         var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"type":type})];
         var jsonEncryptData=jsEncryptData(data);
