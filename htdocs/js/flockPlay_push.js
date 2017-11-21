@@ -484,10 +484,11 @@ $(document).ready(function(){
         (function () {
             $("#other-date1").blur(function(){
                 // 获取当前时间的时间戳
-                var timestamp=Date.parse(new Date);
+                var timestamp=Date.parse(new Date)/1000;
                 console.log("当前是的时间戳"+timestamp);
                 // 获取开始的时间的时间戳
                 var startTime=$("#other-date1").val();
+                console.log(startTime);
                 var arr = startTime.split(/[- : \/]/),
                     date = new Date(arr[0], arr[1]-1, arr[2]),
                     start_time=date/1000;
