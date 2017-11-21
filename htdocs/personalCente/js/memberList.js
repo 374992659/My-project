@@ -66,7 +66,7 @@ $(document).ready(function(){
         var id=parseInt($(this).attr("title"));
         var cityID=parseInt($(this).attr("value"));
         var garden_code=parseInt($(this).parent().attr("title"));
-        var room_num=parseInt($(this).parent().attr("value"));
+        var room_num=$(this).parent().attr("value");
         var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"city_id":cityID,"garden_code":garden_code,"room_num":room_num})];
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
