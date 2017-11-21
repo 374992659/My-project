@@ -460,12 +460,12 @@ class SubjectController extends VersionController
         }else{
             $data['is_public']=2;
         }
-        $data = array(
+        $repalce = array(
             'province_id'=>$province_id,
             'city_id'=>$city_id,
             'account_code'=>$this->account_code,
         );
-        $this->executeSql('databases.sql',$data);
+        $this->executeSql('databases.sql',$repalce);
         $adverse=new Model\AdeverseModel($province_id,$city_id);
         $res= $adverse->addAdverse($data);
         if(!$res)$this->echoEncrypData(1);
