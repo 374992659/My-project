@@ -139,7 +139,7 @@ $(document).ready(function(){
                     console.log(hobby);
                     if(hobby==="null"){
                         $("#likes").val("");
-                      
+
                     }
                     // 功能4 检测手机号是否正确
                     $("#phone").blur(function(){

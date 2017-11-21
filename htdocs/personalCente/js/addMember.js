@@ -58,6 +58,8 @@ $(document).ready(function(){
             var formData= new FormData();
             var apptoken=localStorage.getItem("apptoken");
             formData.append("file",$("#uploaderInputA")[0].files[0]);
+            console.log("图片信息");
+            console.log( $('#uploaderInputA').files);
             var data=["",JSON.stringify({"apptoken":apptoken})];
             var json=jsEncryptData(data);
             formData.append("data",json);
@@ -163,6 +165,21 @@ $(document).ready(function(){
                 });
             });
         })();
+     //判断电话号码是否正确
+    $("#phone").blur(function(){
+        // 获取电话号码
+        var phoneNum=$("#phone").val();
+        console.log(phoneNum);
+        if(!(/^1[34578]\d{9}$/.test(phoneNum))){
+            alert("手机号码有误，请重填");
+        }
+    });
+    //判断身份证号码是否正确
+     $("#identityCard").blur(function(){
+         var idCard=$("#identityCard").val();
+         console.log(idCard);
+         isCardNo(idCard);
+     });
     // 提交
     $(".weui-btn").click(function(){
         // 获取apptoken
