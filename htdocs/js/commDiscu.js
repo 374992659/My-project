@@ -52,7 +52,7 @@ $(document).ready(function(){
                             userBox.push(item.user_code);
                         }
                         console.log(userBox);
-                        localStorage.setItem("flockInfo",userBox);
+                        localStorage.setItem("flockInfo",JSON.stringify(userBox));
                         if(i<3){
                             var httP=item.portrait.split(":")[0];
                             if(httP==="http"){
