@@ -132,14 +132,14 @@ $(document).ready(function(){
                     var weiXin=$("#weiXin").val();
                     if(weiXin==="null"){
                         $("#weiXin").val("");
-                        return;
+
                     }
                     //如果爱好为空
                     var hobby=$("#likes").val();
                     console.log(hobby);
                     if(hobby==="null"){
                         $("#likes").val("");
-                        return;
+                      
                     }
                     // 功能4 检测手机号是否正确
                     $("#phone").blur(function(){
