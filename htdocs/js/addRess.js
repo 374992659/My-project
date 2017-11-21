@@ -8,9 +8,9 @@ var addRess=function(){
                 var result = data.data;
                 console.log(result);
                 $(function () {
-                    var pro = $(".province"),
-                        city = $(".city"),
-                        dAC = $(".districtAndCounty"),
+                    var pro = $("#province"),
+                        city = $("#city"),
+                        dAC = $("#districtAndCounty"),
                         num1 = null,
                         num2 = null;
                     init();
@@ -33,7 +33,6 @@ var addRess=function(){
                     function init() {
                         console.log("加载省");
                         for (var i = 0; i < result.province.length; i++) {
-                            console.log(result.province[i]);
                             // var item = $("<option value="+result.province[i].id+" parent_id="+result.province[i].province +">"+result.province[i].province+"</option>");
                             var item=`
                              <option value="">${result.province[i].province}</option>
