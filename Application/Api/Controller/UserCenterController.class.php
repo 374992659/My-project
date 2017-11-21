@@ -610,7 +610,7 @@ class UserCenterController extends VersionController
                         $garden[]['role'] =$arr[1];
                     }
                 }
-                $this->echoEncrypData(1,$garden);
+                $this->echoEncrypData(1,$user_garden);
                 if(!$garden){
                     $res2=true;
                 }else{
