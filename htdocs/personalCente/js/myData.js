@@ -131,6 +131,9 @@ $(document).ready(function(){
                     // 功能4 检测手机号是否正确
                     $("#phone").blur(function(){
                         var phone=$("#phone").val();
+                        if(phone){
+                            $("#phone").val("");
+                        }
                         console.log(phone);
                         if(!(/^1[34578]\d{9}$/.test(phone))){
                             alert("手机号码有误，请重填");
