@@ -168,6 +168,7 @@ $(document).ready(function(){
                   $(".personal").html(html);
                   //常住小区
                    var garden=JSON.parse(result.default_garden);
+                   $(".gender").html(garden);
                     console.log(garden);
                   // 遍历认证楼盘
                     var RenZplot="";
