@@ -346,7 +346,17 @@ class UserCenterController extends VersionController
             $model->rollback();
             $garden_num->rollback();
             $user_info->rollback();
-            $this->echoEncrypData(1,array($res1,$res2,$res3));
+            $this->echoEncrypData(1,array($res1,$res2,$res3),array(
+                'city_id'=>$this->pdata['city_id'],
+                'garden_code'=>$garden_code,
+                'room_num'=>$this->pdata['room_num'],
+                'user_code'=>$this->account_code,
+                'role'=>1,
+                'garden_name'=>$this->pdata['garden_name'],
+                'real_name'=>$this->pdata['real_name'],
+                'relation_name'=>'户主',
+                'create_time'=>time(),
+            ));
         }
     }
     /*
