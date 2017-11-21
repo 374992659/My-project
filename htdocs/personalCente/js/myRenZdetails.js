@@ -141,10 +141,13 @@ $(document).ready(function(){
                           var id_card_pictures="";
                           if(item.id_card_pictures){
                               console.log("循环照片");
-                              var obj=JSON.parse()
+                           var id_card_picture=eval('(' + item.id_card_pictures + ')');
+                              $.each(id_card_picture,function(i,item){
+                                  id_card_pictures+=`
+                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                      `
+                              });
                           }
-
-                    console.log(id_card_pictures);
                   //循环小区照片
                   var plotPic="";
                   //将json字符串转换成数组
@@ -156,7 +159,6 @@ $(document).ready(function(){
                       `
                       });
                   }
-
                     //循环个人照片
                   var myPic="";
                   if(item.yourself_picture){
