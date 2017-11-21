@@ -137,6 +137,20 @@ $(document).ready(function(){
                             return false;
                         }
                     });
+                    $("#weiXin").blur(function(){
+                        var wechat_num=$("#weiXin").val();
+                        if(isChina(wechat_num)){
+                            alert("微信号有误");
+                            return;
+                        }
+                    });
+                    $("#QQ").blur(function(){
+                        var QQ_num=$("#QQ").val();
+                        if(isChina(QQ_num)){
+                            alert("QQ号有误");
+                            return;
+                        }
+                    })
                 }
 
             },
@@ -148,13 +162,17 @@ $(document).ready(function(){
             data:{'data':jsonEncryptData},
             success:function(data){
                 var data=jsDecodeData(data);
+                console.log(data);
                 if(data.errcode === 5){
                     $('#house').val('暂无认证通过的小区');
                 }else if(data.errcode  === 0){
                     var html='';
                     $.each(data.data,function(i,item){
-                        html= "<option value='"+item.garden_code+"'>item.garden_name</option>";
-                    })
+                        html+= `
+                    <option value='"+item.garden_code+"'>${item.garden_name}</option>
+
+                        `;
+                    });
                     $('#gardenLIst').append(html);
                 }
             }
@@ -176,15 +194,7 @@ $(document).ready(function(){
         var phone=$("#phone").val();
         console.log(phone);
     });
-    // 功能4 检测手机号是否正确
-    $("#phone").blur(function(){
-        console.log();
-        var phone=$("#phone").val();
-        if(!(/^1[34578]\d{9}$/.test(phone))){
-          //  alert("手机号码有误，请重填");
-            return false;
-        }
-    });
+
     // 功能5 上传用户头像
     $('.myInfo').on("change",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__hd .weui-cells .weui-uploader__input-box #uploaderInput",function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
