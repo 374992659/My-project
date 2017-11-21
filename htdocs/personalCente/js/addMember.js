@@ -187,6 +187,32 @@ $(document).ready(function(){
          console.log(idCard);
          isCardNo(idCard);
      });
+     //获取已经认证通过的小区
+    (function () {
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"UserCenter_getApplicationGarden",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var  html="";
+                    $.each(data.data,function(i,item){
+                        html+=`
+                         <option value="2" title="${item.garden_code}">${item.garden_name}</option>                     
+                        `
+                    });
+                    $("#gardenName").html(html);
+                }
+
+            }
+        })
+    })();
     // 提交
     $(".weui-btn").click(function(){
         // 获取apptoken
