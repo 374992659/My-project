@@ -61,34 +61,39 @@ $(document).ready(function(){
             formData.append("file",$("#uploaderInputA")[0].files[0]);
             console.log("图片信息");
             console.log( $('#uploaderInputA')[0].files[0].size);
-            console.log(size);
+           var  picSize= $('#uploaderInputA')[0].files[0].size
             var data=["",JSON.stringify({"apptoken":apptoken})];
             var json=jsEncryptData(data);
             formData.append("data",json);
             console.log(formData);
-            $.ajax({
-                type:"POST",
-                url:url+"UserCenter_uploadOwnerApplicationPic",
-                fileElementId:'uploaderInputA',
-                data:formData,
-                processData : false,
-                contentType : false,
-                secureuri:false,
-                success : function(data){
-                    // 解密
-                    data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        console.log(data.data);
-                        $(".flockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
-                        $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
-                        $(".flockHeadA").attr("style","display:block");
+            if(parseInt(picSize)>parseInt(size)){
+                alert("上传图片大于2M,请重新上传")
+            }else{
+                $.ajax({
+                    type:"POST",
+                    url:url+"UserCenter_uploadOwnerApplicationPic",
+                    fileElementId:'uploaderInputA',
+                    data:formData,
+                    processData : false,
+                    contentType : false,
+                    secureuri:false,
+                    success : function(data){
+                        // 解密
+                        data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            console.log(data.data);
+                            $(".flockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
+                            $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
+                            $(".flockHeadA").attr("style","display:block");
+                        }
+                    },
+                    error:function (data) {
+                        console.log(data);
                     }
-                },
-                error:function (data) {
-                    console.log(data);
-                }
-            });
+                });
+            }
+
         });
         // 上传身份证正面B
         $('#uploaderInputB').change(function(e) {
