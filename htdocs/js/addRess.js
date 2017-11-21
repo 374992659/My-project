@@ -40,7 +40,7 @@ var addRess=function(){
                             
                             `;
                            pro.append(item);
-                           // console.log(item);
+                          console.log(item);
                         }
                     }
                 });
