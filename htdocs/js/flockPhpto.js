@@ -23,9 +23,9 @@ $(document).ready(function(){
                         var httP=item.portrait.split(":")[0];
                         var pic="";
                         if(httP==="http"){
-                            pic=item.portrait.split;
+                            pic=item.portrait;
                         }else{
-                            pic="http://wx.junxiang.ren/project/"+item.portrait.split;
+                            pic="http://wx.junxiang.ren/project/"+item.portrait;
                         }
                         console.log(pic);
                         var html="";
