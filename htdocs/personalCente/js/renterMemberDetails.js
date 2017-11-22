@@ -141,11 +141,13 @@ $(document).ready(function(){
                 if(result.id_card_pictures){
                     var id_cardPicObj=eval('('+result.id_card_pictures+')');
                         $.each(id_cardPicObj,function(i,item){
-                            console.log("证件照");
-                            console.log(item);
-                            id_cardPic+=`
+                            if(item){
+                            }else{
+                                id_cardPic+=`
                          <img src="http://wx.junxiang.ren/project/${item}" alt="" >
                         `
+                            }
+
                         });
                     $(".papersPic").append(id_cardPic);
                 }
