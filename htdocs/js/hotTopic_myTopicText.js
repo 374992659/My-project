@@ -280,7 +280,7 @@ $(document).ready(function(){
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
-                    $(".choiseList").append(choise);
+                    $(".choiseList").html(choise);
                     $(".optionList").append(option);
                     $(".picPlace").html(topicPic);
                     if(parseInt(result.type)===1){
