@@ -174,8 +174,7 @@ $(document).ready(function(){
                         var key="";
                         var garden=JSON.parse(result.default_garden);
                         for (var p1 in result.default_garden) {
-                            if (result.default_garden.hasOwnProperty(p1))
-                                key=p1;
+                                key.push(p1);
                         }
                         console.log(key);
                         $(".garden").text(garden[510100988967]);
