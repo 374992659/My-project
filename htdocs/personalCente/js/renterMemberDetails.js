@@ -144,6 +144,7 @@ $(document).ready(function(){
                             console.log("证件照");
                             console.log(item);
                             if(!item){
+                                console.log("item不为空");
                                 id_cardPic+=`
                          <img src="http://wx.junxiang.ren/project/${item}" alt="" >
                         `
