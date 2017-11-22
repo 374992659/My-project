@@ -46,8 +46,6 @@ $(document).ready(function(){
                     </div>
                 </div>
                 `
-
-
                 });
 
                 $(".myTopicList").append(html);
