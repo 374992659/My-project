@@ -1420,7 +1420,12 @@ class UserCenterController extends VersionController
         $account_code =  $this->account_code;
         $mongo = new \MongoClient();
         $data1 = $mongo->baseinfo->user_level->find(array('inviter_code'=>$account_code));
-//        $first_level =
+        $first_level =iterator_to_array($data1);
+        $data2= array();
+        foreach ($data1 as $k=>$v){
+            $data=$mongo->baseinfo->user_level->find(array('inviter_code'=>$v['user_code']));
+            $data2 = array_merge($data,$data2);
+        }
     }
 
 
