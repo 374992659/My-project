@@ -126,7 +126,7 @@ $(document).ready(function(){
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${item.title}</h4>
                                 <p class="weui-media-box__desc">${item.content}</p>
-                                <button class="delBtn" title="${item.adverse_id}">删除</button>
+                                <button class="delBtn" sort="${i}" title="${item.adverse_id}">删除</button>
                             </div>
                         </div>
                         `
@@ -210,7 +210,6 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     // $(e.target).parent().parent().parent().remove();
                     $(this).parent().parent().remove();
-                    console.log($(this));
                 }else{
                     console.log(data.errmsg);
                 }
