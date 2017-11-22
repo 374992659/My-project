@@ -1014,10 +1014,10 @@ class UserCenterController extends VersionController
         $this->checkParam(array('city_id','application_id'));
         $account_code = $this->account_code;
         $account_city_id = substr($account_code,0,6);
-        $mode = new Model\OwnerApplicationController($account_city_id);
+        $mode = new Model\TenantApplicationModel($account_city_id);
         $role = $mode->where(['user_code'=>$account_code,'city_id'=>$this->pdata['city_id'],'garden_code'=>$this->pdata['garden_code'],'room_num'=>$this->pdata['room_num'],'status'=>1])->getField('role');//已通过的认证信息获取角色
         if(intval($role) !== 1) {
-            $this->echoEncrypData(1, '只有房主才有此操作权利哦');
+            $this->echoEncrypData(1, '只有主租户才有此操作权利哦');
         }else{
             $province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
             $garden_room = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
