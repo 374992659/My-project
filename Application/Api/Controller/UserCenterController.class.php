@@ -1363,7 +1363,7 @@ class UserCenterController extends VersionController
         if($user_info['user_code'] !== $this->account_code)$this->echoEncrypData(500);
         $province_id = M('baseinfo.swf_area')->where(['city_code'=>$user_info['city_id']])->getField('province_code');
         $garden_room = new Model\GardenRoomModel($province_id,$user_info['city_id']);
-        $count = $garden_room->where(['city_id'=>$user_info['user_info'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>intval($this->pdata['type'])])->count();
+        $count = $garden_room->where(['city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>intval($this->pdata['type'])])->count();
         if($count >1)$this->echoEncrypData(1,'请删除其他成员后在执行该操作');
         $mode->startTrans();
         $res1 = $mode->where(['id'=>$this->pdata['application_id']])->delete();
@@ -1401,9 +1401,9 @@ class UserCenterController extends VersionController
             $res2 = $info_model->where(['account_code'=>$user_info['user_code']])->save(['user_garden'=>$string]);
         }
         if($res1 and $res2){
-//            $mode->commit();
-//            $info_model->commit();
-            $this->echoEncrypData(0,$user_info,$this->pdata['type']);
+            $mode->commit();
+            $info_model->commit();
+            $this->echoEncrypData(0);
         }
         $mode->rollback();
         $info_model->rollback();
