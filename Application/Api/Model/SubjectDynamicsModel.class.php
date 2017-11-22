@@ -61,6 +61,9 @@ class SubjectDynamicsModel extends Model
         if(!$res)return false;
         //删除评论点赞
         $this->where(['type'=>3,'commont_id'=>$commont_id])->delete();
+        if( intval($type) === 4){
+
+        }
         return true;
     }
 
