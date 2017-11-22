@@ -210,6 +210,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     // $(e.target).parent().parent().parent().remove();
                     $(this).parent().parent().remove();
+                    console.log($(this));
                 }else{
                     console.log(data.errmsg);
                 }
