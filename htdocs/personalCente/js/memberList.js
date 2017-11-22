@@ -61,7 +61,7 @@ $(document).ready(function(){
         window.location.href="owenerMemberDetails.html";//跳转到成员业主认证详情页面
     });
     //删除成员
-    $(".memberList").on("click","tr td button",function () {
+    $(".memberList").on("click","tr td button",function(){
         var apptoken=localStorage.getItem("apptoken");
         var id=parseInt($(this).attr("title"));
         var cityID=parseInt($(this).attr("value"));
