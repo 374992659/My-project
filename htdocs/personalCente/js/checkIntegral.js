@@ -23,7 +23,7 @@ $(document).ready(function(){
                             html+=`
                     <tr>
                         <td>${item.name}</td>
-                        <td>${data('Y-m-d',item.create_time)}</td>
+                        <td></td>
                         <td>+</td>
                         <td>${item.value}</td>
                     </tr>
@@ -33,7 +33,7 @@ $(document).ready(function(){
                             html+=`
                     <tr>
                         <td>${item.name}</td>
-                        <td>${data('Y-m-d',item.create_time)}</td>
+                        <td></td>
                         <td>-</td>
                         <td>${item.value}</td>
                     </tr>
