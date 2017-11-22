@@ -1403,7 +1403,7 @@ class UserCenterController extends VersionController
         if($res1 and $res2){
 //            $mode->commit();
 //            $info_model->commit();
-            $this->echoEncrypData(0,$count);
+            $this->echoEncrypData(0,$user_info);
         }
         $mode->rollback();
         $info_model->rollback();
