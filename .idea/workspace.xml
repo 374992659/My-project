@@ -23,14 +23,14 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.45556208">
+    <splitter split-orientation="horizontal" split-proportion="0.5256033">
       <split-first>
         <leaf>
           <file leaf-file-name="hotTopic_ad.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5045045">
-                  <caret line="104" column="38" selection-start-line="104" selection-start-column="38" selection-end-line="104" selection-end-column="38" />
+                <state vertical-scroll-proportion="0.5788288">
+                  <caret line="77" column="60" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="60" />
                   <folding>
                     <element signature="n#style#0;n#textarea#0;n#div#0;n#div#0;n#div#4;n#div#2;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#7;n#div#2;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -46,17 +46,17 @@
           <file leaf-file-name="hotTopic_add.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.35689455">
-                  <caret line="158" column="14" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="14" />
+                <state vertical-scroll-proportion="0.28041714">
+                  <caret line="176" column="46" selection-start-line="176" selection-start-column="46" selection-end-line="176" selection-end-column="46" />
                   <folding>
-                    <marker date="1511360658044" expanded="true" signature="2387:2781" placeholder="..." />
-                    <marker date="1511360658044" expanded="false" signature="2472:2521" placeholder="..." />
-                    <marker date="1511360658044" expanded="true" signature="2522:2750" placeholder="..." />
-                    <marker date="1511360658044" expanded="false" signature="2597:2612" placeholder="..." />
-                    <marker date="1511360658044" expanded="true" signature="4963:5463" placeholder="..." />
-                    <marker date="1511360658044" expanded="false" signature="5048:5097" placeholder="..." />
-                    <marker date="1511360658044" expanded="true" signature="5098:5432" placeholder="..." />
-                    <marker date="1511360658044" expanded="false" signature="5173:5188" placeholder="..." />
+                    <marker date="1511361702694" expanded="true" signature="2375:2769" placeholder="..." />
+                    <marker date="1511361702694" expanded="false" signature="2460:2509" placeholder="..." />
+                    <marker date="1511361702694" expanded="true" signature="2510:2738" placeholder="..." />
+                    <marker date="1511361702694" expanded="false" signature="2585:2600" placeholder="..." />
+                    <marker date="1511361702694" expanded="true" signature="4499:4999" placeholder="..." />
+                    <marker date="1511361702694" expanded="false" signature="4584:4633" placeholder="..." />
+                    <marker date="1511361702694" expanded="true" signature="4634:4968" placeholder="..." />
+                    <marker date="1511361702694" expanded="false" signature="4709:4724" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -859,8 +859,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5045045">
-          <caret line="104" column="38" selection-start-line="104" selection-start-column="38" selection-end-line="104" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.5788288">
+          <caret line="77" column="60" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="60" />
           <folding>
             <element signature="n#style#0;n#textarea#0;n#div#0;n#div#0;n#div#4;n#div#2;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#7;n#div#2;n#div#1;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -870,17 +870,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35689455">
-          <caret line="158" column="14" selection-start-line="158" selection-start-column="14" selection-end-line="158" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.28041714">
+          <caret line="176" column="46" selection-start-line="176" selection-start-column="46" selection-end-line="176" selection-end-column="46" />
           <folding>
-            <marker date="1511360658044" expanded="true" signature="2387:2781" placeholder="..." />
-            <marker date="1511360658044" expanded="false" signature="2472:2521" placeholder="..." />
-            <marker date="1511360658044" expanded="true" signature="2522:2750" placeholder="..." />
-            <marker date="1511360658044" expanded="false" signature="2597:2612" placeholder="..." />
-            <marker date="1511360658044" expanded="true" signature="4963:5463" placeholder="..." />
-            <marker date="1511360658044" expanded="false" signature="5048:5097" placeholder="..." />
-            <marker date="1511360658044" expanded="true" signature="5098:5432" placeholder="..." />
-            <marker date="1511360658044" expanded="false" signature="5173:5188" placeholder="..." />
+            <marker date="1511361702694" expanded="true" signature="2375:2769" placeholder="..." />
+            <marker date="1511361702694" expanded="false" signature="2460:2509" placeholder="..." />
+            <marker date="1511361702694" expanded="true" signature="2510:2738" placeholder="..." />
+            <marker date="1511361702694" expanded="false" signature="2585:2600" placeholder="..." />
+            <marker date="1511361702694" expanded="true" signature="4499:4999" placeholder="..." />
+            <marker date="1511361702694" expanded="false" signature="4584:4633" placeholder="..." />
+            <marker date="1511361702694" expanded="true" signature="4634:4968" placeholder="..." />
+            <marker date="1511361702694" expanded="false" signature="4709:4724" placeholder="..." />
           </folding>
         </state>
       </provider>
