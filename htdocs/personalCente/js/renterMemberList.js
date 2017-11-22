@@ -67,7 +67,7 @@ $(document).ready(function(){
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
-            url:url+"UserCenter_ownerDelNum",
+            url:url+"UserCenter_TenantDelNum",
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
