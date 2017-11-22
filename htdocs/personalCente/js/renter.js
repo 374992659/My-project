@@ -326,7 +326,6 @@ $(document).ready(function(){
         var ownerA=$(".ownerFlockHeadA img").attr("src");
         var ownerB=$(".ownerFlockHeadB img").attr("src");
         var owner_id_card_picture="{'a':'"+ownerA+"','b':'"+ownerB+"'}";
-        console.log("");
         console.log(typeof owner_id_card_picture);
     //9 参数：city_id 小区所在城市
         var city_id=$("#city option:selected").val();
@@ -352,7 +351,7 @@ $(document).ready(function(){
         });
         console.log(typeof yourself_picture);
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_pictures,"owner_id_card_num":owner_id_card_num,"owner_id_card_picture":owner_id_card_picture,"city_id":city_id,"garden_name":garden_name,"garden_code":garden_code,"garden_addr":garden_addr,"contract_period":contract_period,"pictures":pictures,"yourself_picture":yourself_picture})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_pictures,"owner_id_card_num":owner_id_card_num,"owner_id_card_picture":owner_id_card_picture,"city_id":city_id,"garden_name":garden_name,"garden_code":garden_code,"garden_addr":garden_addr,"contract_period":contract_period,"pictures":pictures,"yourself_picture":JSON.stringify(yourself_picture)})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
