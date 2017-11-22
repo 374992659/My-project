@@ -1071,8 +1071,8 @@ class UserCenterController extends VersionController
                     }
                     foreach($garden_arr as $k=>$v){
                         $arr = explode(',',$v);
-                        $garden[]['garden_code'] =$arr[0];
-                        $garden[]['role'] =$arr[1];
+                        $garden[$k]['garden_code'] =$arr[0];
+                        $garden[$k]['role'] =$arr[1];
                     }
                 }
                 if(!$garden){
@@ -1243,7 +1243,7 @@ class UserCenterController extends VersionController
         }else{
             $garden_arr = explode(';',$user_garden);
             if(!$garden_arr){
-                $garden_arr = $user_garden;
+                $garden_arr[] = $user_garden;
             }
             $result = array();
             foreach ($garden_arr as $k=>$v){
@@ -1365,9 +1365,49 @@ class UserCenterController extends VersionController
         $garden_room = new Model\GardenRoomModel($province_id,$user_info['city_id']);
         $count = $garden_room->where(['city_id'=>$user_info['user_info'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>intval($this->pdata['type'])])->count();
         if($count >1)$this->echoEncrypData(1,'请删除其他成员后在执行该操作');
+        $mode->startTrans();
         $res1 = $mode->where(['id'=>$this->pdata['application_id']])->delete();
-        if(!$res1)$this->echoEncrypData(1);
-        $this->echoEncrypData(0);
+        $info_model = M('baseinfo.User_info_'.$city_id);
+        $user_garden= $info_model->where(['account_code'=>$this->account_code])->getField('user_garden');
+        if(!$user_garden){
+            $res2 =true;
+        }else{
+            $result =array();
+            $garden_arr = explode(';',$user_garden);
+            if(!$garden_arr){
+                $garden_arr[]= $user_garden;
+            }
+            foreach($garden_arr as $k =>$v){
+                $arr = explode(',',$v);
+                $result[$k]['garden_code']=$arr[0];
+                $result[$k]['role']=$arr[1];
+            }
+            foreach ($result as $kk=>$vv){
+                if($vv['garden_code'] === $user_info['garden_code'] and intval($vv['role'])===intval($this->pdata['type'])){
+                    unset($result[$kk]);break;
+                }
+            }
+            $string = '';
+            if($result){
+                foreach($result as $key=>$val){
+                    if($string ===''){
+                        $string.=implode(',',$val);
+                    }else{
+                        $string.=';'.implode(',',$val);
+                    }
+                }
+            }
+            $info_model->startTrans();
+            $res2 = $info_model->where(['account_code'=>$user_info['user_code']])->save(['user_garden'=>$string]);
+        }
+        if($res1 and $res2){
+            $mode->commit();
+            $info_model->commit();
+            $this->echoEncrypData(0);
+        }
+        $mode->rollback();
+        $info_model->rollback();
+        $this->echoEncrypData(1);
     }
     /*
      * 判断用户今日是否已达分数上限
