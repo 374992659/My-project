@@ -24,7 +24,7 @@ $(document).ready(function(){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
-                        <span style="float: right;color: green;font-size: 14px">时间：${item.create_time}</span>
+                        <span style="float: right;color: green;font-size: 14px">时间：${getLocalTime(item.create_time)}</span>
                         <h4 class="weui-media-box__title">${item.title}</h4>
                         <p style="font-size: 14px;" class="weui-media-box__desc">
                            ${item.content}
@@ -38,7 +38,7 @@ $(document).ready(function(){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
-                        <span style="float: right;color: green;font-size: 14px">时间：${item.create_time}</span>
+                        <span style="float: right;color: green;font-size: 14px">时间：${getLocalTime(item.create_time)}</span>
                         <h4 class="weui-media-box__title">${item.title}</h4>
                         <p style="font-size: 14px;" class="weui-media-box__desc">
                            ${item.content}
@@ -52,7 +52,7 @@ $(document).ready(function(){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
-                        <span style="float: right;color: green;font-size: 14px">时间：${item.create_time}</span>
+                        <span style="float: right;color: green;font-size: 14px">时间：${getLocalTime(item.create_time)}</span>
                         <h4 class="weui-media-box__title">${item.title}</h4>
                         <p style="font-size: 14px;" class="weui-media-box__desc">
                             ${item.content}
@@ -66,7 +66,7 @@ $(document).ready(function(){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
-                        <span style="float: right;color: green;font-size: 14px">时间：${item.create_time}</span>
+                        <span style="float: right;color: green;font-size: 14px">时间：${getLocalTime(item.create_time)}</span>
                         <h4 class="weui-media-box__title">${item.title}</h4>
                         <p style="font-size: 14px;" class="weui-media-box__desc">
                             ${item.content}
@@ -80,7 +80,7 @@ $(document).ready(function(){
                         html+=`
                 <div  class="weui-media-box weui-media-box_appmsg" title="${item.id}" value="${item.garden_code}">
                     <div class="weui-media-box__bd">
-                        <span style="float: right;color: green;font-size: 14px">时间：${item.create_time}</span>
+                        <span style="float: right;color: green;font-size: 14px">时间：${getLocalTime(item.create_time)}</span>
                         <h4 class="weui-media-box__title">${item.title}</h4>
                         <p style="font-size: 14px;" class="weui-media-box__desc">
                             ${item.content}
