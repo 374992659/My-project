@@ -1122,7 +1122,7 @@ class UserCenterController extends VersionController
         $model = new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
         $user_code = $model->field('city_id,garden_code,room_num,user_code')->where(['id'=>$this->pdata['application_id']])->find();
         if(!$user_code)$this->echoEncrypData(1);
-        $first_application_code = $model->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'relation_name'=>'主租户','role'=>1])->getField('user_code');
+        $first_application_code = $model->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'relation_name'=>'主租户','role'=>2])->getField('user_code');
         $user_code['user_code']?$city_id =substr($user_code['user_code'],0,6):$city_id=substr($first_application_code,0,6);
         $owner_application = new Model\OwnerApplicationController($city_id);
         $data = $owner_application->where(['city_id'=>$user_code['city_id'],'garden_code'=>$user_code['garden_code'],'room_num'=>$user_code['room_num'],'user_code'=>$user_code['user_code']])->find();
