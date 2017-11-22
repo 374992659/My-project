@@ -81,15 +81,10 @@ $(document).ready(function(){
                 if(data.errcoode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg)
-
                 }else{
                     showHide(data.errmsg)
                 }
-
-
             }
-
-
         });
         return false;
     });
