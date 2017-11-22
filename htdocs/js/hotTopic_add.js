@@ -208,7 +208,8 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    $(e.target).parent().parent().parent().remove();
+                    // $(e.target).parent().parent().parent().remove();
+                    $('.delBtn').parent().parent().remove();
                 }else{
                     console.log(data.errmsg);
                 }
