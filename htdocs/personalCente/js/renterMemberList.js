@@ -71,7 +71,8 @@ $(document).ready(function(){
                     showHide(data.errmsg)
                 }
             }
-        })
+        });
+        return false;
     });
-    return false;
+
 });
