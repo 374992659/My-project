@@ -287,7 +287,17 @@ $(document).ready(function(){
     })();
     //检测租客身份证的格式
     (function () {
-        $("#")
+        $("#renter_IdentityCard").blur(function () {
+            var idCard=$("#renter_IdentityCard").val();
+            isCardNo(idCard);
+        });
+    })();
+    //检测房东身份证格式
+    (function () {
+        $("#renter_owner_Identity").blur(function () {
+            var idCard=$("#renter_owner_Identity").val();
+            isCardNo(idCard);
+        })
     })();
     // 提交按钮
     $(".weui-btn").click(function () {
