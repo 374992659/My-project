@@ -31,7 +31,7 @@ $(document).ready(function(){
                         $.each(ideaPic,function (i,item) {
                             console.log(item);
                             pic+=`
-                                <li><img src="${item.pic}" alt=""></li>
+                                <li><img src="${item}" alt=""></li>
                            
                             `
                         })
