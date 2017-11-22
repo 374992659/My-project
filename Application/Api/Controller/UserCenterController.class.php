@@ -1401,9 +1401,9 @@ class UserCenterController extends VersionController
             $res2 = $info_model->where(['account_code'=>$user_info['user_code']])->save(['user_garden'=>$string]);
         }
         if($res1 and $res2){
-            $mode->commit();
-            $info_model->commit();
-            $this->echoEncrypData(0);
+//            $mode->commit();
+//            $info_model->commit();
+            $this->echoEncrypData(0,$count);
         }
         $mode->rollback();
         $info_model->rollback();
