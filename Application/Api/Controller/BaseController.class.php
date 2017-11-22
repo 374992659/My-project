@@ -193,5 +193,21 @@ class BaseController extends Controller
             $this->echoEncrypData(3);
         }
     }
-
+    /*
+     * APP图片上传
+     * */
+    public function uploadAppImg($path,$fileData){
+        if ( !is_dir($path) ) {
+            @mkdir($path, 0777, true);
+            @chmod($path, 0777);
+        }
+        $filename = uniqid().".png";
+        $FilePath = $path.$filename;
+        $query = file_put_contents($FilePath, $fileData);
+        if ( $query > 0 ) {
+            $this->echoEncrypData(0, '', ['imageUrl'=>$FilePath]);
+        }else{
+            $this->echoEncrypData(1);
+        }
+    }
 }
