@@ -313,7 +313,7 @@ $(document).ready(function(){
         var roomNum=$("#roomNum option:selected").val();
         var room_num=houseNum+"-"+floorNum+"-"+roomNum;
     //5 参数：id_card_num 身份证号码
-        var id_card_num=$("#renter_owner_Identity").val();
+        var id_card_num=$("#renter_IdentityCard").val();
     //6 参数：id_card_pictures 身份证照片
         var A=$(".flockHeadA img").attr("src");
         var B=$(".flockHeadB img").attr("src");
@@ -321,7 +321,7 @@ $(document).ready(function(){
         console.log("租客身份证");
         console.log(typeof id_card_pictures);
     //7 参数：owner_id_card_num 房东身份证号码 可填
-        var owner_id_card_num=$("#renter_IdentityCard").val();
+        var owner_id_card_num=$("#renter_owner_Identity").val();
     //8 参数：owner_id_card_picture 房东身份证照片 可填
         var ownerA=$(".ownerFlockHeadA img").attr("src");
         var ownerB=$(".ownerFlockHeadB img").attr("src");
