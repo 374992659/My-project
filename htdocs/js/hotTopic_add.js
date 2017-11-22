@@ -122,7 +122,7 @@ $(document).ready(function(){
                        var myAdList="";
                        $.each(data.data,function(i,item){
                            myAdList+=`
-                        <div title="${item.adverse_id}"  class="adList">
+                        <div title="${item.adverse_id}"  sort="${i}" class="adList">
                             <div class="weui-media-box weui-media-box_text" style="border-bottom:1px solid #b2b2b2;margin-top: 10px ">
                                 <h4 class="weui-media-box__title" style="font-size: 13px">${item.title}</h4>
                                 <p class="weui-media-box__desc">${item.content}</p>
@@ -193,6 +193,7 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken"),
             city_id=$(".city2 option:selected").val(),
             adverse_id=$(this).attr("title"),
+            sort = $(this).attr('sort'),
         //格式转换
         data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"adverse_id":adverse_id})],
         //加密
@@ -208,8 +209,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    // $(e.target).parent().parent().parent().remove();
-                    $(this).parent().parent().remove();
+                    $(".adList [sort="+i+"]").remove();
                 }else{
                     console.log(data.errmsg);
                 }
