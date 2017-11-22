@@ -138,13 +138,8 @@ $(document).ready(function(){
                             `
                         })
                       }
+                      console.log(choise);
                       // 循环添加投票选项
-                    var choise=JSON.parse(result.choise);
-                    console.log(choise);
-                    $.each(choise,function (i,item) {
-                        console.log(i);
-                        console.log(item);
-                    });
                     if(choise){
                         $.each(choise,function (i,item) {
                             if(parseInt(result.type)===1){//单选
