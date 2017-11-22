@@ -141,6 +141,10 @@ $(document).ready(function(){
                       // 循环添加投票选项
                     var choise=JSON.parse(result.choise);
                     console.log(choise);
+                    $.each(choise,function (i,item) {
+                        console.log(i);
+                        console.log(item);
+                    });
                     if(result.choise_votes){
                           $.each(result.choise_votes,function(i,item){
                               if(parseInt(result.type)===1){//单选
