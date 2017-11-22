@@ -1414,6 +1414,17 @@ class UserCenterController extends VersionController
         $this->echoEncrypData(1);
     }
     /*
+     * 我的团队
+     * */
+    protected function getMyGroup_v1_0_0(){
+        $account_code =  $this->account_code;
+        $mongo = new \MongoClient();
+        $data1 = $mongo->baseinfo->user_level->find(array('inviter_code'=>$account_code));
+        $first_level =
+    }
+
+
+    /*
      * 判断用户今日是否已达分数上限
      * 没超过上限则返回与上线分的差值
      * */
