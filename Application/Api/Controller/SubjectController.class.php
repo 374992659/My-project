@@ -360,12 +360,12 @@ class SubjectController extends VersionController
         $city_id=substr($garden_code,0,6);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
+        $type =intval($model->where(['id'=>$this->pdata['commont_id']])->getField('type'));
         $user_code=$model->getSubjectCommontC($commont_id);
         if($user_code !== $this->account_code)$this->echoEncrypData(500);
         $res = $model->delSubjectCommont($commont_id);
         if(is_numeric($res))$this->echoEncrypData($res);
         $new_model =new Model\SubjectModel($province_id,$city_id);
-        $type =intval($model->where(['id'=>$this->pdata['commont_id']])->getField('type'));
         $this->echoEncrypData(1,$type);
         if( $type=== 4 ){
             $res = $new_model->where(['id ='.$subject_id])->getField('total_votes');
