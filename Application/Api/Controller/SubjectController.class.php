@@ -377,7 +377,7 @@ class SubjectController extends VersionController
             'value'=>$point['value'],
             'create_time'=>time(),
         ));
-        $user_city = substr($this->account,0,6);
+        $user_city = substr($this->account_code,0,6);
         M()->execute('update baseinfo.user_info_'.$user_city.' set total_point =total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
         $this->echoEncrypData(0);
     }
