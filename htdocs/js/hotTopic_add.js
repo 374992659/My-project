@@ -209,7 +209,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     // $(e.target).parent().parent().parent().remove();
-                    $('.delBtn').parent().parent().remove();
+                    $(this).parent().parent().remove();
                 }else{
                     console.log(data.errmsg);
                 }
