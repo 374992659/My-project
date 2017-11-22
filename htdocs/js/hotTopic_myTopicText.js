@@ -442,7 +442,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                    $(e.target).parent().parent().remove();
                 }else{
-                    console.log(data.errmsg);
+                    showHide(data.errmsg);
                 }
             }
         })
@@ -474,7 +474,8 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    window.location.reload();
                 }
             }
         })
