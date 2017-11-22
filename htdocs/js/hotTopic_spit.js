@@ -83,6 +83,7 @@ $(document).ready(function(){ "use strict";
             type:"POST",
             data:{"data":json},
             success:function(data){
+                console.log(data);
                 // 解密
                 var data=jsDecodeData(data);
                 console.log(data);
