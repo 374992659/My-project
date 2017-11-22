@@ -1213,7 +1213,7 @@ class UserCenterController extends VersionController
             }
             $mongo  = new \MongoClient();
             $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
-            $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
+            $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$garden_city_id])->getField('province_code');
             $garden_opinion = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
             $res = $garden_opinion->add(array(
                 'title'=>$this->pdata['title'],
