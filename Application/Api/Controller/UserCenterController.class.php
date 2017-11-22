@@ -1227,17 +1227,7 @@ class UserCenterController extends VersionController
                 'create_time'=>time(),
                 'status'=>1,
             ));
-            if(!$res)$this->echoEncrypData(1,array(
-                'title'=>$this->pdata['title'],
-                'content'=>$this->pdata['content'],
-                'picture'=>$this->pdata['picture'],
-                'garden_code'=>$this->pdata['garden_code'],
-                'garden_name'=>$this->pdata['garden_name'],
-                'user_code'=>$this->account_code,
-                'nickname'=>$user_info['nickname'],
-                'portrait'=>$user_info['portrait'],
-                'create_time'=>time(),
-                'status'=>1));
+            if(!$res)$this->echoEncrypData(1,$garden_province_id,$garden_city_id);
             $this->echoEncrypData(0);
         }
     }
