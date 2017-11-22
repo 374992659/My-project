@@ -1107,7 +1107,7 @@ class UserCenterController extends VersionController
                 M()->rollback();
                 $tenant_application->rollback();
                 $garden_room->rollback();
-                $this->echoEncrypData(1);
+                $this->echoEncrypData(1,array($res1 , $res3 , $res4 , $res5));
             }
         }
     }
