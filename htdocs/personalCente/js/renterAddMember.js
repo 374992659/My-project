@@ -71,7 +71,47 @@ $(document).ready(function(){
         });
     })();
     // 上传个人照片
-
+    (function(){
+        $('#MyPicuploaderInput').change(function(e) {
+            var Url=window.URL.createObjectURL(this.files[0]) ;
+            var formData= new FormData();
+            var apptoken=localStorage.getItem("apptoken");
+            formData.append("file",$("#MyPicuploaderInput")[0].files[0]);
+            var data=["",JSON.stringify({"apptoken":apptoken})];
+            var json=jsEncryptData(data);
+            formData.append("data",json);
+            console.log(formData);
+            $.ajax({
+                type:"POST",
+                url:url+"UserCenter_uploadOwnerApplicationPic",
+                fileElementId:'MyPicuploaderInput',
+                data:formData,
+                processData : false,
+                contentType : false,
+                secureuri:false,
+                success : function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        console.log(data.data[0]);
+                        var html="";
+                        if(Url){
+                            html+=`
+                        <li class="lf" style="margin-right: 10px">
+                            <img  src="http://wx.junxiang.ren/project/${data.data[0]}" style="height: 79px;width: 79px" alt="" >
+                        </li>             
+               `
+                        }
+                        $(".myPic").prepend(html);
+                    }
+                },
+                error:function (data) {
+                    console.log(data);
+                }
+            });
+        });
+    })();
     //根据城市id以及关键词获取小区信息
     (function(){
         // 获取apptoken
