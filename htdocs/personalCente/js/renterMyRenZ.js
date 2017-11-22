@@ -34,7 +34,7 @@ $(document).ready(function(){
                             <td>${item.garden_name}</td>
                             <td>${item.room_num}</td>
                             <td style="color: green">认证通过</td>
-                            <td><button>删除</button></td>
+                            <td><button title="${item.id}">删除</button></td>
                         </tr> 
                          `
                         }else{
