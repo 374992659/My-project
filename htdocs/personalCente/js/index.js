@@ -172,6 +172,7 @@ $(document).ready(function(){
                     if(result.default_garden){
                         var garden=JSON.parse(result.default_garden);
                         $(".garden").html(garden);
+                        console.log( $(".garden"));
                         console.log(garden);
                     }
                   // 遍历认证楼盘
