@@ -145,7 +145,7 @@ class SubjectController extends VersionController
         $city_id=substr($garden_code,0,6);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $model=new Model\SubjectModel($province_id,$city_id);
-        $model->where(['subject_id'=>$subject_id])->setInc('read_num');
+        $model->where(['id'=>$subject_id])->setInc('read_num');
         $mode=new Model\SubjectDynamicsModel($province_id,$city_id,$subject_id);
         $data= $model->getSubjectInfo($subject_id);
         $choise_arr = json_decode($data['choise'],true);

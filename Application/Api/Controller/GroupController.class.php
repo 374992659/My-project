@@ -87,20 +87,27 @@ class GroupController extends VersionController
    * 上传群头像
    * */
     protected function uploadGroupP_v1_0_0(){
-        if(!$_FILES){
-            $this->echoEncrypData(306);
+        if(intval($_GET['is_wap']) !==1){
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1, L('parameter_error'));
+            $imageData = base64_decode($a);
+        }else{
+            if(!$_FILES){
+                $this->echoEncrypData(306);
+            }
+            import('Vendor.UploadFile');
+            $model = new \UploadFile();
+            $save_path= APP_PATH.'Common/Upload/Img/GroupPortrait/'.date(m).date(d).'/';
+            $res = $model->upload($save_path);
+            if(!$res){
+                $this->echoEncrypData(1,$model->getErrorMsg());
+            }
+            foreach($res as $k=>$v){
+                $data['file_path'][]=$res[$k]['savepath'].$res[$k]['savename'];
+            }
+            $this->echoEncrypData(0,'',$data);
         }
-        import('Vendor.UploadFile');
-        $model = new \UploadFile();
-        $save_path= APP_PATH.'Common/Upload/Img/GroupPortrait/'.date(m).date(d).'/';
-        $res = $model->upload($save_path);
-        if(!$res){
-            $this->echoEncrypData(1,$model->getErrorMsg());
-        }
-        foreach($res as $k=>$v){
-            $data['file_path'][]=$res[$k]['savepath'].$res[$k]['savename'];
-        }
-        $this->echoEncrypData(0,'',$data);
+
     }
     /*
      * 获取我所在的群信息
