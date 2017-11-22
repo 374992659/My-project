@@ -210,11 +210,11 @@ $(document).ready(function(){
         // 5 参数：id_card_num身份证号码
         var id_card_num=$("#identityCard").val();
         // 6 参数：garden_code小区code
-        var garden_code=$("#plotName").attr("title");
+        var garden_code=$("#gardenName option:selected").attr("title");
         // 7 参数：garden_name 小区名称
-        var garden_name=$("#plotName").val();
+        var garden_name=$("#gardenName option:selected").text();
         // 8 参数：city_id 城市id
-        var city_id=$("#city option:selected").val();
+        var city_id=$("#gardenName option:selected").val();
         // 9 参数：relation_name关系
         var relation_name=$("#rela option:selected").val();
         // 10 参数：contract_period合同期限
