@@ -25,7 +25,7 @@ $(document).ready(function(){
                         <td>${item.real_name}</td>
                         <td>${item.relation_name}</td>
                         <td>${item.room_num}</td>
-                        <td><button value="${item.garden_code}" title="${item.room_num}">删除</button></td>
+                        <td title="${item.application_id}" value="${item.city_id}" ><button value="${item.garden_code}" title="${item.room_num}">删除</button></td>
                     </tr>
                     `
                     });
