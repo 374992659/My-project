@@ -277,6 +277,18 @@ $(document).ready(function(){
             }
         })
     })();
+    //检测手机号的格式
+    (function () {
+        $("#renterPhone").blur(function () {
+            //获取手机号码
+            var phone=$("#renterPhone").val();
+            validate4(phone);
+        });
+    })();
+    //检测租客身份证的格式
+    (function () {
+        $("#")
+    })();
     // 提交按钮
     $(".weui-btn").click(function () {
     //1 参数：apptoken
