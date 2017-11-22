@@ -263,6 +263,9 @@ $(document).ready(function(){
                     }else{
                         $(".topicVote").show();
                     }
+                    $(".discuss").show();
+                    $(".topicVote").show();
+                    $(".prestrain").hide();
                 }
             }
         })

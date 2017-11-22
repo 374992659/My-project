@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="css/hotTopic_myTopicText.css">
 </head>
 <body>
+    <!--预加载图片-->
+    <img class="prestrain" src="image/timg.gif" style="position: absolute;z-index:100;width: 100%;height: 100%" alt=""/>
     <div id="topicText">
         <!--话题内容-->
         <div class="topicBox">
@@ -64,7 +66,7 @@
             </div>
         </div>
         <!--评论-->
-        <div class="discuss">
+        <div class="discuss" style="display: none">
             <div class="weui-tab">
                 <div class="weui-navbar">
                     <a class="weui-navbar__item weui-bar__item--on" href="#tab1">
@@ -175,7 +177,7 @@
             </div>
         </div>
         <!--投票-->
-        <div class="topicVote">
+        <div class="topicVote" style="display: none">
             <!--内容-->
             <div class="weui-cells">
                 <div class="weui-cell">
