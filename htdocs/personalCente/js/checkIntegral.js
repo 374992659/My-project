@@ -16,7 +16,33 @@ $(document).ready(function(){
                 var data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html="";
+                    $.each(data.data,function (i,item) {
+                        if(item.type===1){//加分
+                            html+=`
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.create_time}</td>
+                        <td>+</td>
+                        <td>${item.value}</td>
+                    </tr>
+                        
+                        `
+                        }else{//减分
+                            html+=`
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.create_time}</td>
+                        <td>-</td>
+                        <td>${item.value}</td>
+                    </tr>
+                        
+                        `
+                        }
+
+                    });
+                    $(".integralBox").append(html)
                 }
 
             }
