@@ -578,6 +578,17 @@ class UserCenterController extends VersionController
                 'role'=>1,
                 'relation_name'=>'户主',
             ])->getField('user_code');
+            if($first_application_code === $user_info['user_code']){
+                $count = $garden_room->where([
+                    'city_id'=>$user_info['city_id'],
+                    'garden_code'=>$user_info['garden_code'],
+                    'room_num'=>$user_info['room_num'],
+                    'role'=>1,
+                ])->count();
+                if($count > 1){
+                    $this->echoEncrypData(1,'请删除该房间其他成员后再删除户主的认证');
+                }
+            }
             $user_info['user_code']?$city_id=substr($user_info['user_code'],0,6):$city_id=substr($first_application_code,0,6);
             $owner_application = new Model\OwnerApplicationController($city_id);
             $owner_application->startTrans();
@@ -604,7 +615,6 @@ class UserCenterController extends VersionController
                     if(!$garden_arr){
                         $garden_arr[]=$user_garden;
                     }
-
                     foreach($garden_arr as $k=>$v){
                         $arr = explode(',',$v);
                         $garden[$k]['garden_code'] =$arr[0];
@@ -1025,6 +1035,12 @@ class UserCenterController extends VersionController
             $user_info = $garden_room->field('user_code,city_id,garden_code,room_num,real_name')->where(['id'=>$this->pdata['application_id']])->find();
             if(!$user_info)$this->echoEncrypData(1);
             $first_application_code = $garden_room->where(['city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>2,'relation_name'=>'主租户'])->getField('user_code');
+            if($user_info['user_code'] ===$first_application_code){   //主租户删除自己的认证
+                $count = $garden_room->where(['city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>2])->count();
+                if($count > 1){
+                    $this->echoEncrypData(1,'请删除该房间其他租户成员后再删除主租户的认证');
+                }
+            }
             $user_info['user_code']?$city_id= substr($user_info['user_code'],0,6):$city_id=substr($first_application_code,0,6);
             $tenant_application = new Model\TenantApplicationModel($city_id);
             $tenant_application->startTrans();
