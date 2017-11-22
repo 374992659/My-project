@@ -274,6 +274,7 @@ $(document).ready(function(){
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
+                    console.log(choise);
                     $(".choiseList").html(choise);
                     $(".optionList").append(option);
                     $(".picPlace").html(topicPic);
