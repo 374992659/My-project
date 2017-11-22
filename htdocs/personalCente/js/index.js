@@ -171,12 +171,7 @@ $(document).ready(function(){
                     console.log(result.default_garden);
                     if(result.default_garden){
                         //取常去小区的键名
-                        var key=[];
                         var garden=JSON.parse(result.default_garden);
-                        for (var p1 in result.default_garden) {
-                                key.push(p1);
-                        }
-                        console.log(key);
                         $(".garden").text(garden[510100988967]);
                         console.log(garden);
                     }
