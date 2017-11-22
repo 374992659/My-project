@@ -486,11 +486,13 @@ class UserCenterController extends VersionController
                     $point_record->commit();
                     M()->commit();
                     $model->commit();
+                    $garden_num->commit();
                     $this->echoEncrypData(0);
                 }else{
                     $point_record->rollback();
                     M()->rollback();
                     $model->rollback();
+                    $garden_num->rollback();
                     $this->echoEncrypData(1);
                 }
             }else{
