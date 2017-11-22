@@ -1256,7 +1256,7 @@ class UserCenterController extends VersionController
         $result = array_unique($result);
         foreach ($result as $key=>$val){
             $garden_city_id =$mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
-            $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
+            $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$garden_city_id])->getField('province_code');
             $garden_opinion = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
             $garden_opinion = $garden_opinion->field('title,content,garden_code,garden_name,status,create_time,id')->where(['garden_code'=>$val,'user_code'=>$this->account_code])->select();
             if($garden_opinion){
