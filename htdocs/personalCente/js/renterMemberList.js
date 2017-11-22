@@ -49,8 +49,6 @@ $(document).ready(function(){
         }
     });
     //删除成员
-  
-    //删除成员
     $(".renterMemberList").on("click","tr td button",function () {
         var apptoken=localStorage.getItem("apptoken");
         var garden_code=$(this).attr("value");
