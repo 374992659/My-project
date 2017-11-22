@@ -19,6 +19,7 @@ $(document).ready(function(){
                 var html="";
                 $.each(data.data,function(i,item){
                     $.each(item,function(i,item){
+                        console.log(item);
                         html+=`
                     <tr title="${item.application_id}" value="${item.city_id}" class="renterList">
                         <td>${item.real_name}</td>
