@@ -54,7 +54,7 @@ class SubjectDynamicsModel extends Model
      * */
     public function delSubjectCommont($commont_id){
         $type= $this->where(['id'=>$commont_id])->getField('type');
-        if(intval($type) !== 1){
+        if(intval($type) !== 1 || intval($type) !== 4){
             return 600;
         }
         $res = $this->where(['id'=>$commont_id])->delete();
