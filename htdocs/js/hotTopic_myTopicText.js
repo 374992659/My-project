@@ -26,7 +26,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var result=data.data;
-                    var user_code=result.user_code;
+                    var user_code=localStorage.getItem("my_code");
                     // 投票选项
                     var option="";
                     // 每个选项的投票情况投票选项
