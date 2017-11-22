@@ -365,8 +365,14 @@ class SubjectController extends VersionController
         $res = $model->delSubjectCommont($commont_id);
         if(is_numeric($res))$this->echoEncrypData($res);
         $new_model =new Model\SubjectModel($province_id,$city_id);
-        $res = $new_model->where(['id ='.$subject_id])->getField('commont_num');
-        $new_model->where(['id ='.$subject_id])->save(['commont_num'=>$res-1]);
+        if(intval($model->where(['id'=>$this->pdata['commont_id']])->getField('type')) ===4 ){
+            $res = $new_model->where(['id ='.$subject_id])->getField('total_votes');
+            $new_model->where(['id ='.$subject_id])->save(['total_votes'=>$res-1]);
+        }else{
+            $res = $new_model->where(['id ='.$subject_id])->getField('commont_num');
+            $new_model->where(['id ='.$subject_id])->save(['commont_num'=>$res-1]);
+        }
+
         if(!$res)$this->echoEncrypData(1);
         $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.DEL_COMMENT')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
