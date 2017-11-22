@@ -90,23 +90,26 @@ $(document).ready(function(){
     })();
     // 提交
     $(".sumBtn").click(function(){
-        var success=$(".success");
-        var hideTop=function(){
-            success.empty()};
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 参数：garden_code 小区code
-        var garden_code=$("#houseName").attr("title");
+        var garden_code=$("#gardenName option:selected").attr("title");
         // 参数：garden_name 小区名
-        var garden_name=$("#houseName").val();
+        var garden_name=$("#gardenName option:selected").text();
         // 参数：title 名称
         var title=$(".Title").val();
         // 参数：content 意见内容
         var content=$(".Content").val();
         // 参数：picture 意见图片 可填
-        var picture="";
+        var picture={};
+        var Url=$("#topicPlace").find(".pushTopic_Img");
+        Url.each(function(i,item){
+            picture[parseInt(i+1)]=$(this).attr("src");
+        });
+        console.log(picture);
+        console.log(typeof picture);
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"garden_name":garden_name,"title":title,"content":content,"picture":picture})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"garden_name":garden_name,"title":title,"content":content,"picture":JSON.stringify(picture)})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
