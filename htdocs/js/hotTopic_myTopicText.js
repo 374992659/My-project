@@ -139,6 +139,8 @@ $(document).ready(function(){
                         })
                       }
                       // 循环添加投票选项
+                    var choise=JSON.parse(result.choise);
+                    console.log(choise);
                     if(result.choise_votes){
                           $.each(result.choise_votes,function(i,item){
                               if(parseInt(result.type)===1){//单选
@@ -480,6 +482,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    showHide(data.errmsg);
                     window.location.reload();
                 }
             }
