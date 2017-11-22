@@ -154,7 +154,7 @@ $(document).ready(function(){
                         <p>${item}</p>
                     </div>
                     <div class="weui-cell__ft">
-                        <input type="radio" class="weui-check" name="radio1">
+                        <input type="radio" class="weui-check" name="radio1" value="${i}">
                         <span class="weui-icon-checked"></span>
                     </div>
                 </label>
@@ -166,7 +166,7 @@ $(document).ready(function(){
                         <p>${item}</p>
                     </div>
                     <div class="weui-cell__ft">
-                        <input type="checkbox" class="weui-check" name="radio1">
+                        <input type="checkbox" class="weui-check" name="radio1" value="${i}">
                         <span class="weui-icon-checked"></span>
                     </div>
                 </label>
