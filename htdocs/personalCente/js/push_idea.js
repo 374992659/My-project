@@ -102,7 +102,7 @@ $(document).ready(function(){
         var content=$(".Content").val();
         // 参数：picture 意见图片 可填
         var picture={};
-        var Url=$("#topicPlace").find(".pushTopic_Img");
+        var Url=$(".topicPlace").find(".pushTopic_Img");
         Url.each(function(i,item){
             picture[parseInt(i+1)]=$(this).attr("src");
         });
