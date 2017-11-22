@@ -71,7 +71,7 @@ $(document).ready(function(){
                         LiImg+=`
                          <li class="weui-uploader__file" >
                                      <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
-                                     <img src="image/del.png" alt="" width="20px" class="delImg">
+                                     <img src="../image/del.png" alt="" width="20px" class="delImg">
                                  </li>
                         `
                     });
