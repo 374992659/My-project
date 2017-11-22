@@ -1,42 +1,29 @@
 $(document).ready(function(){
-    // 获取小区code
-    (function(){
+    //获取已经认证通过的小区
+    (function () {
         var apptoken=localStorage.getItem("apptoken");
-        $("#houseName").on("input",function(){
-            var city_id=$("#city option:selected").val();
-            var key=$("#houseName").val();
-            if(key){
-
-            }else{
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"UserCenter_getApplicationGarden",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var  html="";
+                    $.each(data.data,function(i,item){
+                        html+=`
+                         <option value="${item.city_id}" title="${item.garden_code}">${item.garden_name}</option>                    
+                        `
+                    });
+                    $("#gardenName").html(html);
+                }
 
             }
-            // 数据格式转换
-            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"key":key})],
-                // 加密
-                jsonEncryptData=jsEncryptData(data);
-            console.log("通过关键词搜索小区");
-            console.log(data);
-            $.ajax({
-                url:url+"UserCenter_getGardenInfo",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    // 解密
-                    var data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        console.log(data.data);
-                        localStorage.setItem("apptoken",data.apptoken);
-                        $.each(data.data,function(i,item){
-                            console.log(item);
-                            $("#houseName").attr("title",item.garden_code)
-                        });
-
-                    }
-                },
-                error:function(){}
-            })
-        });
+        })
     })();
     //上传照片
     $("#uploaderInput").change(function(e){
