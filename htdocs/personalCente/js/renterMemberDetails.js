@@ -144,7 +144,7 @@ $(document).ready(function(){
                                 console.log("item不为空");
                             }else{
                                 id_cardPic+=`
-                         <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                         <img src="${item}" alt="" >
                         `
                             }
                         });
