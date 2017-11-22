@@ -6,7 +6,7 @@ $(document).ready(function(){
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
-            url:url+"UserCenter_pointNoticeWords",
+            url:url+"UserCenter_getMyPointRecord",
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function (data) {
