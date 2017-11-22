@@ -258,6 +258,11 @@ $(document).ready(function(){
                     }else{
                         $(".anonymous").html("(公开)");
                     }
+                    if(parseInt(result.is_choised)===1){
+                        $(".topicVote").hide();
+                    }else{
+                        $(".topicVote").show();
+                    }
                 }
             }
         })
