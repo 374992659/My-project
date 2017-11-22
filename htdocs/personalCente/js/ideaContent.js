@@ -22,9 +22,23 @@ $(document).ready(function(){
             if(data.errcode===0){
                 localStorage.setItem("apptoken",data.apptoken);
                 var result=data.data;
+                var pic="";
                 if(parseInt(result.status)===1){
+                    //添加图片
+                    if(result.picture){
+                        var ideaPic=JSON.parse(result.picture);
+                        $.each(ideaPic,function () {
+                            pic+=`
+                                <li><<img src="${item.pic}" alt="">></li>
+                           
+                            `
+                        })
+                    }
                     var   html=`
             <h3 class="weui-media-box__title" style="text-align: center;font-weight:bold ">${result.title}</h3>
+            <ul class="ideaPic">
+                
+            </ul>
             <p class="weui-media-box__desc">
                 ${result.content}
             </p>
@@ -49,7 +63,8 @@ $(document).ready(function(){
                     
                     `;
                 }
-                $(".ideaContent").html(html)
+                $(".ideaContent").html(html);
+                $(".ideaPic").html(pic);
             }
         },
         error:function () {
