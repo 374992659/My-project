@@ -496,7 +496,7 @@ $(document).ready(function(){
             content=$(".contentVote").val();
         var choise={};
         $("input[name=radio1]:checked").each(function(i,item){
-            choise[parseInt(i+1)]=$(this).parent().prev().find("p").text();
+            choise[parseInt($(this().val()))]=$(this).parent().prev().find("p").text();
         });
         choise=JSON.stringify(choise);
         console.log(typeof choise);
