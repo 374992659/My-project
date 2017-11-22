@@ -170,36 +170,6 @@ $(document).ready(function(){
                             }
                         });
                     }
-                //     if(result.choise_votes){
-                //           $.each(result.choise_votes,function(i,item){
-                //               if(parseInt(result.type)===1){//单选
-                //                   option+=`
-                // <label class="weui-cell weui-check__label" >
-                //     <div class="weui-cell__bd">
-                //         <p>${item.content}</p>
-                //     </div>
-                //     <div class="weui-cell__ft">
-                //         <input type="radio" class="weui-check" name="radio1">
-                //         <span class="weui-icon-checked"></span>
-                //     </div>
-                // </label>
-                //         `
-                //               }else{//多选
-                //                   option+=`
-                // <label class="weui-cell weui-check__label" >
-                //     <div class="weui-cell__bd">
-                //         <p>${item.content}</p>
-                //     </div>
-                //     <div class="weui-cell__ft">
-                //         <input type="checkbox" class="weui-check" name="radio1">
-                //         <span class="weui-icon-checked"></span>
-                //     </div>
-                // </label>
-                //         `
-                //               }
-                //
-                //           });
-                //     }
                     //添加图片
                     var topicPic="";
                     var pic=JSON.parse(result.picture);
@@ -274,8 +244,8 @@ $(document).ready(function(){
                     $(".hotTopicContent").html(html);
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
-                    console.log(choise);
                     $(".choiseList").html(choise);
+                    console.log(option);
                     $(".optionList").append(option);
                     $(".picPlace").html(topicPic);
                     if(parseInt(result.type)===1){
