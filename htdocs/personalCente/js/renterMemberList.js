@@ -25,7 +25,7 @@ $(document).ready(function(){
                     <tr title="${item.application_id}" value="${item.city_id}" class="renterList">
                         <td>${item.real_name}</td>
                         <td>${item.relation_name}</td>
-                        <td>2017.03.3</td>
+                        <td>${item.room_num}</td>
                         <td><button>删除</button></td>
                     </tr>
                     `
