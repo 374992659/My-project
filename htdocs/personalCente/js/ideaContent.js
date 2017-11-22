@@ -29,7 +29,7 @@ $(document).ready(function(){
                         var ideaPic=JSON.parse(result.picture);
                         $.each(ideaPic,function (i,item) {
                             pic+=`
-                                <li><<img src="${item.pic}" alt="">></li>
+                                <li><img src="${item.pic}" alt=""></li>
                            
                             `
                         })
