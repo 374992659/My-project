@@ -84,6 +84,8 @@ $(document).ready(function(){
                         if(data.errcoode===0){
                             localStorage.setItem("apptoken",data.apptoken);
                             showHide(data.errmsg);
+                            console.log($(this));
+                            console.log($($(this).parent().parent()));
                             $(this).parent().parent().remove();
                             $(e.target).parent().parent().remove();
                             console.log("删除成功");
