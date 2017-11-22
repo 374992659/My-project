@@ -1358,13 +1358,14 @@ class UserCenterController extends VersionController
         $type = intval($this->pdata['type']);
         ($type !== 1 and $type !== 2)?$this->echoEncrypData(1,'参数错误',$type):$type ===1?
             $mode = new Model\OwnerApplicationController($city_id):$mode =new Model\TenantApplicationModel($city_id);
-//        $res1 = $mode->where(['id'=>$this->pdata['application_id']])->delete();
+//
         $user_info = $mode->field('garden_code,city_id,room_num,user_code')->where(['id'=>$this->pdata['application_id']])->find();
         if($user_info['user_code'] !== $this->account_code)$this->echoEncrypData(500);
         $province_id = M('baseinfo.swf_area')->where(['city_code'=>$user_info['city_id']])->getField('province_code');
         $garden_room = new Model\GardenRoomModel($province_id,$user_info['city_id']);
         $count = $garden_room->where(['city_id'=>$user_info['user_info'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>intval($this->pdata['type'])])->count();
         if($count >1)$this->echoEncrypData(1,'请删除其他成员后在执行该操作');
+        $res1 = $mode->where(['id'=>$this->pdata['application_id']])->delete();
         if(!$res1)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
