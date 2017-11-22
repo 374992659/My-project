@@ -109,7 +109,7 @@ $(document).ready(function(){
         console.log(picture);
         console.log(typeof picture);
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"garden_name":garden_name,"title":title,"content":content,"picture":JSON.stringify(picture)})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":parseInt(garden_code),"garden_name":garden_name,"title":title,"content":content,"picture":JSON.stringify(picture)})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
