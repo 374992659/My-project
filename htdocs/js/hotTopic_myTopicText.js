@@ -138,7 +138,6 @@ $(document).ready(function(){
                             `
                         })
                       }
-                      console.log(choise);
                       // 循环添加投票选项
                     if(result.choise){
                         var options=JSON.parse(result.choise);
@@ -245,7 +244,6 @@ $(document).ready(function(){
                     $(".myDiscuss").append(myDiscuss);
                     $(".allDiscuss").append(allDiscuss);
                     $(".choiseList").html(choise);
-                    console.log(choise);
                     $(".optionList").append(option);
                     $(".picPlace").html(topicPic);
                     if(parseInt(result.type)===1){
