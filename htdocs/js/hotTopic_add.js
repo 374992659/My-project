@@ -193,7 +193,6 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken"),
             city_id=$(".city2 option:selected").val(),
             adverse_id=$(this).attr("title"),
-            sort = $(this).attr('sort'),
         //格式转换
         data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"adverse_id":adverse_id})],
         //加密
@@ -209,7 +208,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    $(".adList sort="+sort+'"').remove();
+                    $(".adList [title="+adverse_id+']').remove();
                 }else{
                     console.log(data.errmsg);
                 }
