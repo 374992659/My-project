@@ -48,25 +48,29 @@ $(document).ready(function(){
             window.location.href="renterMemberDetails.html";//跳转到租户成员详情页面
         }
     });
-    $("#renterMemberList").on("click","tr td button",function () {
+    //删除成员
+  
+    //删除成员
+    $(".renterMemberList").on("click","tr td button",function () {
         var apptoken=localStorage.getItem("apptoken");
         var garden_code=$(this).attr("value");
         var room_num=$(this).attr("title");
         var application_id=$(this).parent().attr("title");
         var city_id=$(this).parent().attr("value");
-        var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"application_id":application_id,"garden_code":garden_code,"room_num":room_num})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"application_id":application_id,"city_id":city_id,"garden_code":garden_code,"room_num":room_num})];
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
-            url:url+"UserCenter_TenantDelNum",
+            url:url+"UserCenter_ownerDelNum",
             type:"POST",
             data:{"data":jsonEncryptData},
-            success:function (data) {
+            success:function(data){
+                console.log(data);
                 var data=jsDecodeData(data);
                 console.log(data);
-                if(data.erocde===0){
+                if(data.errcoode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    showHide(data.errmsg);
-                    $(this).parent().parent().remove();
+                    showHide(data.errmsg)
                 }else{
                     showHide(data.errmsg)
                 }
@@ -74,5 +78,4 @@ $(document).ready(function(){
         });
         return false;
     });
-
 });
