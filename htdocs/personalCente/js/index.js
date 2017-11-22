@@ -175,7 +175,7 @@ $(document).ready(function(){
                         keys = [];
                         for (var p in garden)
                             keys.push(p);
-                        console.log(keys);  //
+                        console.log(keys[0]);  //
                         $(".garden").text(garden[510100988967]);
                         console.log(garden);
                     }
