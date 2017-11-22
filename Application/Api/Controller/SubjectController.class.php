@@ -366,7 +366,7 @@ class SubjectController extends VersionController
         if(is_numeric($res))$this->echoEncrypData($res);
         $new_model =new Model\SubjectModel($province_id,$city_id);
         $res = $new_model->where(['id ='.$subject_id])->getField('commont_num');
-        $new_model->where(['id ='.$subject_id])->save(['commont_id'=>$res-1]);
+        $new_model->where(['id ='.$subject_id])->save(['commont_num'=>$res-1]);
         if(!$res)$this->echoEncrypData(1);
         $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.DEL_COMMENT')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
