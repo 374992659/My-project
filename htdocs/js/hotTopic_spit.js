@@ -92,7 +92,7 @@ $(document).ready(function(){ "use strict";
                   var  html="";
                     $.each(data.data,function(i,item){
                         html+=`
-                         <option value="2" title="${item.garden_code}">${item.garden_name}</option>                     
+                         <option title="${item.garden_code}">${item.garden_name}</option>                     
                         `
                     });
                     $("#house").html(html);
@@ -112,7 +112,7 @@ $(document).ready(function(){ "use strict";
     })();
     // 发送数据
     $(".subBtn").click(function(){
-        var garden_code=$("#house option:selected").val();
+        var garden_code=$("#house option:selected").attr("title");
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 参数：title 标题
