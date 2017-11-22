@@ -25,7 +25,7 @@ $(document).ready(function(){
                         <td>${item.real_name}</td>
                         <td>${item.relation_name}</td>
                         <td>${item.room_num}</td>
-                        <td><button>删除</button></td>
+                        <td><button value="${item.cit}">删除</button></td>
                     </tr>
                     `
                     });
