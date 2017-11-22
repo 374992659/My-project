@@ -1,6 +1,9 @@
 $(document).ready(function(){
     "use strict";
-    //获取认证小区情况
+    var apptoken=localStorage.getItem("apptoken"),
+        city_id= localStorage.getItem("city_id"),
+        garden_code=$(".plot1 option:selected").attr("title");
+    //功能1 获取认证小区情况
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -27,11 +30,7 @@ $(document).ready(function(){
             }
         })
     })();
-    //获取apptoken
-    //功能1 获取全部广告
-    var apptoken=localStorage.getItem("apptoken"),
-        city_id= localStorage.getItem("city_id"),
-        garden_code=$(".plot1 option:selected").attr("title");
+    //获取全部广告的构造函数
     function allAd(apptoken,city_id,garden_code){
         console.log("广告");
         // apptoken
@@ -79,20 +78,7 @@ $(document).ready(function(){
             })
         };
     }
-    //加载页面的时候获取全广告
- var allad=  new allAd(apptoken,city_id,garden_code);
-    allad.add();
-    // 当城市发生改变的时候获取其他城市的广告
-    $(".city1").change(function(){
-        $(".allAdList").empty();
-        // 获取城市id
-       var cityid=$(".city1 option:selected").val();
-        localStorage.setItem("city_id",cityid);
-       var garden_code=$(".plot1 option:selected").val();
-       var otherAd=new allAd(apptoken,cityid,garden_code);
-        otherAd.add();
-    });
-    //功能2 获取我的广告
+    //获取我的广告构造函数
    function myaD(apptoken,city_id,garden_code){
        // apptoken
        this.apptoken=apptoken;
@@ -143,10 +129,35 @@ $(document).ready(function(){
            })
        };
     }
-    //加载页面的时候发起
+    //功能2-1 加载页面的时候获取全广告
+    var allad=  new allAd(apptoken,city_id,garden_code);
+    allad.add();
+    //功能2-2 当城市发生改变的时候获取其他城市的广告
+    $(".city1").change(function(){
+        $(".allAdList").empty();
+        // 获取城市id
+        var cityid=$(".city1 option:selected").val();
+        localStorage.setItem("city_id",cityid);
+        var garden_code=$(".plot1 option:selected").val();
+        var otherAd=new allAd(apptoken,cityid,garden_code);
+        otherAd.add();
+    });
+    //功能2-3 当小区改变的时候活区小区广告
+    $(".plot1").change(function(){
+        //清空列表
+        $(".allAdList").empty();
+        //获取城市id
+        var cityID=$(".city1 option:selected").val();
+        var garden_code=$(".plot1 option:selected").val();
+        localStorage.setItem("city_id",cityID);
+        localStorage.setItem("garden_code",garden_code);
+        var otherAd=new allAd(apptoken,cityID,garden_code);
+        otherAd.add();
+    });
+    //功能3-1 加载页面的时候获取我的广告
     var myAD=new myaD(apptoken,city_id,garden_code);
-   myAD.otherAD();
-   //当城市发生改变的时候发起
+        myAD.otherAD();
+   //功能3-2 当城市发生改变的时候发获取我的广告
     $(".city2").change(function(){
         $(".myAdList").empty();
         // 获取城市id
@@ -156,7 +167,17 @@ $(document).ready(function(){
         var cityChang=new myaD(apptoken,cityid,garden_code);
         cityChang.otherAD();
     });
-    //功能3 发布广告
+    //功能3-3 当小区发生变化的时候获取我的广告
+    $(".plot2").change(function(){
+        $(".myAdList").empty();
+        var cityID=$(".city2 option:selected").val();
+        var garden_code=$(".plot2 option:selected").val();
+        localStorage.setItem("city_id",cityID);
+        localStorage.setItem("garden_code",garden_code);
+        var cityChang=new myaD(apptoken,cityID,garden_code);
+        cityChang.otherAD();
+    });
+    //功能4 发布广告
     $(".addBtn").click(function(){
             var apptoken=localStorage.getItem("apptoken");
             //获取主题
@@ -190,7 +211,7 @@ $(document).ready(function(){
                 }
             })
     });
-    //广告删除
+    //功能5 广告删除
     $(".myAdList").on("click",".adList .weui-media-box .delBtn",function(e){
         var apptoken=localStorage.getItem("apptoken"),
             city_id=$(".city2 option:selected").val(),
@@ -219,7 +240,7 @@ $(document).ready(function(){
         });
         return false;
     });
-    //跳转到所有公告详情页面存广告id
+    //功能6 跳转到所有公告详情页面存广告id
     $(".allAdList").on("click",".adList",function(){
         //获取广告id
         var adID=$(this).attr("title");
@@ -228,7 +249,7 @@ $(document).ready(function(){
         localStorage.setItem("adID",adID);
         window.location.href="hotTopic_addCon.html";
     });
-    //跳转到我的广告详情页面
+    //功能7 跳转到我的广告详情页面
     $(".myAdList").on("click",".adList",function(){
         //获取广告id
         var adID=$(this).attr("title");
