@@ -141,8 +141,8 @@ $(document).ready(function(){
                       console.log(choise);
                       // 循环添加投票选项
                     if(result.choise){
-                        var option=JSON.parse(result.choise);
-                        $.each(option,function (i,item) {
+                        var options=JSON.parse(result.choise);
+                        $.each(options,function (i,item) {
                             if(parseInt(result.type)===1){//单选
                                 option+=`
                 <label class="weui-cell weui-check__label" >
