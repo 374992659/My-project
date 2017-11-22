@@ -341,6 +341,7 @@ $(document).ready(function(){
     //14 参数：pictures 合同照
         var  ContractPic=$(".ContractPic img").attr("src");
         var  pictures="{'a':'"+ContractPic+"'}";
+        console.log(typeof pictures);
     //15 参数：yourself_picture 个人照片 可填
         var yourself_picture={};
         var myPic=$(".myPic").find("img");
@@ -349,6 +350,7 @@ $(document).ready(function(){
             var src=_this.attr("src");
             yourself_picture[i]=src
         });
+        console.log(typeof yourself_picture);
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_pictures,"owner_id_card_num":owner_id_card_num,"owner_id_card_picture":owner_id_card_picture,"city_id":city_id,"garden_name":garden_name,"garden_code":garden_code,"garden_addr":garden_addr,"contract_period":contract_period,"pictures":pictures,"yourself_picture":yourself_picture})];
         // 加密
