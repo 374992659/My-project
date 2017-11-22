@@ -27,7 +27,9 @@ $(document).ready(function(){
                     //添加图片
                     if(result.picture){
                         var ideaPic=JSON.parse(result.picture);
+                        console.log(ideaPic);
                         $.each(ideaPic,function (i,item) {
+                            console.log(item);
                             pic+=`
                                 <li><img src="${item.pic}" alt=""></li>
                            
