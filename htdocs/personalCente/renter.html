@@ -93,15 +93,15 @@
             </div>
         </div>
     </div>
-    <!--租客身份证号-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <label class="left" for="renter_owner_Identity">身份证：<span style="color:red">*</span></label>
-                <input type="text" id="renter_owner_Identity" class="Identity" placeholder="租客身份证号">
+        <!--租客身份证-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="renter_IdentityCard">身份证：<span style="color:green">*</span></label>
+                    <input type="text" id="renter_IdentityCard" placeholder="租客身份证号">
+                </div>
             </div>
         </div>
-    </div>
     <!--租客证件照-->
     <div class="weui-cells">
         <div class="weui-cell">
@@ -136,14 +136,14 @@
             </div>
         </div>
     </div>
-    <!--房东身份证-->
+     <!--房东身份证号-->
     <div class="weui-cells">
-        <div class="weui-cell">
+         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <label class="left" for="renter_IdentityCard">身份证：<span style="color:green">*</span></label>
-                <input type="text" id="renter_IdentityCard" placeholder="房东身份证号">
+                 <label class="left" for="renter_owner_Identity">身份证：<span style="color:red">*</span></label>
+                 <input type="text" id="renter_owner_Identity" class="Identity" placeholder="房东身份证号">
             </div>
-        </div>
+         </div>
     </div>
     <!--房东身份证照-->
     <div class="weui-cells">
@@ -275,6 +275,8 @@
     <script src="../js/encrypt-decode.js"></script>
     <script src="../js/showHide.js"></script>
     <script src="../js/addRess.js"></script>
+    <script src="js/verifyIdentifyCard.js"></script>
+    <script src="js/verifyPhone.js"></script>
     <script >
         addRess();
     </script>
