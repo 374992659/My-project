@@ -1420,7 +1420,7 @@ class UserCenterController extends VersionController
         $account_code =  $this->account_code;
         $mongo = new \MongoClient();
         $data1 = $mongo->baseinfo->user_level->find(array('inviter_code'=>$account_code));
-        $first_level =
+//        $first_level =
     }
 
 
