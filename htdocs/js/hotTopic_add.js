@@ -87,6 +87,7 @@ $(document).ready(function(){
         $(".allAdList").empty();
         // 获取城市id
        var cityid=$(".city1 option:selected").val();
+        localStorage.setItem("city_id",cityid);
        var garden_code=$(".plot1 option:selected").val();
        var otherAd=new allAd(apptoken,cityid,garden_code);
         otherAd.add();
@@ -150,6 +151,7 @@ $(document).ready(function(){
         $(".myAdList").empty();
         // 获取城市id
         var cityid=$(".city2 option:selected").val();
+        localStorage.setItem("city_id",cityid);
         var garden_code=$(".plot2 option:selected").val();
         var cityChang=new myaD(apptoken,cityid,garden_code);
         cityChang.otherAD();
