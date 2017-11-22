@@ -1400,12 +1400,16 @@ class UserCenterController extends VersionController
             $info_model->startTrans();
             $res2 = $info_model->where(['account_code'=>$user_info['user_code']])->save(['user_garden'=>$string]);
         }
-        if($res1 and $res2){
+        $garden_room->startTrans();
+        $res3=$garden_room->where(['city_id'=>$user_info['city_id'],'garden_code'=>$user_info['garden_code'],'room_num'=>$user_info['room_num'],'role'=>intval($this->pdata['type'])])->delete();
+        if($res1 and $res2 and $res3){
             $mode->commit();
             $info_model->commit();
+            $garden_room->commit();
             $this->echoEncrypData(0);
         }
         $mode->rollback();
+        $garden_room->rollback();
         $info_model->rollback();
         $this->echoEncrypData(1);
     }
