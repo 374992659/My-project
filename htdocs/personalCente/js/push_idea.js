@@ -39,46 +39,66 @@ $(document).ready(function(){
         });
     })();
     //上传照片
-    (function(){
-        $('#uploaderInput').change(function(e) {
-            var Url=window.URL.createObjectURL(this.files[0]) ;
-            var formData= new FormData();
-            var apptoken=localStorage.getItem("apptoken");
-            formData.append("file",$("#uploaderInput")[0].files[0]);
-            var data=["",JSON.stringify({"apptoken":apptoken})];
-            var json=jsEncryptData(data);
-            formData.append("data",json);
-            console.log(formData);
-            $.ajax({
-                type:"POST",
-                url:url+"UserCenter_uploadOwnerApplicationPic",
-                fileElementId:'MyPicuploaderInput',
-                data:formData,
-                processData : false,
-                contentType : false,
-                secureuri:false,
-                success : function(data){
-                    // 解密
-                    data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        console.log(data.data[0]);
-                        var html="";
-                        if(Url){
-                            html+=`
-                        <li class="lf" style="margin-right: 10px">
-                            <img  src="http://wx.junxiang.ren/project/${data.data[0]}" style="height: 79px;width: 79px" alt="" >
-                        </li>             
-               `
-                        }
-                        $(".topicPlace").prepend(html);
-
-                    }
-                },
-                error:function (data) {
-                    console.log(data);
+    $("#uploaderInput").change(function(e){
+        // 图片信息组成的数组
+        var file =$("#uploaderInput")[0].files;
+        console.log(file[0].name);
+        var formData = new FormData();
+        for(var i=0,len=file.length;i<len;i++){
+            formData.append("topic"+i,file[i]);
+        }
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        formData.append("data",json);
+        console.log(data);
+        $.ajax({
+            url:url+"group_uploaSubjectPic",
+            type:"POST",
+            data:formData,
+            processData : false,
+            contentType : false,
+            secureuri:false,
+            success:function(data){
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var LiImg="";
+                    $.each(data.data,function(i,item){
+                        LiImg+=`
+                         <li class="weui-uploader__file" >
+                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushTopic_Img">
+                                     <img src="image/del.png" alt="" width="20px" class="delImg">
+                                 </li>
+                        `
+                    });
+                    $(".topicPlace").append(LiImg);
+                }else{
+                    console.log(data.errmsg);
                 }
-            });
+            }
+        })
+    });
+    // 取消删除图片
+    $("#uploaderFiles").on("click",".weui-uploader__file .delImg",function(){
+        $(this).parent().remove();
+    });
+    // 图片放大预览
+    (function(){
+        $("#uploaderFiles").on("click",".weui-uploader__file .pushTopic_Img",function(){
+            console.log(123);
+            var URL=$(this).attr("src");
+            if($(".weui-gallery").is(":hidden")){
+                $(".weui-gallery").show();
+                $(".weui-gallery__img").attr("style","background-image: url("+URL+")")
+            }
+        });
+        $(".weui-gallery").click(function(){
+            $(".weui-gallery").hide();
+
         });
     })();
     // 提交
