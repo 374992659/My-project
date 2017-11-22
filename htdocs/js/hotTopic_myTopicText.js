@@ -151,7 +151,7 @@ $(document).ready(function(){
                                 option+=`
                 <label class="weui-cell weui-check__label" >
                     <div class="weui-cell__bd">
-                        <p>${item.content}</p>
+                        <p>${item}</p>
                     </div>
                     <div class="weui-cell__ft">
                         <input type="radio" class="weui-check" name="radio1">
@@ -163,7 +163,7 @@ $(document).ready(function(){
                                 option+=`
                 <label class="weui-cell weui-check__label" >
                     <div class="weui-cell__bd">
-                        <p>${item.content}</p>
+                        <p>${item}</p>
                     </div>
                     <div class="weui-cell__ft">
                         <input type="checkbox" class="weui-check" name="radio1">
