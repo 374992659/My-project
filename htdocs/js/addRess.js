@@ -6,7 +6,7 @@ var addRess=function(){
             success:function(data) {
                 data=jsDecodeData( data );
                 var result = data.data;
-                console.log(result);
+               // console.log(result);
                 $(function () {
                     var pro = $("#province"),
                         city = $("#city"),
@@ -31,7 +31,7 @@ var addRess=function(){
                         }
                     });
                     function init() {
-                        console.log("加载省");
+                       // console.log("加载省");
                         for (var i = 0; i < result.province.length; i++) {
                             var item = $("<option value="+result.province[i].id+" parent_id="+result.province[i].province +">"+result.province[i].province+"</option>");
                            pro.append(item);
@@ -50,7 +50,7 @@ var addRess1=function(){
             success:function(data) {
                 data=jsDecodeData( data );
                 var result = data.data;
-                console.log(result);
+               // console.log(result);
                 $(function () {
                     var pro = $(".province1"),
                         city = $(".city1"),
@@ -93,7 +93,7 @@ var addRess2=function(){
             success:function(data) {
                 data=jsDecodeData( data );
                 var result = data.data;
-                console.log(result);
+                //console.log(result);
                 $(function () {
                     var pro = $(".province2"),
                         city = $(".city2"),
