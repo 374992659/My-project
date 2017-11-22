@@ -162,6 +162,7 @@ $(document).ready(function(){
         $(".myAdList").empty();
         // 获取城市id
         var cityid=$(".city2 option:selected").val();
+        var garden_code=$(".plot1 option:selected").attr("title");
             localStorage.setItem("city_id",cityid);
         var cityChang=new myaD(apptoken,cityid,garden_code);
         cityChang.otherAD();
