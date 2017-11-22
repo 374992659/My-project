@@ -168,7 +168,7 @@ $(document).ready(function(){
                   $(".personal").html(html);
                   //常住小区
                     console.log(result.default_garden);
-                    if(!result.default_garden===""){
+                    if(!result.default_garden.length===0){
                         var garden=JSON.parse(result.default_garden);
                         $(".gender").html(garden);
                         console.log(garden);
