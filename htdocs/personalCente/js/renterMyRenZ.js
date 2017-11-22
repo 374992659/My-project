@@ -25,7 +25,7 @@ $(document).ready(function(){
                             <td>${item.garden_name}</td>
                             <td>${item.room_num}</td>
                             <td style="color: red">待审核</td>
-                            <td><button>删除</button></td>
+                            <td><button title="${item.id}">删除</button></td>
                         </tr> 
                          `
                         }else if(parseInt(item.status)===1){
@@ -43,7 +43,7 @@ $(document).ready(function(){
                             <td>${item.garden_name}</td>
                             <td>${item.room_num}</td>
                             <td style="color: red">认证拒绝</td>
-                            <td><button>删除</button></td>
+                            <td><button title="${item.id}">删除</button></td>
                         </tr> 
                          `
                         }
@@ -62,5 +62,35 @@ $(document).ready(function(){
             if(renterID){
                 window.location.href="renterMyRenZdetails.html";//跳转到认证详情页面
             }
+        });
+        //删除认证
+        $(".renterRZlist").on("click","tr td button",function (e) {
+            var apptoken=localStorage.getItem("apptoken");
+            var id=parseInt($(this).attr("title"));
+            var type=2;
+            console.log(typeof id);
+            console.log(typeof type);
+            var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"type":type})];
+            var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            if(confirm("删除成员")){
+                $.ajax({
+                    url:url+"UserCenter_delApplication",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function(data){
+                        var data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcoode===0){
+                            localStorage.setItem("apptoken",data.apptoken);
+                            showHide(data.errmsg);
+                            $(e.target).parent().parent().remove();
+                        }else{
+                            showHide(data.errmsg)
+                        }
+                    }
+                });
+            }
+            return false;
         })
 });
