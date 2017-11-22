@@ -138,8 +138,6 @@ $(document).ready(function(){ "use strict";
          Url.each(function(i,item){
              picture[parseInt(i+1)]=$(this).attr("src");
          });
-         picture=JSON.stringify(picture);
-         console.log(picture);
         // 参数：type 选择类型
          var   type=parseInt($("#type option:selected").val()),
         // 参数：is_public 是否公开
@@ -151,11 +149,8 @@ $(document).ready(function(){ "use strict";
       option.each(function(i){
           choise[parseInt(i+1)]=$(this).val();
       });
-        choise=JSON.stringify(choise);
-        console.log(typeof choise);
-        console.log(typeof picture);
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":garden_code,"garden_name":garden_name,"choise":choise,"end_time":end_time,"picture":picture,"type":type,"is_public":is_public,"is_push":is_push})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":parseInt(garden_code),"garden_name":garden_name,"choise":JSON.stringify(choise),"end_time":end_time,"picture":JSON.stringify(picture),"type":parseInt(type),"is_public":parseInt(is_public),"is_push":parseInt(is_push)})];
         // 加密
         var  jsonEncryptData=jsEncryptData(data);
         console.log(data);
