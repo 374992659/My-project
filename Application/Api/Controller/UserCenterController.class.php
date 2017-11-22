@@ -1420,12 +1420,29 @@ class UserCenterController extends VersionController
         $account_code =  $this->account_code;
         $mongo = new \MongoClient();
         $data1 = $mongo->baseinfo->user_level->find(array('inviter_code'=>$account_code));
-        $first_level =iterator_to_array($data1);
+        $data1 =iterator_to_array($data1);
         $data2= array();
-        foreach ($data1 as $k=>$v){
-            $data=$mongo->baseinfo->user_level->find(array('inviter_code'=>$v['user_code']));
-            $data2 = array_merge($data,$data2);
+        $data3=array();
+        if($data1){
+            foreach ($data1 as $k=>$v){
+                $data=$mongo->baseinfo->user_level->find(array('inviter_code'=>$v['user_code']));
+                $data =iterator_to_array($data);
+                $data2 = array_merge($data,$data2);
+            }
+            if($data2){
+                foreach ($data2 as $key=>$val){
+                    $data=$mongo->baseinfo->user_level->find(array('inviter_code'=>$val['user_code']));
+                    $data =iterator_to_array($data);
+                    $data3 = array_merge($data,$data3);
+                }
+            }
         }
+        $arr= array(
+            'first'=>$data1,
+            'second'=>$data2,
+            'third'=>$data3,
+        );
+        $this->echoEncrypData(0,'',$arr);
     }
 
 
