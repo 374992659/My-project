@@ -194,6 +194,22 @@ $(document).ready(function(){
             }
         })
     })();
+    //检测手机格式
+    (function () {
+        $("#phone").blur(function () {
+            var phone=$("#phone").val();
+            validate4(phone);
+        })
+    })();
+    //检测身份证格式
+    (function () {
+        $("#identityCard").blur(function () {
+           $("#identityCard").blur(function () {
+                var idCard=$("#identityCard").val();
+               isCardNo(idCard);
+            })
+        })
+    })();
     // 提交
     $(".weui-btn").click(function(){
         // 1参数：apptoken
