@@ -21,11 +21,11 @@ $(document).ready(function(){
                     $.each(item,function(i,item){
                         console.log(item);
                         html+=`
-                    <tr title="${item.garden_code}" value="${item.room_num}" class="renterList">
+                    <tr title="${item.application_id}" value="${item.city_id}" class="renterList">
                         <td>${item.real_name}</td>
                         <td>${item.relation_name}</td>
                         <td>${item.room_num}</td>
-                        <td><button value="${item.city_id}" title="${item.application_id}">删除</button></td>
+                        <td><button value="${item.garden_code}" title="${item.room_num}">删除</button></td>
                     </tr>
                     `
                     });
@@ -50,10 +50,10 @@ $(document).ready(function(){
     });
     $("#renterMemberList").on("click","tr td button",function () {
         var apptoken=localStorage.getItem("apptoken");
-        var city_id=$(this).attr("value");
-        var application_id=$(this).attr("title");
-        var garden_code=$(this).parent().attr("title");
-        var room_num=$(this).parent().attr("value");
+        var garden_code=$(this).attr("value");
+        var room_num=$(this).attr("title");
+        var application_id=$(this).parent().attr("title");
+        var city_id=$(this).parent().attr("value");
         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"application_id":application_id,"garden_code":garden_code,"room_num":room_num})];
         var jsonEncryptData=jsEncryptData(data);
         $.ajax({
