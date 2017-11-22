@@ -176,7 +176,7 @@ $(document).ready(function(){
                         for (var p in garden)
                             keys.push(p);
                         console.log(keys[0]);  //
-                        $(".garden").text(garden[510100988967]);
+                        $(".garden").text(garden[keys[0]]);
                         console.log(garden);
                     }
                   // 遍历认证楼盘
