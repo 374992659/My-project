@@ -42,7 +42,7 @@ class SubjectDynamicsModel extends Model
      * @param commont_id 评论id
      * */
         public function getSubjectCommontC($commont_id){
-            $res= $this->where(['id'=>$commont_id,'type'=>1])->getField('user_code');
+            $res= $this->where(['id'=>$commont_id,])->getField('user_code');
             if(!$res)return false;
             return $res;
         }
