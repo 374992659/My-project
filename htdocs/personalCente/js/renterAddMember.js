@@ -196,9 +196,6 @@ $(document).ready(function(){
     })();
     // 提交
     $(".weui-btn").click(function(){
-        var success=$(".success");
-        var hideTop=function(){
-            success.empty()};
         // 1参数：apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 2 参数：real_name 真实姓名
@@ -226,12 +223,20 @@ $(document).ready(function(){
         var A=$(".flockHeadA img").attr("src");
         var B=$(".flockHeadB img").attr("src");
         var id_card_pictures="{'a':'"+A+"','b':'"+B+"'}";
+        console.log(typeof id_card_pictures);
         // 12 参数：yourself_picture个人照片可填
-        var yourself_picture="";
+        var yourself_picture={};
+        var myPic=$(".myPic").find("img");
+        myPic.each(function(i,item){
+            var _this=$(this);
+            var src=_this.attr("src");
+            yourself_picture[i]=src
+        });
+        console.log(typeof yourself_picture);
         // 13 参数：account 添加用户的账户 可填
-        var account="";
+        var account=$("#account").val();
         // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"garden_code":garden_code,"garden_name":garden_name,"city_id":city_id,"relation_name":relation_name,"contract_period":contract_period,"id_card_pictures":id_card_pictures,"yourself_picture":yourself_picture,"account":account})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"garden_code":garden_code,"garden_name":garden_name,"city_id":city_id,"relation_name":relation_name,"contract_period":contract_period,"id_card_pictures":id_card_pictures,"yourself_picture":JSON.stringify(yourself_picture),"account":account})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
