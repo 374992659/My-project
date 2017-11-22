@@ -19,11 +19,11 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function (i,item) {
-                        if(item.type===1){//加分
+                        if(parseInt(item.type)===1){//加分
                             html+=`
                     <tr>
                         <td>${item.name}</td>
-                        <td>${getLocalTime(item.create_time)}</td>
+                        <td>${data('Y-m-d',item.create_time)}</td>
                         <td>+</td>
                         <td>${item.value}</td>
                     </tr>
@@ -33,7 +33,7 @@ $(document).ready(function(){
                             html+=`
                     <tr>
                         <td>${item.name}</td>
-                        <td>${getLocalTime(item.create_time)}</td>
+                        <td>${data('Y-m-d',item.create_time)}</td>
                         <td>-</td>
                         <td>${item.value}</td>
                     </tr>
