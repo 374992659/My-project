@@ -171,7 +171,7 @@ $(document).ready(function(){
 
                     if(result.default_garden){
                         var garden=JSON.parse(result.default_garden);
-                        $(".garden").text(garden[0]);
+                        $(".garden").text(garden[510100988967]);
                         console.log( $(".garden"));
                         console.log(garden);
                     }
