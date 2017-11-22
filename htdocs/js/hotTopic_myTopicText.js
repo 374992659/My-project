@@ -145,10 +145,10 @@ $(document).ready(function(){
                         console.log(i);
                         console.log(item);
                     });
-                    if(result.choise_votes){
-                          $.each(result.choise_votes,function(i,item){
-                              if(parseInt(result.type)===1){//单选
-                                  option+=`
+                    if(choise){
+                        $.each(choise,function (i,item) {
+                            if(parseInt(result.type)===1){//单选
+                                option+=`
                 <label class="weui-cell weui-check__label" >
                     <div class="weui-cell__bd">
                         <p>${item.content}</p>
@@ -159,8 +159,8 @@ $(document).ready(function(){
                     </div>
                 </label>
                         `
-                              }else{//多选
-                                  option+=`
+                            }else{//多选
+                                option+=`
                 <label class="weui-cell weui-check__label" >
                     <div class="weui-cell__bd">
                         <p>${item.content}</p>
@@ -171,10 +171,39 @@ $(document).ready(function(){
                     </div>
                 </label>
                         `
-                              }
-
-                          });
+                            }
+                        });
                     }
+                //     if(result.choise_votes){
+                //           $.each(result.choise_votes,function(i,item){
+                //               if(parseInt(result.type)===1){//单选
+                //                   option+=`
+                // <label class="weui-cell weui-check__label" >
+                //     <div class="weui-cell__bd">
+                //         <p>${item.content}</p>
+                //     </div>
+                //     <div class="weui-cell__ft">
+                //         <input type="radio" class="weui-check" name="radio1">
+                //         <span class="weui-icon-checked"></span>
+                //     </div>
+                // </label>
+                //         `
+                //               }else{//多选
+                //                   option+=`
+                // <label class="weui-cell weui-check__label" >
+                //     <div class="weui-cell__bd">
+                //         <p>${item.content}</p>
+                //     </div>
+                //     <div class="weui-cell__ft">
+                //         <input type="checkbox" class="weui-check" name="radio1">
+                //         <span class="weui-icon-checked"></span>
+                //     </div>
+                // </label>
+                //         `
+                //               }
+                //
+                //           });
+                //     }
                     //添加图片
                     var topicPic="";
                     var pic=JSON.parse(result.picture);
