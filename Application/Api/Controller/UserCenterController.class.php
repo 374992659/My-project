@@ -450,7 +450,7 @@ class UserCenterController extends VersionController
                     'user_code'=>$user_code,
                     'role'=>1,
                     'garden_name'=>$this->pdata['garden_name'],
-                    'relation_name'=>$this->pdata['real_name'],
+                    'real_name'=>$this->pdata['real_name'],
                     'relation_name'=>$this->pdata['relation_name'],
                     'create_time'=>time(),
                 ));
