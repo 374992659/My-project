@@ -267,6 +267,7 @@ $(document).ready(function(){
                     var garden_code = $('#gardenLIst option:selected').attr('value');
                     var garden_name = $('#gardenLIst option:selected').text();
                     var arr={};
+
                     arr[garden_code]=garden_name;
                     default_garden=$("#house").val()==='暂无认证通过的小区'?'':JSON.stringify(arr);
             // 出生年份（可填）
