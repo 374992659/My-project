@@ -716,7 +716,11 @@ class RegiestController extends BaseController
         $data=$model->getUserInfoByPhone($account);
         $this->executeSql('databases.sql',$data);
         $model=new Model\FriendsGroupModel($data['account_code']);
-        $model->execute("INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,'".$data['account_code']."', '我的好友');");
+        $model->add(array(
+            'user_code'=>$data['account_code'],
+            'group_name'=>'我的好友',
+            'status'=>1,
+        ));
         $m =new \MongoClient();
         $baseinfo=$m->baseinfo;
         $baseinfo->online_user->insert(array('account_code'=>$data['account_code'],'status'=>0,'offline_time'=>0)); //用户表中加入数据
