@@ -499,6 +499,8 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                        localStorage.setItem("apptoken",data.apptoken);
+                       //删除头像
+                        console.log("删除头像");
                       $(e).parent().parent().parent().remove();
                        // getPage();
                     }else{
