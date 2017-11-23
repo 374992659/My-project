@@ -716,6 +716,7 @@ class RegiestController extends BaseController
         $data=$model->getUserInfoByPhone($account);
         $this->executeSql('databases.sql',$data);
         $model=new Model\FriendsGroupModel($data['account_code']);
+        $this->echoEncrypData(1,$data['account_code']);
         $model->add(array(
             'user_code'=>$data['account_code'],
             'group_name'=>'我的好友',
