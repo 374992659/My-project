@@ -31,6 +31,9 @@ class FriendsController extends VersionController
                         if(intval($v['id'])===intval($val['group_id'])){
                             $v['total']=$val['total'];
                             $v['friend_user']=$val['friend_user'];
+                            $v['friend_nickname']=$val['friend_nickname'];
+                            $v['friend_portrait']=$val['friend_portrait'];
+                            $v['friend_signature']=$val['friend_signature'];
                         }
                     }
                 }
@@ -85,6 +88,24 @@ class FriendsController extends VersionController
         $model = new Model\FriendsGroupModel($account_code);
         $code = $model->editGroup($group_id,$group_name);
         $this->echoEncrypData($code);
+    }
+    /*
+     * 获取用户详情
+     * @param user_code 用户code
+     * */
+    protected function getFriendInfo_v1_0_0(){
+        $this->checkParam(array('user_code'));
+        $account_code = $this->account_code;
+        $user_code = $this->pdata['user_code'];
+        //1.验证是否是用户自己或者好友
+        if($user_code !== $account_code){
+            $user_friends  =new Model\UserFriendsModel($account_code);
+            $count = $user_friends->where(['user_code'=>$user_code])->count();
+            if(!$count)$this->echoEncrypData(1,'该用户不是您的好友');
+        }
+        $user_city_id = substr($user_code,0,6);
+        $data  =M('baseino.user_info_'.$user_city_id)->field('portrait,nickname,account,realname,default_garden,phone,create_time,hobby,user_garden')->where(['account_code'=>$user_code])->find();
+
     }
     /*
      * 更改好友所属分组
