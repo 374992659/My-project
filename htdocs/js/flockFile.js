@@ -5,6 +5,7 @@ $(document).ready(function(){
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
+        console.log($("#uploaderInput")[0].files[0]);
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         formData.append("data",json);
