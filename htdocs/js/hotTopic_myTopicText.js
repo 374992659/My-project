@@ -258,14 +258,14 @@ $(document).ready(function(){
                     }else{
                         $(".anonymous").html("(公开)");
                     }
+                    $(".discuss").show();
+                    $(".topicVote").show();
+                    $(".prestrain").hide();
                     if(parseInt(result.is_choised)===1){
                         $(".topicVote").hide();
                     }else{
                         $(".topicVote").show();
                     }
-                    $(".discuss").show();
-                    $(".topicVote").show();
-                    $(".prestrain").hide();
                 }
             }
         })
