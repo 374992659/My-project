@@ -171,15 +171,18 @@ $(document).ready(function(){
                     }
                     //添加图片
                     var topicPic="";
-                    var pic=JSON.parse(result.picture);
-                    $.each(pic,function(i,item){
-                        topicPic+=`
+                    if(result.picture){
+                        var pic=JSON.parse(result.picture);
+                        $.each(pic,function(i,item){
+                            topicPic+=`
                                 <li style="display: inline-block">
                                     <img src="${item}" alt="" class="topic" width="80px">
                                 </li>
-                        
+
                         `
-                    });
+                        });
+                    }
+
                     //加载页面内容
                     if(parseInt(result.is_likes)===1){
                         html=`
