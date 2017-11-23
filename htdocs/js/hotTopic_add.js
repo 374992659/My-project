@@ -214,7 +214,7 @@ $(document).ready(function(){
     //功能5 广告删除
     $(".myAdList").on("click",".adList .weui-media-box .delBtn",function(e){
         var apptoken=localStorage.getItem("apptoken"),
-            city_id=$(".city2 option:selected").val(),
+            city_id=localStorage.getItem("city_id"),
             adverse_id=$(this).attr("title"),
         //格式转换
         data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"adverse_id":adverse_id})],
