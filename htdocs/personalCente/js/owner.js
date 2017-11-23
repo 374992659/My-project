@@ -302,11 +302,14 @@ $(document).ready(function(){
     })();
     $(".weui-btn").click(function(){
         // 获取apptoken
-        var apptoken=localStorage.getItem("apptoken"),
+        var apptoken=localStorage.getItem("apptoken");
         // 姓名
-           real_name=$("#name").val(),
+        var   real_name=$("#name").val();
+            if(real_name){
+                $("#name").attr("style","background_color:red")
+            }
         // 手机号
-            phone=$("#phone").val();
+          var  phone=$("#phone").val();
         // 房号“1-2-3”字符串格式
             var dongNum=$("#dongNum option:selected").val();
             var floorNum=$("#floorNum option:selected").val();
