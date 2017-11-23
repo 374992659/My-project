@@ -27,7 +27,7 @@ class UserFriendsModel extends Model
         $data = $this->query('select group_id,count(*) as total from user_friends GROUP BY  group_id');
         if($data){
             foreach($data as $k=>$v){
-                $v = $this->query('select friend_user_code,friend_nickname,friend_portrait,friend_signature from user_friends where group_id='. $v['group_id']);
+                $friends_list= $this->query('select friend_user_code,friend_nickname,friend_portrait,friend_signature from user_friends where group_id='. $v['group_id']);
 //                if($v['friend_user']){
 //                    $online=0;
 //                    foreach($v['friend_user'] as $key => $val){
@@ -41,6 +41,7 @@ class UserFriendsModel extends Model
 //                    }
 //                }
 //                unset($v['friend_user']);
+                $v['friend_user']=$friends_list;
                 $data[$k]=$v;
             }
         }
