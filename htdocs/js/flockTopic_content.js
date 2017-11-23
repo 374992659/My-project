@@ -472,7 +472,7 @@ $(document).ready(function(){
         getPage();
     });
     //功能5 删除群话题评论
-    $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd #tab1 .myDiscuss .weui-media-box .delPraise .delImg",function(){
+    $("#topicText").on("click",".Discuss .weui-tab .weui-tab__bd #tab1 .myDiscuss .weui-media-box .delPraise .delImg",function(e){
         console.log("删除评论");
         if(confirm("删除评论")){
             // 获取apptoken
@@ -499,7 +499,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                        localStorage.setItem("apptoken",data.apptoken);
-                       // $(this).parent().parent().remove();
+                      $(e).parent().parent().parent().remove();
                        // getPage();
                     }else{
                     }
