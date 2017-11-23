@@ -305,7 +305,7 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         // 姓名
         var   real_name=$("#name").val();
-            if(real_name){
+            if(!real_name){
                 console.log("123");
                 $("#name").attr("background_color","red")
             }
