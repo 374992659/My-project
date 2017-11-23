@@ -13,10 +13,13 @@ $(document).ready(function(){
             if(data.errcode===0){
                 var html="";
                 localStorage.setItem("apptoken",data.apptoken);
-                html+=`
-                <option></option>>
+                $.each(data.data,function(i,item){
+                    html+=`
+                <option>${item.group_name}</option>>
                              
                 `
+                });
+                $(".group").html(html)
             }
 
         }
