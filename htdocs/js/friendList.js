@@ -768,6 +768,11 @@ $(document).ready(function() {
         localStorage.setItem("sender_name",sender_name);
         window.location.href="friendChat.html";
     });
+    //点击头像跳转到
+    $(".group").on("click",".skipChat .weui-media-box__hd .weui-media-box__thumb ",function () {
+        window.location.href="friendDetails.html";
+        return false;
+    });
     //搜索好友跳转到聊天页面
     $(".keyFriend").on("click",".skipChat",function(){
         console.log(123);
