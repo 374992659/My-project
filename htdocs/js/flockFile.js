@@ -11,7 +11,7 @@ $(document).ready(function(){
         console.log(formData);
         $.ajax({
             type:"POST",
-            url:url+"group_uploadNoticePic",
+            url:url+"ChatMessage_uploadGroupFile",
             fileElementId:'uploaderInput',
             data:formData,
             processData : false,
