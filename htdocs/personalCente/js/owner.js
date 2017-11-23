@@ -306,11 +306,15 @@ $(document).ready(function(){
         // 姓名
         var   real_name=$("#name").val();
             if(!real_name){
-                console.log("123");
-                $("#name").attr("placeholder","名字没填哦")
+                $("#name").attr("placeholder","名字没填哦");
+                $("#name").addClass("ainput");
             }
         // 手机号
           var  phone=$("#phone").val();
+            if(!phone){
+                $("#phone").attr("placeholder","手机号没填哦");
+
+            }
         // 房号“1-2-3”字符串格式
             var dongNum=$("#dongNum option:selected").val();
             var floorNum=$("#floorNum option:selected").val();
