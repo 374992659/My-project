@@ -87,6 +87,23 @@ class FriendsController extends VersionController
         $this->echoEncrypData($code);
     }
     /*
+     * 更改好友所属分组
+     * @param user_code 好友code
+     * @param group_id 分组id
+     * */
+    protected function changeFriendGroup_v1_0_0(){
+        $this->checkParam(array('user_code','group_id'));
+        $account_code = $this->account_code;
+        $user_code =$this->pdata['user_code'];
+        $group_id = $this->pdata['group_id'];
+       $user_friends = new Model\UserFriendsModel($account_code);
+       $old_group_id = $user_friends->where(['friends_user_code'=>$user_code])->getField('group_id');
+       if(intval($old_group_id) ===intval($group_id))$this->echoEncrypData(1,'不能移动到相同分组下');
+       $res = $user_friends->where(['user_code'=>$user_code])->save(['group_id'=>$group_id]);
+       if($res)$this->echoEncrypData(0);
+       $this->echoEncrypData(1);
+    }
+    /*
     *更新好友信息
     * @param user_code 用户code
     * */
