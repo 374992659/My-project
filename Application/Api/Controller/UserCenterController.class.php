@@ -304,7 +304,7 @@ class UserCenterController extends VersionController
 //            $name = substr_replace($real_name,'**',1);
 //            $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
 //        }
-        $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
+        $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$garden_code))['city_id'];
         $garden_province_id= M('baseinfo.swf_area')->where(['city_code'=>$garden_city_id])->getField('province_code');
         $garden_room = new Model\GardenRoomModel($garden_province_id,$garden_city_id);
         $real_name = $garden_room->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1,'relation_name'=>'户主'])->getField('real_name');
@@ -365,7 +365,7 @@ class UserCenterController extends VersionController
             $model->commit();
             $garden_num->commit();
             $user_info->commit();
-            $this->echoEncrypData(0,array( $garden_city_id,$garden_province_id));
+            $this->echoEncrypData(0);
         }else{
             $model->rollback();
             $garden_num->rollback();
@@ -768,7 +768,7 @@ class UserCenterController extends VersionController
 //            $name = substr_replace($real_name,'**',1);
 //            $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
 //        }
-        $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
+        $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$garden_code))['city_id'];
         $garden_province_id= M('baseinfo.swf_area')->where(['city_code'=>$garden_city_id])->getField('province_code');
         $garden_room = new Model\GardenRoomModel($garden_province_id,$garden_city_id);
         $real_name = $garden_room->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1,'relation_name'=>'主租户'])->getField('real_name');
