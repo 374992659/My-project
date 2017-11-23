@@ -23,7 +23,7 @@ $(document).ready(function(){
                             html+=`
                     <tr>
                         <td>${item.name}</td>
-                        <td>${fmtDate(item.create_time)}</td>
+                        <td>${getLocalTime1(item.create_time)}</td>
                         <td>+</td>
                         <td>${item.value}</td>
                     </tr>
