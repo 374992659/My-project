@@ -231,7 +231,8 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    $(".adList [title="+adverse_id+']').remove();
+                   // $(".adList [title="+adverse_id+']').remove();
+                    $(e.target).parent().parent().remove();
                 }else{
                     console.log(data.errmsg);
                 }
