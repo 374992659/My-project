@@ -306,6 +306,7 @@ $(document).ready(function(){
         // 姓名
         var   real_name=$("#name").val();
             if(real_name){
+                console.log("123");
                 $("#name").attr("background_color","red")
             }
         // 手机号
