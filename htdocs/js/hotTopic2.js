@@ -99,7 +99,7 @@ $(document).ready(function(){
         if(id&&code){
             localStorage.setItem("subject_id",id);
             localStorage.setItem("garden_code",code);
-           // window.location.href="hotTopic_myTopicText.html";
+            window.location.href="hotTopic_myTopicText.html";
         }
 
     })
