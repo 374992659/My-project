@@ -87,7 +87,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__desc" style="margin-top: 10px;font-size: 15px;color: black">
                         <a href="" style="">律师援助</a>
-                        <span style="margin-left:10px ">分享</span>
+                       
                         <span style="margin-left:10px " class="commentBtn">评论</span>
                     </div>
                 </div>
@@ -162,7 +162,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__desc" style="margin-top: 10px;font-size: 15px;color: black">
                         <a href="" style="">律师援助</a>
-                        <span style="margin-left:10px ">分享</span>
+                      
                         <span style="margin-left:10px " class="commentBtn">评论</span>
                     </div>
                 </div>
