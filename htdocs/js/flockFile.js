@@ -32,7 +32,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     console.log(data.data[0]);
                     var html=`
-                      <a href="http://wx.junxiang.ren/project/${data.data[0]}" class="weui-media-box weui-media-box_appmsg" download="${fileName}">
+                      <a href="http://wx.junxiang.ren/project/${data.data[0]}" class="weui-media-box weui-media-box_appmsg" download="http://wx.junxiang.ren/project/${data.data[0]}">
                     <div class="weui-media-box__hd">
                         <img class="weui-media-box__thumb" src="image/file.jpg">
                     </div>
