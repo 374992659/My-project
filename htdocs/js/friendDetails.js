@@ -19,7 +19,7 @@ $(document).ready(function(){
                              
                 `
                 });
-                $(".group").html(html)
+                $("#group").html(html)
             }
 
         }
