@@ -205,9 +205,9 @@ class BaseController extends Controller
         $FilePath = $path.$filename;
         $query = file_put_contents($FilePath, $fileData);
         if ( $query > 0 ) {
-            $this->echoEncrypData(0, '', ['imageUrl'=>$FilePath]);
+            return $FilePath;
         }else{
-            $this->echoEncrypData(1);
+            return false;
         }
     }
 }
