@@ -46,6 +46,7 @@ $(document).ready(function(){
                 </a>  
                     
                     `;
+                    $(".fileList").append(html);
                 }
             },
             error:function (data) {
