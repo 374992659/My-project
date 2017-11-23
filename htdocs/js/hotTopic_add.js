@@ -221,24 +221,26 @@ $(document).ready(function(){
         //加密
         json=jsEncryptData(data);
         console.log(data);
-        $.ajax({
-            url:url+"Subject_delAd",
-            type:"POST",
-            data:{"data":json},
-            success:function(data){
-                //解密
-                data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                   // $(".adList [title="+adverse_id+']').remove();
-                    $(e.target).parent().parent().remove();
-                }else{
-                    console.log(data.errmsg);
+        if(confirm("删除公告")){
+            $.ajax({
+                url:url+"Subject_delAd",
+                type:"POST",
+                data:{"data":json},
+                success:function(data){
+                    //解密
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        // $(".adList [title="+adverse_id+']').remove();
+                        $(e.target).parent().parent().remove();
+                    }else{
+                        console.log(data.errmsg);
+                    }
                 }
-            }
+            });
+        }
 
-        });
         return false;
     });
     //功能6 跳转到所有公告详情页面存广告id
