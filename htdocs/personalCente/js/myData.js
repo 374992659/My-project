@@ -36,7 +36,7 @@ $(document).ready(function(){
                             <div class="weui-cells weui-cells_form">
                                 <div class="weui-uploader__input-box loader">
                                     <form action="" id="form" enctype="multipart/form-data">
-                                        <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">
+                                        <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file" v-on:change="chooseFileChange($event)" capture/>
                                     </form>
                                 </div>
                                 <div class="flockHead" style="position: absolute;top:1px;left: 1px">
