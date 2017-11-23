@@ -46,13 +46,14 @@ class Events
     * 当客户端发来消息时触发
     * @param int $client_id 连接id
     * @param mixed $message 具体消息
-    * PS: message中type为  1：表示用户上线 对该用户返回其在线好友的数组
-    *                                   2：表示发送消息给好友
-    *                                   3：发送消息给群组
-    *                                   4：获取某一用户在线状态 在添加好友后使用
-    *                                   5：获取群内用户在线状态
-    *                                   6:   用户读取好友未读消息
-    *                                   7： 用户读取群未读消息
+    * PS: message中type为  1：表示用户上线 对该用户返回其在线好友的数组(参数：无)
+    *                                     2：表示发送消息给好友(account_code:好友code，message_type:消息类型，content：消息内容)
+    *                                    3：发送消息给群组（group：群code ，message_type：消息类型，content：消息内容）
+    *                                    4：获取某一用户在线状态 在添加好友后使用（account_code 用户code）
+    *                                    5：获取群内用户在线状态（group_code 群code）
+    *                                    6:   用户读取好友未读消息（account_code 好友用户code）
+    *                                    7： 用户读取群未读消息（group_code 群code）
+    *                                    9：获取聊天记录 （user_code 用户code）
     */
    public static function onMessage($client_id, $message) {
        $message = json_decode($message);
