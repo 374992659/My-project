@@ -7,6 +7,7 @@ $(document).ready(function(){
         formData.append("file",$("#uploaderInput")[0].files[0]);
         //文件信息
        var  flockFile=$("#uploaderInput")[0].files[0];
+       console.log(flockFile);
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var json=jsEncryptData(data);
         formData.append("data",json);
