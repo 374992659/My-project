@@ -501,7 +501,7 @@ $(document).ready(function(){
                        localStorage.setItem("apptoken",data.apptoken);
                        //删除头像
                         console.log("删除头像");
-                      $(e).parent().parent().parent().remove();
+                      $(e.target).parent().parent().parent().remove();
                        // getPage();
                     }else{
                     }
