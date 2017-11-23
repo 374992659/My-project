@@ -31,9 +31,6 @@ class FriendsController extends VersionController
                         if(intval($v['id'])===intval($val['group_id'])){
                             $v['total']=$val['total'];
                             $v['friend_user']=$val['friend_user'];
-                            $v['friend_nickname']=$val['friend_nickname'];
-                            $v['friend_portrait']=$val['friend_portrait'];
-                            $v['friend_signature']=$val['friend_signature'];
                         }
                     }
                 }
