@@ -33,7 +33,7 @@ $(document).ready(function(){
                     var httP=result.portrait.split(":")[0];
                     if(httP==="http"){
                         html+=`
-                    <div class="weui-media-box weui-media-box_appmsg" title="${result.account}" value="1">
+                    <div class="weui-media-box weui-media-box_appmsg" title="${result.account_code}" value="1">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="${result.portrait}" alt="">
                         </div>
@@ -46,7 +46,7 @@ $(document).ready(function(){
                     `
                     }else{
                         html+=`
-                    <div class="weui-media-box weui-media-box_appmsg" title="${result.account}" value="1">
+                    <div class="weui-media-box weui-media-box_appmsg" title="${result.account_code}" value="1">
                         <div class="weui-media-box__hd">
                             <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${result.portrait}" alt="">
                         </div>
@@ -57,10 +57,7 @@ $(document).ready(function(){
                         <button class="addFriend">加为好友</button>
                     </div>
                     `
-
                     }
-
-
                 var keyFriend=$(".keyFriend");
                 console.log(html);
                 keyFriend.append(html);
