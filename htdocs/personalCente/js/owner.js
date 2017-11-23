@@ -312,7 +312,6 @@ $(document).ready(function(){
           var  phone=$("#phone").val();
             if(!phone){
                 $("#phone").attr("placeholder","手机号没填哦");
-
             }
         // 房号“1-2-3”字符串格式
             var dongNum=$("#dongNum option:selected").val();
@@ -323,19 +322,25 @@ $(document).ready(function(){
         console.log(typeof room_num);
         // 身份证号
          var   id_card_num=$("#identityCard").val();
+        if(!id_card_num){
+            $("#identityCard").attr("placeholder","身份证号没填哦");
+        }
         // 身份证照片json字符串格式
         var myPicA=localStorage.getItem("myPicA");
         var myPicB=localStorage.getItem("myPicB");
-        var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}",
+        var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}";
         // 小区名字
-            garden_name=$("#gardenName").val(),
+          var   garden_name=$("#gardenName").val();
+        if(!garden_name){
+            $("#gardenName").attr("placeholder","小区没填哦");
+                }
         // 小区code（没有可不填）
-            garden_code=$("#gardenName").attr("title"),
+          var garden_code=$("#gardenName").attr("title");
         // 小区所属城市
-            city_id=$("#city option:selected").val(),
+          var city_id=$("#city option:selected").val();
         // 小区详细地址
-        //     garden_addr=$("#plotPlace").val();
-            garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
+        //    garden_addr=$("#plotPlace").val();
+          var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
         console.log(garden_code);
         // 小区照片
         var garden_picture={};
