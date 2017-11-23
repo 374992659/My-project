@@ -307,7 +307,6 @@ $(document).ready(function(){
         var   real_name=$("#name").val();
             if(!real_name){
                 $("#name").attr("placeholder","名字没填哦");
-                $("#name").addClass("ainput");
             }
         // 手机号
           var  phone=$("#phone").val();
