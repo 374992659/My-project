@@ -306,7 +306,7 @@ $(document).ready(function(){
         // 姓名
         var   real_name=$("#name").val();
             if(real_name){
-                $("#name").attr("style","background_color:red")
+                $("#name").attr("background_color","red")
             }
         // 手机号
           var  phone=$("#phone").val();
