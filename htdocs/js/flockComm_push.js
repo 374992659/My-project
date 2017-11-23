@@ -58,7 +58,7 @@ $(document).ready(function(){
             $(".weui-gallery").hide();
         });
     })();
-    //功能2 点击上传图片
+    //功能2 发布公告
     $(".noticeBtn").click(function(){
         var success=$(".success");
         var hideTop=function(){
