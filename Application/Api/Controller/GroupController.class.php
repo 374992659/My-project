@@ -89,8 +89,15 @@ class GroupController extends VersionController
     protected function uploadGroupP_v1_0_0(){
         if(intval($_GET['is_wap']) !==1){
             $a = $this->pdata['imageData'];
-            if ( empty($a) ) return $this->echoEncrypData(1, L('parameter_error'));
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
             $imageData = base64_decode($a);
+            $save_path= APP_PATH.'Common/Upload/Img/GroupPortrait/'.date(m).date(d).'/';
+            $res = $this->uploadAppImg($save_path,$imageData);
+            if($res){
+                $this->echoEncrypData(0,'',array('imgUrl'=>$res));
+            }else{
+                $this->echoEncrypData(1,'图片上传失败');
+            }
         }else{
             if(!$_FILES){
                 $this->echoEncrypData(306);

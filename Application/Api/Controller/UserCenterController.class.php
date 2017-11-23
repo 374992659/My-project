@@ -163,17 +163,30 @@ class UserCenterController extends VersionController
      * 上传用户头像 成功后图片路劲已直接写入数据库 返回状态不返回路径
      * */
     protected function uploadUserPortrait_v1_0_0(){
-        import('Vendor.UploadFile');
-        $upload =new \UploadFile();
-        $path=APP_PATH.'Common/Upload/Portrait/'.date(m).date(d).'/';
-        $res = $upload->upload($path);
-        if(!$res){
-            $this->echoEncrypData(1,$upload->getErrorMsg());
+        if($_GET['is_wap'] !== 1){
+            $save_path=APP_PATH.'Common/Upload/Portrait/'.date(m).date(d).'/';
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
+            $imageData = base64_decode($a);
+            $res = $this->uploadAppImg($save_path,$imageData);
+            if($res){
+                $path = 'http://39.108.237.198/project/'.$res;
+            }else{
+                $this->echoEncrypData(1,'图片上传失败');
+            }
+        }else{
+            import('Vendor.UploadFile');
+            $upload =new \UploadFile();
+            $path=APP_PATH.'Common/Upload/Portrait/'.date(m).date(d).'/';
+            $res = $upload->upload($path);
+            if(!$res){
+                $this->echoEncrypData(1,$upload->getErrorMsg());
+            }
+            foreach($res as $k=>$v){
+                $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+            }
+            $path = 'http://39.108.237.198/project/'.$data[0];
         }
-        foreach($res as $k=>$v){
-            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
-        }
-        $path = 'http://39.108.237.198/project/'.$data[0];
         $mongo =new \MongoClient();
         $old_path = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code),array('portrait'));
         $mongo->baseinfo->user_area->update(array('account_code'=>$this->account_code),array('$set'=>array('portrait'=>$path)));
