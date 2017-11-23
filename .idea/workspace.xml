@@ -24,10 +24,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="hotTopic_myTopicText.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hotTopic_myTopicText.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_myTopicText.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35689455">
+            <state vertical-scroll-proportion="-66.78571">
               <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
               <folding>
                 <marker date="1511447120842" expanded="true" signature="1740:2939" placeholder="..." />
@@ -111,6 +111,43 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="hotTopic2.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/htdocs/hotTopic2.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-22.258064">
+              <caret line="106" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hotTopic2.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic2.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.74507535">
+              <caret line="101" column="13" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+              <folding>
+                <marker date="1511447462615" expanded="true" signature="1306:2067" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="1387:1439" placeholder="..." />
+                <marker date="1511447462615" expanded="true" signature="1440:2040" placeholder="..." />
+                <marker date="1511447462615" expanded="true" signature="1491:1737" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="1569:1585" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="1665:1691" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="1807:1822" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="1884:1932" placeholder="..." />
+                <marker date="1511447462615" expanded="true" signature="2297:3060" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="2378:2430" placeholder="..." />
+                <marker date="1511447462615" expanded="true" signature="2431:3033" placeholder="..." />
+                <marker date="1511447462615" expanded="true" signature="2482:2730" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="2560:2576" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="2656:2684" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="2800:2815" placeholder="..." />
+                <marker date="1511447462615" expanded="false" signature="2877:2925" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="hotTopic_myTopicText.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_myTopicText.html">
           <provider selected="true" editor-type-id="text-editor">
@@ -140,7 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/htdocs/showHide.js" />
         <option value="$PROJECT_DIR$/htdocs/discu_addfriend.html" />
         <option value="$PROJECT_DIR$/htdocs/js/showHide.js" />
         <option value="$PROJECT_DIR$/htdocs/js/discu_set_manege.js" />
@@ -191,6 +227,7 @@
         <option value="$PROJECT_DIR$/doem.html" />
         <option value="$PROJECT_DIR$/htdocs/aaaa.html" />
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic_myTopicText.js" />
+        <option value="$PROJECT_DIR$/htdocs/js/hotTopic2.js" />
       </list>
     </option>
   </component>
@@ -392,20 +429,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/htdocs/js/flockPlay_push.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49015063">
-          <caret line="461" column="48" selection-start-line="461" selection-start-column="48" selection-end-line="461" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/flockPlay_push.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.777027">
-          <caret line="161" column="30" selection-start-line="161" selection-start-column="30" selection-end-line="161" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/createCrowd.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.1100812">
@@ -751,7 +774,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_myTopicText.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35689455">
+        <state vertical-scroll-proportion="-66.78571">
           <caret line="170" column="21" selection-start-line="170" selection-start-column="21" selection-end-line="170" selection-end-column="21" />
           <folding>
             <marker date="1511447120842" expanded="true" signature="1740:2939" placeholder="..." />
@@ -830,6 +853,39 @@
             <marker date="1511447120842" expanded="false" signature="12999:13014" placeholder="..." />
             <marker date="1511447120842" expanded="false" signature="13044:13059" placeholder="..." />
             <marker date="1511447120842" expanded="true" signature="13206:13233" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.258064">
+          <caret line="106" column="21" selection-start-line="106" selection-start-column="21" selection-end-line="106" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.74507535">
+          <caret line="101" column="13" selection-start-line="101" selection-start-column="13" selection-end-line="101" selection-end-column="13" />
+          <folding>
+            <marker date="1511447462615" expanded="true" signature="1306:2067" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="1387:1439" placeholder="..." />
+            <marker date="1511447462615" expanded="true" signature="1440:2040" placeholder="..." />
+            <marker date="1511447462615" expanded="true" signature="1491:1737" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="1569:1585" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="1665:1691" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="1807:1822" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="1884:1932" placeholder="..." />
+            <marker date="1511447462615" expanded="true" signature="2297:3060" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="2378:2430" placeholder="..." />
+            <marker date="1511447462615" expanded="true" signature="2431:3033" placeholder="..." />
+            <marker date="1511447462615" expanded="true" signature="2482:2730" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="2560:2576" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="2656:2684" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="2800:2815" placeholder="..." />
+            <marker date="1511447462615" expanded="false" signature="2877:2925" placeholder="..." />
           </folding>
         </state>
       </provider>
