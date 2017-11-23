@@ -41,7 +41,7 @@ $(document).ready(function(){
                             <h4 class="weui-media-box__title name">${result.nickname}</h4>
                             <p class="weui-media-box__desc">${result.signature}</p>
                         </div>
-                        <button class="addFriend">加为好友</button>
+                        <button class="addFriend" title="${result.account_code}">加为好友</button>
                     </div>
                     `
                     }else{
@@ -54,7 +54,7 @@ $(document).ready(function(){
                             <h4 class="weui-media-box__title name">${result.nickname}</h4>
                             <p class="weui-media-box__desc">${result.signature}</p>
                         </div>
-                        <button class="addFriend">加为好友</button>
+                        <button class="addFriend" title="${result.account_code}">加为好友</button>
                     </div>
                     `
                     }
@@ -76,12 +76,11 @@ $(document).ready(function(){
 
             }
         });
-
     });
     $(".keyFriend").on("click"," .weui-media-box .addFriend",function(){
         console.log(123);
         //获取account_code
-        var title=$(this).parent().attr("title");
+        var title=$(this).attr("title");
         //获取分组id
         var group_id=$(this).parent().attr("value");
         //获取apptoken
