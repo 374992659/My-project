@@ -101,8 +101,12 @@ class FriendsController extends VersionController
             if(!$count)$this->echoEncrypData(1,'该用户不是您的好友');
         }
         $user_city_id = substr($user_code,0,6);
-        $data  =M('baseino.user_info_'.$user_city_id)->field('portrait,nickname,account,realname,default_garden,phone,create_time,hobby,user_garden')->where(['account_code'=>$user_code])->find();
-
+        $data  = M('baseinfo.user_info_'.$user_city_id)->field('portrait,nickname,account,realname,default_garden,phone,create_time,hobby,user_garden')->where(['account_code'=>$user_code])->find();
+        if($data){
+            $data['group_id']= $user_friends->where(['user_code'=>$user_code])->getField('group_id');
+        }
+        if($data)$this->echoEncrypData(0,'',$data);
+        $this->echoEncrypData(1);
     }
     /*
      * 更改好友所属分组
