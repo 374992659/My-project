@@ -16,7 +16,7 @@ $(document).ready(function(){
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
-            url:url+"Subject_mySubejct",
+            url:url+"Subject_getSubjectInfo",
             type:"post",
             data:{"data":jsonEncryptData},
             success:function(data){
