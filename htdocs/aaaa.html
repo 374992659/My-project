@@ -3,19 +3,30 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <style>
+        input[type="date"]:before{
+            color:#A9A9A9;
+            content:attr(placeholder);
+        }
+
+
+        input[type="date"].full:before {
+            color:black;
+            content:""!important;
+        }
+    </style>
 </head>
 <body>
-<form action="">
-    <label for="">测试1：</label>
-    <input type="text" required="required"/>
-    <button>提交</button>
-</form>
-<form action="">
-    <label for="">测试2：</label>
-    <input type="text" required="required"/>
-    <button>提交</button>
-</form>
-
-
+<input id="date" class="weui_input" type="date" placeholder="请选择出生日期" style="height:41px;overflow: hidden;">
+<script>
+    $("#date").on("input",function(){
+        if($(this).val().length>0){
+            $(this).addClass("full");
+        }
+        else{
+            $(this).removeClass("full");
+        }
+    });
+</script>
 </body>
 </html>
