@@ -18,7 +18,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
-                    $.each(data.data,function (i,item) {
+                    $.each(data.data,function (i,item){
                         if(parseInt(item.type)===1){//加分
                             html+=`
                     <tr>
@@ -28,7 +28,7 @@ $(document).ready(function(){
                         <td>${item.value}</td>
                     </tr>
                         
-                        `
+                        `;
                         }else{//减分
                             html+=`
                     <tr>
