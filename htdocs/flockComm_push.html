@@ -41,7 +41,7 @@
     <div class="weui-cells weui-cells_form ">
         <div class="weui-cell">
             <div class="weui-cell__bd">
-                <textarea class="weui-textarea noticeContent" maxlength="200" placeholder="请输入文本" rows="3" style="font-size: 15px"></textarea>
+                <textarea autofocus="autofocus" required oninvalid="setCustomValidity('不能为空aaa')" oninput="setCustomValidity('')" class="weui-textarea noticeContent" maxlength="200" placeholder="请输入文本" rows="3" style="font-size: 15px"></textarea>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@
                     <div class="weui-uploader__bd lf">
                         <div class="weui-uploader__input-box">
                             <form action="" id="form" enctype="multipart/form-data">
-                                <input id="uploaderInput" name="uploaderInput" class="weui-uploader__input" type="file">
+                                <input id="uploaderInput" required="required" name="uploaderInput" class="weui-uploader__input" type="file">
                             </form>
                         </div>
                     </div>
