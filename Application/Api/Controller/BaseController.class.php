@@ -209,7 +209,7 @@ class BaseController extends Controller
             if($this->pdata['type']==='voice'){
                 $ext = $this->pdata['ext'];
             }
-            $filename = uniqid().'.'.$ext;
+            $filename = uniqid().$ext;
             $FilePath = $path.$filename;
             $query = file_put_contents($FilePath, $fileData);
             if ( $query > 0 ) {
