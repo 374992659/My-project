@@ -103,7 +103,7 @@ class FriendsController extends VersionController
         $user_city_id = substr($user_code,0,6);
         $data  = M('baseinfo.user_info_'.$user_city_id)->field('portrait,nickname,account,realname,default_garden,phone,create_time,hobby,user_garden')->where(['account_code'=>$user_code])->find();
         if($data){
-            $data['group_id']= $user_friends->where(['user_code'=>$user_code])->getField('group_id');
+            $data['group_id']= $user_friends->where(['friends_user_code'=>$user_code])->getField('group_id');
         }
         if($data)$this->echoEncrypData(0,'',$data);
         $this->echoEncrypData(1);
