@@ -156,7 +156,8 @@ $(document).ready(function(){
             //新分组id
             var id=$("#group option:selected").attr("title");
             var group_name=$("#group option:selected").text();
-            var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code,"group_id":id,"group_name":group_name})];
+            var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code,"group_id":id})];
+            console.log(data);
             var jsonEncryptData=jsEncryptData(data);
             $.ajax({
                 url:url+"friends_changeFriendGroup",
