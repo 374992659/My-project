@@ -115,7 +115,10 @@ $(document).ready(function(){
                             </div>
                         </div>
                 </div>                    
-                    
+                <div class="weui-flex">
+                      <div class="weui-flex__item"><a href="javascript:;" class="weui-btn weui-btn_default">默认按钮</a></div>
+                      <div class="weui-flex__item"><a href="javascript:;" class="weui-btn weui-btn_primary">主按钮</a></div>
+                </div>    
                     `
                 }
                 $("#tab1").html(html);
@@ -140,14 +143,15 @@ $(document).ready(function(){
                                 });
                                 $("#group").html(html)
                             }
-
                         }
-
                     })
                 })();
 
             }
         })
     })();
-    
+    //修改好友分组
+    (function () {
+
+    })();
 });
