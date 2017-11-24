@@ -524,6 +524,7 @@ $(document).ready(function() {
         (function(){
             //获取好友分组id
             var id=$(e.target).attr("title");
+            console.log(id);
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
@@ -544,7 +545,7 @@ $(document).ready(function() {
                             "use strict";
                             var portrait=item.friend_portrait;
                             var htP=portrait.split(":")[0];
-                            if(item.group_id==id){
+                            if(parseInt(item.group_id)===id){
                                 if(htP==="http"){
                                     html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
@@ -587,7 +588,7 @@ $(document).ready(function() {
                         }
                         // 功能显示隐藏分组下的好友信息
                         console.log(123);
-                        console.log($(this).attr("title"));
+                        console.log($(e.target).attr("title"));
                         // 功能显示隐藏分组下的好友信息
                         if($(this).next().is(":hidden")){
                             $(this).next().show();
