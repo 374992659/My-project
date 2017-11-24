@@ -529,6 +529,7 @@ $(document).ready(function() {
             var title=$(e.target).attr("title");
             var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
            var  jsonEncryptData = jsEncryptData(data);
+           console.log(data);
             $.ajax({
                 url:url+"friends_getGroupFriends",
                 type:"POST",
