@@ -494,7 +494,6 @@ $(document).ready(function() {
                     </div>
                             `
                                 }
-
                             }
                     });
                     $("#1").html(html);
@@ -523,7 +522,7 @@ $(document).ready(function() {
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
             var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
-           var  jsonEncryptData = jsEncryptData(data);
+            var  jsonEncryptData = jsEncryptData(data);
            console.log(data);
             $.ajax({
                 url:url+"friends_getGroupFriends",
@@ -585,6 +584,7 @@ $(document).ready(function() {
                             $(e.target).parent().prev().children("img").css("transform","rotate(90deg)");
                         }else{
                             $(e.target).parent().parent().next().hide();
+                            $(e.target).parent().parent().next().empty();
                             $(e.target).parent().prev().children("img").css("transform","rotate(0deg)");
                         }
                     }
