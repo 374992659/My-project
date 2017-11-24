@@ -65,10 +65,8 @@ $(document).ready(function() {
         var apptoken = localStorage.getItem('apptoken');
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
-        ws.onmessage = function (e) {
-            console.log((e.data));
+        ws.onmessage = function (e){
             var result = JSON.parse(e.data);                   //服务器返回结果
-            console.log(result);
             var friends_new_messageNum=0,
                 group_new_messageNum=0,
                 friends_new_applyNum=0;
@@ -441,7 +439,6 @@ $(document).ready(function() {
                     var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
                     $.each(result,function(i,item){
-
                         var httP=item.friend_portrait.split(":")[0];
                             if(httP==="http"){
                                 if(item.friend_signature===null){
