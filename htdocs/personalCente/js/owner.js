@@ -317,9 +317,9 @@ $(document).ready(function(){
                 $("#phone").attr("placeholder","手机号没填哦");
             }
         // 房号“1-2-3”字符串格式
-            var dongNum=$("#dongNum option:selected").val();
-            var floorNum=$("#floorNum option:selected").val();
-            var roomNum=$("#roomNum option:selected").val();
+            var dongNum=$("#dongNum").val();
+            var floorNum=$("#floorNum").val();
+            var roomNum=$("#roomNum").val();
         room_num=dongNum+"-"+floorNum+"-"+roomNum;
         console.log(room_num);
         console.log(typeof room_num);
