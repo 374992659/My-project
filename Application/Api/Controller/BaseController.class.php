@@ -205,7 +205,11 @@ class BaseController extends Controller
         $imageUrl=array();
         foreach($file_arr as $k=>$v){
             $fileData = base64_decode($v);
-            $filename = uniqid().".png";
+            $ext = '.png';
+            if($this->pdata['type']==='voice'){
+                $ext = '.mp3';
+            }
+            $filename = uniqid().$ext;
             $FilePath = $path.$filename;
             $query = file_put_contents($FilePath, $fileData);
             if ( $query > 0 ) {
