@@ -152,6 +152,25 @@ $(document).ready(function(){
     })();
     //修改好友分组
     (function () {
-        
+        $("#tab1").on("click",".weui-flex .weui-flex__item .weui-btn_primary",function () {
+            //新分组id
+            var id=$("#group option:selected").attr("title");
+            var group_name=$("#group option:selected").text();
+            var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code,"group_id":id,"group_name":group_name})];
+            var jsonEncryptData=jsEncryptData(data);
+            $.ajax({
+                url:url+"friends_changeFriendGroup",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function (data) {
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken)
+                    }
+                }
+
+            })
+        })
     })();
 });
