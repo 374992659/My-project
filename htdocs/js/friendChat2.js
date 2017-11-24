@@ -535,9 +535,7 @@ $(document).ready(function(){
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
                                         <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                                     </div>
-                                 </div>
-                           
-
+                                 </div>                           
                                 `
                                     }else{
                                         html+=`

@@ -286,7 +286,7 @@ $(document).ready(function(){
     })();
     //判断手机号格式是否正确
     (function () {
-        $("#phone").blur(function () {
+        $("#phone").blur(function(){
             // 获取号码
         var phoneNum=$("#phone").val();
             validate4(phoneNum);
@@ -294,7 +294,7 @@ $(document).ready(function(){
     })();
     //判断身份证号格式是否正确
     (function () {
-        $("#identityCard").blur(function () {
+        $("#identityCard").blur(function(){
             var idCard=$("#identityCard").val();
             console.log(idCard);
             isCardNo(idCard)
