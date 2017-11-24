@@ -310,7 +310,6 @@ class UserCenterController extends VersionController
         $real_name = $garden_room->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1,'relation_name'=>'户主'])->getField('real_name');
         if($real_name){
             $name = substr_replace($real_name,'**',1);
-            $this->echoEncrypData(1,'123123123');
             $this->echoEncrypData(1,'该房间已被 '.$name.' 认证了,可联系他添加你哦');
         }
         $city_id = substr($this->account_code,0,6);
