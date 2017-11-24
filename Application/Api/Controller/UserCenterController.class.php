@@ -170,7 +170,6 @@ class UserCenterController extends VersionController
             $res = $this->uploadAppImg($save_path,$a);
             if($res){
                 $path = 'http://39.108.237.198/project/'.$res[0];
-                $this->echoEncrypData(0,'',array('imageUrl'=>$path));
             }else{
                 $this->echoEncrypData(1,'图片上传失败');
             }
