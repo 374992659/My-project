@@ -207,7 +207,7 @@ class BaseController extends Controller
             $fileData = base64_decode($v);
             $ext = '.png';
             if($this->pdata['type']==='voice'){
-                $ext = '.mp3';
+                $ext = $this->pdata['ext'];
             }
             $filename = uniqid().$ext;
             $FilePath = $path.$filename;
