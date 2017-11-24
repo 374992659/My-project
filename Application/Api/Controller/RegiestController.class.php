@@ -336,6 +336,7 @@ class RegiestController extends BaseController
             'name'=>$point['name'],
             'type'=>$point['type'],
             'value'=>$point['value'],
+            'point'=>M('baseinfo.user_info_'.$area_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
             'create_time'=>time()
         ));
         $inviter_code = $this->pdata['inviter_code'];
@@ -361,6 +362,7 @@ class RegiestController extends BaseController
                     'name'=>$inviter_point['name'],
                     'type'=>$inviter_point['type'],
                     'value'=>$inviter_point['value'],
+                    'point'=>M('baseinfo.user_info_'.$invitet_city)->where(['account_code'=>$this->account_code])->getField('total_point')+$inviter_point['value'],
                     'create_time'=>time(),
                 ));
                 if(!$res3 || !$res4){

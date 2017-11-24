@@ -932,7 +932,7 @@ class GroupController extends VersionController
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,6);
-        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait,total_point')->where(['account_code'=>$this->account_code])->find();
         $data = array(
             'type'=>1,
             'content'=>$content,
@@ -959,6 +959,7 @@ class GroupController extends VersionController
             'name'=>$point['name'],
             'type'=>$point['type'],
             'value'=>$point['value'],
+            'point'=>$res['total_point']+$point['value'],
             'create_time'=>time(),
         ));
         $res4 = true;
@@ -1004,14 +1005,15 @@ class GroupController extends VersionController
         }
         $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.DEL_COMMENT')])->find();
         $point_record = new Model\PointRecordModel($this->account_code);
+        $city_id = substr($this->account_code,0,6);
         $point_record->add(array(
             'name_id'=>$point['id'],
             'name'=>$point['name'],
             'type'=>$point['type'],
             'value'=>$point['value'],
+            'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')-$point['value'],
             'create_time'=>time(),
         ));
-        $city_id = substr($this->account_code,0,6);
         M()->execute('update baseinfo.user_info_'.$city_id.' set total_point =total_point-'.$point['value'].' where account_code ='.$this->account_code);
         $this->echoEncrypData(0);
     }
@@ -1056,6 +1058,7 @@ class GroupController extends VersionController
                     'type'=>$point['type'],
                     'name'=>$point['name'],
                     'value'=>$point['value'],
+                    'point'=>M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$this->account_code])->getField('total_point')-$point['value'],
                     'create_time'=>time(),
                 ));
                 M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
@@ -1074,6 +1077,7 @@ class GroupController extends VersionController
             'name'=>$point['name'],
             'type'=>$point['type'],
             'value'=>$point['value'],
+            'point'=>M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
             'create_time'=>time(),
         ));
         $res4 = true;
@@ -1136,6 +1140,7 @@ class GroupController extends VersionController
                     'type'=>$point['type'],
                     'name'=>$point['name'],
                     'value'=>$point['value'],
+                    'point'=>M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$this->account_code])->getField('total_point')-$point['value'],
                     'create_time'=>time(),
                 ));
                 M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
@@ -1154,6 +1159,7 @@ class GroupController extends VersionController
             'name'=>$point['name'],
             'type'=>$point['type'],
             'value'=>$point['value'],
+            'point'=>M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
             'create_time'=>time(),
         ));
         $res4 = true;
