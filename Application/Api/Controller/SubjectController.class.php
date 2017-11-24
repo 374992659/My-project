@@ -233,6 +233,7 @@ class SubjectController extends VersionController
             'name'=>$point['name'],
             'type'=>$point['type'],
             'value'=>$point['value'],
+            'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
             'create_time'=>time(),
         ));
         $city = substr($this->account_code,0,6);
@@ -275,6 +276,7 @@ class SubjectController extends VersionController
                 'name'=>$point['name'],
                 'type'=>$point['type'],
                 'value'=>$point['value'],
+                'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
                 'create_time'=>time(),
             ));
             if($point_limit = $this->getPointLimitStatus($this->account_code)){
@@ -295,6 +297,7 @@ class SubjectController extends VersionController
                 'type'=>$point['type'],
                 'name'=>$point['name'],
                 'value'=>$point['value'],
+                'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')-$point['value'],
                 'create_time'=>time(),
             ));
             M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
@@ -333,6 +336,7 @@ class SubjectController extends VersionController
                 'name'=>$point['name'],
                 'type'=>$point['type'],
                 'value'=>$point['value'],
+                'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
                 'create_time'=>time(),
             ));
             if($point_limit = $this->getPointLimitStatus($this->account_code)){
@@ -352,6 +356,7 @@ class SubjectController extends VersionController
                 'type'=>$point['type'],
                 'name'=>$point['name'],
                 'value'=>$point['value'],
+                'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')-$point['value'],
                 'create_time'=>time(),
             ));
             M()->execute('update baseinfo.user_info_'.$table_id.' set total_point=total_point-'.$point['value'].' where account_code='."'".$this->account_code."'");
@@ -396,6 +401,7 @@ class SubjectController extends VersionController
             'name'=>$point['name'],
             'type'=>$point['type'],
             'value'=>$point['value'],
+            'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')-$point['value'],
             'create_time'=>time(),
         ));
         $user_city = substr($this->account_code,0,6);

@@ -65,6 +65,7 @@ class UserCenterController extends VersionController
                         'name'=>$point['name'],
                         'type'=>$point['type'],
                         'value'=>$point['value'],
+                        'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
                         'create_time'=>time(),
                     ));
                     if($point_limit = $this->getPointLimitStatus($account_code)){
@@ -445,6 +446,7 @@ class UserCenterController extends VersionController
                     'name'=>$point['name'],
                     'type'=>$point['type'],
                     'value'=>$point['value'],
+                    'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
                     'create_time'=>time(),
                 ));
                 M()->startTrans();
@@ -629,6 +631,7 @@ class UserCenterController extends VersionController
                 'name'=>$point['name'],
                 'type'=>$point['type'],
                 'value'=>$point['value'],
+                'point'=>M('baseinfo.user_info_'.$account_city_id)->where(['account_code'=>$this->account_code])->getField('total_point')-$point['value'],
                 'create_time'=>time(),
             ));
             M()->startTrans();
@@ -921,6 +924,7 @@ class UserCenterController extends VersionController
                     'name'=>$point['name'],
                     'type'=>$point['type'],
                     'value'=>$point['value'],
+                    'point'=>M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
                     'create_time'=>time(),
                 ));
                 M()->startTrans();
@@ -1094,6 +1098,7 @@ class UserCenterController extends VersionController
                 'name'=>$point['name'],
                 'type'=>$point['type'],
                 'value'=>$point['value'],
+                'point'=>M('baseinfo.user_info_'.$account_city_id)->where(['account_code'=>$this->account_code])->getField('total_point')-$point['value'],
                 'create_time'=>time(),
             ));
             M()->startTrans();
@@ -1355,6 +1360,7 @@ class UserCenterController extends VersionController
                 'name'=>$point['name'],
                 'type'=>$point['type'],
                 'value'=>$point['value'],
+                'point'=>M('baseinfo.user_info_'.$city)->where(['account_code'=>$this->account_code])->getField('total_point')+$point['value'],
                 'create_time'=>time()
             ));
             $limit_status = $this->getPointLimitStatus($account_code);
