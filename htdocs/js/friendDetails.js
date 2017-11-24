@@ -40,12 +40,102 @@ $(document).ready(function(){
             success:function(data){
                 var data=jsDecodeData(data);
                 console.log(data);
+                var result=data.data;
                 if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken)
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var httP=result.portrait.split(":")[0];
+                    var pic="";
+                    if(httP==="http"){
+                        pic=result.portrait
+                    }else{
+                        pic="http://wx.junxiang.ren/project/"+result.portrait
+                    }
+                    html=`
+                <div style="text-align: center">
+                    <img src="${pic}" alt="">
+                    <div>
+                        昵称：<span>${result.nickname}</span>
+                    </div>
+                </div>
+                <div class="weui-cells">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <label class="left">名字：</label>
+                            <span>${result.realname}</span>
+                        </div>
+                    </div>
+                </div>
+                <!--电话-->
+                <div class="weui-cells">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <label class="left">电话：</label>
+                            <span>${result.phone}</span>
+                        </div>
+                    </div>
+                </div>              
+                <!--修改好友分组-->
+                <div class="weui-cells">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <label class="left">好友分组：</label>
+                            <select name="" id="group">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="weui-flex__item">
+                    <!--常住小区-->
+                    <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left">常住小区：</label>
+                                <span>${result.group_name}</span>
+                            </div>
+                        </div>
+                    </div>                
+                    <!--注册时间-->
+                    <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left">注册时间：</label>
+                                <span>${getLocalTime(result.create_time)}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--喜好-->
+                <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left" style="vertical-align: top">喜好：</label>
+                                <ul class="likes">
+                                    <li>${result.hobby}</li>
+                                  
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                <!--拥有楼盘-->
+                <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left" style="vertical-align: top">拥有楼盘：</label>
+                                <ul class="likes ownerPlot">
+                                    <li>${result.default_garden}</li>                                   
+                                </ul>
+                            </div>
+                        </div>
+                </div>                    
                     
+                    `
                 }
+                $("#tab1").html(html)
             }
         })
     })();
+
+
+
 
 });
