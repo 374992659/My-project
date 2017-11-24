@@ -25,6 +25,19 @@ $(document).ready(function(){
                     }else{
                         pic="http://wx.junxiang.ren/project/"+result.portrait
                     }
+                    //拥有楼盘
+                    var house="";
+                    if(result.user_garden){
+                        $.each(result.user_garden,function (i,item) {
+                            console.log(item);
+                            house+=`
+                                
+                             <li>${item}</li>
+                            `
+
+                        });
+                    }
+
                     html=`
                 <div style="text-align: center">
                     <img src="${pic}" alt="" style="width: 80px">
@@ -97,7 +110,7 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left" style="vertical-align: top">拥有楼盘：</label>
                                 <ul class="likes ownerPlot">
-                                    <li>${result.default_garden}</li>                                   
+                                                                      
                                 </ul>
                             </div>
                         </div>
@@ -105,7 +118,8 @@ $(document).ready(function(){
                     
                     `
                 }
-                $("#tab1").html(html)
+                $("#tab1").html(html);
+                $(".ownerPlot").html(house)
             }
         })
     })();
@@ -123,7 +137,7 @@ $(document).ready(function(){
                     localStorage.setItem("apptoken",data.apptoken);
                     $.each(data.data,function(i,item){
                         html+=`
-                <option>${item.group_name}</option>>
+                <option title="${item.id}">${item.group_name}</option>>
                              
                 `
                     });
