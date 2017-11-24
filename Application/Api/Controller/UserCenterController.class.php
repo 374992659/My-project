@@ -167,10 +167,10 @@ class UserCenterController extends VersionController
             $save_path=APP_PATH.'Common/Upload/Portrait/'.date(m).date(d).'/';
             $a = $this->pdata['imageData'];
             if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
-            $imageData = base64_decode($a);
-            $res = $this->uploadAppImg($save_path,$imageData);
+            $res = $this->uploadAppImg($save_path,$a);
             if($res){
-                $path = 'http://39.108.237.198/project/'.$res;
+                $path = 'http://39.108.237.198/project/'.$res[0];
+                $this->echoEncrypData(0,'',array('imageUrl'=>$path));
             }else{
                 $this->echoEncrypData(1,'图片上传失败');
             }
