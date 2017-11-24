@@ -422,7 +422,6 @@ $(document).ready(function() {
             }
         });
     };getGroup();
-
     (function(){
         var apptoken=localStorage.getItem("apptoken");
         var title=1;
@@ -521,7 +520,6 @@ $(document).ready(function() {
     // 功能2 请求好友分组下的好友信息
     $(".group").on("click", ".weui-cells .weui-cell",function(e){
         console.log(123);
-        (function(){
             //获取好友分组id
             var id=$(e.target).attr("title");
             console.log(id);
@@ -600,7 +598,7 @@ $(document).ready(function() {
                     }
                 }
             });
-        })();
+
 
     });
     //搜索框内容的清楚
