@@ -17,7 +17,7 @@ class UserCenterController extends VersionController
     protected function getMyPointRecord_v1_0_0(){
         $account_code = $this->account_code;
         $point_record = new Model\PointRecordModel($account_code);
-        $data = $point_record->field('name_id,name,type,value,create_time')->order(['create_time'=>'desc'])->select();
+        $data = $point_record->field('name_id,name,type,value,create_time,point')->order(['create_time'=>'desc'])->select();
         if(!$data)$this->echoEncrypData(5);
         $this->echoEncrypData(0,'',$data);
     }
