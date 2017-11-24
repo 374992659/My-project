@@ -24,8 +24,8 @@ $(document).ready(function(){
                     <tr>
                         <td>${item.name}</td>
                         <td>${getLocalTime1(item.create_time)}</td>
-                        <td>+</td>
-                        <td>${item.value}</td>
+                        <td>+${item.value}</td>
+                        <td>${item.point}</td>
                     </tr>
                         
                         `;
@@ -34,8 +34,8 @@ $(document).ready(function(){
                     <tr>
                         <td>${item.name}</td>
                         <td>${getLocalTime1(item.create_time)}</td>
-                        <td>-</td>
-                        <td>${item.value}</td>
+                        <td>-${item.value}</td>
+                        <td>${item.point}</td>
                     </tr>
                         
                         `
