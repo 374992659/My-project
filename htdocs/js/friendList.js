@@ -15,7 +15,7 @@ $(document).ready(function() {
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
-            
+
                 var account_code=data.data.account_code;
                var  str = parseInt(account_code.substring(0, 6));
 
@@ -429,7 +429,6 @@ $(document).ready(function() {
         var apptoken=localStorage.getItem("apptoken");
         var title=1;
         var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
-
         var  jsonEncryptData = jsEncryptData(data);
         $.ajax({
             url:url+"friends_getGroupFriends",
@@ -438,7 +437,7 @@ $(document).ready(function() {
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
-
+                console.log(data);
                 if(data.errcode===0){
                     var html="";
                     var result=data.data;
