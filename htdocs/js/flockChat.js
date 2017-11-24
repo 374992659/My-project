@@ -381,7 +381,7 @@ $(document).ready(function(){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
         (function(){
             var group=localStorage.getItem("group_code");
-            console.log(group);
+            console.log(typeof group);
             var pathname = window.location.pathname;
             var patharr  = pathname.split('/');
             var html = patharr[parseInt(patharr.length-1)];
