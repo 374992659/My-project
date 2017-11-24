@@ -518,7 +518,6 @@ $(document).ready(function() {
     })();
     // 功能2 请求好友分组下的好友信息
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
-        console.log(123);
             //获取好友分组id
             var id=$(e.target).attr("title");
             var apptoken=localStorage.getItem("apptoken");
@@ -568,7 +567,7 @@ $(document).ready(function() {
                                 }
                             }
                         });
-                        $("#"+title).html(html);
+                        $("#"+id).html(html);
                         var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                         var online=JSON.parse(localStorage.getItem("online_friends"));
                         for(var i=0 ,len=allfriend.length;i<len;i++){
