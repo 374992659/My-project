@@ -540,7 +540,7 @@ $(document).ready(function() {
                             "use strict";
                             var portrait=item.friend_portrait;
                             var htP=portrait.split(":")[0];
-                            if(parseInt(item.group_id)===id){
+                           
                                 if(htP==="http"){
                                     html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
@@ -566,7 +566,7 @@ $(document).ready(function() {
                     </div>
                             `
                                 }
-                            }
+
                         });
                         console.log(html);
                         $("#"+id).html(html);
