@@ -520,9 +520,6 @@ $(document).ready(function() {
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
         console.log(123);
             //获取好友分组id
-            var id=$(e.target).attr("title");
-            console.log($(e.target));
-            console.log(id);
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
             var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
@@ -542,7 +539,7 @@ $(document).ready(function() {
                             "use strict";
                             var portrait=item.friend_portrait;
                             var htP=portrait.split(":")[0];
-                            if(parseInt(item.group_id)===id){
+                            if(parseInt(item.group_id)===title){
                                 if(htP==="http"){
                                     html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
@@ -570,7 +567,7 @@ $(document).ready(function() {
                                 }
                             }
                         });
-                        $("#"+id).html(html);
+                        $("#"+title).html(html);
                         var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                         var online=JSON.parse(localStorage.getItem("online_friends"));
                         for(var i=0 ,len=allfriend.length;i<len;i++){
