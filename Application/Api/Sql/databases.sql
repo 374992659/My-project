@@ -293,7 +293,7 @@ CREATE TABLE  if not exists `point_record` (
   `name_id` int(11) unsigned NOT NULL COMMENT '积分类型id',
   `name` varchar(255) NOT NULL COMMENT '积分类型名称',
   `type` tinyint(2) unsigned NOT NULL COMMENT '加分/减分 1：加分 2：减分',
-  `point` int(11) DEFAULT NULL COMMENT '操作后总分',
+  `point` int(11) DEFAULT 0 COMMENT '操作后总分',
   `value` int(11) unsigned NOT NULL COMMENT '分值',
   `create_time` int(11) unsigned NOT NULL COMMENT '操作时间',
   PRIMARY KEY (`id`),
