@@ -191,7 +191,7 @@ $(document).ready(function(){
         jsonEncryptData=jsEncryptData(data);
         console.log(data);
         $.ajax({
-            url:url+"group_setGroupManager",
+            url:url+"group_ changeGroupCre",
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
