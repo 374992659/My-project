@@ -75,12 +75,9 @@ $(document).ready(function() {
             (function(){
                 console.log(result.errmsg);
                 if(result.errmsg==="群消息"){
-
                 }else if(result.errmsg==="好友消息"){
-
                     // // 保存聊天的好友资料
                     (function(){
-
                         var httP=result.data.send_portrait.split(":")[0];
                         var pic="";
 
@@ -498,6 +495,7 @@ $(document).ready(function() {
                     $("#1").html(html);
                     $(".friend").show();
                     $("#1").parent().prev().find("img").css("transform","rotate(90deg)");
+                    //好友在线情况
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                     var online=JSON.parse(localStorage.getItem("online_friends"));
                     for(var i=0 ,len=allfriend.length;i<len;i++){
@@ -587,8 +585,6 @@ $(document).ready(function() {
                     }
                 }
             });
-
-
     });
     //搜索框内容的清楚
     $("#searchClear").click(function(){

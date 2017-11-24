@@ -166,7 +166,7 @@ $(document).ready(function(){
                         </div>                            
                     `;
                   $(".personal").html(html);
-
+                  $(".prestrain").hide();
                   //常住小区
                     console.log(result.default_garden);
                     if(result.default_garden){
