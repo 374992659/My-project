@@ -375,7 +375,6 @@ $(document).ready(function() {
             data:{"data":jsonEncryptData},
             success: function (data){
                 data = jsDecodeData(data);
-
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html = "";
@@ -518,12 +517,12 @@ $(document).ready(function() {
         })
     })();
     // 功能2 请求好友分组下的好友信息
-    $(".group").on("click", ".weui-cells .weui-cell",function(e){
+    $(".group").on("click", ".weui-cells .LinkBtn",function(e){
         console.log(123);
             //获取好友分组id
             var id=$(e.target).attr("title");
+            console.log($(e.target));
             console.log(id);
-            // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
             var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
@@ -584,9 +583,6 @@ $(document).ready(function() {
                                 }
                             }
                         }
-                        // 功能显示隐藏分组下的好友信息
-                        console.log(123);
-                        console.log($(e.target).attr("title"));
                         // 功能显示隐藏分组下的好友信息
                         if($(this).next().is(":hidden")){
                             $(this).next().show();
