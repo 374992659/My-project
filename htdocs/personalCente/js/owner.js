@@ -286,6 +286,8 @@ $(document).ready(function(){
             }
         })
     })();
+    //栋数判断
+
     //判断手机号格式是否正确
     (function () {
         $("#phone").blur(function(){
