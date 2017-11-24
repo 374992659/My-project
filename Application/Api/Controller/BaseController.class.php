@@ -219,6 +219,14 @@ class BaseController extends Controller
                 $imageUrl[$k]=false;
             }
         }
-        return $imageUrl;
+        $res  = false;
+        foreach($imageUrl as $item){
+            $res  = ($res or $item);
+        }
+        if($res){
+            return $imageUrl;
+        }else{
+            return false;
+        }
     }
 }

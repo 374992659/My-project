@@ -85,6 +85,7 @@ class GroupController extends VersionController
     }
     /*
    * 上传群头像
+     * APP参数： imageData 文件流
    * */
     protected function uploadGroupP_v1_0_0(){
         if(intval($_GET['is_wap']) !==1){
@@ -428,14 +429,14 @@ class GroupController extends VersionController
     }
     /*
      * 上传群公告图片
+     * APP参数： imageData 文件流
      * */
     protected function  uploadNoticePic_V1_0_0(){
         if(intval($_GET['is_wap']) !==1){
             $a = $this->pdata['imageData'];
             if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
-            $imageData = base64_decode($a);
-            $path = APP_PATH . 'Common/Upload/Img/NoticePicture/' . date(m) . date(d) . '/';
-            $res = $this->uploadAppImg($save_path,$imageData);
+            $save_path = APP_PATH . 'Common/Upload/Img/NoticePicture/' . date(m) . date(d) . '/';
+            $res = $this->uploadAppImg($save_path,$a);
             if($res){
                 $this->echoEncrypData(0,'',$res);
             }else{
@@ -452,7 +453,7 @@ class GroupController extends VersionController
             foreach ($res as $k => $v) {
                 $data[] = $res[$k]['savepath'] . $res[$k]['savename'];
             }
-            $this->echoEncrypData(0, '', $data);
+            $this->echoEncrypData(0,'', $data);
         }
     }
     /*
@@ -500,6 +501,7 @@ class GroupController extends VersionController
     /*
    * 上传群文件 单个文件上传
    * @param group_num  群号码
+   * APP参数：imageData 文件流
    * */
     protected function uploadGroupFile_v1_0_0(){
         $group_num = $this->pdata['group_num'];
@@ -507,17 +509,35 @@ class GroupController extends VersionController
         $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
-        import('Vendor.UploadFile');
-        $upload =new \UploadFile();
-        $path=APP_PATH.'Common/Upload/Group/GroupFiles/'.date(m).date(d).'/';//群文件夹
-        $res = $upload->upload($path);
+        if(intval($_GET['is_wap']) !==1){
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
+            $save_path = APP_PATH . 'Common/Upload/Group/GroupFiles/' . date(m) . date(d) . '/';//群文件夹;
+            $res = $this->uploadAppImg($save_path,$a);
+        }else {
+            import('Vendor.UploadFile');
+            $upload = new \UploadFile();
+            $path = APP_PATH . 'Common/Upload/Group/GroupFiles/' . date(m) . date(d) . '/';//群文件夹
+            $res = $upload->upload($path);
+        }
         if(!$res){
-            $this->echoEncrypData(1,$upload->getErrorMsg());
+            if(intval($_GET['is_wap']) !==1){
+                $this->echoEncrypData(1,'上传失败');
+            }else{
+                $this->echoEncrypData(1,$upload->getErrorMsg());
+            }
         }
 //        var_dump($res);die;
         foreach($res as $k=>$v){
-            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
+            if(intval($_GET['is_wap']) !==1){
+                if($v){
+                    $data[] =$v;
+                }
+            }else{
+                $data[]=$res[$k]['savepath'].$res[$k]['savename'] ;
+            }
         }
+        if(!$data)$this->echoEncrypData(1,'上传失败');
         $file_path=serialize($data);
         $user_code=$this->account_code;
         $user_info= $mongo->baseinfo->user_area->findOne(array('account_code'=>$user_code));
@@ -634,19 +654,32 @@ class GroupController extends VersionController
 
     /*
      * 上传投票图片
+     *APP参数：imageData 文件流
      * */
     protected function uploadVotePic_V1_0_0(){
-        import('Vendor.UploadFile');
-        $upload =new \UploadFile();
-        $path=APP_PATH.'Common/Upload/Img/VotePicture/'.date(m).date(d).'/';
-        $res = $upload->upload($path);
-        if(!$res){
-            $this->echoEncrypData(1,$upload->getErrorMsg());
+        if(intval($_GET['is_wap']) !==1){
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
+            $save_path = APP_PATH . 'Common/Upload/Img/VotePicture/' . date(m) . date(d) . '/';
+            $res = $this->uploadAppImg($save_path,$a);
+            if($res){
+                $this->echoEncrypData(0,'',$res);
+            }else{
+                $this->echoEncrypData(1,'图片上传失败');
+            }
+        }else {
+            import('Vendor.UploadFile');
+            $upload = new \UploadFile();
+            $path = APP_PATH . 'Common/Upload/Img/VotePicture/' . date(m) . date(d) . '/';
+            $res = $upload->upload($path);
+            if (!$res) {
+                $this->echoEncrypData(1, $upload->getErrorMsg());
+            }
+            foreach ($res as $k => $v) {
+                $data[] = $res[$k]['savepath'] . $res[$k]['savename'];
+            }
+            $this->echoEncrypData(0, '', $data);
         }
-        foreach($res as $k=>$v){
-            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
-        }
-        $this->echoEncrypData(0,'',$data);
     }
 
 
