@@ -519,7 +519,7 @@ $(document).ready(function() {
         })
     })();
     // 功能2 请求好友分组下的好友信息
-    $(".group").on("click", ".weui-cells .LinkBtn",function(e){
+    $(".group").on("click", ".weui-cells",function(e){
         (function(){
             //获取好友分组id
             var id=$(e.target).attr("title");
