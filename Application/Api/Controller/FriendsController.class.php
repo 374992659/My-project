@@ -109,7 +109,8 @@ class FriendsController extends VersionController
                 $arr = explode(';',$data['user_garden']);
                 $garden_arr = array();
                 foreach ($arr as $item) {
-                    $garden_arr[] = $item;
+                    $arr = explode(',',$item);
+                    $garden_arr[] =$arr[0];
                 }
                 $garden_arr=array_unique($garden_arr);
                 foreach($garden_arr as $value){
