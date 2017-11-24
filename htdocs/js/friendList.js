@@ -773,7 +773,7 @@ $(document).ready(function() {
         var user_code=$(this).attr("id");
         console.log(user_code);
         localStorage.setItem("user_code",user_code);
-        //window.location.href="friendDetails.html";
+        window.location.href="friendDetails.html";
         return false;
     });
     //搜索好友跳转到聊天页面

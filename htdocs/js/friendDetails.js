@@ -1,6 +1,7 @@
 $(document).ready(function(){
     //获取apptoken
     var apptoken=localStorage.getItem("apptoken");
+    var user_code=localStorage.getItem("user_code");
     var data=["",JSON.stringify({"apptoken":apptoken})];
     var jsonEncryptData=jsEncryptData(data);
     //功能1 获取好友分组
@@ -30,9 +31,20 @@ $(document).ready(function(){
     })();
    //功能二 获取好友资料
     (function () {
+        var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code})];
+        var jsonEncryptData=jsEncryptData(data);
         $.ajax({
-            url:url+"",
-
+            url:url+"friends_getFriendInfo",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken)
+                    
+                }
+            }
         })
     })();
 
