@@ -52,7 +52,7 @@ $(document).ready(function(){
                     }
                     html=`
                 <div style="text-align: center">
-                    <img src="${pic}" alt="">
+                    <img src="${pic}" alt="" style="width: 80px">
                     <div>
                         昵称：<span>${result.nickname}</span>
                     </div>
