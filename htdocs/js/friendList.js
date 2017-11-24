@@ -524,6 +524,7 @@ $(document).ready(function() {
         (function(){
             //获取好友分组id
             var id=$(e.target).attr("title");
+            console.log($(e.target));
             console.log(id);
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
