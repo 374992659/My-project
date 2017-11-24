@@ -584,7 +584,6 @@ $(document).ready(function() {
                             $(e.target).parent().prev().children("img").css("transform","rotate(90deg)");
                         }else{
                             $(e.target).parent().parent().next().hide();
-                            $(e.target).parent().parent().next().empty();
                             $(e.target).parent().prev().children("img").css("transform","rotate(0deg)");
                         }
                     }
