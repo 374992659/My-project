@@ -306,8 +306,14 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
     //2 参数：real_name 真实姓名
         var real_name=$("#renterName").val();
+        if(!real_name){
+            $("#renterName").attr("placeholder","姓名没有填哦")
+        }
     //3 参数：phone 手机号码
         var phone=$("#renterPhone").val();
+        if(!phone){
+            $("#renterPhone").attr("placeholder","手机号没有填哦")
+        }
     //4 参数：room_num 房号
         var houseNum=$("#houseNum option:selected").val();
         var floorNum=$("#floorNum option:selected").val();
@@ -315,6 +321,9 @@ $(document).ready(function(){
         var room_num=houseNum+"-"+floorNum+"-"+roomNum;
     //5 参数：id_card_num 身份证号码
         var id_card_num=$("#renter_IdentityCard").val();
+        if(!id_card_num){
+            $("#renter_IdentityCard").attr("placeholder","身份证号没有填哦")
+        }
     //6 参数：id_card_pictures 身份证照片
         var A=$(".flockHeadA img").attr("src");
         var B=$(".flockHeadB img").attr("src");
@@ -338,6 +347,9 @@ $(document).ready(function(){
         var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
     //13 参数：contract_period 合同期限 10位时间戳 整型
         var contract_period=$("#date2").val();
+        if(!contract_period){
+            $("#date2").attr("placeholder","合同有效期没有填哦")
+        }
     //14 参数：pictures 合同照
         var  ContractPic=$(".ContractPic img").attr("src");
         var  pictures="{'a':'"+ContractPic+"'}";
