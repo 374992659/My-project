@@ -68,6 +68,7 @@ $(document).ready(function() {
         ws.onmessage = function (e) {
             console.log((e.data));
             var result = JSON.parse(e.data);                   //服务器返回结果
+            console.log(result);
             var friends_new_messageNum=0,
                 group_new_messageNum=0,
                 friends_new_applyNum=0;
