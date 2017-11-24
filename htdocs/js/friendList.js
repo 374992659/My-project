@@ -525,12 +525,10 @@ $(document).ready(function() {
         (function(){
             //获取好友分组id
             var id=$(e.target).attr("title");
-
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
             var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
-
            var  jsonEncryptData = jsEncryptData(data);
             $.ajax({
                 url:url+"friends_getGroupFriends",
@@ -538,7 +536,7 @@ $(document).ready(function() {
                 data:{"data":jsonEncryptData},
                 success:function(data){
                     data=jsDecodeData(data);
-
+                    console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
