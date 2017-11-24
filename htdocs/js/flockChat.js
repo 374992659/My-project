@@ -22,13 +22,10 @@ $(document).ready(function(){
                     }
                     var group_new_message = data.group_new_message;
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
-                        console.log("群消息");
-                        console.log(group_new_message);
+
                         var html="";
                         //群组新消息  已按群分组 时间倒序排列
                         $.each(group_new_message,function(i,item){
-                            console.log("未读群消息");
-                            console.log(item);
                             var group_num=item.group_num;
                             var group_code=item.group_code;
                             var group_portrait=item.group_portrait;
@@ -41,7 +38,7 @@ $(document).ready(function(){
                                     }else{
                                         sender_portrait="http://wx.junxiang.ren/project/"+item.sender_portrait
                                     }
-                                    console.log(item);
+
                                     if(parseInt(item.type)===2){//图片、文件
                                         html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -94,7 +91,7 @@ $(document).ready(function(){
                                     // 本地未读聊天记录保存
                                     (function(){
                                         var json_str = "{'sender_code':'"+item.sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+item.sender_nickname+"','portrait':'"+sender_portrait+"'}";
-                                        console.log(json_str);
+
                                         var history_chats = localStorage.getItem('history_'+group_code);
                                         if(!history_chats){
                                             history_chats = new Array();
@@ -179,13 +176,12 @@ $(document).ready(function(){
                     var html = patharr[parseInt(patharr.length-1)];
                     // 获取自己code
                     var my_code=localStorage.getItem("my_code");
-                    console.log(data);
                     if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
                         var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
                            // 本地存储聊天记录
                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.send_nickname+"','portrait':'"+data.send_portrait+"'}";
-                            console.log(json_str);
+
                             var history_chats = localStorage.getItem('history_'+data.group);
                             if(!history_chats){
                                 history_chats = new Array();
@@ -209,7 +205,6 @@ $(document).ready(function(){
                                }else{
                                    send_portrait="http://wx.junxiang.ren/project/"+data.send_portrait
                                }
-                               console.log(send_portrait);
                                 if(data.type===2){//图片、文件
                                     html=`
                                     <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
@@ -263,7 +258,6 @@ $(document).ready(function(){
                                 }else{
                                     send_portraits="http://wx.junxiang.ren/project/"+data.send_portrait
                                 }
-                                console.log(send_portraits);
                                 if(data.type===2){//图片、文件
                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
@@ -327,7 +321,6 @@ $(document).ready(function(){
                                 //获取服务器id
                                 num++;
                                 var id=$(this).attr("title");
-                                console.log(id);
                                 wx.downloadVoice({
                                     serverId: id, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
                                     isShowProgressTips: 1, // 默认为1，显示进度提示
@@ -405,7 +398,6 @@ $(document).ready(function(){
                 var jsonObj = eval('(' + item + ')');
                 data[i]=jsonObj;
             });
-            console.log(data);
             var html="";
             $.each(data,function(i,item){
                 var httP=item.portrait.split(":")[0];
@@ -691,7 +683,6 @@ $(document).ready(function(){
         var content=chatContent.val();                //获取页面发送内容
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
         var message_type=1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
-        console.log(JSON.stringify({'type':3,'content':content,'apptoken':apptoken,'account_code':group,'message_type':message_type}));
         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
         chatContent.val("");
@@ -713,7 +704,7 @@ $(document).ready(function(){
             var data=["",JSON.stringify({"apptoken":apptoken})];
             var json=jsEncryptData(data);
             formData.append("data",json);
-            console.log(formData);
+
             $.ajax({
                 type:"POST",
                 url:url+"ChatMessage_uploadGroupFile",
@@ -739,7 +730,7 @@ $(document).ready(function(){
                     }
                 },
                 error:function (data) {
-                    console.log(data);
+
                 }
             });
 
@@ -765,7 +756,6 @@ $(document).ready(function(){
                 success : function(data){
                     // 解密
                     data=jsDecodeData(data);
-                    console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         console.log(data.data[0]);
@@ -779,7 +769,7 @@ $(document).ready(function(){
                     }
                 },
                 error:function (data){
-                    console.log(data);
+
                 }
             });
 
