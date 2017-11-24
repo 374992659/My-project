@@ -255,6 +255,7 @@ $(document).ready(function(){
                         `
                             });
                             var allGarden= $(".allGarden");
+                            console.log(li);
                             allGarden.append(li);
                             allGarden.show();
                             allGarden.on("click","li",function(){
