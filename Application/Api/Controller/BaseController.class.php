@@ -41,6 +41,7 @@ class BaseController extends Controller
                 $aestoken = json_decode($aesLib->aes128cbcHexDecrypt($this->pdata['apptoken'], C('APP_KEY.TOKEN_AES_IV'), C('APP_KEY.TOKEN_AES_KEY')), true);
                 $this->account_code  = isset($aestoken['account_code'])&&$aestoken['account_code']?$aestoken['account_code']:0;
             }
+            $this->echoEncrypData(1,'',$this->pdata);
         }else{
             // 解密数据 验签
             if( isset($appdata['data']) && !empty($appdata['data']) ){
