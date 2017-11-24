@@ -421,101 +421,101 @@ $(document).ready(function() {
             }
         });
     };getGroup();
-    // (function(){
-    //     var apptoken=localStorage.getItem("apptoken");
-    //     var title=1;
-    //     var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
-    //     var  jsonEncryptData = jsEncryptData(data);
-    //     $.ajax({
-    //         url:url+"friends_getGroupFriends",
-    //         type:"POST",
-    //         data:{"data":jsonEncryptData},
-    //         success:function(data){
-    //             // 解密
-    //             var data=jsDecodeData(data);
-    //             console.log(data);
-    //             if(data.errcode===0){
-    //                 var html="";
-    //                 var result=data.data;
-    //                 localStorage.setItem("apptoken",data.apptoken);
-    //                 $.each(result,function(i,item){
-    //
-    //                     var httP=item.friend_portrait.split(":")[0];
-    //                         if(httP==="http"){
-    //                             if(item.friend_signature===null){
-    //                                 html+=`
-    //                 <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
-    //                     <div class="weui-media-box__hd">
-    //                         <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
-    //                     </div>
-    //                     <div class="weui-media-box__bd">
-    //                         <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-    //                         <p class="weui-media-box__desc remark">此人很懒什么都没有留下</p>
-    //                     </div>
-    //                 </div>
-    //                         `
-    //                             }else{
-    //                                 html+=`
-    //                 <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
-    //                     <div class="weui-media-box__hd">
-    //                         <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
-    //                     </div>
-    //                     <div class="weui-media-box__bd">
-    //                         <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-    //                         <p class="weui-media-box__desc remark">${item.friend_signature}</p>
-    //                     </div>
-    //                 </div>
-    //                         `
-    //                             }
-    //
-    //                         }else{
-    //                             if(item.friend_signature===null){
-    //                                 html+=`
-    //                 <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
-    //                     <div class="weui-media-box__hd">
-    //                         <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
-    //                     </div>
-    //                     <div class="weui-media-box__bd">
-    //                         <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-    //                         <p class="weui-media-box__desc remark">此人很懒什么都没有留下</p>
-    //                     </div>
-    //                 </div>
-    //                         `
-    //                             }else{
-    //                                 html+=`
-    //                 <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
-    //                     <div class="weui-media-box__hd">
-    //                         <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
-    //                     </div>
-    //                     <div class="weui-media-box__bd">
-    //                         <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-    //                         <p class="weui-media-box__desc remark">${item.friend_signature}</p>
-    //                     </div>
-    //                 </div>
-    //                         `
-    //                             }
-    //
-    //                         }
-    //                 });
-    //                 $("#1").html(html);
-    //                 $(".friend").show();
-    //                 $("#1").parent().prev().find("img").css("transform","rotate(90deg)");
-    //                 var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
-    //                 var online=JSON.parse(localStorage.getItem("online_friends"));
-    //                 for(var i=0 ,len=allfriend.length;i<len;i++){
-    //                     for(var j=0,le=online.length;j<le;j++){
-    //                         if(allfriend[i]==online[j]){
-    //                             $("#"+online[j]).attr("style","opacity: 1");
-    //                             var clone=$("#"+online[j]).parent().parent().clone(true);
-    //                             $("#"+online[j]).parent().parent().remove();
-    //                             $("#1").prepend(clone);
-    //                         }
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     })
-    // })();
+    (function(){
+        var apptoken=localStorage.getItem("apptoken");
+        var title=1;
+        var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
+        var  jsonEncryptData = jsEncryptData(data);
+        $.ajax({
+            url:url+"friends_getGroupFriends",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    var html="";
+                    var result=data.data;
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $.each(result,function(i,item){
+
+                        var httP=item.friend_portrait.split(":")[0];
+                            if(httP==="http"){
+                                if(item.friend_signature===null){
+                                    html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">此人很懒什么都没有留下</p>
+                        </div>
+                    </div>
+                            `
+                                }else{
+                                    html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+                        </div>
+                    </div>
+                            `
+                                }
+
+                            }else{
+                                if(item.friend_signature===null){
+                                    html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">此人很懒什么都没有留下</p>
+                        </div>
+                    </div>
+                            `
+                                }else{
+                                    html+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+                        </div>
+                    </div>
+                            `
+                                }
+
+                            }
+                    });
+                    $("#1").html(html);
+                    $(".friend").show();
+                    $("#1").parent().prev().find("img").css("transform","rotate(90deg)");
+                    var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
+                    var online=JSON.parse(localStorage.getItem("online_friends"));
+                    for(var i=0 ,len=allfriend.length;i<len;i++){
+                        for(var j=0,le=online.length;j<le;j++){
+                            if(allfriend[i]==online[j]){
+                                $("#"+online[j]).attr("style","opacity: 1");
+                                var clone=$("#"+online[j]).parent().parent().clone(true);
+                                $("#"+online[j]).parent().parent().remove();
+                                $("#1").prepend(clone);
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    })();
     // 功能2 请求好友分组下的好友信息
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
             //获取好友分组id
@@ -567,7 +567,6 @@ $(document).ready(function() {
                                 }
 
                         });
-                        console.log(html);
                         $("#"+id).html(html);
                         var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                         var online=JSON.parse(localStorage.getItem("online_friends"));
