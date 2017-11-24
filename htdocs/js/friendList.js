@@ -15,10 +15,10 @@ $(document).ready(function() {
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
-                console.log(data);
+            
                 var account_code=data.data.account_code;
                var  str = parseInt(account_code.substring(0, 6));
-               console.log(str);
+
                localStorage.setItem("city_id",str);
                 //判断返回的头像是否为自定义的
                var nickname=data.data.portrait.split(":");
@@ -53,7 +53,7 @@ $(document).ready(function() {
                     $.each(data.data,function(i,item){
                         allFriend_code[i]=item.friend_user_code;
                     });
-                    console.log(allFriend_code);
+
                     localStorage.setItem("allFriend_code",JSON.stringify(allFriend_code))
                 }
             },
@@ -80,15 +80,15 @@ $(document).ready(function() {
 
                     // // 保存聊天的好友资料
                     (function(){
-                        console.log(result.data.send_portrait);
+
                         var httP=result.data.send_portrait.split(":")[0];
                         var pic="";
-                        console.log(httP);
+
                         if(httP==="http"){
                             pic=result.data.send_portrait;
                         }else{
                             pic="http://wx.junxiang.ren/project/"+result.data.send_portrait
-                        }console.log(pic);
+                        }
                         var history_chat = localStorage.getItem("friend_info");
                         var json = "{'sender_code':'"+result.data.sender_code+"','type':'"+result.data.type+"','send_time':'"+result.data.send_time+"','content':'"+result.data.content+"','nickname':'"+result.data.sender_nickname+"','portrait':'"+pic+"'}";
                         if(!history_chat){
@@ -98,7 +98,7 @@ $(document).ready(function() {
                         }else {
                             var history= $.parseJSON(history_chat);
                             var jsonObj = eval('('+history+')');
-                            console.log(jsonObj);
+
                             data=[];
                             $.each(history,function(i,item){
                                 var jsonObj = eval('('+item+')');
@@ -108,12 +108,12 @@ $(document).ready(function() {
                             var a=0;
                             for(var i=0,len=data.length;i<len;i++){
                                 if(parseInt(data[i].sender_code)===parseInt(result.data.sender_code)){
-                                    console.log("好友信息1");
+
                                     a++;
                                 }
                             }
                             if(a===0){
-                                console.log("好友信息2");
+
                                 history_chat = JSON.parse(history_chat);
                                 history_chat[history_chat.length] = json;
                                 localStorage.setItem("friend_info", JSON.stringify(history_chat));
@@ -128,7 +128,7 @@ $(document).ready(function() {
                         var data = (result.data);
                         // 在线好友
                         var online_friends=data.online_friends;
-                        console.log(data);
+
                         if(online_friends){
                             // 获取在线好友code
                            var onlineFried=[];
@@ -136,12 +136,11 @@ $(document).ready(function() {
                                 onlineFried.push(item);
                             });
                             // 把在线好友压入数组
-                            console.log("在线好友");
-                            console.log(onlineFried);
+
                             $.each(onlineFried,function(i,item){
-                                console.log(item);
+
                                var title= $("#"+parseInt(item)).attr("title");
-                                console.log(title);
+
                             });
                             //$(".online").html(onlineFried.length);
                             // 把在线好友存在本地
@@ -153,8 +152,7 @@ $(document).ready(function() {
                             $.each(friends_new_message,function(i,item){
                                 friends_new_messageNum+=item.message_num;
                                 // 存在本地的聊天记录
-                                console.log("未读好友消息");
-                                console.log(item);
+
                                 var sender_code=item.sender_code;
                                 var sender_nickname=item.sender_nickname;
                                 var sender_portrait=item.sender_portrait;
@@ -166,10 +164,9 @@ $(document).ready(function() {
                                     senderPIC="http://wx.junxiang.ren/project/"+sender_portrait
                                 }
                                 $.each(item.content,function(i,item){
-                                   console.log(item.content);
+
                                     var sendTime=item.send_time;
-                                   console.log(item.send_time);
-                                   console.log(item.type);
+
                                     // 本地未读聊天记录
                                     var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+senderPIC+"'}";
                                     var history_chats = localStorage.getItem('history_'+ sender_code);
@@ -179,14 +176,14 @@ $(document).ready(function() {
                                         localStorage.setItem('history_'+sender_code,JSON.stringify(history_chats));
                                     }else{ history_chats = JSON.parse(history_chats);
                                         var jsonObj = eval('('+history_chats+')');
-                                        console.log(jsonObj);
+
                                         data=[];
                                         $.each(history_chats,function(i,item){
                                             var jsonObj = eval('('+item+')');
                                             data[i]=jsonObj;
                                         });
-                                        console.log(data);
-                                        console.log("判断是否存入同一时间发送的内容");
+
+
                                         for(var i=0,len=data.length;i<len;i++){
                                             if(!data[i].send_time===sendTime){
                                                 history_chats[history_chats.length] = json_str;
@@ -208,22 +205,21 @@ $(document).ready(function() {
                                         }else {
                                             var history= $.parseJSON(history_chat);
                                             var jsonObj = eval('('+history+')');
-                                            console.log(jsonObj);
                                             data=[];
                                             $.each(history,function(i,item){
                                                 var jsonObj = eval('('+item+')');
                                                 data[i]=jsonObj;
                                             });
-                                            console.log(data);
+
                                             var a=0;
                                             for(var i=0,len=data.length;i<len;i++){
                                                 if(parseInt(data[i].sender_code)===parseInt(sender_code)){
-                                                    console.log("好友信息1");
+
                                                     a++;
                                                 }
                                             }
                                             if(a===0){
-                                                console.log("好友信息2");
+
                                                 history_chat = JSON.parse(history_chat);
                                                 history_chat[history_chat.length] = json;
                                                 localStorage.setItem("friend_info", JSON.stringify(history_chat));
@@ -236,8 +232,7 @@ $(document).ready(function() {
                         // 群未读新消息
                         var group_new_message=data.group_new_message;
                         if(group_new_message){
-                            console.log("群消息");
-                            console.log(group_new_message);
+
                             //群组新消息  已按群分组 时间倒序排列
                             $.each(group_new_message,function(i,item){
                                 group_new_messageNum+=item.count;
@@ -262,16 +257,16 @@ $(document).ready(function() {
                         var data = (result.data);
                         var friend_code = data.user_code;
                         var online_friends =localStorage.getItem('online_friends');
-                        console.log(online_friends);
+
                         if(!contains(online_friends,friend_code)){
-                            console.log("好友上线");
+
                            var newOnline = parseInt(JSON.parse(online_friends));
-                           console.log(newOnline);
+
                             // newOnline.push(friend_code);
                             // 上线好友的头像变亮
                             // var online=$("#"+parseInt(friend_code));
                             // var id=online.attr("title");
-                            // console.log(id);
+
                             // online.attr("style","opacity: 1");
                             // var clone=online.parent().parent().clone(true);
                             // online.parent().parent().remove();
@@ -289,10 +284,10 @@ $(document).ready(function() {
                         var data = (result.data);
                         var friend_code = data.user_code;
                         var online_friends = localStorage.getItem('online_friends');
-                        console.log(data);
+
                         if(contains(online_friends,friend_code)){
-                            console.log("好友下线");
-                            console.log(friend_code);
+
+
                             var i = online_friends.length;
                             while (i--){
                                 if (arr[i] === obj){
@@ -312,7 +307,7 @@ $(document).ready(function() {
                         if(html ==='index.html'){             //如果当前页面在好友聊天界面  ***.html为好友聊天页面
                            var num=$("#newsNum").html();
                            $("#newsNum").attr("style","padding:0 4px");
-                           console.log(num);
+
                             num++;
                             $("#newsNum").text(num);
                             // 把接收到的好友信息存在本地
@@ -329,7 +324,7 @@ $(document).ready(function() {
                         if(html ==='index.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
                             var num=$("#newsNum").html();
                             $("#newsNum").attr("style","padding:0 4px");
-                            console.log(num);
+
                             num++;
                             $("#newsNum").text(num);
                         }
@@ -374,14 +369,14 @@ $(document).ready(function() {
         var apptoken=localStorage.getItem("apptoken"),
             data=["", JSON.stringify({"apptoken":apptoken})],
             jsonEncryptData = jsEncryptData(data);
-        console.log(data);
+
         $.ajax({
             url:url+"friends_getGroup",
             type:"POST",
             data:{"data":jsonEncryptData},
             success: function (data){
                 data = jsDecodeData(data);
-                console.log(data);
+
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html = "";
@@ -434,7 +429,7 @@ $(document).ready(function() {
         var apptoken=localStorage.getItem("apptoken");
         var title=1;
         var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
-        console.log(data);
+
         var  jsonEncryptData = jsEncryptData(data);
         $.ajax({
             url:url+"friends_getGroupFriends",
@@ -443,13 +438,13 @@ $(document).ready(function() {
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
-                console.log(data);
+
                 if(data.errcode===0){
                     var html="";
                     var result=data.data;
                     localStorage.setItem("apptoken",data.apptoken);
                     $.each(result,function(i,item){
-                        console.log(item);
+
                         var httP=item.friend_portrait.split(":")[0];
                             if(httP==="http"){
                                 if(item.friend_signature===null){
@@ -531,12 +526,12 @@ $(document).ready(function() {
         (function(){
             //获取好友分组id
             var id=$(e.target).attr("title");
-            console.log(id);
+
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
             var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
-            console.log(data);
+
            var  jsonEncryptData = jsEncryptData(data);
             $.ajax({
                 url:url+"friends_getGroupFriends",
@@ -544,11 +539,11 @@ $(document).ready(function() {
                 data:{"data":jsonEncryptData},
                 success:function(data){
                     data=jsDecodeData(data);
-                    console.log(data);
+
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
-                        console.log(data);
+
                         $.each(data.data,function(i,item){
                             "use strict";
                             var portrait=item.friend_portrait;
@@ -596,14 +591,14 @@ $(document).ready(function() {
                         }
                         //获取个人介绍的内容
                         var remark=$(".remark");
-                        console.log(remark.html());
+
                         if(remark.html()){
                             remark.html("此人很懒哦什么都没有留下")
                         }
                         // 功能显示隐藏分组下的好友信息
-                        // console.log("分组内容显示");
+
                         // if($(e.target).next().is(":hidden")){
-                        //     console.log(123);
+
                         //     $(e.target).next().show();
                         //     $(e.target).children().children("img").css("transform","rotate(90deg)");
                         // }else{
@@ -636,7 +631,7 @@ $(document).ready(function() {
     $("#searchInput").on("input",function(){
         $(".keyFriend").empty();
         var key=$("#searchInput").val();
-        console.log(key);
+
         var apptoken=localStorage.getItem("apptoken");
         if(key){
             $(".group").hide();
@@ -649,7 +644,7 @@ $(document).ready(function() {
       var  data=["",JSON.stringify({"key":key,"apptoken":apptoken})],
         //数据加密
         jsonEncryptDate=jsEncryptData(data);
-        console.log(data);
+
         //发起ajax请求
         $.ajax({
             url:url+"friends_searchFriends",
@@ -659,7 +654,7 @@ $(document).ready(function() {
                 //解密数据
                 data=jsDecodeData(data);
                 if(data.errcode===0){
-                    console.log(data);
+
                     localStorage.setItem("apptoken",data.apptoken);
                     var html="";
                     $.each(data.data,function(i,item){
@@ -754,7 +749,7 @@ $(document).ready(function() {
             success:function(data){
                 // 解密
                 var data=jsDecodeData(data);
-                console.log(data);
+
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
 
@@ -771,14 +766,14 @@ $(document).ready(function() {
     //点击头像跳转到
     $(".group").on("click",".skipChat .weui-media-box__hd .weui-media-box__thumb ",function () {
         var user_code=$(this).attr("id");
-        console.log(user_code);
+
         localStorage.setItem("user_code",user_code);
         window.location.href="friendDetails.html";
         return false;
     });
     //搜索好友跳转到聊天页面
     $(".keyFriend").on("click",".skipChat",function(){
-        console.log(123);
+
         //好友名字
         var sender_name=$(this).find("h4").text();
         // 获取好友code
