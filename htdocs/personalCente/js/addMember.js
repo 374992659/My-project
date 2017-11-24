@@ -61,7 +61,7 @@ $(document).ready(function(){
             formData.append("file",$("#uploaderInputA")[0].files[0]);
             console.log("图片信息");
             console.log( $('#uploaderInputA')[0].files[0].size);
-           var  picSize= $('#uploaderInputA')[0].files[0].size
+           var  picSize= $('#uploaderInputA')[0].files[0].size;
             var data=["",JSON.stringify({"apptoken":apptoken})];
             var json=jsEncryptData(data);
             formData.append("data",json);
@@ -219,8 +219,14 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         // real_name 真实姓名
         var real_name=$("#name").val();
+        if(!real_name){
+            $("#name").attr("placeholder","姓名没有填哦")
+        }
         // phone 手机号码
         var phone=$("#phone").val();
+        if(!phone){
+            $("#phone").attr("placeholder","姓名没有填哦")
+        }
         // room_num 房间号码
         var dongNum=$("#dongNum option:selected").val();
         var floorNum=$("#floorNum option:selected").val();
@@ -228,6 +234,9 @@ $(document).ready(function(){
         var room_num=dongNum+"-"+floorNum+"-"+roomNum;
         // id_card_num 身份证号码
         var id_card_num=$("#identityCard").val();
+        if(!id_card_num){
+            $("#identityCard").attr("placeholder","姓名没有填哦")
+        }
         // garden_code 小区code
         var garden_code=$("#gardenName option:selected").attr("title");
         // garden_name 小区名称
