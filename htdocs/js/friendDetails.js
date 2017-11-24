@@ -116,8 +116,8 @@ $(document).ready(function(){
                         </div>
                 </div>                    
                 <div class="weui-flex">
-                      <div class="weui-flex__item"><a href="javascript:;" class="weui-btn weui-btn_default">默认按钮</a></div>
-                      <div class="weui-flex__item"><a href="javascript:;" class="weui-btn weui-btn_primary">主按钮</a></div>
+                      <div class="weui-flex__item"><button  class="weui-btn weui-btn_default">删除好友</button></div>
+                      <div class="weui-flex__item"><button  class="weui-btn weui-btn_primary">确认修改</button></div>
                 </div>    
                     `
                 }
@@ -152,6 +152,6 @@ $(document).ready(function(){
     })();
     //修改好友分组
     (function () {
-
+        
     })();
 });
