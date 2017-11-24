@@ -584,12 +584,12 @@ $(document).ready(function() {
                             }
                         }
                         // 功能显示隐藏分组下的好友信息
-                        if($(this).next().is(":hidden")){
-                            $(this).next().show();
-                            $(this).children().children("img").css("transform","rotate(90deg)");
+                        if($(e.target).parent().parent().next().is(":hidden")){
+                            $(e.target).parent().parent().next().show();
+                            $(e.target).parent().prev().children("img").css("transform","rotate(90deg)");
                         }else{
-                            $(this).next().hide();
-                            $(this).children().children("img").css("transform","rotate(0deg)");
+                            $(e.target).parent().parent().next().hide();
+                            $(e.target).parent().prev().children("img").css("transform","rotate(0deg)");
                         }
                     }
                 }
