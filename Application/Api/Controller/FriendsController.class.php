@@ -104,6 +104,19 @@ class FriendsController extends VersionController
         $data  = M('baseinfo.user_info_'.$user_city_id)->field('portrait,nickname,account,realname,default_garden,phone,create_time,hobby,user_garden')->where(['account_code'=>$user_code])->find();
         if($data){
             $data['group_id']= $user_friends->where(['friends_user_code'=>$user_code])->getField('group_id');
+            $mongo = new \MongoClient();
+            if($data['user_garden']){
+                $arr = explode(';',$data['user_garden']);
+                $garden_arr = array();
+                foreach ($arr as $item) {
+                    $garden_arr[] = $item;
+                }
+                $garden_arr=array_unique($garden_arr);
+                foreach($garden_arr as $value){
+                    $re_data[] = $mongo->baseinfo->garden_area->findOne(array('garden_code'))['garden_name'];
+                }
+                $data['user_garden'] = $re_data;
+            }
         }
         if($data)$this->echoEncrypData(0,'',$data);
         $this->echoEncrypData(1);
