@@ -164,7 +164,7 @@ class UserCenterController extends VersionController
      * APP参数 imageData 文件流
      * */
     protected function uploadUserPortrait_v1_0_0(){
-        if($_GET['is_wap'] !== 1){
+        if(intval($_GET['is_wap']) !== 1){
             $save_path=APP_PATH.'Common/Upload/Portrait/'.date(m).date(d).'/';
             $a = $this->pdata['imageData'];
             if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
@@ -518,7 +518,7 @@ class UserCenterController extends VersionController
      * app参数： imageData 文件流
      * */
     protected function uploadOwnerApplicationPic_v1_0_0(){
-        if($_GET['is_wap'] !== 1){
+        if(intval($_GET['is_wap']) !== 1){
             $save_path=APP_PATH . 'Common/Upload/OwnerApplication/' . date(m) . date(d) . '/';
             $a = $this->pdata['imageData'];
             if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
@@ -994,7 +994,7 @@ class UserCenterController extends VersionController
      *  app参数： imageData 文件流
      * */
     protected function uploadTenantApplicationPic_v1_0_0(){
-        if($_GET['is_wap'] !== 1){
+        if(intval($_GET['is_wap']) !== 1){
             $save_path=APP_PATH . 'Common/Upload/TenantApplication/' . date(m) . date(d) . '/';
             $a = $this->pdata['imageData'];
             if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
