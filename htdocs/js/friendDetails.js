@@ -29,7 +29,6 @@ $(document).ready(function(){
                     var house="";
                     if(result.user_garden){
                         $.each(result.user_garden,function (i,item) {
-                            console.log(item);
                             house+=`
                                 
                              <li>${item}</li>
@@ -155,7 +154,6 @@ $(document).ready(function(){
         $("#tab1").on("click",".weui-flex .weui-flex__item .weui-btn_primary",function () {
             //新分组id
             var id=$("#group option:selected").attr("title");
-            var group_name=$("#group option:selected").text();
             var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code,"group_id":id})];
             console.log(data);
             var jsonEncryptData=jsEncryptData(data);
@@ -167,7 +165,10 @@ $(document).ready(function(){
                     var data=jsDecodeData(data);
                     console.log(data);
                     if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken)
+                        localStorage.setItem("apptoken",data.apptoken);
+                        showHide(data.errmsg)
+                    }else{
+                        showHide(data.errmsg)
                     }
                 }
 

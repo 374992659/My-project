@@ -364,12 +364,11 @@ $(document).ready(function() {
             return false;
         }
     })();
-    //功能1 请求好友分组
+    //功能1 请求好友分组列表
     var getGroup=function(){
         var apptoken=localStorage.getItem("apptoken"),
             data=["", JSON.stringify({"apptoken":apptoken})],
             jsonEncryptData = jsEncryptData(data);
-
         $.ajax({
             url:url+"friends_getGroup",
             type:"POST",
@@ -395,25 +394,25 @@ $(document).ready(function() {
                         });
                         var online=arr.length;
                         html += `
-     <div class="weui-cells">
-        <div class="weui-cell LinkBtn"  title="${item.id} ">
-            <div class="weui-cell__hd ">
-               <img class="linkBtn" src="image/right.png "  title="${item.id}">
-            </div>
-            <div class="weui-cell__bd">
-                <p style=""  title="${item.id}">${item.group_name}</p>
-            </div>
-            <div class="weui-cell__ft" style="">
-                <span class="online ${item.id}" style="font-size: 18px">${online}</span>/${item.total}
-            </div>
-        </div>
-        <div class="weui-panel weui-panel_access friendList friend" style="display: none">
-            <div class="weui-panel__bd " id="${item.id}">
-
-            </div>
-        </div>
-     </div>
-        `
+                         <div class="weui-cells">
+                            <div class="weui-cell LinkBtn"  title="${item.id} ">
+                                <div class="weui-cell__hd ">
+                                   <img class="linkBtn" src="image/right.png "  title="${item.id}">
+                                </div>
+                                <div class="weui-cell__bd">
+                                    <p style=""  title="${item.id}">${item.group_name}</p>
+                                </div>
+                                <div class="weui-cell__ft" style="">
+                                    <span class="online ${item.id}" style="font-size: 18px">${online}</span>/${item.total}
+                                </div>
+                            </div>
+                            <div class="weui-panel weui-panel_access friendList friend" style="display: none">
+                                <div class="weui-panel__bd " id="${item.id}">
+                    
+                                </div>
+                            </div>
+                         </div>
+                            `
                     });
                     $(".group").append(html);
 
@@ -423,7 +422,6 @@ $(document).ready(function() {
             }
         });
     };getGroup();
-
 
     (function(){
         var apptoken=localStorage.getItem("apptoken");
@@ -540,7 +538,6 @@ $(document).ready(function() {
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
-
                         $.each(data.data,function(i,item){
                             "use strict";
                             var portrait=item.friend_portrait;
@@ -586,22 +583,9 @@ $(document).ready(function() {
                                 }
                             }
                         }
-                        //获取个人介绍的内容
-                        var remark=$(".remark");
-
-                        if(remark.html()){
-                            remark.html("此人很懒哦什么都没有留下")
-                        }
                         // 功能显示隐藏分组下的好友信息
-
-                        // if($(e.target).next().is(":hidden")){
-
-                        //     $(e.target).next().show();
-                        //     $(e.target).children().children("img").css("transform","rotate(90deg)");
-                        // }else{
-                        //     $(e.target).next().hide();
-                        //     $(e.target).children().children("img").css("transform","rotate(0deg)");
-                        // }
+                        console.log(123);
+                        console.log($(this));
                     }
                 }
             });
