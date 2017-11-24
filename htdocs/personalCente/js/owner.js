@@ -296,7 +296,6 @@ $(document).ready(function(){
     (function () {
         $("#identityCard").blur(function(){
             var idCard=$("#identityCard").val();
-            console.log(idCard);
             isCardNo(idCard)
         })
     })();
