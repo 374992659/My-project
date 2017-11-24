@@ -201,13 +201,19 @@ class BaseController extends Controller
             @mkdir($path, 0777, true);
             @chmod($path, 0777);
         }
-        $filename = uniqid().".png";
-        $FilePath = $path.$filename;
-        $query = file_put_contents($FilePath, $fileData);
-        if ( $query > 0 ) {
-            return $FilePath;
-        }else{
-            return false;
+        $file_arr = explode('@',$fileData);
+        $imageUrl=array();
+        foreach($file_arr as $k=>$v){
+            $fileData = base64_decode($v);
+            $filename = uniqid().".png";
+            $FilePath = $path.$filename;
+            $query = file_put_contents($FilePath, $fileData);
+            if ( $query > 0 ) {
+                $imageUrl[$k]= $FilePath;
+            }else{
+                $imageUrl[$k]=false;
+            }
         }
+        return $imageUrl;
     }
 }
