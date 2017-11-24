@@ -558,7 +558,7 @@ $(document).ready(function() {
                                     html+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" value="${item.friend_user_code}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
@@ -770,7 +770,10 @@ $(document).ready(function() {
     });
     //点击头像跳转到
     $(".group").on("click",".skipChat .weui-media-box__hd .weui-media-box__thumb ",function () {
-        window.location.href="friendDetails.html";
+        var user_code=$(this).attr("value");
+        console.log(user_code);
+        localStorage.setItem("user_code",user_code);
+        //window.location.href="friendDetails.html";
         return false;
     });
     //搜索好友跳转到聊天页面
