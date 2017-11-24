@@ -66,6 +66,7 @@ $(document).ready(function() {
         if(!apptoken)alert('请重新登录');
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
         ws.onmessage = function (e) {
+            console.log((e.data));
             var result = JSON.parse(e.data);                   //服务器返回结果
             var friends_new_messageNum=0,
                 group_new_messageNum=0,
@@ -563,7 +564,6 @@ $(document).ready(function() {
                     </div>
                             `
                                 }
-
                         });
                         $("#"+id).html(html);
                         var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
