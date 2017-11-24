@@ -536,7 +536,6 @@ $(document).ready(function() {
                         localStorage.setItem("apptoken",data.apptoken);
                         var html="";
                         $.each(data.data,function(i,item){
-                            console.log(item);
                             "use strict";
                             var portrait=item.friend_portrait;
                             var htP=portrait.split(":")[0];
