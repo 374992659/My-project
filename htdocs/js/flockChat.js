@@ -380,7 +380,7 @@ $(document).ready(function(){
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
         (function(){
-            var group=localStorage.getItem("group_code");
+            var group=parseInt(localStorage.getItem("group_code"));
             console.log(typeof group);
             var pathname = window.location.pathname;
             var patharr  = pathname.split('/');
