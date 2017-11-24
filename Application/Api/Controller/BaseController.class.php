@@ -194,7 +194,7 @@ class BaseController extends Controller
         }
     }
     /*
-     * APP图片上传
+     * APP图片/文件上传
      * */
     public function uploadAppImg($path,$fileData){
         if ( !is_dir($path) ) {
