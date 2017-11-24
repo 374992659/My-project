@@ -101,6 +101,7 @@ $(document).ready(function(){
                         $(".PPflockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".PPloaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".PPflockHeadA").attr("style","display:block");
+                        $(".CardA").hide();
                     }
                 },
                 error:function (data) {
@@ -135,6 +136,7 @@ $(document).ready(function(){
                         $(".PPflockHeadB img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".PPloaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".PPflockHeadB").attr("style","display:block");
+                        $(".CardB").hide();
                     }
                 },
                 error:function (data) {
