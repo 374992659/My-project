@@ -19,6 +19,9 @@ class ChatMessageController extends VersionController
             $a = $this->pdata['imageData'];
             if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
             $save_path= APP_PATH.'Common/Upload/File/Friends/'.date(m).date(d).'/';
+            if($this->pdata['type']==='voice'){
+                $save_path= APP_PATH.'Common/Upload/File/Friends/Voice/'.date(m).date(d).'/';
+            }
             $res = $this->uploadAppImg($save_path,$a);
             if($res){
                 $this->echoEncrypData(0,'',$res);
