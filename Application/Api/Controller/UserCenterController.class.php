@@ -161,6 +161,7 @@ class UserCenterController extends VersionController
     }
     /*
      * 上传用户头像 成功后图片路劲已直接写入数据库 返回状态不返回路径
+     * APP参数 imageData 文件流
      * */
     protected function uploadUserPortrait_v1_0_0(){
         if($_GET['is_wap'] !== 1){
@@ -514,19 +515,32 @@ class UserCenterController extends VersionController
     }
     /*
      * 业主认证/业主添加成员 上传图片
+     * app参数： imageData 文件流
      * */
     protected function uploadOwnerApplicationPic_v1_0_0(){
-        import('Vendor.UploadFile');
-        $upload =new \UploadFile();
-        $path=APP_PATH.'Common/Upload/OwnerApplication/'.date(m).date(d).'/';
-        $res = $upload->upload($path);
-        if(!$res){
-            $this->echoEncrypData(1,$upload->getErrorMsg());
+        if($_GET['is_wap'] !== 1){
+            $save_path=APP_PATH . 'Common/Upload/OwnerApplication/' . date(m) . date(d) . '/';
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
+            $res = $this->uploadAppImg($save_path,$a);
+            if($res){
+               $this->echoEncrypData(0,'',$res);
+            }else{
+                $this->echoEncrypData(1,'图片上传失败');
+            }
+        }else {
+            import('Vendor.UploadFile');
+            $upload = new \UploadFile();
+            $path = APP_PATH . 'Common/Upload/OwnerApplication/' . date(m) . date(d) . '/';
+            $res = $upload->upload($path);
+            if (!$res) {
+                $this->echoEncrypData(1, $upload->getErrorMsg());
+            }
+            foreach ($res as $k => $v) {
+                $data[] = $res[$k]['savepath'] . $res[$k]['savename'];
+            }
+            $this->echoEncrypData(0, '', $data);
         }
-        foreach($res as $k=>$v){
-            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
-        }
-        $this->echoEncrypData(0,'',$data);
     }
     /*
      * 获取我的业主认证信息
@@ -977,19 +991,32 @@ class UserCenterController extends VersionController
     }
     /*
      *  租户认证/主租户添加成员 上传图片
+     *  app参数： imageData 文件流
      * */
     protected function uploadTenantApplicationPic_v1_0_0(){
-        import('Vendor.UploadFile');
-        $upload =new \UploadFile();
-        $path=APP_PATH.'Common/Upload/TenantApplication/'.date(m).date(d).'/';
-        $res = $upload->upload($path);
-        if(!$res){
-            $this->echoEncrypData(1,$upload->getErrorMsg());
+        if($_GET['is_wap'] !== 1){
+            $save_path=APP_PATH . 'Common/Upload/TenantApplication/' . date(m) . date(d) . '/';
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
+            $res = $this->uploadAppImg($save_path,$a);
+            if($res){
+                $this->echoEncrypData(0,'',$res);
+            }else{
+                $this->echoEncrypData(1,'图片上传失败');
+            }
+        }else{
+            import('Vendor.UploadFile');
+            $upload = new \UploadFile();
+            $path = APP_PATH . 'Common/Upload/TenantApplication/' . date(m) . date(d) . '/';
+            $res = $upload->upload($path);
+            if (!$res) {
+                $this->echoEncrypData(1, $upload->getErrorMsg());
+            }
+            foreach ($res as $k => $v) {
+                $data[] = $res[$k]['savepath'] . $res[$k]['savename'];
+            }
+            $this->echoEncrypData(0, '', $data);
         }
-        foreach($res as $k=>$v){
-            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
-        }
-        $this->echoEncrypData(0,'',$data);
     }
     /*
      * 获取我的租户认证信息

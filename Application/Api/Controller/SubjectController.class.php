@@ -14,19 +14,32 @@ class SubjectController extends VersionController
 {
     /*
      * 热门话题图片上传
+     * app参数： imageData 文件流（多个文件数据用@符号隔开）
      * */
     protected function uploadSubjectPic_V1_0_0(){
-        import('Vendor.UploadFile');
-        $upload =new \UploadFile();
-        $path=APP_PATH.'Common/Upload/Img/HotSubjectPicture/'.date(m).date(d).'/';
-        $res = $upload->upload($path);
-        if(!$res){
-            $this->echoEncrypData(1,$upload->getErrorMsg());
+        if(intval($_GET['is_wap']) !==1){
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
+            $save_path = APP_PATH . 'Common/Upload/Img/HotSubjectPicture/' . date(m) . date(d) . '/';
+            $res = $this->uploadAppImg($save_path,$a);
+            if($res){
+                $this->echoEncrypData(0,'',$res);
+            }else{
+                $this->echoEncrypData(1,'图片上传失败');
+            }
+        }else {
+            import('Vendor.UploadFile');
+            $upload = new \UploadFile();
+            $path = APP_PATH . 'Common/Upload/Img/HotSubjectPicture/' . date(m) . date(d) . '/';
+            $res = $upload->upload($path);
+            if (!$res) {
+                $this->echoEncrypData(1, $upload->getErrorMsg());
+            }
+            foreach ($res as $k => $v) {
+                $data[] = $res[$k]['savepath'] . $res[$k]['savename'];
+            }
+            $this->echoEncrypData(0, '', $data);
         }
-        foreach($res as $k=>$v){
-            $data[]=$res[$k]['savepath'].$res[$k]['savename'];
-        }
-        $this->echoEncrypData(0,'',$data);
     }
 
 
