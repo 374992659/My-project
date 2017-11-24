@@ -68,31 +68,16 @@
         </div>
     </div>
     <!--房号-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <label class="left" for="renterCard">房号：<span style="color:red">*</span></label>
-                <select name="" id="houseNum">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>栋/座
-                <select name="" id="floorNum">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>楼
-                <select name="" id="roomNum">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>号
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
+                    <input type="text" style="width: 8%" id="dongNum" onkeyup="value=value.replace(/[^0-9|a-z|A-Z]/g,'')">栋
+                    <input type="number" style="width: 5%" id="floorNum">单元
+                    <input type="number" style="width: 10%" id="roomNum">房号
+                </div>
             </div>
         </div>
-    </div>
         <!--租客身份证-->
         <div class="weui-cells">
             <div class="weui-cell">
