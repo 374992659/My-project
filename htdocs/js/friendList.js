@@ -400,7 +400,7 @@ $(document).ready(function() {
                                    <img class="linkBtn" src="image/right.png "  title="${item.id}">
                                 </div>
                                 <div class="weui-cell__bd">
-                                    <p style="">${item.group_name}</p>
+                                    <p style=""  title="${item.id}">${item.group_name}</p>
                                 </div>
                                 <div class="weui-cell__ft" style="">
                                     <span class="online ${item.id}" style="font-size: 18px">${online}</span>/${item.total}
@@ -519,12 +519,11 @@ $(document).ready(function() {
         })
     })();
     // 功能2 请求好友分组下的好友信息
-    $(".group").on("click", ".weui-cells .LinkBtn",function(e){
+    $(".group").on("click", ".weui-cells .weui-cell",function(e){
         console.log(123);
         (function(){
             //获取好友分组id
             var id=$(e.target).attr("title");
-            console.log($(e.target));
             console.log(id);
             // 获取group_id
             var apptoken=localStorage.getItem("apptoken");
