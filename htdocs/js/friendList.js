@@ -567,6 +567,7 @@ $(document).ready(function() {
                                 }
                             }
                         });
+                        console.log(html);
                         $("#"+id).html(html);
                         var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                         var online=JSON.parse(localStorage.getItem("online_friends"));
