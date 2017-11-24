@@ -113,7 +113,7 @@ class FriendsController extends VersionController
                 }
                 $garden_arr=array_unique($garden_arr);
                 foreach($garden_arr as $value){
-                    $re_data[] = $mongo->baseinfo->garden_area->findOne(array('garden_code'))['garden_name'];
+                    $re_data[] = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$value))['garden_name'];
                 }
                 $data['user_garden'] = $re_data;
             }
