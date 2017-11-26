@@ -64,14 +64,28 @@ $(document).ready(function(){
                 </div>
             </div>
             <!--电话-->
-            <div class="weui-cells">
-                <div class="weui-cell">
-                    <div class="weui-cell__bd">
-                        <label class="left" for="phone">电话：<span style="color: green">*</span></label>
-                        <input type="text" id="phone" placeholder="" value="${result.phone}">
+            <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell weui-cell_vcode">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">手机号</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input phone" type="number" placeholder="请输入手机号">
+                        </div>
+                        <div class="weui-cell__ft">
+                            <button class="weui-vcode-btn getCodeBtn" style="font-size: 12px">获取验证码</button>
+                        </div>
+                    </div>
+                    <!--验证码-->
+                    <div class="weui-cell weui-cell_vcode">
+                        <div class="weui-cell__hd">
+                            <label class="weui-label">验证码</label>
+                        </div>
+                        <div class="weui-cell__bd">
+                            <input class="weui-input code" type="password" placeholder="输入验证码" >
+                        </div>
                     </div>
                 </div>
-            </div>
             <!--微信-->
             <div class="weui-cells">
                 <div class="weui-cell">
