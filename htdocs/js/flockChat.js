@@ -686,8 +686,8 @@ $(document).ready(function(){
         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
         chatContent.val("");
-        var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':group});
-        ws.send(sendMessage);
+        //var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':group});
+        //ws.send(sendMessage);
     });
     //发送消息给好友
     $(".elements").click(function(){
