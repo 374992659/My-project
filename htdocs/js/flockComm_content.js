@@ -92,7 +92,6 @@ $(document).ready(function(){
     (function(){
         $(".flockContent").on("click",".ulPicture .flockPic img",function(){
             var url=$(this).attr("src");
-            alert("图片放大");
             console.log(url);
             if($(".weui-gallery").is(":hidden")){
                 $(".weui-gallery").show();
