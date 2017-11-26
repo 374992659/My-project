@@ -69,10 +69,10 @@ $(document).ready(function(){
                         <div class="weui-cell__hd" style="width:30%">
                             <label class="weui-label" style="width:100%;text-align: right;">手机号：<span style="color: green">*</span></label>
                         </div>
-                        <div class="weui-cell__bd">
-                            <input class="weui-input phone" type="number" placeholder="请输入手机号">
+                        <div class="weui-cell__bd"  style="width:40%">
+                            <input class="weui-input phone" type="number" placeholder="请输入手机号"   style="width:100%">
                         </div>
-                        <div class="weui-cell__ft">
+                        <div class="weui-cell__ft" style="width:30%">
                             <button class="weui-vcode-btn getCodeBtn" style="font-size: 12px">获取验证码</button>
                         </div>
                     </div>
