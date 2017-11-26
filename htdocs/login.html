@@ -36,7 +36,7 @@
                    <label class="weui-label">账号</label>
                </div>
                <div class="weui-cell__bd">
-                   <input class="weui-input account" type="tel" placeholder="6-12位数字或字母(必填)"  minlength=6 maxlength=12   onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                   <input class="weui-input account" type="tel" placeholder="6-12位数字或字母(必填)"  min="6" maxlength="12"   onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
                </div>
 
            </div>
@@ -48,7 +48,7 @@
                    <label class="weui-label">密码</label>
                </div>
                <div class="weui-cell__bd">
-                   <input class="weui-input password" type="password" placeholder="数字或字母(必填)" min="6"  maxlength="12" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+                   <input class="weui-input password" type="password" placeholder="数字或字母(6-12)" min="6"  maxlength="12" onkeyup="value=value.replace(/[^\w\.\/]/ig,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
                </div>
            </div>
             <!--确认密码-->

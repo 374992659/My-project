@@ -30,6 +30,12 @@ $(document).ready(function(){
         area_id=$(this).val();
         return area_id;
     });
+    //验证密码的位数
+    (function(){
+        var password=$(".password").val();
+        console.log(password.length);
+
+    })();
     $(".regBtn").click(function(){
         // 获取账号
         var numeber=$(".account").val();
