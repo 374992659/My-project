@@ -309,7 +309,7 @@ $(document).ready(function(){
         // 姓名
         var   real_name=$("#name").val();
                //$("#name").attr("placeholder","名字没填哦");
-        if(real_name){
+        if(!real_name){
             alert("没有填名字哦");
         }
         // 手机号
@@ -324,11 +324,11 @@ $(document).ready(function(){
         console.log(typeof room_num);
         // 身份证号
          var   id_card_num=$("#identityCard").val();
-        if(!id_card_num){
-            isCardNo(id_card_num);
-           // $("#identityCard").attr("placeholder","身份证号没填哦");
-            return
-        }
+        //if(!id_card_num){
+        //    isCardNo(id_card_num);
+        //   // $("#identityCard").attr("placeholder","身份证号没填哦");
+        //    return
+        //}
         // 身份证照片json字符串格式
         var myPicA=localStorage.getItem("myPicA");
         var myPicB=localStorage.getItem("myPicB");
