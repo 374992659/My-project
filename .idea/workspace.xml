@@ -23,13 +23,13 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.40167364">
+    <splitter split-orientation="horizontal" split-proportion="0.25679916">
       <split-first>
         <leaf>
           <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/login.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.29166666">
+                <state vertical-scroll-proportion="0.41554055">
                   <caret line="50" column="52" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="52" />
                   <folding />
                 </state>
@@ -43,8 +43,8 @@
           <file leaf-file-name="register.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/register.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5608343">
-                  <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+                <state vertical-scroll-proportion="0.54113555">
+                  <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
                   <folding />
                 </state>
               </provider>
@@ -1201,7 +1201,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29166666">
+        <state vertical-scroll-proportion="0.41554055">
           <caret line="50" column="52" selection-start-line="50" selection-start-column="44" selection-end-line="50" selection-end-column="52" />
           <folding />
         </state>
@@ -1209,8 +1209,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5608343">
-          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+        <state vertical-scroll-proportion="0.54113555">
+          <caret line="40" column="11" selection-start-line="40" selection-start-column="11" selection-end-line="40" selection-end-column="11" />
           <folding />
         </state>
       </provider>
