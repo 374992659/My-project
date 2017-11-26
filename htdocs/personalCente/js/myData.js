@@ -271,11 +271,12 @@ $(document).ready(function(){
                     arr[garden_code]=garden_name;
                     default_garden=$("#house").val()==='暂无认证通过的小区'?'':JSON.stringify(arr);
             // 出生年份（可填）
-                    birth_year=$("#yearBirth option:selected").val(),
+                   var  birth_year=$("#yearBirth option:selected").val();
             // 出生月份（可填）
-                    birth_month=$("#mouthBirth option:selected").val(),
+                   var  birth_month=$("#mouthBirth option:selected").val();
             // 爱好（可填）
-                    hobby=$("#likes").val();
+                   var  hobby=$("#likes").val();
+                    hobby=hobby.replace(/，/ig,',');
             //数据格式验证
             if(isChina(wechat_num)){
                 alert('微信号码不能包含中文');
