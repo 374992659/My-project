@@ -516,11 +516,12 @@ $(document).ready(function() {
     // 功能2 请求好友分组下的好友信息
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
             //获取好友分组id
-            var id=$(this).attr("title");
-            console.log(id);
+            var that=$(this);
+            var group_id=that.attr("title");
+            console.log(that);
+            console.log(group_id);
             var apptoken=localStorage.getItem("apptoken");
-            var title=$(e.target).attr("title");
-            var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
+            var data=["",JSON.stringify({"group_id":group_id,"apptoken":apptoken})];
             var  jsonEncryptData = jsEncryptData(data);
            console.log(data);
             $.ajax({
