@@ -32,8 +32,11 @@ $(document).ready(function(){
     });
     //验证密码的位数
     (function(){
-        var password=$(".password").val();
-        console.log(password.length);
+        $(".password").blur(function(){
+            var password=$(".password").val();
+            console.log(password.length);
+        });
+
 
     })();
     $(".regBtn").click(function(){
