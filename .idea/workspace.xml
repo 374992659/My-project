@@ -23,7 +23,7 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.2431963">
+    <splitter split-orientation="horizontal" split-proportion="0.23624782">
       <split-first>
         <leaf>
           <file leaf-file-name="myData.html" pinned="false" current-in-tab="false">
@@ -39,8 +39,8 @@
           <file leaf-file-name="landing.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/landing.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.24774775">
-                  <caret line="142" column="16" selection-start-line="142" selection-start-column="16" selection-end-line="163" selection-end-column="22" />
+                <state vertical-scroll-proportion="0.6441441">
+                  <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
                   <folding>
                     <element signature="n#div#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
                     <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -56,8 +56,8 @@
           <file leaf-file-name="myData.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myData.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2815759">
-                  <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+                <state vertical-scroll-proportion="0.30706838">
+                  <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
@@ -1329,8 +1329,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/landing.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.24774775">
-          <caret line="142" column="16" selection-start-line="142" selection-start-column="16" selection-end-line="163" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.6441441">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding>
             <element signature="n#div#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#button#0;n#div#2;n#div#0;n#div#0;n#div#1;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1340,8 +1340,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myData.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2815759">
-          <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+        <state vertical-scroll-proportion="0.30706838">
+          <caret line="66" column="34" selection-start-line="66" selection-start-column="34" selection-end-line="66" selection-end-column="34" />
           <folding />
         </state>
       </provider>
