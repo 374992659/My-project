@@ -24,20 +24,22 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="hotTopic_myTopicText.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="hotTopic_myTopicText.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_myTopicText.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.967741">
-              <caret line="226" column="33" selection-start-line="226" selection-start-column="33" selection-end-line="226" selection-end-column="33" />
-              <folding />
+            <state vertical-scroll-proportion="0.2072072">
+              <caret line="202" column="10" selection-start-line="202" selection-start-column="10" selection-end-line="202" selection-end-column="10" />
+              <folding>
+                <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hotTopic_myTopicText.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="hotTopic_myTopicText.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_myTopicText.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4391657">
+            <state vertical-scroll-proportion="-6.767857">
               <caret line="494" column="12" selection-start-line="494" selection-start-column="12" selection-end-line="494" selection-end-column="12" />
               <folding>
                 <marker date="1511688338092" expanded="true" signature="1745:2944" placeholder="..." />
@@ -214,8 +216,8 @@
         <option value="$PROJECT_DIR$/htdocs/js/friendDetails.js" />
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic_spit.js" />
         <option value="$PROJECT_DIR$/htdocs/hotTopic_spit.html" />
-        <option value="$PROJECT_DIR$/htdocs/hotTopic_myTopicText.html" />
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic_myTopicText.js" />
+        <option value="$PROJECT_DIR$/htdocs/hotTopic_myTopicText.html" />
       </list>
     </option>
   </component>
@@ -1352,17 +1354,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_myTopicText.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.967741">
-          <caret line="226" column="33" selection-start-line="226" selection-start-column="33" selection-end-line="226" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_myTopicText.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4391657">
+        <state vertical-scroll-proportion="-6.767857">
           <caret line="494" column="12" selection-start-line="494" selection-start-column="12" selection-end-line="494" selection-end-column="12" />
           <folding>
             <marker date="1511688338092" expanded="true" signature="1745:2944" placeholder="..." />
@@ -1441,6 +1435,16 @@
             <marker date="1511688338092" expanded="false" signature="13004:13019" placeholder="..." />
             <marker date="1511688338092" expanded="false" signature="13049:13064" placeholder="..." />
             <marker date="1511688338092" expanded="true" signature="13211:13238" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_myTopicText.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2072072">
+          <caret line="202" column="10" selection-start-line="202" selection-start-column="10" selection-end-line="202" selection-end-column="10" />
+          <folding>
+            <element signature="n#style#0;n#div#2;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
