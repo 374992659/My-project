@@ -30,13 +30,24 @@ $(document).ready(function(){
         area_id=$(this).val();
         return area_id;
     });
+    //验证账号位数
+    (function(){
+       $(".account").blur(function(){
+           var numeber=$(".account").val();
+           if(numeber.length<6){
+               alert("账号太短");
+           }
+       });
+
+
+    })();
     //验证密码的位数
     (function(){
         $(".password").blur(function(){
             var password=$(".password").val();
             console.log(password.length);
             if(password.length<6){
-                alert("密码位数不够");
+                alert("密码太短");
             }
         });
     })();
