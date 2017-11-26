@@ -382,7 +382,7 @@ var mycode=localStorage.getItem("my_code");
     $("#qrcode").qrcode({
         width: 220,//二维码宽度
         height:220,//二维码高度
-        text:'http://'+window.location.host+'/project/htdocs/login.html'+mycode,//此处填写生成二维码的生成数据 （拼接了inviter_code的注册页面地址，注册页面在url中获取到inviter_code传递给后台注册接口）
+        text:'http://'+location.host+'/project/htdocs/login.html?inviter_code='+mycode,//此处填写生成二维码的生成数据 （拼接了inviter_code的注册页面地址，注册页面在url中获取到inviter_code传递给后台注册接口）
     });
     //判断字符是否是中文字符
     function isChina(s)
