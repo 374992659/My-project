@@ -316,12 +316,9 @@ $(document).ready(function(){
           var  phone=$("#phone").val();
         if(!phone){
                 alert('没填手机号码');
-
-
         }else{
             if(!(/^1[34578]\d{9}$/.test(phone))){
                 alert('手机号码格式错误');
-
             }
         }
                // $("#phone").attr("placeholder","手机号没填哦");
@@ -332,22 +329,14 @@ $(document).ready(function(){
             var room_num=dongNum+"-"+floorNum+"-"+roomNum;
        if(!dongNum&&!floorNum&&!roomNum){
            alert("选择房号");
-
        }
         // 身份证号
          var   id_card_num=$("#identityCard").val();
         if(!id_card_num){
             alert("没填身份证号");
-
         }else{
             isCardNo(id_card_num);
-
         }
-        //if(!id_card_num){
-        //    isCardNo(id_card_num);
-        //   // $("#identityCard").attr("placeholder","身份证号没填哦");
-        //    return
-        //}
         // 身份证照片json字符串格式
         var myPicA=$(".flockHeadA img").attr("src");
         var myPicB=$(".flockHeadB img").attr("src");

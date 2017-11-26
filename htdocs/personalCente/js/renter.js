@@ -368,6 +368,15 @@ $(document).ready(function(){
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
+        !real_name?alert("没填姓名"):
+            !phone?alert("没填手机号"):
+                !houseNum&&!floorNum&&!roomNum?alert("没有填房号"):
+                    !id_card_num?alert("没填身份证号"):
+                        !A&&!B?alert("证件正反面"):
+                            !city_id?alert("选择城市"):
+                                !garden_name?alert("小区名字"):
+                                    !contract_period?alert("选择合同有效期"):
+                                        !ContractPic?alert("合同照"):
         $.ajax({
             url:url+"UserCenter_tenantApplication",
             type:"POST",
