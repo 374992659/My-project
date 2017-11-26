@@ -5,7 +5,7 @@ function isCardNo(card)
     var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
     if(reg.test(card) === false)
     {
-        alert("身份证输入不合法");
+        alert("身份证号格式不正确");
         return  false;
     }
 }
