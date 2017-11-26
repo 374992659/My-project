@@ -495,7 +495,7 @@ $(document).ready(function() {
                     $("#1").html(html);
                     //$("#1").parent().prev().find("img").css("transform","rotate(90deg)");
                     $(".1").css("transform","rotate(90deg)");
-                    //$(".friend").show();
+                    $(".friend").show();
                     //好友在线情况
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                     var online=JSON.parse(localStorage.getItem("online_friends"));
