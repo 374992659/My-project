@@ -314,7 +314,11 @@ $(document).ready(function(){
         }
         // 手机号
           var  phone=$("#phone").val();
-        if(phone){
+        if(!phone){
+                alert('没填手机号码');
+                return;
+
+        }else{
             if(!(/^1[34578]\d{9}$/.test(phone))){
                 alert('手机号码格式错误');
                 return;
@@ -325,11 +329,20 @@ $(document).ready(function(){
             var dongNum=$("#dongNum").val();
             var floorNum=$("#floorNum").val();
             var roomNum=$("#roomNum").val();
-        room_num=dongNum+"-"+floorNum+"-"+roomNum;
-        console.log(room_num);
-        console.log(typeof room_num);
+            var room_num=dongNum+"-"+floorNum+"-"+roomNum;
+       if(!room_num){
+           alert("选择房号");
+           return
+       }
         // 身份证号
          var   id_card_num=$("#identityCard").val();
+        if(!id_card_num){
+            alert("没填身份证号");
+            return
+        }else{
+            isCardNo(id_card_num);
+            return
+        }
         //if(!id_card_num){
         //    isCardNo(id_card_num);
         //   // $("#identityCard").attr("placeholder","身份证号没填哦");
@@ -339,15 +352,24 @@ $(document).ready(function(){
         var myPicA=localStorage.getItem("myPicA");
         var myPicB=localStorage.getItem("myPicB");
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}";
+        if(myPicA&&myPicB){
+            alert("证件照是正反两面");
+            return
+        }
         // 小区名字
           var   garden_name=$("#gardenName").val();
         if(!garden_name){
-            $("#gardenName").attr("placeholder","小区没填哦");
-                }
+           alert("没有填小区哦");
+            return;
+            }
         // 小区code（没有可不填）
           var garden_code=$("#gardenName").attr("title");
         // 小区所属城市
           var city_id=$("#city option:selected").val();
+        if(!city_id){
+            alert("没有选城市哦");
+            return
+        }
         // 小区详细地址
         //    garden_addr=$("#plotPlace").val();
           var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
@@ -355,11 +377,15 @@ $(document).ready(function(){
         // 小区照片
         var garden_picture={};
            var a=$(".placePlot").find("img");
-          a.each(function(i,item){
+             a.each(function(i,item){
               var _this=$(this);
              var  src=_this.attr("src");
               garden_picture[i]=src;
           });
+        if(!a){
+            alert("上传小区照片");
+            return
+        }
         console.log(typeof garden_picture);
         // 合同房产证照片（可填）
         var PPa=$(".PPflockHeadA img").attr("src");
