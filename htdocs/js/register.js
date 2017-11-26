@@ -30,6 +30,17 @@ $(document).ready(function(){
         area_id=$(this).val();
         return area_id;
     });
+    //验证输入为汉字就删除
+    (function(){
+        $(".account").on("input",function(){
+            var Chinese=$(".account").val();
+            var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+            if(reg.test(Chinese)){
+                $(".account").value ="";
+                $(".account").focus();
+            }
+        })
+    })();
     //验证账号位数
     (function(){
        $(".account").blur(function(){
