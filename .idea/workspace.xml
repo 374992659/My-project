@@ -70,12 +70,12 @@
           <file leaf-file-name="addMember.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.46465817">
-                  <caret line="267" column="13" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
+                <state vertical-scroll-proportion="0.41367322">
+                  <caret line="265" column="34" selection-start-line="265" selection-start-column="34" selection-end-line="265" selection-end-column="34" />
                   <folding>
-                    <marker date="1511704642347" expanded="false" signature="6815:6833" placeholder="..." />
-                    <marker date="1511704642347" expanded="true" signature="6834:6993" placeholder="..." />
-                    <marker date="1511704642347" expanded="false" signature="6930:6954" placeholder="..." />
+                    <marker date="1511704698420" expanded="false" signature="6815:6833" placeholder="..." />
+                    <marker date="1511704698420" expanded="true" signature="6834:6993" placeholder="..." />
+                    <marker date="1511704698420" expanded="false" signature="6930:6954" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -1389,12 +1389,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46465817">
-          <caret line="267" column="13" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.41367322">
+          <caret line="265" column="34" selection-start-line="265" selection-start-column="34" selection-end-line="265" selection-end-column="34" />
           <folding>
-            <marker date="1511704642347" expanded="false" signature="6815:6833" placeholder="..." />
-            <marker date="1511704642347" expanded="true" signature="6834:6993" placeholder="..." />
-            <marker date="1511704642347" expanded="false" signature="6930:6954" placeholder="..." />
+            <marker date="1511704698420" expanded="false" signature="6815:6833" placeholder="..." />
+            <marker date="1511704698420" expanded="true" signature="6834:6993" placeholder="..." />
+            <marker date="1511704698420" expanded="false" signature="6930:6954" placeholder="..." />
           </folding>
         </state>
       </provider>

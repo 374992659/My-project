@@ -264,8 +264,8 @@ $(document).ready(function(){
         }else if(phone){
             if(!(/^1[34578]\d{9}$/.test(phone))){
                 alert('手机号码格式错误');
-                return
             }
+            return
         }else if(!id_card_num){
             alert("请填身份证号");
             return
