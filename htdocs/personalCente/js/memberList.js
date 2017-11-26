@@ -24,7 +24,7 @@ $(document).ready(function(){
                             <tr title="${item.application_id}" value="${item.city_id}">
                                 <td>${item.real_name}</td>
                                 <td>本人</td>
-                                <td>2017.03.3</td>
+                                <td>${item.room_num}</td>
                                 <td  title="${item.garden_code}" value="${item.room_num}"><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
                             </tr>
                     
@@ -34,7 +34,7 @@ $(document).ready(function(){
                             <tr title="${item.application_id}" value="${item.city_id}">
                                 <td>${item.real_name}</td>
                                 <td>${item.relation_name}</td>
-                                <td>2017.03.3</td>
+                                <td>${item.room_num}</td>
                                 <td title="${item.garden_code}" value="${item.room_num}"><button style="color: red" value="${item.city_id}" title="${item.application_id}">删除</button></td>
                             </tr>
                     
@@ -61,7 +61,7 @@ $(document).ready(function(){
         window.location.href="owenerMemberDetails.html";//跳转到成员业主认证详情页面
     });
     //删除成员
-    $(".memberList").on("click","tr td button",function(){
+    $(".memberList").on("click","tr td button",function(e){
         var apptoken=localStorage.getItem("apptoken");
         var id=parseInt($(this).attr("title"));
         var cityID=parseInt($(this).attr("value"));
@@ -80,6 +80,8 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcoode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    console.log($(this));
+                    console.log($(e.target));
                     showHide(data.errmsg)
                 }else{
                     showHide(data.errmsg)
