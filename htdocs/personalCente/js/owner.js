@@ -377,11 +377,13 @@ $(document).ready(function(){
         // 小区照片
         var garden_picture={};
            var a=$(".placePlot").find("img");
-             a.each(function(i,item){
-              var _this=$(this);
-             var  src=_this.attr("src");
-              garden_picture[i]=src;
-          });
+        if(a){
+            a.each(function(i,item){
+                var _this=$(this);
+                var  src=_this.attr("src");
+                garden_picture[i]=src;
+            });
+        }
         if(!a){
             alert("上传小区照片");
             return
