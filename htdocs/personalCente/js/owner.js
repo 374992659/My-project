@@ -330,7 +330,7 @@ $(document).ready(function(){
             var floorNum=$("#floorNum").val();
             var roomNum=$("#roomNum").val();
             var room_num=dongNum+"-"+floorNum+"-"+roomNum;
-       if(!room_num){
+       if(!dongNum&&!floorNum&&!roomNum){
            alert("选择房号");
 
        }
@@ -352,7 +352,7 @@ $(document).ready(function(){
         var myPicA=localStorage.getItem("myPicA");
         var myPicB=localStorage.getItem("myPicB");
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}";
-        if(myPicA&&myPicB){
+        if(!myPicA&&!myPicB){
             alert("证件照是正反两面");
 
         }
@@ -386,7 +386,7 @@ $(document).ready(function(){
         }
         if(!a){
             alert("上传小区照片");
-           
+
         }
         console.log(typeof garden_picture);
         // 合同房产证照片（可填）
