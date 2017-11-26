@@ -70,7 +70,7 @@ $(document).ready(function(){
                             <label class="weui-label" style="width:100%;text-align: right;">手机号：<span style="color: green">*</span></label>
                         </div>
                         <div class="weui-cell__bd"  style="width:40%">
-                            <input class="weui-input phone" type="number" placeholder="请输入手机号"   style="width:100%">
+                            <input class="weui-input phone" type="number" placeholder="请输入手机号" value="${result.phone}"  style="width:100%">
                         </div>
                         <div class="weui-cell__ft" style="width:30%">
                             <button class="weui-vcode-btn getCodeBtn" style="font-size: 12px"  style="width:100%">获取验证码</button>
@@ -156,7 +156,7 @@ $(document).ready(function(){
 
                     }
                     // 功能4 检测手机号是否正确
-                    $("#phone").blur(function(){
+                    $(".phone").blur(function(){
                         console.log(phone);
                         if(!(/^1[34578]\d{9}$/.test(phone))){
                             alert("手机号码有误，请重填");
@@ -321,7 +321,7 @@ $(document).ready(function(){
             // 获取真实姓名（可填）
                     realname=$("#name").val();
             // 手机号（可填）
-                    phone=$("#phone").val();
+                    phone=$(".phone").val();
             // 微信（可填）
                     wechat_num=$("#weiXin").val();
             // QQ（可填）
@@ -369,7 +369,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg);
-                    //window.location.href="index.html";
+                    window.location.href="index.html";
                 }else{
                     showHide(data.errmsg);
                 }
@@ -378,10 +378,11 @@ $(document).ready(function(){
         })
     });
     // 生成二维码
+var mycode=localStorage.getItem("my_code");
     $("#qrcode").qrcode({
         width: 220,//二维码宽度
         height:220,//二维码高度
-        text: 'http://www.baidu.com',//此处填写生成二维码的生成数据 （拼接了inviter_code的注册页面地址，注册页面在url中获取到inviter_code传递给后台注册接口）
+        text:'http://'+window.location.host+'/project/htdocs/login.html'+mycode,//此处填写生成二维码的生成数据 （拼接了inviter_code的注册页面地址，注册页面在url中获取到inviter_code传递给后台注册接口）
     });
     //判断字符是否是中文字符
     function isChina(s)
