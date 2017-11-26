@@ -257,35 +257,39 @@ $(document).ready(function(){
         console.log(data);
         if(!real_name){
             alert("请填名字");
+            return
         }else if(!phone){
             alert("请填手机好号");
+            return
         }else if(phone){
             if(!(/^1[34578]\d{9}$/.test(phone))){
                 alert('手机号码格式错误');
+                return
             }
+            return
         }else if(!id_card_num){
             alert("请填身份证号");
+            return
         }else if(id_card_num){
             isCardNo(id_card_num);
-        }else{
-            $.ajax({
-                url:url+"UserCenter_ownerAddNum",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    // 解密
-                    var data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken);
-                        showHide(data.errmsg)
-                    }else{
-                        showHide(data.errmsg)
-                    }
-                },
-                error:function(){}
-            })
+            return
         }
-
+        $.ajax({
+            url:url+"UserCenter_ownerAddNum",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    showHide(data.errmsg)
+                }else{
+                    showHide(data.errmsg)
+                }
+            },
+            error:function(){}
+        })
     })
 });
