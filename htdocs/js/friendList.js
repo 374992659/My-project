@@ -406,9 +406,9 @@ $(document).ready(function() {
                             </div>
                             <div class="weui-panel weui-panel_access friendList friend" style="display: none">
                                 <div class="weui-panel__bd " id="${item.id}">
-                                </div>>
+                                </div>
                             </div>
-                        
+
                          </div>
 
                             `
