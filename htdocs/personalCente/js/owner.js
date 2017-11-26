@@ -314,7 +314,7 @@ $(document).ready(function(){
         }
         // 手机号
           var  phone=$("#phone").val();
-        if(!phone){
+        if(phone){
             if(!(/^1[34578]\d{9}$/.test(phone))){
                 alert('手机号码格式错误');
                 return;
