@@ -124,7 +124,7 @@ $(document).ready(function(){
                             
                         </select>年
                         <select name="" id="mouthBirth">
-                            <option value="1">1</option>
+                            <option value="01">01</option>
                            
                         </select>月
 
@@ -341,8 +341,8 @@ $(document).ready(function(){
                    var  hobby=$("#likes").val();
                     hobby=hobby.replace(/，/ig,',');
             //数据格式验证
-            if(isChina(wechat_num)){
-                alert('微信号码不能包含中文');
+            if(checkRate(wechat_num)){
+                alert('微信号格式不正确');
                 return;
             }else if(isChina(wechat_num)){
                 alert('QQ号不能包含中文');
@@ -394,3 +394,14 @@ var mycode=localStorage.getItem("my_code");
         }
     }
 });
+//判断字符为数字字母
+function checkRate(nubmer)
+{
+    var re =  /^[0-9a-zA-Z]*$/g;  //判断字符串是否为数字和字母组合     //判断正整数 /^[1-9]+[0-9]*]*$/
+    if (!re.test(nubmer))
+    {
+        return false;
+    }else{
+        return true;
+    }
+}
