@@ -37,13 +37,13 @@
       <file leaf-file-name="memberList.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/memberList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2862109">
-              <caret line="62" column="10" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="10" />
+            <state vertical-scroll-proportion="0.66859794">
+              <caret line="77" column="34" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
               <folding>
-                <marker date="1511709292097" expanded="true" signature="913:1297" placeholder="..." />
-                <marker date="1511709292097" expanded="false" signature="1181:1191" placeholder="..." />
-                <marker date="1511709292097" expanded="true" signature="1523:1925" placeholder="..." />
-                <marker date="1511709292097" expanded="false" signature="1809:1819" placeholder="..." />
+                <marker date="1511709345730" expanded="true" signature="913:1297" placeholder="..." />
+                <marker date="1511709345730" expanded="false" signature="1181:1191" placeholder="..." />
+                <marker date="1511709345730" expanded="true" signature="1523:1925" placeholder="..." />
+                <marker date="1511709345730" expanded="false" signature="1809:1819" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -718,13 +718,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/memberList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2862109">
-          <caret line="62" column="10" selection-start-line="62" selection-start-column="10" selection-end-line="62" selection-end-column="10" />
+        <state vertical-scroll-proportion="0.66859794">
+          <caret line="77" column="34" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
           <folding>
-            <marker date="1511709292097" expanded="true" signature="913:1297" placeholder="..." />
-            <marker date="1511709292097" expanded="false" signature="1181:1191" placeholder="..." />
-            <marker date="1511709292097" expanded="true" signature="1523:1925" placeholder="..." />
-            <marker date="1511709292097" expanded="false" signature="1809:1819" placeholder="..." />
+            <marker date="1511709345730" expanded="true" signature="913:1297" placeholder="..." />
+            <marker date="1511709345730" expanded="false" signature="1181:1191" placeholder="..." />
+            <marker date="1511709345730" expanded="true" signature="1523:1925" placeholder="..." />
+            <marker date="1511709345730" expanded="false" signature="1809:1819" placeholder="..." />
           </folding>
         </state>
       </provider>
