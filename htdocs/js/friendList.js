@@ -518,8 +518,6 @@ $(document).ready(function() {
             //获取好友分组id
             var that=$(this);
             var group_id=that.attr("title");
-            console.log(that);
-            console.log(group_id);
             var apptoken=localStorage.getItem("apptoken");
             var data=["",JSON.stringify({"group_id":group_id,"apptoken":apptoken})];
             var  jsonEncryptData = jsEncryptData(data);
@@ -564,7 +562,7 @@ $(document).ready(function() {
                             `
                                 }
                         });
-                        $("#"+id).html(html);
+                        $("#"+group_id).html(html);
                         var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                         var online=JSON.parse(localStorage.getItem("online_friends"));
                         for(var i=0 ,len=allfriend.length;i<len;i++){
@@ -578,13 +576,13 @@ $(document).ready(function() {
                             }
                         }
                         // 功能显示隐藏分组下的好友信息
-                        //if($(e.target).parent().parent().next().is(":hidden")){
-                        //    $(e.target).parent().parent().next().show();
-                        //    $(e.target).parent().prev().children("img").css("transform","rotate(90deg)");
-                        //}else{
-                        //    $(e.target).parent().parent().next().hide();
-                        //    $(e.target).parent().prev().children("img").css("transform","rotate(0deg)");
-                        //}
+                        if(that.parent().next().is(":hidden")){
+                            that.parent().next().show();
+                            that.children(":first").children("img").css("transform","rotate(90deg)");
+                        }else{
+                            that.parent().next().hide();
+                            that.children(":first").children("img").css("transform","rotate(0deg)");
+                        }
                     }
                 }
             });
