@@ -309,6 +309,9 @@ $(document).ready(function(){
         // 姓名
         var   real_name=$("#name").val();
                //$("#name").attr("placeholder","名字没填哦");
+        if(real_name){
+            alert("没有填名字哦");
+        }
         // 手机号
           var  phone=$("#phone").val();
                // $("#phone").attr("placeholder","手机号没填哦");
@@ -366,27 +369,6 @@ $(document).ready(function(){
             yourself_picture[i]=src;
         });
         console.log(typeof yourself_picture);
-        if(real_name){
-            alert("姓名没有填");
-            return;
-        }else if(phone){
-            if(!(/^1[34578]\d{9}$/.test(phone))){
-                alert('手机号码格式错误');
-                return;
-            }
-        }else if(id_card_num){
-            isCardNo(id_card_num);
-            return
-        }else if(city_id){
-            alert("城市没有选");
-            return;
-        }else if(garden_picture){
-            alert("至少要上传一张小区照片");
-            return;
-        }else if(myPicA&&myPicB){
-            alert("证件照正反面");
-            return
-        }
         var role=1;
         //验证该楼盘是房号否已经认证
         if(garden_code){
