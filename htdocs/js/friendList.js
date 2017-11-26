@@ -396,7 +396,7 @@ $(document).ready(function() {
                                    <img class="linkBtn" src="image/right.png "  title="${item.id}">
                                 </div>
                                 <div class="weui-cell__bd">
-                                    <p style=""  title="${item.id}">${item.group_name}</p>
+                                    <p style="">${item.group_name}</p>
                                 </div>
                                 <div class="weui-cell__ft" style="">
                                     <span class="online ${item.id}" style="font-size: 18px">${online}</span>/${item.total}
@@ -515,6 +515,8 @@ $(document).ready(function() {
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
             //获取好友分组id
             var id=$(e.target).attr("title");
+            console.log($(e.target));
+            console.log(id);
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
             var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
