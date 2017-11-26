@@ -393,7 +393,7 @@ $(document).ready(function() {
                          <div class="weui-cells">
                             <div class="weui-cell LinkBtn"  title="${item.id}" style="position: relative;z-index: 1000">
                                 <div class="weui-cell__hd ">
-                                   <img class="linkBtn" src="image/right.png "  title="${item.id}">
+                                   <img class="linkBtn ${item.id}" src="image/right.png "  title="${item.id}">
                                 </div>
                                 <div class="weui-cell__bd">
                                     <p style="">${item.group_name}</p>
@@ -402,11 +402,12 @@ $(document).ready(function() {
                                     <span class="online ${item.id}" style="font-size: 18px">${online}</span>/${item.total}
                                 </div>
                             </div>
-                            <div class="weui-panel weui-panel_access friendList friend" style="display: none">
+
+                         </div>
+                         <div class="weui-panel weui-panel_access friendList friend" style="display: none">
                                 <div class="weui-panel__bd " id="${item.id}">
 
                                 </div>
-                            </div>
                          </div>
                             `
                     });
@@ -492,7 +493,8 @@ $(document).ready(function() {
                             }
                     });
                     $("#1").html(html);
-                    $("#1").parent().prev().find("img").css("transform","rotate(90deg)");
+                    //$("#1").parent().prev().find("img").css("transform","rotate(90deg)");
+                    $(".1").css("transform","rotate(90deg)");
                     $(".friend").show();
                     //好友在线情况
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
@@ -513,7 +515,6 @@ $(document).ready(function() {
     })();
     // 功能2 请求好友分组下的好友信息
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
-            e.stopPropagetion();
             //获取好友分组id
             var id=$(e.target).attr("title");
             console.log($(e.target));
