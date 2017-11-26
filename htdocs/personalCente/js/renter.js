@@ -315,9 +315,9 @@ $(document).ready(function(){
             $("#renterPhone").attr("placeholder","手机号没有填哦")
         }
     //4 参数：room_num 房号
-        var houseNum=$("#houseNum option:selected").val();
-        var floorNum=$("#floorNum option:selected").val();
-        var roomNum=$("#roomNum option:selected").val();
+        var houseNum=$("#houseNum").val();
+        var floorNum=$("#floorNum").val();
+        var roomNum=$("#roomNum").val();
         var room_num=houseNum+"-"+floorNum+"-"+roomNum;
     //5 参数：id_card_num 身份证号码
         var id_card_num=$("#renter_IdentityCard").val();
