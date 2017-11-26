@@ -23,14 +23,24 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.1968051">
+    <splitter split-orientation="horizontal" split-proportion="0.5105431">
       <split-first>
         <leaf>
-          <file leaf-file-name="addMember.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="addMember.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/addMember.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-2.394144">
-                  <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
+                <state vertical-scroll-proportion="-21.548388">
+                  <caret line="218" column="27" selection-start-line="218" selection-start-column="27" selection-end-line="218" selection-end-column="27" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="verifyIdentifyCard.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/verifyIdentifyCard.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.12746234">
+                  <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
@@ -60,12 +70,12 @@
           <file leaf-file-name="addMember.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.56662804">
-                  <caret line="268" column="18" selection-start-line="268" selection-start-column="18" selection-end-line="268" selection-end-column="18" />
+                <state vertical-scroll-proportion="0.46465817">
+                  <caret line="267" column="13" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
                   <folding>
-                    <marker date="1511704424282" expanded="false" signature="6815:6833" placeholder="..." />
-                    <marker date="1511704424282" expanded="true" signature="6834:6993" placeholder="..." />
-                    <marker date="1511704424282" expanded="false" signature="6930:6954" placeholder="..." />
+                    <marker date="1511704642347" expanded="false" signature="6815:6833" placeholder="..." />
+                    <marker date="1511704642347" expanded="true" signature="6834:6993" placeholder="..." />
+                    <marker date="1511704642347" expanded="false" signature="6930:6954" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -133,10 +143,10 @@
         <option value="$PROJECT_DIR$/htdocs/js/landing.js" />
         <option value="$PROJECT_DIR$/htdocs/landing.html" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/myData.js" />
-        <option value="$PROJECT_DIR$/htdocs/personalCente/js/verifyIdentifyCard.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/owner.html" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/owner.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/addMember.html" />
+        <option value="$PROJECT_DIR$/htdocs/personalCente/js/verifyIdentifyCard.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/addMember.js" />
       </list>
     </option>
@@ -150,7 +160,6 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
     <option name="width" value="1936" />
     <option name="height" value="1056" />
   </component>
@@ -345,7 +354,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="0" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18489583" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1339,26 +1348,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/verifyIdentifyCard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17844728">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myData.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44727695">
           <caret line="344" column="34" selection-start-line="344" selection-start-column="34" selection-end-line="344" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/addMember.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.394144">
-          <caret line="91" column="46" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
           <folding />
         </state>
       </provider>
@@ -1378,14 +1371,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/addMember.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.548388">
+          <caret line="218" column="27" selection-start-line="218" selection-start-column="27" selection-end-line="218" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/verifyIdentifyCard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.12746234">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56662804">
-          <caret line="268" column="18" selection-start-line="268" selection-start-column="18" selection-end-line="268" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.46465817">
+          <caret line="267" column="13" selection-start-line="267" selection-start-column="13" selection-end-line="267" selection-end-column="13" />
           <folding>
-            <marker date="1511704424282" expanded="false" signature="6815:6833" placeholder="..." />
-            <marker date="1511704424282" expanded="true" signature="6834:6993" placeholder="..." />
-            <marker date="1511704424282" expanded="false" signature="6930:6954" placeholder="..." />
+            <marker date="1511704642347" expanded="false" signature="6815:6833" placeholder="..." />
+            <marker date="1511704642347" expanded="true" signature="6834:6993" placeholder="..." />
+            <marker date="1511704642347" expanded="false" signature="6930:6954" placeholder="..." />
           </folding>
         </state>
       </provider>
