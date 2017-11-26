@@ -375,7 +375,7 @@ $(document).ready(function(){
                 return;
             }
         }else if(id_card_num){
-            isCardNo(idCard);
+            isCardNo(id_card_num);
             return
         }else if(city_id){
             alert("城市没有选");
