@@ -78,8 +78,8 @@ $(document).ready(function(){
                     </div>
                     <!--验证码-->
                     <div class="weui-cell weui-cell_vcode">
-                        <div class="weui-cell__hd">
-                            <label class="weui-label">验证码</label>
+                        <div class="weui-cell__hd"  style="width:30%">
+                            <label class="weui-label" style="width:100%;text-align: right;">验证码：<span style="color: green">*</span></label>
                         </div>
                         <div class="weui-cell__bd">
                             <input class="weui-input code" type="password" placeholder="输入验证码" >
