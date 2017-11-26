@@ -341,7 +341,7 @@ $(document).ready(function(){
                    var  hobby=$("#likes").val();
                     hobby=hobby.replace(/，/ig,',');
             //数据格式验证
-            if(checkRate(wechat_num)){
+            if(isChina(wechat_num)){
                 alert('微信号格式不正确');
                 return;
             }else if(isChina(qq_num)){
