@@ -25,7 +25,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicA",data.data[0]);
+                        //localStorage.setItem("myPicA",data.data[0]);
                         $(".flockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".flockHeadA").attr("style","display:block");
@@ -60,7 +60,7 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        localStorage.setItem("myPicB",data.data[0]);
+                        //localStorage.setItem("myPicB",data.data[0]);
                         $(".flockHeadB img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".loaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".flockHeadB").attr("style","display:block");
@@ -349,18 +349,16 @@ $(document).ready(function(){
         //    return
         //}
         // 身份证照片json字符串格式
-        var myPicA=localStorage.getItem("myPicA");
-        var myPicB=localStorage.getItem("myPicB");
+        var myPicA=$(".flockHeadA img").attr("src");
+        var myPicB=$(".flockHeadB img").attr("src");
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}";
         if(!myPicA&&!myPicB){
             alert("证件照是正反两面");
-
         }
         // 小区名字
           var   garden_name=$("#gardenName").val();
         if(!garden_name){
            alert("没有填小区哦");
-
             }
         // 小区code（没有可不填）
           var garden_code=$("#gardenName").attr("title");
@@ -386,7 +384,6 @@ $(document).ready(function(){
         }
         if(!a){
             alert("上传小区照片");
-
         }
         console.log(typeof garden_picture);
         // 合同房产证照片（可填）
