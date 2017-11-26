@@ -315,7 +315,7 @@ $(document).ready(function(){
             $("#renterPhone").attr("placeholder","手机号没有填哦")
         }
     //4 参数：room_num 房号
-        var houseNum=$("#houseNum").val();
+        var houseNum=$("#dongNum").val();
         var floorNum=$("#floorNum").val();
         var roomNum=$("#roomNum").val();
         var room_num=houseNum+"-"+floorNum+"-"+roomNum;
@@ -346,10 +346,11 @@ $(document).ready(function(){
     //12 参数：garden_addr 楼盘地址
         var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
     //13 参数：contract_period 合同期限 10位时间戳 整型
-        var contract_period=$("#date2").val();
-        if(!contract_period){
-            $("#date2").attr("placeholder","合同有效期没有填哦")
-        }
+        var time=$("#date2").val();
+        var arr = time.split(/[年 月 日 \/]/),
+            date = new Date(arr[0], arr[1]-1, arr[2]);
+        var contract_period= date / 1000;
+        console.log(contract_period);
     //14 参数：pictures 合同照
         var  ContractPic=$(".ContractPic img").attr("src");
         var  pictures="{'a':'"+ContractPic+"'}";
