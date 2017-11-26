@@ -71,26 +71,24 @@ $(document).ready(function(){
         var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"type":type})];
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
-        $.ajax({
-            url:url+"UserCenter_delApplication",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcoode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    showHide(data.errmsg)
-
-                }else{
-                    showHide(data.errmsg)
+        if(confirm("删除认证")){
+            $.ajax({
+                url:url+"UserCenter_delApplication",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        showHide(data.errmsg);
+                        $(e.target).parent().parent().remove();
+                    }else{
+                        showHide(data.errmsg)
+                    }
                 }
-
-
-            }
-
-
-        });
+            });
+        }
         return false;
     })
 });

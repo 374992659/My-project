@@ -70,23 +70,25 @@ $(document).ready(function(){
         var data=["",JSON.stringify({"apptoken":apptoken,"application_id":id,"city_id":cityID,"garden_code":garden_code,"room_num":room_num})];
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
-        $.ajax({
-            url:url+"UserCenter_ownerDelNum",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                console.log(data);
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                   $(e.target).parent().parent().remove();
-                    showHide(data.errmsg)
-                }else{
-                    showHide(data.errmsg)
+        if(confirm("删除成员")){
+            $.ajax({
+                url:url+"UserCenter_ownerDelNum",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    console.log(data);
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        $(e.target).parent().parent().remove();
+                        showHide(data.errmsg)
+                    }else{
+                        showHide(data.errmsg)
+                    }
                 }
-            }
-        });
+            });
+        }
         return false;
     });
 });

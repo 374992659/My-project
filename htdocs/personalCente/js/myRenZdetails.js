@@ -144,8 +144,15 @@ $(document).ready(function(){
                            var id_card_picture=eval('(' + item.id_card_pictures + ')');
                            console.log(typeof id_card_picture);
                               $.each(id_card_picture,function(i,item){
+                                  var httP=item.split(":")[0];
+                                 var  pic="";
+                                  if(httP==="http"){
+                                     pic=item
+                                  }else{
+                                      pic="http://wx.junxiang.ren/project/"+item
+                                  }
                                   id_card_pictures+=`
-                                    <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                                    <img src="${pic}" alt="" >
                       `
                               });
                           }
@@ -165,8 +172,15 @@ $(document).ready(function(){
                   if(item.yourself_picture){
                       var myPicObj=eval('('+item.yourself_picture+')');
                       $.each(myPicObj,function(i,item){
+                          var httP=item.split(":")[0];
+                          var pic="";
+                          if(httP==="http"){
+                              pic=item;
+                          }else{
+                              pic="http://wx.junxiang.ren/project/"+item
+                          }
                           myPic+=`
-                                 <img src="${item}" alt="" >                               
+                                 <img src="${pic}" alt="" >
                                 `
                       });
                   }
