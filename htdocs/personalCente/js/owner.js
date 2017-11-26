@@ -314,6 +314,12 @@ $(document).ready(function(){
         }
         // 手机号
           var  phone=$("#phone").val();
+        if(!phone){
+            if(!(/^1[34578]\d{9}$/.test(phone))){
+                alert('手机号码格式错误');
+                return;
+            }
+        }
                // $("#phone").attr("placeholder","手机号没填哦");
         // 房号“1-2-3”字符串格式
             var dongNum=$("#dongNum").val();
