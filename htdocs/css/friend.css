@@ -80,7 +80,9 @@ body {
     z-index: 1000;
     border-radius:100%;
 }
-
+.friend{
+    display: none;
+}
 
 
 
