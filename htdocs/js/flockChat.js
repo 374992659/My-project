@@ -685,6 +685,7 @@ $(document).ready(function(){
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
         var message_type=1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
         console.log("群聊发送");
+        console.log(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
         chatContent.val("");
@@ -728,7 +729,7 @@ $(document).ready(function(){
                         var content=localStorage.getItem("friendPic");
                         var group =localStorage.getItem("group_code");           //获取发送好友的群code
                         console.log(content);
-                        var message_type = 2;
+                        var message_type = 3;
                         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
                     }
                 },
@@ -766,7 +767,7 @@ $(document).ready(function(){
                         var content=localStorage.getItem("friendPic");
                         var group =localStorage.getItem("group_code");           //获取发送好友的群code
                         console.log(content);
-                        var message_type = 2;
+                        var message_type = 3;
                         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
                     }
                 },
@@ -900,7 +901,7 @@ $(document).ready(function(){
                     //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
                     serverId = res.serverId; // 返回音频的服务器端ID
                     var group =localStorage.getItem("group_code");
-                    var  message_type=3;
+                    var  message_type=2;
                     ws.send(JSON.stringify({"group":group,'type' : 3,'content':serverId,'apptoken':apptoken,'message_type':message_type}));
                 }
             });
