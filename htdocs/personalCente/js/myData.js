@@ -65,7 +65,7 @@ $(document).ready(function(){
             </div>
             <!--电话-->
             <div class="weui-cells">
-                    <div class="weui-cell weui-cell_vcode">
+                    <div class="weui-cell weui-cell_vcode" style="padding:10px 15px;">
                         <div class="weui-cell__hd" style="width:30%">
                             <label class="weui-label" style="width:100%;text-align: right;">手机号：<span style="color: green">*</span></label>
                         </div>
@@ -73,7 +73,7 @@ $(document).ready(function(){
                             <input class="weui-input phone" type="number" placeholder="请输入手机号"   style="width:100%">
                         </div>
                         <div class="weui-cell__ft" style="width:30%">
-                            <button class="weui-vcode-btn getCodeBtn" style="font-size: 12px">获取验证码</button>
+                            <button class="weui-vcode-btn getCodeBtn" style="font-size: 12px"  style="width:100%">获取验证码</button>
                         </div>
                     </div>
                     <!--验证码-->
