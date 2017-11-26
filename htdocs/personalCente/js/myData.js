@@ -258,6 +258,55 @@ $(document).ready(function(){
             }
         });
     });
+    //获取验证码
+    $(".myInfo").on("click",".weui-cells .weui-cell_vcode .weui-cell__ft .getCodeBtn",function(){
+        var apptoken=localStorage.getItem("apptonken");
+        var phone=$(".phone").val();
+        console.log(phone);
+        // 转换数据格式json
+        data=["",JSON.stringify({"phone":phone,"apptoken":apptoken})];
+        // 加密数据
+        console.log(data);
+        jsonEncryptDate=jsEncryptData(data);
+        console.log(jsonEncryptDate);
+        $.ajax({
+            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendPhoneLogin&is_wap=1",
+            type:"POST",
+            data:{"data":jsonEncryptDate},
+            success:function(data){
+                // 解密返回的数据
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    // 保存apptoken
+                    localStorage.setItem("apptoken",data.apptoken);
+                    console.log(data.errcode);
+                    function invokeSettime(obj){
+                        var countdown=60;
+                        settime(obj);
+                        function settime(obj) {
+                            if (countdown == 0) {
+                                $(obj).attr("disabled",false);
+                                $(obj).text("获取验证码");
+                                countdown = 60;
+                                return;
+                            } else {
+                                $(obj).attr("disabled",true);
+                                $(obj).text("(" + countdown + ") s 重新发送");
+                                countdown--;
+                            }
+                            setTimeout(function() {
+                                    settime(obj) }
+                                ,1000)
+                        }
+                    }
+                    new invokeSettime(".getCodeBtn");
+                }else{
+                }
+            }
+        });
+        return phone;
+    });
     // 功能6 提交用户资料
     $(".myInfo").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__bd .finishBtn",function(){
         var success=$(".success");
