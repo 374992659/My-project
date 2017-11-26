@@ -23,14 +23,14 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.52719665">
+    <splitter split-orientation="horizontal" split-proportion="0.7667364">
       <split-first>
         <leaf>
           <file leaf-file-name="login.html" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/login.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.39076576">
-                  <caret line="38" column="51" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="51" />
+                <state vertical-scroll-proportion="0.2668919">
+                  <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
                   <folding />
                 </state>
               </provider>
@@ -43,7 +43,7 @@
           <file leaf-file-name="register.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/js/register.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.2862109">
+                <state vertical-scroll-proportion="0.3371958">
                   <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
                   <folding />
                 </state>
@@ -115,8 +115,8 @@
         <option value="$PROJECT_DIR$/htdocs/js/friendChat2.js" />
         <option value="$PROJECT_DIR$/htdocs/flockChat.html" />
         <option value="$PROJECT_DIR$/htdocs/js/flockChat.js" />
-        <option value="$PROJECT_DIR$/htdocs/login.html" />
         <option value="$PROJECT_DIR$/htdocs/js/register.js" />
+        <option value="$PROJECT_DIR$/htdocs/login.html" />
       </list>
     </option>
   </component>
@@ -1199,18 +1199,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/login.html">
+    <entry file="file://$PROJECT_DIR$/htdocs/js/register.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39076576">
-          <caret line="38" column="51" selection-start-line="38" selection-start-column="44" selection-end-line="38" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.3371958">
+          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/js/register.js">
+    <entry file="file://$PROJECT_DIR$/htdocs/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2862109">
-          <caret line="38" column="12" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.2668919">
+          <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
           <folding />
         </state>
       </provider>
