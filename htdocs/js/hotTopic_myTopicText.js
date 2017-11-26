@@ -497,7 +497,7 @@ $(document).ready(function(){
     (function(){
         $(".hotTopicContent").on("click",".weui-media-box .picPlace li img",function(){
             var url=$(this).attr("src");
-            console.log("图片放大");
+            alert("图片放大");
             console.log(url);
             if($(".weui-gallery").is(":hidden")){
                 $(".weui-gallery").show();
