@@ -344,7 +344,7 @@ $(document).ready(function(){
             if(checkRate(wechat_num)){
                 alert('微信号格式不正确');
                 return;
-            }else if(isChina(wechat_num)){
+            }else if(isChina(qq_num)){
                 alert('QQ号不能包含中文');
                 return;
             }else if(phone){
