@@ -517,9 +517,9 @@ $(document).ready(function() {
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
             //获取好友分组id
             var id=$(e.target).attr("title");
-        console.log($(this));
+        console.log($(this).attr("title"));
             console.log($(e.target));
-            console.log(id);
+        
             var apptoken=localStorage.getItem("apptoken");
             var title=$(e.target).attr("title");
             var data=["",JSON.stringify({"group_id":title,"apptoken":apptoken})];
