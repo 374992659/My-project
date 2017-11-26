@@ -116,7 +116,7 @@ $(document).ready(function(){ "use strict";
         var value=that.val();
         if(!value){
             that.attr("placeholder","该项必填");
-            that.attr("style","color:red");
+
         }
     };
     $(".subBtn").click(function(){
@@ -178,7 +178,7 @@ $(document).ready(function(){ "use strict";
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg);
-                  window.location.href="hotTopic2.html"
+                    window.location.href="hotTopic2.html"
                 }else{
                     showHide(data.errmsg);
                 }
