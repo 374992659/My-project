@@ -266,6 +266,7 @@ $(document).ready(function(){
                 alert('手机号码格式错误');
                 return
             }
+            return
         }else if(!id_card_num){
             alert("请填身份证号");
             return
