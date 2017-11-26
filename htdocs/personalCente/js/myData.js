@@ -67,7 +67,7 @@ $(document).ready(function(){
             <div class="weui-cells">
                     <div class="weui-cell weui-cell_vcode">
                         <div class="weui-cell__hd" style="width:30%">
-                            <label class="weui-label">手机号</label>
+                            <label class="weui-label" style="width:100%;text-align: right;">手机号</label>
                         </div>
                         <div class="weui-cell__bd">
                             <input class="weui-input phone" type="number" placeholder="请输入手机号">
