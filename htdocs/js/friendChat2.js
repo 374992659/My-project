@@ -42,7 +42,7 @@ $(document).ready(function(){
                                 var httP=sender_portrait.split(":")[0];
                                 if(sender_code===sender_code){
                                     $.each(item.content,function(i,item){
-                                        if(item.type===2){//内容为文件、图片
+                                        if(item.type===3){//内容为文件、图片
                                             if(httP==="http"){
                                                 html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -70,7 +70,7 @@ $(document).ready(function(){
                    </div>                   
                 </div>                  `;
                                             }
-                                        } else if(item.type===3){//内容为语音
+                                        } else if(item.type===2){//内容为语音
                                             if(httP==="http"){
                                                 html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -267,7 +267,7 @@ $(document).ready(function(){
 
                                 //展示好友发送的聊天信息
                                 var html="";
-                                if(parseInt(data.type)===2){
+                                if(parseInt(data.type)===3){//图片
                                       html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -280,7 +280,7 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `;
-                                } else if(parseInt(data.type)===3){
+                                } else if(parseInt(data.type)===2){//语音
                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -377,7 +377,7 @@ $(document).ready(function(){
                         $.each(result.data,function(i,item){
                             var httP=item.send_portrait.split(":")[0];
                             if(item.sender_code==sender_code){//发送方为好友
-                                if(parseInt(item.type)===2){//获取的内容为图片
+                                if(parseInt(item.type)===3){//获取的内容为图片
                                     if(httP==="http"){//好友头像为系统默认头像
                                         html+=`
                 <div class="sendHtml">
@@ -413,7 +413,7 @@ $(document).ready(function(){
                 </div>
                                 `
                                     }
-                                } else if(parseInt(item.type)===3){//语音
+                                } else if(parseInt(item.type)===2){//语音
                                         if(httP==="http"){//头像没有http
                                             html+=`
                 
@@ -423,11 +423,11 @@ $(document).ready(function(){
                             <img class="weui-media-box__thumb" src="${item.send_portrait}" alt="">
                         </div>
                         <div class="weui-media-box__bd">
-                                <span class="weui-media-box__desc playServreVoice" title="${item.content}" style="background:white;font-size: 13px;color: black>
+                                <span class="weui-media-box__desc playServreVoice" title="${item.content}" style="background:white;font-size: 13px;color: black">
                                   播放语音
                                 </span>
-                       </div>
-                    </div>
+                        </div>
+                     </div>
                 
                                 `
                                         }else{//头像http
@@ -483,7 +483,7 @@ $(document).ready(function(){
                                     }
                                 }
                             }else if(item.getter_code==sender_code){//发送方为自己本人
-                                if(parseInt(item.type)===2){//获取的内容为图片
+                                if(parseInt(item.type)===3){//获取的内容为图片
                                     if(httP==="http"){//头像为系统默认头像的
                                         html+=`
                             
@@ -521,7 +521,7 @@ $(document).ready(function(){
 
                                 `
                                     }
-                                }else if(parseInt(item.type)===3){
+                                }else if(parseInt(item.type)===2){
                                     if(httP==="http"){
                                         html+=`
                             
@@ -685,7 +685,7 @@ $(document).ready(function(){
                     console.log(pic);
                     if(item.sender_code===my_code){//自己
                         console.log("聊天记录");
-                        if(parseInt(item.type)===2){
+                        if(parseInt(item.type)===3){
                             html+=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -699,7 +699,7 @@ $(document).ready(function(){
              </div>
          </div>
                                     `
-                        }else if(parseInt(item.type)===3){
+                        }else if(parseInt(item.type)===2){
                             html+=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -728,7 +728,7 @@ $(document).ready(function(){
                         }
 
                     }else{//好友
-                        if(parseInt(item.type)===2){
+                        if(parseInt(item.type)===3){
                             html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -741,7 +741,7 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div> `
-                        } else if(parseInt(item.type)===3){
+                        } else if(parseInt(item.type)===2){
                             html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -987,7 +987,7 @@ $(document).ready(function(){
                         chatPage.append(html);
                         document.body.scrollTop=chatPage.height()+100;
                         var content=localStorage.getItem("friendPic");
-                        var message_type = 2;
+                        var message_type = 3;
                         var account_code =sender_code;
                         ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
                         // 本地存聊天记录
@@ -1097,7 +1097,7 @@ $(document).ready(function(){
                         var content=localStorage.getItem("friendFile");
                         console.log(content);
                         // 发送给服务器
-                        var message_type = 2;
+                        var message_type = 3;
                         var account_code =sender_code;
                         ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
                         // 保存聊天记录
@@ -1296,7 +1296,7 @@ $(document).ready(function(){
                         var chatPage=$("#chatPage");
                         chatPage.append(html);
                         var account_code =sender_code;
-                        ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':3}));
+                        ws.send(JSON.stringify({'type':2,'content':serverId,'apptoken' : apptoken,'account_code':account_code,'message_type':2}));
                         // 播放语音
                         var num=0;
                         $("#chatPage").on("click","#playVoice",function(){
@@ -1320,7 +1320,7 @@ $(document).ready(function(){
                             }
                         });
                         // 本地存聊天记录
-                        var message_type=3;
+                        var message_type=2;
                         var sender=localStorage.getItem("sender_code");
                         var time= (new Date()).toLocaleDateString();
                         var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+localId+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
