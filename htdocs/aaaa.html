@@ -2,30 +2,30 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
-    <style>
-        input[type="date"]:before{
-            color:#A9A9A9;
-            content:attr(placeholder);
-        }
-
-
-        input[type="date"].full:before {
-            color:black;
-            content:""!important;
-        }
-    </style>
+    <title>e.target</title>
+    <script src="js/jquery-1.11.3.js"></script>
 </head>
 <body>
-<input id="date" class="weui_input" type="date" placeholder="请选择出生日期" style="height:41px;overflow: hidden;">
+<div id="temp"></div>
+<ul class="JQ-content-box" style="padding:20px; background:#FFFFFF">
+    <li>第一行
+        <ul>
+            <li>这是公告标题1</li>
+            <li>这是公告标题2</li>
+            <li>这是公告标题3</li>
+            <li>这是公告标题4</li>
+        </ul>
+    </li>
+</ul>
+<script src="js/jquery-3.2.1.min.js"></script>
 <script>
-    $("#date").on("input",function(){
-        if($(this).val().length>0){
-            $(this).addClass("full");
-        }
-        else{
-            $(this).removeClass("full");
-        }
+    $(function(){
+        $("li").on("click",function(e){
+            console.log(e.target);
+            console.log(this);
+            $("#temp").html("clicked: " + e.target.nodeName);
+            $(e.target).css("color","#FF3300");
+        })
     });
 </script>
 </body>
