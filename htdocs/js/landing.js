@@ -45,7 +45,7 @@ $(document).ready(function(){
 // 电话号码登录
     // 向手机发送验证码
     $(".getCodeBtn").click(function(){
-        var apptoken=localStorage.getItem("apptonken");
+        var apptoken=localStorage.getItem("apptoken");
         var phone=$(".phone").val();
         console.log(phone);
         // 转换数据格式json

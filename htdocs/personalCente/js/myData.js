@@ -260,7 +260,7 @@ $(document).ready(function(){
     });
     //获取验证码
     $(".myInfo").on("click",".weui-cells .weui-cell_vcode .weui-cell__ft .getCodeBtn",function(){
-        var apptoken=localStorage.getItem("apptonken");
+        var apptoken=localStorage.getItem("apptoken");
         var phone=$(".phone").val();
         console.log(phone);
         // 转换数据格式json
