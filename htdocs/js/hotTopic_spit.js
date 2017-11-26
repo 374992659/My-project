@@ -115,7 +115,8 @@ $(document).ready(function(){ "use strict";
         var that=a;
         var value=that.val();
         if(!value){
-            that.attr("placeholder","该项必填")
+            that.attr("placeholder","该项必填");
+            that.attr("style","color:red");
         }
     };
     $(".subBtn").click(function(){
