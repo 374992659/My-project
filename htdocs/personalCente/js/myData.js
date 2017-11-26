@@ -64,9 +64,9 @@ $(document).ready(function(){
                 </div>
             </div>
             <!--电话-->
-            <div class="weui-cells weui-cells_form">
+            <div class="weui-cells">
                     <div class="weui-cell weui-cell_vcode">
-                        <div class="weui-cell__hd">
+                        <div class="weui-cell__hd" style="width:30%">
                             <label class="weui-label">手机号</label>
                         </div>
                         <div class="weui-cell__bd">
