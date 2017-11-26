@@ -683,6 +683,7 @@ $(document).ready(function(){
         var content=chatContent.val();                //获取页面发送内容
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
         var message_type=1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
+        console.log("群聊发送");
         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
         chatContent.val("");
