@@ -23,7 +23,7 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.38064516">
+    <splitter split-orientation="horizontal" split-proportion="0.28739002">
       <split-first>
         <leaf>
           <file leaf-file-name="myData.js" pinned="false" current-in-tab="false">
@@ -64,14 +64,14 @@
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/owner.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state vertical-scroll-proportion="0.13325608">
-                  <caret line="339" column="28" selection-start-line="339" selection-start-column="28" selection-end-line="339" selection-end-column="28" />
+                  <caret line="385" column="28" selection-start-line="385" selection-start-column="28" selection-end-line="385" selection-end-column="28" />
                   <folding>
-                    <marker date="1511703420222" expanded="false" signature="7432:7450" placeholder="..." />
-                    <marker date="1511703420222" expanded="true" signature="7451:7610" placeholder="..." />
-                    <marker date="1511703420222" expanded="false" signature="7547:7571" placeholder="..." />
-                    <marker date="1511703420222" expanded="false" signature="9111:9129" placeholder="..." />
-                    <marker date="1511703420222" expanded="true" signature="9130:9289" placeholder="..." />
-                    <marker date="1511703420222" expanded="false" signature="9226:9250" placeholder="..." />
+                    <marker date="1511703711812" expanded="false" signature="7436:7454" placeholder="..." />
+                    <marker date="1511703711812" expanded="true" signature="7455:7614" placeholder="..." />
+                    <marker date="1511703711812" expanded="false" signature="7551:7575" placeholder="..." />
+                    <marker date="1511703711812" expanded="false" signature="9115:9133" placeholder="..." />
+                    <marker date="1511703711812" expanded="true" signature="9134:9293" placeholder="..." />
+                    <marker date="1511703711812" expanded="false" signature="9230:9254" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -1378,14 +1378,14 @@
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/owner.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13325608">
-          <caret line="339" column="28" selection-start-line="339" selection-start-column="28" selection-end-line="339" selection-end-column="28" />
+          <caret line="385" column="28" selection-start-line="385" selection-start-column="28" selection-end-line="385" selection-end-column="28" />
           <folding>
-            <marker date="1511703420222" expanded="false" signature="7432:7450" placeholder="..." />
-            <marker date="1511703420222" expanded="true" signature="7451:7610" placeholder="..." />
-            <marker date="1511703420222" expanded="false" signature="7547:7571" placeholder="..." />
-            <marker date="1511703420222" expanded="false" signature="9111:9129" placeholder="..." />
-            <marker date="1511703420222" expanded="true" signature="9130:9289" placeholder="..." />
-            <marker date="1511703420222" expanded="false" signature="9226:9250" placeholder="..." />
+            <marker date="1511703711812" expanded="false" signature="7436:7454" placeholder="..." />
+            <marker date="1511703711812" expanded="true" signature="7455:7614" placeholder="..." />
+            <marker date="1511703711812" expanded="false" signature="7551:7575" placeholder="..." />
+            <marker date="1511703711812" expanded="false" signature="9115:9133" placeholder="..." />
+            <marker date="1511703711812" expanded="true" signature="9134:9293" placeholder="..." />
+            <marker date="1511703711812" expanded="false" signature="9230:9254" placeholder="..." />
           </folding>
         </state>
       </provider>
