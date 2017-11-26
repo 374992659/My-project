@@ -174,6 +174,7 @@ $(document).ready(function(){
                     var pathname = window.location.pathname;
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
+                    console.log(data);
                     // 获取自己code
                     var my_code=localStorage.getItem("my_code");
                     if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
