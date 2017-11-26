@@ -380,16 +380,65 @@ class GroupController extends VersionController
         $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
         if(intval($role) !== 1)$this->echoEncrypData(500);
         $mode->startTrans();
+        $user_group1 = new Model\UserGroupModel($this->account_code);
+        $user_group1->startTrans();
+        $user_group2 = new Model\UserGroupModel($User_code);
+        $user_group2->startTrans();
         $res1 = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>1]);
         $res2 =$mode->where(['user_code'=>$this->account_code,'group_num'=>$group_num])->save(['role'=>3]);
-        if($res1 && $res2){
+        $group_info = $user_group1->where(['group_num'=>$group_num])->find();
+        $$res3 = $user_group1->where(['group_num'=>$group_num])->delete();
+        $res4 = $user_group2->add(array(
+                'group_name'=>$group_info['group_name'],
+                'group_portrait'=>$group_info['group_portrait'],
+                'group_code'=>$group_info['group_code'],
+                'group_num'=>$group_info['group_num'],
+                'num_limit'=>$group_info['num_limit'],
+                'role'=>1,
+                'group_type'=>$group_info['group_type'],
+                'status'=>$group_info['status'],
+                'garden_code'=>$group_info['garden_code'],
+                'community_status'=>$group_info['community_status'],
+            ));
+        if($res1 && $res2 && $res3 && $res4){
             $mode->commit();
+            $user_group1->commit();
+            $user_group2->commit();
             $this->echoEncrypData(0);
         }else{
             $mode->rollback();
+            $user_group1->rollback();
+            $user_group2->rollback();
             $this->echoEncrypData(1,'转让对象必须是该群成员');
         }
     }
+    /*
+    * 用户主动退出群
+    * @param group_num 群号码
+    * */
+    protected function leaveGroup_v1_0_0(){
+        $this->checkParam(array('group_num'));
+        $mongo = new MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']))['user_code'];
+        $group_user = new Model\GroupUserModel($create_code);
+        $group_user->startTrans();
+        $role = $group_user->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$this->account_code])->getField('role');
+        if(intval($role) === 1 )$this->echoEncrypData(1,'群主无法退群');
+        $user_group = new Model\UserGroupModel($this->account_code);
+        $user_group->startTrans();
+        $res1 = $group_user->where(['user_code'=>$this->account_code])->delete();
+        $res2 = $user_group->where(['group_num'=>$this->pdata['group_num']])->delete();
+        if($res1 and $res2){
+            $group_user->commit();
+            $user_group->commit();
+            $this->echoEncrypData(0);
+        }else{
+            $group_user->rollback();
+            $user_group->rollback();
+            $this->echoEncrypData(1);
+        }
+    }
+
 
 
    /*
@@ -915,6 +964,22 @@ class GroupController extends VersionController
             $data[]=$res[$k]['savepath'].$res[$k]['savename'];
         }
         $this->echoEncrypData(0,'',$data);
+    }
+    /*
+     * 删除群话题
+     * @param subject_id 话题id
+     * @param group_num 群号码
+     * */
+    protected function delGroupSubject_v1_0_0(){
+        $this->checkParam(array('subject_id','group_num'));
+        $mongo = new MongoClient();
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']));
+        $group_user = new Model\GroupUserModel($create_code);
+        $subject = new Model\GroupSubjectModel($create_code);
+        $role = $group_user->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$this->account_code])->getField('role');
+        if(intval($role) === 3){
+            $
+        }
     }
     /*
      * 添加话题评论
