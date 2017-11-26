@@ -60,12 +60,12 @@
           <file leaf-file-name="addMember.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5921205">
-                  <caret line="269" column="28" selection-start-line="269" selection-start-column="28" selection-end-line="269" selection-end-column="28" />
+                <state vertical-scroll-proportion="0.56662804">
+                  <caret line="268" column="18" selection-start-line="268" selection-start-column="18" selection-end-line="268" selection-end-column="18" />
                   <folding>
-                    <marker date="1511704361348" expanded="false" signature="6815:6833" placeholder="..." />
-                    <marker date="1511704361348" expanded="true" signature="6834:6993" placeholder="..." />
-                    <marker date="1511704361348" expanded="false" signature="6930:6954" placeholder="..." />
+                    <marker date="1511704424282" expanded="false" signature="6815:6833" placeholder="..." />
+                    <marker date="1511704424282" expanded="true" signature="6834:6993" placeholder="..." />
+                    <marker date="1511704424282" expanded="false" signature="6930:6954" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -1380,12 +1380,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5921205">
-          <caret line="269" column="28" selection-start-line="269" selection-start-column="28" selection-end-line="269" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.56662804">
+          <caret line="268" column="18" selection-start-line="268" selection-start-column="18" selection-end-line="268" selection-end-column="18" />
           <folding>
-            <marker date="1511704361348" expanded="false" signature="6815:6833" placeholder="..." />
-            <marker date="1511704361348" expanded="true" signature="6834:6993" placeholder="..." />
-            <marker date="1511704361348" expanded="false" signature="6930:6954" placeholder="..." />
+            <marker date="1511704424282" expanded="false" signature="6815:6833" placeholder="..." />
+            <marker date="1511704424282" expanded="true" signature="6834:6993" placeholder="..." />
+            <marker date="1511704424282" expanded="false" signature="6930:6954" placeholder="..." />
           </folding>
         </state>
       </provider>
