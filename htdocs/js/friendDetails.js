@@ -166,7 +166,8 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        showHide(data.errmsg)
+                        showHide(data.errmsg);
+                        window.location.href="index.html";
                     }else{
                         showHide(data.errmsg)
                     }

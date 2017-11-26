@@ -111,22 +111,30 @@ $(document).ready(function(){ "use strict";
         })
     })();
     // 发送数据
+    var empty=function(a){
+        var that=a;
+        var value=that.val();
+        if(!value){
+            that.attr("placeholder","该项必填")
+        }
+    };
     $(".subBtn").click(function(){
         var garden_code=$("#house option:selected").attr("title");
         // 获取apptoken
-        var apptoken=localStorage.getItem("apptoken"),
+        var apptoken=localStorage.getItem("apptoken");
         // 参数：title 标题
-            title=$(".title").val(),
+         var   title=$(".title").val();
+                empty($(".title"));
         // 参数：content 内容
-            content=$(".content").val(),
+          var   content=$(".content").val();
         // 参数：garden_code 小区
            // garden_code=$("#house option:selected").attr("title"),
         // 参数：garden_name 小区名称
-            garden_name=$("#house option:selected").text(),
+          var   garden_name=$("#house option:selected").text();
         // 参数：c 选择项 json格式
-            choise={},
+          var   choise={};
         // 参数：end_time 结束时间
-            endTime=$("#gathertime").val();
+           var  endTime=$("#gathertime").val();
             // 转换时间戳
          //timestamp2 = Date.parse(new Date(endTime)),
         // end_time= timestamp2 / 1000,
