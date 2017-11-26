@@ -23,34 +23,34 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5717579">
+    <splitter split-orientation="horizontal" split-proportion="0.32608697">
       <split-first>
         <leaf>
-          <file leaf-file-name="addMember.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/htdocs/personalCente/addMember.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-21.548388">
-                  <caret line="218" column="27" selection-start-line="218" selection-start-column="27" selection-end-line="218" selection-end-column="27" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="verifyIdentifyCard.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/verifyIdentifyCard.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-3.9285715">
-                  <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="renter.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="renter.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/renter.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.38063064">
+                <state vertical-scroll-proportion="-17.290323">
                   <caret line="74" column="68" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="68" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="hotTopic_spit.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_spit.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-22.258064">
+                  <caret line="177" column="21" selection-start-line="177" selection-start-column="21" selection-end-line="177" selection-end-column="21" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="hotTopic_spit.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_spit.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="0.3765933">
+                  <caret line="145" column="34" selection-start-line="143" selection-start-column="8" selection-end-line="145" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
@@ -63,12 +63,12 @@
           <file leaf-file-name="renter.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/renter.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.05677868">
-                  <caret line="315" column="9" selection-start-line="315" selection-start-column="9" selection-end-line="315" selection-end-column="9" />
+                <state vertical-scroll-proportion="0.69409037">
+                  <caret line="352" column="37" selection-start-line="352" selection-start-column="37" selection-end-line="352" selection-end-column="37" />
                   <folding>
-                    <marker date="1511707151766" expanded="false" signature="8758:8776" placeholder="..." />
-                    <marker date="1511707151766" expanded="true" signature="8777:8936" placeholder="..." />
-                    <marker date="1511707151766" expanded="false" signature="8873:8897" placeholder="..." />
+                    <marker date="1511708005892" expanded="false" signature="8758:8776" placeholder="..." />
+                    <marker date="1511708005892" expanded="true" signature="8777:8936" placeholder="..." />
+                    <marker date="1511708005892" expanded="false" signature="8873:8897" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -350,7 +350,7 @@
     <frame x="-8" y="0" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.096354164" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16145833" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1121,31 +1121,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_spit.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.303572">
-          <caret line="159" column="42" selection-start-line="159" selection-start-column="22" selection-end-line="159" selection-end-column="42" />
-          <folding>
-            <marker date="1511687862019" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511687862019" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511687862019" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511687862019" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511687862019" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511687862019" expanded="false" signature="-1:-1" placeholder="..." />
-            <marker date="1511687862019" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1511687862019" expanded="false" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_spit.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6936937">
-          <caret line="28" column="9" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/flockVote_content.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.2972973">
@@ -1380,20 +1355,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/renter.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.38063064">
+        <state vertical-scroll-proportion="-17.290323">
           <caret line="74" column="68" selection-start-line="74" selection-start-column="61" selection-end-line="74" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_spit.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.258064">
+          <caret line="177" column="21" selection-start-line="177" selection-start-column="21" selection-end-line="177" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_spit.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3765933">
+          <caret line="145" column="34" selection-start-line="143" selection-start-column="8" selection-end-line="145" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/renter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.05677868">
-          <caret line="315" column="9" selection-start-line="315" selection-start-column="9" selection-end-line="315" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.69409037">
+          <caret line="352" column="37" selection-start-line="352" selection-start-column="37" selection-end-line="352" selection-end-column="37" />
           <folding>
-            <marker date="1511707151766" expanded="false" signature="8758:8776" placeholder="..." />
-            <marker date="1511707151766" expanded="true" signature="8777:8936" placeholder="..." />
-            <marker date="1511707151766" expanded="false" signature="8873:8897" placeholder="..." />
+            <marker date="1511708005892" expanded="false" signature="8758:8776" placeholder="..." />
+            <marker date="1511708005892" expanded="true" signature="8777:8936" placeholder="..." />
+            <marker date="1511708005892" expanded="false" signature="8873:8897" placeholder="..." />
           </folding>
         </state>
       </provider>
