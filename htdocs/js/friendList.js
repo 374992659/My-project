@@ -576,11 +576,11 @@ $(document).ready(function() {
                             }
                         }
                         // 功能显示隐藏分组下的好友信息
-                        if(that.parent().next().is(":hidden")){
-                            that.parent().next().show();
+                        if(that.next().is(":hidden")){
+                            that.next().show();
                             that.children(":first").children("img").css("transform","rotate(90deg)");
                         }else{
-                            that.parent().next().hide();
+                            that.next().hide();
                             that.children(":first").children("img").css("transform","rotate(0deg)");
                         }
                     }
