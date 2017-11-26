@@ -313,24 +313,23 @@ $(document).ready(function(){
         var hideTop=function(){
             success.empty()};
             // 获取apptoken
-               var apptoken= localStorage.getItem("apptoken");
+                    var apptoken= localStorage.getItem("apptoken");
             // 获取头像
-                   portrait=$(".flockHead img").attr("src");
+                    var    portrait=$(".flockHead img").attr("src");
             // 获取昵称
-                    nickname=$("#nickname").val();
+                    var   nickname=$("#nickname").val();
             // 获取真实姓名（可填）
-                    realname=$("#name").val();
+                    var    realname=$("#name").val();
             // 手机号（可填）
-                    phone=$(".phone").val();
+                    var    phone=$(".phone").val();
             // 微信（可填）
-                    wechat_num=$("#weiXin").val();
+                    var   wechat_num=$("#weiXin").val();
             // QQ（可填）
-                    qq_num=$("#QQ").val();
+                    var   qq_num=$("#QQ").val();
             // 常住小区（可填）
                     var garden_code = $('#gardenLIst option:selected').attr('value');
                     var garden_name = $('#gardenLIst option:selected').text();
                     var arr={};
-
                     arr[garden_code]=garden_name;
                     default_garden=$("#house").val()==='暂无认证通过的小区'?'':JSON.stringify(arr);
             // 出生年份（可填）

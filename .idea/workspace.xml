@@ -53,7 +53,7 @@
           <file leaf-file-name="owner.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/owner.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="-5.339286">
+                <state vertical-scroll-proportion="28.589285">
                   <caret line="342" column="34" selection-start-line="342" selection-start-column="10" selection-end-line="342" selection-end-column="34" />
                   <folding>
                     <marker date="1511703711812" expanded="false" signature="7436:7454" placeholder="..." />
@@ -67,15 +67,35 @@
               </provider>
             </entry>
           </file>
+          <file leaf-file-name="myData.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/htdocs/personalCente/myData.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-21.548388">
+                  <caret line="152" column="24" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="myData.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myData.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state vertical-scroll-proportion="-11.678572">
+                  <caret line="352" column="17" selection-start-line="352" selection-start-column="17" selection-end-line="352" selection-end-column="17" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="addMember.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.3626883">
-                  <caret line="268" column="34" selection-start-line="268" selection-start-column="34" selection-end-line="268" selection-end-column="34" />
+                <state vertical-scroll-proportion="0.38818076">
+                  <caret line="276" column="16" selection-start-line="276" selection-start-column="16" selection-end-line="276" selection-end-column="16" />
                   <folding>
-                    <marker date="1511705364225" expanded="false" signature="6815:6833" placeholder="..." />
-                    <marker date="1511705364225" expanded="true" signature="6834:6993" placeholder="..." />
-                    <marker date="1511705364225" expanded="false" signature="6930:6954" placeholder="..." />
+                    <marker date="1511705854114" expanded="false" signature="6815:6833" placeholder="..." />
+                    <marker date="1511705854114" expanded="true" signature="6834:6993" placeholder="..." />
+                    <marker date="1511705854114" expanded="false" signature="6930:6954" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -142,11 +162,11 @@
         <option value="$PROJECT_DIR$/htdocs/personalCente/myData.html" />
         <option value="$PROJECT_DIR$/htdocs/js/landing.js" />
         <option value="$PROJECT_DIR$/htdocs/landing.html" />
-        <option value="$PROJECT_DIR$/htdocs/personalCente/js/myData.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/owner.html" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/owner.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/addMember.html" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/verifyIdentifyCard.js" />
+        <option value="$PROJECT_DIR$/htdocs/personalCente/js/myData.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/addMember.js" />
       </list>
     </option>
@@ -1332,42 +1352,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/myData.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.948198">
-          <caret line="152" column="23" selection-start-line="152" selection-start-column="23" selection-end-line="152" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/owner.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.9324324">
           <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44727695">
-          <caret line="344" column="34" selection-start-line="344" selection-start-column="34" selection-end-line="344" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/owner.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.339286">
-          <caret line="342" column="34" selection-start-line="342" selection-start-column="10" selection-end-line="342" selection-end-column="34" />
-          <folding>
-            <marker date="1511703711812" expanded="false" signature="7436:7454" placeholder="..." />
-            <marker date="1511703711812" expanded="true" signature="7455:7614" placeholder="..." />
-            <marker date="1511703711812" expanded="false" signature="7551:7575" placeholder="..." />
-            <marker date="1511703711812" expanded="false" signature="9115:9133" placeholder="..." />
-            <marker date="1511703711812" expanded="true" signature="9134:9293" placeholder="..." />
-            <marker date="1511703711812" expanded="false" signature="9230:9254" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1387,14 +1376,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/myData.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.548388">
+          <caret line="152" column="24" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/owner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="28.589285">
+          <caret line="342" column="34" selection-start-line="342" selection-start-column="10" selection-end-line="342" selection-end-column="34" />
+          <folding>
+            <marker date="1511703711812" expanded="false" signature="7436:7454" placeholder="..." />
+            <marker date="1511703711812" expanded="true" signature="7455:7614" placeholder="..." />
+            <marker date="1511703711812" expanded="false" signature="7551:7575" placeholder="..." />
+            <marker date="1511703711812" expanded="false" signature="9115:9133" placeholder="..." />
+            <marker date="1511703711812" expanded="true" signature="9134:9293" placeholder="..." />
+            <marker date="1511703711812" expanded="false" signature="9230:9254" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.678572">
+          <caret line="352" column="17" selection-start-line="352" selection-start-column="17" selection-end-line="352" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3626883">
-          <caret line="268" column="34" selection-start-line="268" selection-start-column="34" selection-end-line="268" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.38818076">
+          <caret line="276" column="16" selection-start-line="276" selection-start-column="16" selection-end-line="276" selection-end-column="16" />
           <folding>
-            <marker date="1511705364225" expanded="false" signature="6815:6833" placeholder="..." />
-            <marker date="1511705364225" expanded="true" signature="6834:6993" placeholder="..." />
-            <marker date="1511705364225" expanded="false" signature="6930:6954" placeholder="..." />
+            <marker date="1511705854114" expanded="false" signature="6815:6833" placeholder="..." />
+            <marker date="1511705854114" expanded="true" signature="6834:6993" placeholder="..." />
+            <marker date="1511705854114" expanded="false" signature="6930:6954" placeholder="..." />
           </folding>
         </state>
       </provider>
