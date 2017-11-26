@@ -34,11 +34,10 @@ $(document).ready(function(){
     (function(){
         $(".account").on("input",function(){
             var Chinese=$(".account").val();
-            alert(Chinese);
             var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
             if(reg.test(Chinese)){
                 $(".account").value="";
-                $(".account").focus();
+              
             }
         })
     })();
