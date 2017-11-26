@@ -136,8 +136,15 @@ $(document).ready(function(){
                 var id_cardPicObj=eval('('+result.id_card_pictures+')');
                 if(id_cardPicObj){
                     $.each(id_cardPicObj,function(i,item){
+                        var httP=item.split(":")[0];
+                        var pic="";
+                        if(httP==="http"){
+                            pic=item;
+                        }else{
+                            pic="http://wx.junxiang.ren/project/"+item;
+                        }
                         id_cardPic+=`
-                         <img src="http://wx.junxiang.ren/project/${item}" alt="" >
+                         <img src="${pic}" alt="" >
                         `
                     });
                 }$(".papersPic").append(id_cardPic);
@@ -146,8 +153,15 @@ $(document).ready(function(){
                 var myPicObj=eval('('+result.yourself_picture+')');
                 if(myPicObj){
                     $.each(myPicObj,function(i,item){
+                        var httP=item.split(":")[0];
+                        var pic="";
+                        if(httP==="http"){
+                            pic=item;
+                        }else{
+                            pic="http://wx.junxiang.ren/project/"+item;
+                        }
                         myPic+=`
-                     <img src="${item}" alt="" >
+                     <img src="${pic}" alt="" >
                     `
                     });
                 }$(".myPic").append(myPic);
@@ -156,8 +170,15 @@ $(document).ready(function(){
                 var gardenPicObj=eval('('+ result.garden_picture+')');
                 if(gardenPicObj){
                     $.each(gardenPicObj,function(i,item){
+                        var httP=item.split(":")[0];
+                        var pic="";
+                        if(httP==="http"){
+                            pic=item;
+                        }else{
+                            pic="http://wx.junxiang.ren/project/"+item;
+                        }
                         gardenPic+=`
-                     <img src="${item}" alt="" >
+                     <img src="${pic}" alt="" >
                     
                     `
                     })
