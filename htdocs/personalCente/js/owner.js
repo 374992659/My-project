@@ -289,33 +289,29 @@ $(document).ready(function(){
     //栋数判断
 
     //判断手机号格式是否正确
-    (function () {
-        $("#phone").blur(function(){
-            // 获取号码
-        var phoneNum=$("#phone").val();
-            validate4(phoneNum);
-        });
-    })();
+    //(function () {
+    //    $("#phone").blur(function(){
+    //        // 获取号码
+    //    var phoneNum=$("#phone").val();
+    //        validate4(phoneNum);
+    //    });
+    //})();
     //判断身份证号格式是否正确
-    (function () {
-        $("#identityCard").blur(function(){
-            var idCard=$("#identityCard").val();
-            isCardNo(idCard)
-        })
-    })();
+    //(function () {
+    //    $("#identityCard").blur(function(){
+    //        var idCard=$("#identityCard").val();
+    //        isCardNo(idCard)
+    //    })
+    //})();
     $(".weui-btn").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 姓名
         var   real_name=$("#name").val();
-            if(!real_name){
-                $("#name").attr("placeholder","名字没填哦");
-            }
+               //$("#name").attr("placeholder","名字没填哦");
         // 手机号
           var  phone=$("#phone").val();
-            if(!phone){
-                $("#phone").attr("placeholder","手机号没填哦");
-            }
+               // $("#phone").attr("placeholder","手机号没填哦");
         // 房号“1-2-3”字符串格式
             var dongNum=$("#dongNum").val();
             var floorNum=$("#floorNum").val();
@@ -326,7 +322,9 @@ $(document).ready(function(){
         // 身份证号
          var   id_card_num=$("#identityCard").val();
         if(!id_card_num){
-            $("#identityCard").attr("placeholder","身份证号没填哦");
+            isCardNo(id_card_num);
+           // $("#identityCard").attr("placeholder","身份证号没填哦");
+            return
         }
         // 身份证照片json字符串格式
         var myPicA=localStorage.getItem("myPicA");
@@ -368,6 +366,27 @@ $(document).ready(function(){
             yourself_picture[i]=src;
         });
         console.log(typeof yourself_picture);
+        if(real_name){
+            alert("姓名没有填");
+            return;
+        }else if(phone){
+            if(!(/^1[34578]\d{9}$/.test(phone))){
+                alert('手机号码格式错误');
+                return;
+            }
+        }else if(id_card_num){
+            isCardNo(idCard);
+            return
+        }else if(city_id){
+            alert("城市没有选");
+            return;
+        }else if(garden_picture){
+            alert("至少要上传一张小区照片");
+            return;
+        }else if(myPicA&&myPicB){
+            alert("证件照正反面");
+            return
+        }
         var role=1;
         //验证该楼盘是房号否已经认证
         if(garden_code){
