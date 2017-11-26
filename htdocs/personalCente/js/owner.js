@@ -316,12 +316,12 @@ $(document).ready(function(){
           var  phone=$("#phone").val();
         if(!phone){
                 alert('没填手机号码');
-                return;
+
 
         }else{
             if(!(/^1[34578]\d{9}$/.test(phone))){
                 alert('手机号码格式错误');
-                return;
+
             }
         }
                // $("#phone").attr("placeholder","手机号没填哦");
@@ -332,16 +332,16 @@ $(document).ready(function(){
             var room_num=dongNum+"-"+floorNum+"-"+roomNum;
        if(!room_num){
            alert("选择房号");
-           return
+
        }
         // 身份证号
          var   id_card_num=$("#identityCard").val();
         if(!id_card_num){
             alert("没填身份证号");
-            return
+
         }else{
             isCardNo(id_card_num);
-            return
+
         }
         //if(!id_card_num){
         //    isCardNo(id_card_num);
@@ -354,13 +354,13 @@ $(document).ready(function(){
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}";
         if(myPicA&&myPicB){
             alert("证件照是正反两面");
-            return
+
         }
         // 小区名字
           var   garden_name=$("#gardenName").val();
         if(!garden_name){
            alert("没有填小区哦");
-            return;
+
             }
         // 小区code（没有可不填）
           var garden_code=$("#gardenName").attr("title");
@@ -368,7 +368,7 @@ $(document).ready(function(){
           var city_id=$("#city option:selected").val();
         if(!city_id){
             alert("没有选城市哦");
-            return
+
         }
         // 小区详细地址
         //    garden_addr=$("#plotPlace").val();
@@ -386,7 +386,7 @@ $(document).ready(function(){
         }
         if(!a){
             alert("上传小区照片");
-            return
+           
         }
         console.log(typeof garden_picture);
         // 合同房产证照片（可填）
@@ -409,6 +409,7 @@ $(document).ready(function(){
             (function () {
                 var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"room_num":room_num,"garden_code":garden_code,"role":role})];
                 var jsonEncryptData=jsEncryptData(data);
+                console.log(data);
                 $.ajax({
                     url:url+"UserCenter_roomRoleExists",
                     type:"POST",
