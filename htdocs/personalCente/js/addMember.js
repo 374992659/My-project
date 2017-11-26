@@ -173,20 +173,20 @@ $(document).ready(function(){
             });
         })();
      //判断电话号码是否正确
-    $("#phone").blur(function(){
-        // 获取电话号码
-        var phoneNum=$("#phone").val();
-        console.log(phoneNum);
-        if(!(/^1[34578]\d{9}$/.test(phoneNum))){
-            alert("手机号码有误，请重填");
-        }
-    });
+    //$("#phone").blur(function(){
+    //    // 获取电话号码
+    //    var phoneNum=$("#phone").val();
+    //    console.log(phoneNum);
+    //    if(!(/^1[34578]\d{9}$/.test(phoneNum))){
+    //        alert("手机号码有误，请重填");
+    //    }
+    //});
     //判断身份证号码是否正确
-     $("#identityCard").blur(function(){
-         var idCard=$("#identityCard").val();
-         console.log(idCard);
-         isCardNo(idCard);
-     });
+    // $("#identityCard").blur(function(){
+    //     var idCard=$("#identityCard").val();
+    //     console.log(idCard);
+    //     isCardNo(idCard);
+    // });
      //获取已经认证通过的小区
     (function () {
         var apptoken=localStorage.getItem("apptoken");
