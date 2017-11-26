@@ -234,7 +234,11 @@ $(document).ready(function(){
         // 9 参数：relation_name关系
         var relation_name=$("#rela option:selected").val();
         // 10 参数：contract_period合同期限
-        var contract_period=$("#date2").val();
+        var time=$("#date2").val();
+        var arr=time.split(/[年 月 日 \/]/);
+        console.log(arr);
+        var data=new Date(arr[0],arr[1]-1,arr[2]);
+        var contract_period=data/1000;
         // 11 参数：id_card_pictures身份证照片可填
         var A=$(".flockHeadA img").attr("src");
         var B=$(".flockHeadB img").attr("src");
@@ -256,6 +260,10 @@ $(document).ready(function(){
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
+        !real_name?alert("输入姓名"):
+            !phone?alert("输入手机"):
+                !contract_period?alert("选择合同有效期"):
+                    !id_card_num?alert("输入身份证号码"):
         $.ajax({
             url:url+"UserCenter_tenantAddNum",
             type:"POST",
