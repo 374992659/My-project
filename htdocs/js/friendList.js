@@ -391,7 +391,7 @@ $(document).ready(function() {
                         var online=arr.length;
                         html += `
                          <div class="weui-cells">
-                            <div class="weui-cell LinkBtn"  title="${item.id} ">
+                            <div class="weui-cell LinkBtn"  title="${item.id}" style="position: relative;z-index: 1000">
                                 <div class="weui-cell__hd ">
                                    <img class="linkBtn" src="image/right.png "  title="${item.id}">
                                 </div>
@@ -404,14 +404,13 @@ $(document).ready(function() {
                             </div>
                             <div class="weui-panel weui-panel_access friendList friend" style="display: none">
                                 <div class="weui-panel__bd " id="${item.id}">
-                    
+
                                 </div>
                             </div>
                          </div>
                             `
                     });
                     $(".group").append(html);
-
                 }else{
                     window.location.href ="landing.html";
                 }
@@ -493,8 +492,8 @@ $(document).ready(function() {
                             }
                     });
                     $("#1").html(html);
-                    $(".friend").show();
                     $("#1").parent().prev().find("img").css("transform","rotate(90deg)");
+                    $(".friend").show();
                     //好友在线情况
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                     var online=JSON.parse(localStorage.getItem("online_friends"));
@@ -575,13 +574,13 @@ $(document).ready(function() {
                             }
                         }
                         // 功能显示隐藏分组下的好友信息
-                        if($(e.target).parent().parent().next().is(":hidden")){
-                            $(e.target).parent().parent().next().show();
-                            $(e.target).parent().prev().children("img").css("transform","rotate(90deg)");
-                        }else{
-                            $(e.target).parent().parent().next().hide();
-                            $(e.target).parent().prev().children("img").css("transform","rotate(0deg)");
-                        }
+                        //if($(e.target).parent().parent().next().is(":hidden")){
+                        //    $(e.target).parent().parent().next().show();
+                        //    $(e.target).parent().prev().children("img").css("transform","rotate(90deg)");
+                        //}else{
+                        //    $(e.target).parent().parent().next().hide();
+                        //    $(e.target).parent().prev().children("img").css("transform","rotate(0deg)");
+                        //}
                     }
                 }
             });
@@ -612,7 +611,6 @@ $(document).ready(function() {
       var  data=["",JSON.stringify({"key":key,"apptoken":apptoken})],
         //数据加密
         jsonEncryptDate=jsEncryptData(data);
-
         //发起ajax请求
         $.ajax({
             url:url+"friends_searchFriends",
@@ -741,7 +739,6 @@ $(document).ready(function() {
     });
     //搜索好友跳转到聊天页面
     $(".keyFriend").on("click",".skipChat",function(){
-
         //好友名字
         var sender_name=$(this).find("h4").text();
         // 获取好友code
