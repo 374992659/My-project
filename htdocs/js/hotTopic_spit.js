@@ -127,6 +127,7 @@ $(document).ready(function(){ "use strict";
                 empty($(".title"));
         // 参数：content 内容
           var   content=$(".content").val();
+        empty($(".content"));
         // 参数：garden_code 小区
            // garden_code=$("#house option:selected").attr("title"),
         // 参数：garden_name 小区名称
@@ -135,6 +136,7 @@ $(document).ready(function(){ "use strict";
           var   choise={};
         // 参数：end_time 结束时间
            var  endTime=$("#gathertime").val();
+                empty($("#gathertime"));
             // 转换时间戳
          //timestamp2 = Date.parse(new Date(endTime)),
         // end_time= timestamp2 / 1000,
@@ -158,6 +160,7 @@ $(document).ready(function(){ "use strict";
       option.each(function(i){
           choise[parseInt(i+1)]=$(this).val();
       });
+        empty($("input[name='option']"));
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"title":title,"content":content,"garden_code":parseInt(garden_code),"garden_name":garden_name,"choise":JSON.stringify(choise),"end_time":end_time,"picture":JSON.stringify(picture),"type":parseInt(type),"is_public":parseInt(is_public),"is_push":parseInt(is_push)})];
         // 加密
