@@ -35,9 +35,10 @@ $(document).ready(function(){
         $(".password").blur(function(){
             var password=$(".password").val();
             console.log(password.length);
+            if(password.length<6){
+                alert("密码位数不够");
+            }
         });
-
-
     })();
     $(".regBtn").click(function(){
         // 获取账号
@@ -55,25 +56,30 @@ $(document).ready(function(){
         // 加密后的数据
         var afterDate=jsEncryptData(info);
         console.log(afterDate);
-        // ajax向后台传输数据
-        $.ajax({
-            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=regiest&is_wap=1",
-            type:"POST",
-            data:{"data":afterDate},
-            success:function(data){
-                data=jsDecodeData(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    var  cityID=$("#city option:selected").val();
-                    localStorage.setItem("city_id",cityID);
-                    showHide(data.errmsg);
-                    window.location.href="index.html";
-                }else{
-                    showHide(data.errmsg);
-                    //alert(data.data)
+        if(password===repassword){
+            // ajax向后台传输数据
+            $.ajax({
+                url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=regiest&is_wap=1",
+                type:"POST",
+                data:{"data":afterDate},
+                success:function(data){
+                    data=jsDecodeData(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var  cityID=$("#city option:selected").val();
+                        localStorage.setItem("city_id",cityID);
+                        showHide(data.errmsg);
+                        window.location.href="index.html";
+                    }else{
+                        showHide(data.errmsg);
+                        //alert(data.data)
+                    }
                 }
-            }
-        })
+            })
+        }else{
+            alert("两次密码不一直请重新输入");
+        }
+
 
     });
 
