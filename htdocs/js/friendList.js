@@ -69,7 +69,7 @@ $(document).ready(function() {
         var ws = new WebSocket('ws://39.108.237.198:8282'); //发起绑定
         ws.onmessage = function (e){
             var result = JSON.parse(e.data);                   //服务器返回结果
-            console.log(e.data);
+            console.log(typeof e.data);
             var friends_new_messageNum=0,
                 group_new_messageNum=0,
                 friends_new_applyNum=0;
