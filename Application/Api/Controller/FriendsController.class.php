@@ -257,7 +257,7 @@ class FriendsController extends VersionController
         if(!$user_code){
             $this->echoEncrypData(21);
         }
-        $mongo = new \MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017/user_area');
+        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
         $data = $mongo->baseinfo->user_area->findOne(array('account'=>$user_code),array('table_id'));
 //        $data = M('baseinfo.user_area')->where('account ='.$user_code)->getField('table_id');
         if(!$data){
