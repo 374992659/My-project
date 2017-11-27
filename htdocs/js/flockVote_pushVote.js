@@ -247,11 +247,12 @@ $(".weui-gallery").click(function(){
             content=$(".content").val();
             console.log(content);
         // 获取选项内容
-        var n=0;
+        var a=$(".option1").val();
+        var b=$(".option2").val();
             var   option={};
             $("input[name='option']").each(function(i,item){
                 option[parseInt(i+1)]=$(this).val();
-                n++;
+
             });
             console.log(option);
         console.log(n);
@@ -280,7 +281,8 @@ $(".weui-gallery").click(function(){
     // 发起ajax请求
         !title?alert("没有主题"):
             !content?alert("输入内容"):
-                !option?alert("输入选项"):
+                !a?alert("输入选项1内容"):
+                    !b?alert("输入选项2内容"):
                     !overTime?alert("结束时间"):
                         !picture?alert("没有图片"):
         $.ajax({
