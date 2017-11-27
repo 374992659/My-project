@@ -208,6 +208,15 @@ $(document).ready(function(){
                         `
                     });
                     $("#gardenName").html(html);
+                }else if(data.errcode===5){
+                    $(".addMember").hide();
+                    html=`
+                      <div style="text-align: center">
+                        <p>你还没有认证的小区不能发布槽点，请到个人心进行认证</p>
+                        <a href="http://wx.junxiang.ren/project/htdocs/personalCente/" style="background: red;color: white">点我到个人中心</a>
+                    </div>
+                    `;
+                    $("body").append(html)
                 }
 
             }
@@ -255,16 +264,10 @@ $(document).ready(function(){
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
-        if(!real_name){
-            alert("请填名字");
-            return
-        }else if(!phone){
-            alert("请填手机好号");
-            return
-        }else if(!id_card_num){
-            alert("请填身份证号");
-            return
-        }
+        !real_name?alert("没填名字"):
+            !phone?alert("没有填手机号"):
+                !id_card_num?alert("没有填证件号"):
+                    !garden_name?alert("没有认证的小区"):
         $.ajax({
             url:url+"UserCenter_ownerAddNum",
             type:"POST",
