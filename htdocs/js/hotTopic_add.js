@@ -189,7 +189,6 @@ $(document).ready(function(){
                 //小区id
                 garden_code=$("#plot option:selected").attr("title");
             var picture={};
-            var Img=
             //数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
             //加密
