@@ -62,7 +62,7 @@ $(document).ready(function(){
     window.location.href="myRenZdetails.html";
     });
     //删除我的认证
-    $(".RZlist").on("click",".renZdetails td button",function () {
+    $(".RZlist").on("click",".renZdetails td button",function (e) {
         var apptoken=localStorage.getItem("apptoken");
         var id=parseInt($(this).attr("title"));
         var type=1;

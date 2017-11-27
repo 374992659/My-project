@@ -24,33 +24,39 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="hotTopic_ad.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
+      <file leaf-file-name="owner.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/htdocs/personalCente/owner.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.548388">
-              <caret line="185" column="25" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
+            <state vertical-scroll-proportion="-22.967741">
+              <caret line="266" column="24" selection-start-line="266" selection-start-column="24" selection-end-line="266" selection-end-column="24" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="hotTopic_add.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
+      <file leaf-file-name="owner.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/owner.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2549247">
-              <caret line="225" column="32" selection-start-line="225" selection-start-column="32" selection-end-line="225" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.3511008">
+              <caret line="415" column="38" selection-start-line="415" selection-start-column="38" selection-end-line="415" selection-end-column="38" />
               <folding>
-                <marker date="1511791470359" expanded="true" signature="2375:2769" placeholder="..." />
-                <marker date="1511791470359" expanded="false" signature="2460:2509" placeholder="..." />
-                <marker date="1511791470359" expanded="true" signature="2510:2738" placeholder="..." />
-                <marker date="1511791470359" expanded="false" signature="2585:2600" placeholder="..." />
-                <marker date="1511791470359" expanded="true" signature="4499:4999" placeholder="..." />
-                <marker date="1511791470359" expanded="false" signature="4584:4633" placeholder="..." />
-                <marker date="1511791470359" expanded="true" signature="4634:4968" placeholder="..." />
-                <marker date="1511791470359" expanded="false" signature="4709:4724" placeholder="..." />
-                <marker date="1511791470359" expanded="true" signature="11619:11906" placeholder="..." />
-                <marker date="1511791470359" expanded="false" signature="11723:11747" placeholder="..." />
+                <marker date="1511791950658" expanded="false" signature="7294:7312" placeholder="..." />
+                <marker date="1511791950658" expanded="true" signature="7313:7472" placeholder="..." />
+                <marker date="1511791950658" expanded="false" signature="7409:7433" placeholder="..." />
+                <marker date="1511791950658" expanded="false" signature="8972:8990" placeholder="..." />
+                <marker date="1511791950658" expanded="true" signature="8991:9150" placeholder="..." />
+                <marker date="1511791950658" expanded="false" signature="9087:9111" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="myData.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/htdocs/personalCente/myData.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-33.19355">
+              <caret line="152" column="25" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,12 +120,12 @@
         <option value="$PROJECT_DIR$/htdocs/personalCente/renterAddMember.html" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/renterAddMember.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/memberList.html" />
-        <option value="$PROJECT_DIR$/htdocs/personalCente/js/owner.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/memberList.js" />
-        <option value="$PROJECT_DIR$/htdocs/personalCente/js/myRenZ.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/myRenZdetails.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/owenerMemberDetails.js" />
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic_add.js" />
+        <option value="$PROJECT_DIR$/htdocs/personalCente/js/myRenZ.js" />
+        <option value="$PROJECT_DIR$/htdocs/personalCente/js/owner.js" />
       </list>
     </option>
   </component>
@@ -206,6 +212,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiejia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiejia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="htdocs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="personalCente" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiejia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="meiejia" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="htdocs" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="personalCente" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -289,7 +335,7 @@
     <frame x="-8" y="0" width="1936" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2109375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22083333" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -320,13 +366,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_adCon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_addCon.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8018018">
@@ -522,20 +561,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/myData.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.548388">
-          <caret line="152" column="24" selection-start-line="152" selection-start-column="24" selection-end-line="152" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myData.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.678572">
-          <caret line="352" column="17" selection-start-line="352" selection-start-column="17" selection-end-line="352" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/addMember.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="3.8392856">
@@ -547,6 +572,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.9285715">
           <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -606,20 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/owner.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8018018">
-          <caret line="266" column="24" selection-start-line="266" selection-start-column="24" selection-end-line="266" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/owner.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20973349">
-          <caret line="435" column="13" selection-start-line="435" selection-start-column="13" selection-end-line="435" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myRenZdetails.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3059096">
@@ -648,25 +660,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myRenZ.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7705678">
-          <caret line="90" column="9" selection-start-line="90" selection-start-column="9" selection-end-line="90" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/personalCente/myRenZ.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8018018">
           <caret line="55" column="23" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.548388">
-          <caret line="185" column="25" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -675,16 +672,85 @@
         <state vertical-scroll-proportion="1.2549247">
           <caret line="225" column="32" selection-start-line="225" selection-start-column="32" selection-end-line="225" selection-end-column="32" />
           <folding>
-            <marker date="1511791470359" expanded="true" signature="2375:2769" placeholder="..." />
-            <marker date="1511791470359" expanded="false" signature="2460:2509" placeholder="..." />
-            <marker date="1511791470359" expanded="true" signature="2510:2738" placeholder="..." />
-            <marker date="1511791470359" expanded="false" signature="2585:2600" placeholder="..." />
-            <marker date="1511791470359" expanded="true" signature="4499:4999" placeholder="..." />
-            <marker date="1511791470359" expanded="false" signature="4584:4633" placeholder="..." />
-            <marker date="1511791470359" expanded="true" signature="4634:4968" placeholder="..." />
-            <marker date="1511791470359" expanded="false" signature="4709:4724" placeholder="..." />
-            <marker date="1511791470359" expanded="true" signature="11619:11906" placeholder="..." />
-            <marker date="1511791470359" expanded="false" signature="11723:11747" placeholder="..." />
+            <marker date="1511791470359" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1511791470359" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7522523">
+          <caret line="185" column="25" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/owner.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.967741">
+          <caret line="266" column="24" selection-start-line="266" selection-start-column="24" selection-end-line="266" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myRenZ.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1216686">
+          <caret line="62" column="7" selection-start-line="62" selection-start-column="7" selection-end-line="62" selection-end-column="7" />
+          <folding>
+            <marker date="1511791950613" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1511791950613" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1511791950613" expanded="false" signature="-1:-1" placeholder="..." />
+            <marker date="1511791950613" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1511791950613" expanded="false" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/verifyPhone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/myData.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.56662804">
+          <caret line="352" column="17" selection-start-line="352" selection-start-column="17" selection-end-line="352" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/myData.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-33.19355">
+          <caret line="152" column="25" selection-start-line="152" selection-start-column="25" selection-end-line="152" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/personalCente/js/owner.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3511008">
+          <caret line="415" column="38" selection-start-line="415" selection-start-column="38" selection-end-line="415" selection-end-column="38" />
+          <folding>
+            <marker date="1511791950658" expanded="false" signature="7294:7312" placeholder="..." />
+            <marker date="1511791950658" expanded="true" signature="7313:7472" placeholder="..." />
+            <marker date="1511791950658" expanded="false" signature="7409:7433" placeholder="..." />
+            <marker date="1511791950658" expanded="false" signature="8972:8990" placeholder="..." />
+            <marker date="1511791950658" expanded="true" signature="8991:9150" placeholder="..." />
+            <marker date="1511791950658" expanded="false" signature="9087:9111" placeholder="..." />
           </folding>
         </state>
       </provider>
