@@ -973,7 +973,7 @@ class GroupController extends VersionController
     protected function delGroupSubject_v1_0_0(){
         $this->checkParam(array('subject_id','group_num'));
         $mongo = new \MongoClient();
-        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']));
+        $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']))['user_code'];
         $group_user = new Model\GroupUserModel($create_code);
         $subject = new Model\GroupSubjectModel($create_code);
         $role = $group_user->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$this->account_code])->getField('role');
