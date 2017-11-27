@@ -14,8 +14,8 @@ return array(
     'DB_USER_FRIENDS' => 'mysql://root:meiyijiayuan1709@localhost:3306/friends_and_group_',//用户分库
     'DB_CERTIFICATION_APPLICATION' => 'mysql://root:meiyijiayuan1709@localhost:3306/certification_application',
     'DB_GARDEN' => 'mysql://root:meiyijiayuan1709@localhost:3306/garden_',//省份分库
-    'MONGO_NAME' =>'root',//mongodb数据库用户名
-    'MONGO_PWD'     =>'meiyijiayuan1709',//mongodb数据库密码
+    'MONGO_NAME' =>     'root',//mongodb数据库用户名
+    'MONGO_PWD'     =>   'meiyijiayuan1709',//mongodb数据库密码
 
 //    //缓存方式
 //    'DATA_CACHE_TYPE' => 'Memcache',
