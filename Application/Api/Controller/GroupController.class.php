@@ -382,12 +382,12 @@ class GroupController extends VersionController
         $mode->startTrans();
         $user_group1 = new Model\UserGroupModel($this->account_code);
         $user_group1->startTrans();
-        $user_group2 = new Model\UserGroupModel($User_code);
+        $user_group2 = new Model\UserGroupModel($user_code);
         $user_group2->startTrans();
         $res1 = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>1]);
         $res2 =$mode->where(['user_code'=>$this->account_code,'group_num'=>$group_num])->save(['role'=>3]);
         $group_info = $user_group1->where(['group_num'=>$group_num])->find();
-        $$res3 = $user_group1->where(['group_num'=>$group_num])->delete();
+        $res3 = $user_group1->where(['group_num'=>$group_num])->delete();
         $res4 = $user_group2->add(array(
                 'group_name'=>$group_info['group_name'],
                 'group_portrait'=>$group_info['group_portrait'],
@@ -978,7 +978,7 @@ class GroupController extends VersionController
         $subject = new Model\GroupSubjectModel($create_code);
         $role = $group_user->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$this->account_code])->getField('role');
         if(intval($role) === 3){
-            $
+            $crate_user = 
         }
     }
     /*
