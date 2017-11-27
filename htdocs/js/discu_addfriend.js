@@ -43,6 +43,7 @@ $(document).ready(function(){
             </div>
                             `;
                         });
+                        console.log(html);
                         $(".friendList").append(html);
                     }else{
                         console.log(data.errmsg);
