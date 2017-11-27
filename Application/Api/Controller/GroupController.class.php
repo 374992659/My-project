@@ -418,7 +418,7 @@ class GroupController extends VersionController
     * */
     protected function leaveGroup_v1_0_0(){
         $this->checkParam(array('group_num'));
-        $mongo = new MongoClient();
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']))['user_code'];
         $group_user = new Model\GroupUserModel($create_code);
         $group_user->startTrans();
@@ -972,7 +972,7 @@ class GroupController extends VersionController
      * */
     protected function delGroupSubject_v1_0_0(){
         $this->checkParam(array('subject_id','group_num'));
-        $mongo = new MongoClient();
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']));
         $group_user = new Model\GroupUserModel($create_code);
         $subject = new Model\GroupSubjectModel($create_code);
