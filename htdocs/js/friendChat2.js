@@ -240,7 +240,6 @@ $(document).ready(function(){
                              var img=data.content.split("/");
                              var http=img[0];
                              var chatPage=$("#chatPage");
-
                              // 存在本地的聊天记录
                                 var httP=data.send_portrait.split(":")[0];
                                 var pic="";
@@ -276,7 +275,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                              
-                              <img src="${data.content}" alt="" style="width: 80px">
+                              <img src="http://wx.junxiang.ren/project/${data.content}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `;
