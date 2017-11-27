@@ -176,6 +176,7 @@ $(document).ready(function(){
                     var html = patharr[parseInt(patharr.length-1)];
                     // 获取自己code
                     var my_code=localStorage.getItem("my_code");
+                    console.log(data);
                     if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
                         var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
