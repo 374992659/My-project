@@ -978,7 +978,17 @@ class GroupController extends VersionController
         $subject = new Model\GroupSubjectModel($create_code);
         $role = $group_user->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$this->account_code])->getField('role');
         if(intval($role) === 3){
-//            $create_user = $subject->where([''])
+            $create_user = $subject->where(['id'=>$this->pdata['subject_id']])->getField('user_code');
+            if($create_user !== $this->account_code){
+                $this->echoEncrypData(500);
+            }
+        }
+        $res=$subject->where(['id'=>$this->pdata['subject_id']])->delete();
+        if($res){
+            $subject->execute('drop table group_subject_dynamics_'.$this->pdata['subject_id']);
+            $this->echoEncrypData(0);
+        }else{
+            $this->echoEncrypData(1);
         }
     }
     /*
