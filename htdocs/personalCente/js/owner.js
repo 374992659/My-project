@@ -362,9 +362,12 @@ $(document).ready(function(){
                 console.log(data);
                 !real_name?alert("名字没有填"):
                     !phone?alert("没填手机号"):
-                        !dongNum&&!floorNum&&!roomNum?alert("没填房号"):
+                        !dongNum?alert("房号不正确"):
+                            !floorNum?alert("房号不正确"):
+                                !roomNum?alert("房号不正确"):
                             !id_card_num?alert("没填证件号"):
-                                !myPicA&&myPicB?alert("证件正反两面"):
+                                !myPicA?alert("证件正反两面"):
+                                    !myPicB?alert("证件正反两面"):
                                     !city_id?alert("没选城市"):
                                        !a?alert("小区照片"):
                                            !garden_name?alert("没有填小区"):
@@ -412,12 +415,15 @@ $(document).ready(function(){
             console.log(data);
             !real_name?alert("名字没有填"):
                 !phone?alert("没填手机号"):
-                    !dongNum&&!floorNum&&!roomNum?alert("没填房号"):
-                        !id_card_num?alert("没填证件号"):
-                            !myPicA&&myPicB?alert("证件正反两面"):
-                                !city_id?alert("没选城市"):
-                                    !a?alert("小区照片"):
-                                        !garden_name?alert("没有填小区"):
+                    !dongNum?alert("房号不正确"):
+                        !floorNum?alert("房号不正确"):
+                            !roomNum?alert("房号不正确"):
+                                !id_card_num?alert("没填证件号"):
+                                    !myPicA?alert("证件正反两面"):
+                                        !myPicB?alert("证件正反两面"):
+                                            !city_id?alert("没选城市"):
+                                                !a?alert("小区照片"):
+                                                    !garden_name?alert("没有填小区"):
                 $.ajax({
                 url:url+"UserCenter_ownerApplication",
                 type:"POST",
