@@ -25,7 +25,6 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        //localStorage.setItem("myPicA",data.data[0]);
                         $(".flockHeadA img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".loaderA").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".flockHeadA").attr("style","display:block");
@@ -60,7 +59,6 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         console.log(data.data);
-                        //localStorage.setItem("myPicB",data.data[0]);
                         $(".flockHeadB img").attr("src","http://wx.junxiang.ren/project/"+data.data[0]);
                         $(".loaderB").attr("style","position:absolute;left:40%;opacity: 0;");
                         $(".flockHeadB").attr("style","display:block");
@@ -179,7 +177,6 @@ $(document).ready(function(){
                `
                         }
                         $(".myPic").prepend(html);
-
                     }
                 },
                 error:function (data) {
@@ -287,76 +284,46 @@ $(document).ready(function(){
         })
     })();
     //栋数判断
-
     //判断手机号格式是否正确
-    //(function () {
-    //    $("#phone").blur(function(){
-    //        // 获取号码
-    //    var phoneNum=$("#phone").val();
-    //        validate4(phoneNum);
-    //    });
-    //})();
+    (function () {
+       $("#phone").blur(function(){
+           // 获取号码
+       var phoneNum=$("#phone").val();
+           validate4(phoneNum);
+       });
+    })();
     //判断身份证号格式是否正确
-    //(function () {
-    //    $("#identityCard").blur(function(){
-    //        var idCard=$("#identityCard").val();
-    //        isCardNo(idCard)
-    //    })
-    //})();
+    (function () {
+       $("#identityCard").blur(function(){
+           var idCard=$("#identityCard").val();
+           isCardNo(idCard)
+       })
+    })();
     $(".weui-btn").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 姓名
         var   real_name=$("#name").val();
-               //$("#name").attr("placeholder","名字没填哦");
-        if(!real_name){
-            alert("没有填名字哦");
-        }
         // 手机号
           var  phone=$("#phone").val();
-        if(!phone){
-                alert('没填手机号码');
-        }else{
-            if(!(/^1[34578]\d{9}$/.test(phone))){
-                alert('手机号码格式错误');
-            }
-        }
                // $("#phone").attr("placeholder","手机号没填哦");
         // 房号“1-2-3”字符串格式
             var dongNum=$("#dongNum").val();
             var floorNum=$("#floorNum").val();
             var roomNum=$("#roomNum").val();
             var room_num=dongNum+"-"+floorNum+"-"+roomNum;
-       if(!dongNum&&!floorNum&&!roomNum){
-           alert("选择房号");
-       }
         // 身份证号
          var   id_card_num=$("#identityCard").val();
-        if(!id_card_num){
-            alert("没填身份证号");
-        }else{
-            isCardNo(id_card_num);
-        }
         // 身份证照片json字符串格式
         var myPicA=$(".flockHeadA img").attr("src");
         var myPicB=$(".flockHeadB img").attr("src");
         var id_card_picture= "{'a':'"+myPicA+"','b':'"+myPicB+"'}";
-        if(!myPicA&&!myPicB){
-            alert("证件照是正反两面");
-        }
         // 小区名字
           var   garden_name=$("#gardenName").val();
-        if(!garden_name){
-           alert("没有填小区哦");
-            }
         // 小区code（没有可不填）
           var garden_code=$("#gardenName").attr("title");
         // 小区所属城市
           var city_id=$("#city option:selected").val();
-        if(!city_id){
-            alert("没有选城市哦");
-
-        }
         // 小区详细地址
         //    garden_addr=$("#plotPlace").val();
           var garden_addr=$("#province option:selected").text()+$("#city option:selected").text()+$("#gardenName").val();
@@ -370,9 +337,6 @@ $(document).ready(function(){
                 var  src=_this.attr("src");
                 garden_picture[i]=src;
             });
-        }
-        if(!a){
-            alert("上传小区照片");
         }
         console.log(typeof garden_picture);
         // 合同房产证照片（可填）
@@ -396,6 +360,14 @@ $(document).ready(function(){
                 var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"room_num":room_num,"garden_code":garden_code,"role":role})];
                 var jsonEncryptData=jsEncryptData(data);
                 console.log(data);
+                !real_name?alert("名字没有填"):
+                    !phone?alert("没填手机号"):
+                        !dongNum&&!floorNum&&!roomNum?alert("没填房号"):
+                            !id_card_num?alert("没填证件号"):
+                                !myPicA&&myPicB?alert("证件正反两面"):
+                                    !city_id?alert("没选城市"):
+                                       !a?alert("小区照片"):
+                                           !garden_name?alert("没有填小区"):
                 $.ajax({
                     url:url+"UserCenter_roomRoleExists",
                     type:"POST",
@@ -438,7 +410,15 @@ $(document).ready(function(){
                 //    数据加密
                 jsonEncryptData=jsEncryptData(data);
             console.log(data);
-            $.ajax({
+            !real_name?alert("名字没有填"):
+                !phone?alert("没填手机号"):
+                    !dongNum&&!floorNum&&!roomNum?alert("没填房号"):
+                        !id_card_num?alert("没填证件号"):
+                            !myPicA&&myPicB?alert("证件正反两面"):
+                                !city_id?alert("没选城市"):
+                                    !a?alert("小区照片"):
+                                        !garden_name?alert("没有填小区"):
+                $.ajax({
                 url:url+"UserCenter_ownerApplication",
                 type:"POST",
                 data:{"data":jsonEncryptData},
