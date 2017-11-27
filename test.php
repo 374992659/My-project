@@ -6,7 +6,7 @@
  * Time: 11:33
  */
 $m =new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
-$db = $m->local;
+$db = $m->baseinfo;
 $collection = $db->test;
 $collection->insert(array('content'=>'test'));
 
