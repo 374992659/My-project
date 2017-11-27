@@ -216,8 +216,8 @@ $(document).ready(function(){
                         var online_friends = localStorage.getItem('online_friends');
                         if(contains(online_friends,friend_code)){
                             var i = online_friends.length;
-                            while (i--) {
-                                if (arr[i] === obj) {
+                            while (i--){
+                                if (arr[i] === obj){
                                     online_friends.splice(i,1);
                                 }
                             }
@@ -248,7 +248,7 @@ $(document).ready(function(){
                                 }else{
                                     pic="http://wx.junxiang.ren/project/"+data.send_portrait
                                 }
-                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.sender_nickname+"','portrait':'"+pic+"'}";
+                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+"http://wx.junxiang.ren/project/"+data.content+"','nickname':'"+data.sender_nickname+"','portrait':'"+pic+"'}";
                                console.log(json_str);
                                 var history_chats = localStorage.getItem('history_'+data.sender_code);
                                 if(!history_chats){
@@ -683,6 +683,13 @@ $(document).ready(function(){
                     }
                     console.log(pic);
                     if(item.sender_code===my_code){//自己
+                        var HttP=item.content.split(":");
+                        var Pic="";
+                        if(HttP==="http"){
+                            Pic=item.content;
+                        }else{
+                            Pic="http://wx.junxiang.ren/project/"+item.content
+                        }
                         console.log("聊天记录");
                         if(parseInt(item.type)===3){
                             html+=`
