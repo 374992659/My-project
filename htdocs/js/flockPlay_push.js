@@ -508,7 +508,8 @@ $(document).ready(function(){
                     collection_time=timestamp3/1000;
                 console.log("集合时间"+collection_time);
                 if(parseInt(collection_time)-parseInt(start_time)<0){
-                    $("#gathertime").val("集合时间早于开始时间啦");
+                    //$("#gathertime").val("集合时间早于开始时间啦");
+                    alert("集合时间早于开始时间啦");
                 }
             });
         })();
@@ -593,6 +594,16 @@ $(document).ready(function(){
             alert(data);
             // 数据加密
             var jsonEncryptData=jsEncryptData(data);
+            !title?alert("主题没有填"):
+            !start_time?alert("开始时间没有选择"):
+            !end_time?alert("结束时间没有选择"):
+            !destination?alert("输入目的地"):
+            !collection_time?alert("选择集合时间"):
+            !collection_place?alert("集合地"):
+            !contact?alert("联系人"):
+            !phone?alert("联系电话"):
+            !total_num?alert("目标人数"):
+            !average_cost?alert("人均花费"):
             $.ajax({
                 url:url+"group_addGroupActivity",
                 type:"POST",

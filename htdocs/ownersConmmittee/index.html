@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>业委会</title>
+    <link rel="stylesheet" href="../JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="../JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="../JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+    <!--预加载图片-->
+    <!--<img class="prestrain" src="../image/timg.gif" style="position: absolute;z-index:100;width: 100%;height: 100%" alt=""/>-->
+    <div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
+        <div class="weui-tab">
+            <div class="weui-tab__bd">
+                <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+                    <div class="lr_nb">
+                        <div class="slider_wrap line">
+                            <div class="wx_items">
+                                <div class="item_cell current">
+                                    <a href=""><span>候选人</span></a>
+                                </div>
+                                <div class="item_cell">
+                                    <a href=""><span>储备人</span></a>
+                                </div>
+                                <div class="item_cell">
+                                    <a href=""><span>推荐列表</span></a>
+                                </div>
+                                <div class="item_cell">
+                                    <a href=""><span>我要推荐</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2" class="weui-tab__bd-item">
+                    <h1>页面二</h1>
+                </div>
+                <div id="tab3" class="weui-tab__bd-item">
+                    <h1>页面三</h1>
+                </div>
+            </div>
+            <div class="weui-tabbar">
+                <a href="#tab1" class="weui-tabbar__item weui-bar__item--on">
+
+                    <div class="weui-tabbar__icon">
+                        <img src="image/a.png" alt="">
+                    </div>
+                    <p class="weui-tabbar__label">投票选举</p>
+                </a>
+                <a href="#tab2" class="weui-tabbar__item">
+                    <div class="weui-tabbar__icon">
+                        <img src="image/d.jpg" alt="">
+                    </div>
+                    <p class="weui-tabbar__label">发起会议</p>
+                </a>
+                <a href="#tab3" class="weui-tabbar__item">
+                    <div class="weui-tabbar__icon">
+                        <img src="image/c.jpg" alt="">
+                    </div>
+                    <p class="weui-tabbar__label">大会列表</p>
+                </a>
+            </div>
+        </div>
+    <script src="../js/jquery-1.11.3.js"></script>
+    <script src="../JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="../JQuery_weui/jquery-weui.js"></script>
+    <script src="../js/url.js"></script>
+    <script src="../js/aes.js"></script>
+    <script src="../js/pad-zeropadding.js"></script>
+    <script src="../js/encrypt-decode.js"></script>
+    <script src="../js/timestamp.js"></script>
+    <script src="../js/showHide.js"></script>
+    <script src="../js/qrcode.min.js"></script>
+</body>
+</html>

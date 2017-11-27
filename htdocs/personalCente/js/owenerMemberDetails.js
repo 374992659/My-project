@@ -144,7 +144,7 @@ $(document).ready(function(){
                             pic="http://wx.junxiang.ren/project/"+item;
                         }
                         id_cardPic+=`
-                         <img src="${pic}" alt="" >
+                         <img src="${pic}" alt="">
                         `
                     });
                 }$(".papersPic").append(id_cardPic);
@@ -193,5 +193,17 @@ $(document).ready(function(){
             }
         },
         error:function(){}
-    })
+    });
+    // 图片放大功能
+    $(".picPlace").on("click",".weui-panel ul li .addPic",function(){
+        var url=$(this).attr("src");
+        console.log(url);
+        if($(".weui-gallery").is(":hidden")){
+            $(".weui-gallery").show();
+            $(".weui-gallery__img").attr("style","background-image:url("+url+")")
+        }
+    });
+    $(".weui-gallery").click(function(){
+        $(".weui-gallery").hide();
+    });
 });
