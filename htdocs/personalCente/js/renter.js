@@ -371,9 +371,12 @@ $(document).ready(function(){
         console.log(data);
         !real_name?alert("没填姓名"):
             !phone?alert("没填手机号"):
-                !houseNum&&!floorNum&&!roomNum?alert("没有填房号"):
+                !houseNum?alert("栋号未填"):
+                    !floorNum?alert("单元未填"):
+                    !roomNum?alert("房号未填"):
                     !id_card_num?alert("没填身份证号"):
-                        !A&&!B?alert("证件正反面"):
+                        !A&&!B?alert("证件正面"):
+                            !B?alert("证件反面"):
                             !city_id?alert("选择城市"):
                                 !garden_name?alert("小区名字"):
                                     !contract_period?alert("选择合同有效期"):
