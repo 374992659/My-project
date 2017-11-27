@@ -250,6 +250,7 @@ $(".weui-gallery").click(function(){
             var   option={};
             $("input[name='option']").each(function(i,item){
                 option[parseInt(i+1)]=$(this).val();
+                console.log(i);
             });
             console.log(option);
         console.log(option.length);
