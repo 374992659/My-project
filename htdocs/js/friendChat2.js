@@ -697,7 +697,7 @@ $(document).ready(function(){
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 80px" src="${item.content}" alt=""/>
+                    <img style="width: 80px" src="${Pic}" alt=""/>
                  </span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
