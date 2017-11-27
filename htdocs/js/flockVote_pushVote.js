@@ -255,7 +255,6 @@ $(".weui-gallery").click(function(){
 
             });
             console.log(option);
-        console.log(n);
         // 获取话题类型
         var type=$(".voteType").val();
         // 获取小区code
