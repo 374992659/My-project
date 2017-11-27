@@ -120,7 +120,7 @@ class Events
                 //获取群未读消息
                 $group_new_message = array();
                 if($group_arr){
-                    $mongo = new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
+                    $mongo = new MongoClient();
                     $group_data = $mongo->baseinfo->group_area->find(array('group_code'=>array('$in'=>$group_arr)));
                     if($group_data){
                         $group_data = iterator_to_array($group_data);
@@ -187,7 +187,7 @@ class Events
                 $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');
                 $table_id =substr($account_code['account_code'],0,6);
                 $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
-                $mongo =new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
+                $mongo =new MongoClient();
                 $userdatastr = 'user_info_'.$account_code['account_code'];
                 $database1=$mongo->$userdatastr;
                 $collection1 = $database1->friends_chat;
@@ -234,7 +234,7 @@ class Events
                $user_info= $db->select('nickname,portrait')->from('user_info_'.$table_id)->where('account_code ='.$account_code['account_code'])->row();
 //               var_dump($user_info);
 //                       $create_code = $db->select('user_code')->from('group_area')->where('group_code ='.$message->group)->single();
-               $mongo =new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
+               $mongo =new MongoClient();
                $create_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$message->group),array('user_code'));
                $create_code =$create_code['user_code'];
                $user_group= new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$create_code);//创建人群表
@@ -294,7 +294,7 @@ class Events
                 $group_code = $message->group_code;
     //                        $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'baseinfo');//查找群创建人code
     //                        $user_code = $db->select('user_code')->from('group_area')->where("group_code =$group_code")->single();
-                $mongo =new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
+                $mongo =new MongoClient();
                 $user_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$group_code),array('user_code'));
                 $user_coed = $user_code['user_code'];
                 $db2 =new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$user_code);//查找群内用户
@@ -313,7 +313,7 @@ class Events
            case 6:                                            //拉取好友聊天
                 $friend_code  = $message->account_code;
                 if(!$friend_code) die ;
-                $mongo= new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
+                $mongo= new MongoClient();
                $friend_info = $mongo->baseinfo->user_area->findOne(array('account_code'=>$friend_code),array('nickname','portrait'));
                 $db = new Workerman\MySQL\Connection('127.0.0.1', '3306', 'root', 'meiyijiayuan1709', 'friends_and_group_'.$account_code['account_code']);
                 $data = $db->select()->from('offline_user_message')->where('sender_code ='.$friend_code)->query();
@@ -347,7 +347,7 @@ class Events
                 Gateway::sendToCurrentClient(json_encode($returnData));break;
            case 7:                                    //读取群消息
                 $group_code =$message->group_code;
-                $mongo =new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
+                $mongo =new MongoClient();
                 $data = $mongo->baseinfo->user_group_time->count(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code));
                 if($data){
                     $mongo->baseinfo->user_group_time->update(array('user_code'=>$account_code['account_code'],'group_code'=>$group_code),array('$set'=>array('time'=>time())));
@@ -379,7 +379,7 @@ class Events
            case 9:               //获取好友聊天记录 获取最近7天
                 $user_code = $message->user_code;
                 $account_code=$account_code['account_code'];
-                $mongo =new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
+                $mongo =new MongoClient();
                 $user_info ='user_info_'.$account_code;
                 $limit_time = time()-7*24*60*60;
                 $data = $mongo->$user_info->friends_chat->find(array('$or'=>array(array('sender_code'=>$user_code),array('getter_code'=>$user_code)),'send_time'=>array('$gte'=>$limit_time)))->sort(array('send_time'=>-1));
