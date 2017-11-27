@@ -292,12 +292,12 @@ class RegiestController extends BaseController
         if( !preg_match('/^[a-z\d]{6,12}$/i',trim($this->pdata['account']))){ //账号格式 字母开头6-12位
             $this->echoEncrypData(106);
         }
-//        if(md5($this->pdata['password']) !== md5($this->pdata['repassword']))$this->echoEncrypData(1,'请确认两次密码输入一致');
+        if(md5($this->pdata['password']) !== md5($this->pdata['repassword']))$this->echoEncrypData(1,'请确认两次密码输入一致');
         $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
-//        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$this->pdata['account']));
-//        if( $account_count ){
-//            $this->echoEncrypData(1,'该账号已被注册');
-//        }
+        $account_count = $mongo->baseinfo->user_area->count(array('account'=>$this->pdata['account']));
+        if( $account_count ){
+            $this->echoEncrypData(1,'该账号已被注册');
+        }
         //注册地检测
         $data =  $this->getProvinceAndCity($this->pdata['longitude'],$this->pdata['latitude']);
         if(!$data)$this->echoEncrypData(1,'暂不支持该区域');
