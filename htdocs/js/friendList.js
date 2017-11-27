@@ -494,7 +494,7 @@ $(document).ready(function() {
                                 }
                             }
                     });
-                    $("#1").html(html);
+                    $("#user1").html(html);
                     //$("#1").parent().prev().find("img").css("transform","rotate(90deg)");
                     $(".img1").css("transform","rotate(90deg)");
                     $(".fri1").show();
@@ -507,7 +507,7 @@ $(document).ready(function() {
                                 $("#"+online[j]).attr("style","opacity: 1");
                                 var clone=$("#"+online[j]).parent().parent().clone(true);
                                 $("#"+online[j]).parent().parent().remove();
-                                $("#1").prepend(clone);
+                                $("#user1").prepend(clone);
                             }
                         }
                     }
@@ -564,7 +564,7 @@ $(document).ready(function() {
                             `;
                                 }
                         });
-                        $("#"+group_id).html(html);
+                        $("#user"+group_id).html(html);
                         var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
                         var online=JSON.parse(localStorage.getItem("online_friends"));
                         for(var i=0 ,len=allfriend.length;i<len;i++){
@@ -573,7 +573,7 @@ $(document).ready(function() {
                                    $("#"+online[j]).attr("style","opacity: 1");
                                     var clone=$("#"+online[j]).parent().parent().clone(true);
                                     $("#"+online[j]).parent().parent().remove();
-                                    $("#"+group_id).prepend(clone);
+                                    $("#user"+group_id).prepend(clone);
                                 }
                             }
                         }
