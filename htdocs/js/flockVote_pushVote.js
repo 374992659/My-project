@@ -161,11 +161,10 @@ $(document).ready(function(){
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
-                    console.log(data.data[0]);
-                    localStorage.setItem("flockVotePic",data.data[0]);
-                    console.log(data.data[0]);
+                    //localStorage.setItem("flockVotePic",data.data[0]);
+                  var url=  data.data[0];
                     $(".img").attr({
-                        "src":Url,
+                        "src":"http://wx.junxiang.ren/project/"+url,
                         "style":"width:77px;height:77px"
                     });
 
@@ -236,7 +235,8 @@ $(".weui-gallery").click(function(){
         var hideTop=function(){
             success.empty()};
         // 获取图片
-        var picture=localStorage.getItem("flockVotePic");
+       // var picture=localStorage.getItem("flockVotePic");
+        var picture=$(".voteImg").attr("src");
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken"),
         // 获取群号码
