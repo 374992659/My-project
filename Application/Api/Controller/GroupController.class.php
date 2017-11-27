@@ -978,7 +978,7 @@ class GroupController extends VersionController
         $subject = new Model\GroupSubjectModel($create_code);
         $role = $group_user->where(['group_num'=>$this->pdata['group_num'],'user_code'=>$this->account_code])->getField('role');
         if(intval($role) === 3){
-            $crate_user = 
+            
         }
     }
     /*
