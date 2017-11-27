@@ -19,6 +19,7 @@ $(document).ready(function(){
             contentType : false,
             secureuri:false,
             success : function(data){
+                console.log(data);
                // 解密
                data=jsDecodeData(data);
                console.log(data);
