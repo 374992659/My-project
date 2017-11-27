@@ -100,7 +100,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="QQ">QQ：<span style="color: green">*</span></label>
-                        <input type="number" id="QQ" placeholder="" value="${result.qq_num}">
+                        <input type="number" id="QQ" placeholder="" value="${result.qq_num}"  pattern="[0-9]*">
                     </div>
                 </div>
             </div>
