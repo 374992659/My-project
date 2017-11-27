@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我要推荐</title>
+    <link rel="stylesheet" href="../JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="../JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="../JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+        label{
+            width:35%;
+            display: inline-block;
+            text-align: right;
+        }
+        input{
+          width: 55%;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div style="padding: 10px">
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="name">姓名：<span style="color:red">*</span></label>
+                    <input type="text" id="name" autofocus="autofocus">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="age">年龄：<span style="color:red">*</span></label>
+                    <input type="text" id="age">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="phone">电话：<span style="color:red">*</span></label>
+                    <input type="text" id="phone">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="garden">常住小区：<span style="color:red">*</span></label>
+                    <input type="text" id="garden">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="duty">目前职务：<span style="color:red">*</span></label>
+                    <input type="text" id="duty">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="voteDuty">选举职务：<span style="color:red">*</span></label>
+                    <input type="text" id="voteDuty" >
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="resume">个人简介：<span style="color:red">*</span></label>
+                    <input type="text" id="resume" autofocus="autofocus">
+                </div>
+            </div>
+        </div>
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="voteManifesto">投票宣言：<span style="color:red">*</span></label>
+                    <input type="text" id="voteManifesto" autofocus="autofocus">
+                </div>
+            </div>
+        </div>
+        <button class="weui-btn weui-btn_primary" style="margin-top: 40px">按钮</button>
+        <p style="text-align: center;margin-top: 10px">被推荐人同意方可推荐成功，请尽快联系被推荐人确认</p>
+    </div>
+
+    <script src="../js/jquery-1.11.3.js"></script>
+    <script src="../JQuery_weui/fastclick.js"></script>
+    <script>
+        $(function () {
+            FastClick.attach(document.body);
+        });
+    </script>
+    <script src="../JQuery_weui/jquery-weui.js"></script>
+    <script src="../js/url.js"></script>
+    <script src="../js/aes.js"></script>
+    <script src="../js/pad-zeropadding.js"></script>
+    <script src="../js/encrypt-decode.js"></script>
+    <script src="../js/timestamp.js"></script>
+    <script src="../js/showHide.js"></script>
+    <script src="../js/qrcode.min.js"></script>
+</body>
+</html>

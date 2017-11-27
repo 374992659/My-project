@@ -62,6 +62,7 @@ $(document).ready(function(){
         });
     })();
     $(".regBtn").click(function(){
+        var title=$(".this").attr("title");
         // 获取账号
         var numeber=$(".account").val();
         // 密码
@@ -77,6 +78,9 @@ $(document).ready(function(){
         // 加密后的数据
         var afterDate=jsEncryptData(info);
         console.log(afterDate);
+        if(parseInt(title)===0){
+
+        }
         if(password===repassword){
             // ajax向后台传输数据
             $.ajax({

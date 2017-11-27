@@ -14,6 +14,18 @@
     <link rel="stylesheet" href="../JQuery_weui/jquery-weui.css">
     <link rel="stylesheet" href="../JQuery_weui/demos.css">
     <link rel="stylesheet" href="css/index.css">
+    <style>
+        #tab2 label{
+            width: 35%;
+        }
+        #tab2 input{
+            width: 55%;
+            height: 25px;
+        }
+        #tab2 textarea{
+            width: 55%;
+        }
+    </style>
 </head>
 <body>
     <!--预加载图片-->
@@ -32,20 +44,99 @@
                                     <a href=""><span>储备人</span></a>
                                 </div>
                                 <div class="item_cell">
-                                    <a href=""><span>推荐列表</span></a>
+                                    <a href="recommendList.html"><span>推荐列表</span></a>
                                 </div>
                                 <div class="item_cell">
-                                    <a href=""><span>我要推荐</span></a>
+                                    <a href="myRecommend.html"><span>我要推荐</span></a>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <table >
+                        <tr>
+                            <td >姓名</td>
+                            <td >年龄</td>
+                            <td >小区</td>
+                            <td >票数</td>
+                        </tr>
+                    </table>
                 </div>
                 <div id="tab2" class="weui-tab__bd-item">
-                    <h1>页面二</h1>
+                    <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left" for="meetingTitle">会议主题：<span style="color:red">*</span></label>
+                                <input type="text" id="meetingTitle" autofocus="autofocus">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left" for="meetingTime">开会时间：<span style="color:red">*</span></label>
+                                <input type="text" id="meetingTime" autofocus="autofocus">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left" for="meetingPlace">会议地点：<span style="color:red">*</span></label>
+                                <input type="text" id="meetingPlace" autofocus="autofocus">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left" for="sponsor">主办单位：<span style="color:red">*</span></label>
+                                <input type="text" id="sponsor" autofocus="autofocus">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left" for="meetingPersonnel">参会人员：<span style="color:red">*</span></label>
+                                <input type="text" id="meetingPersonnel" autofocus="autofocus">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-cells">
+                        <div class="weui-cell">
+                            <div class="weui-cell__bd">
+                                <label class="left" for="meetingContent">会议内容：<span style="color:red">*</span></label>
+                                <textarea rows="3" cols="20" id="meetingContent" autofocus="autofocus"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="weui-btn weui-btn_primary">提交</button>
                 </div>
                 <div id="tab3" class="weui-tab__bd-item">
-                    <h1>页面三</h1>
+                    <div class="weui-panel__bd">
+                        <div class="weui-media-box weui-media-box_text">
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                            <div style="text-align: right">
+                                <span>时间：2017.12.3</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-panel__bd">
+                        <div class="weui-media-box weui-media-box_text">
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                            <div style="text-align: right">
+                                <span>时间</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-panel__bd">
+                        <div class="weui-media-box weui-media-box_text">
+                            <p class="weui-media-box__desc">由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。</p>
+                            <div style="text-align: right">
+                                <span>时间</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="weui-tabbar">

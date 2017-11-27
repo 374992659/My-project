@@ -395,7 +395,7 @@ $(document).ready(function() {
                          <div class="weui-cells" title="${item.id}">
                             <div class="weui-cell LinkBtn"  title="${item.id}" style="position: relative;z-index: 1000">
                                 <div class="weui-cell__hd ">
-                                   <img class="linkBtn ${item.id}" src="image/right.png "  title="${item.id}">
+                                   <img class="linkBtn img${item.id}" src="image/right.png "  title="${item.id}">
                                 </div>
                                 <div class="weui-cell__bd">
                                     <p style="">${item.group_name}</p>
@@ -496,7 +496,7 @@ $(document).ready(function() {
                     });
                     $("#1").html(html);
                     //$("#1").parent().prev().find("img").css("transform","rotate(90deg)");
-                    $(".1").css("transform","rotate(90deg)");
+                    $(".img1").css("transform","rotate(90deg)");
                     $(".fri1").show();
                     //好友在线情况
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
@@ -573,7 +573,7 @@ $(document).ready(function() {
                                    $("#"+online[j]).attr("style","opacity: 1");
                                     var clone=$("#"+online[j]).parent().parent().clone(true);
                                     $("#"+online[j]).parent().parent().remove();
-                                    $("#"+id).prepend(clone);
+                                    $("#"+group_id).prepend(clone);
                                 }
                             }
                         }
