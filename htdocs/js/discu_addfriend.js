@@ -127,11 +127,9 @@ $(document).ready(function(){
                         </div>
                         `
                                 }
-
                             }
                         });
-                        console.log(html);
-                        $("#"+group_id).append(html);
+                        $("#"+group_id).html(html);
                     }else{
                         console.log(data.errmsg);
                     }
