@@ -48,180 +48,182 @@
 </head>
 <body>
 <div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
-<div style="padding: 5px 10px">
-    <!--姓名-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <label class="left" for="name">姓名：<span style="color:red">*</span></label>
-                <input type="text" id="name">
+<div class="adMember">
+    <div style="padding: 5px 10px">
+        <!--姓名-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="name">姓名：<span style="color:red">*</span></label>
+                    <input type="text" id="name" autofocus="autofocus">
+                </div>
             </div>
         </div>
-    </div>
-    <!--电话-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <label class="left" for="phone">电话：<span style="color:red">*</span></label>
-                <input type="text" id="phone">
+        <!--电话-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="phone">电话：<span style="color:red">*</span></label>
+                    <input type="tel" id="phone">
+                </div>
             </div>
         </div>
-    </div>
-    <!--房号-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
-                <select name="" id="dongNum">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>栋/座
-                <select name="" id="floorNum">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                </select>楼
-                <select name="" id="roomNum">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                </select>号
+        <!--房号-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
+                    <select name="" id="dongNum">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>栋/座
+                    <select name="" id="floorNum">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                    </select>楼
+                    <select name="" id="roomNum">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>号
+                </div>
             </div>
         </div>
-    </div>
-    <!--关系-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <label class="left" for="rela">关系：<span style="color:red">*</span></label>
-                <select name="" id="rela">
-                    <option value="儿子">儿子</option>
-                    <option value="妻子">妻子</option>
-                    <option value="父母">父母</option>
-                    <option value="朋友">朋友</option>
-                </select>
+        <!--关系-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="rela">关系：<span style="color:red">*</span></label>
+                    <select name="" id="rela">
+                        <option value="儿子">儿子</option>
+                        <option value="妻子">妻子</option>
+                        <option value="父母">父母</option>
+                        <option value="朋友">朋友</option>
+                    </select>
+                </div>
             </div>
         </div>
-    </div>
-    <!--合同有效期-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <label class="left" for="date2">合同有效期：<span style="color:red">*</span></label>
-                <input class="weui-input" id="date2" type="text" value="">
+        <!--合同有效期-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="date2">合同有效期：<span style="color:red">*</span></label>
+                    <input class="weui-input" id="date2" type="text" value="">
+                </div>
             </div>
         </div>
-    </div>
-    <!--小区地址-->
-    <div class="weui-cells">
-        <div class="weui-cell">
-            <div class="weui-cell__bd"  style="position: relative;z-index: 50">
-                <label class="left" for="plotName">小区名字：<span style="color:red">*</span></label>
-                <!--<div class="weui-cell__bd" id="sanji" style="display: inline-block">-->
+        <!--小区地址-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd"  style="position: relative;z-index: 50">
+                    <label class="left" for="plotName">小区名字：<span style="color:red">*</span></label>
+                    <!--<div class="weui-cell__bd" id="sanji" style="display: inline-block">-->
                     <!--<select name="province" id="province">-->
-                        <!--<option value="">请选择</option>-->
+                    <!--<option value="">请选择</option>-->
                     <!--</select>-->
                     <!--<select name="city" id="city">-->
-                        <!--<option value="">请选择</option>-->
+                    <!--<option value="">请选择</option>-->
                     <!--</select>-->
-                <!--</div>-->
-                <!--<input type="text" id="housePlace" placeholder="街道" style="width: 20%">-->
-                <div style="position: relative;z-index: 50;display: inline-block">
-                    <select name="" id="gardenName">
+                    <!--</div>-->
+                    <!--<input type="text" id="housePlace" placeholder="街道" style="width: 20%">-->
+                    <div style="position: relative;z-index: 50;display: inline-block">
+                        <select name="" id="gardenName">
 
-                    </select>
-                    <!--<input type="text" id="plotName" style="width: 20%"  placeholder="小区名字">-->
-                    <!--<ul class="allGarden" style="position: absolute;top:40px;left:0;display: none">-->
-                    <!--</ul>-->
-                </div>
+                        </select>
+                        <!--<input type="text" id="plotName" style="width: 20%"  placeholder="小区名字">-->
+                        <!--<ul class="allGarden" style="position: absolute;top:40px;left:0;display: none">-->
+                        <!--</ul>-->
+                    </div>
 
-            </div>
-        </div>
-    </div>
-</div>
-
-<!--身份证-->
-<div class="weui-cells">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <label class="left" for="identityCard">身份证：<span style="color:red">*</span></label>
-            <input type="text" id="identityCard">
-        </div>
-    </div>
-</div>
-<!--成员账号-->
-<div class="weui-cells">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <label class="left" for="account">成员账号：<span style="color:green">*</span></label>
-            <input type="text" id="account">
-        </div>
-    </div>
-</div>
-<!--证件照-->
-<div class="weui-cells">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <label class="left" for="" style="vertical-align: top">证件照：<span style="color:green">*</span></label>
-            <!--上传照片-->
-            <div style="display: inline-block">
-                <!--正面-->
-                <div class="weui-cells weui-cells_form" style="display: inline-block">
-                    <div class="weui-uploader__input-box loaderA">
-                        <form action="" id="formA" enctype="multipart/form-data">
-                            <input id="uploaderInputA" name="uploaderInputA" class="weui-uploader__input" type="file">
-                        </form>
-                    </div>
-                    <div class="flockHeadA">
-                        <img src="" alt="" style="width: 80px;height: 80px" >
-                    </div>
-                </div>
-                <!--反面-->
-                <div class="weui-cells weui-cells_form" style="display: inline-block">
-                    <div class="weui-uploader__input-box loaderB">
-                        <form action="" id="formB" enctype="multipart/form-data">
-                            <input id="uploaderInputB" name="uploaderInputB" class="weui-uploader__input" type="file">
-                        </form>
-                    </div>
-                    <div class="flockHeadB" >
-                        <img src="" alt="" style="width: 80px;height: 80px" >
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!--个人照片-->
-<div class="weui-cells">
-    <div class="weui-cell">
-        <div class="weui-cell__bd">
-            <label class="left" for="" style="vertical-align: top">个人照片：<span style="color:green">*</span></label>
-            <!--上传个人照片-->
-            <ul style="display: inline-block" class="myPic">
-                <!--个人照片位置-->
-                <!--个人照片位置-->
-                <!--个人照片位置-->
-                <!--个人照片位置-->
-                <li style="display: inline-block">
+    <!--身份证-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="identityCard">身份证：<span style="color:red">*</span></label>
+                <input type="text" id="identityCard">
+            </div>
+        </div>
+    </div>
+    <!--成员账号-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="account">成员账号：<span style="color:green">*</span></label>
+                <input type="text" id="account">
+            </div>
+        </div>
+    </div>
+    <!--证件照-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="" style="vertical-align: top">证件照：<span style="color:green">*</span></label>
+                <!--上传照片-->
+                <div style="display: inline-block">
+                    <!--正面-->
                     <div class="weui-cells weui-cells_form" style="display: inline-block">
-                        <div class="weui-uploader__input-box MyPicloader">
-                            <form action="" id="MyPicform" enctype="multipart/form-data">
-                                <input id="MyPicuploaderInput" name="MyPicuploaderInput" class="weui-uploader__input" type="file">
+                        <div class="weui-uploader__input-box loaderA">
+                            <form action="" id="formA" enctype="multipart/form-data">
+                                <input id="uploaderInputA" name="uploaderInputA" class="weui-uploader__input" type="file">
                             </form>
                         </div>
+                        <div class="flockHeadA">
+                            <img src="" alt="" style="width: 80px;height: 80px" >
+                        </div>
                     </div>
-                </li>
-            </ul>
-
+                    <!--反面-->
+                    <div class="weui-cells weui-cells_form" style="display: inline-block">
+                        <div class="weui-uploader__input-box loaderB">
+                            <form action="" id="formB" enctype="multipart/form-data">
+                                <input id="uploaderInputB" name="uploaderInputB" class="weui-uploader__input" type="file">
+                            </form>
+                        </div>
+                        <div class="flockHeadB" >
+                            <img src="" alt="" style="width: 80px;height: 80px" >
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    <!--个人照片-->
+    <div class="weui-cells">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <label class="left" for="" style="vertical-align: top">个人照片：<span style="color:green">*</span></label>
+                <!--上传个人照片-->
+                <ul style="display: inline-block" class="myPic">
+                    <!--个人照片位置-->
+                    <!--个人照片位置-->
+                    <!--个人照片位置-->
+                    <!--个人照片位置-->
+                    <li style="display: inline-block">
+                        <div class="weui-cells weui-cells_form" style="display: inline-block">
+                            <div class="weui-uploader__input-box MyPicloader">
+                                <form action="" id="MyPicform" enctype="multipart/form-data">
+                                    <input id="MyPicuploaderInput" name="MyPicuploaderInput" class="weui-uploader__input" type="file">
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </div>
+    <!--提交按钮-->
+    <button class="weui-btn weui-btn_primary">确认</button>
 </div>
-<!--提交按钮-->
-<button class="weui-btn weui-btn_primary">确认</button>
+
 <script src="../js/jquery-1.11.3.js"></script>
 <script src="../JQuery_weui/fastclick.js"></script>
 <script>

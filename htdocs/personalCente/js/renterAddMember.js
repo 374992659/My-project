@@ -189,6 +189,15 @@ $(document).ready(function(){
                         `
                     });
                     $("#gardenName").html(html);
+                }else if(data.errcode===5){
+                    $(".addMember").hide();
+                    html=`
+                      <div style="text-align: center">
+                        <p>你还没有认证的小区不能发布槽点，请到个人心进行认证</p>
+                        <a href="http://wx.junxiang.ren/project/htdocs/personalCente/" style="background: red;color: white">点我到个人中心</a>
+                    </div>
+                    `;
+                    $("body").append(html)
                 }
 
             }
