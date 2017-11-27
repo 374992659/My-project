@@ -28,15 +28,14 @@ $(document).ready(function(){
                     //拥有楼盘
                     var house="";
                     if(result.user_garden){
-                        $.each(result.user_garden,function (i,item) {
+                        var user_garden=JSON.parse(result.user_garden);
+                        $.each(user_garden,function (i,item) {
                             house+=`
-                                
+                               
                              <li>${item}</li>
                             `
-
                         });
                     }
-
                     html=`
                 <div style="text-align: center">
                     <img src="${pic}" alt="" style="width: 80px">
