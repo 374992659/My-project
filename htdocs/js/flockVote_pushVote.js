@@ -252,10 +252,9 @@ $(".weui-gallery").click(function(){
                 option[parseInt(i+1)]=$(this).val();
             });
             console.log(option);
+        console.log(option.length);
         // 获取话题类型
         var type=$(".voteType").val();
-       console.log(typeof type);
-        console.log(type);
         // 获取小区code
         var garden_code=$(".votoGarden option:selected").attr("title");
         // 获取结束时间
@@ -277,6 +276,11 @@ $(".weui-gallery").click(function(){
     jsonEncryptData=jsEncryptData(data);
     // choice=jsonEncryptData(Choice);
     // 发起ajax请求
+        !title?alert("没有主题"):
+            !content?alert("输入内容"):
+                !option?alert("输入选项"):
+                    !overTime?alert("结束时间"):
+                        !picture?alert("没有图片"):
         $.ajax({
             url:url+"group_addVote",
             type:"POST",
