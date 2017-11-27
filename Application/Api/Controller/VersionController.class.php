@@ -27,7 +27,7 @@ class VersionController extends BaseController
         if(!$this->setUserData($account_code)){    //从session中获取数据
             $account_num=substr($account_code,6);
 //            $data=M('user_area')->field('table_id,account')->where(['account'=>$account_num])->find();
-            $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+            $mongo = new \MongoClient();
             $data = $mongo->baseinfo->user_area->findOne(array('account'=>$account_num),array('table_id','account'));
             $account['table_id'] =$data['table_id'];
             session('account'.$account_code,$account);
