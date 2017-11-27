@@ -27,7 +27,7 @@ class UserAreaModel extends Model
      * @param string $user_area
      */
     public function addUserArea($openId,$phone,$table_id, & $errmsg){
-        $mongo = new \MongoClient();
+        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
         $data = $mongo->baseinfo->user_area->findOne(array('openId'=>$openId),array('openId','status'));
         if($data){
             $errmsg='该账号已绑定手机号，请勿重复操作';
@@ -68,7 +68,7 @@ class UserAreaModel extends Model
      * */
     public function getUserInfoByPhone($account,& $errmsg){
 //        $data=M('user_area')->field('id,table_id as city_id')->where(array('account' =>$account))->find();
-        $mongo = new \MongoClient();
+        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
         $data = $mongo->baseinfo->user_area->findOne(array('account'=>$account),array('_id','table_id'));
         if(!$data){
             $errmsg = '该账号不存在';
@@ -91,7 +91,7 @@ class UserAreaModel extends Model
     public function wxloginSetSession($openId){
         if(!$openId)return false;
 //        $data = M('baseinfo.user_area')->field('phone,openId,table_id')->where(['openId'=>$openId])->find();
-        $mongo =new \MongoClient();
+        $mongo =new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
         $data =$mongo->baseinfo->user_area->findOne(array('openId'=>$openId),array('phone','openId','table_id'));
         if(!$data)return false;
         return $data;
