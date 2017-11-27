@@ -136,7 +136,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(112, '已登录，无需重复注册');
         }
 //        $customer = M('user_area')->where(array('phone' => $phone))->getField('id');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $customer =$mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('id'));
         if ($customer > 0) {
             $this->echoEncrypData(118, '已注册无需重复注册');
@@ -293,7 +293,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(106);
         }
         if(md5($this->pdata['password']) !== md5($this->pdata['repassword']))$this->echoEncrypData(1,'请确认两次密码输入一致');
-        $mongo = new \MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017',array('connect'=>false));
+        $mongo = new \MongoClient();
         $account_count = $mongo->baseinfo->user_area->count(array('account'=>$this->pdata['account']));
         if( $account_count ){
             $this->echoEncrypData(1,'该账号已被注册');
@@ -546,7 +546,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(106);
         }
 //        $count = M('user_area')->where(['phone'=>$phone])->getField('status');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $count =$mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('status'));
         if(!$count){
             $this->echoEncrypData(1,'该手机号还未绑定账号!');
@@ -589,7 +589,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(1,'验证码不正确');
         }
 //        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $table_id =$mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('table_id','account'));
         if($table_id){
             $res = M('user_info_'.$table_id['table_id'])->where(['phone'=>$phone])->save(['password'=>md5(md5($newpwd).$table_id['account'])]);
@@ -620,7 +620,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(106);
         }
 //        $table_id = M('user_area')->field('table_id,account,status')->where(['account'=>$account])->find();
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $table_id =$mongo->baseinfo->user_area->findOne(array('account'=>$account),array('table_id','account','status'));
         if(!$table_id){
             $this->echoEncrypData(1,'该用户不存在，请前往注册!');
@@ -651,7 +651,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(106);
         }
 //        $count = M('user_area')->where(['phone'=>$phone])->getField('status');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $count = $mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('status'));
         if(!$count){
             $this->echoEncrypData(1,'该用户不存在，请前往注册!');
@@ -694,7 +694,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(1,'验证码不正确');
         }
 //        $table_id=M('user_area')->field('table_id,account')->where(['phone'=>$phone])->find();
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $table_id = $mongo->baseinfo->user_area->findOne(array('phone'=>$phone),array('table_id','account'));
         $account['table_id'] =$table_id['table_id'];
         $this->account_code = $table_id['table_id'].$table_id['account'];
@@ -720,7 +720,7 @@ class RegiestController extends BaseController
         $model=new Model\FriendsGroupModel($data['account_code']);
 //        $this->echoEncrypData(1,$data['account_code']);
         M()->execute('use friends_and_group_'.$data['account_code'].';INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,\''.$data['account_code'].'\', \'我的好友\');use baseinfo;');
-        $m =new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $m =new \MongoClient();
         $baseinfo=$m->baseinfo;
         $baseinfo->online_user->insert(array('account_code'=>$data['account_code'],'status'=>0,'offline_time'=>0)); //用户表中加入数据
         $user_info = 'user_info_'.$data['account_code'];

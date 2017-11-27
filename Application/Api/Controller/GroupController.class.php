@@ -53,13 +53,13 @@ class GroupController extends VersionController
 //            'user_code'=>$this->account_code
 //       );
 //       $count = M('baseinfo.group_area')->where(['user_code'=>$this->account_code])->count();
-       $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
        $count = $mongo->baseinfo->group_area->count(array('user_code'=>$this->account_code,'status'=>1));
        if(intval($count) >= 5){
            $this->echoEncrypData(305);
        }
 //        $res1 = M('baseinfo.group_area')->add($data);
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $res1= $mongo->baseinfo->group_area->insert(array(
             '_id'=>getNextId($mongo,'baseinfo','group_area'),
             'group_num'=>$group_num,
@@ -153,7 +153,7 @@ class GroupController extends VersionController
         $user_code = $this->pdata['user_code'];
         $group_num = $this->pdata['group_num'];
         if(!$user_code || !$group_num)$this->echoEncrypData(21);
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_data = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num));
         if(count(explode(',',$user_code))>1){
             $arr = explode(',',$user_code);
@@ -197,7 +197,7 @@ class GroupController extends VersionController
     protected function delGroupNum_v1_0_0(){
         $account_code=$this->account_code;
         $this->checkParam(array('group_num','user_code'));
-        $mongo =new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']))['user_code'];
         $mode =new Model\GroupUserModel($create_code);
         if($account_code !== $create_code){
@@ -239,7 +239,7 @@ class GroupController extends VersionController
         $group_num = $this->pdata['group_num'];
         $is_cancel = $this->pdata['is_cancel'];
         if(!$group_num)$this->echoEncrypData(21);
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         if($account_code !== $create_code){
@@ -268,7 +268,7 @@ class GroupController extends VersionController
     protected function setGroupStatus_v1_0_0(){
         $group_num = $this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         if($create_code !== $this->account_code){
@@ -292,7 +292,7 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
 //        $res = M('baseinfo.group_area')->field('group_code,user_code')->where(['group_num'=>$group_num])->find();
-        $mongo =new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo =new \MongoClient();
         $res = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('group_code','user_code'));
         if(!$res)$this->echoEncrypData(1,'未获取到群信息');
         $model = new Model\GroupUserModel($res['user_code']);
@@ -325,7 +325,7 @@ class GroupController extends VersionController
         $user_code =$this->pdata['user_code'];
         if(!$group_num || !$user_code)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $mode =new Model\GroupUserModel($create_code);
@@ -349,7 +349,7 @@ class GroupController extends VersionController
         if(!$group_num || !$user_code)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
         if($user_code === $this->account_code)$this->echoEncrypData(1,'不能取消自己');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $mode =new Model\GroupUserModel($create_code);
@@ -373,7 +373,7 @@ class GroupController extends VersionController
         $user_code =$this->pdata['user_code'];
         if(!$group_num || !$user_code)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $mode =new Model\GroupUserModel($create_code);
@@ -418,7 +418,7 @@ class GroupController extends VersionController
     * */
     protected function leaveGroup_v1_0_0(){
         $this->checkParam(array('group_num'));
-        $mongo = new MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']))['user_code'];
         $group_user = new Model\GroupUserModel($create_code);
         $group_user->startTrans();
@@ -457,7 +457,7 @@ class GroupController extends VersionController
         if(!$title || !$content  || !$user_code  || !$group_num)$this->echoEncrypData(21);
         //查看用户是否是该群管理员或者创建人
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $mode=new Model\GroupUserModel($create_code);
@@ -513,7 +513,7 @@ class GroupController extends VersionController
         $group_num = $this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model=new Model\GroupNoticeModel($create_code);
@@ -532,7 +532,7 @@ class GroupController extends VersionController
         if(!$id ||!$group_num)$this->echoEncrypData(21);
         //查看用户是否是该群管理员或者创建人
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $mode=new Model\GroupUserModel($create_code);
@@ -555,7 +555,7 @@ class GroupController extends VersionController
     protected function uploadGroupFile_v1_0_0(){
         $group_num = $this->pdata['group_num'];
         if($group_num)$this->echoEncrypData(21);
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         if(intval($_GET['is_wap']) !==1){
@@ -610,7 +610,7 @@ class GroupController extends VersionController
     protected function getGroupFileList_v1_0_0(){
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $group_file =new Model\GroupFileModel($create_code);
@@ -631,7 +631,7 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         import('Vendor.UploadFile');
@@ -660,7 +660,7 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model =new Model\GroupPictureModel($create_code);
@@ -682,7 +682,7 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         if(!$picture_id ||!$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code');
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $mode=new Model\GroupUserModel($create_code);
@@ -756,7 +756,7 @@ class GroupController extends VersionController
         $anonymous = $this->pdata['anonymous'];
         if(!$title || !$content || !$picture || !$choice || !$type || !$garden_code || !$end_time || !$anonymous || !$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $account_code=$this->account_code;
@@ -794,7 +794,7 @@ class GroupController extends VersionController
         $vote_id =$this->pdata['vote_id'];
         if(!$group_num || !$vote_id)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $account_code=$this->account_code;
@@ -822,7 +822,7 @@ class GroupController extends VersionController
         $choised =$this->pdata['choised'];
         if(!$group_num || !$vote_id || !$choised)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $account_code=$this->account_code;
@@ -864,7 +864,7 @@ class GroupController extends VersionController
         $group_num =$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model = new Model\GroupVoteModel($create_code);
@@ -883,7 +883,7 @@ class GroupController extends VersionController
         $vote_id =$this->pdata['vote_id'];
         if(!$group_num || !$vote_id)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $mode = new Model\GroupVoteModel($create_code);
@@ -940,7 +940,7 @@ class GroupController extends VersionController
             'create_time'=>time(),
         );
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model = new Model\GroupSubjectModel($create_code);
@@ -972,7 +972,7 @@ class GroupController extends VersionController
      * */
     protected function delGroupSubject_v1_0_0(){
         $this->checkParam(array('subject_id','group_num'));
-        $mongo = new MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$this->pdata['group_num']));
         $group_user = new Model\GroupUserModel($create_code);
         $subject = new Model\GroupSubjectModel($create_code);
@@ -993,7 +993,7 @@ class GroupController extends VersionController
         $group_num = trim($this->pdata['group_num']);
         if(!$content || !$subject_id || !$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,6);
@@ -1057,7 +1057,7 @@ class GroupController extends VersionController
         $commont_id=$this->pdata['commont_id'];
         $group_num =$this->pdata['group_num'];
         if(!$subject_id || !$commont_id || !$group_num)$this->echoEncrypData(21);
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model=new Model\GroupSubjectDynamicsModel($create_code,$subject_id);
@@ -1094,7 +1094,7 @@ class GroupController extends VersionController
         $is_cancel =$this->pdata['is_cancel'];
         if(!$subject_id || !$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,6);
@@ -1175,7 +1175,7 @@ class GroupController extends VersionController
         $is_cancel = trim($this->pdata['is_cancel']);
         if( !$subject_id || !$group_num || !$commont_id )$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,6);
@@ -1251,7 +1251,7 @@ class GroupController extends VersionController
         $group_num = $this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model= new Model\GroupSubjectModel($create_code);
@@ -1269,7 +1269,7 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         if(!$group_num || !$subject_id)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model= new Model\GroupSubjectModel($create_code);
@@ -1358,7 +1358,7 @@ class GroupController extends VersionController
         $group_num =$this->pdata['group_num'];
         if(!$title || !$start_time  || !$end_time  || !$destination  || !$collection_time || !$collection_place  || !$contact  || !$phone  || !$transport  || !$garden_code  || !$garden_name  || !$total_num  || !$cost_type  || !$average_cost || !$group_num) $this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,6);
@@ -1402,7 +1402,7 @@ class GroupController extends VersionController
         $group_num=$this->pdata['group_num'];
         if(!$group_num)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model=new Model\GroupActivityModel($create_code);
@@ -1421,7 +1421,7 @@ class GroupController extends VersionController
         $activity_id=$this->pdata['activity_id'];
         if(!$group_num || !$activity_id)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model=new Model\GroupActivityModel($create_code);
@@ -1445,7 +1445,7 @@ class GroupController extends VersionController
         $activity_id=$this->pdata['activity_id'];
         if(!$group_num || !$activity_id)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $table_id=substr($this->account_code,0,6);
@@ -1478,7 +1478,7 @@ class GroupController extends VersionController
         $activity_id=$this->pdata['activity_id'];
         if(!$group_num || !$activity_id)$this->echoEncrypData(21);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $model=new Model\GroupActivityRegistrationModel($create_code);
@@ -1500,7 +1500,7 @@ class GroupController extends VersionController
                     $code .=mt_rand(0,9);
                 }
 //                $res = M('baseinfo.group_area')->where(['group_num'=>$code])->find();
-                $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+                $mongo = new \MongoClient();
                 $res = $mongo->baseinfo->group_area->count(array('group_num'=>$code));
                 if(!$res){
                     return $code;

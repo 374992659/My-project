@@ -89,7 +89,7 @@ class UserCenterController extends VersionController
             'id_card_num'=>$this->pdata['id_card_num']
         ));
         if($res !== false){
-            $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+            $mongo = new \MongoClient();
             $mongo->baseinfo->user_area->update(array('account_code'=>$account_code),array('$set'=>array(
                 'portrait'=>$portrait,
                 'nickname'=>$nickname,
@@ -103,7 +103,7 @@ class UserCenterController extends VersionController
      * 获取我的account_code
      * */
     protected function getMyAcoountCode_v1_0_0(){
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $portrait = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['portrait'];
         $this->echoEncrypData(0,'',array('account_code'=>$this->account_code,'portrait'=>$portrait));
     }
@@ -114,7 +114,7 @@ class UserCenterController extends VersionController
      * */
     protected function getGardenInfo_v1_0_0(){
         $this->checkParam(array('city_id'));
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         if(!$this->pdata['key']){
             $data =$mongo->baseinfo->garden_area->find(array('city_id'=>$this->pdata['city_id']),array('garden_code','garden_name','city_id'));
             $data = iterator_to_array($data);
@@ -147,7 +147,7 @@ class UserCenterController extends VersionController
                 $arr = explode(',',$v);
                 $user_garden[]=$arr[0];
             }
-            $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+            $mongo = new \MongoClient();
             $userGarden = $mongo->baseinfo->garden_area->find(array('garden_code'=>array('$in'=>$user_garden)));
             $userGarden = iterator_to_array($userGarden);
             $Array= array();
@@ -188,7 +188,7 @@ class UserCenterController extends VersionController
             }
             $path = 'http://39.108.237.198/project/'.$data[0];
         }
-        $mongo =new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo =new \MongoClient();
         $old_path = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code),array('portrait'));
         $mongo->baseinfo->user_area->update(array('account_code'=>$this->account_code),array('$set'=>array('portrait'=>$path)));
         $city_id = substr($this->account_code,0,6);
@@ -224,7 +224,7 @@ class UserCenterController extends VersionController
                 $arr = explode(',',$v);
                 $uGarden[]=$arr[0];
             }
-            $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+            $mongo = new \MongoClient();
             $userGarden = $mongo->baseinfo->garden_area->find(array('garden_code'=>array('$in'=>$uGarden)));
             $userGarden = iterator_to_array($userGarden);
             $Array= array();
@@ -279,7 +279,7 @@ class UserCenterController extends VersionController
         if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['id_card_num'])){
             $this->echoEncrypData(1,'请输入正确的身份证号码');
         }
-        $mongo =new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo =new \MongoClient();
         if(!$this->pdata['garden_code']){
             $garden = $mongo->baseinfo->garden_area->findOne(array('garden_name'=>$this->pdata['garden_name'],'city_id'=>$this->pdata['city_id']));
             //检索小区表是否存在该小区 不存在则添加到小区表
@@ -399,7 +399,7 @@ class UserCenterController extends VersionController
         $user_code = '';
         //检测账号是否存在
         if($this->pdata['account']){
-            $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+            $mongo = new \MongoClient();
             $user_code = $mongo->baseinfo->user_area->findOne(array('account'=>$this->pdata['account']),array('account_code'));
             if(!$user_code){
                 $this->echoEncrypData(1,'请检查输入的用户账号是否正确');
@@ -416,7 +416,7 @@ class UserCenterController extends VersionController
         }else{
             if(intval($role)===1){
                 $user_account =$this->pdata['account'];
-                $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+                $mongo = new \MongoClient();
                 $user_account?$user_account_code = $mongo->baseinfo->user_area->findOne(array(
                     'account'=>$user_account
                 ),array('account_code'))['account_code']:$user_account_code='';
@@ -758,7 +758,7 @@ class UserCenterController extends VersionController
                 $this->echoEncrypData(1,'请输入正确的身份证号码');
             }
         }
-        $mongo =new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo =new \MongoClient();
         if(!$this->pdata['garden_code']){
             $garden = $mongo->baseinfo->garden_area->findOne(array('garden_name'=>$this->pdata['garden_name'],'city_id'=>$this->pdata['city_id']));
             //是否存在该小区 不存在则添加到小区表
@@ -876,7 +876,7 @@ class UserCenterController extends VersionController
         }
         $user_code = '';
         if($this->pdata['account']){
-            $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+            $mongo = new \MongoClient();
             $user_code = $mongo->baseinfo->user_area->findOne(array('account'=>$this->pdata['account']),array('account_code'));
             if($user_code){
                 $user_code = $user_code['account_code'];
@@ -893,7 +893,7 @@ class UserCenterController extends VersionController
             if(intval($role) ===1){
                 //1.添加认证记录
                 $user_account =$this->pdata['account'];
-                $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+                $mongo = new \MongoClient();
                 $user_account?$user_account_code = $mongo->baseinfo->user_area->findOne(array(
                     'account'=>$user_account
                 ),array('account_code'))['account_code']:$user_account_code='';
@@ -1214,7 +1214,7 @@ class UserCenterController extends VersionController
             }
             if($result){
                 $message = array();
-                $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+                $mongo = new \MongoClient();
                 foreach ($result as $key=>$val){
                     $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
                     $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
@@ -1255,7 +1255,7 @@ class UserCenterController extends VersionController
             if(!in_array($this->pdata['garden_code'],$result)){
                 $this->echoEncrypData(1,'您没有通过该小区的认证哦');
             }
-            $mongo  = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+            $mongo  = new \MongoClient();
             $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
             $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$garden_city_id])->getField('province_code');
             $garden_opinion = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
@@ -1296,7 +1296,7 @@ class UserCenterController extends VersionController
             }
         }
         $list = array();
-        $mongo =new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo =new \MongoClient();
         $result = array_unique($result);
         foreach ($result as $key=>$val){
             $garden_city_id =$mongo->baseinfo->garden_area->findOne(array('garden_code'=>$val))['city_id'];
@@ -1329,7 +1329,7 @@ class UserCenterController extends VersionController
      * */
     protected function getGardenMessageInfo_v1_0_0(){
         $this->checkParam(array('id','garden_code'));
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $garden_city_id = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
         $garden_province_id = M('baseinfo.swf_area')->where(['city_code'=>$garden_city_id])->getField('province_code');
         $model = new Model\GardenOpinionModel($garden_province_id,$garden_city_id);
@@ -1463,7 +1463,7 @@ class UserCenterController extends VersionController
      * */
     protected function getMyGroup_v1_0_0(){
         $account_code =  $this->account_code;
-        $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+        $mongo = new \MongoClient();
         $data1 = $mongo->baseinfo->user_level->find(array('inviter_code'=>$account_code));
         $data1 =iterator_to_array($data1);
         $data2= array();
@@ -1519,7 +1519,7 @@ class UserCenterController extends VersionController
                 for($k=1;$k <=(5+$i) ;$k++){
                     $code .=mt_rand(0,9);
                 }
-                $mongo = new \MongoClient('mongodb://'.C('MONGO_NAME').':'.C('MONGO_PWD').'@39.108.237.198:27017');
+                $mongo = new \MongoClient();
                 $garden_code = $city_id.$code;
                 $res = $mongo->baseinfo->garden_area->count(array('garden_code'=>$garden_code));
                 if(!$res){
