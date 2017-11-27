@@ -983,7 +983,7 @@ class GroupController extends VersionController
                 $this->echoEncrypData(500);
             }
         }
-        $res=$subject->where(['id'=>$this->pdata['subject_id']])->delete();
+        $res=$subject->where(['id'=>intval($this->pdata['subject_id'])])->delete();
         if($res){
             $subject->execute('drop table group_subject_dynamics_'.$this->pdata['subject_id']);
             $this->echoEncrypData(0);
