@@ -43,7 +43,7 @@ $(document).ready(function(){
             </div>
                             `;
                         });
-                        console.log(html);
+
                         $(".friendList").append(html);
                     }else{
                         console.log(data.errmsg);
@@ -130,6 +130,7 @@ $(document).ready(function(){
 
                             }
                         });
+                        console.log(html);
                         $("#"+group_id).append(html);
                     }else{
                         console.log(data.errmsg);
