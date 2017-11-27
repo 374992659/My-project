@@ -194,6 +194,9 @@ $(document).ready(function(){
             //加密
             var jsonEncryptData=jsEncryptData(data);
             console.log(data);
+            !title?alert("没有主题"):
+                !content?alert("没有内容"):
+                    !city_id?alert("没有选择城市"):
             $.ajax({
                 url:url+"Subject_addAd",
                 type:"POST",
