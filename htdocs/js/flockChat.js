@@ -39,7 +39,7 @@ $(document).ready(function(){
                                         sender_portrait="http://wx.junxiang.ren/project/"+item.sender_portrait
                                     }
 
-                                    if(parseInt(item.type)===2){//图片、文件
+                                    if(parseInt(item.type)===3){//图片、文件
                                         html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -53,7 +53,7 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `
-                                    } else if(parseInt(item.type)===3){//语音
+                                    } else if(parseInt(item.type)===2){//语音
                                         html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -174,13 +174,12 @@ $(document).ready(function(){
                     var pathname = window.location.pathname;
                     var patharr  = pathname.split('/');
                     var html = patharr[parseInt(patharr.length-1)];
-                    console.log(data);
                     // 获取自己code
                     var my_code=localStorage.getItem("my_code");
                     if(html ==='flockChat.html'){             //如果当前页面在群聊天界面  ***.html为群聊天页面
                         var current_code = localStorage.getItem("group_code");   //获取当前聊天群的群code
                         if(current_code === data.group){      //为同一个人 直接将聊天信息展示在页面内 向服务器读取了该消息的通知
-                           // 本地存储聊天记录
+                            // 本地存储聊天记录
                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.send_nickname+"','portrait':'"+data.send_portrait+"'}";
 
                             var history_chats = localStorage.getItem('history_'+data.group);
@@ -200,13 +199,13 @@ $(document).ready(function(){
                             var html="";
                             if(my_code===data.sender_code){//我自己的信息
                                 var httP=data.send_portrait.split(":")[0];
-                               var  send_portrait="";
-                               if(httP==="http"){
-                                   send_portrait=data.send_portrait
-                               }else{
-                                   send_portrait="http://wx.junxiang.ren/project/"+data.send_portrait
-                               }
-                                if(data.type===2){//图片、文件
+                                var  send_portrait="";
+                                if(httP==="http"){
+                                    send_portrait=data.send_portrait
+                                }else{
+                                    send_portrait="http://wx.junxiang.ren/project/"+data.send_portrait
+                                }
+                                if(data.type===3){//图片、文件
                                     html=`
                                     <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -220,7 +219,7 @@ $(document).ready(function(){
              </div>
          </div>
                                     `
-                                } else if(data.type===3){//语音
+                                } else if(data.type===2){//语音
                                     html=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -259,7 +258,7 @@ $(document).ready(function(){
                                 }else{
                                     send_portraits="http://wx.junxiang.ren/project/"+data.send_portrait
                                 }
-                                if(data.type===2){//图片、文件
+                                if(data.type===3){//图片、文件
                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -273,7 +272,7 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div>                  `
-                                } else if(data.type===3){//语音
+                                } else if(data.type===2){//语音
                                     html=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -404,7 +403,7 @@ $(document).ready(function(){
                 var httP=item.portrait.split(":")[0];
                 if(item.sender_code===my_code){//我的自己的聊天记录
                     console.log("聊天记录");
-                    if(parseInt(item.type)===2){//内容为图片、文件
+                    if(parseInt(item.type)===3){//内容为图片、文件
                         if(httP==="http"){//完整路径
                             html+=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -434,7 +433,7 @@ $(document).ready(function(){
          </div>
                                     `
                         }
-                    } else if(parseInt(item.type)===3){//内容为语音
+                    } else if(parseInt(item.type)===2){//内容为语音
                         if(httP==="http"){//绝对路径
                             html+=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -494,7 +493,7 @@ $(document).ready(function(){
 
                     }
                 }else{//好友的聊天记录
-                    if(parseInt(item.type)===2){//内容为图片、文件
+                    if(parseInt(item.type)===3){//内容为图片、文件
                         if(httP==="http"){
                             html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -527,7 +526,7 @@ $(document).ready(function(){
                 </div> `
                         }
 
-                    } else if(parseInt(item.type)===3){//内容为语音
+                    } else if(parseInt(item.type)===2){//内容为语音
                         if(httP==="http"){
                             html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -684,13 +683,11 @@ $(document).ready(function(){
         var content=chatContent.val();                //获取页面发送内容
         var group =localStorage.getItem("group_code");           //获取发送好友的群code
         var message_type=1;                      //消息类型        1:文字消息 2:语音消息 3：文件消息
-        console.log("群聊发送");
-        console.log(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
         // 添加本地页面
         chatContent.val("");
-       var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':group});
-       ws.send(sendMessage);
+        var sendMessage = JSON.stringify({'apptoken':apptoken,'type':7,'group_code':group});
+        ws.send(sendMessage);
     });
     //发送消息给好友
     $(".elements").click(function(){
@@ -729,7 +726,7 @@ $(document).ready(function(){
                         var content=localStorage.getItem("friendPic");
                         var group =localStorage.getItem("group_code");           //获取发送好友的群code
                         console.log(content);
-                        var message_type = 3;
+                        var message_type = 2;
                         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
                     }
                 },
@@ -767,7 +764,7 @@ $(document).ready(function(){
                         var content=localStorage.getItem("friendPic");
                         var group =localStorage.getItem("group_code");           //获取发送好友的群code
                         console.log(content);
-                        var message_type = 3;
+                        var message_type = 2;
                         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
                     }
                 },
@@ -901,7 +898,7 @@ $(document).ready(function(){
                     //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
                     serverId = res.serverId; // 返回音频的服务器端ID
                     var group =localStorage.getItem("group_code");
-                    var  message_type=2;
+                    var  message_type=3;
                     ws.send(JSON.stringify({"group":group,'type' : 3,'content':serverId,'apptoken':apptoken,'message_type':message_type}));
                 }
             });
@@ -963,7 +960,7 @@ $(document).ready(function(){
                 $(".weui-gallery__img").attr("style","background-image: url("+url +")")
             }
         });
-       gallery.click(function(){
+        gallery.click(function(){
             $(".weui-gallery").hide();
         });
     })();
