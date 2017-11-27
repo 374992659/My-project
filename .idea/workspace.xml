@@ -23,7 +23,39 @@
     <favorites_list name="meiejia" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="hotTopic_ad.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-21.548388">
+              <caret line="185" column="25" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hotTopic_add.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.43105447">
+              <caret line="190" column="27" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+              <folding>
+                <marker date="1511791247668" expanded="true" signature="2375:2769" placeholder="..." />
+                <marker date="1511791247668" expanded="false" signature="2460:2509" placeholder="..." />
+                <marker date="1511791247668" expanded="true" signature="2510:2738" placeholder="..." />
+                <marker date="1511791247668" expanded="false" signature="2585:2600" placeholder="..." />
+                <marker date="1511791247668" expanded="true" signature="4499:4999" placeholder="..." />
+                <marker date="1511791247668" expanded="false" signature="4584:4633" placeholder="..." />
+                <marker date="1511791247668" expanded="true" signature="4634:4968" placeholder="..." />
+                <marker date="1511791247668" expanded="false" signature="4709:4724" placeholder="..." />
+                <marker date="1511791247668" expanded="true" signature="11499:11786" placeholder="..." />
+                <marker date="1511791247668" expanded="false" signature="11603:11627" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -49,7 +81,6 @@
         <option value="$PROJECT_DIR$/htdocs/框架/jquery-weui-build/dist/demos/action-sheet.html" />
         <option value="$PROJECT_DIR$/htdocs/js/addRess.js" />
         <option value="$PROJECT_DIR$/htdocs/hotTopic_ad.html" />
-        <option value="$PROJECT_DIR$/htdocs/js/hotTopic_add.js" />
         <option value="$PROJECT_DIR$/doem.html" />
         <option value="$PROJECT_DIR$/htdocs/js/hotTopic2.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/checkIntegral.html" />
@@ -88,6 +119,7 @@
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/myRenZ.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/myRenZdetails.js" />
         <option value="$PROJECT_DIR$/htdocs/personalCente/js/owenerMemberDetails.js" />
+        <option value="$PROJECT_DIR$/htdocs/js/hotTopic_add.js" />
       </list>
     </option>
   </component>
@@ -255,9 +287,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1936" height="1056" extended-state="1" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17239584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2109375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -306,26 +338,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.03128621">
           <caret line="52" column="17" selection-start-line="52" selection-start-column="17" selection-end-line="52" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/image/timg.gif">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35689455">
-          <caret line="164" column="66" selection-start-line="164" selection-start-column="66" selection-end-line="164" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5788288">
-          <caret line="77" column="60" selection-start-line="77" selection-start-column="55" selection-end-line="77" selection-end-column="60" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/htdocs/hotTopic2.html">
@@ -640,6 +659,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8018018">
           <caret line="55" column="23" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/hotTopic_ad.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.548388">
+          <caret line="185" column="25" selection-start-line="185" selection-start-column="25" selection-end-line="185" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/htdocs/js/hotTopic_add.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.43105447">
+          <caret line="190" column="27" selection-start-line="190" selection-start-column="27" selection-end-line="190" selection-end-column="27" />
+          <folding>
+            <marker date="1511791247668" expanded="true" signature="2375:2769" placeholder="..." />
+            <marker date="1511791247668" expanded="false" signature="2460:2509" placeholder="..." />
+            <marker date="1511791247668" expanded="true" signature="2510:2738" placeholder="..." />
+            <marker date="1511791247668" expanded="false" signature="2585:2600" placeholder="..." />
+            <marker date="1511791247668" expanded="true" signature="4499:4999" placeholder="..." />
+            <marker date="1511791247668" expanded="false" signature="4584:4633" placeholder="..." />
+            <marker date="1511791247668" expanded="true" signature="4634:4968" placeholder="..." />
+            <marker date="1511791247668" expanded="false" signature="4709:4724" placeholder="..." />
+            <marker date="1511791247668" expanded="true" signature="11499:11786" placeholder="..." />
+            <marker date="1511791247668" expanded="false" signature="11603:11627" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
