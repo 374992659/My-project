@@ -35,6 +35,9 @@ $(document).ready(function(){
                     <!--我的好友个数-->
                     <div class="weui-panel weui-panel_access linkList" style="display: none">
                      <!--好友位置-->
+                        <div id="${item.id}">
+                        
+                        </div>
                     </div>
                 </div>
             </div>
@@ -90,7 +93,7 @@ $(document).ready(function(){
                                             </div>
                                             <div class="weui-media-box__bd">
                                                 <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-                                                <!--<p class="weui-media-box__desc">个人说明</p>-->
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -114,7 +117,7 @@ $(document).ready(function(){
                                             </div>
                                             <div class="weui-media-box__bd">
                                                 <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-                                                <!--<p class="weui-media-box__desc">个人说明</p>-->
+                                              
                                             </div>
                                         </div>
                                     </div>
@@ -126,7 +129,7 @@ $(document).ready(function(){
 
                             }
                         });
-                        $(".linkList").append(html);
+                        $("#"+group_id).append(html);
                     }else{
                         console.log(data.errmsg);
                     }
