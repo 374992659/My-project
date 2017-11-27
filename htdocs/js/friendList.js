@@ -405,7 +405,7 @@ $(document).ready(function() {
                                     <span class="online ${item.id}" style="font-size: 18px">${online}</span>/${item.total}
                                 </div>
                             </div>
-                            <div class="weui-panel weui-panel_access friendList friend fri${item.id}" id="${item.id}" style="display: none">
+                            <div class="weui-panel weui-panel_access friendList friend fri${item.id}" id="user${item.id}" style="display: none">
                                 
                             </div>
 
