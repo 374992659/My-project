@@ -302,18 +302,10 @@ $(document).ready(function(){
                     console.log(data);
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
-                        var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                        success.html(html);
-                        setTimeout(hideTop,3000);
-                        window.locacation.href="flockVote.html";
+                       showHide(data.errmsg);
+                        window.location.href="flockVote.html";
                     }else{
-                        var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                        success.html(html);
-                        setTimeout(hideTop,3000);
+                        showHide(data.errmsg);
                     }
                 }
             })
@@ -353,17 +345,9 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     window.location.reload();
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">${data.errmsg}</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
+                    showHide(data.errmsg)
                 }else{
-                    var html=`
-                     <p style="text-align: center;background: green;font-size: 15px">投票失败</p>
-                    `;
-                    success.html(html);
-                    setTimeout(hideTop,3000);
+                   showHide(data.errmsg)
                 }
             }
         })
