@@ -247,13 +247,14 @@ $(".weui-gallery").click(function(){
             content=$(".content").val();
             console.log(content);
         // 获取选项内容
+        var n=0;
             var   option={};
             $("input[name='option']").each(function(i,item){
                 option[parseInt(i+1)]=$(this).val();
-                console.log(i);
+                n++;
             });
             console.log(option);
-        console.log(option.length);
+        console.log(n);
         // 获取话题类型
         var type=$(".voteType").val();
         // 获取小区code
