@@ -293,7 +293,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(106);
         }
         if(md5($this->pdata['password']) !== md5($this->pdata['repassword']))$this->echoEncrypData(1,'请确认两次密码输入一致');
-        $mongo = new \MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017',false);
+        $mongo = new \MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017',array('connect'=>false));
         $account_count = $mongo->baseinfo->user_area->count(array('account'=>$this->pdata['account']));
         if( $account_count ){
             $this->echoEncrypData(1,'该账号已被注册');
