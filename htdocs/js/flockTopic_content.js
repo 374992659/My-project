@@ -129,7 +129,7 @@ $(document).ready(function(){
                     <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${data.data.title}</h4>
                     <ul class="weui-media-box__info" style="font-size: 15px;color: #BEBEBE">
                         <li class="weui-media-box__info__meta">作者：<a href=""><span>${data.data.nickname}</span></a></li>
-                        <li class="weui-media-box__info__meta">时间：${data.data.create_time}</li>
+                        <li class="weui-media-box__info__meta">时间：${getLocalTime(data.data.create_time)}</li>
 
                     </ul>
                      <ul class="weui-media-box__info picPlace">

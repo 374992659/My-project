@@ -22,16 +22,16 @@
             <ul>
                 <li>
                     <label for="topic">主题：<span style="color: red">*</span></label>
-                    <input type="text" id="topic" required="required" autofocus>
+                    <input type="text" id="topic" autofocus>
                 </li>
                 <li class="time" style="font-size: 12px">
                     <label for="time">活动时间：<span style="color: red">*</span></label>
-                    <input type="text" id="other-date1" required data-options="{&quot;type&quot;:&quot;YYYY-MM-DD&quot;,&quot;beginYear&quot;:2012,&quot;endYear&quot;:2022,&quot;limitTime&quot;:true}"> 到
-                    <input type="text"  id="other-date2" required data-options='{"type":"YYYY-MM-DD","beginYear":2012,"endYear":2022,"limitTime":true}'>
+                    <input type="text" id="other-date1" data-options="{&quot;type&quot;:&quot;YYYY-MM-DD&quot;,&quot;beginYear&quot;:2012,&quot;endYear&quot;:2022,&quot;limitTime&quot;:true}"> 到
+                    <input type="text"  id="other-date2"  data-options='{"type":"YYYY-MM-DD","beginYear":2012,"endYear":2022,"limitTime":true}'>
                 </li>
                 <li>
                     <label for="gatherPlace">集合地点：<span style="color: red">*</span></label>
-                    <input type="text" id="gatherPlace" required autofocus>
+                    <input type="text" id="gatherPlace" >
                 </li>
                 <li>
                     <label for="gathertime">集合时间：<span style="color: red">*</span></label>
@@ -40,11 +40,11 @@
                 </li>
                 <li>
                     <label for="linkman">联系人：<span style="color: red">*</span></label>
-                    <input type="text" id="linkman"  required="required"  autofocus>
+                    <input type="text" id="linkman">
                 </li>
                 <li>
                     <label for="contactWay">联系方式：<span style="color: red">*</span></label>
-                    <input type="number" id="contactWay"  required="required" pattern="[0-9]*">
+                    <input type="number" id="contactWay"  pattern="[0-9]*">
                 </li>
                 <li>
                     <label for="vehicle">出行方式：<span style="color: red">*</span></label>

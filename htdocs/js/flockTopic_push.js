@@ -89,7 +89,6 @@ $(document).ready(function(){
        console.log(data);
         !title?alert("没有标题"):
             !content?alert("没有内容"):
-                !picTopic?alert("没有图片"):
         $.ajax({
             url:url+"group_addGroupSubject",
             type:"POST",
