@@ -157,7 +157,7 @@ $(document).ready(function(){
             })
         }
     });
-    // 图片预览功能
+    // 图片放大功能
     $(".picPlace").on("click",".weui-panel ul li .addPic",function(){
         var url=$(this).attr("src");
         console.log(url);

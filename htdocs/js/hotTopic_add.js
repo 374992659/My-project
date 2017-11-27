@@ -188,6 +188,8 @@ $(document).ready(function(){
                 city_id=$("#city option:selected").val(),
                 //小区id
                 garden_code=$("#plot option:selected").attr("title");
+            var picture={};
+            var Img=
             //数据格式转换
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
             //加密
@@ -261,5 +263,54 @@ $(document).ready(function(){
         localStorage.setItem("adID",adID);
         window.location.href="hotTopic_addCon.html";
 
-    })
+    });
+    //上传图片
+    //功能8 上传图片
+    $("#uploaderInput").change(function(e){
+        // 图片信息组成的数组
+        var file =$("#uploaderInput")[0].files;
+        console.log(file[0].name);
+        var formData = new FormData();
+        for(var i=0,len=file.length;i<len;i++){
+            formData.append("topic"+i,file[i]);
+        }
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        formData.append("data",json);
+        console.log(data);
+        $.ajax({
+            url:url+"group_uploaSubjectPic",
+            type:"POST",
+            data:formData,
+            processData : false,
+            contentType : false,
+            secureuri:false,
+            success:function(data){
+                // 解密
+                data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var LiImg="";
+                    $.each(data.data,function(i,item){
+                        LiImg+=`
+                         <li class="weui-uploader__file" >
+                                     <img src="http://wx.junxiang.ren/project/${item}" alt="" style="width: 79px;height: 79px" class="pushSpit_Img">
+                                     <img src="image/del.png" alt="" width="20px" class="delImg">
+                                 </li>
+                        `
+                    });
+                    $(".picPlace").append(LiImg);
+                }else{
+                    console.log(data.errmsg);
+                }
+            }
+        })
+    });
+    //功能9 删除图片
+    $("#uploaderFiles").on("click",".weui-uploader__file .delImg",function(){
+        $(this).parent().remove();
+    });
 });

@@ -40,8 +40,8 @@ $(document).ready(function(){
                             <h4 class="weui-media-box__title lf" style="font-size: 15px;">${item.title}</h4>
                            
                         </div>
-
                         <p class="weui-media-box__desc" style="font-size: 12px">${item.content}</p>
+                        <button>删除</button>
                         <div style="font-size: 12px;text-align: right;color: #c2c0be">阅读量 <span>${item.read_num}</span> 回帖数 <span>${item.commont_num}</span></div>
                     </div>
                 </div>

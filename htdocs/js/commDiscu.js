@@ -84,6 +84,11 @@ $(document).ready(function(){
                     }else{
                         $("#dissolveFlock").hide()
                     }
+                    if(parseInt(myCode)===parseInt(groupOwner)){
+                        $(".logOutFlock").hide()
+                    }else{
+                        $(".logOutFlock").show()
+                    }
                 }
             }
         })
@@ -93,7 +98,7 @@ $(document).ready(function(){
         window.location.href="discu_addfriend.html";
         return false;
     });
-    //设置禁言
+    //功能1 设置禁言
     $(".setSpeak").click(function(){
             var val=$(this).val();
             console.log($(".setSpeak").val());
@@ -181,7 +186,7 @@ $(document).ready(function(){
                 }
             }
     });
-    //解散群
+    //功能2 解散群
     $(".dissolveFlock").click(function(){
             if(confirm("确认解散")){
                 //获取群号码
@@ -226,7 +231,7 @@ $(document).ready(function(){
             showHide("无权进行此操作")
         }
     });
-    //群转让
+    //功能3 群转让
     $(".flock_makeOver").click(function(){
         if(myCode===groupOwner){
             window.location.href="discu_flock_makeOver.html"
@@ -234,7 +239,28 @@ $(document).ready(function(){
             showHide("无权进行此操作")
         }
     });
-
+    //功能4 退出群
+    $(".logOutFlock").click(function () {
+        var apptoken=localStorage.getItem("apptoken");
+        var group_num=localStorage.getItem("group_num");
+        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
+        var jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"group_leaveGroup",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    showHide(data.errmsg)
+                }else{
+                    showHide(data.errmsg)
+                }
+            }
+        })
+    });
 
 });
 

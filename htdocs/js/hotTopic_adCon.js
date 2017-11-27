@@ -27,18 +27,21 @@ $(document).ready(function(){
                     console.log("广告");
                     html=`
                     <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${item.title}</h4>
-            <p class="weui-media-box__desc">
-               ${item.content}
-            </p>
-            <ul class="weui-media-box__info" style="font-size: 12px">
-                <li class="weui-media-box__info__meta">文字来源 <span>李四</span></li>
-                <li class="weui-media-box__info__meta">时间 <span>${getLocalTime(item.create_time)}</span></li>
-            </ul>
-            <ul class="weui-media-box__info share" style="font-size: 12px;color: blue;text-align: right">
-                <li class="weui-media-box__info__meta">分享</li>
-                <li class="weui-media-box__info__meta">分享量 <span>2017.12.05</span></li>
-                <li class="weui-media-box__info__meta">阅读量 <span>1</span></li>
-            </ul>
+                    <ul class="picPlace">
+                       
+                    </ul>
+                    <p class="weui-media-box__desc">
+                       ${item.content}
+                    </p>
+                    <ul class="weui-media-box__info" style="font-size: 12px">
+                        <li class="weui-media-box__info__meta">文字来源 <span>李四</span></li>
+                        <li class="weui-media-box__info__meta">时间 <span>${getLocalTime(item.create_time)}</span></li>
+                    </ul>
+                    <ul class="weui-media-box__info share" style="font-size: 12px;color: blue;text-align: right">
+                        <li class="weui-media-box__info__meta">分享</li>
+                        <li class="weui-media-box__info__meta">分享量 <span>2017.12.05</span></li>
+                        <li class="weui-media-box__info__meta">阅读量 <span>1</span></li>
+                    </ul>
                     `;
                 }
             });

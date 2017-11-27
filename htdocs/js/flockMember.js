@@ -31,7 +31,7 @@ $(document).ready(function(){
                 localStorage.setItem("apptoken",data.apptoken);
                 $.each(member,function(i,item){
                     console.log(item);
-                    if(parseInt(item.role)===3){
+                    if(parseInt(item.role)===3){//成员
                         var httP=item.portrait.split(":")[0];
                         var portrait="";
                         if(httP==="http"){
@@ -45,7 +45,7 @@ $(document).ready(function(){
             <div class="weui-cell">
                 <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
                 <div class="weui-cell__bd">
-                    <p>${item.nickname}</p>
+                    <div> <span  style="background: #1d5b80">成员</span>${item.nickname}</div>
                 </div>
             </div>
         </div>
@@ -56,7 +56,7 @@ $(document).ready(function(){
                       
                         `;
                         memberNum++
-                    }else if(parseInt(item.role)===2){
+                    }else if(parseInt(item.role)===2){//管理员
                         var httPs=item.portrait.split(":")[0];
                         var portraits="";
                         if(httPs==="http"){
@@ -70,7 +70,7 @@ $(document).ready(function(){
             <div class="weui-cell">
                 <div class="weui-cell__hd"><img src="${portraits}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
                 <div class="weui-cell__bd">
-                    <p>${item.nickname}</p>
+                    <div> <span style="background: #348063">管理员</span>${item.nickname}</div>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@ $(document).ready(function(){
     </div>
                         `;
                         manegeNum++
-                    }else{
+                    }else{//群主
                         var httPs=item.portrait.split(":")[0];
                         var portraits="";
                         if(httPs==="http"){
@@ -94,7 +94,7 @@ $(document).ready(function(){
                                     <div class="weui-cell" style="padding: 0">
                                         <div class="weui-cell__hd"><img src="${portraits}" alt=""  title="${item.user_code}" style="width:40px;height:40px;margin-right:5px;display:block"></div>
                                         <div class="weui-cell__bd">
-                                            <p>${item.nickname}</p>
+                                            <div> <span style="background: #348063">群主</span>${item.nickname}</div>
                                         </div>
                                         </div>
                                  </div>
