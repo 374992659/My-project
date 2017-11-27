@@ -102,6 +102,30 @@ class SubjectController extends VersionController
         $my_subject->addMySubject($garden_code,$res);
         $this->echoEncrypData(0);
     }
+
+    /*
+     * 删除热门话题
+     * @param city_id 城市id
+     * @param subject_id 话题id
+     * */
+    protected function delSubject_v1_0_0(){
+        $this->checkParam(array('city_id','subject_id'));
+        $province = M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
+        $model=new Model\SubjectModel($province,$this->pdata['city_id']);
+        $create_code = $model->where(['id'=>$this->pdata['subject_id']])->getField('user_code');
+        if($create_code !==$this->account_code){
+            $this->echoEncrypData(500);
+        }else{
+            $res = $model->where(['id'=>$this->pdata['subject_id']])->delete();
+            if($res){
+                $model->execute('drop table subject_dynamics_'.$this->pdata['city_id'].'_'.$this->pdata['subject_id']);
+                $this->echoEncrypData(0);
+            }else{
+                $this->echoEncrypData(1);
+            }
+        }
+    }
+
     /*
      * 话题展示
      * @param city_id 城市id
