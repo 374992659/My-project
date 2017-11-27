@@ -14,6 +14,7 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":jsonEncryptDate},
             success:function(data,e){
+                console.log(data);
                 //数据解密
                 var data=jsDecodeData(data);
                 console.log(data);
