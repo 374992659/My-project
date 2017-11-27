@@ -33,11 +33,9 @@ $(document).ready(function(){
                         </div>
                     </div>
                     <!--我的好友个数-->
-                    <div class="weui-panel weui-panel_access linkList" style="display: none">
+                    <div class="weui-panel weui-panel_access linkList" id="${item.id}" style="display: none">
                      <!--好友位置-->
-                        <div id="${item.id}">
-                        
-                        </div>
+                       
                     </div>
                 </div>
             </div>
@@ -54,7 +52,7 @@ $(document).ready(function(){
         };getGroup();
         $(".friendList").on("click",".linkman .weui-cells .LinkBtn",function(){
             //加载好友分组下的好友
-            $(".linkList").empty();
+           // $(".linkList").empty();
             //    获取apptoken
             var apptoken=localStorage.getItem("apptoken"),
             //    获取分组id
