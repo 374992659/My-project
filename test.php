@@ -8,7 +8,7 @@
 $m =new MongoClient('mongodb://root:meiyijiayuan1709@39.108.237.198:27017');
 $db = $m->local;
 $collection = $db->test;
-$collection->update(array('name'=>3444),array('$set'=>array('value'=>666,'seven'=>777)));
+$collection->insert(array('content'=>'test'));
 
 //$obj = $m->selectCollection('garden','garden_user_2701');
 //$obj->createIndex(array('garden_code'=>1));
