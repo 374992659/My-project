@@ -65,9 +65,6 @@ $(document).ready(function(){
     })();
     // 发布话题
     $(".sumBtn").click(function(){
-        var success=$(".sccuss");
-        var hideTop=function(){
-            success.empty()};
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
         // 获取群号码
@@ -90,6 +87,9 @@ $(document).ready(function(){
         // 数据加密
        var jsonEncryptData=jsEncryptData(data);
        console.log(data);
+        !title?alert("没有标题"):
+            !content?alert("没有内容"):
+                !picTopic?alert("没有图片"):
         $.ajax({
             url:url+"group_addGroupSubject",
             type:"POST",
@@ -104,7 +104,6 @@ $(document).ready(function(){
                      window.location.href="flocktTopic.html";
                 }else{
                     showHide(data.errmsg);
-                    setTimeout(hideTop,3000);
                 }
             }
 
