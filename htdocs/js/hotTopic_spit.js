@@ -1,5 +1,5 @@
 $(document).ready(function(){ "use strict";
-//添加选项
+//功能1 添加选项
     $(".addOption").click(function(){
         var $li=`
         <li class="option">         
@@ -13,7 +13,7 @@ $(document).ready(function(){ "use strict";
         
         `;
         $(".addOption").before($li);
-  //删除选项
+  //功能2 删除选项
         $(".topicList").on("click",".option .label",function(){
             console.log(123);
             $(this).parent().remove();
@@ -23,7 +23,7 @@ $(document).ready(function(){ "use strict";
     });
     // 结束时间
     $.date('#gathertime');
-    // 上传图片
+    //功能3 上传图片
     $("#uploaderInput").change(function(e){
         // 图片信息组成的数组
         var file =$("#uploaderInput")[0].files;
@@ -71,7 +71,7 @@ $(document).ready(function(){ "use strict";
     $("#uploaderFiles").on("click",".weui-uploader__file .delImg",function(){
         $(this).parent().remove();
     });
-    //获取小区code
+    //功能4 获取小区code
     (function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -116,7 +116,6 @@ $(document).ready(function(){ "use strict";
         var value=that.val();
         if(!value){
             that.attr("placeholder","该项必填");
-
         }
     };
     $(".subBtn").click(function(){
@@ -129,9 +128,6 @@ $(document).ready(function(){ "use strict";
         // 参数：content 内容
           var   content=$(".content").val();
         empty($(".content"));
-        // 参数：garden_code 小区
-           // garden_code=$("#house option:selected").attr("title"),
-        // 参数：garden_name 小区名称
           var   garden_name=$("#house option:selected").text();
         // 参数：c 选择项 json格式
           var   choise={};
@@ -167,6 +163,9 @@ $(document).ready(function(){ "use strict";
         // 加密
         var  jsonEncryptData=jsEncryptData(data);
         console.log(data);
+        !title?alert("标题没有填"):
+            !content?alert("内容没有填"):
+                !end_time?alert("选择结束时间"):
         $.ajax({
             url:url+"Subject_addSubject",
             type:"POST",
