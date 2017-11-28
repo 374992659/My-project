@@ -55,7 +55,7 @@ class SendSmsController extends Controller
         $SendSms = new \Sms(C('ACCESSKEYID'), C('ACCESSKEYSECRET'));;
         $res = $SendSms->sendSms($sign, $tempId, $phone,array('code'=>$var['hash']));
         if($res->Code !='OK' ){
-            $code=110;
+            $code=$res;
             return $res;
         }
         //存入缓存
