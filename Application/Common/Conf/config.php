@@ -37,9 +37,9 @@ return array(
 
     //短信模版
     'MESSAGE_SIGN'        =>'美e家园',
-    'REGISTER_CODE'        =>'SMS_100845025',
-    'FORGET_PWD_CODE'   =>'SMS_100735127',
-    'CHANGE_PWD_CODE'   =>'SMS_100875132',
+    'REGISTER_CODE'        =>'SMS_100845025',  //注册
+    'FORGET_PWD_CODE'   =>'SMS_100735127', //忘记密码
+    'CHANGE_PWD_CODE'   =>'SMS_100875132', //绑定、修改手机号
 
     'CAPTCHA_INTERVAL_SECOND' => 60,  //短信间隔60秒
     'SMS_VALIDITY'   => 10,                   //短信有效时间10分钟
