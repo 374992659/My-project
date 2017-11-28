@@ -68,7 +68,7 @@ $(document).ready(function(){
                        localStorage.setItem("apptoken",data.apptoken);
                        var html="";
 
-                       
+
                    }
                }
            })
@@ -79,6 +79,7 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         var garden_code=$("#gardenName option:selected").val();
         if(garden_code){
+            console.log(garden_code);
             var gardenNum=new houseNum(apptoken,garden_code);
             gardenNum.getHouseNum();
         }
