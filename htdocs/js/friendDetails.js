@@ -27,7 +27,7 @@ $(document).ready(function(){
                     }
                     //拥有楼盘
                     var house="";
-                    if(!result.user_garden===""){
+                    if(result.user_garden){
                         var user_garden=JSON.parse(result.user_garden);
                         $.each(user_garden,function(i,item){
                             house+=`
@@ -75,7 +75,7 @@ $(document).ready(function(){
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
                                 <label class="left">常住小区：</label>
-                                <span>${result.default_garden}</span>
+                                <span>${house}</span>
                             </div>
                         </div>
                     </div>                
