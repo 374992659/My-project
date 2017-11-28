@@ -69,9 +69,9 @@ class AdeverseModel extends Model
      * */
     public function getMyAdverseList($city_id,$user_code,$garden_code=''){
         if($garden_code){
-            $res=$this->field('id as adverse_id,title,content,create_time,user_code')->where(['garden_code'=>$garden_code,'status'=>1,'user_code'=>$user_code])->select();
+            $res=$this->field('id as adverse_id,title,content,picture,create_time,user_code')->where(['garden_code'=>$garden_code,'status'=>1,'user_code'=>$user_code])->select();
         }else{
-            $res=$this->field('id as adverse_id,title,content,create_time,user_code')->where(['status'=>1,'user_code'=>$user_code])->select();
+            $res=$this->field('id as adverse_id,title,content,picture,create_time,user_code')->where(['status'=>1,'user_code'=>$user_code])->select();
         }
         if(!$res)return false;
         return $res;
