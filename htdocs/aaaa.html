@@ -12,14 +12,16 @@
 <input type="text">
 <script src="js/jquery-3.2.1.min.js"></script>
 <script>
-    $(".phone").blur(function () {
+    $("#phone").blur(function () {
         var phone=$(".phone").val();
         console.log(phone);
         var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
-        if(!reg.test($.trim(phone))){
-            $("#phone").html("请输入有效的手机号！");
+        var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+        var a=/^0?1[3|4|5|8][0-9]\d{8}$/;
+        if(!a.test(phone)){
+           alert("请输入有效的手机号！");
         }else{
-            $("#phone").html("");
+            alert("手机号有效");
         }
     });
 
