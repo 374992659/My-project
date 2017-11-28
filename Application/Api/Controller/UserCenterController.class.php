@@ -1489,7 +1489,71 @@ class UserCenterController extends VersionController
         );
         $this->echoEncrypData(0,'',$arr);
     }
-
+    /*
+     * 小区选择房号
+     * @param garden_code 小区code
+     * */
+    protected function getMyRoomList_v1_0_0(){
+        $this->checkParam(array('garden_code'));
+        $mongo = new \MongoClient();
+        $garden_city = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
+        $garden_province = M('baseinfo.swf_area')->where(['city_code'=>$garden_city])->getField('province_code');
+        $garden_room = new Model\GardenRoomModel($garden_province,$garden_city);
+        $data = $garden_room->field('room_num')->where(['garden_code'=>$this->pdata['garnde_code'],'user_code'=>$this->account_code])->select();
+        if(!$data){
+            $this->echoEncrypData(1);
+        }else{
+            $this->echoEncrypData(0);
+        }
+    }
+    /*
+     * 个人资料绑定手机号
+     * @param phone 手机号
+     * @param code 手机验证码
+     * */
+    protected function BindPhone_v1_0_0(){
+        $this->checkParam(array('phone','code'));
+        $key_yzm_val = 'bind_'.$this->pdata['phone'];
+        $yzm_Mem = unserialize(S($key_yzm_val));
+        $cache_code = $yzm_Mem['hash'];
+        if( !$cache_code ){
+            return $this->echoEncrypData(116);
+        }
+        if( $cache_code != $this->pdata['code'] ){
+            $this->echoEncrypData(1,'验证码不正确');
+        }
+        $mongo = new \MongoClient();
+        $user_city = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['table_id'];
+        $res=M('baseinfo.user_info_'.$user_city)->where(['account_code'=>$this->account_code])->save(['phone'=>$this->pdata['phone']]);
+        if($res){
+            $this->echoEncrypData(0);
+        }else{
+            $this->echoEncrypData(1);
+        }
+    }
+    /*
+     * 发送绑定手机号的手机验证码（个人中心）
+     * @param phone 手机号
+     * */
+    protected function SendBindMessage_v1_0_0(){
+        $phone=$this->pdata['phone'];
+        if(!preg_match('/^1[3|4|5|7|8][0-9]{9}$/',$phone)){
+            $this->echoEncrypData(106);
+        }
+        $mongo = new \MongoClient();
+        $user_city = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['table_id'];
+        $old_phone = M('baseinfo.user_info_'.$user_city)->where(['account_code'=>$this->account_code])->getField('phone');
+        if($old_phone == $phone){
+            $this->echoEncrypData(1,'你已绑定该手机无需重复操作');
+        }
+        $SMS=new SendSmsController();
+        $SMS->SendMassage($phone,'bind_', '美e家园', 'SMS_94280318', $code);
+        if($code !== 0){
+            $this->echoEncrypData($code);
+        }else{
+            $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
+        }
+    }
 
     /*
      * 判断用户今日是否已达分数上限
