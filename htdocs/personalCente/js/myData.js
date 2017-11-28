@@ -59,7 +59,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="name">姓名：<span style="color: green">*</span></label>
-                        <input type="text" id="name" autofocus="autofocus" value="${result.realname}">
+                        <input type="text" id="name"  value="${result.realname}">
                     </div>
                 </div>
             </div>
@@ -178,7 +178,8 @@ $(document).ready(function(){
                     // 功能4 检测手机号是否正确
                     $(".phone").blur(function(){
                         console.log(phone);
-                        if(!(/^1[34578]\d{9}$/.test(phone))){
+                       var reg=/^[1][3,4,5,7,8][0-9]{9}$/;
+                        if(!reg.test(phone)){
                             alert("手机号码有误，请重填");
                             return false;
                         }
