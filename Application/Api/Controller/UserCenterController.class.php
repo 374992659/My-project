@@ -125,7 +125,7 @@ class UserCenterController extends VersionController
         }
         $user_info->rollback();
         $point_record->rollback();
-        $this->echoEncrypData(1);
+        $this->echoEncrypData(1,$res1,$res2);
     }
     /*
      * 获取我的account_code
