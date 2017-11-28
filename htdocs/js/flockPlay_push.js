@@ -508,6 +508,7 @@ $(document).ready(function(){
                 if(parseInt(collection_time)-parseInt(start_time)<0){
                     //$("#gathertime").val("集合时间早于开始时间啦");
                     alert("集合时间早于开始时间啦");
+                    return;
                 }
             });
         })();
