@@ -40,7 +40,7 @@ $(document).ready(function(){
                         console.log("常住小区");
                         garden=JSON.parse(result.default_garden);
                     }
-                    console.log(garden);
+                    console.log(garden[0]);
                     html=`
                 <div style="text-align: center">
                     <img src="${pic}" alt="" style="width: 80px">
