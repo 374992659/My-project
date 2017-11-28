@@ -264,7 +264,7 @@ $(document).ready(function(){
     $(function(){
         pushHistory();
         window.addEventListener("popstate", function(e) {
-            window.location.href="index.html";
+            window.location.href="flockChat.html";
         }, true);
         function pushHistory() {
             var state = {
