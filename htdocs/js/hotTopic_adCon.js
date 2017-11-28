@@ -24,19 +24,20 @@ $(document).ready(function(){
             var pic="";
             $.each(data.data,function(i,item){
                 console.log(item);
-                if(item.picture){
-                    var PIC=JSON.parse(item.picture);
-                    $.each(PIC,function(i,item){
-                        pic+=`
+                if(parseInt(item.adverse_id)===parseInt(adID)){
+                    //添加图片
+                    if(item.picture){
+                        var PIC=JSON.parse(item.picture);
+                        $.each(PIC,function(i,item){
+                            pic+=`
                     <li style="display: inline-block">
                           <img src="${item}" alt="" class="topic" width="80px">
                     </li>
                     
                     `
-                    });
+                        });
 
-                }
-                if(parseInt(item.adverse_id)===parseInt(adID)){
+                    }
                     console.log("广告");
                     html=`
                     <h4 class="weui-media-box__title" style="text-align: center;font-size: 15px">${item.title}</h4>
