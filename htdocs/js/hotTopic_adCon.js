@@ -26,12 +26,15 @@ $(document).ready(function(){
                 console.log(item);
                 if(item.picture){
                     var PIC=JSON.parse(item.picture);
-                    pic+=`
+                    $.each(PIC,function(i,item){
+                        pic+=`
                     <li style="display: inline-block">
                           <img src="${item}" alt="" class="topic" width="80px">
                     </li>
                     
                     `
+                    });
+
                 }
                 if(parseInt(item.adverse_id)===parseInt(adID)){
                     console.log("广告");
