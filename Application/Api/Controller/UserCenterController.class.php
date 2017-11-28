@@ -43,6 +43,7 @@ class UserCenterController extends VersionController
      * @param code 手机号变动必传
      * */
     protected function updateUserInfo_v1_0_0(){
+        $this->echoEncrypData(1,C('MESSAGE_SIGN'),C('CHANGE_PHONE_CODE'));
         $account_code = $this->account_code;
         $mongo = new \MongoClient();
         $city_id = $mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code))['table_id'];
