@@ -177,6 +177,7 @@ $(document).ready(function(){
                     }
                     // 功能4 检测手机号是否正确
                     $(".phone").blur(function(){
+                        var phone=$(".phone").val();
                         console.log(phone);
                        var reg=/^[1][3,4,5,7,8][0-9]{9}$/;
                         if(!reg.test(phone)){
@@ -245,7 +246,8 @@ $(document).ready(function(){
     });
 
     // 功能5 上传用户头像
-    $('.myInfo').on("change",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__hd .weui-cells .weui-uploader__input-box #uploaderInput",function(e) {
+    var myInfo=$(".myInfo");
+    myInfo.on("change",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__hd .weui-cells .weui-uploader__input-box #uploaderInput",function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
@@ -280,7 +282,7 @@ $(document).ready(function(){
         });
     });
     //获取验证码
-    $(".myInfo").on("click",".weui-cells .weui-cell_vcode .weui-cell__ft .getCodeBtn",function(){
+  myInfo.on("click",".weui-cells .weui-cell_vcode .weui-cell__ft .getCodeBtn",function(){
         var apptoken=localStorage.getItem("apptoken");
         var phone=$(".phone").val();
         console.log(phone);
@@ -329,10 +331,7 @@ $(document).ready(function(){
         return phone;
     });
     // 功能6 提交用户资料
-    $(".myInfo").on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__bd .finishBtn",function(){
-        var success=$(".success");
-        var hideTop=function(){
-            success.empty()};
+    myInfo.on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__bd .finishBtn",function(){
             // 获取apptoken
                     var apptoken= localStorage.getItem("apptoken");
             // 获取头像
