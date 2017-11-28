@@ -877,8 +877,9 @@ $(document).ready(function(){
             console.log(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             // 添加本地页面
+            var time= Date.parse(new Date())/1000;
             var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+         <p style="font-size: 12px;text-align: center">${getLocalTime(time)}</p>
          <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${content}</span>
@@ -897,7 +898,7 @@ $(document).ready(function(){
             // 把好友消息存在本地
             // 获取发送的时间戳
             var sender=localStorage.getItem("sender_code");
-            var time= (new Date()).toLocaleDateString();
+            var time= Date.parse(new Date())/1000;
             console.log("时间戳");
             console.log(time);
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
