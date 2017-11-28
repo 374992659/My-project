@@ -315,4 +315,19 @@ $(document).ready(function(){
     $("#uploaderFiles").on("click",".weui-uploader__file .delImg",function(){
         $(this).parent().remove();
     });
+    // 图片放大预览
+    (function(){
+        $("#uploaderFiles").on("click",".weui-uploader__file .pushSpit_Img",function(){
+            console.log(123);
+            var URL=$(this).attr("src");
+            if($(".weui-gallery").is(":hidden")){
+                $(".weui-gallery").show();
+                $(".weui-gallery__img").attr("style","background-image: url("+URL+")")
+            }
+        });
+        $(".weui-gallery").click(function(){
+            $(".weui-gallery").hide();
+
+        });
+    })();
 });
