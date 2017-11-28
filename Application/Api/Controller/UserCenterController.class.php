@@ -45,7 +45,7 @@ class UserCenterController extends VersionController
     protected function updateUserInfo_v1_0_0(){
         $account_code = $this->account_code;
         $mongo = new \MongoClient();
-        $city_id = $mongo->baseinfo->user_area->findOne(array('account_code'))['table_id'];
+        $city_id = $mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code))['table_id'];
         $portrait = $this->pdata['portrait'];
         $nickname = $this->pdata['nickname'];
         if(!$portrait || !$nickname)$this->echoEncrypData(21);
