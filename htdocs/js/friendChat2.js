@@ -130,7 +130,7 @@ $(document).ready(function(){
                                         console.log(item.content);
                                         //把未读消息保存本地
                                         (function(){
-                                            var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
+                                            var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+"http://wx.junxiang.ren/project/"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
                                             console.log(json_str);
                                             var history_chats = localStorage.getItem('history_'+sender_code);
                                             if(!history_chats){
@@ -386,7 +386,7 @@ $(document).ready(function(){
                         </div>
                         <div class="weui-media-box__bd">
                                 <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;padding: 0">
-                                   <img src="${item.content}" style="width: 80px" alt=""/>
+                                   <img src="http://wx.junxiang.ren/project/${item.content}" style="width: 80px" alt=""/>
 
                                 </span>
                        </div>
@@ -490,7 +490,7 @@ $(document).ready(function(){
                                     <div class="weui-media-box__bd">
                                         <span class="weui-media-box__desc right"  style="background:white;font-size: 13px;color: black;padding: 0">
 
-                                         <img src="${item.content}" style="width: 80px"  alt=""/>
+                                         <img src="http://wx.junxiang.ren/project/${item.content}" style="width: 80px"  alt=""/>
                                         </span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
