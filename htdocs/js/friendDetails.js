@@ -27,7 +27,7 @@ $(document).ready(function(){
                     }
                     //拥有楼盘
                     var house="";
-                    if(result.user_garden){
+                    if(!result.user_garden===""){
                         var user_garden=JSON.parse(result.user_garden);
                         $.each(user_garden,function(i,item){
                             house+=`
@@ -35,6 +35,12 @@ $(document).ready(function(){
                             `
                         });
                     }
+                    var garden="";
+                    if(result.default_garden){
+                        console.log("常住小区");
+                        garden=JSON.parse(result.default_garden);
+                    }
+                    console.log(garden);
                     html=`
                 <div style="text-align: center">
                     <img src="${pic}" alt="" style="width: 80px">
@@ -75,7 +81,7 @@ $(document).ready(function(){
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
                                 <label class="left">常住小区：</label>
-                                <span>${house}</span>
+                                <span>${result.default_garden}</span>
                             </div>
                         </div>
                     </div>                
