@@ -110,7 +110,6 @@ $(document).ready(function(){
                 }
             }
         });
-
       });
     //  功能3修改好友分组
     $(".groupList").on("click",".weui-cell .alterBtn",function(e){
@@ -137,13 +136,9 @@ $(document).ready(function(){
                     console.log(data);
                     localStorage.setItem("apptoken",data.apptoken);
                     group();
-                    $(document).on('click','#show-success',function(){
-                        $.toptip("修改成功", 'success');
-                    });
+                    showHide(data.errmsg)
                 }else{
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
+                    showHide(data.errmsg)
                 }
             }
         })
