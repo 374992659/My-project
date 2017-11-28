@@ -1523,14 +1523,15 @@ class UserCenterController extends VersionController
     /*
      * 小区选择房号
      * @param garden_code 小区code
+     * @param role 1：业主 2：租户
      * */
     protected function getMyRoomList_v1_0_0(){
-        $this->checkParam(array('garden_code'));
+        $this->checkParam(array('garden_code','role'));
         $mongo = new \MongoClient();
         $garden_city = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$this->pdata['garden_code']))['city_id'];
         $garden_province = M('baseinfo.swf_area')->where(['city_code'=>$garden_city])->getField('province_code');
         $garden_room = new Model\GardenRoomModel($garden_province,$garden_city);
-        $data = $garden_room->field('room_num')->where(['garden_code'=>$this->pdata['garden_code'],'user_code'=>$this->account_code])->select();
+        $data = $garden_room->field('room_num')->where(['garden_code'=>$this->pdata['garden_code'],'role'=>intval($this->pdata['role']),'user_code'=>$this->account_code])->select();
         if(!$data){
             $this->echoEncrypData(1);
         }else{
