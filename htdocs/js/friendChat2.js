@@ -42,7 +42,7 @@ $(document).ready(function(){
                                 var httP=sender_portrait.split(":")[0];
                                 if(sender_code===sender_code){
                                     $.each(item.content,function(i,item){
-                                        if(item.type===3){//内容为文件、图片
+                                        if(parseInt(item.type)===3){//内容为文件、图片
                                             if(httP==="http"){
                                                 html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -70,7 +70,7 @@ $(document).ready(function(){
                    </div>                   
                 </div>                  `;
                                             }
-                                        } else if(item.type===2){//内容为语音
+                                        } else if(parseInt(item.type)===2){//内容为语音
                                             if(httP==="http"){
                                                 html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
