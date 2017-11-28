@@ -95,7 +95,7 @@ $(document).ready(function(){
                             <label class="weui-label" style="width:100%;text-align: right;">验证码：<span style="color: green">*</span></label>
                         </div>
                         <div class="weui-cell__bd"  style="width:70%">
-                            <input class="weui-input code" type="password" placeholder="输入验证码" style="width:100%">
+                            <input class="weui-input code" type="number" placeholder="输入验证码" style="width:100%">
                         </div>
                     </div>
                 </div>
