@@ -67,8 +67,9 @@ $(document).ready(function(){
         $(".myTopicList").on("click",".myTopic_id",function(){
             //获取话题id
             var subject_id=$(this).attr("title");
-            var garden_code=$(this).attr("garden_code");
+            var garden_code=$(this).attr("value");
             console.log(subject_id);
+            console.log(garden_code);
             localStorage.setItem("subject_id",subject_id);
             localStorage.setItem("garden_code",garden_code);
             if(subject_id&&garden_code){
@@ -77,7 +78,7 @@ $(document).ready(function(){
 
         });
         //删除 热门话题
-    $(".myTopicList").on("click",".myTopic_id .weui-media-box .delBtn",function(){
+    $(".myTopicList").on("click",".myTopic_id .weui-media-box .delBtn",function(e){
         var apptoken=localStorage.getItem("apptoken");
         // city_id 城市id
         var city_id=localStorage.getItem("city_id");
@@ -94,7 +95,8 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    showHide(data.errmsg)
+                    showHide(data.errmsg);
+                    $(e.target).parent().parent().remove();
                 }else{
                     showHide(data.errmsg)
                 }
