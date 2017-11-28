@@ -271,7 +271,12 @@ class UserCenterController extends VersionController
                 $Array[$key]['garden_code']=$val['garden_code'];
                 $Array[$key]['city_id']=$val['city_id'];
             }
-            $this->echoEncrypData(0,'',$Array);
+            if($Array){
+                $this->echoEncrypData(0,'',$Array);
+            }else{
+                $this->echoEncrypData(5);
+            }
+
         }else{
             $this->echoEncrypData(5);
         }
