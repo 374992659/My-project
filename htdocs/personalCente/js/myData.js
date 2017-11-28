@@ -63,6 +63,19 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
+            <!--年龄-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="sex">性别：<span style="color: green">*</span></label>                    
+                         <select name='' id='sex'>
+                             <option value="0" title="">保密</option>
+                             <option value="1">男</option>
+                             <option value="2">女</option>
+                         </select>
+                    </div>
+                </div>
+            </div>
             <!--电话-->
             <div class="weui-cells">
                     <div class="weui-cell weui-cell_vcode" style="padding:10px 15px;">
@@ -154,6 +167,13 @@ $(document).ready(function(){
                     if(hobby==="null"){
                         $("#likes").val("");
 
+                    }
+                    if(result.sex===0){
+                        $("#sex").find("option[value='0']").attr("selected",true);
+                    }else if(result.sex===1){
+                        $("#sex").find("option[value='1']").attr("selected",true);
+                    }else{
+                        $("#sex").find("option[value='2']").attr("selected",true);
                     }
                     // 功能4 检测手机号是否正确
                     $(".phone").blur(function(){
@@ -320,6 +340,8 @@ $(document).ready(function(){
                     var   nickname=$("#nickname").val();
             // 获取真实姓名（可填）
                     var    realname=$("#name").val();
+            //获取性别
+                    var sex=$("#sex option:selected").val();
             // 手机号（可填）
                     var    phone=$(".phone").val();
             // 微信（可填）
