@@ -127,9 +127,7 @@ $(document).ready(function(){
                 </div>                  `;
                                             }
                                         }
-
                                         console.log(item.content);
-
                                         //把未读消息保存本地
                                         (function(){
                                             var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
@@ -900,6 +898,8 @@ $(document).ready(function(){
             // 获取发送的时间戳
             var sender=localStorage.getItem("sender_code");
             var time= (new Date()).toLocaleDateString();
+            console.log("时间戳");
+            console.log(time);
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
             console.log(json_str);
             var history_chats = localStorage.getItem('history_'+sender_code);
