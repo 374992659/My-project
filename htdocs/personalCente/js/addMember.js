@@ -213,6 +213,7 @@ $(document).ready(function(){
                         var apptoken=localStorage.getItem("apptoken");
                         var garden_code=$("#gardenName option:selected").attr("title");
                         var role=1;
+                        console.log(typeof role);
                         console.log(garden_code);
                         if(garden_code){
                             console.log(garden_code);
