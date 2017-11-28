@@ -1577,7 +1577,7 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(1,'你已绑定该手机无需重复操作');
         }
         $SMS=new SendSmsController();
-        $SMS->SendMassage($phone,'bind_', C('MESSAGE_SIGN'), C('CHANGE_PWD_CODE'), $code);
+        $SMS->SendMassage($phone,'bind_', C('MESSAGE_SIGN'), C('CHANGE_PHONE_CODE'), $code);
         if($code !== 0){
             $this->echoEncrypData($code);
         }else{
