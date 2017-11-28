@@ -193,10 +193,11 @@ $(document).ready(function(){
                     (function(){
                         var apptoken=localStorage.getItem("apptoken");
                         var garden_code=$("#gardenName option:selected").attr("title");
+                        var role=2;
                         console.log(garden_code);
                         if(garden_code){
                             console.log(garden_code);
-                            var gardenNum=new houseNum(apptoken,garden_code);
+                            var gardenNum=new houseNum(apptoken,garden_code,role);
                             gardenNum.getHouseNum();
                         }
                     })();
@@ -303,11 +304,12 @@ $(document).ready(function(){
         })
     });
     //根据小区名字找到相应的认证房号构造函数
-    function houseNum(apptoken,garden_code){
+    function houseNum(apptoken,garden_code,role){
         this.apptoken=apptoken;
         this.garden_code=garden_code;
+        this.role=role;
         this.getHouseNum=function(){
-            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code})];
+            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"role":role})];
             var jsonEncryptData=jsEncryptData(data);
             console.log(data);
             $.ajax({
@@ -338,10 +340,11 @@ $(document).ready(function(){
             $("#houseNum").empty();
             var apptoken=localStorage.getItem("apptoken");
             var garden_code=$("#gardenName option:selected").attr("title");
+            var role=2;
             console.log(garden_code);
             if(garden_code){
                 console.log(garden_code);
-                var gardenNum=new houseNum(apptoken,garden_code);
+                var gardenNum=new houseNum(apptoken,garden_code,role);
                 gardenNum.getHouseNum();
             }
         })
