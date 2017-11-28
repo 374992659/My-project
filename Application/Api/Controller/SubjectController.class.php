@@ -487,6 +487,7 @@ class SubjectController extends VersionController
      *@param city_id 城市id
      *@param garden_code 小区code 可填
      *@param title 标题
+     *@param picture 图片
      *@param content 内容
      * */
     protected function addAd_v1_0_0(){
@@ -494,7 +495,8 @@ class SubjectController extends VersionController
         $garden_code=$this->pdata['garden_code'];
         $title=$this->pdata['title'];
         $content=$this->pdata['content'];
-        if(!$city_id || !$title || !$content)$this->echoEncrypData(21);
+        $picture =$this->pdata['picture'];
+        if(!$city_id || !$title || !$content || !$picture)$this->echoEncrypData(21);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
@@ -507,6 +509,7 @@ class SubjectController extends VersionController
             'create_time'=>time(),
             'is_public'=>1,
             'garden_code'=>$garden_code,
+            'picture'=>$this->pdata['picture'],
         );
         if(!$garden_code){
             $data['is_public']=2;
@@ -533,6 +536,38 @@ class SubjectController extends VersionController
         }
 //        $this->echoEncrypData(0);
     }
+    /*
+     * 上传广告图片
+     *APP参数 imageData 文件流
+     * */
+    protected function uploadAdPic_V1_0_0(){
+        if(intval($_GET['is_wap']) !==1){
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
+            $save_path = APP_PATH . 'Common/Upload/Img/AdPicture/' . date(m) . date(d) . '/';
+            $res = $this->uploadAppImg($save_path,$a);
+            if($res){
+                $this->echoEncrypData(0,'',$res);
+            }else{
+                $this->echoEncrypData(1,'图片上传失败');
+            }
+        }else {
+            import('Vendor.UploadFile');
+            $upload = new \UploadFile();
+            $path = APP_PATH . 'Common/Upload/Img/AdPicture/' . date(m) . date(d) . '/';
+            $res = $upload->upload($path);
+            if (!$res) {
+                $this->echoEncrypData(1, $upload->getErrorMsg());
+            }
+            foreach ($res as $k => $v) {
+                $data[] = $res[$k]['savepath'] . $res[$k]['savename'];
+            }
+            $this->echoEncrypData(0, '', $data);
+        }
+    }
+
+
+
     /*
      * 删除广告
      *@param city_id 城市id
