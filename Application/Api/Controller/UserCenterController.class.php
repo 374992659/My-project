@@ -239,6 +239,7 @@ class UserCenterController extends VersionController
     }
     /*
      * 获取用户已认证通过的小区
+     * @param role 用户角色 可填
      * */
     protected function getApplicationGarden_v1_0_0(){
         $account_code=$this->account_code;
@@ -253,7 +254,14 @@ class UserCenterController extends VersionController
             $uGarden = array();
             foreach($garden_arr as $k=>$v){
                 $arr = explode(',',$v);
-                $uGarden[]=$arr[0];
+                if($this->pdata['role']){
+                    if($arr[1]  === intval($this->pdata['role'])){
+                        $uGarden[]=$arr[0];
+                    }
+                }else{
+                    $uGarden[]=$arr[0];
+                }
+
             }
             $mongo = new \MongoClient();
             $userGarden = $mongo->baseinfo->garden_area->find(array('garden_code'=>array('$in'=>$uGarden)));
