@@ -102,5 +102,18 @@ $(document).ready(function(){
             window.location.href="hotTopic_myTopicText.html";
         }
 
-    })
+    });
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.href="index.html";
+        }, true);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+    });
 });
