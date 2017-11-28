@@ -212,10 +212,11 @@ $(document).ready(function(){
                     (function(){
                         var apptoken=localStorage.getItem("apptoken");
                         var garden_code=$("#gardenName option:selected").attr("title");
+                        var role=1;
                         console.log(garden_code);
                         if(garden_code){
                             console.log(garden_code);
-                            var gardenNum=new houseNum(apptoken,garden_code);
+                            var gardenNum=new houseNum(apptoken,garden_code,role);
                             gardenNum.getHouseNum();
                         }
                     })();
@@ -223,9 +224,9 @@ $(document).ready(function(){
                     $(".addMember").hide();
                     html=`
                       <div style="text-align: center">
-                        <p>你还没有认证的小区不能发布槽点，请到个人心进行认证</p>
-                        <a href="http://wx.junxiang.ren/project/htdocs/personalCente/" style="background: red;color: white">点我到个人中心</a>
-                    </div>
+                            <p>你还没有认证的小区不能发布槽点，请到个人心进行认证</p>
+                            <a href="http://wx.junxiang.ren/project/htdocs/personalCente/" style="background: red;color: white">点我到个人中心</a>
+                      </div>
                     `;
                     $("body").append(html)
                 }
@@ -233,11 +234,12 @@ $(document).ready(function(){
         })
     })();
     //根据小区名字找到相应的认证房号构造函数
-    function houseNum(apptoken,garden_code){
+    function houseNum(apptoken,garden_code,role){
         this.apptoken=apptoken;
         this.garden_code=garden_code;
+        this.role=role;
         this.getHouseNum=function(){
-            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code})];
+            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code,"role":role})];
             var jsonEncryptData=jsEncryptData(data);
             console.log(data);
             $.ajax({
@@ -268,10 +270,11 @@ $(document).ready(function(){
             $("#houseNum").empty();
             var apptoken=localStorage.getItem("apptoken");
             var garden_code=$("#gardenName option:selected").attr("title");
+            var role=1;
             console.log(garden_code);
             if(garden_code){
                 console.log(garden_code);
-                var gardenNum=new houseNum(apptoken,garden_code);
+                var gardenNum=new houseNum(apptoken,garden_code,role);
                 gardenNum.getHouseNum();
             }
         })
