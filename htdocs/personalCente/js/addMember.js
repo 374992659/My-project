@@ -262,6 +262,20 @@ $(document).ready(function(){
             })
         }
     }
+    //当小区方式改变的时候重新获取认证的房号
+    (function () {
+        $("#gardenName").change(function () {
+            $("#houseNum").empty();
+            var apptoken=localStorage.getItem("apptoken");
+            var garden_code=$("#gardenName option:selected").attr("title");
+            console.log(garden_code);
+            if(garden_code){
+                console.log(garden_code);
+                var gardenNum=new houseNum(apptoken,garden_code);
+                gardenNum.getHouseNum();
+            }
+        })
+    })();
     // 提交
     $(".weui-btn").click(function(){
         // 获取apptoken
