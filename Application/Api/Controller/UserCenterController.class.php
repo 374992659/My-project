@@ -40,27 +40,51 @@ class UserCenterController extends VersionController
      * @param birth_month 出生月份 可填
      * @param hobby 爱好  字符串 用英文逗号间隔 可填
      * @param id_card_num 身份证编号 可填
+     * @param code 手机号变动必传
      * */
     protected function updateUserInfo_v1_0_0(){
         $account_code = $this->account_code;
-        $city_id = substr($account_code,0,6);
+        $mongo = new \MongoClient();
+        $city_id = $mongo->baseinfo->user_area->findOne(array('account_code'))['table_id'];
         $portrait = $this->pdata['portrait'];
         $nickname = $this->pdata['nickname'];
         if(!$portrait || !$nickname)$this->echoEncrypData(21);
         $user_info = new Model\UserInfoModel($city_id);
+        $user_info->startTrans();
+        $point_record = new Model\PointRecordModel($account_code);
+        $point_record->startTrans();
+        $res1 = true;
         if($this->pdata['id_card_num']){
             if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['id_card_num'])){
                 $this->echoEncrypData(1,'身份证号码格式错误');
             }
+            if($this->pdata['phone']){//用户提交手机号
+                //检测手机号有无变动
+                $old_phone = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('phone');
+                if($this->pdata['phone'] !==$old_phone){
+                    if(!$this->pdata['code']){
+                        $this->echoEncrypData(1,'请填写短信验证码');
+                    }
+                    $key_yzm_val = 'bind_'.$this->pdata['phone'];
+                    $yzm_Mem = unserialize(S($key_yzm_val));
+                    $cache_code = $yzm_Mem['hash'];
+                    if( !$cache_code ){
+                        return $this->echoEncrypData(116);
+                    }
+                    if( $cache_code != $this->pdata['code'] ){
+                        $this->echoEncrypData(1,'验证码不正确');
+                    }
+                }
+            }
+            $res1 = true;
             //实名认证
             if($this->pdata['realname']){
                 //检测身份证姓名是否匹配
                 //完成实名认证积分
-                $point_record = new Model\PointRecordModel($account_code);
                 $exists = $point_record->where(['name_id'=>C('POINT_CONFIG.CERTIFICATION')])->count();
                 if(!$exists){
                     $point = M('baseinfo.point_config')->field('id,name,type,value')->where(['id'=>C('POINT_CONFIG.CERTIFICATION')])->find();
-                    $point_record->add(array(
+                    $res1 = $point_record->add(array(
                         'name_id'=>$point['id'],
                         'name'=>$point['name'],
                         'type'=>$point['type'],
@@ -75,7 +99,7 @@ class UserCenterController extends VersionController
                 }
             }
         }
-        $res = $user_info->where(array('account_code'=>$account_code))->save(array(
+        $res2 = $user_info->where(array('account_code'=>$account_code))->save(array(
             'portrait'=>$portrait,
             'nickname'=>$nickname,
             'realname'=>$this->pdata['realname'],
@@ -88,7 +112,9 @@ class UserCenterController extends VersionController
             'hobby'=>$this->pdata['hobby'],
             'id_card_num'=>$this->pdata['id_card_num']
         ));
-        if($res !== false){
+        if($res1 and $res2){
+            $user_info->commit();
+            $point_record->commit();
             $mongo = new \MongoClient();
             $mongo->baseinfo->user_area->update(array('account_code'=>$account_code),array('$set'=>array(
                 'portrait'=>$portrait,
@@ -97,6 +123,8 @@ class UserCenterController extends VersionController
             )));
             $this->echoEncrypData(0);
         }
+        $user_info->rollback();
+        $point_record->rollback();
         $this->echoEncrypData(1);
     }
     /*
@@ -1511,26 +1539,26 @@ class UserCenterController extends VersionController
      * @param phone 手机号
      * @param code 手机验证码
      * */
-    protected function BindPhone_v1_0_0(){
-        $this->checkParam(array('phone','code'));
-        $key_yzm_val = 'bind_'.$this->pdata['phone'];
-        $yzm_Mem = unserialize(S($key_yzm_val));
-        $cache_code = $yzm_Mem['hash'];
-        if( !$cache_code ){
-            return $this->echoEncrypData(116);
-        }
-        if( $cache_code != $this->pdata['code'] ){
-            $this->echoEncrypData(1,'验证码不正确');
-        }
-        $mongo = new \MongoClient();
-        $user_city = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['table_id'];
-        $res=M('baseinfo.user_info_'.$user_city)->where(['account_code'=>$this->account_code])->save(['phone'=>$this->pdata['phone']]);
-        if($res){
-            $this->echoEncrypData(0);
-        }else{
-            $this->echoEncrypData(1);
-        }
-    }
+//    protected function BindPhone_v1_0_0(){
+//        $this->checkParam(array('phone','code'));
+//        $key_yzm_val = 'bind_'.$this->pdata['phone'];
+//        $yzm_Mem = unserialize(S($key_yzm_val));
+//        $cache_code = $yzm_Mem['hash'];
+//        if( !$cache_code ){
+//            return $this->echoEncrypData(116);
+//        }
+//        if( $cache_code != $this->pdata['code'] ){
+//            $this->echoEncrypData(1,'验证码不正确');
+//        }
+//        $mongo = new \MongoClient();
+//        $user_city = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['table_id'];
+//        $res=M('baseinfo.user_info_'.$user_city)->where(['account_code'=>$this->account_code])->save(['phone'=>$this->pdata['phone']]);
+//        if($res){
+//            $this->echoEncrypData(0);
+//        }else{
+//            $this->echoEncrypData(1);
+//        }
+//    }
     /*
      * 发送绑定手机号的手机验证码（个人中心）
      * @param phone 手机号
