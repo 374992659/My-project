@@ -198,7 +198,7 @@ $(document).ready(function(){
             console.log(picture);
             console.log(typeof picture);
             //数据格式转换
-            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content})];
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"title":title,"content":content,"picture":picture})];
             //加密
             var jsonEncryptData=jsEncryptData(data);
             console.log(data);
