@@ -212,9 +212,10 @@ $(document).ready(function(){
                     function houseNum(apptoken,garden_code){
                         this.apptoken=apptoken;
                         this.garden_code=garden_code;
-                        this.getHouseNum=function (apptoken,garden_code) {
+                        this.getHouseNum=function(){
                             var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code})];
                             var jsonEncryptData=jsEncryptData(data);
+                            console.log(data);
                             $.ajax({
                                 url:url+"UserCenter_getMyRoomList",
                                 type:"POST",
