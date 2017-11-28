@@ -690,7 +690,7 @@ $(document).ready(function(){
                             Pic="http://wx.junxiang.ren/project/"+item.content
                         }
                         console.log("聊天记录");
-                        if(parseInt(item.type)===3){
+                        if(parseInt(item.type)===3){//图片
                             html+=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -704,7 +704,7 @@ $(document).ready(function(){
              </div>
          </div>
                                     `
-                        }else if(parseInt(item.type)===2){
+                        }else if(parseInt(item.type)===2){//语音
                             html+=`
                                  <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
@@ -733,7 +733,7 @@ $(document).ready(function(){
                         }
 
                     }else{//好友
-                        if(parseInt(item.type)===3){
+                        if(parseInt(item.type)===3){//图片
                             html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -746,7 +746,7 @@ $(document).ready(function(){
                             </span>
                    </div>                   
                 </div> `
-                        } else if(parseInt(item.type)===2){
+                        } else if(parseInt(item.type)===2){//语音
                             html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">

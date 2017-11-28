@@ -21,8 +21,18 @@ $(document).ready(function(){
             var data=jsDecodeData(data);
             console.log(data);
             var html="";
+            var pic="";
             $.each(data.data,function(i,item){
                 console.log(item);
+                if(item.picture){
+                    var PIC=JSON.parse(item.picture);
+                    pic+=`
+                    <li style="display: inline-block">
+                          <img src="${item}" alt="" class="topic" width="80px">
+                    </li>
+                    
+                    `
+                }
                 if(parseInt(item.adverse_id)===parseInt(adID)){
                     console.log("广告");
                     html=`
@@ -45,7 +55,8 @@ $(document).ready(function(){
                     `;
                 }
             });
-            $(".weui-media-box").html(html)
+            $(".weui-media-box").html(html);
+            $(".picPlace").html(pic);
         },
         error:function(){}
     })
