@@ -385,7 +385,7 @@ $(document).ready(function(){
                 }
             }
             // 数据格式转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby,"code":code,"sex":sex})];
+                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby,"code":code,"sex":parseInt(sex)})];
             // 加密
                     jsonEncryptData=jsEncryptData(data);
                     console.log(data);
