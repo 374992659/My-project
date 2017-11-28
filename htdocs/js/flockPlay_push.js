@@ -506,9 +506,7 @@ $(document).ready(function(){
                     collection_time=timestamp3/1000;
                 console.log("集合时间"+collection_time);
                 if(parseInt(collection_time)-parseInt(start_time)<0){
-                    //$("#gathertime").val("集合时间早于开始时间啦");
-                    alert("集合时间早于开始时间啦");
-                    return;
+                   $("#gathertime").val("集合时间早于开始时间啦");
                 }
             });
         })();
@@ -598,7 +596,6 @@ $(document).ready(function(){
             !end_time?alert("结束时间没有选择"):
             !destination?alert("输入目的地"):
             !collection_time?alert("选择集合时间"):
-                !parseInt(collection_time)-parseInt(start_time)<0?console.log("集合时间早与开始时间"):
             !collection_place?alert("集合地"):
             !contact?alert("联系人"):
             !phone?alert("联系电话"):
