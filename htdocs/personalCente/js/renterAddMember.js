@@ -204,6 +204,7 @@ $(document).ready(function(){
                         }
                     })();
                 }else if(data.errcode===5){
+                    console.log("租户没有认证的小区");
                     $(".addMember").hide();
                     html=`
                       <div style="text-align: center">
