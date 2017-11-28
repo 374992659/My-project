@@ -878,6 +878,9 @@ $(document).ready(function(){
             ws.send(JSON.stringify({'type':2,'content':content,'apptoken':apptoken,'account_code':account_code,'message_type':message_type}));
             // 添加本地页面
             var time= Date.parse(new Date())/1000;
+            console.log("发送时间");
+            console.log(time);
+            console.log(getLocalTime(time));
             var  html=`
          <p style="font-size: 12px;text-align: center">${getLocalTime(time)}</p>
          <div class="weui-media-box weui-media-box_appmsg">
