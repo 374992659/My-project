@@ -156,18 +156,18 @@ $(document).ready(function(){
                     `;
                   $(".myInfo").html(html);
                    //如果微信号为null value值为空
-                    var weiXin=$("#weiXin").val();
-                    if(weiXin==="null"){
-                        $("#weiXin").val("");
-
-                    }
+                   //  var weiXin=$("#weiXin").val();
+                   //  if(weiXin==="null"){
+                   //      $("#weiXin").val("");
+                   //
+                   //  }
                     //如果爱好为空
-                    var hobby=$("#likes").val();
-                    console.log(hobby);
-                    if(hobby==="null"){
-                        $("#likes").val("");
-
-                    }
+                    // var hobby=$("#likes").val();
+                    // console.log(hobby);
+                    // if(hobby==="null"){
+                    //     $("#likes").val("");
+                    //
+                    // }
                     if(parseInt(result.sex)===0){
                         $("#sex").find("option[value='0']").attr("selected",true);
                     }else if(parseInt(result.sex===1)){
