@@ -261,7 +261,6 @@ class UserCenterController extends VersionController
                 }else{
                     $uGarden[]=$arr[0];
                 }
-
             }
             $mongo = new \MongoClient();
             $userGarden = $mongo->baseinfo->garden_area->find(array('garden_code'=>array('$in'=>$uGarden)));
