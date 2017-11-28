@@ -81,14 +81,12 @@ $(document).ready(function(){
                     success:function(data){
                         var data=jsDecodeData(data);
                         console.log(data);
-                        if(data.errcoode===0){
+                        if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
                             showHide(data.errmsg);
                             console.log($(this));
                             console.log($($(this).parent().parent()));
-                            $(this).parent().parent().remove();
                             $(e.target).parent().parent().remove();
-                            console.log("删除成功");
                         }else{
                             showHide(data.errmsg)
                         }

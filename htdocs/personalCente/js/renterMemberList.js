@@ -49,7 +49,7 @@ $(document).ready(function(){
         }
     });
     //删除成员
-    $(".renterMemberList").on("click","tr td button",function () {
+    $(".renterMemberList").on("click","tr td button",function (e) {
         var apptoken=localStorage.getItem("apptoken");
         var garden_code=$(this).attr("value");
         console.log("garden_code");
@@ -74,8 +74,9 @@ $(document).ready(function(){
                 console.log(data);
                 var data=jsDecodeData(data);
                 console.log(data);
-                if(data.errcoode===0){
+                if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    $(e.target).parent().parent().remove();
                     showHide(data.errmsg)
                 }else{
                     showHide(data.errmsg)
