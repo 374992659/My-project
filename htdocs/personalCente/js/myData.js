@@ -168,9 +168,9 @@ $(document).ready(function(){
                         $("#likes").val("");
 
                     }
-                    if(result.sex===0){
+                    if(parseInt(result.sex)===0){
                         $("#sex").find("option[value='0']").attr("selected",true);
-                    }else if(result.sex===1){
+                    }else if(parseInt(result.sex===1)){
                         $("#sex").find("option[value='1']").attr("selected",true);
                     }else{
                         $("#sex").find("option[value='2']").attr("selected",true);
