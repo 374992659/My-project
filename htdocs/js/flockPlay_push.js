@@ -506,10 +506,14 @@ $(document).ready(function(){
                     collection_time=timestamp3/1000;
                 console.log("集合时间"+collection_time);
                 if(parseInt(collection_time)-parseInt(start_time)<0){
-                    $("#gathertime").attr("placeholder","手机号没填哦");
+                    $("#gathertime").val("集合时间早于开始时间了");
+                    $("#gathertime").attr("style","color:red");
                 }
             });
         })();
+        $("#gathertime").focus(function () {
+            $("#gathertime").attr("style","color:block")
+        });
         $(".subBtn").click(function(){
             var success=$(".success");
             var hideTop=function(){
