@@ -1501,7 +1501,7 @@ class UserCenterController extends VersionController
         $garden_room = new Model\GardenRoomModel($garden_province,$garden_city);
         $data = $garden_room->field('room_num')->where(['garden_code'=>$this->pdata['garden_code'],'user_code'=>$this->account_code])->select();
         if(!$data){
-            $this->echoEncrypData(1);
+            $this->echoEncrypData(1,'',$data);
         }else{
             $this->echoEncrypData(0);
         }
