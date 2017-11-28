@@ -255,7 +255,7 @@ class UserCenterController extends VersionController
             foreach($garden_arr as $k=>$v){
                 $arr = explode(',',$v);
                 if($this->pdata['role']){
-                    if($arr[1]  === intval($this->pdata['role'])){
+                    if(intval($arr[1])  === intval($this->pdata['role'])){
                         $uGarden[]=$arr[0];
                     }
                 }else{
