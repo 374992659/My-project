@@ -85,7 +85,7 @@ $(document).ready(function(){
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
                                 <label class="left">常住小区：</label>
-                                <span>${result.default_garden}</span>
+                                <span>${garden}</span>
                             </div>
                         </div>
                     </div>                
