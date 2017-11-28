@@ -250,6 +250,7 @@ $(document).ready(function(){
     (function(){
         var apptoken=localStorage.getItem("apptoken");
         var garden_code=$("#gardenName option:selected").val();
+        console.log(garden_code);
         if(garden_code){
             console.log(garden_code);
             var gardenNum=new houseNum(apptoken,garden_code);
