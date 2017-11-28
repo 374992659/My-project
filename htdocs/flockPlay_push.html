@@ -27,7 +27,7 @@
             <ul>
                 <li>
                     <label for="topic">主题：<span style="color: red">*</span></label>
-                    <input type="text" id="topic" autofocus>
+                    <input type="text" id="topic" autofocus="autofocus">
                 </li>
                 <li class="time" style="font-size: 12px">
                     <label for="time">活动时间：<span style="color: red">*</span></label>
@@ -40,7 +40,7 @@
                 </li>
                 <li>
                     <label for="gathertime">集合时间：<span style="color: red">*</span></label>
-                    <input type="text" id="gathertime" required="required" autofocus data-options='{"type":"YYYY-MM-DD hh:mm","beginYear":2010,"endYear":2020}'
+                    <input type="text" id="gathertime" required="required" data-options='{"type":"YYYY-MM-DD hh:mm","beginYear":2010,"endYear":2020}'
                            style="width: 170px">
                 </li>
                 <li>
@@ -54,11 +54,7 @@
                 <li>
                     <label for="vehicle">出行方式：<span style="color: red">*</span></label>
                     <select name="" id="vehicle" style="width: 180px;height: 30px;outline: none">
-                        <!--<option value="0">请选择</option>-->
-                        <!--<option value="汽车自驾">汽车自驾</option>-->
-                        <!--<option value="徒步">徒步</option>-->
-                        <!--<option value="行车骑行">行车骑行</option>-->
-                        <!--<option value="摩托车骑行">摩托车骑行</option>-->
+
                     </select>
 
                 </li>
@@ -75,22 +71,20 @@
                 <li>
                     <label for="changPlan">费用类型：<span style="color: red">*</span></label>
                     <select name="" id="changPlan" style="width: 180px;height: 30px;outline: none">
-                        <!--<option value="AA制">AA制</option>-->
-                        <!--<option value="自驾游">自驾游</option>-->
-                        <!--<option value="发布人">发布人</option>-->
+
                     </select>
                 </li>
                 <li>
                     <label for="perCapita">人均消费：<span style="color: red">*</span></label>
-                    <input type="number" id="perCapita"  required="required"  autofocus pattern="[0-9]*">
+                    <input type="number" id="perCapita" pattern="[0-9]*">
                 </li>
                 <li>
                     <label for="bourn">目的地：<span style="color: red">*</span></label>
-                    <input type="text" id="bourn"  required="required"  autofocus>
+                    <input type="text" id="bourn">
                 </li>
                 <li>
                     <label for="line">路线规划：<span style="opacity: 0">*</span></label>
-                    <input type="text" id="line" autofocus>
+                    <input type="text" id="line">
                 </li>
                 <li class="addLabel">
                     <label>添加标签：<span style="opacity: 0">*</span></label>
