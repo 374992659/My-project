@@ -155,6 +155,9 @@ $(document).ready(function(){
             </div>
                     `;
                   $(".myInfo").html(html);
+                  if(result.phone){
+                      localStorage.setItem("phone",result.phone);
+                  }
                    //如果微信号为null value值为空
                    //  var weiXin=$("#weiXin").val();
                    //  if(weiXin==="null"){
@@ -244,9 +247,8 @@ $(document).ready(function(){
         var phone=$("#phone").val();
         console.log(phone);
     });
-
-    // 功能5 上传用户头像
     var myInfo=$(".myInfo");
+    // 功能5 上传用户头像
     myInfo.on("change",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__hd .weui-cells .weui-uploader__input-box #uploaderInput",function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
         var formData= new FormData();
@@ -283,6 +285,8 @@ $(document).ready(function(){
     });
     //获取验证码
   myInfo.on("click",".weui-cells .weui-cell_vcode .weui-cell__ft .getCodeBtn",function(){
+        //获取以前的手机号
+        var beforePhone=localStorage.getItem("phone");
         var apptoken=localStorage.getItem("apptoken");
         var phone=$(".phone").val();
         console.log(phone);
@@ -292,74 +296,80 @@ $(document).ready(function(){
         console.log(data);
         jsonEncryptDate=jsEncryptData(data);
         console.log(jsonEncryptDate);
-        $.ajax({
-            url:"http://wx.junxiang.ren/project/index.php?m=Api&c=regiest&a=sendPhoneLogin&is_wap=1",
-            type:"POST",
-            data:{"data":jsonEncryptDate},
-            success:function(data){
-                // 解密返回的数据
-                data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    // 保存apptoken
-                    localStorage.setItem("apptoken",data.apptoken);
-                    console.log(data.errcode);
-                    function invokeSettime(obj){
-                        var countdown=60;
-                        settime(obj);
-                        function settime(obj) {
-                            if (countdown == 0) {
-                                $(obj).attr("disabled",false);
-                                $(obj).text("获取验证码");
-                                countdown = 60;
-                                return;
-                            } else {
-                                $(obj).attr("disabled",true);
-                                $(obj).text("(" + countdown + ") s 重新发送");
-                                countdown--;
+        if(parseInt(beforePhone)===parseInt(phone)){
+            showHide("你的手机号没有变不用验证")
+        }else{
+            $.ajax({
+                url:url+"UserCenter_SendBindMessage",
+                type:"POST",
+                data:{"data":jsonEncryptDate},
+                success:function(data){
+                    // 解密返回的数据
+                    data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        // 保存apptoken
+                        localStorage.setItem("apptoken",data.apptoken);
+                        console.log(data.errcode);
+                        function invokeSettime(obj){
+                            var countdown=60;
+                            settime(obj);
+                            function settime(obj) {
+                                if (countdown == 0) {
+                                    $(obj).attr("disabled",false);
+                                    $(obj).text("获取验证码");
+                                    countdown = 60;
+                                    return;
+                                } else {
+                                    $(obj).attr("disabled",true);
+                                    $(obj).text("(" + countdown + ") s 重新发送");
+                                    countdown--;
+                                }
+                                setTimeout(function() {
+                                        settime(obj) }
+                                    ,1000)
                             }
-                            setTimeout(function() {
-                                    settime(obj) }
-                                ,1000)
                         }
+                        new invokeSettime(".getCodeBtn");
+                    }else{
                     }
-                    new invokeSettime(".getCodeBtn");
-                }else{
                 }
-            }
-        });
-        return phone;
+            });
+            return phone;
+        }
     });
     // 功能6 提交用户资料
     myInfo.on("click",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__bd .finishBtn",function(){
             // 获取apptoken
-                    var apptoken= localStorage.getItem("apptoken");
+                    var  apptoken= localStorage.getItem("apptoken");
             // 获取头像
-                    var    portrait=$(".flockHead img").attr("src");
+                    var  portrait=$(".flockHead img").attr("src");
             // 获取昵称
-                    var   nickname=$("#nickname").val();
+                    var  nickname=$("#nickname").val();
             // 获取真实姓名（可填）
-                    var    realname=$("#name").val();
+                    var  realname=$("#name").val();
             //获取性别
-                    var sex=$("#sex option:selected").val();
+                    var  sex=$("#sex option:selected").val();
             // 手机号（可填）
-                    var    phone=$(".phone").val();
+                    var  phone=$(".phone").val();
+            //验证码
+                    var  code=$(".code").val();
             // 微信（可填）
-                    var   wechat_num=$("#weiXin").val();
+                    var  wechat_num=$("#weiXin").val();
             // QQ（可填）
-                    var   qq_num=$("#QQ").val();
+                    var  qq_num=$("#QQ").val();
             // 常住小区（可填）
-                    var garden_code = $('#gardenLIst option:selected').attr('value');
-                    var garden_name = $('#gardenLIst option:selected').text();
-                    var arr={};
+                    var  garden_code = $('#gardenLIst option:selected').attr('value');
+                    var  garden_name = $('#gardenLIst option:selected').text();
+                    var  arr={};
                     arr[garden_code]=garden_name;
                     default_garden=$("#house").val()==='暂无认证通过的小区'?'':JSON.stringify(arr);
             // 出生年份（可填）
-                   var  birth_year=$("#yearBirth option:selected").val();
+                    var  birth_year=$("#yearBirth option:selected").val();
             // 出生月份（可填）
-                   var  birth_month=$("#mouthBirth option:selected").val();
+                    var  birth_month=$("#mouthBirth option:selected").val();
             // 爱好（可填）
-                   var  hobby=$("#likes").val();
+                    var  hobby=$("#likes").val();
                     hobby=hobby.replace(/，/ig,',');
             //数据格式验证
             if(isChina(wechat_num)){
@@ -375,7 +385,7 @@ $(document).ready(function(){
                 }
             }
             // 数据格式转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby})];
+                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby,"code":code,"sex":sex})];
             // 加密
                     jsonEncryptData=jsEncryptData(data);
                     console.log(data);
