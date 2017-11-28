@@ -507,7 +507,7 @@ $(document).ready(function(){
                 console.log("集合时间"+collection_time);
                 if(parseInt(collection_time)-parseInt(start_time)<0){
                     //$("#gathertime").val("集合时间早于开始时间啦");
-                    console.log("集合时间早于开始时间啦");
+                    alert("集合时间早于开始时间啦");
                 }
             });
         })();
