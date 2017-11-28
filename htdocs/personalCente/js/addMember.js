@@ -285,10 +285,7 @@ $(document).ready(function(){
         // phone 手机号码
         var phone=$("#phone").val();
         // room_num 房间号码
-        var dongNum=$("#dongNum option:selected").val();
-        var floorNum=$("#floorNum option:selected").val();
-        var roomNum=$("#roomNum option:selected").val();
-        var room_num=dongNum+"-"+floorNum+"-"+roomNum;
+        var room_num=$("#houseNum option:selected").val();
         // id_card_num 身份证号码
         var id_card_num=$("#identityCard").val();
         // garden_code 小区code
