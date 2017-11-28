@@ -306,7 +306,7 @@ $(document).ready(function(){
         var   real_name=$("#name").val();
         // 手机号
           var  phone=$("#phone").val();
-               // $("#phone").attr("placeholder","手机号没填哦");
+              //$("#phone").attr("placeholder","手机号没填哦");
         // 房号“1-2-3”字符串格式
             var dongNum=$("#dongNum").val();
             var floorNum=$("#floorNum").val();
