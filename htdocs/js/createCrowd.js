@@ -114,4 +114,17 @@ $(document).ready(function(){
         localStorage.setItem("group_name",group_name);
         window.location.href="flockChat.html";
     });
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.href="index.html";
+        }, true);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+    });
 });
