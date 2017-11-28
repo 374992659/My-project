@@ -85,7 +85,7 @@ $(document).ready(function(){
                         <div class="weui-cell__bd"  style="width:40%">
                             <input class="weui-input phone" type="number" placeholder="请输入手机号" value="${result.phone}"  style="width:100%">
                         </div>
-                        <div class="weui-cell__ft" style="width:30%">
+                        <div class="weui-cell__ft" style="width:35%">
                             <button class="weui-vcode-btn getCodeBtn" style="font-size: 12px"  style="width:100%">获取验证码</button>
                         </div>
                     </div>
