@@ -189,6 +189,17 @@ $(document).ready(function(){
                         `
                     });
                     $("#gardenName").html(html);
+                    //调用构造函数获取房号
+                    (function(){
+                        var apptoken=localStorage.getItem("apptoken");
+                        var garden_code=$("#gardenName option:selected").attr("title");
+                        console.log(garden_code);
+                        if(garden_code){
+                            console.log(garden_code);
+                            var gardenNum=new houseNum(apptoken,garden_code);
+                            gardenNum.getHouseNum();
+                        }
+                    })();
                 }else if(data.errcode===5){
                     $(".addMember").hide();
                     html=`
@@ -290,5 +301,35 @@ $(document).ready(function(){
             },
             error:function(){}
         })
-    })
+    });
+    //根据小区名字找到相应的认证房号构造函数
+    function houseNum(apptoken,garden_code){
+        this.apptoken=apptoken;
+        this.garden_code=garden_code;
+        this.getHouseNum=function(){
+            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code})];
+            var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
+            $.ajax({
+                url:url+"UserCenter_getMyRoomList",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    var data=jsDecodeData(data);
+                    var result=data.data;
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        var html="";
+                        $.each(result,function (i,item) {
+                            html+=`
+                                             <option>${item.room_num}</option> 
+                                            `
+                        });
+                        $("#houseNum").html(html);
+                    }
+                }
+            })
+        }
+    }
 });

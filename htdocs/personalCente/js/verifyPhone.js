@@ -4,6 +4,6 @@ function validate4(phone){
     if(!myreg.test(phone)){
         alert("请输入有效的手机号！");
     }else{
-        alert("手机号有效");
+
     }
 }
