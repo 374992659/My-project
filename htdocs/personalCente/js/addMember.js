@@ -249,7 +249,7 @@ $(document).ready(function(){
     //调用构造函数获取房号
     (function(){
         var apptoken=localStorage.getItem("apptoken");
-        var garden_code=$("#gardenName option:selected").val();
+        var garden_code=$("#gardenName option:selected").attr("title");
         console.log(garden_code);
         if(garden_code){
             console.log(garden_code);
