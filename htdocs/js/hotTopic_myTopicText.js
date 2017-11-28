@@ -492,7 +492,7 @@ $(document).ready(function(){
             }
         })
     });
-    //功能7 删除
+
     //功能8 图片放大预览
     (function(){
         $(".hotTopicContent").on("click",".weui-media-box .picPlace li img",function(){
