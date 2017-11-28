@@ -208,8 +208,8 @@ $(document).ready(function(){
                     $(".addMember").hide();
                     html=`
                       <div style="text-align: center">
-                        <p>你还没有认证的小区不能发布槽点，请到个人心进行认证</p>
-                        <a href="renter.html" style="background: red;color: white">点我到个人中心</a>
+                        <p>你还没有认证的小区添加成员，请去进行认证</p>
+                        <a href="renter.html" style="background: red;color: white">点我到租户认证中心</a>
                     </div>
                     `;
                     $("body").append(html)
