@@ -191,7 +191,7 @@ $(document).ready(function(){
     (function (){
         var apptoken=localStorage.getItem("apptoken");
         var role=1;
-        var data=["",JSON.stringify({"apptoken":apptoken,"role":role})];
+        var data=["",JSON.stringify({"apptoken":apptoken})];
         var jsonEncryptData=jsEncryptData(data);
         $.ajax({
             url:url+"UserCenter_getApplicationGarden",
