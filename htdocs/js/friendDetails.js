@@ -29,8 +29,7 @@ $(document).ready(function(){
                     var house="";
                     if(result.user_garden){
                         console.log("拥有楼盘");
-                        var user_garden=JSON.parse(result.user_garden);
-                        $.each(user_garden,function(i,item){
+                        $.each(result.user_garden,function(i,item){
                             house+=`
                              <li>${item}</li>
                             `
