@@ -91,7 +91,7 @@ $(document).ready(function(){
             data:{"data":jsonEncryptData},
             success:function(data){
                 var data=jsDecodeData(data);
-                console.log();
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg)
