@@ -7,26 +7,22 @@
 </head>
 <body>
 <div id="temp"></div>
-<ul class="JQ-content-box" style="padding:20px; background:#FFFFFF">
-    <li>第一行
-        <ul>
-            <li>这是公告标题1</li>
-            <li>这是公告标题2</li>
-            <li>这是公告标题3</li>
-            <li>这是公告标题4</li>
-        </ul>
-    </li>
-</ul>
+<label for="phone">手机号</label>
+<input type="tel" id="phone">
+<input type="text">
 <script src="js/jquery-3.2.1.min.js"></script>
 <script>
-    $(function(){
-        $("li").on("click",function(e){
-            console.log(e.target);
-            console.log(this);
-            $("#temp").html("clicked: " + e.target.nodeName);
-            $(e.target).css("color","#FF3300");
-        })
+    $(".phone").blur(function () {
+        var phone=$(".phone").val();
+        console.log(phone);
+        var reg = /^1[3|4|5|8][0-9]\d{4,8}$/;
+        if(!reg.test($.trim(phone))){
+            $("#phone").html("请输入有效的手机号！");
+        }else{
+            $("#phone").html("");
+        }
     });
+
 </script>
 </body>
 </html>
