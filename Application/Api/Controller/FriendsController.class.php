@@ -249,6 +249,16 @@ class FriendsController extends VersionController
             $this->echoEncrypData(0);
         }
     }
+    /*
+     * 删除好友
+     * @param user_code 删除好友
+     * */
+    protected function delFriend_v1_0_0(){
+        $this->checkParam(array('user_code'));
+        $account_code = $this->account_code;
+        $user_code = $this->pdata['user_code'];
+
+    }
 
     /*
      * 按账号搜索用户
