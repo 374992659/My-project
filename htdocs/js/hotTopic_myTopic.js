@@ -53,7 +53,7 @@ $(document).ready(function(){
 
             }else{
                 var html=`
-                <p style="text-align: center">${data.errmsg}</p>>
+                <p style="text-align: center">${data.errmsg}</p>
                 
                 
                 `;
