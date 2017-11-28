@@ -50,6 +50,39 @@ $(document).ready(function(){
            $(".allGarden").empty();
         }
     });
+    //根据小区名字找到相应的认证房号构造函数
+   function houseNum(apptoken,garden_code){
+       this.apptoken=apptoken;
+       this.garden_code=garden_code;
+       this.getHouseNum=function (apptoken,garden_code) {
+           var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code})];
+           var jsonEncryptData=jsEncryptData(data);
+           $.ajax({
+               url:url+"UserCenter_getMyRoomList",
+               type:"POST",
+               data:{"data":jsonEncryptData},
+               success:function(daata){
+                   var data=jsDecodeData(data);
+                   console.log(data);
+                   if(data.errcode===0){
+                       localStorage.setItem("apptoken",data.apptoken);
+                       var html="";
+
+                       
+                   }
+               }
+           })
+       }
+   }
+    //调用构造函数获取房号
+    (function(){
+        var apptoken=localStorage.getItem("apptoken");
+        var garden_code=$("#gardenName option:selected").val();
+        if(garden_code){
+            var gardenNum=new houseNum(apptoken,garden_code);
+            gardenNum.getHouseNum();
+        }
+    })();
     //上传身份证照片
     var size=2*1024*1024;
         (function(){
