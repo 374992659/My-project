@@ -38,9 +38,13 @@ $(document).ready(function(){
                     var garden="";
                     if(result.default_garden){
                         console.log("常住小区");
-                        garden=JSON.parse(result.default_garden);
+                        var a=JSON.parse(result.default_garden);
+                        $.each(a,function (i,item) {
+                            garden=item;
+                        })
+
                     }
-                    console.log(garden[0]);
+                    console.log(garden);
                     html=`
                 <div style="text-align: center">
                     <img src="${pic}" alt="" style="width: 80px">
