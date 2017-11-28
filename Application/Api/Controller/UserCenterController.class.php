@@ -104,6 +104,7 @@ class UserCenterController extends VersionController
             'nickname'=>$nickname,
             'realname'=>$this->pdata['realname'],
             'phone'=>$this->pdata['phone'],
+            'sex'=>$this->pdata['sex'],
             'wechat_num'=>$this->pdata['wechat_num'],
             'qq_num'=>$this->pdata['qq_num'],
             'default_garden'=>$this->pdata['default_garden'],
@@ -125,7 +126,20 @@ class UserCenterController extends VersionController
         }
         $user_info->rollback();
         $point_record->rollback();
-        $this->echoEncrypData(1,$res1,$res2);
+        $this->echoEncrypData(1,$res1,array(
+            'portrait'=>$portrait,
+            'nickname'=>$nickname,
+            'realname'=>$this->pdata['realname'],
+            'phone'=>$this->pdata['phone'],
+            'sex'=>$this->pdata['sex'],
+            'wechat_num'=>$this->pdata['wechat_num'],
+            'qq_num'=>$this->pdata['qq_num'],
+            'default_garden'=>$this->pdata['default_garden'],
+            'birth_year'=>$this->pdata['birth_year'],
+            'birth_month'=>$this->pdata['birth_month'],
+            'hobby'=>$this->pdata['hobby'],
+            'id_card_num'=>$this->pdata['id_card_num']
+        ));
     }
     /*
      * 获取我的account_code
