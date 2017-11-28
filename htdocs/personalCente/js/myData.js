@@ -69,7 +69,7 @@ $(document).ready(function(){
                     <div class="weui-cell__bd">
                         <label class="left" for="sex">性别：<span style="color: green">*</span></label>                    
                          <select name='' id='sex'>
-                             <option value="0" title="">保密</option>
+                             <option value="0">保密</option>
                              <option value="1">男</option>
                              <option value="2">女</option>
                          </select>
@@ -138,7 +138,7 @@ $(document).ready(function(){
                         </select>年
                         <select name="" id="mouthBirth">
                             <option value="01">01</option>
-                           
+                                                       
                         </select>月
 
                     </div>
