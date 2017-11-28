@@ -188,7 +188,7 @@ $(document).ready(function(){
     //     isCardNo(idCard);
     // });
      //获取已经认证通过的小区
-    (function () {
+    (function (){
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken})];
         var jsonEncryptData=jsEncryptData(data);
@@ -208,6 +208,39 @@ $(document).ready(function(){
                         `
                     });
                     $("#gardenName").html(html);
+                    //根据小区名字找到相应的认证房号构造函数
+                    function houseNum(apptoken,garden_code){
+                        this.apptoken=apptoken;
+                        this.garden_code=garden_code;
+                        this.getHouseNum=function (apptoken,garden_code) {
+                            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code})];
+                            var jsonEncryptData=jsEncryptData(data);
+                            $.ajax({
+                                url:url+"UserCenter_getMyRoomList",
+                                type:"POST",
+                                data:{"data":jsonEncryptData},
+                                success:function(data){
+                                    var data=jsDecodeData(data);
+                                    console.log(data);
+                                    if(data.errcode===0){
+                                        localStorage.setItem("apptoken",data.apptoken);
+                                        var html="";
+                                    }
+                                }
+                            })
+                        }
+                    }
+                    //调用构造函数获取房号
+                    (function(){
+                        var apptoken=localStorage.getItem("apptoken");
+                        var garden_code=$("#gardenName option:selected").attr("title");
+                        console.log(garden_code);
+                        if(garden_code){
+                            console.log(garden_code);
+                            var gardenNum=new houseNum(apptoken,garden_code);
+                            gardenNum.getHouseNum();
+                        }
+                    })();
                 }else if(data.errcode===5){
                     $(".addMember").hide();
                     html=`
@@ -222,41 +255,7 @@ $(document).ready(function(){
             }
         })
     })();
-    //根据小区名字找到相应的认证房号构造函数
-    function houseNum(apptoken,garden_code){
-        this.apptoken=apptoken;
-        this.garden_code=garden_code;
-        this.getHouseNum=function (apptoken,garden_code) {
-            var data=["",JSON.stringify({"apptoken":apptoken,"garden_code":garden_code})];
-            var jsonEncryptData=jsEncryptData(data);
-            $.ajax({
-                url:url+"UserCenter_getMyRoomList",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    var data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken);
-                        var html="";
 
-
-                    }
-                }
-            })
-        }
-    }
-    //调用构造函数获取房号
-    (function(){
-        var apptoken=localStorage.getItem("apptoken");
-        var garden_code=$("#gardenName option:selected").attr("title");
-        console.log(garden_code);
-        if(garden_code){
-            console.log(garden_code);
-            var gardenNum=new houseNum(apptoken,garden_code);
-            gardenNum.getHouseNum();
-        }
-    })();
     // 提交
     $(".weui-btn").click(function(){
         // 获取apptoken
