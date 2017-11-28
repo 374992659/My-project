@@ -63,9 +63,9 @@ $(document).ready(function(){
             $(".picPlace").html(pic);
         },
         error:function(){}
-    })
-    //功能8 图片放大预览
-    (function(){
+    });
+    //功能8 图片放大
+    (function () {
         $(".weui-media-box").on("click",".picPlace li img",function(){
             var url=$(this).attr("src");
             console.log(url);
@@ -78,5 +78,7 @@ $(document).ready(function(){
             $(".weui-gallery").hide();
         });
     })();
+
+
 });
 
