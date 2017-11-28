@@ -56,7 +56,7 @@ class SendSmsController extends Controller
         $res = $SendSms->sendSms($sign, $tempId, $phone,array('code'=>$var['hash']));
         if($res->Code !='OK' ){
             $code=110;
-            return false;
+            return $res;
         }
         //存入缓存
         $val   = serialize($var);

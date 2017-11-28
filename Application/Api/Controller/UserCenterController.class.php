@@ -1593,7 +1593,7 @@ class UserCenterController extends VersionController
         $SMS=new SendSmsController();
         $SMS->SendMassage($phone,'bind_', C('MESSAGE_SIGN'), C('REGISTER_CODE'), $code);
         if($code !== 0){
-            $this->echoEncrypData($code);
+            $this->echoEncrypData($code,$code);
         }else{
             $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
         }
