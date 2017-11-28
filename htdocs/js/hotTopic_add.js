@@ -283,7 +283,7 @@ $(document).ready(function(){
         formData.append("data",json);
         console.log(data);
         $.ajax({
-            url:url+"group_uploaSubjectPic",
+            url:url+"Subject_uploadAdPic",
             type:"POST",
             data:formData,
             processData : false,
