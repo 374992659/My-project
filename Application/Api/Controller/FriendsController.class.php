@@ -48,6 +48,8 @@ class FriendsController extends VersionController
         $group_name=$this->pdata['group_name'];
         $account_code = $this->account_code;
         $model = new Model\FriendsGroupModel($account_code);
+        $count = $model->where(['group_name'=>$this->pdata['group_name'],'status'=>1])->count();
+        if($count)$this->echoEncrypData(1,'该分组名称已经存在了哦');
         $code = $model->addGroup($group_name);
         $this->echoEncrypData($code);
     }
