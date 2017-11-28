@@ -35,6 +35,12 @@ return array(
     'ACCESSKEYID' => 'LTAIUOMwO8P9xsNK',//阿里云获取
     'ACCESSKEYSECRET' => 'XbWTqLbgluYjapREuszmJJpk6q4GEM',//阿里云获取
 
+    //短信模版
+    'MESSAGE_SIGN'        =>'美e家园',
+    'REGISTER_CODE'        =>'SMS_100845025',
+    'FORGET_PWD_CODE'   =>'SMS_100735127',
+    'CHANGE_PWD_CODE'   =>'SMS_100875132',
+
     'CAPTCHA_INTERVAL_SECOND' => 60,  //短信间隔60秒
     'SMS_VALIDITY'   => 10,                   //短信有效时间10分钟
 
