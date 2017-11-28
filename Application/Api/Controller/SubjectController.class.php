@@ -487,7 +487,7 @@ class SubjectController extends VersionController
      *@param city_id 城市id
      *@param garden_code 小区code 可填
      *@param title 标题
-     *@param picture 图片
+     *@param picture 图片 可填
      *@param content 内容
      * */
     protected function addAd_v1_0_0(){
