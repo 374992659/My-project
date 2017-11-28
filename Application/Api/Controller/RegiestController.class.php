@@ -44,7 +44,7 @@ class RegiestController extends BaseController
         }
 
         $SMS=new \Api\Controller\SendSmsController();
-        $res = $SMS->SendMassage($phone,'wxregiest_', '美e家园', 'SMS_94280318', $code);
+        $res = $SMS->SendMassage($phone,'wxregiest_', C('MESSAGE_SIGN'), C('REGISTER_CODE'), $code);
         if($code !== 0){
             $this->echoEncrypData($code);
         }else{
@@ -142,7 +142,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(118, '已注册无需重复注册');
         }
         $SMS=new \Api\Controller\SendSmsController();
-        $res = $SMS->SendMassage($phone,'regiest_', '美e家园', 'SMS_94280318', $code);
+        $res = $SMS->SendMassage($phone,'regiest_', C('MESSAGE_SIGN'), C('REGISTER_CODE'), $code);
         if($code !== 0){
             $this->echoEncrypData($code);
         }else{
@@ -556,7 +556,7 @@ class RegiestController extends BaseController
         }
 
         $SMS=new \Api\Controller\SendSmsController();
-        $SMS->SendMassage($phone,'forgetPwd_', '美e家园', 'SMS_94280318', $code);
+        $SMS->SendMassage($phone,'forgetPwd_',  C('MESSAGE_SIGN'), C('FORGET_PWD_CODE'), $code);
         if($code !== 0){
             $this->echoEncrypData($code);
         }else{
@@ -663,7 +663,7 @@ class RegiestController extends BaseController
             $this->echoEncrypData(112, '已登录，无需重复登录');
         }
         $SMS=new SendSmsController();
-        $SMS->SendMassage($phone,'login_', '美e家园', 'SMS_94280318', $code);
+        $SMS->SendMassage($phone,'login_',  C('MESSAGE_SIGN'), C('LOGIN_CODE'), $code);
         if($code !== 0){
             $this->echoEncrypData($code);
         }else{
