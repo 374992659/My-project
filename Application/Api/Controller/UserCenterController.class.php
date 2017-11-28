@@ -1591,9 +1591,9 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(1,'你已绑定该手机无需重复操作');
         }
         $SMS=new SendSmsController();
-        $SMS->SendMassage($phone,'bind_', C('MESSAGE_SIGN'), C('REGISTER_CODE'), $code);
+        $SMS->SendMassage($phone,'bind_', C('MESSAGE_SIGN'), C('CHANGE_PHONE_CODE'), $code);
         if($code !== 0){
-            $this->echoEncrypData(1,$code);
+            $this->echoEncrypData($code);
         }else{
             $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
         }
