@@ -79,31 +79,31 @@ $(document).ready(function(){
         });
         //删除 热门话题
     $(".myTopicList").on("click",".myTopic_id .weui-media-box .delBtn",function(e){
-        var apptoken=localStorage.getItem("apptoken");
-        // city_id 城市id
-        var city_id=localStorage.getItem("city_id");
-        // 参数：subject_id 话题id
-        var subject_id=$(this).attr("title");
-        var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"subject_id":subject_id})];
-        var jsonEncryptData=jsEncryptData(data);
-        $.ajax({
-            url:url+"Subject_delSubject",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    showHide(data.errmsg);
-                    $(e.target).parent().parent().remove();
-                }else{
-                    showHide(data.errmsg)
+        if(confirm("删除话题")){
+            var apptoken=localStorage.getItem("apptoken");
+            // city_id 城市id
+            var city_id=localStorage.getItem("city_id");
+            // 参数：subject_id 话题id
+            var subject_id=$(this).attr("title");
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"subject_id":subject_id})];
+            var jsonEncryptData=jsEncryptData(data);
+            $.ajax({
+                url:url+"Subject_delSubject",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        showHide(data.errmsg);
+                        $(e.target).parent().parent().remove();
+                    }else{
+                        showHide(data.errmsg)
+                    }
                 }
-
-            }
-        });
+            });
+        }
         return false
     })
-
 });
