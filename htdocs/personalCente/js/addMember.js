@@ -190,7 +190,8 @@ $(document).ready(function(){
      //获取已经认证通过的小区
     (function (){
         var apptoken=localStorage.getItem("apptoken");
-        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var role=1;
+        var data=["",JSON.stringify({"apptoken":apptoken,"role":role})];
         var jsonEncryptData=jsEncryptData(data);
         $.ajax({
             url:url+"UserCenter_getApplicationGarden",
