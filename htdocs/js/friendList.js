@@ -734,7 +734,6 @@ $(document).ready(function() {
     //点击头像跳转到
     $(".group").on("click",".skipChat .weui-media-box__hd .weui-media-box__thumb ",function () {
         var user_code=$(this).attr("id");
-
         localStorage.setItem("user_code",user_code);
         window.location.href="friendDetails.html";
         return false;
