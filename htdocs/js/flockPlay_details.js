@@ -170,7 +170,7 @@ $(document).ready(function(){
                         $(".Btn").html("我要报名");
                     }else if(parseInt(result.enroll_status)===1){
                         console.log("取消报名");
-                        $(".Btn").innerHTML("取消报名");
+                        $(".Btn").html("取消报名");
                     }
                     $("#flockPlay_details").html(html);
                     $(".swiper-wrapper").html(pic);
