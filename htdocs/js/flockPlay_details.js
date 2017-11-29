@@ -168,7 +168,8 @@ $(document).ready(function(){
                     if (parseInt(result.enroll_status)===0) {
                         console.log("我要报名");
                         $(".Btn").html("我要报名");
-                    }else{
+                    }else if(parseInt(result.enroll_status)===1){
+                        console.log("取消报名");
                         $(".Btn").html("取消报名");
                     }
                     $("#flockPlay_details").html(html);
