@@ -159,7 +159,7 @@ $(document).ready(function(){
         </div>
                
               <!--按钮-->
-        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}" title="${result.enroll_status}" id="${result.group_num}"></button>   
+        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}" title="${result.enroll_status}"></button>   
                 
                 `;
                 console.log(result.enroll_status);
@@ -192,18 +192,18 @@ $(document).ready(function(){
     // 我要报名
     $("#flockPlay_details").on("click", ".Btn", function () {
         var status=$(this).attr("title");
-        var group_num=$(this).attr("id");
         var activity_id=$(this).attr("value");
+        var city_id=localStorage.getItem("city_id");
         //报名
         if(parseInt(status)===0){
             localStorage.setItem("activity_id",activity_id);
-            window.location.href = "flockPlay_apply.html";
+            window.location.href = "hotTopic_playApply.html";
         }else{//取消报名
             if(confirm("取消报名")){
-                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id})];
+                var data=["",JSON.stringify({"apptoken":apptoken,"activity_id":activity_id,"city_id":city_id})];
                 var jsonEncryptData=jsEncryptData(data);
                 $.ajax({
-                    url:url+"group_cancelGroupActivityEnroll",
+                    url:url+"Activity_cancelEnrollActivity",
                     type:"POST",
                     data:{"data":jsonEncryptData},
                     success:function(data){
