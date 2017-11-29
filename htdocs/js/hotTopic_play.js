@@ -4,17 +4,19 @@ $(document).ready(function(){
     function getLocalTime(nS) {
         return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
     }
-    // 获取apptoken
-    var apptoken=localStorage.getItem("apptoken"),
-// 获取群号
-        group_num=localStorage.getItem("group_num"),
+        // 获取apptoken
+            var apptoken=localStorage.getItem("apptoken");
+        // 获取群号
+            var  group_num=localStorage.getItem("group_num");
+        //城市id
+            var city_id=
         // 数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})],
+            var   data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
         //  加密
-        jsonEncryptData=jsEncryptData(data);
+            var jsonEncryptData=jsEncryptData(data);
     console.log(data);
     $.ajax({
-        url:url+"group_getGroupActivityList",
+        url:url+"Activity_getActivityList",
         type:"POST",
         data:{"data":jsonEncryptData},
         success:function(data){
