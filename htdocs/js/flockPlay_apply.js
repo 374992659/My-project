@@ -8,7 +8,6 @@ $(document).ready(function(){
     var activity_id=localStorage.getItem("activity_id");
     //验证手机的正确性
     $("#phone").blur(function () {
-        console.log("大时代");
         var phone=$("#phone").val();
         validate4(phone)
     });
@@ -39,7 +38,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg);
-                    window.location.href="";
+                   // window.location.href="";
                 }else{
                     showHide(data.errmsg)
                 }
