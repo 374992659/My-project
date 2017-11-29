@@ -43,6 +43,13 @@ $(document).ready(function(){
                                 if(sender_code===sender_code){
                                     $.each(item.content,function(i,item){
                                         if(parseInt(item.type)===3){//内容为文件、图片
+                                            var picHttP=item.content.split(":")[0];
+                                            var pic="";
+                                            if(picHttP==="http"){
+                                                pic=item.content;
+                                            }else{
+                                                pic="http://wx.junxiang.ren/project/"+item.content;
+                                            }
                                             if(httP==="http"){
                                                 html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -52,7 +59,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                              
-                              <img src="${item.content}" alt="" style="width: 80px">
+                              <img src="${pic}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `;
@@ -65,7 +72,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                              
-                              <img src="${item.content}" alt="" style="width: 80px">
+                              <img src="${pic}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `;
@@ -130,7 +137,7 @@ $(document).ready(function(){
                                         console.log(item.content);
                                         //把未读消息保存本地
                                         (function(){
-                                            var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+"http://wx.junxiang.ren/project/"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
+                                            var json_str = "{'sender_code':'"+sender_code+"','type':'"+item.type+"','send_time':'"+item.send_time+"','content':'"+item.content+"','nickname':'"+sender_nickname+"','portrait':'"+sender_portrait+"'}";
                                             console.log(json_str);
                                             var history_chats = localStorage.getItem('history_'+sender_code);
                                             if(!history_chats){
@@ -265,6 +272,13 @@ $(document).ready(function(){
                                 //展示好友发送的聊天信息
                                 var html="";
                                 if(parseInt(data.type)===3){//图片
+                                    var friendHTTP=data.content.split(":")[0];
+                                    var friendPIC="";
+                                    if(friendHTTP==="http"){
+                                        friendPIC=data.content;
+                                    }else{
+                                        friendPIC="http://wx.junxiang.ren/project/"+data.content;
+                                    }
                                       html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -273,7 +287,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                              
-                              <img src="${data.content}" alt="" style="width: 80px">
+                              <img src="${friendPIC}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `;

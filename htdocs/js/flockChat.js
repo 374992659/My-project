@@ -222,7 +222,7 @@ $(document).ready(function(){
                                         contentPIC="http://wx.junxiang.ren/project/"+data.content
                                     }
                                     html=`
-                                    <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+                                    <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
