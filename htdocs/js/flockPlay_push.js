@@ -452,41 +452,41 @@ $(document).ready(function(){
             })
         })();
         //获取小区code
-        (function(){
-            // 获取apptoken
-            var apptoken=localStorage.getItem("apptoken");
-            var data=["",JSON.stringify({"apptoken":apptoken})];
-            var json=jsEncryptData(data);
-            $.ajax({
-                url:url+"UserCenter_getApplicationGarden",
-                type:"POST",
-                data:{"data":json},
-                success:function(data){
-                    // 解密
-                    var data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken);
-                        var html="";
-                        $.each(data.data,function(i,item){
-                            html+=`
-                         <option value="2" title="${item.garden_code}">${item.garden_name}</option>                     
-                        `
-                        });
-                        $("#house").html(html);
-                    }else if(data.errcode===5){
-                        $(".pushPlay").hide();
-                        html=`
-                      <div style="text-align: center">
-                        <p>你还没有认证的小区不能发布槽点，请到个人心进行认证</p>
-                        <a href="http://wx.junxiang.ren/project/htdocs/personalCente/" style="background: red;color: white">点我到个人中心</a>
-                    </div>
-                    `;
-                        $("body").html(html)
-                    }
-                }
-            })
-        })();
+        // (function(){
+        //     // 获取apptoken
+        //     var apptoken=localStorage.getItem("apptoken");
+        //     var data=["",JSON.stringify({"apptoken":apptoken})];
+        //     var json=jsEncryptData(data);
+        //     $.ajax({
+        //         url:url+"UserCenter_getApplicationGarden",
+        //         type:"POST",
+        //         data:{"data":json},
+        //         success:function(data){
+        //             // 解密
+        //             var data=jsDecodeData(data);
+        //             console.log(data);
+        //             if(data.errcode===0){
+        //                 localStorage.setItem("apptoken",data.apptoken);
+        //                 var html="";
+        //                 $.each(data.data,function(i,item){
+        //                     html+=`
+        //                  <option value="2" title="${item.garden_code}">${item.garden_name}</option>
+        //                 `
+        //                 });
+        //                 $("#house").html(html);
+        //             }else if(data.errcode===5){
+        //                 $(".pushPlay").hide();
+        //                 html=`
+        //               <div style="text-align: center">
+        //                 <p>你还没有认证的小区不能发布槽点，请到个人心进行认证</p>
+        //                 <a href="http://wx.junxiang.ren/project/htdocs/personalCente/" style="background: red;color: white">点我到个人中心</a>
+        //             </div>
+        //             `;
+        //                 $("body").html(html)
+        //             }
+        //         }
+        //     })
+        // })();
         //时间失去焦点判断
         (function () {
             $("#linkman").focus(function(){
@@ -556,10 +556,10 @@ $(document).ready(function(){
             var phone=$("#contactWay").val();
             // 获取transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
             var transport=$("#vehicle option:selected").val();
-            // 获取garden_code 小区code
-            var garden_code=$("#house option:selected").attr("title");
-            // 获取garden_name 小区名称
-            var garden_name=$("#house option:selected").text();
+            // // 获取garden_code 小区code
+            // var garden_code=$("#house option:selected").attr("title");
+            // // 获取garden_name 小区名称
+            // var garden_name=$("#house option:selected").text();
             // 获取total_num 目标人数
             var total_num=$("#number").val();
             // 获取cost_type 花费类型 1：AA制 2：自驾游 3：发布人请客 ...
@@ -591,7 +591,7 @@ $(document).ready(function(){
             // 获取group_num 群号码
             var group_num=localStorage.getItem("group_num");
             // 数据格式转换
-         var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tagStr,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"garden_code":garden_code,"garden_name":garden_name,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":pictureStr,"detailed_introduction":detailed_introduction,"group_num":group_num})];
+         var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tagStr,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":pictureStr,"detailed_introduction":detailed_introduction,"group_num":group_num})];
             alert(data);
             // 数据加密
             var jsonEncryptData=jsEncryptData(data);
