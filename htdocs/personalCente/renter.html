@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        <!--姓名-->
+    <!--姓名-->
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
@@ -82,7 +82,7 @@
                 </div>
             </div>
         </div>
-        <!--电话-->
+    <!--电话-->
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
@@ -91,27 +91,50 @@
                 </div>
             </div>
         </div>
+    <!--楼盘地址-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd" style="">
+                    <label class="left" for="" style="vertical-align: top">楼盘地址：<span style="color:red">*</span></label>
+                    <div style="display: inline-block;width: 60%">
+                        <div class="weui-cell__bd" id="sanji" style="display:inline-block;">
+                            <select name="province" id="province" style="width: 40%">
+                                <option value="">请选择省</option>
+                            </select>
+                            <select name="city" id="city"  style="width: 40%">
+                                <option value="">请选择市</option>
+                            </select>
+                        </div>
+                        <div style="display: inline-block;position: relative">
+                            <input type="text" title="" id="gardenName" placeholder="小区名字" style="width: 68%">
+                            <ul class="allGarden" style="position: absolute;top:28px;left:0;display: none;z-index: 100">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--房号-->
-            <div class="weui-cells">
-                <div class="weui-cell">
-                    <div class="weui-cell__bd">
-                        <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
-                        <input type="text" style="width: 8%" id="dongNum" onkeyup="value=value.replace(/[^0-9|a-z|A-Z]/g,'')">栋
-                        <input type="number" style="width: 5%" id="floorNum" pattern="[0-9]*">单元
-                        <input type="number" style="width: 8%" id="roomNum"  pattern="[0-9]*">房号
-                    </div>
+         <div class="weui-cells">
+             <div class="weui-cell">
+                 <div class="weui-cell__bd">
+                     <label class="left" for="houseNum">房号：<span style="color:red">*</span></label>
+                     <input type="text" style="width: 8%" id="dongNum" onkeyup="value=value.replace(/[^0-9|a-z|A-Z]/g,'')">栋
+                     <input type="number" style="width: 5%" id="floorNum" pattern="[0-9]*">单元
+                     <input type="number" style="width: 8%" id="roomNum"  pattern="[0-9]*">房号
+                 </div>
+             </div>
+         </div>
+    <!--租客身份证-->
+        <div class="weui-cells">
+            <div class="weui-cell">
+                <div class="weui-cell__bd">
+                    <label class="left" for="renter_IdentityCard">身份证：<span style="color:red">*</span></label>
+                    <input type="text" id="renter_IdentityCard" placeholder="租客身份证号">
                 </div>
             </div>
-            <!--租客身份证-->
-            <div class="weui-cells">
-                <div class="weui-cell">
-                    <div class="weui-cell__bd">
-                        <label class="left" for="renter_IdentityCard">身份证：<span style="color:red">*</span></label>
-                        <input type="text" id="renter_IdentityCard" placeholder="租客身份证号">
-                    </div>
-                </div>
-            </div>
-        <!--租客证件照-->
+        </div>
+    <!--租客证件照-->
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
@@ -145,7 +168,7 @@
                 </div>
             </div>
         </div>
-         <!--房东身份证号-->
+     <!--房东身份证号-->
         <div class="weui-cells">
              <div class="weui-cell">
                 <div class="weui-cell__bd">
@@ -154,7 +177,7 @@
                 </div>
              </div>
         </div>
-        <!--房东身份证照-->
+     <!--房东身份证照-->
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
@@ -188,30 +211,7 @@
                 </div>
             </div>
         </div>
-            <!--楼盘地址-->
-            <div class="weui-cells">
-                <div class="weui-cell">
-                    <div class="weui-cell__bd" style="">
-                        <label class="left" for="" style="vertical-align: top">楼盘地址：<span style="color:red">*</span></label>
-                        <div style="display: inline-block;width: 60%">
-                            <div class="weui-cell__bd" id="sanji" style="display:inline-block;">
-                                <select name="province" id="province" style="width: 40%">
-                                    <option value="">请选择省</option>
-                                </select>
-                                <select name="city" id="city"  style="width: 40%">
-                                    <option value="">请选择市</option>
-                                </select>
-                            </div>
-                            <div style="display: inline-block">
-                                <input type="text" title="" id="gardenName" placeholder="小区名字" style="width: 68%">
-                                <ul class="allGarden" style="position: absolute;top:20px;left:10px;display: none">
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!--合同有效期-->
+    <!--合同有效期-->
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
@@ -220,7 +220,7 @@
                 </div>
             </div>
         </div>
-        <!--合同照-->
+    <!--合同照-->
         <div class="weui-cells">
             <div class="weui-cell">
                 <div class="weui-cell__bd">
@@ -239,7 +239,7 @@
                 </div>
             </div>
         </div>
-        <!--个人照片-->
+    <!--个人照片-->
         <div class="weui-cells">
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
