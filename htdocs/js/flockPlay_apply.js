@@ -14,6 +14,7 @@ $(document).ready(function(){
         var phone=$("#phone").val();
         //验证手机的正确性
         $("#phone").blur(function () {
+            console.log("大时代");
             validate4(phone)
         });
         // 人数
