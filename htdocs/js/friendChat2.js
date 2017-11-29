@@ -682,13 +682,6 @@ $(document).ready(function(){
                     }
                     console.log(pic);
                     if(item.sender_code===my_code){//自己
-                        var HttP=item.content.split(":");
-                        var Pic="";
-                        if(HttP==="http"){
-                            Pic=item.content;
-                        }else{
-                            Pic="http://wx.junxiang.ren/project/"+item.content
-                        }
                         console.log("聊天记录");
                         if(parseInt(item.type)===3){//图片
                             html+=`
@@ -696,7 +689,7 @@ $(document).ready(function(){
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 80px" src="${Pic}" alt=""/>
+                    <img style="width: 80px" src="${item.content}" alt=""/>
                  </span>
             </div>
              <div class="weui-media-box__hd" style="margin-left:.8em;">
