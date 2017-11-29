@@ -48,7 +48,10 @@ $(document).ready(function(){
                         });
                         $(".flockPlayList").append(html);
                     }else{
-                        console.log(data.errmsg);
+                        var html=`
+                         <p class="weui-media-box__desc">${data.errmsg}</p>
+                        `;
+                        $(".flockPlayList").append(html)
                     }
                 }
             });
@@ -105,8 +108,8 @@ $(document).ready(function(){
         $(".plot").change(function () {
             $(".flockPlayList").empty();
             var apptoken=localStorage.getItem("apptoken");
-            var city_id=$(".city option:selected").val();
-            var garden_code=$(".plot option:selected").val();
+            var city_id=$(".city1 option:selected").val();
+            var garden_code=$(".plot option:selected").attr("title");
             var getPlayList=new getPlay(apptoken,city_id,garden_code);
             getPlayList.playList();
         });
