@@ -301,6 +301,7 @@ $(document).ready(function(){
     })();
     //验证该楼盘是房号否已经认证
         $("#roomNum").blur(function () {
+            var apptoken=localStorage.getItem("apptoken");
             var city_id=$("#city option:selected").val();
             var garden_code=$("#gardenName").attr("title");
             var dongNum=$("#dongNum").val();
@@ -308,7 +309,7 @@ $(document).ready(function(){
             var roomNum=$("#roomNum").val();
             var room_num=dongNum+"-"+floorNum+"-"+roomNum;
             var role=1;
-            var data=["",JSON.stringify({"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
             var jsonEncryptData=jsEncryptData(data);
             if(garden_code){
                 $.ajax({
