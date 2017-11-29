@@ -153,16 +153,20 @@ $(document).ready(function(){
                     <p>更多介绍：${result.detailed_introduction}</p>
                 </div>
             </div>
-        </div>       
+        </div>
+               
               <!--按钮-->
-        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}">我要报名</button>           
+        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}" title="${result.enroll_status}" id="${result.group_num}">去报名</button>   
+                
                 `;
                     var startTime=$("#other-date1").val();
                     // 转换成时间戳
                     var timestamp1 = Date.parse(new Date(startTime));
                     var start_time= timestamp1 / 1000;
-                    if (result.enroll_status==0) {
-                        $(".Btn").attr("disabled", true);
+                    if (parseInt(result.enroll_status)===0) {
+                        $(".Btn").html("我要报名");
+                    }else{
+                        $(".Btn").html("取消报名");
                     }
                     $("#flockPlay_details").html(html);
                     $(".swiper-wrapper").html(pic);
@@ -184,7 +188,36 @@ $(document).ready(function(){
     });
     // 我要报名
     $("#flockPlay_details").on("click", ".Btn", function () {
-        localStorage.setItem("activity_id", $(this).val());
-        window.location.href = "flockPlay_apply.html";
-    })
+        var status=$(this).attr("title");
+        var group_num=$(this).attr("id");
+        var activity_id=$(this).attr("value");
+        //报名
+        if(parseInt(status)===0){
+            localStorage.setItem("activity_id",activity_id);
+            window.location.href = "flockPlay_apply.html";
+        }else{//取消报名
+            if(confirm("取消报名")){
+                var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id})];
+                var jsonEncryptData=jsEncryptData(data);
+                $.ajax({
+                    url:url+"group_cancelGroupActivityEnroll",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function(data){
+                        var data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            localStorage.setItem("apptoken",data.apptoken);
+                            window.location.reload()
+                        }else{
+                            showHide(data.errmsg)
+                        }
+
+                    }
+                })
+            }
+        }
+
+    });
+
 });

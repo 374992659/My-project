@@ -12,17 +12,20 @@ $(document).ready(function(){
         var name=$("#name").val();
         //   电话
         var phone=$("#phone").val();
+        //验证手机的正确性
+        $("#name").blur(function () {
+            validate4(phone)
+        });
         // 人数
         var number=$("#number").val();
-        // 所属小区
-        var plot=$("#ploct").val();
-        // 人均消费
-        var consume=$("#consime").val();
         // 数据格式转换
-       var  data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id,"name":name,"phone":phone,"number":number,"plot":plot,"consume":consume})];
+        var  data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id,"name":name,"phone":phone,"number":number})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
+        !name?alert("没有姓名"):
+            !phone?alert("电话"):
+                !number?alert("报名人数"):
         $.ajax({
             url:url+"group_enrollGroupActivity",
             type:"POST",
@@ -31,29 +34,12 @@ $(document).ready(function(){
                 // 解密
                 var data=jsDecodeData(data);
                 console.log(data);
-                var success=$(".success");
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    success.show();
-                    // 定时器
-                    $(function(){
-                        function hidden(){
-                            success.hide();
-                        }
-                        setInterval(hidden,3000);
-                    });
+                    showHide(data.errmsg);
+                    window.location.href="";
                 }else{
-                    console.log(data.errmsg);
-                    success.html(data.errmsg);
-                    success.attr("color","red");
-                    success.show();
-                    // 定时器
-                    $(function(){
-                        function hidden(){
-                            success.hide();
-                        }
-                        setInterval(hidden,3000);
-                    });
+                    showHide(data.errmsg)
                 }
             }
         })
