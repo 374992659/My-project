@@ -289,10 +289,10 @@ class UserCenterController extends VersionController
      * @param role 角色 1：业主 2：租户
      * */
     protected function roomRoleExists_v1_0_0(){
-        $this->checkParam(array('city_id','garden_code','room_num','role'));
+        $this->checkParam(array('city_id','garden_name','room_num','role'));
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');//省份id
         $garden_num= new Model\GardenRoomModel($province_id,$this->pdata['city_id']);
-        $count = $garden_num->getRoomRoleNum($this->pdata['garden_code'],$this->pdata['room_num'],$this->pdata['role']);
+        $count = $garden_num->getRoomRoleNum($this->pdata['garden_name'],$this->pdata['room_num'],$this->pdata['role']);
         !$count?$status=1:$status=0;
         if($count){
             $this->echoEncrypData(1,'该房间已被其他人认证了');
@@ -313,6 +313,7 @@ class UserCenterController extends VersionController
      * @param garden_picture   小区照片
      * @param picture 合同或房产证照片 可填
      * @param yourself_picture 个人照片 可填
+     * 相同账号 相同小区 房号  只能认证一种身份 17.11.29
      * */
     protected function ownerApplication_v1_0_0(){
         $this->checkParam(array('real_name','phone','room_num','id_card_num','id_card_pictures','garden_name','city_id','garden_addr','garden_picture'));
@@ -356,6 +357,7 @@ class UserCenterController extends VersionController
             $name = substr_replace($real_name,'**',1);
             $this->echoEncrypData(1,'该房间已被'.$name.' 认证了,可联系他添加你哦',null);
         }
+        $my_role = $garden_room->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1,'relation_name'=>'户主'])->getField('real_name');
         $city_id = substr($this->account_code,0,6);
         $model = new Model\OwnerApplicationController($city_id); //该记录根据用户所属地区分表
         $model->startTrans();
