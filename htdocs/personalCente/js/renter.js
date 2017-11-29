@@ -304,7 +304,7 @@ $(document).ready(function(){
     function verityHouseNum(element) {
       var a=$(element);
       console.log(a);
-        a.focus(function () {
+        a.blur(function () {
             var apptoken=localStorage.getItem("apptoken");
             var city_id=$("#city option:selected").val();
             var garden_code=$("#gardenName").attr("title");
