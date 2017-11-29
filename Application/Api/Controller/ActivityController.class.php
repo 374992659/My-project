@@ -140,7 +140,7 @@ class ActivityController extends VersionController
         $garden_arr = explode(';',$res['user_garden']);
         $Array=array();
         foreach ($garden_arr as $k=>$v){
-            $Array[]=explode(',',$v)[1];
+            $Array[]=explode(',',$v)[0];
         }
         $activity=new Model\ActivityModel($province_id,$this->pdata['city_id']);
         if(!in_array($activity->where(['id'=>$this->pdata['activity_id']])->getField('garden_code'),$Array))$this->echoEncrypData(1,'你没有通过该小区的认证');
