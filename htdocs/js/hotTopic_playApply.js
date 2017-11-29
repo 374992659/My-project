@@ -2,12 +2,12 @@ $(document).ready(function(){
     "use strict";
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
-    // 获取群号
-    var group_num=localStorage.getItem("group_num");
     // 获取活动id
     var activity_id=localStorage.getItem("activity_id");
+    //城市id
+    var city_id=localStorage.getItem("city_id");
     //验证手机的正确性
-    $("#phone").blur(function () {
+    $("#phone").blur(function(){
         var phone=$("#phone").val();
         validate4(phone)
     });
@@ -20,7 +20,7 @@ $(document).ready(function(){
         // 人数
         var number=$("#number").val();
         // 数据格式转换
-        var  data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id,"name":name,"phone":phone,"number":number})];
+        var  data=["",JSON.stringify({"apptoken":apptoken,"activity_id":activity_id,"name":name,"phone":phone,"num":number,"city_id":city_id})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
@@ -28,7 +28,7 @@ $(document).ready(function(){
             !phone?alert("电话"):
                 !number?alert("报名人数"):
                     $.ajax({
-                        url:url+"group_enrollGroupActivity",
+                        url:url+"Activity_enrollActivity",
                         type:"POST",
                         data:{"data":jsonEncryptData},
                         success:function(data){
