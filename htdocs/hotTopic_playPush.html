@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>发起约玩</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/flockPlay_push.css">
+    <style>
+        input#gathertime::placeholder{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
+<div class="pushPlay">
+    <form action="" id="pushPlay">
+        <ul>
+            <li>
+                <label for="topic">主题：<span style="color: red">*</span></label>
+                <input type="text" id="topic" autofocus="autofocus">
+            </li>
+            <li class="time" style="font-size: 12px">
+                <label for="time">活动时间：<span style="color: red">*</span></label>
+                <input type="text" id="other-date1" data-options="{&quot;type&quot;:&quot;YYYY-MM-DD&quot;,&quot;beginYear&quot;:2012,&quot;endYear&quot;:2022,&quot;limitTime&quot;:true}"> 到
+                <input type="text"  id="other-date2"  data-options='{"type":"YYYY-MM-DD","beginYear":2012,"endYear":2022,"limitTime":true}'>
+            </li>
+            <li>
+                <label for="gatherPlace">集合地点：<span style="color: red">*</span></label>
+                <input type="text" id="gatherPlace" >
+            </li>
+            <li>
+                <label for="gathertime">集合时间：<span style="color: red">*</span></label>
+                <input type="text" id="gathertime" required="required" data-options='{"type":"YYYY-MM-DD hh:mm","beginYear":2010,"endYear":2020}'
+                       style="width: 170px">
+            </li>
+            <li>
+                <label for="linkman">联系人：<span style="color: red">*</span></label>
+                <input type="text" id="linkman">
+            </li>
+            <li>
+                <label for="contactWay">联系方式：<span style="color: red">*</span></label>
+                <input type="number" id="contactWay"  pattern="[0-9]*">
+            </li>
+            <li>
+                <label for="vehicle">出行方式：<span style="color: red">*</span></label>
+                <select name="" id="vehicle" style="width: 180px;height: 30px;outline: none">
+
+                </select>
+
+            </li>
+            <li>
+                <label for="house">所属小区：<span style="color: red">*</span></label>
+                <select name="" id="house" style="width: 180px;height: 30px;outline: none">
+
+                </select>
+            </li>
+            <li>
+                <label for="number">目标人数：<span style="color: red">*</span></label>
+                <input type="number" id="number"  required="required"  autofocus pattern="[0-9]*">
+            </li>
+            <li>
+                <label for="changPlan">费用类型：<span style="color: red">*</span></label>
+                <select name="" id="changPlan" style="width: 180px;height: 30px;outline: none">
+
+                </select>
+            </li>
+            <li>
+                <label for="perCapita">人均消费：<span style="color: red">*</span></label>
+                <input type="number" id="perCapita" pattern="[0-9]*">
+            </li>
+            <li>
+                <label for="bourn">目的地：<span style="color: red">*</span></label>
+                <input type="text" id="bourn">
+            </li>
+            <li>
+                <label for="line">路线规划：<span style="opacity: 0">*</span></label>
+                <input type="text" id="line">
+            </li>
+            <li class="addLabel">
+                <label>添加标签：<span style="opacity: 0">*</span></label>
+                <!--添加标签位置-->
+                <input type="text" class="labelPlace" placeholder="如：美女" maxlength="5" style="width: 70px">
+                <!--添加标签按钮-->
+                <p class="LabelBtn" style="display:inline-block;border:none;font-size: 12px;background: #3e79b5;color: white;padding: 2px 4px;border-radius: 2px;position: relative;z-index: 1000">添加标签</p>
+                <!--添加标签显示位置-->
+                <ul style="display: flex; flex-direction: row;flex-wrap: wrap;" class="labelBox">
+                </ul>
+            </li>
+            <li class="addpic">
+                <!--添加图片-->
+                <div class="weui-cells weui-cells_form">
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <div class="weui-uploader">
+                                <div class="weui-uploader__hd">
+                                    <p class="weui-uploader__title" style="font-size: 12px">图片上传</p>
+                                </div>
+                                <!--上传图片的位置-->
+                                <ul class="picPlace">
+                                    <!--<li><img src="" alt="" ></li>-->
+                                    <!--<li><img src="" alt=""></li>-->
+                                </ul>
+                                <!--图片添加按钮-->
+                                <div class="weui-uploader__bd lf">
+                                    <div class="weui-uploader__input-box">
+                                        <input id="uploaderInput" class="weui-uploader__input" type="file" multiple="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="weui-cells__tips" style="text-align: center;background: beige">可上传3张可主题相关的照片</div>
+                </div>
+            </li>
+            <li>
+                <div class="weui-cells weui-cells_form">
+                    <!--投票主题-->
+                    <div class="weui-cell">
+                        <div class="weui-cell__bd">
+                            <textarea class="weui-textarea" placeholder="此次出行的概要介绍" maxlength="200" rows="3" style="font-size: 12px"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </form>
+    <!--提交按钮-->
+    <div class="demos-content-padded">
+        <button class="weui-btn weui-btn_primary subBtn">发布</button>
+    </div>
+    <!--图片放大预览-->
+    <div class="weui-gallery" style="display: none">
+        <span class="weui-gallery__img"></span>
+        <div class="weui-gallery__opr">
+            <a href="javascript:" class="weui-gallery__del" >
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+<script src="js/url.js"></script>
+<script src="js/aes.js"></script>
+<script src="js/pad-zeropadding.js"></script>
+<script src="js/encrypt-decode.js"></script>
+<script src="js/showHide.js"></script>
+<script src="js/hotTopic_playPush.js"></script>
+
+</body>
+</html>

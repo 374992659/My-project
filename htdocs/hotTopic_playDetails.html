@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>约玩详情</title>
+
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="css/flockPlay_details.css">
+    <style>
+        /*.swiper-container {*/
+        /*width: 100%;*/
+        /*}*/
+        /*.swiper-container img {*/
+        /*display: block;*/
+        /*width: 100%;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="flockPlay_details">
+    <!--&lt;!&ndash;轮播&ndash;&gt;-->
+    <!--<div class="swiper-container">-->
+    <!--&lt;!&ndash; Additional required wrapper &ndash;&gt;-->
+    <!--<div class="swiper-wrapper">-->
+    <!--&lt;!&ndash; Slides &ndash;&gt;-->
+    <!--<div class="swiper-slide"><img src="./image/1.jpg" style="height:200px"/></div>-->
+    <!--<div class="swiper-slide"><img src="./image/2.jpg"  style="height:200px"/></div>-->
+    <!--<div class="swiper-slide"><img src="./image/3.jpg"  style="height:200px"/></div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; If we need pagination &ndash;&gt;-->
+    <!--<div class="swiper-pagination"></div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;标签&ndash;&gt;-->
+    <!--<div class="weui-flex">-->
+    <!--<div class="weui-flex__item"><div class="placeholder">美女</div></div>-->
+    <!--<div class="weui-flex__item"><div class="placeholder">帅哥</div></div>-->
+    <!--<div class="weui-flex__item"><div class="placeholder">自驾</div></div>-->
+    <!--<div class="weui-flex__item"><div class="placeholder">happy</div></div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;标题&ndash;&gt;-->
+    <!--<div class="weui-cell" style="padding: 0">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p style="font-size: 15px;font-weight: bold">标题文字：国庆7天乐，色达耍起来国庆7天乐，色达耍起来国庆7天乐，色达耍起来国庆7天乐，色达耍起来</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;活动内容&ndash;&gt;-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>时间： 2017.12.12</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>集合地点：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>集合时间：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>发起人：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>联系方式：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>所属小区：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>目标人数：</p>-->
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>费用类型：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>预计人均消费：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>目的地：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>交通工具</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>线路规划：</p>-->
+    <!--</div>-->
+    <!--<div class="weui-cell__ft">说明文字</div>-->
+    <!--</div>-->
+    <!--<div class="weui-cells">-->
+    <!--<div class="weui-cell">-->
+    <!--<div class="weui-cell__bd">-->
+    <!--<p>更多介绍：</p>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash;按钮&ndash;&gt;-->
+    <!--<a href="flockPlay_apply.html" class="weui-btn weui-btn_primary" style="margin-top: 10px">我要报名</a>-->
+    <!--已报名列表-->
+</div>
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function (){
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+<script src="js/swiper.min.js"></script>
+<script src="js/url.js"></script>
+<script src="js/aes.js"></script>
+<script src="js/pad-zeropadding.js"></script>
+<script src="js/encrypt-decode.js"></script>
+<script src="js/hotTopic_playDetails.js"></script>
+
+</body>
+</html>
