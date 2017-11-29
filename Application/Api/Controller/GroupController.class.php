@@ -1335,8 +1335,8 @@ class GroupController extends VersionController
      * @param contact 联系人
      * @param phone 联系电话
      * @param transport 交通方式 1：汽车自驾 2：徒步 3：自行车骑行 4：摩托车骑行
-     * @param garden_code 小区code
-     * @param garden_name 小区名称
+     * @param garden_code 小区code　　（取消　１７.１１.２９ ）
+     * @param garden_name 小区名称　　　（取消　　１７.１１.２９ ）
      * @param total_num 目标人数
      * @param cost_type 花费类型 1：AA制 2：自驾游 3：发布人请客 ...
      * @param average_cost 人均消费
@@ -1383,8 +1383,8 @@ class GroupController extends VersionController
             'contact'=>$contact,
             'phone'=>$phone,
             'transport'=>$transport,
-            'garden_code'=>$garden_code,
-            'garden_name'=>$garden_name,
+//            'garden_code'=>$garden_code,
+//            'garden_name'=>$garden_name,
             'total_num'=>$total_num,
             'cost_type'=>$cost_type,
             'average_cost'=>$average_cost,
