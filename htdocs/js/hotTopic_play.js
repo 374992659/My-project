@@ -9,8 +9,11 @@ $(document).ready(function(){
         // 获取群号
             var  group_num=localStorage.getItem("group_num");
         //城市id
+            var city_id=localStorage.getItem("city_id");
+         //小区code
+            var garden_code="";
         // 数据格式转换
-            var   data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
+            var   data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"city_id":city_id,"garden_code":garden_code})];
         //  加密
             var jsonEncryptData=jsEncryptData(data);
     console.log(data);
