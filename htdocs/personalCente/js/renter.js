@@ -301,7 +301,7 @@ $(document).ready(function(){
         })
     })();
     //验证该房号是否被认证
-    $("#renter_IdentityCard").focus(function () {
+    $("#roomNum").focus(function () {
         var apptoken=localStorage.getItem("apptoken");
         var city_id=$("#city option:selected").val();
         var garden_code=$("#gardenName").attr("title");
