@@ -17,9 +17,8 @@
     <link rel="stylesheet" href="css/flockPlay_apply.css">
 </head>
 <body>
-    <p class="success" style="display: none">报名成功</p>
+    <div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
     <div id="flockPlay_apply">
-
         <form action="">
            <ul>
                <li>
@@ -28,20 +27,13 @@
                </li>
                <li>
                    <label for="phone">联系电话：</label>
-                   <input type="text" id="phone">
+                   <input type="tel" id="phone">
                </li>
                <li>
                    <label for="number">参加人数：</label>
-                   <input type="text" id="number">
+                   <input type="number" id="number">
                </li>
-               <li>
-                   <label for="plot">所属小区：</label>
-                   <input type="text" id="plot">
-               </li>
-               <li>
-                   <label for="consume">人均消费：</label>
-                   <input type="text" id="consume">
-               </li>
+
            </ul>
         </form>
         <button  class="weui-btn weui-btn_primary Btn" style="margin-top: 50px">报名</button>
@@ -59,7 +51,9 @@
     <script src="js/aes.js"></script>
     <script src="js/pad-zeropadding.js"></script>
     <script src="js/encrypt-decode.js"></script>
-    <script src="js/flockPlay.js"></script>
+    <script src="personalCente/js/verifyPhone.js"></script>
+    <!--//<script src="js/flockPlay.js"></script>-->
+    <script src="js/showHide.js"></script>
     <script src="js/flockPlay_apply.js"></script>
 </body>
 </html>
