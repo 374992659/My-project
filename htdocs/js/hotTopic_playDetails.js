@@ -11,7 +11,7 @@ $(document).ready(function(){
         // 获取活动id
         var activity_id=localStorage.getItem("activity_id");
      //城市id
-        var city_id="";
+        var city_id=localStorage.getItem("city_id");
         // 数据格式转换
         var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id,"city_id":city_id})];
     // 加密
