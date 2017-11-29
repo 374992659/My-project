@@ -246,7 +246,7 @@ $(document).ready(function(){
                                 }else{
                                     pic="http://wx.junxiang.ren/project/"+data.send_portrait
                                 }
-                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+"http://wx.junxiang.ren/project/"+data.content+"','nickname':'"+data.sender_nickname+"','portrait':'"+pic+"'}";
+                             var json_str = "{'sender_code':'"+data.sender_code+"','type':'"+data.type+"','send_time':'"+data.send_time+"','content':'"+data.content+"','nickname':'"+data.sender_nickname+"','portrait':'"+pic+"'}";
                                console.log(json_str);
                                 var history_chats = localStorage.getItem('history_'+data.sender_code);
                                 if(!history_chats){
@@ -273,7 +273,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                              
-                              <img src="http://wx.junxiang.ren/project/${data.content}" alt="" style="width: 80px">
+                              <img src=${data.content}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `;
