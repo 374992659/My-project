@@ -117,6 +117,7 @@ class ActivityController extends VersionController
      * 约玩报名
      * @param city_id 城市id
      * @param activity_id  活动id
+     * @param num 报名人数
      * */
     protected function enrollActivity_v1_0_0(){
         $city_id =$this->pdata['city_id'];
