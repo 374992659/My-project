@@ -1403,6 +1403,38 @@ class GroupController extends VersionController
         if(!$res)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
+    /*
+     * 上传群活动图片
+     * 参数 ：微信版 无   | APP    imageData 文件流
+     * */
+    protected function uploadGroupActivity_v1_0_0(){
+        if(intval($_GET['is_wap']) !==1){
+            $a = $this->pdata['imageData'];
+            if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
+            $save_path= APP_PATH.'Common/Upload/Img/GroupActivity/'.date(m).date(d).'/';
+            $res = $this->uploadAppImg($save_path,$a);
+            if($res){
+                $this->echoEncrypData(0,'',$res);
+            }else{
+                $this->echoEncrypData(1,'图片上传失败');
+            }
+        }else{
+            if(!$_FILES){
+                $this->echoEncrypData(306);
+            }
+            import('Vendor.UploadFile');
+            $model = new \UploadFile();
+            $save_path= APP_PATH.'Common/Upload/Img/GroupActivity/'.date(m).date(d).'/';
+            $res = $model->upload($save_path);
+            if(!$res){
+                $this->echoEncrypData(1,$model->getErrorMsg());
+            }
+            foreach($res as $k=>$v){
+                $data['file_path'][]=$res[$k]['savepath'].$res[$k]['savename'];
+            }
+            $this->echoEncrypData(0,'',$data);
+        }
+    }
 
     /*
      * 群活动列表
