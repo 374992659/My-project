@@ -273,7 +273,7 @@ $(document).ready(function(){
                     </div>
                     <div class="weui-media-box__bd">
                             <span class="weui-media-box__desc" style="padding: 0">                              
-                              <img src=${data.content}" alt="" style="width: 80px">
+                              <img src="${data.content}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `;
