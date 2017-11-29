@@ -285,7 +285,7 @@ class FriendsController extends VersionController
             $user_friends2->rollback();
             $offline_user_message1->rollback();
             $offline_user_message2->rollback();
-            $this->echoEncrypData(1,array($res1.$res2,$res3,$res4));
+            $this->echoEncrypData(1,array($res1,$res2,$res3,$res4));
         }
     }
 
