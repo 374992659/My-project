@@ -300,36 +300,42 @@ $(document).ready(function(){
             isCardNo(idCard);
         })
     })();
-    //验证该房号是否被认证
-    $("#roomNum").focus(function () {
-        var apptoken=localStorage.getItem("apptoken");
-        var city_id=$("#city option:selected").val();
-        var garden_code=$("#gardenName").attr("title");
-        var houseNum=$("#dongNum").val();
-        var floorNum=$("#floorNum").val();
-        var roomNum=$("#roomNum").val();
-        var room_num=houseNum+"-"+floorNum+"-"+roomNum;
-        var role=2;
-        var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
-        var jsonEncryptData=jsEncryptData(data);
-        if(garden_code&&houseNum&&floorNum&&roomNum){
-            $.ajax({
-                url:url+"UserCenter_roomRoleExists",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    var data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken);
-                        alert("该房号已经被认证");
-                    }else{
-                        showHide(data.errmsg)
+    //验证房号是否被认证的函数
+    function verityHouseNum(element) {
+      var a=$(element);
+        a.focus(function () {
+            var apptoken=localStorage.getItem("apptoken");
+            var city_id=$("#city option:selected").val();
+            var garden_code=$("#gardenName").attr("title");
+            var houseNum=$("#dongNum").val();
+            var floorNum=$("#floorNum").val();
+            var roomNum=$("#roomNum").val();
+            var room_num=houseNum+"-"+floorNum+"-"+roomNum;
+            var role=2;
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
+            var jsonEncryptData=jsEncryptData(data);
+            if(garden_code&&houseNum&&floorNum&&roomNum){
+                $.ajax({
+                    url:url+"UserCenter_roomRoleExists",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function(data){
+                        var data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            localStorage.setItem("apptoken",data.apptoken);
+                            alert("该房号已经被认证");
+                        }else{
+                            showHide(data.errmsg)
+                        }
                     }
-                }
-            })
-        }
-    });
+                })
+            }
+        });
+    }
+    verityHouseNum("#dongNum");
+    verityHouseNum("#floorNum");
+    verityHouseNum("#roomNum");
     // 提交按钮
     $(".weui-btn").click(function () {
     //1 参数：apptoken
