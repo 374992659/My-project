@@ -93,7 +93,7 @@ class ActivityController extends VersionController
         if(intval($_GET['is_wap']) !==1){
             $a = $this->pdata['imageData'];
             if ( empty($a) ) return $this->echoEncrypData(1,'没有文件被选中');
-            $save_path= APP_PATH.'Common/Upload/Img/GroupActivity/'.date(m).date(d).'/';
+            $save_path= APP_PATH.'Common/Upload/Activity/'.date(m).date(d).'/';
             $res = $this->uploadAppImg($save_path,$a);
             if($res){
                 $this->echoEncrypData(0,'',$res);
@@ -106,7 +106,7 @@ class ActivityController extends VersionController
             }
             import('Vendor.UploadFile');
             $model = new \UploadFile();
-            $save_path= APP_PATH.'Common/Upload/Img/GroupActivity/'.date(m).date(d).'/';
+            $save_path= APP_PATH.'Common/Upload/Activity/'.date(m).date(d).'/';
             $res = $model->upload($save_path);
             if(!$res){
                 $this->echoEncrypData(1,$model->getErrorMsg());
