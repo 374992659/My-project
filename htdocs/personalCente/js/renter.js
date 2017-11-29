@@ -300,6 +300,36 @@ $(document).ready(function(){
             isCardNo(idCard);
         })
     })();
+    //验证该房号是否被认证
+    $("#roomNum").blur(function () {
+        var apptoken=localStorage.getItem("apptoken");
+        var city_id=$("#city option:selected").val();
+        var garden_code=$("#gardenName").attr("title");
+        var houseNum=$("#dongNum").val();
+        var floorNum=$("#floorNum").val();
+        var roomNum=$("#roomNum").val();
+        var room_num=houseNum+"-"+floorNum+"-"+roomNum;
+        var role=2;
+        var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
+        var jsonEncryptData=jsEncryptData(data);
+        if(garden_code){
+            $.ajax({
+                url:url+"UserCenter_roomRoleExists",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function (data) {
+                    var data=jsDecodeData(data);
+                    console.log(data);
+                    if(data.erccode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        alert(data.errmsg);
+                    }else{
+                        showHide(data.errmsg)
+                    }
+                }
+            })
+        }
+    });
     // 提交按钮
     $(".weui-btn").click(function () {
     //1 参数：apptoken
