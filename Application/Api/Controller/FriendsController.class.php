@@ -251,13 +251,42 @@ class FriendsController extends VersionController
     }
     /*
      * 删除好友
-     * @param user_code 删除好友
+     * @param user_code 删除好友code
      * */
     protected function delFriend_v1_0_0(){
         $this->checkParam(array('user_code'));
         $account_code = $this->account_code;
         $user_code = $this->pdata['user_code'];
-
+        $user_friends1 = new Model\UserFriendsModel($account_code);// 操作人分表
+        $user_friends2 = new Model\UserFriendsModel($user_code);//好友分表
+        $offline_user_message1 = new Model\OfflineUserMessageModel($account_code); //操作人离线消息表
+        $offline_user_message2 = new Model\OfflineUserMessageModel($user_code); //好友离线消息表
+        $user_friends1->startTrans();
+        $user_friends2->startTrans();
+        $offline_user_message1->startTrans();
+        $offline_user_message2->startTrans();
+        $res1 = $user_friends1->where(['friend_user_code'=>$user_code])->delete();
+        $res2 = $user_friends2->where(['friend_user_code'=>$account_code])->delete();
+        $res3 = $offline_user_message1->where(['sender_code'=>$user_code])->delete();
+        $res4 = $offline_user_message2->where(['sender-code'=>$account_code])->delete();
+        $mongo = new \MongoClient();
+        if(is_numeric($res1) and is_numeric($res2) and is_numeric($res3) and is_numeric($res4)){
+            $user_friends1->commit();
+            $user_friends2->commit();
+            $offline_user_message1->commit();
+            $offline_user_message2->commit();
+            $user_info1 = 'user_info_'.$account_code;
+            $user_info2 = 'user_info_'.$user_code;
+            $mongo->$user_info1->friends_chat->remove(array('or'=>array('sender_code'=>$user_code,'getter_code'=>$user_code)));//清除聊天记录
+            $mongo->$user_info2->friends_chat->remove(array('or'=>array('sender_code'=>$account_code,'getter_code'=>$account_code)));
+            $this->echoEncrypData(0);
+        }else{
+            $user_friends1->rollback();
+            $user_friends2->rollback();
+            $offline_user_message1->rollback();
+            $offline_user_message2->rollback();
+            $this->echoEncrypData(1);
+        }
     }
 
     /*
