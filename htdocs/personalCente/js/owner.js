@@ -323,8 +323,9 @@ $(document).ready(function(){
                         console.log(data);
                         if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
+                            $("#gardenName").attr("title","");
                         }else{
-                            showHide(data.errmsg)
+                            showHide(data.errmsg);
                         }
                     }
                 })
