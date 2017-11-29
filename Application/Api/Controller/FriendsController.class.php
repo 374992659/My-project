@@ -270,7 +270,7 @@ class FriendsController extends VersionController
         $res3 = $offline_user_message1->where(['sender_code'=>$user_code])->delete();
         $res4 = $offline_user_message2->where(['sender-code'=>$account_code])->delete();
         $mongo = new \MongoClient();
-        if(is_numeric($res1) and is_numeric($res2) and is_numeric($res3) and is_numeric($res4)){
+        if(($res1 !==false) and ($res2 !==false) and ($res3!==false) and ($res3!==false)){
             $user_friends1->commit();
             $user_friends2->commit();
             $offline_user_message1->commit();
@@ -285,7 +285,7 @@ class FriendsController extends VersionController
             $user_friends2->rollback();
             $offline_user_message1->rollback();
             $offline_user_message2->rollback();
-            $this->echoEncrypData(1,array($res1,$res2,$res3,$res4));
+            $this->echoEncrypData(1);
         }
     }
 
