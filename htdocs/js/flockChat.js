@@ -965,4 +965,17 @@ $(document).ready(function(){
             $(".weui-gallery").hide();
         });
     })();
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.href="createCrowd.html";
+        }, true);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+    });
 });
