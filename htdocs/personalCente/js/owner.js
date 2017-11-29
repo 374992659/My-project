@@ -311,6 +311,7 @@ $(document).ready(function(){
             var role=1;
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
             var jsonEncryptData=jsEncryptData(data);
+            console.log(data);
             if(garden_code){
                 $.ajax({
                     url:url+"UserCenter_roomRoleExists",
