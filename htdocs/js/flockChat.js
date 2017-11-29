@@ -427,7 +427,7 @@ $(document).ready(function(){
                 if(item.sender_code===my_code){//我的自己的聊天记录
                     console.log("聊天记录");
                     if(parseInt(item.type)===3){//内容为图片、文件
-                        var historyHttp=item.contet.split(":")[0];
+                        var historyHttp=item.content.split(":")[0];
                         var historyPic="";
                         if(historyHttp==="http"){
                             historyPic=item.content;
