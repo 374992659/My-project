@@ -144,7 +144,7 @@ class ActivityController extends VersionController
         }
         $activity=new Model\ActivityModel($province_id,$this->pdata['city_id']);
         if(!in_array($activity->where(['id'=>$this->pdata['activity_id']])->getField('garden_code'),$Array))$this->echoEncrypData(1,'你没有通过该小区的认证');
-        $collection_time=$activity->where(['id'=>$this->pdata['activity_id']])->getField('collection_time');
+        $collection_time=$activity->where(['activity_id'=>$this->pdata['activity_id']])->getField('collection_time');
         if(time() > intval($collection_time))$this->echoEncrypData(1,'已超出报名时限');
         $activity_regist=new Model\ActivityRegistration($province_id,$this->pdata['city_id']);
         $status = $activity_regist->getEnrollStatus($this->account_code,$this->pdata['activity_id']);
@@ -172,7 +172,7 @@ class ActivityController extends VersionController
         $this->checkParam(array('city_id','activity_id'));
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
         $activity=new Model\ActivityModel($province_id,$this->pdata['city_id']);
-        $time=$activity->field('start_time,end_time')->where(['id'=>$this->pdata['activity_id']])->find();
+        $time=$activity->field('start_time,end_time')->where(['activity_id'=>$this->pdata['activity_id']])->find();
         $now_time =time();
         if(intval($time['start_time'])<$now_time&&$now_time< intval($time['end_time']))$this->echoEncrypData(1,'活动期间不能取消报名');
         if(intval($time['end_time'])<$now_time)$this->echoEncrypData(1,'活动已经结束');
