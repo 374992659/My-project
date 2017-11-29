@@ -391,7 +391,7 @@ CREATE TABLE if not EXISTS `subject_$city_id` (
   `commont_num` int(11) NOT NULL DEFAULT '0' COMMENT '评论数',
   `likes_num` int(11) NOT NULL DEFAULT '0' COMMENT '点赞数',
   `total_votes` int(11) NOT NULL DEFAULT '0' COMMENT '总票数',
-  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态',
+  `status` tinyint(2) NOT NULL DEFAULT '1' COMMENT '状态 1：未解决',
   PRIMARY KEY (`id`),
   KEY `garden_code` (`garden_code`),
   KEY `end_time` (`end_time`),
