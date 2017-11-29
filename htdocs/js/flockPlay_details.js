@@ -156,7 +156,7 @@ $(document).ready(function(){
         </div>
                
               <!--按钮-->
-        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}" title="${result.enroll_status}" id="${result.group_num}">去报名</button>   
+        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}" title="${result.enroll_status}" id="${result.group_num}"></button>   
                 
                 `;
                     var startTime=$("#other-date1").val();
@@ -164,6 +164,7 @@ $(document).ready(function(){
                     var timestamp1 = Date.parse(new Date(startTime));
                     var start_time= timestamp1 / 1000;
                     if (parseInt(result.enroll_status)===0) {
+                        console.log("我要报名");
                         $(".Btn").html("我要报名");
                     }else{
                         $(".Btn").html("取消报名");
