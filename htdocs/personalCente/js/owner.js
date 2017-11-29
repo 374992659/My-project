@@ -299,6 +299,36 @@ $(document).ready(function(){
            isCardNo(idCard)
        })
     })();
+    //验证该楼盘是房号否已经认证
+        $("#roomNum").blur(function () {
+            var city_id=$("#city option:selected").val();
+            var garden_code=$("#gardenName").attr("title");
+            var dongNum=$("#dongNum").val();
+            var floorNum=$("#floorNum").val();
+            var roomNum=$("#roomNum").val();
+            var room_num=dongNum+"-"+floorNum+"-"+roomNum;
+            var role=1;
+            var data=["",JSON.stringify({"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
+            var jsonEncryptData=jsEncryptData(data);
+            if(garden_code){
+                $.ajax({
+                    url:url+"UserCenter_roomRoleExists",
+                    type:"POST",
+                    data:{"data":jsonEncryptData},
+                    success:function (data) {
+                        var data=jsDecodeData(data);
+                        console.log(data);
+                        if(data.errcode===0){
+                            localStorage.setItem("apptoken",data.apptoken);
+                            showHide(data.errmsg)
+                        }else{
+                            showHide(data.errmsg)
+                        }
+                    }
+                })
+            }
+
+        });
     $(".weui-btn").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
@@ -354,28 +384,7 @@ $(document).ready(function(){
         });
         console.log(typeof yourself_picture);
         var role=1;
-        //验证该楼盘是房号否已经认证
-        if(garden_code){
-            $("#roomNum").blur(function () {
-                var data=["",JSON.stringify({"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
-                var jsonEncryptData=jsEncryptData(data);
-                $.ajax({
-                    url:url+"UserCenter_roomRoleExists",
-                    type:"POST",
-                    data:{"data":jsonEncryptData},
-                    success:function (data) {
-                        var data=jsDecodeData(data);
-                        console.log(data);
-                        if(data.errcode===0){
-                            localStorage.setItem("apptoken",data.apptoken);
-                            showHide(data.errmsg)
-                        }else{
-                            showHide(data.errmsg)
-                        }
-                    }
-                })
-            });
-        }
+
         // if(garden_code){
         //     (function () {
         //         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"room_num":room_num,"garden_code":garden_code,"role":role})];
