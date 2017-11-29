@@ -357,7 +357,7 @@ class UserCenterController extends VersionController
             $name = substr_replace($real_name,'**',1);
             $this->echoEncrypData(1,'该房间已被'.$name.' 认证了,可联系他添加你哦',null);
         }
-        $my_role = $garden_room->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'role'=>1,'relation_name'=>'户主'])->getField('real_name');
+        $my_role = $garden_room->where(['city_id'=>$this->pdata['city_id'],'garden_code'=>$garden_code,'room_num'=>$this->pdata['room_num'],'user_code'=>$this->account_code])->getField('real_name');
         $city_id = substr($this->account_code,0,6);
         $model = new Model\OwnerApplicationController($city_id); //该记录根据用户所属地区分表
         $model->startTrans();

@@ -24,7 +24,10 @@ class GardenRoomModel extends Model
      * @param role 角色 1：业主 2：租户
      * */
     public function getRoomRoleNum($garden_name,$room_num,$role){
-        $count = $this->where(['garden_name'=>$garden_name,'room_num'=>$room_num,'role'=>$role])->count();
+        $mongo =new \MongoClient();
+        $garden_code =$mongo->baseinfo->garden_area->findOne(array('garden_name'=>$garden_name))['garden_code'];
+        if(!$garden_code)return 0;
+        $count = $this->where(['garden_code'=>$garden_code,'room_num'=>$room_num,'role'=>$role])->count();
         return $count;
     }
 
