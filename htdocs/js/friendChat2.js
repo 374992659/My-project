@@ -895,8 +895,7 @@ $(document).ready(function(){
             // 获取发送的时间戳
             var sender=localStorage.getItem("sender_code");
             var time= Date.parse(new Date())/1000;
-            console.log("时间戳");
-            console.log(time);
+
             var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
             console.log(json_str);
             var history_chats = localStorage.getItem('history_'+sender_code);
@@ -973,9 +972,10 @@ $(document).ready(function(){
                     if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         console.log(data.data[0]);
+                        var Time= Date.parse(new Date())/1000;
                         localStorage.setItem("friendPic","http://wx.junxiang.ren/project/"+data.data[0]);
                         var  html=`
-         <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
+         <p style="font-size: 12px;text-align: center">${getLocalTime(Time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
@@ -996,8 +996,7 @@ $(document).ready(function(){
                         ws.send(JSON.stringify({'type':2,'content':content,'apptoken' : apptoken,'account_code':account_code,'message_type':message_type}));
                         // 本地存聊天记录
                         var sender=localStorage.getItem("sender_code");
-                        var time= (new Date()).toLocaleDateString();
-                        var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
+                        var json_str = "{'sender_code':'"+my_code+"','type':'"+message_type+"','send_time':'"+Time+"','content':'"+content+"','nickname':'"+my_nickname+"','portrait':'"+my_portrait+"'}";
                         console.log(json_str);
                         var history_chats = localStorage.getItem('history_'+sender_code);
                         if(!history_chats){
