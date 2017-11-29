@@ -6,17 +6,18 @@ $(document).ready(function(){
     var group_num=localStorage.getItem("group_num");
     // 获取活动id
     var activity_id=localStorage.getItem("activity_id");
+    //验证手机的正确性
+    $("#phone").blur(function () {
+        console.log("大时代");
+        var phone=$("#phone").val();
+        validate4(phone)
+    });
     // 绑定点击事件
     $(".Btn").click(function(){
         // 获取姓名
         var name=$("#name").val();
         //   电话
         var phone=$("#phone").val();
-        //验证手机的正确性
-        $("#phone").blur(function () {
-            console.log("大时代");
-            validate4(phone)
-        });
         // 人数
         var number=$("#number").val();
         // 数据格式转换
