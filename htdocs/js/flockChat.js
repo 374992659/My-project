@@ -40,6 +40,13 @@ $(document).ready(function(){
                                     }
 
                                     if(parseInt(item.type)===3){//图片、文件
+                                        var contentHttp=item.content.split(":")[0];
+                                        var contentPic="";
+                                        if(contentHttp==="http"){
+                                            contentPic=item.content;
+                                        }else{
+                                            contentPic="http://wx.junxiang.ren/project/"+item.content;
+                                        }
                                         html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -49,7 +56,7 @@ $(document).ready(function(){
                     <div class="weui-media-box__bd">
                             <h6>${item.sender_nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
-                              <img src="${item.content}" alt="" style="width: 80px">
+                              <img src="${contentPic}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `
@@ -207,12 +214,19 @@ $(document).ready(function(){
                                     send_portrait="http://wx.junxiang.ren/project/"+data.send_portrait
                                 }
                                 if(data.type===3){//图片、文件
+                                    var contentHttp=data.content.split(":")[0];
+                                    var contentPIC="";
+                                    if(contentHttp==="http"){
+                                        contentPIC=data.content;
+                                    }else{
+                                        contentPIC="http://wx.junxiang.ren/project/"+data.content
+                                    }
                                     html=`
                                     <p style="font-size: 12px;text-align: center">${(new Date()).toLocaleDateString()}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 80px" src="${data.content}" alt=""/>
+                    <img style="width: 80px" src="${contentPIC}" alt=""/>
                  </span>
             </div>          
              <div class="weui-media-box__hd" style="margin-left:.8em;">
@@ -260,6 +274,13 @@ $(document).ready(function(){
                                     send_portraits="http://wx.junxiang.ren/project/"+data.send_portrait
                                 }
                                 if(data.type===3){//图片、文件
+                                    var otherHttp=data.content.split(":")[0];
+                                    var otherPic="";
+                                    if(otherHttp==="http"){
+                                        otherPic=data.content;
+                                    }else{
+                                        otherPic="http://wx.junxiang.ren/project/"+data.content;
+                                    }
                                     html=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(data.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -269,7 +290,7 @@ $(document).ready(function(){
                     <div class="weui-media-box__bd">
                      <h6>${data.send_nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
-                              <img src="${data.content}" alt="" style="width: 80px">
+                              <img src="${otherPic}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div>                  `
@@ -405,13 +426,20 @@ $(document).ready(function(){
                 if(item.sender_code===my_code){//我的自己的聊天记录
                     console.log("聊天记录");
                     if(parseInt(item.type)===3){//内容为图片、文件
+                        var historyHttp=item.contet.split(":")[0];
+                        var historyPic="";
+                        if(historyHttp==="http"){
+                            historyPic=item.content;
+                        }else{
+                            historyPic="http://wx.junxiang.ren/project/"+item.content
+                        }
                         if(httP==="http"){//完整路径
                             html+=`
                                     <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 80px" src="${item.content}" alt=""/>
+                    <img style="width: 80px" src="${historyPic}" alt=""/>
                  </span>
             </div>           
              <div class="weui-media-box__hd" style="margin-left:.8em;">
@@ -425,7 +453,7 @@ $(document).ready(function(){
         <div class="weui-media-box weui-media-box_appmsg">
              <div class="weui-media-box__bd">
                  <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
-                    <img style="width: 80px" src="${item.content}" alt=""/>
+                    <img style="width: 80px" src="${historyPic}" alt=""/>
                  </span>
             </div>           
              <div class="weui-media-box__hd" style="margin-left:.8em;">
@@ -495,6 +523,13 @@ $(document).ready(function(){
                     }
                 }else{//好友的聊天记录
                     if(parseInt(item.type)===3){//内容为图片、文件
+                            var friendHttp=item.content.split(":")[0];
+                        var friendPic="";
+                        if(friendHttp==="http"){
+                            friendPic=item.content;
+                        }else{
+                            friendPic="http://wx.junxiang.ren/project/"+item.content;
+                        }
                         if(httP==="http"){
                             html+=`
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -506,7 +541,7 @@ $(document).ready(function(){
                     <div class="weui-media-box__bd">
                     <h6>${item.nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
-                              <img src="${item.content}" alt="" style="width: 80px">
+                              <img src="${friendPic}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div> `
@@ -521,32 +556,13 @@ $(document).ready(function(){
                     <div class="weui-media-box__bd">
                     <h6>${item.nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
-                              <img src="${item.content}" alt="" style="width: 80px">
+                              <img src="${friendPic}" alt="" style="width: 80px">
                             </span>
                    </div>                   
                 </div> `
                         }
 
                     } else if(parseInt(item.type)===2){//内容为语音
-                        if(httP==="http"){
-                            html+=`
-                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
-                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
-                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
-                    </div>
-                   
-                   
-                    <div class="weui-media-box__bd">
-                     <h6>${item.nickname}</h6>
-                        <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
-                               播放语音                            
-                        </span>
-                   </div>                   
-                </div> 
-                                
-                                `
-                        }else{
                             if(httP==="http"){
                                 html+=`
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
@@ -582,7 +598,6 @@ $(document).ready(function(){
                                 
                                 `
                             }
-                        }
                     }else{//内容为文字
                         if(httP==="http"){
                             html+=`
@@ -727,7 +742,7 @@ $(document).ready(function(){
                         var content=localStorage.getItem("friendPic");
                         var group =localStorage.getItem("group_code");           //获取发送好友的群code
                         console.log(content);
-                        var message_type = 2;
+                        var message_type =3;
                         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
                     }
                 },
@@ -765,7 +780,7 @@ $(document).ready(function(){
                         var content=localStorage.getItem("friendPic");
                         var group =localStorage.getItem("group_code");           //获取发送好友的群code
                         console.log(content);
-                        var message_type = 2;
+                        var message_type = 3;
                         ws.send(JSON.stringify({"group":group,'type' : 3,'content':content,'apptoken':apptoken,'message_type':message_type}));
                     }
                 },
@@ -899,7 +914,7 @@ $(document).ready(function(){
                     //把录音在微信服务器上的id（res.serverId）发送到自己的服务器供下载。
                     serverId = res.serverId; // 返回音频的服务器端ID
                     var group =localStorage.getItem("group_code");
-                    var  message_type=3;
+                    var  message_type=2;
                     ws.send(JSON.stringify({"group":group,'type' : 3,'content':serverId,'apptoken':apptoken,'message_type':message_type}));
                 }
             });
