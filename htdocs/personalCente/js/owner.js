@@ -321,7 +321,7 @@ $(document).ready(function(){
                         console.log(data);
                         if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
-                            showHide(data.errmsg)
+                            alert(data.errmsg);
                         }else{
                             showHide(data.errmsg)
                         }
@@ -384,62 +384,6 @@ $(document).ready(function(){
             yourself_picture[i]=src;
         });
         console.log(typeof yourself_picture);
-        var role=1;
-
-        // if(garden_code){
-        //     (function () {
-        //         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"room_num":room_num,"garden_code":garden_code,"role":role})];
-        //         var jsonEncryptData=jsEncryptData(data);
-        //         console.log(data);
-        //         !real_name?alert("名字没有填"):
-        //             !phone?alert("没填手机号"):
-        //                 !dongNum?alert("房号不正确"):
-        //                     !floorNum?alert("房号不正确"):
-        //                         !roomNum?alert("房号不正确"):
-        //                     !id_card_num?alert("没填证件号"):
-        //                         !myPicA?alert("证件正反两面"):
-        //                             !myPicB?alert("证件正反两面"):
-        //                             !city_id?alert("没选城市"):
-        //                                !a?alert("小区照片"):
-        //                                    !garden_name?alert("没有填小区"):
-        //         $.ajax({
-        //             url:url+"UserCenter_roomRoleExists",
-        //             type:"POST",
-        //             data:{"data":jsonEncryptData},
-        //             success:function(data){
-        //                 var data=jsDecodeData(data);
-        //                 console.log(data);
-        //                 if(data.errcode===0){
-        //                     localStorage.setItem("apptoken",data.apptoken);
-        //                     var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_picture,"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":JSON.stringify(garden_picture),"picture":JSON.stringify(picture),"yourself_picture":JSON.stringify(yourself_picture),"garden_code":garden_code})],
-        //                         //    数据加密
-        //                         jsonEncryptData=jsEncryptData(data);
-        //                         console.log(data);
-        //                         $.ajax({
-        //                             url:url+"UserCenter_ownerApplication",
-        //                             type:"POST",
-        //                             data:{"data":jsonEncryptData},
-        //                             success:function(data){
-        //                                 // 解密
-        //                                 var data=jsDecodeData(data);
-        //                                 console.log(data);
-        //                                 if(data.errcode===0){
-        //                                     localStorage.setItem("apptoken",data.apptoken);
-        //                                     showHide(data.errmsg);
-        //                                     window.location.href="myRenZ.html";
-        //                                 }else{
-        //                                     showHide(data.errmsg);
-        //                                 }
-        //                             },
-        //                             error:function(){}
-        //                         })
-        //                 }else {
-        //                     showHide(data.errmsg)
-        //                 }
-        //             }
-        //         })
-        //     })();
-        //}else{
             var data=["",JSON.stringify({"apptoken":apptoken,"real_name":real_name,"phone":phone,"room_num":room_num,"id_card_num":id_card_num,"id_card_pictures":id_card_picture,"garden_name":garden_name,"city_id":city_id,"garden_addr":garden_addr,"garden_picture":JSON.stringify(garden_picture),"picture":JSON.stringify(picture),"yourself_picture":JSON.stringify(yourself_picture),"garden_code":garden_code})],
                 //    数据加密
                 jsonEncryptData=jsEncryptData(data);
@@ -473,6 +417,5 @@ $(document).ready(function(){
                 },
                 error:function(){}
             })
-       // }
     })
 });
