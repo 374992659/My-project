@@ -115,8 +115,8 @@ class ActivityController extends VersionController
         if(!$data)$this->echoEncrypData(1);
         $activity_registration = new Model\ActivityRegistration($province_id,$city_id);
         $data['enroll_status']=$activity_registration->getEnrollStatus($this->account_code,$activity_id);
-        $total=$activity_registration->field('SUM(num)')->where(['activity_id'=>$activity_id])->find();
-        $data['enroll_total']=$total?$total:0;
+        $total=$activity_registration->field('SUM(num) as total')->where(['activity_id'=>$activity_id])->find();
+        $data['enroll_total']=$total['total']?$total['total']:0;
         $data['enroll_list']=$activity_registration->where(['activity_id'=>$activity_id])->select();
         $data['transport']=C('ACTIVITY_TRANSPORT')[$data['transport']];
         $data['cost_type']=C('COST_TYPE')[$data['cost_type']];
