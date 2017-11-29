@@ -162,5 +162,24 @@ class ActivityController extends VersionController
         if(!$res)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
     }
-
+    /*
+     * 取消报名
+     * @param city_id 城市id
+     * @param activity_id  活动id
+     * */
+    protected function cancelEnrollActivity_v1_0_0(){
+        $this->checkParam(array('city_id','activity_id'));
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
+        $activity=new Model\ActivityModel($province_id,$this->pdata['city_id']);
+        $time=$activity->field('start_time,end_time')->where(['id'=>$this->pdata['activity_id']])->find();
+        $now_time =time();
+        if(intval($time['start_time'])<$now_time&&$now_time< intval($time['end_time']))$this->echoEncrypData(1,'活动期间不能取消报名');
+        if(intval($time['end_time'])<$now_time)$this->echoEncrypData(1,'活动已经结束');
+        $activity_regist=new Model\ActivityRegistration($province_id,$this->pdata['city_id']);
+        $count = $activity_regist->where(['activity_id'=>$this->pdata['activity_id'],'user_code'=>$this->account_code])->count();
+        if(!$count)$this->echoEncrypData(1,'您还没有报名');
+        $res = $activity_regist->where(['activity_id'=>$this->pdata['activity_id'],'user_code'=>$this->account_code])->delete();
+        if($res!==false)$this->echoEncrypData(0);
+        $this->echoEncrypData(1);
+    }
 }
