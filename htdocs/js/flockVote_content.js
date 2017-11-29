@@ -57,7 +57,7 @@ $(document).ready(function(){
                             <p>内容：${result.content}</p>
                             <ul>
                                 <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${result.picture}" alt="" class="topic">
+                                    <img src="${result.picture}" alt="" class="topic">
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 15px;color: #b2b2b2">
@@ -100,7 +100,7 @@ $(document).ready(function(){
                             <p>内容：${result.content}</p>
                             <ul>
                                 <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${result.picture}" alt="" class="topic">
+                                    <img src="${result.picture}" alt="" class="topic">
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 15px;color: #b2b2b2">
@@ -179,7 +179,7 @@ $(document).ready(function(){
                             <p>内容：${result.content}</p>
                             <ul>
                                 <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${result.picture}" alt="" class="topic">
+                                    <img src="${result.picture}" alt="" class="topic">
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 15px;color: #b2b2b2">
@@ -222,7 +222,7 @@ $(document).ready(function(){
                             <p>内容：${result.content}</p>
                             <ul>
                                 <li class="lf">
-                                    <img src="http://wx.junxiang.ren/project/${result.picture}" alt="" class="topic">
+                                    <img src="${result.picture}" alt="" class="topic">
                                 </li>
                             </ul>
                             <div style="text-align: right;font-size: 15px;color: #b2b2b2">
@@ -352,4 +352,18 @@ $(document).ready(function(){
             }
         })
     });
+    // 图片放大预览
+    (function(){
+        $(".voteContent").on("click",".weui-panel__bd .weui-media-box__bd ul li img",function(){
+            var url=$(this).attr("src");
+            console.log(url);
+            if($(".weui-gallery").is(":hidden")){
+                $(".weui-gallery").show();
+                $(".weui-gallery__img").attr("style","background-image: url("+url+")")
+            }
+        });
+        $(".weui-gallery").click(function(){
+            $(".weui-gallery").hide();
+        });
+    })();
 });

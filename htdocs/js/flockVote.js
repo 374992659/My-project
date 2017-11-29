@@ -42,7 +42,7 @@ $.ajax({
                         <h4 class="weui-media-box__title" style="font-size: 15px">主题：${item.title}</h4>
                         <ul>
                             <li class="lf">
-                                <img src="http://wx.junxiang.ren/project/${item.picture}" alt="" class="topic">
+                                <img src="${item.picture}" alt="" class="topic">
                             </li>                          
                         </ul>
                         <div style="text-align: right">
@@ -73,7 +73,7 @@ $.ajax({
                         <h4 class="weui-media-box__title" style="font-size: 15px">主题：${item.title}</h4>
                         <ul>
                             <li class="lf">
-                                <img src="http://wx.junxiang.ren/project/${item.picture}" alt="" class="topic">
+                                <img src="${item.picture}" alt="" class="topic">
                             </li>                          
                         </ul>
                         <div style="text-align: right">
@@ -101,4 +101,18 @@ $("#flockVote").on("click",".voteID",function(){
     localStorage.setItem("vote_id",vote_id);
     window.location.href="flockVote_content.html"
     });
+    // 图片放大预览
+    (function(){
+        $(".flockContent").on("click",".voteID .weui-panel__bd .weui-media-box__bd ul li img",function(){
+            var url=$(this).attr("src");
+            console.log(url);
+            if($(".weui-gallery").is(":hidden")){
+                $(".weui-gallery").show();
+                $(".weui-gallery__img").attr("style","background-image: url("+url+")")
+            }
+        });
+        $(".weui-gallery").click(function(){
+            $(".weui-gallery").hide();
+        });
+    })();
 });
