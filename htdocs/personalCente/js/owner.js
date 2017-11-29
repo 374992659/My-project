@@ -300,7 +300,7 @@ $(document).ready(function(){
        })
     })();
     //验证该楼盘是房号否已经认证
-        $("#roomNum").blur(function () {
+        $("#roomNum").blur(function (){
             var apptoken=localStorage.getItem("apptoken");
             var city_id=$("#city option:selected").val();
             var garden_code=$("#gardenName").attr("title");
@@ -321,7 +321,6 @@ $(document).ready(function(){
                         console.log(data);
                         if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
-                            alert(data.errmsg);
                         }else{
                             showHide(data.errmsg)
                         }
