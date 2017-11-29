@@ -159,22 +159,18 @@ $(document).ready(function(){
         <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}" title="${result.enroll_status}" id="${result.group_num}"></button>   
                 
                 `;
-                    var startTime=$("#other-date1").val();
-                    // 转换成时间戳
-                    var timestamp1 = Date.parse(new Date(startTime));
-                    var start_time= timestamp1 / 1000;
                     console.log(result.enroll_status);
                     console.log(typeof result.enroll_status);
-                    if (parseInt(result.enroll_status)===0) {
+                    $("#flockPlay_details").html(html);
+                    $(".swiper-wrapper").html(pic);
+                    $(".weui-flex").html(tag);
+                    if (parseInt(result.enroll_status)===0){
                         console.log("我要报名");
                         $(".Btn").html("我要报名");
                     }else if(parseInt(result.enroll_status)===1){
                         console.log("取消报名");
                         $(".Btn").html("取消报名");
                     }
-                    $("#flockPlay_details").html(html);
-                    $(".swiper-wrapper").html(pic);
-                    $(".weui-flex").html(tag);
                 }
             }
 
