@@ -303,6 +303,7 @@ $(document).ready(function(){
     //验证房号是否被认证的函数
     function verityHouseNum(element) {
       var a=$(element);
+      console.log(a);
         a.focus(function () {
             var apptoken=localStorage.getItem("apptoken");
             var city_id=$("#city option:selected").val();
