@@ -310,7 +310,7 @@ $(document).ready(function(){
             var roomNum=$("#roomNum").val();
             var room_num=dongNum+"-"+floorNum+"-"+roomNum;
             var role=1;
-            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"name":garden_code,"room_num":room_num,"role":role})];
             var jsonEncryptData=jsEncryptData(data);
             console.log(data);
             if(garden_code){
