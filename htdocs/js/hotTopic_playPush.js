@@ -606,7 +606,7 @@ $(document).ready(function(){
                                             !total_num?alert("目标人数"):
                                                 !average_cost?alert("人均花费"):
                                                     $.ajax({
-                                                        url:url+"group_addGroupActivity",
+                                                        url:url+"Activity_addActivity",
                                                         type:"POST",
                                                         data:{"data":jsonEncryptData},
                                                         success:function(data){
@@ -620,9 +620,7 @@ $(document).ready(function(){
                                                                 showHide(data.errmsg);
                                                             }
                                                         }
-
                                                     })
         })
     })();
-
 });

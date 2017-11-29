@@ -9,7 +9,6 @@ $(document).ready(function(){
         // 获取群号
             var  group_num=localStorage.getItem("group_num");
         //城市id
-            var city_id=
         // 数据格式转换
             var   data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num})];
         //  加密
