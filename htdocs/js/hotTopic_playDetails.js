@@ -159,14 +159,52 @@ $(document).ready(function(){
         </div>
                
               <!--按钮-->
-        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}" title="${result.enroll_status}"></button>   
+        <button class="weui-btn weui-btn_primary Btn" style="margin-top: 10px" value="${result.id}" title="${result.enroll_status}"></button> 
+        <table class="enrollList">
+             <tr>
+                <td>报名人信息</td>
+                <td>总人数 <span>${result.enroll_total}</span></td>
+             </tr>
+        </table>  
                 
                 `;
+                var enrollList="";
+                if(result.enroll_list){
+                    $.each(result.enroll_list,function (i,item) {
+                        var httP=item.portrait.split(":")[0];
+                        var pic="";
+                        if(httP==="http"){
+                            pic=item.portrait;
+                        }else{
+                            pic="http://wx.junxiang.ren/project/"+item.portrait
+                        }
+                        enrollList+=`
+                            <tr>
+                                <td>
+                                    <div  class="weui-media-box weui-media-box_appmsg">
+                                        <div class="weui-media-box__hd">
+                                            <img class="weui-media-box__thumb" src="${pic}" alt="">
+                                        </div>
+                                        <div class="weui-media-box__bd">
+                                            <h4 class="weui-media-box__title" style="text-align: left">${item.name}</h4>
+                                            <a href="tel:15928698477" class="weui-media-box__desc" style="text-align: left">${item.phone}</a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    ${item.num}
+                                </td>
+                            </tr>
+                        
+                        `
+                    })
+                }
                 console.log(result.enroll_status);
                 console.log(typeof result.enroll_status);
                 $("#flockPlay_details").html(html);
                 $(".swiper-wrapper").html(pic);
                 $(".weui-flex").html(tag);
+                $(".enrollList").prepend(enrollList);
                 if (parseInt(result.enroll_status)===0){
                     console.log("我要报名");
                     $(".Btn").html("我要报名");
