@@ -320,7 +320,7 @@ $(document).ready(function(){
                 success:function(data){
                     var data=jsDecodeData(data);
                     console.log(data);
-                    if(data.erccode===0){
+                    if(data.errcode===0){
                         localStorage.setItem("apptoken",data.apptoken);
                         alert("该房号已经被认证");
                     }else{
