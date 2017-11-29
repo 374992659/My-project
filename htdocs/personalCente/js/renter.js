@@ -307,13 +307,13 @@ $(document).ready(function(){
         a.blur(function () {
             var apptoken=localStorage.getItem("apptoken");
             var city_id=$("#city option:selected").val();
-            var garden_code=$("#gardenName").attr("title");
+            var garden_code=$("#gardenName").val();
             var houseNum=$("#dongNum").val();
             var floorNum=$("#floorNum").val();
             var roomNum=$("#roomNum").val();
             var room_num=houseNum+"-"+floorNum+"-"+roomNum;
             var role=2;
-            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_code":garden_code,"room_num":room_num,"role":role})];
+            var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"name":garden_code,"room_num":room_num,"role":role})];
             var jsonEncryptData=jsEncryptData(data);
             console.log(room_num);
             console.log(data);
