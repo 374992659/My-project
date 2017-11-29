@@ -216,12 +216,12 @@ $(document).ready(function(){
         }
 
     });
-    var mySwiper = new Swiper('.swiper-container', {
+    var mySwiper = new Swiper('.swiper-container',{
         pagination : '.swiper-pagination',
         loop : true,
         autoplay : 3000
     });
-    var mySwiper = new Swiper('.swiper-container', {
+    var mySwiper = new Swiper('.swiper-container',{
         pagination : '.swiper-pagination',
         loop : true,
         autoplay : 3000,
