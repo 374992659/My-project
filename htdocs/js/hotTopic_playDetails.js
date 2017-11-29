@@ -5,19 +5,21 @@ $(document).ready(function(){
     }
     "use strict";
     // 获取apptoken
-    var apptoken=localStorage.getItem("apptoken"),
+        var apptoken=localStorage.getItem("apptoken");
         // 获取群号
-        group_num=localStorage.getItem("group_num"),
+        var group_num=localStorage.getItem("group_num");
         // 获取活动id
-        activity_id=localStorage.getItem("activity_id"),
+        var activity_id=localStorage.getItem("activity_id");
+     //城市id
+        var city_id="";
         // 数据格式转换
-        data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id})];
+        var data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id,"city_id":city_id})];
     // 加密
-    var jsonEncryptData=jsEncryptData(data);
+        var jsonEncryptData=jsEncryptData(data);
     console.log(jsonEncryptData);
     console.log(data);
     $.ajax({
-        url:url+"group_getGroupActivityInfo",
+        url:url+"Activity_getActivityInfo",
         type:"POST",
         data:{"data":jsonEncryptData},
         success: function (data) {
