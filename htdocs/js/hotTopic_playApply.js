@@ -38,7 +38,7 @@ $(document).ready(function(){
                             if(data.errcode===0){
                                 localStorage.setItem("apptoken",data.apptoken);
                                 showHide(data.errmsg);
-                                // window.location.href="";
+                                window.location.href="hotTopic_playDetails.html";
                             }else{
                                 showHide(data.errmsg)
                             }
