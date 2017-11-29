@@ -204,7 +204,7 @@ $(document).ready(function(){
                 $("#flockPlay_details").html(html);
                 $(".swiper-wrapper").html(pic);
                 $(".weui-flex").html(tag);
-                $(".enrollList").prepend(enrollList);
+                $(".enrollList").append(enrollList);
                 if (parseInt(result.enroll_status)===0){
                     console.log("我要报名");
                     $(".Btn").html("我要报名");
