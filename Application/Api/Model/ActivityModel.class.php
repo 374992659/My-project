@@ -29,8 +29,12 @@ class ActivityModel extends Model
     /*
      * 获取指定城市所有约玩
      * */
-    public function getActivityList(){
-        $res = $this->field('id as activity_id,title,nickname,garden_name,start_time,end_time,collection_time,collection_place,picture')->order(['create_time'=>'desc'])->select();
+    public function getActivityList($garden_code){
+        $where = array();
+        if($garden_code){
+            $where['garden_code']=$garden_code;
+        }
+        $res = $this->field('id as activity_id,title,nickname,garden_name,start_time,end_time,collection_time,collection_place,picture')->where($where)->order(['create_time'=>'desc'])->select();
         if(!$res)return false;
         return $res;
     }

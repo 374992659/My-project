@@ -21,9 +21,9 @@ class ActivityRegistration extends Model
      * 获取用户报名状态
      * @param user_code 用户code
      * */
-    public function getEnrollStatus($user_code){
-        $res = $this->where(['user_code'=>$user_code])->count();
-        if(!$res)return false;
+    public function getEnrollStatus($user_code,$activity_id){
+        $res = $this->where(['user_code'=>$user_code,'activity_id'=>$activity_id])->count();
+        if(!$res)return 0;
         return $res;
     }
 }

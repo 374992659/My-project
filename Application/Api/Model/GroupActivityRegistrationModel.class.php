@@ -36,6 +36,7 @@ class GroupActivityRegistrationModel extends Model
      * */
     public function getEnroolStatus($activity_id,$user_code){
         $res =$this->where(['user_code'=>$user_code,'activity_id'=>$activity_id])->count();
+        if(!$res)return 0;
         return $res;
     }
     /*
