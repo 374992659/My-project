@@ -376,6 +376,13 @@ $(document).ready(function(){
                             var httP=item.send_portrait.split(":")[0];
                             if(item.sender_code==sender_code){//发送方为好友
                                 if(parseInt(item.type)===3){//获取的内容为图片
+                                    var contentHttp=item.content.split(":")[0];
+                                    var contentPic="";
+                                    if(contentHttp==="http"){
+                                        contentPic=item.content;
+                                    }else{
+                                        contentPic="http://wx.junxiang.ren/project/"+item.content;
+                                    }
                                     if(httP==="http"){//好友头像为系统默认头像
                                         html+=`
                 <div class="sendHtml">
@@ -386,8 +393,7 @@ $(document).ready(function(){
                         </div>
                         <div class="weui-media-box__bd">
                                 <span class="weui-media-box__desc" style="background:white;font-size: 13px;color: black;padding: 0">
-                                   <img src="http://wx.junxiang.ren/project/${item.content}" style="width: 80px" alt=""/>
-
+                                   <img src="${contentPic}" style="width: 80px" alt=""/>
                                 </span>
                        </div>
                     </div>
@@ -482,6 +488,13 @@ $(document).ready(function(){
                                 }
                             }else if(item.getter_code==sender_code){//发送方为自己本人
                                 if(parseInt(item.type)===3){//获取的内容为图片
+                                    var contentHttp=item.content.split(":")[0];
+                                    var contentPIC="";
+                                    if(contentHttp==="http"){
+                                        contentPIC=item.content;
+                                    }else{
+                                        contentPIC="http://wx.junxiang.ren/project/"+item.content;
+                                    }
                                     if(httP==="http"){//头像为系统默认头像的
                                         html+=`
                             
@@ -490,7 +503,7 @@ $(document).ready(function(){
                                     <div class="weui-media-box__bd">
                                         <span class="weui-media-box__desc right"  style="background:white;font-size: 13px;color: black;padding: 0">
 
-                                         <img src="http://wx.junxiang.ren/project/${item.content}" style="width: 80px"  alt=""/>
+                                         <img src="${contentPIC}" style="width: 80px"  alt=""/>
                                         </span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
@@ -508,7 +521,7 @@ $(document).ready(function(){
                                     <div class="weui-media-box__bd">
                                         <span class="weui-media-box__desc right"  style="background:white;font-size: 13px;color: black;padding: 0">
 
-                                         <img src="${item.content}" style="width: 80px"  alt=""/>
+                                         <img src="${contentPIC}" style="width: 80px"  alt=""/>
                                         </span>
                                     </div>
                                     <div class="weui-media-box__hd" style="margin-left:.8em;">
