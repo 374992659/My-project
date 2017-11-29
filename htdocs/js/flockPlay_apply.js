@@ -13,7 +13,7 @@ $(document).ready(function(){
         //   电话
         var phone=$("#phone").val();
         //验证手机的正确性
-        $("#name").blur(function () {
+        $("#phone").blur(function () {
             validate4(phone)
         });
         // 人数
