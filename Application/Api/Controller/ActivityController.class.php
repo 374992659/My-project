@@ -88,13 +88,15 @@ class ActivityController extends VersionController
     /*
      * 约玩列表
      * @param city_id 城市id
+     * @param garden_code小区code 可填
      * */
-    protected function getActivityList_v1_0_0(){
+        protected function getActivityList_v1_0_0(){
         $city_id=$this->pdata['city_id'];
-        if(!$city_id)$this->echoEncrypData(21);
+        $garden_code =$this->pdata['garden_code'];
+        if(!$city_id )$this->echoEncrypData(21);
         $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
         $activity=new Model\ActivityModel($province_id,$city_id);
-        $data = $activity->getActivityList();
+        $data = $activity->getActivityList($garden_code);
         if(!$data)$this->echoEncrypData(5);
         $this->echoEncrypData(0,'',$data);
     }
@@ -111,6 +113,12 @@ class ActivityController extends VersionController
         $activity=new Model\ActivityModel($province_id,$city_id);
         $data =$activity->getActivityInfo($activity_id);
         if(!$data)$this->echoEncrypData(1);
+        $activity_registration = new Model\ActivityRegistration($province_id,$city_id);
+        $data['enroll_status']=$activity_registration->getEnrollStatus($this->account_code,$activity_id);
+        $data['total_num']=$activity_registration->field('sum (num)')->where(['activity_id'=>$activity_id])->find();
+        $data['enroll_list']=$activity_registration->where(['activity_id'=>$activity_id])->select();
+        $data['transport']=C('ACTIVITY_TRANSPORT')[$data['transport']];
+        $data['cost_type']=C('COST_TYPE')[$data['cost_type']];
         $this->echoEncrypData(0,'',$data);
     }
     /*
@@ -118,25 +126,36 @@ class ActivityController extends VersionController
      * @param city_id 城市id
      * @param activity_id  活动id
      * @param num 报名人数
+     * @param name  姓名
+     * @param phone 联系电话
      * */
     protected function enrollActivity_v1_0_0(){
-        $city_id =$this->pdata['city_id'];
-        $activity_id =$this->pdata['activity_id'];
-        if(!$city_id || !$activity_id)$this->echoEncrypData(21);
-        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$city_id])->getField('province_code');
-        $table_id=substr($this->account_code,0,6);
-        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
-        $activity=new Model\ActivityModel($province_id,$city_id);
-        $collection_time=$activity->where(['id'=>$activity_id])->getField('collection_time');
+        $this->checkParam(array('city_id','activity_id','num','name','phone'));
+        $province_id=M('baseinfo.swf_area')->where(['city_code'=>$this->pdata['city_id']])->getField('province_code');
+        $mongo = new \MongoClient();
+        $table_id = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['table_id'];
+        $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait,user_garden')->where(['account_code'=>$this->account_code])->find();
+        if(!$res['user_garden'])$this->echoEncrypData(1,'你没有通过该小区的认证');
+        $garden_arr = explode(';',$res['user_garden']);
+        $Array=array();
+        foreach ($garden_arr as $k=>$v){
+            $Array[]=explode(',',$v)[1];
+        }
+        $activity=new Model\ActivityModel($province_id,$this->pdata['city_id']);
+        if(!in_array($activity->where(['id'=>$this->pdata['activity_id']])->getField('garden_code'),$Array))$this->echoEncrypData(1,'你没有通过该小区的认证');
+        $collection_time=$activity->where(['id'=>$this->pdata['activity_id']])->getField('collection_time');
         if(time() > intval($collection_time))$this->echoEncrypData(1,'已超出报名时限');
-        $activity_regist=new Model\ActivityRegistration($province_id,$city_id);
-        $status = $activity_regist->getEnrollStatus($this->account_code);
+        $activity_regist=new Model\ActivityRegistration($province_id,$this->pdata['city_id']);
+        $status = $activity_regist->getEnrollStatus($this->account_code,$this->pdata['activity_id']);
         if($status)$this->echoEncrypData(1,'您已经报过名啦');
         $data=array(
-            'activity_id'=>$activity_id,
+            'activity_id'=>$this->pdata['activity_id'],
             'user_code'=>$this->account_code,
             'nickname'=>$res['nickname'],
             'portrait'=>$res['portrait'],
+            'name'=>$this->pdata['name'],
+            'phone'=>$this->pdata['phone'],
+            'num'=>$this->pdata['num'],
             'create_time'=>time(),
         );
         $res = $activity_regist->add($data);
