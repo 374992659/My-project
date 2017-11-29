@@ -94,7 +94,7 @@ $(document).ready(function(){
         $(".city1").change(function () {
             $(".flockPlayList").empty();
             var apptoken=localStorage.getItem("apptoken");
-            var city_id=$(".city option:selected").val();
+            var city_id=$(".city1 option:selected").val();
             var garden_code="";
             var getPlayList=new getPlay(apptoken,city_id,garden_code);
             getPlayList.playList();
