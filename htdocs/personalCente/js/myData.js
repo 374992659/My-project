@@ -286,6 +286,8 @@ $(document).ready(function(){
         });
     });
     //获取验证码
+    console.log("电话号码");
+    console.log(beforePhone);
     myInfo.on("click",".weui-cells .weui-cell_vcode .weui-cell__ft .getCodeBtn",function(){
         //获取以前的手机号
         var apptoken=localStorage.getItem("apptoken");
