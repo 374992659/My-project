@@ -1003,5 +1003,9 @@ $(document).ready(function(){
         var sender_code=$(this).attr("title");
         console.log("群成员code");
         console.log(sender_code);
+        localStorage.setItem("sender_code",sender_code);
+        if(sender_code){
+            window.location.href="groupUserDetails.html";
+        }
     });
 });
