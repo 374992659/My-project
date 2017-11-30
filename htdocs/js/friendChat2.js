@@ -13,6 +13,7 @@ $(document).ready(function(){
             my_nickname=localStorage.getItem("my_nickname");
     function wxSetTitle(title) {
         document.title = title;
+
         var mobile = navigator.userAgent.toLowerCase();
         if (/iphone|ipad|ipod/.test(mobile)) {
             var iframe = document.createElement('iframe');
@@ -26,6 +27,7 @@ $(document).ready(function(){
             };
             iframe.addEventListener('load', iframeCallback);
             document.body.appendChild(iframe);
+            window.location.reload();
         }
     }
     wxSetTitle(sender_name);
