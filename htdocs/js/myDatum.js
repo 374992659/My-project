@@ -159,7 +159,7 @@ $(document).ready(function(){
                if(hide_field){
                    hide_field+=$(this).attr("value");
                }else{
-                   hide_field+=$(this).attr("value");
+                   hide_field+=","+$(this).attr("value");
                }
            }
 
