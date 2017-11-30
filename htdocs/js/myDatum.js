@@ -152,8 +152,13 @@ $(document).ready(function(){
     $("#tab1").on("click",".weui-flex .weui-flex__item .revampGroup",function () {
         // 找到所有button
        var allBut= $("#tab1").find("button");
+        hide_field="";
        allBut.each(function (i,item) {
-           console.log($(this).attr("title"))
+           var that=$(this).attr("title");
+           if(parseInt(that)===1){
+              console.log($(this).attr("value")) 
+           }
+
        });
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken,"hide_field":hide_field})];
