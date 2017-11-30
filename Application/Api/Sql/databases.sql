@@ -22,6 +22,7 @@ CREATE TABLE  if not exists `user_info_$city_id` (
   `total_point` int(11) unsigned NOT NULL DEFAULT '0' COMMENT '总积分',
   `id_card_ num` varchar(20) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '身份证编号',
   `role` tinyint(4) unsigned DEFAULT '1',
+  `hide_field` varchar(1000) COLLATE utf8_unicode_ci DEFAULT '' COMMENT '个人资料页面隐藏信息字段',
   PRIMARY KEY (`id`),
   UNIQUE KEY `account_code` (`account_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='用户信息库，由区域分表';
