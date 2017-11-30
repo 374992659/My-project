@@ -382,7 +382,7 @@ class Events
                 $mongo =new MongoClient();
                 $user_info ='user_info_'.$account_code;
                 $limit_time = time()-7*24*60*60;
-                $data = $mongo->$user_info->friends_chat->find(array('$or'=>array(array('sender_code'=>$user_code),array('getter_code'=>$user_code)),'send_time'=>array('$gte'=>$limit_time)))->sort(array('send_time'=>-1));
+                $data = $mongo->$user_info->friends_chat->find(array('$or'=>array(array('sender_code'=>$user_code),array('getter_code'=>$user_code)),'send_time'=>array('$gte'=>$limit_time)))->sort(array('send_time'=>1));
 //                $return = iterator_to_array($data);
                 $arr=array();
                 if($data){
@@ -397,7 +397,7 @@ class Events
                $mongo =new MongoClient();
                $create_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$group_code))['user_code'];
                $user_info ='user_info_'.$create_code;
-               $data = $mongo->$user_info->group_chat->find(array('group'=>$group_code))->sort(array('sned_time'=>-1));
+               $data = $mongo->$user_info->group_chat->find(array('group'=>$group_code))->sort(array('send_time'=>1));
                $arr=array();
                if($data){
                    foreach ($data as $item){
