@@ -115,7 +115,7 @@ class UserCenterController extends VersionController
             'id_card_num'=>$this->pdata['id_card_num']
         ));
         if(!$res2)$this->echoEncrypData(1,$user_info->getDbError(),$city_id);
-        if($res1 and $res2){
+        if($res1 and ($res2!==false)){
             $user_info->commit();
             $point_record->commit();
             $mongo = new \MongoClient();
