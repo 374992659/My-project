@@ -140,8 +140,10 @@ $(document).ready(function(){
                 }
                 $("#tab1").html(html);
                 $(".ownerPlot").html(house);
+                //找到所有button的value值
                 $.each(hide_fieldArr,function (i,item) {
                     console.log(item);
+                    console.log($("button[value=item]"))
                 });
             }
         })
@@ -187,14 +189,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-
                 }else{
-
                 }
-
             }
-
-
         })
     });
 });
