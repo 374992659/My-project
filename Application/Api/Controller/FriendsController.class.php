@@ -159,7 +159,7 @@ class FriendsController extends VersionController
     protected function changeFriendGroup_v1_0_0(){
         $this->checkParam(array('user_code','group_id'));
         $account_code = $this->account_code;
-        if($account_code == $this->pdata['user_code'])$this->echoEncrypData(1,'不能移动自己去别的分组');
+        if($account_code == $this->pdata['user_code'] and intval($this->pdata['group_id']) !==1)$this->echoEncrypData(1,'不能移动自己去别的分组');
         $user_code =$this->pdata['user_code'];
         $group_id = $this->pdata['group_id'];
        $user_friends = new Model\UserFriendsModel($account_code);
