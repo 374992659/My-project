@@ -144,7 +144,7 @@ $(document).ready(function(){
                 $.each(hide_fieldArr,function (i,item) {
                     console.log(item);
                    $("button[value="+ item+"]").attr("title","1");
-                    $("button[value="+ item+"]").text("信息已隐藏");
+                    $("button[value="+ item+"]").text("显示");
                 });
             }
         })
@@ -153,7 +153,7 @@ $(document).ready(function(){
         // 获取button内容
        var content= $(this).text();
        if(content==="隐藏"){
-           $(this).text("信息已隐藏");
+           $(this).text("显示");
            $(this).attr("title","1");
        }else{
            $(this).text("隐藏");
