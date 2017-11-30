@@ -43,7 +43,7 @@ $(document).ready(function(){
     <div class="weui-cell weui-cell_swiped">
         <div class="weui-cell__bd">
             <div class="weui-cell">
-                <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__hd"><img src="${portrait}" alt="" style="width:40px;height:40px;margin-right:5px;display:block" title="${item.user_code}"></div>
                 <div class="weui-cell__bd">
                     <div> <span  style="background: #1d5b80">成员</span>${item.nickname}</div>
                 </div>
@@ -68,7 +68,7 @@ $(document).ready(function(){
                  <div class="weui-cell weui-cell_swiped">
         <div class="weui-cell__bd">
             <div class="weui-cell">
-                <div class="weui-cell__hd"><img src="${portraits}" alt="" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                <div class="weui-cell__hd"><img src="${portraits}" alt="" style="width:40px;height:40px;margin-right:5px;display:block" title="${item.user_code}"></div>
                 <div class="weui-cell__bd">
                     <div> <span style="background: #348063">管理员</span>${item.nickname}</div>
                 </div>
@@ -92,7 +92,7 @@ $(document).ready(function(){
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
                                     <div class="weui-cell" style="padding: 0">
-                                        <div class="weui-cell__hd"><img src="${portraits}" alt=""  title="${item.user_code}" style="width:40px;height:40px;margin-right:5px;display:block"></div>
+                                        <div class="weui-cell__hd"><img src="${portraits}" alt=""  title="${item.user_code}" style="width:40px;height:40px;margin-right:5px;display:block" title="${item.user_code}"></div>
                                         <div class="weui-cell__bd">
                                             <div> <span style="background: #348063">群主</span>${item.nickname}</div>
                                         </div>
@@ -189,6 +189,15 @@ $(document).ready(function(){
                     }
                 }
             })
+        }
+    });
+    //查看群成员资料
+    $(".manage").on("click",".weui-cell .weui-cell__bd .weui-cell__hd img",function () {
+        var user_code=$(this).attr("title");
+        console.log("群成员的code");
+        localStorage.setItem("sender_code",user_code);
+        if(user_code){
+            window.location.href="groupUserDetails.html";
         }
     });
 });
