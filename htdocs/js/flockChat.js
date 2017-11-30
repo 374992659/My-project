@@ -999,4 +999,9 @@ $(document).ready(function(){
     $(".groupInfo").click(function () {
         window.location.href="commDiscu.html";
     });
+    $("#chatPage").on("click",".weui-media-box .weui-media-box__hd .weui-media-box__thumb",function () {
+        var sender_code=$(this).attr("title");
+        console.log("群成员code");
+        console.log(sender_code);
+    });
 });
