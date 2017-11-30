@@ -143,8 +143,9 @@ $(document).ready(function(){
                 //找到所有button的value值
                 $.each(hide_fieldArr,function (i,item) {
                     console.log(item);
-                   $("button[value="+ item+"]").attr("title","1");
-                    $("button[value="+ item+"]").text("显示");
+                    var button=$("button[value="+ item+"]");
+                    button.attr("title","1");
+                    button.text("显示");
                 });
             }
         })
@@ -190,7 +191,9 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    showHide(data.errmsg)
                 }else{
+                    showHide(data.errmsg)
                 }
             }
         })
