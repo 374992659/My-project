@@ -143,7 +143,7 @@ $(document).ready(function(){
                 //找到所有button的value值
                 $.each(hide_fieldArr,function (i,item) {
                     console.log(item);
-                    console.log($("button[value=item]"))
+                    console.log($("button[value="+ item+"]"))
                 });
             }
         })
