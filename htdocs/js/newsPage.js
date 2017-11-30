@@ -214,7 +214,7 @@ $(document).ready(function(){
            //头像
             header=$(this).find("img").attr("src");
        //名字
-        var sender_name=$(this).fing("h4").text();
+        var sender_name=$(this).find("h4").text();
             console.log(header);
             console.log(sender_code);
             console.log(sender_name);
