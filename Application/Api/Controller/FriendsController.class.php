@@ -138,11 +138,13 @@ class FriendsController extends VersionController
                 $data['user_garden'] = $re_data;
             }
         }
-        if($data['hide_field']){
-            $arr = explode(',',$data['hide_field']);
-            foreach ($data as $k=>$v){
-                if(in_array($k,$arr)){
-                   $data[$k]='用户隐藏了该信息';
+        if($this->account_code !==$user_code){
+            if($data['hide_field']){
+                $arr = explode(',',$data['hide_field']);
+                foreach ($data as $k=>$v){
+                    if(in_array($k,$arr)){
+                        $data[$k]='用户隐藏了该信息';
+                    }
                 }
             }
         }
