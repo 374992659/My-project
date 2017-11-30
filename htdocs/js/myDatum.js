@@ -81,6 +81,7 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left">常住小区：</label>
                                 <span>${garden}</span>
+                                <button>隐藏</button>
                             </div>
                         </div>
                     </div>                
