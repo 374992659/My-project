@@ -393,8 +393,19 @@ class Events
                 $returnData = self::returnData(0,9,'好友聊天记录获取成功',$arr);
                Gateway::sendToCurrentClient(json_encode($returnData));
            case 10:                 //获取群聊天记录
-               $group = $message->group;
-                
+               $group_code = $message->group_code;
+               $mongo =new MongoClient();
+               $create_code = $mongo->baseinfo->group_area->findOne(array('group_code'=>$group_code))['user_code'];
+               $user_info ='user_info_'.$create_code;
+               $data = $mongo->$user_info->group_chat->find(array('group'=>$group_code))->sort(array('sned_time'=>-1));
+               $arr=array();
+               if($data){
+                   foreach ($data as $item){
+                       $arr[]=$item;
+                   }
+               }
+               $returnData = self::returnData(0,10,'群聊天记录获取成功',$arr);
+               Gateway::sendToCurrentClient(json_encode($returnData));
        }
    }
    
