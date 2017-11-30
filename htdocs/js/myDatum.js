@@ -123,12 +123,11 @@ $(document).ready(function(){
                                 </ul>
                                 <button class="right" value="user_garden">隐藏</button>
                             </div>
-                        </div>
-                       
+                        </div>                     
                 </div>                    
                 <div class="weui-flex">
                      
-                      <div class="weui-flex__item"><button  class="weui-btn weui-btn_primary revampGroup">确认隐藏</button></div>
+                      <div class="weui-flex__item"><button  class="weui-btn weui-btn_primary revampGroup">确认</button></div>
                 </div>    
                     `
                 }
@@ -138,7 +137,30 @@ $(document).ready(function(){
             }
         })
     })();
-    $("#tab1").on("click",".",function () {
-        
+    $("#tab1").on("click",".weui-cells .weui-cell .weui-cell__bd button",function () {
+        var hide_field=$(this).attr("value");
+        console.log(hide_field);
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken,"hide_field":hide_field})];
+        var jsonEncryptData=jsEncryptData(data);
+        $.ajax({
+            url:url+"friends_settingHideField",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $(this).prev().html("隐藏了");
+
+                }else{
+                    
+                }
+
+            }
+
+
+        })
     });
 });
