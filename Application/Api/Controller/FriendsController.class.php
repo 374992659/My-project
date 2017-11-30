@@ -97,7 +97,7 @@ class FriendsController extends VersionController
         $hide_field = $this->pdata['hide_field'];
         $account_code = $this->account_code;
         $mongo = new \MongoClient();
-        $table_id= $mongo->baseinfo->user_area->findOne(array('accoun_code'=>$account_code))['table_id'];
+        $table_id= $mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code))['table_id'];
         $res = M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$account_code])->save(['hide_field'=>$hide_field]);
         if($res!==false){
             $this->echoEncrypData(0);
