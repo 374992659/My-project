@@ -4,6 +4,7 @@ $(document).ready(function(){
     var user_code=localStorage.getItem("user_code");
     var data=["",JSON.stringify({"apptoken":apptoken})];
     var jsonEncryptData=jsEncryptData(data);
+    var group_id="";
    //功能一 获取好友资料
     (function () {
         var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code})];
@@ -18,6 +19,7 @@ $(document).ready(function(){
                 var result=data.data;
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
+                    group_id=result.group_id;
                     var httP=result.portrait.split(":")[0];
                     var pic="";
                     if(httP==="http"){
@@ -129,6 +131,7 @@ $(document).ready(function(){
                 }
                 $("#tab1").html(html);
                 $(".ownerPlot").html(house);
+
                 //功能二 获取好友分组
                 (function () {
                     $.ajax({
@@ -147,7 +150,8 @@ $(document).ready(function(){
                              
                 `
                                 });
-                                $("#group").html(html)
+                                $("#group").html(html);
+                                $("#group").find("option[title=group_id]").attr("selected",true);
                             }
                         }
                     })
