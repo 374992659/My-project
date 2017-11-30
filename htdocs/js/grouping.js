@@ -33,7 +33,6 @@ $(document).ready(function(){
                         `
                     });
                     $(".groupList").html(html);
-                    showHide(data.errmsg)
                 }else{
                      showHide(data.errmsg)
                 }
@@ -66,9 +65,7 @@ $(document).ready(function(){
                         localStorage.setItem("apptoken",data.apptoken);
                             $(e.target).parent().remove();
                     }else{
-                        $(document).on('click','#show-success',function(){
-                            $.toptip(data.errmsg, 'success');
-                        });
+                       showHide(data.errmsg)
                     }
                 }
             });
@@ -103,7 +100,7 @@ $(document).ready(function(){
                 }
             });
         }else{
-            showHide("分组名称")
+            showHide("请输入分组名称")
         }
       });
     //  功能3修改好友分组
