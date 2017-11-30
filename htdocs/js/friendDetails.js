@@ -151,7 +151,7 @@ $(document).ready(function(){
                 `
                                 });
                                 $("#group").html(html);
-                                $("#group").find("option[title=group_id]").attr("selected",true);
+                                $("#group").find("option[title='3']").attr("selected",true);
                             }
                         }
                     })
