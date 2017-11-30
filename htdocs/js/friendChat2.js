@@ -12,7 +12,14 @@ $(document).ready(function(){
             // 我自己名字
             my_nickname=localStorage.getItem("my_nickname");
          console.log(sender_name);
+    var $body = $('body');
     document.title=sender_name;
+    var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+    $iframe.on('load',function() {
+        setTimeout(function() {
+            $iframe.off('load').remove();
+        }, 0);
+    }).appendTo($body);
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
