@@ -746,6 +746,7 @@ $(document).ready(function() {
     });
     //搜索好友跳转到聊天页面
     $(".keyFriend").on("click",".skipChat",function(){
+        var my_code=localStorage.getItem("my_code");
         //好友名字
         var sender_name=$(this).find("h4").text();
         // 获取好友code
@@ -756,7 +757,12 @@ $(document).ready(function() {
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
         localStorage.setItem("sender_name",sender_name);
-        window.location.href="friendChat.html";
+        if(parseInt(sender_code)===my_code){
+            
+        }else{
+            window.location.href="friendChat.html";
+        }
+
     });
     // 退出登录
     $(".logOut").click(function(){
