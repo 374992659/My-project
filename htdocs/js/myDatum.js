@@ -156,7 +156,7 @@ $(document).ready(function(){
        allBut.each(function (i,item) {
            var that=$(this).attr("title");
            if(parseInt(that)===1){
-               if(hide_field){
+               if(!hide_field){
                    hide_field+=$(this).attr("value");
                }else{
                    hide_field+=","+$(this).attr("value");
