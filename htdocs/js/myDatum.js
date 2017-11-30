@@ -140,7 +140,9 @@ $(document).ready(function(){
                 }
                 $("#tab1").html(html);
                 $(".ownerPlot").html(house);
-
+                $.each(hide_fieldArr,function (i,item) {
+                    console.log(item);
+                });
             }
         })
     })();
