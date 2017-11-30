@@ -120,7 +120,7 @@ class FriendsController extends VersionController
             if(!$count)$this->echoEncrypData(1,'该用户不是您的好友');
         }
         $user_city_id = substr($user_code,0,6);
-        $data  = M('baseinfo.user_info_'.$user_city_id)->field('portrait,nickname,account,realname,default_garden,phone,create_time,hobby,user_garden')->where(['account_code'=>$user_code])->find();
+        $data  = M('baseinfo.user_info_'.$user_city_id)->field('portrait,nickname,account,realname,default_garden,phone,create_time,hobby,user_garden,hide_field')->where(['account_code'=>$user_code])->find();
         if($data){
             $data['group_id']= $user_friends->where(['friends_user_code'=>$user_code])->getField('group_id');
             $mongo = new \MongoClient();
@@ -136,6 +136,14 @@ class FriendsController extends VersionController
                     $re_data[] = $mongo->baseinfo->garden_area->findOne(array('garden_code'=>$value))['garden_name'];
                 }
                 $data['user_garden'] = $re_data;
+            }
+        }
+        if($data['hide_field']){
+            $arr = explode(',',$data['hide_field']);
+            foreach ($data as $k=>$v){
+                if(in_array($k,$arr)){
+                   $data[$k]='用户隐藏了该信息';
+                }
             }
         }
         if($data)$this->echoEncrypData(0,'',$data);
