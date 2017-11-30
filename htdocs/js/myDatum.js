@@ -53,7 +53,7 @@ $(document).ready(function(){
                     <div>
                         昵称：<span>${result.nickname}</span>
                     </div>
-                    <button>隐藏</button>
+                   
                 </div>
                 <div class="weui-cells">
                     <div class="weui-cell">
@@ -62,7 +62,7 @@ $(document).ready(function(){
                             <span>${result.realname}</span>
                         </div>
                     </div>
-                    <button>隐藏</button>
+                   
                 </div>
                 <!--电话-->
                 <div class="weui-cells">
@@ -72,7 +72,7 @@ $(document).ready(function(){
                             <span>${result.phone}</span>
                         </div>
                     </div>
-                    <button>隐藏</button>
+                
                 </div>                          
                 <div class="weui-flex__item">
                     <!--常住小区-->
@@ -90,9 +90,10 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left">注册时间：</label>
                                 <span>${getLocalTime(result.create_time)}</span>
+                                <span>隐藏</span>
                             </div>
                         </div>
-                        <button>隐藏</button>
+                       
                     </div>
                 </div>
                 <!--喜好-->
@@ -101,12 +102,11 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left" style="vertical-align: top">喜好：</label>
                                 <ul class="likes">
-                                    <li>${result.hobby}</li>
-                                  
+                                    <li>${result.hobby}</li>                                
                                 </ul>
                             </div>
                         </div>
-                        <button>隐藏</button>
+                      
                     </div>
                 <!--拥有楼盘-->
                 <div class="weui-cells">
@@ -118,7 +118,7 @@ $(document).ready(function(){
                                 </ul>
                             </div>
                         </div>
-                        <button>隐藏</button>
+                       
                 </div>                    
                 <div class="weui-flex">
                      
