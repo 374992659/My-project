@@ -150,8 +150,11 @@ $(document).ready(function(){
        console.log(content);
     });
     $("#tab1").on("click",".weui-cells .weui-cell .weui-cell__bd revampGroup",function () {
-        var hide_field=$(this).attr("value");
-        console.log(hide_field);
+        // 找到所有button
+       var allBut= $("#tab1").find("button");
+       allBut.each(function (i,item) {
+           console.log($(this).attr("title"))
+       });
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken,"hide_field":hide_field})];
         var jsonEncryptData=jsEncryptData(data);
