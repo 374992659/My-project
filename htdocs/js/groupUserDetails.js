@@ -106,8 +106,8 @@ $(document).ready(function(){
                         </div>
                 </div>                    
                 <div class="weui-flex">
-                      <div class="weui-flex__item"><button  class="weui-btn weui-btn_default delFriend">删除好友</button></div>
-                      <div class="weui-flex__item"><button  class="weui-btn weui-btn_primary revampGroup">确认修改</button></div>
+                       <!--<div class="weui-flex__item"><button  class="weui-btn weui-btn_default delFriend">删除好友</button></div>-->
+                      <!--<div class="weui-flex__item"><button  class="weui-btn weui-btn_primary revampGroup">确认修改</button></div>-->
                 </div>    
                     `
                 }
