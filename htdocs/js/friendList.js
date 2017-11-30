@@ -701,6 +701,7 @@ $(document).ready(function() {
     });
     // 点击好友跳转到聊天页面
     $(".group").on("click",".skipChat",function(){
+        var my_code=localStorage.getItem("my_code");
         var apptoken=localStorage.getItem("apptoken");
         //好友名字
         var sender_name=$(this).find("h4").text();
@@ -729,7 +730,12 @@ $(document).ready(function() {
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
         localStorage.setItem("sender_name",sender_name);
-        window.location.href="friendChat.html";
+        if(parseInt(sender_code)===parseInt(my_code)){
+            window.location.href="myDatum.html";
+        }else{
+            window.location.href="friendChat.html";
+        }
+
     });
     //点击头像跳转到
     $(".group").on("click",".skipChat .weui-media-box__hd .weui-media-box__thumb ",function () {
@@ -746,7 +752,6 @@ $(document).ready(function() {
     });
     //搜索好友跳转到聊天页面
     $(".keyFriend").on("click",".skipChat",function(){
-        var my_code=localStorage.getItem("my_code");
         //好友名字
         var sender_name=$(this).find("h4").text();
         // 获取好友code
@@ -759,12 +764,7 @@ $(document).ready(function() {
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
         localStorage.setItem("sender_name",sender_name);
-        if(parseInt(sender_code)===parseInt(my_code)){
-            window.location.href="myDatum.html";
-        }else{
-           // window.location.href="friendChat.html";
-        }
-
+        window.location.href="friendChat.html";
     });
     // 退出登录
     $(".logOut").click(function(){
