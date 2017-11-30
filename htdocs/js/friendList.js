@@ -753,6 +753,8 @@ $(document).ready(function() {
         var sender_code=$(this).attr("title"),
         // 头像
             header=$(this).find("img").attr("src");
+        console.log(my_code);
+        console.log(sender_code);
         // 存本地
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
@@ -760,7 +762,7 @@ $(document).ready(function() {
         if(parseInt(sender_code)===parseInt(my_code)){
             window.location.href="myDatum.html";
         }else{
-            window.location.href="friendChat.html";
+           // window.location.href="friendChat.html";
         }
 
     });
