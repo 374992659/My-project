@@ -996,4 +996,8 @@ $(document).ready(function(){
             window.history.pushState(state, "title", "#");
         }
     });
+    //进入群资料页面
+    $(".groupInfo").click(function () {
+        window.location.href="commDiscu.html";
+    });
 });
