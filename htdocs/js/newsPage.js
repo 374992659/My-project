@@ -213,9 +213,13 @@ $(document).ready(function(){
        var sender_code=$(this).attr("title"),
            //头像
             header=$(this).find("img").attr("src");
+       //名字
+        var sender_name=$(this).fing("h4").text();
             console.log(header);
             console.log(sender_code);
+            console.log(sender_name);
        // 存在本地
+        localStorage.setItem("sender_name",sender_name);
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
         window.location.href="friendChat.html";
