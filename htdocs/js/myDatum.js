@@ -2,10 +2,6 @@ $(document).ready(function(){
     //获取apptoken
     var apptoken=localStorage.getItem("apptoken");
     var user_code=localStorage.getItem("user_code");
-    var data=["",JSON.stringify({"apptoken":apptoken})];
-    var jsonEncryptData=jsEncryptData(data);
-    var group_id="";
-
     //功能一 获取好友资料
     (function () {
         var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code})];
@@ -15,6 +11,7 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
+                console.log(data);
                 var data=jsDecodeData(data);
                 console.log(data);
                 var result=data.data;
