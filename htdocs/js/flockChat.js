@@ -1,5 +1,7 @@
 $(document).ready(function(){
     var apptoken = localStorage.getItem('apptoken');
+    var group_name=localStorage.getItem("group_name");
+    document.title=group_name;
     // 时间戳的转换
     function getLocalTime(nS) {
         return new Date(parseInt(nS) * 1000).toLocaleString().replace(/:\d{1,2}$/,' ');
