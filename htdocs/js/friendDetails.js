@@ -153,8 +153,7 @@ $(document).ready(function(){
                                 });
                                 $("#group").html(html);
                                 var id=parseInt(group_id);
-                                console.log(typeof id);
-                                $("#group").find("option[title=id]").attr("selected",true);
+                                $("#group").find("option[title="+id+"]").attr("selected",true);
                             }
                         }
                     })
