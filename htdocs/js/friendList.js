@@ -735,7 +735,13 @@ $(document).ready(function() {
     $(".group").on("click",".skipChat .weui-media-box__hd .weui-media-box__thumb ",function () {
         var user_code=$(this).attr("id");
         localStorage.setItem("user_code",user_code);
-        window.location.href="friendDetails.html";
+        var my_code=localStorage.getItem("my_code");
+        if(parseInt(user_code)===parseInt(my_code)){
+            window.location.href="myDatum.html";
+        }else{
+            window.location.href="friendDetails.html";
+        }
+
         return false;
     });
     //搜索好友跳转到聊天页面
@@ -757,7 +763,4 @@ $(document).ready(function() {
         localStorage.clear();
         window.location.href="landing.html";
     });
-    window.addEventListener("popstate", function(e) {
-        //alert("我监听到了浏览器的返回按钮事件啦");//根据自己的需求实现自己的功能
-    }, false);
 });
