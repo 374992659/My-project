@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0,minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>个人中心</title>
+    <link rel="stylesheet" href="JQuery_weui/weui.min.css">
+    <link rel="stylesheet" href="JQuery_weui/jquery-weui.css">
+    <link rel="stylesheet" href="JQuery_weui/demos.css">
+    <link rel="stylesheet" href="personalCente/css/index.css">
+    <style>
+        .weui-navbar__item.weui-bar__item--on {
+            color: black;
+            /*background-color: forestgreen;*/
+            border-bottom:2px solid blue;
+        }
+        .weui-navbar__item.weui-bar__item--on span{
+            color: #0033cc;
+        }
+        .weui-navbar__item:after {
+            content:"";
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 0;
+            bottom: 0;
+            border-right: 0 solid #ccc;
+            color: #ccc;
+            -webkit-transform-origin: 100% 0;
+            transform-origin: 100% 0;
+            -webkit-transform: scaleX(.5);
+            transform: scaleX(.5);
+        }
+        .weui-navbar + .weui-tab__bd {
+            padding-top: 40px;
+        }
+        .weui-media-box {
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="success" style="position: fixed;top:0;left: 0;z-index: 100;background: green;color: red;padding: 0 5px;display: none;text-align: center;width: 100%" ></div>
+<div style="padding:10px 5px">
+    <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active">
+
+    </div>
+</div>
+
+
+
+
+
+<script src="js/jquery-1.11.3.js"></script>
+<script src="JQuery_weui/fastclick.js"></script>
+<script>
+    $(function () {
+        FastClick.attach(document.body);
+    });
+</script>
+<script src="JQuery_weui/jquery-weui.js"></script>
+<script src="js/url.js"></script>
+<script src="js/aes.js"></script>
+<script src="js/pad-zeropadding.js"></script>
+<script src="js/encrypt-decode.js"></script>
+<script src="js/timestamp.js"></script>
+<script src="js/showHide.js"></script>
+<script src="js/qrcode.min.js"></script>
+<script src="js/groupUserDetails.js"></script>
+</body>
+</html>
