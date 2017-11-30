@@ -338,7 +338,7 @@ $(document).ready(function(){
             console.log(formData);
             $.ajax({
                 type:"POST",
-                url:url+"group_uploadNoticePic",
+                url:url+"Activity_uploadActivityPic",
                 fileElementId:'uploaderInput',
                 data:formData,
                 processData : false,
