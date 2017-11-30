@@ -757,7 +757,7 @@ $(document).ready(function() {
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
         localStorage.setItem("sender_name",sender_name);
-        if(parseInt(sender_code)===my_code){
+        if(parseInt(sender_code)===parseInt(my_code)){
             window.location.href="myDatum.html";
         }else{
             window.location.href="friendChat.html";
