@@ -149,7 +149,7 @@ $(document).ready(function(){
        }
        console.log(content);
     });
-    $("#tab1").on("click",".weui-cells .weui-cell .weui-cell__bd revampGroup",function () {
+    $("#tab1").on("click",".weui-flex .weui-flex__item .revampGroup",function () {
         // 找到所有button
        var allBut= $("#tab1").find("button");
        allBut.each(function (i,item) {
