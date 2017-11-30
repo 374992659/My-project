@@ -88,7 +88,7 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left">注册时间：</label>
                                 <span>${getLocalTime(result.create_time)}</span>
-                                <span>隐藏</span>
+                                <button class="right">隐藏</button>
                             </div>
                         </div>
                        
@@ -100,7 +100,9 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left" style="vertical-align: top">喜好：</label>
                                 <ul class="likes">
-                                    <li>${result.hobby}</li>                                
+                                    <li>${result.hobby}</li> 
+                                    <li>asd asd </li>      
+                                    <li>asd asd </li>                         
                                 </ul>
                             </div>
                         </div>
@@ -112,7 +114,9 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left" style="vertical-align: top">拥有楼盘：</label>
                                 <ul class="likes ownerPlot">
-                                                                      
+                                                   <li>asd </li>  
+                                                   <li>asd asd asd </li>  
+                                                   <li>asd as d</li>               
                                 </ul>
                             </div>
                         </div>
