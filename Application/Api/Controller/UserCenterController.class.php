@@ -57,6 +57,8 @@ class UserCenterController extends VersionController
         $point_record->startTrans();
         $res1 = true;
         if($this->pdata['phone']){//用户提交手机号
+            $count = $mongo->baseinfo->user_area->count(array('phone'=>$this->pdata['phone']));
+            if($count)$this->echoEncrypData(1,'该手机号已被其他用户绑定');
             //检测手机号有无变动
             $old_phone = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('phone');
             if($this->pdata['phone'] !==$old_phone){
