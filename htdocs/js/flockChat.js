@@ -40,7 +40,6 @@ $(document).ready(function(){
                                     }else{
                                         sender_portrait="http://wx.junxiang.ren/project/"+item.sender_portrait
                                     }
-
                                     if(parseInt(item.type)===3){//图片、文件
                                         var contentHttp=item.content.split(":")[0];
                                         var contentPic="";

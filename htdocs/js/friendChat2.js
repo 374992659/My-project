@@ -11,7 +11,7 @@ $(document).ready(function(){
             my_portrait=localStorage.getItem("my_head"),
             // 我自己名字
             my_nickname=localStorage.getItem("my_nickname");
-    setTimeout(function(){
+         setTimeout(function(){
         //利用iframe的onload事件刷新页面
         document.title =sender_name;
         var iframe = document.createElement('iframe');
