@@ -12,7 +12,7 @@ $(document).ready(function(){
             type:"POST",
             data:{"data":jsonEncryptData},
             success:function(data){
-//           解密获取的数据
+//              解密获取的数据
                 data=jsDecodeData(data);
                 console.log(data);
                 if(data.errcode===0){
@@ -33,11 +33,9 @@ $(document).ready(function(){
                         `
                     });
                     $(".groupList").html(html);
-                    $(document).on('click','#show-success',function(){
-                        $.toptip('操作成功', 'success');
-                    });
+                    showHide(data.errmsg)
                 }else{
-                    console.log(data.errmsg)
+                     showHide(data.errmsg)
                 }
             }
         });
@@ -80,36 +78,33 @@ $(document).ready(function(){
 //   功能2 新建好友分组
     $(".addGroupBtn").click(function(){
         var apptoken=localStorage.getItem("apptoken");
-        console.log(apptoken);
-        console.log(1);
-//                请求添加好友分组接口
-//                获取好友分组名字
+//   获取好友分组名字
         var groupName= $(".groupName").val();
-        console.log(groupName);
-//                转换好友名称数据格式
-      var  data=["",JSON.stringify({"group_name":groupName,"apptoken":apptoken})];
+        var data=["",JSON.stringify({"group_name":groupName,"apptoken":apptoken})];
 //                对名字进行加密
-        console.log(data);
         var jsonEncryptData=jsEncryptData(data);
 //        向后台传送数据
-        $.ajax({
-            url:url+"friends_addGroup",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                //数据解密
-                data=jsDecodeData(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    console.log(data.errmsg);
-                    group();
-                }else{
-                    $(document).on('click','#show-success',function(){
-                        $.toptip(data.errmsg, 'success');
-                    });
+        if(groupName){
+            $.ajax({
+                url:url+"friends_addGroup",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    //数据解密
+                    data=jsDecodeData(data);
+                    if(data.errcode===0){
+                        localStorage.setItem("apptoken",data.apptoken);
+                        console.log(data.errmsg);
+                        group();
+                        showHide(data.errmsg)
+                    }else{
+                        showHide(data.errmsg)
+                    }
                 }
-            }
-        });
+            });
+        }else{
+            showHide("分组名称")
+        }
       });
     //  功能3修改好友分组
     $(".groupList").on("click",".weui-cell .alterBtn",function(e){
@@ -125,36 +120,40 @@ $(document).ready(function(){
         console.log(data);
         // 加密
         var jsonEncryptData=jsEncryptData(data);
-        $.ajax({
-            url:url+"friends_editGroup",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                // 解密
-                data=jsDecodeData(data);
-                if(data.errcode===0){
-                    console.log(data);
-                    localStorage.setItem("apptoken",data.apptoken);
-                    group();
-                    showHide(data.errmsg)
-                }else{
-                    showHide(data.errmsg)
+        if(group_name){
+            $.ajax({
+                url:url+"friends_editGroup",
+                type:"POST",
+                data:{"data":jsonEncryptData},
+                success:function(data){
+                    // 解密
+                    data=jsDecodeData(data);
+                    if(data.errcode===0){
+                        console.log(data);
+                        localStorage.setItem("apptoken",data.apptoken);
+                        group();
+                        showHide(data.errmsg)
+                    }else{
+                        showHide(data.errmsg)
+                    }
                 }
-            }
-        })
-    });
-    $(function(){
-        pushHistory();
-        window.addEventListener("popstate", function(e) {
-            window.location.href="index.html";
-        }, true);
-        function pushHistory() {
-            var state = {
-                title: "title",
-                url: "#"
-            };
-            window.history.pushState(state, "title", "#");
+            })
+        }else{
+            showHide("必须有分组名字");
         }
     });
+    // $(function(){
+    //     pushHistory();
+    //     window.addEventListener("popstate", function(e) {
+    //         window.location.href="index.html";
+    //     }, true);
+    //     function pushHistory() {
+    //         var state = {
+    //             title: "title",
+    //             url: "#"
+    //         };
+    //         window.history.pushState(state, "title", "#");
+    //     }
+    // });
 
 });
