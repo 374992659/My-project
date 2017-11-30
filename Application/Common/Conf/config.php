@@ -39,6 +39,7 @@ return array(
     'MESSAGE_SIGN'        =>'美e家园',
     'REGISTER_CODE'        =>'SMS_100845025',  //注册
     'FORGET_PWD_CODE'   =>'SMS_100735127', //忘记密码
+    'LOGIN_CODE'             =>'SMS_114070287',   //手机号登录
     'CHANGE_PHONE_CODE'   =>'SMS_100875132', //绑定、修改手机号
 
     'CAPTCHA_INTERVAL_SECOND' => 60,  //短信间隔60秒
