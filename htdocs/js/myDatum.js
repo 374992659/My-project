@@ -140,6 +140,13 @@ $(document).ready(function(){
     $("#tab1").on("click",".weui-cells .weui-cell .weui-cell__bd button",function () {
         // 获取button内容
        var content= $(this).text();
+       if(content==="隐藏"){
+           $(this).text("显示");
+           $(this).attr("title","1");
+       }else{
+           $(this).text("隐藏");
+           $(this).attr("title","0");
+       }
        console.log(content);
     });
     $("#tab1").on("click",".weui-cells .weui-cell .weui-cell__bd revampGroup",function () {
