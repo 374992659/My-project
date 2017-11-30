@@ -195,7 +195,7 @@ $(document).ready(function(){
         error:function(){}
     });
     // 图片放大功能
-    $(".picPlace").on("click",".weui-panel ul li .addPic",function(){
+    $(".RenZdetails").on("click",".weui-cells .weui-cell .weui-cell__bd img",function(){
         var url=$(this).attr("src");
         console.log(url);
         if($(".weui-gallery").is(":hidden")){

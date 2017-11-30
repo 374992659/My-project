@@ -324,6 +324,7 @@ $(document).ready(function(){
                         if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
                             $("#gardenName").attr("title","");
+                            showHide("该房号还没有认证可以认证哦")
                         }else{
                             showHide(data.errmsg);
                         }

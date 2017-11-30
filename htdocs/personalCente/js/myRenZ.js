@@ -90,7 +90,7 @@ $(document).ready(function(){
             });
         }
         return false;
-    })
+    });
     $(function(){
         pushHistory();
         window.addEventListener("popstate", function(e) {
