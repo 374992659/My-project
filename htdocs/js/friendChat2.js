@@ -13,14 +13,21 @@ $(document).ready(function(){
             my_nickname=localStorage.getItem("my_nickname");
 
 
-    var $body = $('body');
     document.title=sender_name;
-    var $iframe = $('<iframe src="/favicon.ico"></iframe>');
-    $iframe.on('load',function() {
-        setTimeout(function() {
-            $iframe.off('load').remove();
-        }, 0);
-    }).append($body);
+    const mobile = navigator.userAgent.toLowerCase();
+    const length = document.querySelectorAll('iframe').length;
+    if (/iphone|ipad|ipod/.test(mobile) && !length) {
+        const iframe = document.createElement('iframe');
+        iframe.style.cssText = 'display: none; width: 0; height: 0;';
+        iframe.setAttribute('src', 'about:blank');
+        iframe.addEventListener('load', () => {
+            setTimeout(() => {
+                iframe.removeEventListener('load', false);
+                document.body.removeChild(iframe);
+            }, 0);
+        });
+        document.body.appendChild(iframe);
+    }
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
