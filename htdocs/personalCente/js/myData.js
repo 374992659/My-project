@@ -1,5 +1,6 @@
 $(document).ready(function(){
     //获取个人资料
+    var beforePhone="";
     (function(){
         var apptoken=localStorage.getItem("apptoken");
         // 数据格式转换
@@ -8,6 +9,7 @@ $(document).ready(function(){
             jsonEncryptData=jsEncryptData(data);
         console.log(data);
         console.log(jsonEncryptData);
+
         $.ajax({
             url:url+"UserCenter_getMyInfo",
             type:"POST",
@@ -156,7 +158,7 @@ $(document).ready(function(){
                     `;
                   $(".myInfo").html(html);
                   if(result.phone){
-                      localStorage.setItem("phone",result.phone);
+                      beforePhone=result.phone
                   }
                    //如果微信号为null value值为空
                    //  var weiXin=$("#weiXin").val();
@@ -284,9 +286,8 @@ $(document).ready(function(){
         });
     });
     //获取验证码
-  myInfo.on("click",".weui-cells .weui-cell_vcode .weui-cell__ft .getCodeBtn",function(){
+    myInfo.on("click",".weui-cells .weui-cell_vcode .weui-cell__ft .getCodeBtn",function(){
         //获取以前的手机号
-        var beforePhone=localStorage.getItem("phone");
         var apptoken=localStorage.getItem("apptoken");
         var phone=$(".phone").val();
         console.log(phone);
