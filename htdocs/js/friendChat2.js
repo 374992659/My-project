@@ -14,7 +14,7 @@ $(document).ready(function(){
          console.log(sender_name);
     var $body = $('body');
     document.title=sender_name;
-    var $iframe = $('<iframe src="/favicon.ico"></iframe>');
+    var $iframe = $('<iframe src=""></iframe>');
     $iframe.on('load',function() {
         setTimeout(function() {
             $iframe.off('load').remove();
