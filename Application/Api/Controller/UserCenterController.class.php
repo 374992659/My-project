@@ -1601,6 +1601,19 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(0,"短信验证码发送成功,有效时间为".C('SMS_validity')."分钟。");
         }
     }
+    /*
+     * 获取用户当前总积分
+     * */
+    protected function getUserTotalPoint_v1_0_0(){
+        $account_code = $this->account_code;
+        $mongo = new \MongoClient();
+        $table_id = $mongo->baseinfo->user_area->find(array('account_code'=>$account_code));
+        $total_point= M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$account_code])->getField('total_point');
+        if($total_point !==false){
+            $this->echoEncrypData(0,'',array('total_point'=>$total_point));
+        }
+        $this->echoEncrypData(1);
+    }
 
     /*
      * 判断用户今日是否已达分数上限
