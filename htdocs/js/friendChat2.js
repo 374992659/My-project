@@ -14,12 +14,7 @@ $(document).ready(function(){
          console.log(sender_name);
     var $body = $('body');
     document.title=sender_name;
-    var $iframe = $('<iframe src="image/2.jpg"></iframe>');
-    $iframe.on('load',function() {
-        setTimeout(function() {
-            $iframe.off('load').remove();
-        }, 0);
-    }).appendTo($body);
+    window.location.reload();
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
