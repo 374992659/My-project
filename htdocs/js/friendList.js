@@ -710,6 +710,9 @@ $(document).ready(function() {
         // 头像
             header=$(this).find("img").attr("src");
         // 数据转换
+        localStorage.setItem("sender_code",sender_code);
+        localStorage.setItem("header",header);
+        localStorage.setItem("sender_name",sender_name);
         var data=["",JSON.stringify({"apptoken":apptoken,"user_code":sender_code})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
@@ -727,9 +730,7 @@ $(document).ready(function() {
             error:function(){}
         });
         // 存本地
-        localStorage.setItem("sender_code",sender_code);
-        localStorage.setItem("header",header);
-        localStorage.setItem("sender_name",sender_name);
+
         if(parseInt(sender_code)===parseInt(my_code)){
             window.location.href="myDatum.html";
         }else{
