@@ -26,11 +26,6 @@ $(document).ready(function(){
                 }, 0);
             };
             iframe.addEventListener('load', iframeCallback);
-            if (location.href.indexOf("?xyz=")<0)
-            {
-                location.href=location.href+"?xyz="+Math.random();
-            }
-
         }
     }
     wxSetTitle(sender_name);
