@@ -379,7 +379,7 @@ class RegiestController extends BaseController
                     M()->commit();
                     $user_info->commit();
                     $point_record->commit();
-                    $this->echoEncrypData(0,'注册成功');
+                    $this->echoEncrypData(0,'注册成功123123');
                 }
             }else{
                 $mongo->baseinfo->user_level->insert(array(
