@@ -1607,7 +1607,7 @@ class UserCenterController extends VersionController
     protected function getUserTotalPoint_v1_0_0(){
         $account_code = $this->account_code;
         $mongo = new \MongoClient();
-        $table_id = $mongo->baseinfo->user_area->find(array('account_code'=>$account_code));
+        $table_id = $mongo->baseinfo->user_area->findOne(array('account_code'=>$account_code))['table_id'];
         $total_point= M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$account_code])->getField('total_point');
         if($total_point !==false){
             $this->echoEncrypData(0,'',array('total_point'=>$total_point));
