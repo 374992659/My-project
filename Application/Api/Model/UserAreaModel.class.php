@@ -69,7 +69,7 @@ class UserAreaModel extends Model
     public function getUserInfoByPhone($account,& $errmsg){
 //        $data=M('user_area')->field('id,table_id as city_id')->where(array('account' =>$account))->find();
         $mongo = new \MongoClient();
-        $data = $mongo->baseinfo->user_area->findOne(array('account'=>$account),array('_id','table_id'));
+        $data = $mongo->baseinfo->user_area->findOne(array('account'=>$account),array('_id','table_id','nickname','portrait'));
         if(!$data){
             $errmsg = '该账号不存在';
             return false;

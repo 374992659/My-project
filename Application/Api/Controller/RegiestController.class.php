@@ -324,6 +324,7 @@ class RegiestController extends BaseController
             'create_time' => time(),
             'total_point'=>$point['value'],
             'create_addr_code' => $area_id,
+            'signature'=>'该用户太懒，没有留下什么',
         );
         $this->autoBuildDatabase($this->pdata['account']);
         $user_info=M("baseinfo.user_info_".$area_id);
@@ -721,6 +722,7 @@ class RegiestController extends BaseController
 //        $this->echoEncrypData(1,$data['account_code']);
         M()->execute('use friends_and_group_'.$data['account_code'].';INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 1,\''.$data['account_code'].'\', \'我的好友\');use baseinfo;');
         M()->execute('use friends_and_group_'.$data['account_code'].';INSERT INTO `friends_group` ( `id`, `user_code`, `group_name`) VALUES ( 2,\''.$data['account_code'].'\', \'同学\');use baseinfo;');
+        M()->execute('use friends_and_group_'.$data['account_code'].';INSERT INTO `user_friends` ( `user_code`, `nickname`, `portrait`,`friend_user_code`,`friend_nickname`,`friend_portrait`,`group_id`,friend_signature) VALUES ( \''.$data['account_code'].'\', \''.$data['nickname'].'\',\''.$data['portrait'].'\', \''.$data['account_code'].'\', \''.$data['nickname'].'\',\''.$data['portrait'].'\',\'该用户太懒，没有留下什么\');use baseinfo;');
         $m =new \MongoClient();
         $baseinfo=$m->baseinfo;
         $baseinfo->online_user->insert(array('account_code'=>$data['account_code'],'status'=>0,'offline_time'=>0)); //用户表中加入数据
