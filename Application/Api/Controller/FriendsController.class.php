@@ -166,7 +166,7 @@ class FriendsController extends VersionController
        $old_group_id = $user_friends->where(['friends_user_code'=>$user_code])->getField('group_id');
        if(intval($old_group_id) ===intval($group_id))$this->echoEncrypData(1,'不能移动到相同分组下');
        $res = $user_friends->where(['friend_user_code'=>$user_code])->save(['group_id'=>$group_id]);
-       if($res)$this->echoEncrypData(0);
+       if($res !==false)$this->echoEncrypData(0);
        $this->echoEncrypData(1);
     }
     /*
