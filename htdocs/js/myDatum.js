@@ -57,6 +57,7 @@ $(document).ready(function(){
                         <div class="weui-cell__bd">
                             <label class="left">名字：</label>
                             <span>${result.realname}</span>
+                            <button class="right" value="">隐藏</button>
                         </div>
                     </div>
                    
@@ -67,6 +68,7 @@ $(document).ready(function(){
                         <div class="weui-cell__bd">
                             <label class="left">电话：</label>
                             <span>${result.phone}</span>
+                            <button class="right">隐藏</button>
                         </div>
                     </div>
                 
@@ -104,6 +106,7 @@ $(document).ready(function(){
                                     <li>asd asd </li>      
                                     <li>asd asd </li>                         
                                 </ul>
+                                <button class="right">隐藏</button>
                             </div>
                         </div>
                       
@@ -118,6 +121,7 @@ $(document).ready(function(){
                                                    <li>asd asd asd </li>  
                                                    <li>asd as d</li>               
                                 </ul>
+                                <button class="right">隐藏</button>
                             </div>
                         </div>
                        
