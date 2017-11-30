@@ -11,9 +11,14 @@ $(document).ready(function(){
             my_portrait=localStorage.getItem("my_head"),
             // 我自己名字
             my_nickname=localStorage.getItem("my_nickname");
-
     var $body = $('body');
     document.title=sender_name;
+// hack在微信等webview中无法修改document.title的情况
+    var $iframe = $('<iframe src="/favicon.ico"></iframe>').on('load', function() {
+        setTimeout(function() {
+            $iframe.off('load').remove()
+        }, 0)
+    }).appendTo($body)
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
