@@ -12,7 +12,7 @@ $(document).ready(function(){
             // 我自己名字
             my_nickname=localStorage.getItem("my_nickname");
          console.log(sender_name);
-    document.title="132";
+    document.title=sender_name;
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
