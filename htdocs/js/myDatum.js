@@ -18,6 +18,8 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     group_id=result.group_id;
+                    var hide_field=result.hide_field;
+
                     var httP=result.portrait.split(":")[0];
                     var pic="";
                     if(httP==="http"){
@@ -25,6 +27,11 @@ $(document).ready(function(){
                     }else{
                         pic="http://wx.junxiang.ren/project/"+result.portrait
                     }
+                    //判断哪些资料以及隐藏
+                    if(hide_field){
+                        var hide_fieldArr=result.hide_field.split(",");
+                    }
+                    console.log(hide_fieldArr);
                     //拥有楼盘
                     var house="";
                     if(result.user_garden){
