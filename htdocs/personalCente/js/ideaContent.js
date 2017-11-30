@@ -72,5 +72,16 @@ $(document).ready(function(){
         error:function () {
 
         }
-    })
+    });
+    // 图片放大功能
+    $(".ideaContent").on("click",".ideaPic li img",function(){
+        var url=$(this).attr("src");
+        if($(".weui-gallery").is(":hidden")){
+            $(".weui-gallery").show();
+            $(".weui-gallery__img").attr("style","background-image:url("+url+")")
+        }
+    });
+    $(".weui-gallery").click(function(){
+        $(".weui-gallery").hide();
+    });
 });
