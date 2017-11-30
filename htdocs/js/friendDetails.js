@@ -151,7 +151,7 @@ $(document).ready(function(){
                 `
                                 });
                                 $("#group").html(html);
-                                console.log(group_id);
+                                console.log(typeof group_id);
                                 $("#group").find("option[title=group_id]").attr("selected",true);
                             }
                         }
