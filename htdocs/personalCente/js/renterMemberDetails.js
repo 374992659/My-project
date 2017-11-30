@@ -178,6 +178,18 @@ $(document).ready(function(){
             }
         },
         error:function(){}
-    })
+    });
+    // 图片放大功能
+    $(".memberDetails").on("click",".weui-cells .weui-cell .weui-cell__bd img",function(){
+        var url=$(this).attr("src");
+        console.log(url);
+        if($(".weui-gallery").is(":hidden")){
+            $(".weui-gallery").show();
+            $(".weui-gallery__img").attr("style","background-image:url("+url+")")
+        }
+    });
+    $(".weui-gallery").click(function(){
+        $(".weui-gallery").hide();
+    });
 
 });
