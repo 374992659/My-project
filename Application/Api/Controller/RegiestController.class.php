@@ -371,7 +371,7 @@ class RegiestController extends BaseController
                     $point_record->rollback();
                     $point_record2->rollback();
                     $mongo->baseinfo->user_area->remove(array('account'=>$this->pdata['account']));
-                    $this->echoEncrypData(1,'注册失败344',$inviter_code);
+                    $this->echoEncrypData(1,'注册失败',$inviter_code);
                 }else{
                     $this->appToken=true;
                     $this->account_code = $area_id.$this->pdata['account'];
@@ -379,7 +379,7 @@ class RegiestController extends BaseController
                     M()->commit();
                     $user_info->commit();
                     $point_record->commit();
-                    $this->echoEncrypData(0,'注册成功123123');
+                    $this->echoEncrypData(0,'注册成功');
                 }
             }else{
                 $mongo->baseinfo->user_level->insert(array(
@@ -398,7 +398,7 @@ class RegiestController extends BaseController
             $user_info->rollback();
             $point_record->rollback();
             $mongo->baseinfo->user_area->remove(array('account'=>$this->pdata['account']));
-            $this->echoEncrypData(1,'注册失败',$inviter_code);
+            $this->echoEncrypData(1,'注册失败123',$inviter_code);
         }
     }
 
