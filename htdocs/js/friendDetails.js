@@ -5,6 +5,7 @@ $(document).ready(function(){
     var data=["",JSON.stringify({"apptoken":apptoken})];
     var jsonEncryptData=jsEncryptData(data);
     var group_id="";
+
    //功能一 获取好友资料
     (function () {
         var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code})];
@@ -151,8 +152,9 @@ $(document).ready(function(){
                 `
                                 });
                                 $("#group").html(html);
-                                console.log(typeof group_id);
-                                $("#group").find("option[title=group_id]").attr("selected",true);
+                                var id=parseInt(group_id);
+                                console.log(typeof id);
+                                $("#group").find("option[title=id]").attr("selected",true);
                             }
                         }
                     })
