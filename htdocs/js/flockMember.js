@@ -191,13 +191,21 @@ $(document).ready(function(){
             })
         }
     });
-    //查看群成员资料
+    //查看自己和管理员资料
     $(".manage").on("click",".weui-cell .weui-cell__bd .weui-cell__hd img",function () {
         var user_code=$(this).attr("title");
         console.log("群成员的code");
         localStorage.setItem("sender_code",user_code);
         if(user_code){
             window.location.href="groupUserDetails.html";
+        }
+    });
+    //查看群成员的资料
+    $(".member").on("click",".weui-cell_swiped .weui-cell__bd .weui-cell .weui-cell__hd img",function () {
+        var user_code=$(this).attr("title");
+        localStorage.setItem("sender_code",user_code);
+        if(user_code){
+            window.location.href="groupUserDetails.html"
         }
     });
 });
