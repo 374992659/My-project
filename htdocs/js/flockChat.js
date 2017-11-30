@@ -24,7 +24,7 @@ $(document).ready(function(){
                     }
                     var group_new_message = data.group_new_message;
                     if(group_new_message){              //群组新消息  已按群分组 时间倒序排列
-
+                            console.log(group_new_message);
                         var html="";
                         //群组新消息  已按群分组 时间倒序排列
                         $.each(group_new_message,function(i,item){
@@ -52,7 +52,7 @@ $(document).ready(function(){
                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                 <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
                     <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
-                        <img class="weui-media-box__thumb" src="${sender_portrait}" alt="">
+                        <img class="weui-media-box__thumb" src="${sender_portrait}" alt="" title="${item.sender_code}">
                     </div>
                     <div class="weui-media-box__bd">
                             <h6>${item.sender_nickname}</h6>
