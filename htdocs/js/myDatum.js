@@ -156,10 +156,15 @@ $(document).ready(function(){
        allBut.each(function (i,item) {
            var that=$(this).attr("title");
            if(parseInt(that)===1){
-              console.log($(this).attr("value")) 
+               if(hide_field){
+                   hide_field+=$(this).attr("value");
+               }else{
+                   hide_field+=$(this).attr("value")+",";
+               }
            }
 
        });
+       console.log(hide_field);
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken,"hide_field":hide_field})];
         var jsonEncryptData=jsEncryptData(data);
