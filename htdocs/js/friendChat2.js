@@ -15,7 +15,7 @@ $(document).ready(function(){
 
     var $body = $('body');
     document.title=sender_name;
-    var $iframe = $('<a></a>');
+    var $iframe = $('<a src="aaaa.html"></a>');
     $iframe.on('load',function() {
         setTimeout(function() {
             $iframe.off('load').remove();
