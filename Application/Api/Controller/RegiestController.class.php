@@ -398,7 +398,7 @@ class RegiestController extends BaseController
             $user_info->rollback();
             $point_record->rollback();
             $mongo->baseinfo->user_area->remove(array('account'=>$this->pdata['account']));
-            $this->echoEncrypData(1,$res3,$inviter_code);
+            $this->echoEncrypData(1,$point_record->getDbError(),$inviter_code);
         }
     }
 
