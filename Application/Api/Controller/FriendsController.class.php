@@ -114,8 +114,8 @@ class FriendsController extends VersionController
         $account_code = $this->account_code;
         $user_code = $this->pdata['user_code'];
         //1.验证是否是用户自己或者好友
+        $user_friends  =new Model\UserFriendsModel($account_code);
         if($user_code !== $account_code){
-            $user_friends  =new Model\UserFriendsModel($account_code);
             $count = $user_friends->where(['friend_user_code'=>$user_code])->count();
             if(!$count)$this->echoEncrypData(1,'该用户不是您的好友');
         }
