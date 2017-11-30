@@ -31,7 +31,7 @@ $(document).ready(function(){
                     if(hide_field){
                         var hide_fieldArr=result.hide_field.split(",");
                     }
-                    console.log(hide_fieldArr);
+                    console.log(typeof hide_fieldArr);
                     //拥有楼盘
                     var house="";
                     if(result.user_garden){
