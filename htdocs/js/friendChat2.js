@@ -26,8 +26,11 @@ $(document).ready(function(){
                 }, 0);
             };
             iframe.addEventListener('load', iframeCallback);
-            document.body.appendChild(iframe);
-            window.location.reload();
+            if (location.href.indexOf("?xyz=")<0)
+            {
+                location.href=location.href+"?xyz="+Math.random();
+            }
+
         }
     }
     wxSetTitle(sender_name);
