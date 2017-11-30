@@ -1592,6 +1592,8 @@ class UserCenterController extends VersionController
             $this->echoEncrypData(106);
         }
         $mongo = new \MongoClient();
+        $count = $mongo->baseinfo->user_area->count(array('phone'=>$this->pdata['phone']));
+        if($count)$this->echoEncrypData(1,'该手机号已被其他用户绑定');
         $user_city = $mongo->baseinfo->user_area->findOne(array('account_code'=>$this->account_code))['table_id'];
         $old_phone = M('baseinfo.user_info_'.$user_city)->where(['account_code'=>$this->account_code])->getField('phone');
         if($old_phone == $phone){
