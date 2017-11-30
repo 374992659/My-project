@@ -277,7 +277,7 @@ CREATE TABLE  if not exists `group_activity_registration` (
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `name` varchar(255) DEFAULT '' COMMENT '报名人姓名',
   `phone` varchar(20) DEFAULT '' COMMENT '报名人联系方式',
-  `num` int(5) DEFAULT '' COMMENT '报名人数',
+  `num` int(5) NOT NULL COMMENT '报名人数',
   PRIMARY KEY (`id`),
   KEY `activity_id` (`activity_id`),
   KEY `user_code` (`user_code`)
