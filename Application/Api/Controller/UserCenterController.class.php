@@ -56,27 +56,27 @@ class UserCenterController extends VersionController
         $point_record = new Model\PointRecordModel($account_code);
         $point_record->startTrans();
         $res1 = true;
+        if($this->pdata['phone']){//用户提交手机号
+            //检测手机号有无变动
+            $old_phone = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('phone');
+            if($this->pdata['phone'] !==$old_phone){
+                if(!$this->pdata['code']){
+                    $this->echoEncrypData(1,'请填写短信验证码');
+                }
+                $key_yzm_val = 'bind_'.$this->pdata['phone'];
+                $yzm_Mem = unserialize(S($key_yzm_val));
+                $cache_code = $yzm_Mem['hash'];
+                if( !$cache_code ){
+                    return $this->echoEncrypData(116);
+                }
+                if( $cache_code != $this->pdata['code'] ){
+                    $this->echoEncrypData(1,'验证码不正确');
+                }
+            }
+        }
         if($this->pdata['id_card_num']){
             if(!preg_match('/^((1[1-5])|(2[1-3])|(3[1-7])|(4[1-6])|(5[0-4])|(6[1-5])|71|(8[12])|91)\d{4}((19\d{2}(0[13-9]|1[012])(0[1-9]|[12]\d|30))|(19\d{2}(0[13578]|1[02])31)|(19\d{2}02(0[1-9]|1\d|2[0-8]))|(19([13579][26]|[2468][048]|0[48])0229))\d{3}(\d|X|x)?$/',$this->pdata['id_card_num'])){
                 $this->echoEncrypData(1,'身份证号码格式错误');
-            }
-            if($this->pdata['phone']){//用户提交手机号
-                //检测手机号有无变动
-                $old_phone = M('baseinfo.user_info_'.$city_id)->where(['account_code'=>$this->account_code])->getField('phone');
-                if($this->pdata['phone'] !==$old_phone){
-                    if(!$this->pdata['code']){
-                        $this->echoEncrypData(1,'请填写短信验证码');
-                    }
-                    $key_yzm_val = 'bind_'.$this->pdata['phone'];
-                    $yzm_Mem = unserialize(S($key_yzm_val));
-                    $cache_code = $yzm_Mem['hash'];
-                    if( !$cache_code ){
-                        return $this->echoEncrypData(116);
-                    }
-                    if( $cache_code != $this->pdata['code'] ){
-                        $this->echoEncrypData(1,'验证码不正确');
-                    }
-                }
             }
             $res1 = true;
             //实名认证

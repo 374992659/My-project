@@ -90,6 +90,22 @@ class FriendsController extends VersionController
         $this->echoEncrypData($code);
     }
     /*
+     * 设置个人资料页隐藏信息
+     * @param hide_field 隐藏字段名  多个字段名用逗号隔开列入 signature,hobby,birth_year,birth_month
+     * */
+    protected function settingHideField_v1_0_0(){
+        $hide_field = $this->pdata['hide_field'];
+        $account_code = $this->account_code;
+        $mongo = new \MongoClient();
+        $table_id= $mongo->baseinfo->user_area->findOne(array('accoun_code'=>$account_code))['table_id'];
+        $res = M('baseinfo.user_info_'.$table_id)->where(['account_code'=>$account_code])->save(['hide_field'=>$hide_field]);
+        if($res!==false){
+            $this->echoEncrypData(0);
+        }else{
+            $this->echoEncrypData(1);
+        }
+    }
+    /*
      * 获取用户详情
      * @param user_code 用户code
      * */
