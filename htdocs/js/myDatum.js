@@ -142,6 +142,7 @@ $(document).ready(function(){
         console.log(hide_field);
         var apptoken=localStorage.getItem("apptoken");
         $(this).text("显示");
+        $(this).prev().html("隐藏了");
         var data=["",JSON.stringify({"apptoken":apptoken,"hide_field":hide_field})];
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
@@ -154,7 +155,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    $(this).prev().html("隐藏了");
+
                     $(this).text("显示");
                 }else{
 
