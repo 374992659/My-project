@@ -132,7 +132,7 @@ $(document).ready(function(){
                             <div class="weui-cell">
                                 <div class="weui-cell__bd">
                                     <label class="left">出生年月：</label>
-                                    <span>${result.birth_year}${result.birth_month}</span>
+                                    <span>${result.birth_year}年${result.birth_month}月</span>
                                 </div>
                             </div>
                         </div>                   
