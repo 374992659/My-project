@@ -11,7 +11,7 @@ $(document).ready(function(){
             my_portrait=localStorage.getItem("my_head"),
             // 我自己名字
             my_nickname=localStorage.getItem("my_nickname");
-    document.title=sender_name;
+    document.title="132";
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
