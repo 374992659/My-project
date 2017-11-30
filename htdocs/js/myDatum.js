@@ -68,7 +68,7 @@ $(document).ready(function(){
                         <div class="weui-cell__bd">
                             <label class="left">电话：</label>
                             <span>${result.phone}</span>
-                            <button class="right" value="phone">隐藏</button>
+                            <button class="right" value="phone" title="0">隐藏</button>
                         </div>
                     </div>
                 
@@ -80,7 +80,7 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left">常住小区：</label>
                                 <span>${garden}</span>
-                                <button class="right" value="default_garden">隐藏</button>
+                                <button class="right" value="default_garden" title="0">隐藏</button>
                             </div>
                         </div>
                     </div>                
@@ -90,7 +90,7 @@ $(document).ready(function(){
                             <div class="weui-cell__bd">
                                 <label class="left">注册时间：</label>
                                 <span>${getLocalTime(result.create_time)}</span>
-                                <button class="right" value="create_time">隐藏</button>
+                                <button class="right" value="create_time" title="0">隐藏</button>
                             </div>
                         </div>
                        
@@ -106,7 +106,7 @@ $(document).ready(function(){
                                     <li>asd asd </li>      
                                     <li>asd asd </li>                         
                                 </ul>
-                                <button class="right" value="hobby">隐藏</button>
+                                <button class="right" value="hobby" title="0">隐藏</button>
                             </div>
                         </div>
                       
@@ -121,7 +121,7 @@ $(document).ready(function(){
                                                    <li>asd asd asd </li>  
                                                    <li>asd as d</li>               
                                 </ul>
-                                <button class="right" value="user_garden">隐藏</button>
+                                <button class="right" value="user_garden" title="0">隐藏</button>
                             </div>
                         </div>                     
                 </div>                    
@@ -138,11 +138,14 @@ $(document).ready(function(){
         })
     })();
     $("#tab1").on("click",".weui-cells .weui-cell .weui-cell__bd button",function () {
+        // 获取button内容
+       var content= $(this).text();
+       console.log(content);
+    });
+    $("#tab1").on("click",".weui-cells .weui-cell .weui-cell__bd revampGroup",function () {
         var hide_field=$(this).attr("value");
         console.log(hide_field);
         var apptoken=localStorage.getItem("apptoken");
-        $(this).text("显示");
-        $(this).prev().html("隐藏了");
         var data=["",JSON.stringify({"apptoken":apptoken,"hide_field":hide_field})];
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
@@ -155,8 +158,8 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-
                     $(this).text("显示");
+
                 }else{
 
                 }
