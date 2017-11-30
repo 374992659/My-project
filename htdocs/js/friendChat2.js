@@ -11,14 +11,19 @@ $(document).ready(function(){
             my_portrait=localStorage.getItem("my_head"),
             // 我自己名字
             my_nickname=localStorage.getItem("my_nickname");
-    var $body = $('body');
     document.title=sender_name;
-// hack在微信等webview中无法修改document.title的情况
-    var $iframe = $('<iframe src="/favicon.ico"></iframe>').on('load', function() {
-        setTimeout(function() {
-            $iframe.off('load').remove()
-        }, 0)
-    }).appendTo($body)
+
+    window.setDocumentTitle = function(title) {
+        var i = document.createElement('iframe');
+        i.src = '../favicon.ico';
+        i.style.display = 'none';
+        i.onload = function() {
+            setTimeout(function(){
+                i.remove();
+            }, 9)
+        };
+        document.body.appendChild(i);
+    }
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
