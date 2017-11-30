@@ -1,7 +1,7 @@
 $(document).ready(function(){
     //获取apptoken
     var apptoken=localStorage.getItem("apptoken");
-    var user_code=localStorage.getItem("user_code");
+    var user_code=localStorage.getItem("sender_code");
     //功能一 获取好友资料
     (function () {
         var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code})];
