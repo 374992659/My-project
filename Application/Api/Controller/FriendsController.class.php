@@ -78,6 +78,7 @@ class FriendsController extends VersionController
      * @param group_name 新分组名称
      * */
     protected function editGroup_v1_0_0(){
+        $this->checkParam(array('group_id','group_name'));
         $group_id=$this->pdata['group_id'];
         if($group_id ==1 ){
             $this->echoEncrypData(1,'该分组不允许修改');
