@@ -38,6 +38,7 @@ class UserCenterController extends VersionController
      * @param default_garden 常驻小区 可填
      * @param birth_year 出生年份 可填
      * @param birth_month 出生月份 可填
+     * @param signature 签名
      * @param hobby 爱好  字符串 用英文逗号间隔 可填
      * @param id_card_num 身份证编号 可填
      * @param code 手机号变动必传
@@ -112,6 +113,7 @@ class UserCenterController extends VersionController
             'birth_year'=>$this->pdata['birth_year'],
             'birth_month'=>$this->pdata['birth_month'],
             'hobby'=>$this->pdata['hobby'],
+            'signature'=>$this->pdata['signature'],
             'id_card_num'=>$this->pdata['id_card_num']
         ));
 //        if(!$res2)$this->echoEncrypData(1,$user_info->getDbError(),$city_id);
