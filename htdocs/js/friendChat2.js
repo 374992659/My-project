@@ -11,19 +11,24 @@ $(document).ready(function(){
             my_portrait=localStorage.getItem("my_head"),
             // 我自己名字
             my_nickname=localStorage.getItem("my_nickname");
-    document.title=sender_name;
-
-    window.setDocumentTitle = function(title) {
-        var i = document.createElement('iframe');
-        i.src = '../favicon.ico';
-        i.style.display = 'none';
-        i.onload = function() {
-            setTimeout(function(){
-                i.remove();
-            }, 9)
-        };
-        document.body.appendChild(i);
+    function wxSetTitle(title) {
+        document.title = title;
+        var mobile = navigator.userAgent.toLowerCase();
+        if (/iphone|ipad|ipod/.test(mobile)) {
+            var iframe = document.createElement('iframe');
+            iframe.style.visibility = 'hidden';
+            iframe.setAttribute('src', 'loading.png');
+            var iframeCallback = function() {
+                setTimeout(function() {
+                    iframe.removeEventListener('load', iframeCallback);
+                    document.body.removeChild(iframe);
+                }, 0);
+            };
+            iframe.addEventListener('load', iframeCallback);
+            document.body.appendChild(iframe);
+        }
     }
+    wxSetTitle(sender_name);
     (function(){
         // 获取apptoken
         var apptoken = localStorage.getItem('apptoken');
