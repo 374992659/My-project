@@ -371,7 +371,7 @@ class RegiestController extends BaseController
                     $point_record->rollback();
                     $point_record2->rollback();
                     $mongo->baseinfo->user_area->remove(array('account'=>$this->pdata['account']));
-                    $this->echoEncrypData(1,'注册失败',$inviter_code);
+                    $this->echoEncrypData(1,'注册失败344',$inviter_code);
                 }else{
                     $this->appToken=true;
                     $this->account_code = $area_id.$this->pdata['account'];
