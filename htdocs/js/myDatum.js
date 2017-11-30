@@ -143,6 +143,7 @@ $(document).ready(function(){
         var apptoken=localStorage.getItem("apptoken");
         var data=["",JSON.stringify({"apptoken":apptoken,"hide_field":hide_field})];
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"friends_settingHideField",
             type:"POST",
@@ -155,7 +156,7 @@ $(document).ready(function(){
                     $(this).prev().html("隐藏了");
 
                 }else{
-                    
+
                 }
 
             }
