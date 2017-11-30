@@ -285,6 +285,7 @@ class FriendsController extends VersionController
         $this->checkParam(array('user_code'));
         $account_code = $this->account_code;
         $user_code = $this->pdata['user_code'];
+        if($user_code ===$account_code)$this->echoEncrypData(1,'不能删除自己哦');
         $user_friends1 = new Model\UserFriendsModel($account_code);// 操作人分表
         $user_friends2 = new Model\UserFriendsModel($user_code);//好友分表
         $offline_user_message1 = new Model\OfflineUserMessageModel($account_code); //操作人离线消息表
