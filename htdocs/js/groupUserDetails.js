@@ -6,6 +6,7 @@ $(document).ready(function(){
     (function () {
         var data=["",JSON.stringify({"apptoken":apptoken,"user_code":user_code})];
         var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
         $.ajax({
             url:url+"friends_getFriendInfo",
             type:"POST",
