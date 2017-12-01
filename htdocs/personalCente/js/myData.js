@@ -413,7 +413,7 @@ $(document).ready(function(){
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    showHide(data.errmsg);
+                    showHide("资料没有变化");
                     window.location.href="index.html";
                 }else{
                     showHide(data.errmsg);
