@@ -389,7 +389,7 @@ $(document).ready(function(){
                     showHide(result.errmsg);
                 }
                 break;
-            case 9://历史消息
+            case 10://历史消息
                 console.log(result);
                 if(parseInt(result.errcode)===0){
 
