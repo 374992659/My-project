@@ -387,7 +387,7 @@ class GroupController extends VersionController
         $res1 = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>1]);
         $res2 =$mode->where(['user_code'=>$this->account_code,'group_num'=>$group_num])->save(['role'=>3]);
         $group_info = $user_group1->where(['group_num'=>$group_num])->find();
-//        $res3 = $user_group1->where(['group_num'=>$group_num])->delete();
+        $res3 = $user_group1->where(['group_num'=>$group_num])->save(array('role'=>3));
         $res4 = $user_group2->add(array(
                 'group_name'=>$group_info['group_name'],
                 'group_portrait'=>$group_info['group_portrait'],
@@ -400,8 +400,8 @@ class GroupController extends VersionController
                 'garden_code'=>$group_info['garden_code'],
                 'community_status'=>$group_info['community_status'],
             ));
-//        if($res1 && $res2 && $res3 && $res4){
-        if($res1 && $res2 && $res4){
+        if($res1 && $res2 && $res3 && $res4){
+//        if($res1 && $res2 && $res4){
             $mode->commit();
             $user_group1->commit();
             $user_group2->commit();
