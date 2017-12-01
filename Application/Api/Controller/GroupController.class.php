@@ -370,8 +370,18 @@ class GroupController extends VersionController
         if(intval($role) !== 1)$this->echoEncrypData(500);
         $res = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->getField('role');
         if(intval($res) !== 2)$this->echoEncrypData(1,'该用户不是管理员');
-        $result= $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>3]);
-        if(!$result)$this->echoEncrypData(1);
+        $mode->startTrans();
+        $result1= $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>3]);
+        $user_group=new Model\UserFriendsModel($this->account_code);
+        $user_group->startTrans();
+        $res2 =$user_group->where(['group_num'=>$this->pdata['group_num']])->save(['role'=>3]);
+        if(!$result1 || !$res2){
+            $mode->rollback();
+            $user_group->rollback();
+            $this->echoEncrypData(1);
+        }
+        $mode->commit();
+        $user_group->commit();
         $this->echoEncrypData(0);
     }
 
