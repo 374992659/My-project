@@ -1356,7 +1356,7 @@ class GroupController extends VersionController
         $picture =$this->pdata['picture'];
         $detailed_introduction =$this->pdata['detailed_introduction'];
         $group_num =$this->pdata['group_num'];
-        if(!$title || !$start_time  || !$end_time  || !$destination  || !$collection_time || !$collection_place  || !$contact  || !$phone  || !$transport  || !$garden_code  || !$garden_name  || !$total_num  || !$cost_type  || !$average_cost || !$group_num) $this->echoEncrypData(21,'',$this->pdata);
+        if(!$title || !$start_time  || !$end_time  || !$destination  || !$collection_time || !$collection_place  || !$contact  || !$phone  || !$transport  || !$total_num  || !$cost_type  || !$average_cost || !$group_num) $this->echoEncrypData(21,'',$this->pdata);
 //        $create_code = M('baseinfo.group_area')->where(['group_num'=>$group_num])->getField('user_code'); //群创建人code
         $mongo = new \MongoClient();
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
