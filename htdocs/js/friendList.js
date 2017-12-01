@@ -446,11 +446,12 @@ $(document).ready(function() {
 
                             `;
                         $(".group").append(html);
-                        $("#user"+item.id).html(friend);
+                        //$("#user"+item.id).html(friend);
+                        $(".friend").html(friend);
                     });
                     //在线好友头像亮起来
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
-                                        var online=JSON.parse(localStorage.getItem("online_friends"));
+                    var online=JSON.parse(localStorage.getItem("online_friends"));
                                         for(var i=0 ,len=allfriend.length;i<len;i++){
                                             for(var j=0,le=online.length;j<le;j++){
                                                 if(allfriend[i]==online[j]){
