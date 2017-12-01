@@ -390,7 +390,11 @@ $(document).ready(function(){
                 }
                 break;
             case 9://历史消息
+                if(parseInt(result.errcode===0)){
+                    console.log(result.data)
+                }
                 break;
+
         }
     };
     ws.onopen=function(e){
