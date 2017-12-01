@@ -531,7 +531,7 @@ $(document).ready(function(){
                     </div>
                     
                     <div class="weui-media-box__bd">
-                    <h6>${item.nickname}</h6>
+                    <h6>${item.send_nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
                               <img src="${friendPic}" alt="" style="width: 80px">
                             </span>
@@ -546,7 +546,7 @@ $(document).ready(function(){
                     </div>
                     
                     <div class="weui-media-box__bd">
-                    <h6>${item.nickname}</h6>
+                    <h6>${item.send_nickname}</h6>
                             <span class="weui-media-box__desc" style="padding: 0">                            
                               <img src="${friendPic}" alt="" style="width: 80px">
                             </span>
@@ -565,7 +565,7 @@ $(document).ready(function(){
                    
                    
                     <div class="weui-media-box__bd">
-                     <h6>${item.nickname}</h6>
+                     <h6>${item.send_nickname}</h6>
                         <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
                                播放语音                            
                         </span>
@@ -581,7 +581,7 @@ $(document).ready(function(){
                         <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.send_portrait}" alt="" title="${item.sender_code}">
                     </div>                                     
                     <div class="weui-media-box__bd">
-                     <h6>${item.nickname}</h6>
+                     <h6>${item.send_nickname}</h6>
                         <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
                                播放语音                            
                         </span>
@@ -601,7 +601,7 @@ $(document).ready(function(){
                    
                    
                     <div class="weui-media-box__bd">
-                     <h6>${item.nickname}</h6>
+                     <h6>${item.send_nickname}</h6>
                         <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                                ${item.content}                            
                         </span>
@@ -619,7 +619,7 @@ $(document).ready(function(){
                    
                    
                     <div class="weui-media-box__bd">
-                     <h6>${item.nickname}</h6>
+                     <h6>${item.send_nickname}</h6>
                         <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
                                ${item.content}                            
                         </span>
