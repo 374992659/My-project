@@ -404,12 +404,278 @@ $(document).ready(function(){
                         $.each(history,function(i,item){
                             var jsonObj = eval('(' + item + ')');
                             data[i]=jsonObj;
-                        });
+                        })
+                    }
+                        var html="";
                         console.log(data.length);
                         console.log(result.data.length);
                         result.data.splice(parseInt(result.data.length)-parseInt(data.length));
-                        console.log(result.data.length)
-                    }
+                        console.log(result.data.length);
+                        $.each(result.data,function(i,item){
+                            var httP=item.portrait.split(":")[0];
+                            if(item.sender_code===my_code){//我的自己的聊天记录
+                                console.log("聊天记录");
+                                if(parseInt(item.type)===3){//内容为图片、文件
+                                    var historyHttp=item.content.split(":")[0];
+                                    var historyPic="";
+                                    if(historyHttp==="http"){
+                                        historyPic=item.content;
+                                    }else{
+                                        historyPic="http://wx.junxiang.ren/project/"+item.content
+                                    }
+                                    if(httP==="http"){//完整路径
+                                        html+=`
+                                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
+                    <img style="width: 80px" src="${historyPic}" alt=""/>
+                 </span>
+            </div>           
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="" title="${item.sender_code}">
+             </div>
+         </div>
+                                    `
+                                    }else{//相对路径
+                                        html+=`
+                                    <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="font-size: 13px;color: black;padding: 0;border: 0">
+                    <img style="width: 80px" src="${historyPic}" alt=""/>
+                 </span>
+            </div>           
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="" title="${item.sender_code}">
+             </div>
+         </div>
+                                    `
+                                    }
+                                } else if(parseInt(item.type)===2){//内容为语音
+                                    if(httP==="http"){//绝对路径
+                                        html+=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${item.content}">
+                 语音播放
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="" title="${item.sender_code}">
+             </div>
+         </div>                                                              
+                `
+                                    }else{//相对路径
+                                        html+=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right playVoice" style="background:#66CD00;font-size: 13px;color: black" title="${item.content}">
+                 语音播放
+                 </span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="" title="${item.sender_code}">
+             </div>
+         </div>                                                              
+                `
+                                    }
+
+                                }else{//内容为文字
+                                    if(httP==="http"){//绝对路径
+                                        html+=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="${item.portrait}" alt="" title="${item.sender_code}">
+             </div>
+         </div>                                                              
+                `
+                                    }else{//相对路径
+                                        html+=`
+                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+        <div class="weui-media-box weui-media-box_appmsg">
+             <div class="weui-media-box__bd">
+                 <span class="weui-media-box__desc right" style="background:#66CD00;font-size: 13px;color: black">${item.content}</span>
+            </div>
+             <div class="weui-media-box__hd" style="margin-left:.8em;">
+                 <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="" title="${item.sender_code}">
+             </div>
+         </div>                                                              
+                `
+                                    }
+
+                                }
+                            }else{//好友的聊天记录
+                                if(parseInt(item.type)===3){//内容为图片、文件
+                                    var friendHttp=item.content.split(":")[0];
+                                    var friendPic="";
+                                    if(friendHttp==="http"){
+                                        friendPic=item.content;
+                                    }else{
+                                        friendPic="http://wx.junxiang.ren/project/"+item.content;
+                                    }
+                                    if(httP==="http"){
+                                        html+=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="" title="${item.sender_code}">
+                    </div>
+                    
+                    <div class="weui-media-box__bd">
+                    <h6>${item.nickname}</h6>
+                            <span class="weui-media-box__desc" style="padding: 0">                            
+                              <img src="${friendPic}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div> `
+                                    }else{
+                                        html+=`
+                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="" title="${item.sender_code}">
+                    </div>
+                    
+                    <div class="weui-media-box__bd">
+                    <h6>${item.nickname}</h6>
+                            <span class="weui-media-box__desc" style="padding: 0">                            
+                              <img src="${friendPic}" alt="" style="width: 80px">
+                            </span>
+                   </div>                   
+                </div> `
+                                    }
+
+                                } else if(parseInt(item.type)===2){//内容为语音
+                                    if(httP==="http"){
+                                        html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="">
+                    </div>
+                   
+                   
+                    <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
+                        <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
+                               播放语音                            
+                        </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                                    }else{
+                                        html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="" title="${item.sender_code}">
+                    </div>                                     
+                    <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
+                        <span class="weui-media-box__desc playVoice" style="background:white;font-size: 13px;color:black" title="${item.content}">
+                               播放语音                            
+                        </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                                    }
+                                }else{//内容为文字
+                                    if(httP==="http"){
+                                        html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="${item.portrait}" alt="" title="${item.sender_code}">
+                    </div>
+                   
+                   
+                    <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
+                        <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}                            
+                        </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                                    }else{
+                                        html+=`
+                                <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
+                <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
+                    <div class="weui-media-box__hd" style="margin-right:.8em;margin-top: 0" >
+                        <img class="weui-media-box__thumb" src="http://wx.junxiang.ren/project/${item.portrait}" alt="" title="${item.sender_code}">
+                    </div>
+                   
+                   
+                    <div class="weui-media-box__bd">
+                     <h6>${item.nickname}</h6>
+                        <span class="weui-media-box__desc" style="background:white;font-size: 13px;color:black">
+                               ${item.content}                            
+                        </span>
+                   </div>                   
+                </div> 
+                                
+                                `
+                                    }
+
+                                }
+                            }
+                        });
+                    var chatPage=$("#chatPage");
+                    chatPage.html(html);
+                    document.body.scrollTop=chatPage.height()+100;
+                    //播放语音
+                    var number=0;
+                    chatPage.on("click",".weui-media-box .weui-media-box__bd .playVoice",function(){
+                        //从微信服务器下载因为返回的服务器id在存本地id
+                        //获取服务器id
+                        number++;
+                        var id=$(this).attr("title");
+                        console.log(id);
+                        wx.downloadVoice({
+                            serverId: id, // 需要下载的音频的服务器端ID，由uploadVoice接口获得
+                            isShowProgressTips: 1, // 默认为1，显示进度提示
+                            success: function (res){
+                                console.log("下载语音成功");
+                                var localId=res.localId; // 返回音频的本地ID
+                                if(number%2===1){
+                                    wx.playVoice({
+                                        localId:localId,  // 需要播放的音频的本地ID，由stopRecord接口获得
+                                        success: function(){
+                                            console.log("播放语音成功");
+                                        },
+                                        fail:function () {
+                                            console.log("播放语音失败");
+                                        }
+                                    });
+                                }else{
+                                    wx.pauseVoice({
+                                        localId: localId, // 需要暂停的音频的本地ID，由stopRecord接口获得
+                                        success:function () {
+                                            console.log("暂停成功");
+                                        },
+                                        fail:function(){
+                                            console.log("暂停失败");
+                                        }
+                                    });
+                                }
+
+                            },
+                            fail:function () {
+                                console.log("下载语音失败");
+                            }
+                        });
+                    });
+
                 }
                 break;
 
