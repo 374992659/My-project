@@ -1,84 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>博客园-FlyElephant</title>
-    <style type="text/css">
-        div {
-            float: left;
-        }
-
-        .test1 img {
-            width: 187.5px;
-            height: 156.5px;
-        }
-
-        .test2 img {
-            width: 300px;
-            height: 100px;
-        }
-
-        .test3 img {
-            max-width: 300px;
-            max-height: 100px;
-        }
-
-        .test4 img {
-            max-width: 100%;
-            height: 200px;
-        }
-
-        .test5 {
-            width: 300px;
-            height: 200px;
-        }
-
-        .test5 img {
-            max-width: 100%;
-            max-height: 100%;
-        }
-
-        .test6 {
-            width: 300px;
-            height: 100px;
-            /*overflow: hidden;*/
-        }
-
-        .test6 img {
-            max-width: 300px;
-            max-height: 100px;
-        }
-
-        .test7 {
-            width: 300px;
-            height: 100px;
-            /*overflow: hidden;*/
-        }
-
-        .test7 img {
-            max-width: 300px;
-        }
-    </style>
+    <title></title>
+    <jsp:include page="inc.js.jsp"></jsp:include>
+    <!--power image cut-->
+    <link rel="stylesheet" type="text/css" href="/static/vendor/power-imgcut-v2/style.css"/>
+    <script type="text/javascript" src="/static/vendor/power-imgcut-v2/js/exif.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/power-imgcut-v2/js/megapix-image.js"></script>
+    <script type="text/javascript" src="/static/vendor/power-imgcut-v2/js/ImgCut2.min.js"></script>
+    <script type="text/javascript" src="/static/vendor/power-imgcut-v2/main.js"></script>
 </head>
-
 <body>
-<div class="component">
-    <div class="overlay">
-        <div class="overlay-inner">
-        </div>
-    </div>
-    <img class="resize-image" src="/assets/beauty.jpg" alt="image for resizing">
-    <button class="btn-crop js-crop">Crop<img class="icon-crop" src="/assets/crop.svg">
-    </button>
+<h2>请选择图片</h2>
+<input type="file" id="uploadImage" >
+<div  id="image-editor" style="display: none;">
+
 </div>
-<script>
-    $('.resize-image').wrap('<div class="resize-container"></div>')
-        .before('<span class="resize-handle resize-handle-nw"></span>')
-        .before('<span class="resize-handle resize-handle-ne"></span>')
-        .after('<span class="resize-handle resize-handle-se"></span>')
-        .after('<span class="resize-handle resize-handle-sw"></span>');
+<h2>本地裁剪图片</h2>
+<img id="usercenter_avatar"/>
+<h2>服务端图片</h2>
+<img id="preview-image" >
+
+<script type="text/javascript">
+    $(function(){
+            //--获取窗口高度及宽度，尽量别超出窗口。
+            var _e_width = $(window).width() - 200;
+            var _e_height = $(window).height() - 200;
+            if (_e_width > 800) {
+                _e_width = 800;
+            }
+            else if (_e_width <300) {
+                _e_width = 300;
+            }
+            _e_height=400;
+            _e_width=400;
+            //--这是控件的课配置参数。
+            var opts = {
+                cutWidth: 200 //裁剪框的宽度。
+                , cutHeight: 200 //裁剪框的高度
+                , containerWidth: _e_width //容器宽度
+                , containerHeight: _e_height //容器高度
+                , imageShowWidth: 300 //图片默认显示的宽度【会按照要求的宽度及高度等比缩放】
+                , imageShowHeight: 300 //图片默认显示的高度【会按照要求的宽度及高度等比缩放】
+                ,imageEditorElement:$("#image-editor")
+                ,onSave:function(imgData){
+                    $.ajax({
+                        url:"/service/saveBase64Image.jsp"
+                        ,data:{
+                            file:imgData
+                        }
+                        ,method:"post"
+                        ,dataType:"json"
+                        ,success:function(sdata){
+                            _imageHandler.hideEditor();
+                            if(sdata.error==0){
+                                $("#usercenter_avatar").attr("src",imgData);
+                                $("#preview-image").attr("src",sdata.url);
+                                var _notice=new NotificationFx({
+                                    type:"success"
+                                    ,message:"成功修改头像"
+                                });
+                                _notice.show();
+                            }
+                            else{
+                                var _notice=new NotificationFx({
+                                    type:"error"
+                                    ,message:sdata.message
+                                });
+                                _notice.show();
+                            }
+                        }
+
+                    });
+                }//当用户点击保存按钮要保存图片数据时候的回调函数。
+                ,onBtnResetClick:function(){
+                    if(_imageHandler){
+                        _imageHandler.hideEditor();
+                    }
+                    $("#panel-form").show();
+                }//reset按钮点击以后。
+
+            };
+
+            var _imageHandler=ImageEditorHandler(opts);
+
+            //--逻辑方法定义
+            $("#uploadImage").change(function(){
+
+                if (document.getElementById("uploadImage").files.length === 0) {
+                    alert("请选择图片！");
+                    return; }
+                var oFile = document.getElementById("uploadImage").files[0];
+                //if (!rFilter.test(oFile.type)) { alert("You must select a valid image file!"); return; }
+
+                /*  if(oFile.size>5*1024*1024){
+                 message(myCache.par.lang,{cn:"照片上传：文件不能超过5MB!请使用容量更小的照片。",en:"证书上传：文件不能超过100K!"})
+                 changePanel("result");
+                 return;
+                 }*/
+                if(!new RegExp("(jpg|jpeg|gif|png)+","gi").test(oFile.type)){
+                    alert("照片上传：文件类型必须是JPG、JPEG、PNG或GIF!");
+                    return;
+                }
+
+                var reader = new FileReader();
+
+                reader.onload =function(e){
+                    var _img_str=e.target.result;
+                    // img 元素
+                    $("#panel-form").hide();
+                    _imageHandler.init(_img_str,oFile);
+
+                };
+                reader.readAsDataURL(oFile);
+                return;
+            });
+        }
+    );
+
 </script>
 </body>
-
 </html>
