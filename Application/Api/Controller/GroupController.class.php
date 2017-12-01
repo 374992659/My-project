@@ -339,7 +339,7 @@ class GroupController extends VersionController
         if($this->account_code === $user_code)$this->echoEncrypData(1,'您是群主，请选择其他用户为管理员');
         $mode->startTrans();
         $res1 = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>2]);
-        $user_group=new Model\UserGroupModel($this->account_code);
+        $user_group=new Model\UserGroupModel($user_code);
         $user_group->startTrans();
         $res2 =$user_group->where(['group_num'=>$this->pdata['group_num']])->save(['role'=>2]);
         if(!$res1 or !$res2){
