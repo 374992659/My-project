@@ -115,4 +115,18 @@ $("#flockVote").on("click",".voteID",function(){
             $(".weui-gallery").hide();
         });
     })();
+    //返回群信息页面
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.href="commDiscu.html";
+        }, true);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+    });
 });
