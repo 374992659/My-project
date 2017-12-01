@@ -414,6 +414,7 @@ $(document).ready(function(){
                 break;
 
         }
+        console.log(result.data);
     };
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
