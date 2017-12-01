@@ -631,7 +631,7 @@ $(document).ready(function(){
                             }
                         });
                     var chatPage=$("#chatPage");
-                    chatPage.html(html);
+                    chatPage.prepend(html);
                     document.body.scrollTop=chatPage.height()+100;
                     //播放语音
                     var number=0;
