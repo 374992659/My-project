@@ -392,7 +392,7 @@ $(document).ready(function(){
             case 9://历史消息
                 console.log(result.data);
                 if(parseInt(result.errcode)===0){
-                   
+
                 }
                 break;
 
@@ -417,6 +417,8 @@ $(document).ready(function(){
                 });
             }
             console.log(data.length);
+            console.log(result.data.length);
+            result.data.splice(parseInt(result.data.length)-parseInt(data.length));
             console.log(result.data.length);
         }
     };
