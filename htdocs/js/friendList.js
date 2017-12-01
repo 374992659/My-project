@@ -518,12 +518,11 @@ $(document).ready(function() {
     // 功能2 请求好友分组下的好友信息
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
             //获取好友分组id
-            var that=$(this);
             var group_id=that.attr("title");
             var apptoken=localStorage.getItem("apptoken");
             var data=["",JSON.stringify({"group_id":group_id,"apptoken":apptoken})];
             var  jsonEncryptData = jsEncryptData(data);
-           console.log(data);
+            console.log(data);
             $.ajax({
                 url:url+"friends_getGroupFriends",
                 type:"POST",
@@ -578,6 +577,7 @@ $(document).ready(function() {
                             }
                         }
                         // 功能显示隐藏分组下的好友信息
+                        var that=$(this);
                         if(that.next().is(":hidden")){
                             that.next().show();
                             that.children(":first").children("img").css("transform","rotate(90deg)");

@@ -28,23 +28,37 @@ $(document).ready(function(){
                     }else{
                         pic="http://wx.junxiang.ren/project/"+result.portrait
                     }
+                    //创建时间
+                    var createTime="";
+                    if(result.create_time==="用户隐藏了该信息"){
+                        createTime=result.create_time
+                    }else{
+                        createTime=getLocalTime(result.create_time)
+                    }
                     //拥有楼盘
                     var house="";
                     if(result.user_garden){
-                        console.log("拥有楼盘");
+                      if(result.user_garden==="用户隐藏了该信息"){
+                          house=result.user_garden
+                      }
                         $.each(result.user_garden,function(i,item){
                             house+=`
                              <li>${item}</li>
                             `
                         });
                     }
+                    //常住小区
                     var garden="";
                     if(result.default_garden){
-                        console.log("常住小区");
-                        var a=JSON.parse(result.default_garden);
-                        $.each(a,function (i,item) {
-                            garden=item;
-                        })
+                      if(result.default_garden==="该用户隐藏了该信息"){
+                          garden=result.default_garden
+                      }else{
+                          var a=JSON.parse(result.default_garden);
+                          $.each(a,function (i,item) {
+                              garden=item;
+                          })
+                      }
+
                     }
                     console.log(garden);
                     html=`
@@ -96,7 +110,7 @@ $(document).ready(function(){
                         <div class="weui-cell">
                             <div class="weui-cell__bd">
                                 <label class="left">注册时间：</label>
-                                <span>${getLocalTime(result.create_time)}</span>
+                                <span>${createTime}</span>
                             </div>
                         </div>
                     </div>
