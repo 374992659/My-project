@@ -412,7 +412,7 @@ $(document).ready(function(){
                         result.data.splice(parseInt(result.data.length)-parseInt(data.length));
                         console.log(result.data.length);
                         $.each(result.data,function(i,item){
-                            var httP=item.portrait.split(":")[0];
+                            var httP=item.send_portrait.split(":")[0];
                             if(item.sender_code===my_code){//我的自己的聊天记录
                                 console.log("聊天记录");
                                 if(parseInt(item.type)===3){//内容为图片、文件
