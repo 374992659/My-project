@@ -396,6 +396,7 @@ $(document).ready(function() {
                         //分组下的好友信息
                         $.each(item.friend_user,function (i,item) {
                             "use strict";
+                            console.log(i);
                             var portrait=item.friend_portrait;
                             var htP=portrait.split(":")[0];
                             if(htP==="http"){
@@ -447,7 +448,6 @@ $(document).ready(function() {
                             `;
                         $(".group").append(html);
                         $("#user"+item.id).html(friend);
-
                     });
                     //在线好友头像亮起来
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
