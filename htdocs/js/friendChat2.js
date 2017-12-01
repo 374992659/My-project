@@ -411,6 +411,8 @@ $(document).ready(function(){
                         }
                         console.log(data.length);
                         console.log(result.data.length);
+                        result.data.slice(parseInt(result.data.length)-parseInt(data.length));
+                        console.log(result.data.length);
                         var html="";
                         $.each(result.data,function(i,item){
                             var httP=item.send_portrait.split(":")[0];
