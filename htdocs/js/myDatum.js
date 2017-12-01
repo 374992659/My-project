@@ -110,8 +110,7 @@ $(document).ready(function(){
                                 <label class="left" style="vertical-align: top">喜好：</label>
                                 <ul class="likes">
                                     <li>${result.hobby}</li> 
-                                    <li>asd asd </li>      
-                                    <li>asd asd </li>                         
+                                                      
                                 </ul>
                                 <button class="right" value="hobby" title="0">隐藏</button>
                             </div>
