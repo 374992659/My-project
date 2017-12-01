@@ -20,7 +20,7 @@ $(document).ready(function(){
         // 人数
         var number=$("#number").val();
         // 数据格式转换
-        var  data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id,"name":name,"phone":phone,"number":number})];
+        var  data=["",JSON.stringify({"apptoken":apptoken,"group_num":group_num,"activity_id":activity_id,"name":name,"phone":phone,"num":number})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
         console.log(data);
@@ -38,7 +38,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg);
-                   // window.location.href="";
+                    window.location.href="flockPlay.html";
                 }else{
                     showHide(data.errmsg)
                 }
