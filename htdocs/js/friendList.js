@@ -403,7 +403,7 @@ $(document).ready(function() {
                                 friend+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb " title="${item.group_id}" value="${item.friend_user_code}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+                            <img class="weui-media-box__thumb " title="${group_id}" value="${item.friend_user_code}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
@@ -415,7 +415,7 @@ $(document).ready(function() {
                                 friend+=`
                     <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
                         <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
+                            <img class="weui-media-box__thumb " title="${group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
                         </div>
                         <div class="weui-media-box__bd">
                             <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
