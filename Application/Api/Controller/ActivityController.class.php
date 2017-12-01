@@ -176,7 +176,7 @@ class ActivityController extends VersionController
         }
         $activity=new Model\ActivityModel($province_id,$this->pdata['city_id']);
         if(!in_array($activity->where(['id'=>$this->pdata['activity_id']])->getField('garden_code'),$Array))$this->echoEncrypData(1,'你没有通过该小区的认证');
-        $collection_time=$activity->where(['activity_id'=>$this->pdata['activity_id']])->getField('collection_time');
+        $collection_time=$activity->where(['id'=>$this->pdata['activity_id']])->getField('collection_time');
         if(time() > intval($collection_time))$this->echoEncrypData(1,'已超出报名时限',$collection_time);
         $activity_regist=new Model\ActivityRegistration($province_id,$this->pdata['city_id']);
         $status = $activity_regist->getEnrollStatus($this->account_code,$this->pdata['activity_id']);
