@@ -681,9 +681,6 @@ $(document).ready(function(){
                 break;
 
         }
-
-        //群历史记录
-
     };
     ws.onopen=function(e){
         ws.send(JSON.stringify({'type' : 1,'apptoken' :apptoken}));
@@ -986,6 +983,7 @@ $(document).ready(function(){
         var group=localStorage.getItem("group_code");
         console.log(group);
         ws.send(JSON.stringify({'type':10,'apptoken' : apptoken,'group_code':group}));
+        $(this).hide();
     });
     //群聊点击发送
     $(".pushBtn").click(function(){
