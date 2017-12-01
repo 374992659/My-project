@@ -515,9 +515,6 @@ $(document).ready(function(){
             $("#gathertime").attr("style","color:block")
         });
         $(".subBtn").click(function(){
-            var success=$(".success");
-            var hideTop=function(){
-                success.empty()};
             // 获取apptoken
             var apptoken=localStorage.getItem("apptoken");
             // 获取title 标题

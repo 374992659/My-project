@@ -111,12 +111,7 @@ $(document).ready(function(){
                 <p>联系方式：${result.phone}</p>
             </div>
           
-        </div>
-        <div class="weui-cell">
-            <div class="weui-cell__bd">
-                <p>所属小区：${result.garden_name}</p>
-            </div>          
-        </div>
+        </div>       
         <div class="weui-cell">
             <div class="weui-cell__bd">
                 <p>目标人数：${result.total_num}</p>
