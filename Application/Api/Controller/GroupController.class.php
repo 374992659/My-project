@@ -121,6 +121,7 @@ class GroupController extends VersionController
      * @param value 需要获取的群类型 1:我创建的群 2：我管理的群  3.我加入的群（普通身份）可填 不填返回所有群
      * */
     protected function getMyGroup_v1_0_0(){
+
         $value = $this->pdata['value'];
         $value = intval($value);
         if(!$value){
@@ -132,6 +133,8 @@ class GroupController extends VersionController
                 case 3:$role = 3;break;
             }
         }
+        $mongo = new \MongoClient();
+//        $create_code =$mongo->baseinfo->user_area->findOne(array('g'))
         $model = new Model\UserGroupModel($this->account_code);
         $field='group_name,group_portrait,group_code,group_num,group_type,role';
         $res = $model->getGroup($field,$role);
@@ -334,8 +337,18 @@ class GroupController extends VersionController
         $count =$mode->where(['role' =>2,'group_num'=>$group_num])->count();
         if($count >=3 )$this->echoEncrypData(1,'管理员数量已达上限');
         if($this->account_code === $user_code)$this->echoEncrypData(1,'您是群主，请选择其他用户为管理员');
-        $res = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>2]);
-        if(!$res)$this->echoEncrypData(1,'请勿重复操作哟');
+        $mode->startTrans();
+        $res1 = $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>2]);
+        $user_group=new Model\UserFriendsModel($this->account_code);
+        $user_group->startTrans();
+        $res2 =$user_group->where(['group_num'=>$this->pdata['group_num']])->save(['role'=>2]);
+        if(!$res1 or !$res2){
+            $mode->rollback();
+            $user_group->rollback();
+            $this->echoEncrypData(1,'请勿重复操作哟');
+        }
+        $mode->commit();
+        $user_group->commit();
         $this->echoEncrypData(0);
     }
     /*
