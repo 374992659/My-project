@@ -62,4 +62,17 @@ $(document).ready(function(){
         localStorage.setItem("activity_id",activity_id);
         window.location.href="flockPlay_details.html";
     });
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.href="commDiscu.html";
+        }, true);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+    });
 });
