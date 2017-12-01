@@ -451,42 +451,6 @@ $(document).ready(function(){
                 }
             })
         })();
-        //获取小区code
-        // (function(){
-        //     // 获取apptoken
-        //     var apptoken=localStorage.getItem("apptoken");
-        //     var data=["",JSON.stringify({"apptoken":apptoken})];
-        //     var json=jsEncryptData(data);
-        //     $.ajax({
-        //         url:url+"UserCenter_getApplicationGarden",
-        //         type:"POST",
-        //         data:{"data":json},
-        //         success:function(data){
-        //             // 解密
-        //             var data=jsDecodeData(data);
-        //             console.log(data);
-        //             if(data.errcode===0){
-        //                 localStorage.setItem("apptoken",data.apptoken);
-        //                 var html="";
-        //                 $.each(data.data,function(i,item){
-        //                     html+=`
-        //                  <option value="2" title="${item.garden_code}">${item.garden_name}</option>
-        //                 `
-        //                 });
-        //                 $("#house").html(html);
-        //             }else if(data.errcode===5){
-        //                 $(".pushPlay").hide();
-        //                 html=`
-        //               <div style="text-align: center">
-        //                 <p>你还没有认证的小区不能发布槽点，请到个人心进行认证</p>
-        //                 <a href="http://wx.junxiang.ren/project/htdocs/personalCente/" style="background: red;color: white">点我到个人中心</a>
-        //             </div>
-        //             `;
-        //                 $("body").html(html)
-        //             }
-        //         }
-        //     })
-        // })();
         //时间失去焦点判断
         (function () {
             $("#linkman").focus(function(){
@@ -515,9 +479,6 @@ $(document).ready(function(){
             $("#gathertime").attr("style","color:block")
         });
         $(".subBtn").click(function(){
-            var success=$(".success");
-            var hideTop=function(){
-                success.empty()};
             // 获取apptoken
             var apptoken=localStorage.getItem("apptoken");
             // 获取title 标题
@@ -592,7 +553,7 @@ $(document).ready(function(){
             var group_num=localStorage.getItem("group_num");
             // 数据格式转换
          var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tagStr,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":pictureStr,"detailed_introduction":detailed_introduction,"group_num":group_num})];
-            alert(data);
+           console.log(data);
             // 数据加密
             var jsonEncryptData=jsEncryptData(data);
             !title?alert("主题没有填"):
