@@ -284,6 +284,20 @@ $(document).ready(function(){
                     $(".picPlace").html(topicPic);
                     $(".myDiscuss").append(mydiscuss);
                     $(".allDiscuss").append(alldiscuss);
+                    // 图片放大预览
+                    (function(){
+                        $("#topicText").on("click",".weui-panel .weui-panel__bd .picPlace .weui-media-box__info__meta img",function(){
+                            var url=$(this).attr("src");
+                            console.log(url);
+                            if($(".weui-gallery").is(":hidden")){
+                                $(".weui-gallery").show();
+                                $(".weui-gallery__img").attr("style","background-image: url("+url+")")
+                            }
+                        });
+                        $(".weui-gallery").click(function(){
+                            $(".weui-gallery").hide();
+                        });
+                    })();
                 }
             }
         });
@@ -512,17 +526,17 @@ $(document).ready(function(){
         }
     })
         // 图片放大预览
-    (function(){
-        $("#topicText").on("click",".weui-panel .weui-panel__bd .picPlace .weui-media-box__info__meta img",function(){
-            var url=$(this).attr("src");
-            console.log(url);
-            if($(".weui-gallery").is(":hidden")){
-                $(".weui-gallery").show();
-                $(".weui-gallery__img").attr("style","background-image: url("+url+")")
-            }
-        });
-        $(".weui-gallery").click(function(){
-            $(".weui-gallery").hide();
-        });
-    })();
+    // (function(){
+    //     $("#topicText").on("click",".weui-panel .weui-panel__bd .picPlace .weui-media-box__info__meta img",function(){
+    //         var url=$(this).attr("src");
+    //         console.log(url);
+    //         if($(".weui-gallery").is(":hidden")){
+    //             $(".weui-gallery").show();
+    //             $(".weui-gallery__img").attr("style","background-image: url("+url+")")
+    //         }
+    //     });
+    //     $(".weui-gallery").click(function(){
+    //         $(".weui-gallery").hide();
+    //     });
+    // })();
 });
