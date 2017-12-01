@@ -1512,7 +1512,7 @@ class GroupController extends VersionController
         $table_id=substr($this->account_code,0,6);
         $res = M('baseinfo.user_info_'.$table_id)->field('nickname,portrait')->where(['account_code'=>$this->account_code])->find();
         $mode=new Model\GroupActivityModel($create_code);
-        $collection_time=$mode->where(['activity_id'=>$activity_id])->getField('collection_time');
+        $collection_time=$mode->where(['id'=>$activity_id])->getField('collection_time');
         if(time() > intval($collection_time))$this->echoEncrypData(1,'活动报名期限已过');
         $model=new Model\GroupActivityRegistrationModel($create_code);
         $data=array(
@@ -1549,7 +1549,7 @@ class GroupController extends VersionController
         $result=$model->getEnroolStatus($activity_id,$this->account_code);
         if($result == 0)$this->echoEncrypData(1,'您还没有报名哦');
         $activity=new Model\GroupActivityModel($create_code);
-        $time=$activity->field('start_time,end_time')->where(['activity_id'=>$this->pdata['activity_id']])->find();
+        $time=$activity->field('start_time,end_time')->where(['id'=>$this->pdata['activity_id']])->find();
         $now_time =time();
         if(intval($time['start_time'])<$now_time && $now_time< intval($time['end_time']))$this->echoEncrypData(1,'活动期间不能取消报名');
         if(intval($time['end_time'])<$now_time)$this->echoEncrypData(1,'活动已经结束');
