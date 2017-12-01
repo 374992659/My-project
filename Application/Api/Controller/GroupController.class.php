@@ -377,7 +377,7 @@ class GroupController extends VersionController
         $create_code = $mongo->baseinfo->group_area->findOne(array('group_num'=>$group_num),array('user_code'));
         $create_code = $create_code['user_code'];
         $mode =new Model\GroupUserModel($create_code);
-        $role= $mode->where(['user_code'=>$this->account_code])->getField('role');
+        $role= $mode->where(['user_code'=>$this->account_code,'group_num'=>$group_num])->getField('role');
         if(intval($role) !== 1)$this->echoEncrypData(500);
         $mode->startTrans();
         $user_group1 = new Model\UserGroupModel($this->account_code);
