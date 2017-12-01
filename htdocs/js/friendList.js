@@ -446,8 +446,7 @@ $(document).ready(function() {
 
                             `;
                         $(".group").append(html);
-                        //$("#user"+item.id).html(friend);
-                        $(".friend").html(friend);
+                        $("#user"+item.id).html(friend);
                     });
                     //在线好友头像亮起来
                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
