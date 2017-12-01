@@ -414,6 +414,7 @@ $(document).ready(function(){
                             });
                         }
                         $.each(data,function (i,historyItem) {
+                            console.log(historyItem.send_time);
                             $.each(result.data,function(i,item){
                                 if(!parseInt(historyItem.send_time)===parseInt(item.send_time)){
                                     var httP=item.send_portrait.split(":")[0];
