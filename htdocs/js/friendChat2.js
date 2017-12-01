@@ -407,8 +407,9 @@ $(document).ready(function(){
                             $.each(history,function(i,item){
                                 var jsonObj = eval('(' + item + ')');
                                 data[i]=jsonObj;
-                            });
-                            console.log(data.length);
+                            })
+                        }
+                        console.log(data.length);
                         console.log(result.data.length);
                         var html="";
                         $.each(result.data,function(i,item){
