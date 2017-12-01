@@ -407,6 +407,8 @@ $(document).ready(function(){
                         });
                         console.log(data.length);
                         console.log(result.data.length);
+                        result.data.splice(parseInt(result.data.length)-parseInt(data.length));
+                        console.log(result.data.length)
                     }
                 }
                 break;
