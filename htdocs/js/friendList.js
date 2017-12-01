@@ -519,6 +519,7 @@ $(document).ready(function() {
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
             //获取好友分组id
             var group_id=$(this).attr("title");
+            console.log(group_id);
             var apptoken=localStorage.getItem("apptoken");
             var data=["",JSON.stringify({"group_id":group_id,"apptoken":apptoken})];
             var  jsonEncryptData = jsEncryptData(data);
