@@ -117,7 +117,7 @@ $(document).ready(function(){
     $("#plot").change(function(){
         $(".hotTopicList").empty();
         var  city_id= $("#city option:selected").val();
-        var  garden_code=$("#plot").attr("title");
+        var  garden_code=$("#plot option:selected").attr("title");
         var cityChange=new hotTopicList(apptokne,city_id,garden_code);
         cityChange.hotTopic();
     });
