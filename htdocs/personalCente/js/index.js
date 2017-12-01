@@ -1,32 +1,7 @@
 $(document).ready(function(){
     // 获取apptoken
     var apptoken=localStorage.getItem("apptoken");
-    // 签到
-    $(".signIn").click(function(){
-        // 数据格式转换
-        var data=["",JSON.stringify({"apptoken":apptoken})];
-        // 加密
-        var jsonEncryptData=jsEncryptData(data);
-        console.log(data);
-        $.ajax({
-            url:url+"UserCenter_signIn",
-            type:"POST",
-            data:{"data":jsonEncryptData},
-            success:function(data){
-                // 解密
-                var data=jsDecodeData(data);
-                console.log(data);
-                if(data.errcode===0){
-                    localStorage.setItem("apptoken",data.apptoken);
-                    $(this).attr("style","font-size: 20px;color: red");
-                    showHide(data.errmsg);
-                }else{
-                    showHide(data.errmsg)
-                }
-            },
-            error:function(){}
-        })
-    });
+
     // 进入页面请求接口加载页面如果没人有登录跳转到登录页面
     (function(){
         // 数据格式转换
@@ -69,7 +44,7 @@ $(document).ready(function(){
                                         <h4 class="weui-media-box__title">昵称：<span>${result.nickname}</span> </h4>
                                         <h4 class="weui-media-box__title">账号：<span>${result.account}</span></h4>
                                         <h4 class="weui-media-box__title">积分：
-                                            <span>${result.total_point}</span>
+                                            <span class="point">${result.total_point}</span>
                                             <a href="checkIntegral.html" style="color: green">查看</a>
                                             <a>兑换</a>
                                         </h4>
@@ -212,6 +187,50 @@ $(document).ready(function(){
              alert("身份证有误，请重填");
             return false;
         }
+    });
+    // 签到
+    $(".signIn").click(function(){
+        // 数据格式转换
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        // 加密
+        var jsonEncryptData=jsEncryptData(data);
+        console.log(data);
+        $.ajax({
+            url:url+"UserCenter_signIn",
+            type:"POST",
+            data:{"data":jsonEncryptData},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    $(this).attr("style","font-size: 20px;color: red");
+                    showHide(data.errmsg);
+                    //请求总积分接口
+                    // 数据格式转换
+                    var data=["",JSON.stringify({"apptoken":apptoken})];
+                    // 加密
+                    var jsonEncryptData=jsEncryptData(data);
+                    $.ajax({
+                        url:url+"UserCenter_getUserTotalPoint",
+                        type:"post",
+                        data:{"data":jsonEncryptData},
+                        success:function(data){
+                            var data=jsDecodeData(data);
+                            console.log(data);
+                            if(data.errcode=0){
+                                localStorage.setItem("apptoken",data.apptoken);
+                                $(".point").html(data.data.total_point);
+                            }
+                        }
+                    })
+                }else{
+                    showHide(data.errmsg)
+                }
+            },
+            error:function(){}
+        })
     });
     var mycode=localStorage.getItem("my_code");
     $("#qrcode").qrcode({
