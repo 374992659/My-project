@@ -460,6 +460,7 @@ $(document).ready(function() {
                                     var clone=$("#"+online[j]).parent().parent().clone(true);
                                     $("#"+online[j]).parent().parent().remove();
                                     var a=$("#"+online[j]).attr("title");
+                                    console.log($("#"+online[j]));
                                     console.log(a);
                                     $("#user"+a).prepend(clone);
                                 }
