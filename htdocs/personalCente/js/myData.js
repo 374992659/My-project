@@ -119,6 +119,15 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
+            <!--个性签名-->
+            <div class="weui-cells">
+                <div class="weui-cell">
+                    <div class="weui-cell__bd">
+                        <label class="left" for="signature">个性签名：<span style="color: green">*</span></label>
+                        <input type="number" id="signature" placeholder="" value="${result.signature}"  pattern="[0-9]*">
+                    </div>
+                </div>
+            </div>
             <!--常住小区-->
             <div class="weui-cells garden" >
                 <div class="weui-cell">
@@ -361,6 +370,8 @@ $(document).ready(function(){
                     var  wechat_num=$("#weiXin").val();
             // QQ（可填）
                     var  qq_num=$("#QQ").val();
+            //个性签名
+                    var signature=$("#signature").val();
             // 常住小区（可填）
                     var  garden_code = $('#gardenLIst option:selected').attr('value');
                     var  garden_name = $('#gardenLIst option:selected').text();
@@ -388,7 +399,7 @@ $(document).ready(function(){
                 }
             }
             // 数据格式转换
-                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby,"code":code,"sex":parseInt(sex)})];
+                    data=["",JSON.stringify({"apptoken":apptoken,"portrait":portrait,"nickname":nickname,"realname":realname,"phone":phone,"wechat_num":wechat_num,"qq_num":qq_num,"default_garden":default_garden,"birth_year":birth_year,"birth_month":birth_month,"hobby":hobby,"code":code,"sex":parseInt(sex),"signature":signature})];
             // 加密
                     jsonEncryptData=jsEncryptData(data);
                     console.log(data);
