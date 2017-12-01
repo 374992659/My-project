@@ -459,8 +459,9 @@ $(document).ready(function() {
                                     $("#"+online[j]).attr("style","opacity: 1");
                                     var clone=$("#"+online[j]).parent().parent().clone(true);
                                     $("#"+online[j]).parent().parent().remove();
-                                    var id=$("#"+online[j]).attr("title");
-                                    $("#user"+id).prepend(clone);
+                                    var a=$("#"+online[j]).attr("title");
+                                    console.log(a);
+                                    $("#user"+a).prepend(clone);
                                 }
                             }
                         }
