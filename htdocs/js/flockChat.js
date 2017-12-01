@@ -392,7 +392,22 @@ $(document).ready(function(){
             case 10://历史消息
                 console.log(result);
                 if(parseInt(result.errcode)===0){
-
+                    var group=localStorage.getItem("group_code");
+                    var history_chat = localStorage.getItem('history_'+group);
+                    var my_code=localStorage.getItem("my_code");
+                    console.log("获取本地历史记录");
+                    if(history_chat){
+                        var history= $.parseJSON(history_chat);
+                        var jsonObj = eval('(' + history + ')');
+                        console.log(jsonObj);
+                        data=[];
+                        $.each(history,function(i,item){
+                            var jsonObj = eval('(' + item + ')');
+                            data[i]=jsonObj;
+                        });
+                        console.log(data.length);
+                        console.log(result.data.length);
+                    }
                 }
                 break;
 
