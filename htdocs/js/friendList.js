@@ -392,8 +392,12 @@ $(document).ready(function() {
                                 })
                             }
                         });
+                        //分组下的好友信息
+                        $.each(item.friend_user,function (i,item) {
+                            console.log(item);
+                        });
                         var online=arr.length;
-                        html += `
+                        html+=`
                          <div class="weui-cells" title="${item.id}">
                             <div class="weui-cell LinkBtn"  title="${item.id}" style="position: relative;z-index: 1000">
                                 <div class="weui-cell__hd ">
