@@ -109,6 +109,7 @@ $(document).ready(function(){
         $(".hotTopicList").empty();
         // 获取改变的城市id
         var  city_id= $("#city option:selected").val();
+        var  garden_code=$("#plot option:selected").attr("title");
         localStorage.setItem("city_id",city_id);
         var cityChange=new hotTopicList(apptokne,city_id,garden_code);
         cityChange.hotTopic();

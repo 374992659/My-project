@@ -300,7 +300,42 @@ $(document).ready(function(){
        })
     })();
     //验证该楼盘是房号否已经认证
-        $("#roomNum").blur(function (){
+    //     $("#roomNum").blur(function (){
+    //         var apptoken=localStorage.getItem("apptoken");
+    //         var city_id=$("#city option:selected").val();
+    //         var garden_code=$("#gardenName").val();
+    //         console.log(garden_code);
+    //         var dongNum=$("#dongNum").val();
+    //         var floorNum=$("#floorNum").val();
+    //         var roomNum=$("#roomNum").val();
+    //         var room_num=dongNum+"-"+floorNum+"-"+roomNum;
+    //         var role=1;
+    //         var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_name":garden_code,"room_num":room_num,"role":role})];
+    //         var jsonEncryptData=jsEncryptData(data);
+    //         console.log(data);
+    //         if(garden_code){
+    //             $.ajax({
+    //                 url:url+"UserCenter_roomRoleExists",
+    //                 type:"POST",
+    //                 data:{"data":jsonEncryptData},
+    //                 success:function (data) {
+    //                     var data=jsDecodeData(data);
+    //                     console.log(data);
+    //                     if(data.errcode===0){
+    //                         localStorage.setItem("apptoken",data.apptoken);
+    //                         $("#gardenName").attr("title","");
+    //                         showHide("该房号还没有认证可以认证哦")
+    //                     }else{
+    //                         showHide(data.errmsg);
+    //                     }
+    //                 }
+    //             })
+    //         }
+    //     });
+        //验证房号是否被认证
+    function verityHouseNum(element) {
+        var that=$(element);
+        that.blur(function () {
             var apptoken=localStorage.getItem("apptoken");
             var city_id=$("#city option:selected").val();
             var garden_code=$("#gardenName").val();
@@ -313,7 +348,7 @@ $(document).ready(function(){
             var data=["",JSON.stringify({"apptoken":apptoken,"city_id":city_id,"garden_name":garden_code,"room_num":room_num,"role":role})];
             var jsonEncryptData=jsEncryptData(data);
             console.log(data);
-            if(garden_code){
+            if(city_id&&garden_code&&dongNum&&floorNum&&roomNum){
                 $.ajax({
                     url:url+"UserCenter_roomRoleExists",
                     type:"POST",
@@ -331,8 +366,11 @@ $(document).ready(function(){
                     }
                 })
             }
-
-        });
+        })
+    }
+    verityHouseNum("#dongNum");
+    verityHouseNum("#floorNum");
+    verityHouseNum("#roomNum");
     $(".weui-btn").click(function(){
         // 获取apptoken
         var apptoken=localStorage.getItem("apptoken");
