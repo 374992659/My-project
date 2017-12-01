@@ -124,7 +124,7 @@ $(document).ready(function(){
                 <div class="weui-cell">
                     <div class="weui-cell__bd">
                         <label class="left" for="signature">个性签名：<span style="color: green">*</span></label>
-                        <input type="number" id="signature" placeholder="" value="${result.signature}"  pattern="[0-9]*">
+                        <input type="text" id="signature" placeholder="" value="${result.signature}"  pattern="[0-9]*">
                     </div>
                 </div>
             </div>
