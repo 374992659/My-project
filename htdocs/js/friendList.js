@@ -375,6 +375,7 @@ $(document).ready(function() {
             data:{"data":jsonEncryptData},
             success: function (data){
                 data = jsDecodeData(data);
+                console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     var html = "";
