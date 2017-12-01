@@ -38,7 +38,7 @@ $(document).ready(function(){
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
                     showHide(data.errmsg);
-                    window.location.href="flockPlay.html";
+                    window.location.href="flockPlay_details.html";
                 }else{
                     showHide(data.errmsg)
                 }
