@@ -128,6 +128,7 @@ $(document).ready(function(){
                             }
                         });
                         $("#"+group_id).html(html);
+
                     }else{
                         console.log(data.errmsg);
                     }
@@ -136,6 +137,7 @@ $(document).ready(function(){
             });
 //好友列表的显示隐藏
             console.log($(this));
+            console.log(typeof $(this));
             if($(this).next().is(":hidden")){
                 $(this).next().show();
                 $(this).children(".weui-cell__hd").children("img").css("transform","rotate(90deg)");
