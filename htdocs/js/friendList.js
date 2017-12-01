@@ -781,6 +781,7 @@ $(document).ready(function() {
         localStorage.setItem("sender_code",sender_code);
         localStorage.setItem("header",header);
         localStorage.setItem("sender_name",sender_name);
+        localStorage.setItem("user_code",sender_code);
         var data=["",JSON.stringify({"apptoken":apptoken,"user_code":sender_code})];
         // 加密
         var jsonEncryptData=jsEncryptData(data);
