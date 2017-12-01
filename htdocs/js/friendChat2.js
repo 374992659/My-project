@@ -416,8 +416,8 @@ $(document).ready(function(){
                         $.each(data,function (i,historyItem) {
                             console.log(historyItem.send_time);
                             $.each(result.data,function(i,item){
+                                console.log(item.send_time);
                                 if(!parseInt(historyItem.send_time)===parseInt(item.send_time)){
-                                    console.log(item.send_time);
                                     var httP=item.send_portrait.split(":")[0];
                                     if(item.sender_code==sender_code){//发送方为好友
                                         if(parseInt(item.type)===3){//获取的内容为图片
