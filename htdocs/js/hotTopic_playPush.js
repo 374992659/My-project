@@ -338,7 +338,7 @@ $(document).ready(function(){
             console.log(formData);
             $.ajax({
                 type:"POST",
-                url:url+"Activity_uploadActivityPic",
+                url:url+"group_uploadGroupActivity",
                 fileElementId:'uploaderInput',
                 data:formData,
                 processData : false,
@@ -591,9 +591,9 @@ $(document).ready(function(){
             // 获取group_num 群号码
             var group_num=localStorage.getItem("group_num");
             // 数据格式转换
-            var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tagStr,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"garden_code":garden_code,"garden_name":garden_name,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":pictureStr,"detailed_introduction":detailed_introduction,"group_num":group_num})];
-            alert(data);
+            var   data=["",JSON.stringify({"apptoken":apptoken,"tag":tagStr,"title":title,"start_time":start_time,"end_time":end_time,"destination":destination,"collection_time":collection_time,"collection_place":collection_place,"contact":contact,"phone":phone,"transport":transport,"total_num":total_num,"cost_type":cost_type,"average_cost":average_cost,"rote_planning":rote_planning,"picture":pictureStr,"detailed_introduction":detailed_introduction,"group_num":group_num})];
             // 数据加密
+            console.log(data);
             var jsonEncryptData=jsEncryptData(data);
             !title?alert("主题没有填"):
                 !start_time?alert("开始时间没有选择"):
