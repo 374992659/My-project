@@ -44,5 +44,18 @@ $(document).ready(function(){
         console.log(topic_id);
         localStorage.setItem("subject_id",topic_id);
         window.location.href="flockTopic_content.html";
-    })
+    });
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.href="commDiscu.html";
+        }, true);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+    });
 });
