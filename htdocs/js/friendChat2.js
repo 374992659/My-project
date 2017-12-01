@@ -398,6 +398,17 @@ $(document).ready(function(){
                     // 服务器保存的历史消息
                 case 9:
                     if(parseInt(result.errcode)===0){
+                        var history_chat = localStorage.getItem('history_'+sender_code);
+                        if(history_chat){
+                            var history= $.parseJSON(history_chat);
+                            var jsonObj = eval('(' + history + ')');
+                            console.log(jsonObj);
+                            data=[];
+                            $.each(history,function(i,item){
+                                var jsonObj = eval('(' + item + ')');
+                                data[i]=jsonObj;
+                            });
+                            console.log(data.length);
                         console.log(result.data.length);
                         var html="";
                         $.each(result.data,function(i,item){
