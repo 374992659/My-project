@@ -378,8 +378,9 @@ $(document).ready(function() {
                 console.log(data);
                 if(data.errcode===0){
                     localStorage.setItem("apptoken",data.apptoken);
-                    var html = "";
                     $.each(data.data,function(i, item){
+                        var html = "";
+                        var friend="";
                         var arr=[];
                         $.each(item.friend_user,function(i,tem){
                             // 获取所有在线好友
@@ -394,7 +395,34 @@ $(document).ready(function() {
                         });
                         //分组下的好友信息
                         $.each(item.friend_user,function (i,item) {
-                            console.log(item);
+                            "use strict";
+                            var portrait=item.friend_portrait;
+                            var htP=portrait.split(":")[0];
+                            if(htP==="http"){
+                                friend+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" value="${item.friend_user_code}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+                        </div>
+                    </div>
+                            `
+                            }else{
+                                friend+=`
+                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+                        <div class="weui-media-box__hd">
+                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
+                        </div>
+                        <div class="weui-media-box__bd">
+                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+                        </div>
+                    </div>
+                            `;
+                            }
                         });
                         var online=arr.length;
                         html+=`
@@ -416,9 +444,11 @@ $(document).ready(function() {
 
                          </div>
 
-                            `
+                            `;
+                        $(".group").append(html);
+                        $("#user"+item.id).html(friend);
                     });
-                    $(".group").append(html);
+
                 }else{
                     window.location.href ="landing.html";
                 }
@@ -521,82 +551,82 @@ $(document).ready(function() {
     //     })
     // })();
     // 功能2 请求好友分组下的好友信息
-    $(".group").on("click", ".weui-cells .LinkBtn",function(e){
-            //获取好友分组id
-            var that=$(this);
-            var group_id=$(this).attr("title");
-
-            var apptoken=localStorage.getItem("apptoken");
-            var data=["",JSON.stringify({"group_id":group_id,"apptoken":apptoken})];
-            var  jsonEncryptData = jsEncryptData(data);
-            console.log(data);
-            $.ajax({
-                url:url+"friends_getGroupFriends",
-                type:"POST",
-                data:{"data":jsonEncryptData},
-                success:function(data){
-                    data=jsDecodeData(data);
-                    console.log(data);
-                    if(data.errcode===0){
-                        localStorage.setItem("apptoken",data.apptoken);
-                        var html="";
-                        $.each(data.data,function(i,item){
-                            "use strict";
-                            var portrait=item.friend_portrait;
-                            var htP=portrait.split(":")[0];
-                                if(htP==="http"){
-                                    html+=`
-                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
-                        <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb " title="${item.group_id}" value="${item.friend_user_code}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
-                        </div>
-                        <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
-                        </div>
-                    </div>
-                            `
-                                }else{
-                                    html+=`
-                    <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
-                        <div class="weui-media-box__hd">
-                            <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
-                        </div>
-                        <div class="weui-media-box__bd">
-                            <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
-                            <p class="weui-media-box__desc remark">${item.friend_signature}</p>
-                        </div>
-                    </div>
-                            `;
-                                }
-                        });
-                        $("#user"+group_id).html(html);
-                        var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
-                        var online=JSON.parse(localStorage.getItem("online_friends"));
-                        for(var i=0 ,len=allfriend.length;i<len;i++){
-                            for(var j=0,le=online.length;j<le;j++){
-                                if(allfriend[i]==online[j]){
-                                   $("#"+online[j]).attr("style","opacity: 1");
-                                    var clone=$("#"+online[j]).parent().parent().clone(true);
-                                    $("#"+online[j]).parent().parent().remove();
-                                    $("#user"+group_id).prepend(clone);
-                                }
-                            }
-                        }
-                        // 功能显示隐藏分组下的好友信息
-                        console.log("显示好友分组");
-                        if(that.next().is(":hidden")){
-                            that.next().show();
-                            that.children(":first").children("img").css("transform","rotate(90deg)");
-                        }else{
-                            that.next().empty();
-                            that.next().hide();
-                            that.children(":first").children("img").css("transform","rotate(0deg)");
-                        }
-                    }
-                }
-            });
-    });
+    // $(".group").on("click", ".weui-cells .LinkBtn",function(e){
+    //         //获取好友分组id
+    //         var that=$(this);
+    //         var group_id=$(this).attr("title");
+    //
+    //         var apptoken=localStorage.getItem("apptoken");
+    //         var data=["",JSON.stringify({"group_id":group_id,"apptoken":apptoken})];
+    //         var  jsonEncryptData = jsEncryptData(data);
+    //         console.log(data);
+    //         $.ajax({
+    //             url:url+"friends_getGroupFriends",
+    //             type:"POST",
+    //             data:{"data":jsonEncryptData},
+    //             success:function(data){
+    //                 data=jsDecodeData(data);
+    //                 console.log(data);
+    //                 if(data.errcode===0){
+    //                     localStorage.setItem("apptoken",data.apptoken);
+    //                     var html="";
+    //                     $.each(data.data,function(i,item){
+    //                         "use strict";
+    //                         var portrait=item.friend_portrait;
+    //                         var htP=portrait.split(":")[0];
+    //                             if(htP==="http"){
+    //                                 html+=`
+    //                 <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+    //                     <div class="weui-media-box__hd">
+    //                         <img class="weui-media-box__thumb " title="${item.group_id}" value="${item.friend_user_code}" style="opacity: .6" src="${item.friend_portrait}"   id="${item.friend_user_code}">
+    //                     </div>
+    //                     <div class="weui-media-box__bd">
+    //                         <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+    //                         <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+    //                     </div>
+    //                 </div>
+    //                         `
+    //                             }else{
+    //                                 html+=`
+    //                 <div class="weui-media-box weui-media-box_appmsg skipChat" title="${item.friend_user_code}">
+    //                     <div class="weui-media-box__hd">
+    //                         <img class="weui-media-box__thumb " title="${item.group_id}" style="opacity: .6" src="http://wx.junxiang.ren/project/${item.friend_portrait}"   id="${item.friend_user_code}">
+    //                     </div>
+    //                     <div class="weui-media-box__bd">
+    //                         <h4 class="weui-media-box__title">${item.friend_nickname}</h4>
+    //                         <p class="weui-media-box__desc remark">${item.friend_signature}</p>
+    //                     </div>
+    //                 </div>
+    //                         `;
+    //                             }
+    //                     });
+    //                     $("#user"+group_id).html(html);
+    //                     var allfriend=JSON.parse(localStorage.getItem("allFriend_code"));
+    //                     var online=JSON.parse(localStorage.getItem("online_friends"));
+    //                     for(var i=0 ,len=allfriend.length;i<len;i++){
+    //                         for(var j=0,le=online.length;j<le;j++){
+    //                             if(allfriend[i]==online[j]){
+    //                                $("#"+online[j]).attr("style","opacity: 1");
+    //                                 var clone=$("#"+online[j]).parent().parent().clone(true);
+    //                                 $("#"+online[j]).parent().parent().remove();
+    //                                 $("#user"+group_id).prepend(clone);
+    //                             }
+    //                         }
+    //                     }
+    //                     // 功能显示隐藏分组下的好友信息
+    //                     console.log("显示好友分组");
+    //                     if(that.next().is(":hidden")){
+    //                         that.next().show();
+    //                         that.children(":first").children("img").css("transform","rotate(90deg)");
+    //                     }else{
+    //                         that.next().empty();
+    //                         that.next().hide();
+    //                         that.children(":first").children("img").css("transform","rotate(0deg)");
+    //                     }
+    //                 }
+    //             }
+    //         });
+    // });
     //搜索框内容的清楚
     $("#searchClear").click(function(){
         $(".keyFriend").empty();
