@@ -63,27 +63,22 @@
 </head>
 
 <body>
-<div class="test1">
-    <img src="testImg/17314131_1357893305130.jpg" />
+<div class="component">
+    <div class="overlay">
+        <div class="overlay-inner">
+        </div>
+    </div>
+    <img class="resize-image" src="/assets/beauty.jpg" alt="image for resizing">
+    <button class="btn-crop js-crop">Crop<img class="icon-crop" src="/assets/crop.svg">
+    </button>
 </div>
-<div class="test2">
-    <img src="testImg/17314131_1357893305130.jpg" />
-</div>
-<div class="test3">
-    <img src="testImg/17314131_1357893305130.jpg" />
-</div>
-<div class="test4">
-    <img src="testImg/17314131_1357893305130.jpg" />
-</div>
-<div class="test5">
-    <img src="testImg/17314131_1357893305130.jpg" />
-</div>
-<div class="test6">
-    <img src="testImg/17314131_1357893305130.jpg" />
-</div>
-<div class="test7">
-    <img src="testImg/17314131_1357893305130.jpg" />
-</div>
+<script>
+    $('.resize-image').wrap('<div class="resize-container"></div>')
+        .before('<span class="resize-handle resize-handle-nw"></span>')
+        .before('<span class="resize-handle resize-handle-ne"></span>')
+        .after('<span class="resize-handle resize-handle-se"></span>')
+        .after('<span class="resize-handle resize-handle-sw"></span>');
+</script>
 </body>
 
 </html>
