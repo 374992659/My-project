@@ -327,8 +327,10 @@ $(document).ready(function(){
                         console.log(data);
                         if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
-                           if(!data.data.status===1){
-                               alert("该房号已经被认证")
+                           if(parseInt(data.data.status)===1){
+                              showHide("该房号未认证")
+                           }else{
+                               showHide("该房号已经被认证")
                            }
                         }else{
                             showHide(data.errmsg)

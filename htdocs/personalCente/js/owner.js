@@ -359,7 +359,12 @@ $(document).ready(function(){
                         if(data.errcode===0){
                             localStorage.setItem("apptoken",data.apptoken);
                             $("#gardenName").attr("title","");
-                            showHide("该房号还没有认证可以认证哦")
+                            if(parseInt(data.data.status)===1){
+                                showHide("该房号还没有认证")
+                            }else{
+                                showHide("该房号已经被认证")
+                            }
+
                         }else{
                             showHide(data.errmsg);
                         }
