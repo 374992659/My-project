@@ -578,6 +578,7 @@ $(document).ready(function() {
                         }
                         // 功能显示隐藏分组下的好友信息
                         var that=$(this);
+                        console.log(e.target);
                         console.log(that);
                         console.log("显示好友分组");
                         if(that.next().is(":hidden")){
