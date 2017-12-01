@@ -120,4 +120,17 @@ $(document).ready(function(){
         localStorage.setItem("activity_id",activity_id);
         window.location.href="hotTopic_playDetails.html";
     });
+    $(function(){
+        pushHistory();
+        window.addEventListener("popstate", function(e) {
+            window.location.href="index.html";
+        }, true);
+        function pushHistory() {
+            var state = {
+                title: "title",
+                url: "#"
+            };
+            window.history.pushState(state, "title", "#");
+        }
+    });
 });
