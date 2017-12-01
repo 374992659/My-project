@@ -578,6 +578,7 @@ $(document).ready(function() {
                         }
                         // 功能显示隐藏分组下的好友信息
                         var that=$(this);
+                        console.log(that);
                         if(that.next().is(":hidden")){
                             that.next().show();
                             that.children(":first").children("img").css("transform","rotate(90deg)");
