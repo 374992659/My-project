@@ -400,36 +400,19 @@ $(document).ready(function(){
                     if(parseInt(result.errcode)===0){
                         console.log(result.data);
                         var html="";
-                        //获取本地历史记录目的筛查出重复的内容
-                        var history_chat = localStorage.getItem('history_'+sender_code);
-                        if(history_chat){
-                            var history= $.parseJSON(history_chat);
-                            var jsonObj = eval('(' + history + ')');
-                            console.log(jsonObj);
-                            //data里保存有本地保存的聊天记录让其了服务保存的聊天记录的发送时间比较不相同再添加到页面
-                            data=[];
-                            $.each(history,function(i,item){
-                                var jsonObj = eval('(' + item + ')');
-                                data[i]=jsonObj;
-                            });
-                        }
-                        $.each(data,function (i,historyItem) {
-                            console.log(historyItem.send_time);
-                            $.each(result.data,function(i,item){
-                                console.log(item.send_time);
-                                if(!parseInt(historyItem.send_time)===parseInt(item.send_time)){
-                                    var httP=item.send_portrait.split(":")[0];
-                                    if(item.sender_code==sender_code){//发送方为好友
-                                        if(parseInt(item.type)===3){//获取的内容为图片
-                                            var contentHttp=item.content.split(":")[0];
-                                            var contentPic="";
-                                            if(contentHttp==="http"){
-                                                contentPic=item.content;
-                                            }else{
-                                                contentPic="http://wx.junxiang.ren/project/"+item.content;
-                                            }
-                                            if(httP==="http"){//好友头像为系统默认头像
-                                                html+=`
+                        $.each(result.data,function(i,item){
+                            var httP=item.send_portrait.split(":")[0];
+                            if(item.sender_code==sender_code){//发送方为好友
+                                if(parseInt(item.type)===3){//获取的内容为图片
+                                    var contentHttp=item.content.split(":")[0];
+                                    var contentPic="";
+                                    if(contentHttp==="http"){
+                                        contentPic=item.content;
+                                    }else{
+                                        contentPic="http://wx.junxiang.ren/project/"+item.content;
+                                    }
+                                    if(httP==="http"){//好友头像为系统默认头像
+                                        html+=`
                 <div class="sendHtml">
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -444,8 +427,8 @@ $(document).ready(function(){
                     </div>
                 </div>
                                 `
-                                            }else{//头像为自己设置的头像
-                                                html+=`
+                                    }else{//头像为自己设置的头像
+                                        html+=`
                 <div class="sendHtml">
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -461,10 +444,10 @@ $(document).ready(function(){
                     </div>
                 </div>
                                 `
-                                            }
-                                        } else if(parseInt(item.type)===2){//语音
-                                            if(httP==="http"){//头像没有http
-                                                html+=`
+                                    }
+                                } else if(parseInt(item.type)===2){//语音
+                                        if(httP==="http"){//头像没有http
+                                            html+=`
                 
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -479,8 +462,8 @@ $(document).ready(function(){
                      </div>
                 
                                 `
-                                            }else{//头像http
-                                                html+=`
+                                        }else{//头像http
+                                            html+=`
                
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -495,10 +478,10 @@ $(document).ready(function(){
                     </div>
                
                                 `
-                                            }
-                                        }else{//内容为文字
-                                            if(httP==="http"){
-                                                html+=`
+                                        }
+                                }else{//内容为文字
+                                    if(httP==="http"){
+                                        html+=`
                 
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -513,8 +496,8 @@ $(document).ready(function(){
                     </div>
                 
                                 `
-                                            }else{
-                                                html+=`
+                                    }else{
+                                        html+=`
                
                      <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                      <div class="weui-media-box weui-media-box_appmsg" style="vertical-align: top">
@@ -529,19 +512,19 @@ $(document).ready(function(){
                     </div>
                
                                 `
-                                            }
-                                        }
-                                    }else if(item.getter_code==sender_code){//发送方为自己本人
-                                        if(parseInt(item.type)===3){//获取的内容为图片
-                                            var contentHttp=item.content.split(":")[0];
-                                            var contentPIC="";
-                                            if(contentHttp==="http"){
-                                                contentPIC=item.content;
-                                            }else{
-                                                contentPIC="http://wx.junxiang.ren/project/"+item.content;
-                                            }
-                                            if(httP==="http"){//头像为系统默认头像的
-                                                html+=`
+                                    }
+                                }
+                            }else if(item.getter_code==sender_code){//发送方为自己本人
+                                if(parseInt(item.type)===3){//获取的内容为图片
+                                    var contentHttp=item.content.split(":")[0];
+                                    var contentPIC="";
+                                    if(contentHttp==="http"){
+                                        contentPIC=item.content;
+                                    }else{
+                                        contentPIC="http://wx.junxiang.ren/project/"+item.content;
+                                    }
+                                    if(httP==="http"){//头像为系统默认头像的
+                                        html+=`
                             
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
@@ -558,8 +541,8 @@ $(document).ready(function(){
                            
 
                                 `
-                                            }else{
-                                                html+=`
+                                    }else{
+                                        html+=`
                             
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
@@ -576,10 +559,10 @@ $(document).ready(function(){
                            
 
                                 `
-                                            }
-                                        }else if(parseInt(item.type)===2){
-                                            if(httP==="http"){
-                                                html+=`
+                                    }
+                                }else if(parseInt(item.type)===2){
+                                    if(httP==="http"){
+                                        html+=`
                             
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg" id="playRecord">
@@ -593,8 +576,8 @@ $(document).ready(function(){
                                     </div>
                                  </div>                           
                                 `
-                                            }else{
-                                                html+=`
+                                    }else{
+                                        html+=`
                             
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg" id="playRecord">
@@ -610,11 +593,11 @@ $(document).ready(function(){
                             
 
                                 `
-                                            }
-                                        }
-                                        else{//内容为文字
-                                            if(httP==="http"){
-                                                html+=`
+                                    }
+                                }
+                                else{//内容为文字
+                                    if(httP==="http"){
+                                        html+=`
                            
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
@@ -630,8 +613,8 @@ $(document).ready(function(){
                            
 
                                 `
-                                            }else{
-                                                html+=`
+                                    }else{
+                                        html+=`
                             
                                 <p style="font-size: 12px;text-align: center">${getLocalTime(item.send_time)}</p>
                                  <div class="weui-media-box weui-media-box_appmsg">
@@ -647,14 +630,10 @@ $(document).ready(function(){
                            
 
                                 `
-                                            }
-                                        }
                                     }
                                 }
-
-                            });
+                            }
                         });
-
                         var chatPage=$("#chatPage");
                         var num=0;
                         chatPage.prepend(html);
