@@ -481,7 +481,7 @@ class GroupController extends VersionController
             }else{
                 $this->echoEncrypData(1,'图片上传失败');
             }
-        }else {
+        }else{
             import('Vendor.UploadFile');
             $upload = new \UploadFile();
             $path = APP_PATH . 'Common/Upload/Img/NoticePicture/' . date(m) . date(d) . '/';
