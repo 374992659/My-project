@@ -1528,8 +1528,8 @@ class GroupController extends VersionController
         $activity=new Model\GroupActivityModel($group_num);
         $time=$activity->field('start_time,end_time')->where(['activity_id'=>$this->pdata['activity_id']])->find();
         $now_time =time();
-        if(intval($time['start_time'])<$now_time&&$now_time< intval($time['end_time']))$this->echoEncrypData(1,'活动期间不能取消报名');
-        if(intval($time['end_time'])<$now_time)$this->echoEncrypData(1,'活动已经结束',intval($time['end_time'])<$now_time);
+        if(intval($time['start_time'])<$now_time && $now_time< intval($time['end_time']))$this->echoEncrypData(1,'活动期间不能取消报名');
+        if(intval($time['end_time'])<$now_time)$this->echoEncrypData(1,'活动已经结束',$time);
         $res = $model->cancelGroupActivityEnroll($activity_id,$this->account_code);
         if(!$res)$this->echoEncrypData(1);
         $this->echoEncrypData(0);
