@@ -372,7 +372,7 @@ class GroupController extends VersionController
         if(intval($res) !== 2)$this->echoEncrypData(1,'该用户不是管理员');
         $mode->startTrans();
         $result1= $mode->where(['user_code'=>$user_code,'group_num'=>$group_num])->save(['role'=>3]);
-        $user_group=new Model\UserGroupModel($this->account_code);
+        $user_group=new Model\UserGroupModel($user_code);
         $user_group->startTrans();
         $res2 =$user_group->where(['group_num'=>$this->pdata['group_num']])->save(['role'=>3]);
         if(!$result1 || !$res2){
