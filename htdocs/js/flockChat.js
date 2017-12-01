@@ -390,6 +390,7 @@ $(document).ready(function(){
                 }
                 break;
             case 9://历史消息
+                console.log(result.data);
                 if(parseInt(result.errcode)===0){
                     console.log(result.data);
                     //获取本地的保存聊天记录的长度
