@@ -26,7 +26,7 @@ $(document).ready(function(){
                 <h4 class="weui-media-box__title name">${item.nickname}</h4>
                 <p class="weui-media-box__desc">此人很懒什么都没有留下</p>
             </div>
-            <button class="addFriend" style="width: 20px;height: 10px">加为好友</button>
+            <button class="addFriend" style="width: 80px;height: 30px">加为好友</button>
         </a>
         `
             }else{
@@ -39,7 +39,7 @@ $(document).ready(function(){
                 <h4 class="weui-media-box__title name">${item.nickname}</h4>
                 <p class="weui-media-box__desc">${item.signature}</p>
             </div>
-            <button class="addFriend" style="width: 20px;height: 10px">加为好友</button>
+            <button class="addFriend" style="width: 80px;height: 30px">加为好友</button>
         </a>
         `
             }
