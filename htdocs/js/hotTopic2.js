@@ -68,12 +68,39 @@ $(document).ready(function(){
             })
         }
     }
+    //功能 获取认证小区情况
+    (function(){
+        // 获取apptoken
+        var apptoken=localStorage.getItem("apptoken");
+        var data=["",JSON.stringify({"apptoken":apptoken})];
+        var json=jsEncryptData(data);
+        $.ajax({
+            url:url+"UserCenter_getApplicationGarden",
+            type:"POST",
+            data:{"data":json},
+            success:function(data){
+                // 解密
+                var data=jsDecodeData(data);
+                console.log(data);
+                if(data.errcode===0){
+                    localStorage.setItem("apptoken",data.apptoken);
+                    var html="";
+                    $.each(data.data,function(i,item){
+                        html+=`
+                         <option title="${item.garden_code}">${item.garden_name}</option>                     
+                        `
+                    });
+                    $("#plot").append(html);
+                }
+            }
+        })
+    })();
+
     // 获取apptoken
     var apptokne=localStorage.getItem("apptoken"),
+        garden_code="",
     // 获取城市id
-        city_id=localStorage.getItem("city_id"),
-    // 获取小区id
-        garden_code=270113;
+        city_id=localStorage.getItem("city_id");
     // 页面加载的时候传参数调用构造函数
     var hot=new hotTopicList(apptokne,city_id,garden_code);
     hot.hotTopic();
@@ -83,11 +110,18 @@ $(document).ready(function(){
         // 获取改变的城市id
         var  city_id= $(this).val();
         localStorage.setItem("city_id",city_id);
-        console.log(city_id);
         var cityChange=new hotTopicList(apptokne,city_id,garden_code);
         cityChange.hotTopic();
     });
-    // 功能3在页面跳转前把话题id和话题发布所属小区存在本地下一个页面加载的时候调用
+    // 功能3 当小区发送改变的时候
+    $("#plot").change(function(){
+        $(".hotTopicList").empty();
+        var  city_id= $(this).val();
+        var  garden_code=$("#plot").attr("title");
+        var cityChange=new hotTopicList(apptokne,city_id,garden_code);
+        cityChange.hotTopic();
+    });
+    // 功能4 在页面跳转前把话题id和话题发布所属小区存在本地下一个页面加载的时候调用
     $(".hotTopicList").on("click",".hotTopicA",function () {
         // 获取话题id
         var id=$(this).attr("value"),
