@@ -108,7 +108,7 @@ $(document).ready(function(){
     $("#city").change(function(){
         $(".hotTopicList").empty();
         // 获取改变的城市id
-        var  city_id= $(this).val();
+        var  city_id= $("#city option:selected").val();
         localStorage.setItem("city_id",city_id);
         var cityChange=new hotTopicList(apptokne,city_id,garden_code);
         cityChange.hotTopic();
@@ -116,7 +116,7 @@ $(document).ready(function(){
     // 功能3 当小区发送改变的时候
     $("#plot").change(function(){
         $(".hotTopicList").empty();
-        var  city_id= $(this).val();
+        var  city_id= $("#city option:selected").val();
         var  garden_code=$("#plot").attr("title");
         var cityChange=new hotTopicList(apptokne,city_id,garden_code);
         cityChange.hotTopic();
