@@ -398,7 +398,7 @@ $(document).ready(function(){
                     // 服务器保存的历史消息
                 case 9:
                     if(parseInt(result.errcode)===0){
-                        console.log(result.data);
+                        console.log(result.data.length);
                         var html="";
                         $.each(result.data,function(i,item){
                             var httP=item.send_portrait.split(":")[0];
