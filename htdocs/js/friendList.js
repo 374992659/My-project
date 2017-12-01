@@ -518,9 +518,9 @@ $(document).ready(function() {
     // 功能2 请求好友分组下的好友信息
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
             //获取好友分组id
+            var that=$(this);
             var group_id=$(this).attr("title");
-            console.log($(this));
-            console.log(group_id);
+
             var apptoken=localStorage.getItem("apptoken");
             var data=["",JSON.stringify({"group_id":group_id,"apptoken":apptoken})];
             var  jsonEncryptData = jsEncryptData(data);
@@ -579,9 +579,6 @@ $(document).ready(function() {
                             }
                         }
                         // 功能显示隐藏分组下的好友信息
-                        var that=$(this);
-                        console.log(e.target);
-                        console.log(typeof $(this));
                         console.log("显示好友分组");
                         if(that.next().is(":hidden")){
                             that.next().show();
