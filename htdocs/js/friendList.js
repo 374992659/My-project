@@ -517,6 +517,7 @@ $(document).ready(function() {
     // })();
     // 功能2 请求好友分组下的好友信息
     $(".group").on("click", ".weui-cells .LinkBtn",function(e){
+            var that=$(this);
             //获取好友分组id
             var group_id=that.attr("title");
             var apptoken=localStorage.getItem("apptoken");
