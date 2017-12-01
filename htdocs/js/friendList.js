@@ -458,11 +458,10 @@ $(document).ready(function() {
                                 if(allfriend[i]==online[j]){
                                     $("#"+online[j]).attr("style","opacity: 1");
                                     var clone=$("#"+online[j]).parent().parent().clone(true);
-                                   // $("#"+online[j]).parent().parent().remove();
-                                    var a=$("#"+online[j]).attr("title");
                                     console.log($("#"+online[j]));
-                                    console.log(a);
-                                   // $("#user"+a).prepend(clone);
+                                    $("#"+online[j]).parent().parent().remove();
+                                    var a=$("#"+online[j]).attr("title");
+                                    $("#user"+a).prepend(clone);
                                 }
                             }
                         }
