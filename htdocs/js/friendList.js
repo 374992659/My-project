@@ -455,6 +455,18 @@ $(document).ready(function() {
             }
         });
     };getGroup();
+    //显示隐藏好友分组
+    $(".group").on("click",".weui-cells .LinkBtn",function(){
+        var that=$(this);
+        if(that.next().is(":hidden")){
+                that.next().show();
+             that.children(":first").children("img").css("transform","rotate(90deg)");
+        }else{
+            that.next().hide();
+            that.children(":first").children("img").css("transform","rotate(0deg)");
+        }
+
+    });
     // (function(){
     //     var apptoken=localStorage.getItem("apptoken");
     //     var title=1;
