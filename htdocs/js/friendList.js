@@ -445,7 +445,6 @@ $(document).ready(function() {
                          </div>
 
                             `;
-                        console.log(friend);
                         $(".group").append(html);
                         $("#user"+item.id).html(friend);
                         //在线好友头像亮起来
