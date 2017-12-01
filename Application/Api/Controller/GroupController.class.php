@@ -388,18 +388,7 @@ class GroupController extends VersionController
         $res2 =$mode->where(['user_code'=>$this->account_code,'group_num'=>$group_num])->save(['role'=>3]);
         $group_info = $user_group1->where(['group_num'=>$group_num])->find();
         $res3 = $user_group1->where(['group_num'=>$group_num])->save(array('role'=>3));
-        $res4 = $user_group2->add(array(
-                'group_name'=>$group_info['group_name'],
-                'group_portrait'=>$group_info['group_portrait'],
-                'group_code'=>$group_info['group_code'],
-                'group_num'=>$group_info['group_num'],
-                'num_limit'=>$group_info['num_limit'],
-                'role'=>1,
-                'group_type'=>$group_info['group_type'],
-                'status'=>$group_info['status'],
-                'garden_code'=>$group_info['garden_code'],
-                'community_status'=>$group_info['community_status'],
-            ));
+        $res4 = $user_group2->where(['group_num'=>$group_num])->save(array('role'=>1));
         if($res1 && $res2 && $res3 && $res4){
 //        if($res1 && $res2 && $res4){
             $mode->commit();
