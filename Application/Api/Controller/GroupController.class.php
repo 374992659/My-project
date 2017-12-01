@@ -345,7 +345,7 @@ class GroupController extends VersionController
         if(!$res1 or !$res2){
             $mode->rollback();
             $user_group->rollback();
-            $this->echoEncrypData(1);
+            $this->echoEncrypData(1,$res1);
         }
         $mode->commit();
         $user_group->commit();
