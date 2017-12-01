@@ -317,7 +317,7 @@ $(document).ready(function(){
             var jsonEncryptData=jsEncryptData(data);
             console.log(room_num);
             console.log(data);
-            if(garden_code&&houseNum&&floorNum&&roomNum){
+            if(city_id&&garden_code&&houseNum&&floorNum&&roomNum){
                 $.ajax({
                     url:url+"UserCenter_roomRoleExists",
                     type:"POST",
