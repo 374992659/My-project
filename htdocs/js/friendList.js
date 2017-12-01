@@ -457,8 +457,8 @@ $(document).ready(function() {
                             for(var j=0,le=online.length;j<le;j++){
                                 if(allfriend[i]==online[j]){
                                     $("#"+online[j]).attr("style","opacity: 1");
-                                    //var clone=$("#"+online[j]).parent().parent().clone(true);
-                                    $("#"+online[j]).parent().parent().remove();
+                                    var clone=$("#"+online[j]).parent().parent().clone(true);
+                                   // $("#"+online[j]).parent().parent().remove();
                                     var a=$("#"+online[j]).attr("title");
                                     console.log($("#"+online[j]));
                                     console.log(a);
