@@ -262,6 +262,18 @@ $(document).ready(function(){
     // 功能5 上传用户头像
     myInfo.on("change",".weui-panel .weui-panel__bd .weui-media-box .weui-media-box__hd .weui-cells .weui-uploader__input-box #uploaderInput",function(e) {
         var Url=window.URL.createObjectURL(this.files[0]) ;
+        //剪切上传图片开始
+            //获取文件上传信息
+            var file=this.files[0];
+            var reader=new FileReader();
+            reader.onload=function(){
+                //通过reader.result来访问生成的DataURL
+                var url=reader.result;
+                console.log(url);
+                //setImageURL(url);
+            };
+            reader.readAsDataURL(file);
+        //剪切图片上传结束
         var formData= new FormData();
         var apptoken=localStorage.getItem("apptoken");
         formData.append("file",$("#uploaderInput")[0].files[0]);
